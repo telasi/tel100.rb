@@ -1,11 +1,21 @@
 @import "colors.less";
 @import "functions.less";
 
+.logo {
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 .logo-large {
   text-align: center;
   margin: 32px auto 32px;
   .user-select-none;
   cursor: pointer;
+
   i {
     display: block;
     color: @blue1;
@@ -14,9 +24,10 @@
       color: @blue2;
     }
   }
+
   span {
     display: block;
-    color: #aaa;
+    color: @grey1;
     font-size: 22px;
   }
 }
