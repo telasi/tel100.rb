@@ -3,7 +3,7 @@
   <span>tel100</span>
 </div>
 
-<%= form_tag request.url, class: 'form-vertical' do %>
+<%= form_tag request.url, class: 'form-vertical', autocomplete: 'off' do %>
   <% if @error %>
     <div class="alert alert-danger"><%= @error %></div>
   <% end %>
@@ -19,7 +19,7 @@
 <% end %> 
 
 <div class="text-center text-muted">
-  <div>2015 &copy; სს თელასი</div>
+  <div>2015 &copy; <a href="http://telasi.ge">სს თელასი</a></div>
   <div style="margin-top: 8px;">
     <i class="fa fa-send-o"></i> tel100
   </div>
