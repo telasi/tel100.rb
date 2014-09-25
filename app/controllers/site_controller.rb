@@ -7,14 +7,17 @@ class SiteController < ApplicationController
     if request.post?
       userid = params[:userid] ; password = params[:password]
       if userid.blank?
-        @error = 'ჩაწერეთ მომხმარებლის სახელი'
+        @error = 'ჩაწერეთ მომხმარებელი'
       elsif password.blank?
         @error = 'ჩაწერეთ პაროლი'
       else
         user = Sys::User.authenticate(userid, password)
-        @error = 'არასწორი მომხმარებლის სახელი ან პაროლი' and return if user.blank?
-        session[:current_user_id] = user.id
-        redirect_to root_url and return
+        if user.blank?
+          @error = 'არასწორი მომხმარებელი ან პაროლი'
+        else
+          session[:current_user_id] = user.id
+          redirect_to '/' and return
+        end
       end
     end
     render layout: 'clean'

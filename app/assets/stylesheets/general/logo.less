@@ -32,16 +32,18 @@
   }
 }
 
-.logo-header a {
+.logo-header {
   font-size: 20px;
-  color: @grey2;
   cursor: pointer;
 
-  span {
-    font-weight: 500;
+  a {
+    color: @grey2;
+    &:hover {
+      color: @blue2;
+    }
   }
 
-  &:hover {
-    color: @blue2;
+  strong {
+    color: @orange1;
   }
 }

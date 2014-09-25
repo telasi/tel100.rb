@@ -2,6 +2,9 @@
   <div class="container">
     <div class="logo logo-header">
       <a href="/"><i class="fa fa-send-o"></i> <span>tel100</span></a>
+      <% if @header_addition %>
+        <strong><%= @header_addition %></strong>
+      <% end %>
     </div>
   </div>
 </div>
