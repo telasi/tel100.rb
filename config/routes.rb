@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get '/', controller: 'home', action: 'index', as: 'home'
+  end
+
   scope controller: 'site' do
     match '/login', action: 'login', as: 'login', via: ['get','post']
     match '/register', action: 'register', as: 'register', via: ['get', 'post']
