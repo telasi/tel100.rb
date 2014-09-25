@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Admin::HomeController < ApplicationController
   def index
-    @title = 'ადმინისტრატორის ინტერფეისი'
+    @title = 'ადმინისტრირება'
   end
 end
