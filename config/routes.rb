@@ -13,4 +13,6 @@ Rails.application.routes.draw do
     root action: 'index', as: 'home'
   end
 
+  get '/tel100', to: 'site#index'
+
 end

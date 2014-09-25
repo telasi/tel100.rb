@@ -12,7 +12,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def my_applications; ['tel100', 'admin'] end
+  def current_application; @application || 'tel100' end
+
   helper_method :current_user
+  helper_method :my_applications
+  helper_method :current_application
 
   protected
 

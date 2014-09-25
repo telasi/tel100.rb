@@ -4,8 +4,25 @@
 <body>
 <div class="appcontent">
   <div id="sidebar">
-    <%= render partial: 'layouts/logolarge' %>
-    TODO:
+    <%= render partial: 'layouts/logolarge', locals: { with_text: false } %>
+    <%
+      apps = my_applications
+      currapp = current_application
+    %>
+    <% if apps.length > 1 %>
+      <select id="applications">
+        <% apps.each do |app| %>
+          <option value="<%= app %>" <%if app == currapp%>selected<% end %>><%= app %></option>
+        <% end %>
+      </select>
+    <% end %>
+    <script type="text/javascript">
+      $(function() {
+        $('#applications').change(function() {
+          window.location = '/' + $(this).val();
+        });
+      });
+    </script>
   </div>
   <div id="main">
     <%= yield %>
