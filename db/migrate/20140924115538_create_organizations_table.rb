@@ -11,8 +11,8 @@ class CreateOrganizationsTable < ActiveRecord::Migration
         SAPPARENT_ID number(8, 0),
         NAME_KA     varchar2(500 CHAR) not null,
         NAME_RU     varchar2(500 CHAR) not null,
-        CREATED_AT TIMESTAMP WITH TIME ZONE default SYSDATE not null,
-        UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSDATE not null,
+        CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
+        UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint HR_ORGS_PRIMARYKEY primary key ( id ) enable
       )
     SQL

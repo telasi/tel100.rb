@@ -20,8 +20,8 @@ class CreateUsersTable < ActiveRecord::Migration
         EMAIL_CONFIRMED  number(1, 0) default 0 not null,
         MOBILE_CONFIRMED number(1, 0) default 0 not null ,
         IS_ACTIVE number(1, 0)        default 1 not null,
-        CREATED_AT TIMESTAMP WITH TIME ZONE default SYSDATE not null,
-        UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSDATE not null,
+        CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
+        UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint USERS_PRIMARYKEY primary key ( id ) enable
       )
     SQL
