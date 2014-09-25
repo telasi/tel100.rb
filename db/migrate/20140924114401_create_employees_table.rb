@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateEmployeesTable < ActiveRecord::Migration
   def up
     execute <<-SQL
