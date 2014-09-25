@@ -14,9 +14,4 @@ class SiteController < ApplicationController
       redirect_to root_url
     end
   end
-
-  def register
-    @title = 'მომხმარებლის რეგისტრაცია'
-    @user = Sys::User.new
-  end
 end
