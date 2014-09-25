@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html language="ka">
 <%= render partial: 'layouts/dochead' %>
-<body class="application">
-
-<div class="container" style="margin-top: 16px;">
-  <%= yield %>
+<body>
+<div class="appcontent">
+  <div id="sidebar">
+    <%= render partial: 'layouts/logolarge' %>
+    TODO:
+  </div>
+  <div id="main">
+    <%= yield %>
+  </div>
 </div>
 </body>
 </html>
