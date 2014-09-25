@@ -1,0 +1,26 @@
+<div class="logo-large" style="margin-bottom: 32px;">
+  <i class="fa fa-send-o"></i>
+  <span>tel100</span>
+</div>
+
+<%= form_tag request.url, class: 'form-vertical' do %>
+  <% if @error %>
+    <div class="alert alert-danger"><%= @error %></div>
+  <% end %>
+  <div>
+    <%= text_field_tag 'userid', params[:userid], class: 'form-control', autofocus: true,
+      autocomplete: 'off', placeholder: 'მომხმარებლის სახელი' %>
+    <%= password_field_tag 'password', params[:password], class: 'form-control', autocomplete: 'off',
+     placeholder: 'პაროლი' %>
+  </div>
+  <div>
+    <button type="submit">შესვლა</button>
+  </div>
+<% end %> 
+
+<div class="text-center text-muted">
+  <div>2015 &copy; სს თელასი</div>
+  <div style="margin-top: 8px;">
+    <i class="fa fa-send-o"></i> tel100
+  </div>
+</div>
