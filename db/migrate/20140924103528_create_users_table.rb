@@ -12,9 +12,11 @@ class CreateUsersTable < ActiveRecord::Migration
         EMPLOYEE_ID number(10, 0) not null,
         PERSON_ID varchar2(8 CHAR) not null, -- hr_id
         FIRST_NAME_KA varchar2(50 CHAR) not null,
+        FIRST_NAME_RU varchar2(50 CHAR),
+        FIRST_NAME_EN varchar2(50 CHAR),
         LAST_NAME_KA varchar2(50 CHAR) not null,
-        FIRST_NAME_RU varchar2(50 CHAR) not null,
-        LAST_NAME_RU varchar2(50 CHAR) not null,
+        LAST_NAME_RU varchar2(50 CHAR),
+        LAST_NAME_EN varchar2(50 CHAR),
         ---------------------------------------------------------
         PASSWORD_HASH char(60 CHAR) not null,
         EMAIL_CONFIRMED  number(1, 0) default 0 not null,
