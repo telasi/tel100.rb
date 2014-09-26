@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
 class AdminController < ApplicationController
-  before_filter :adminapp_startup
+  before_filter :startup_admin_application
 
-  protected
+  private
 
-  def adminapp_startup
+  def startup_admin_application
     @application = 'admin'
   end
 end
