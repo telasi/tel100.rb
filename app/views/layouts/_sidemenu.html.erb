@@ -1,0 +1,10 @@
+<% side_links = controller.side_links if defined?(controller.side_links) %>
+<% if side_links %>
+  <ul class="sidemenu">
+    <% side_links.each do |key, value| %>
+      <li class="<%= key == @subapplication ? 'active' : 'common' %>">
+        <a href="<%= value[:url] %>"><%= value[:label] %></a>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

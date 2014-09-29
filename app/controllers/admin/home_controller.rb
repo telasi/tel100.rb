@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Admin::HomeController < AdminController
+  before_filter :startup_homecontroller
 
   def index
     @title = 'საწყისი'
@@ -7,4 +8,7 @@ class Admin::HomeController < AdminController
     @employees = HR::Employee.where(is_active: true)
   end
 
+  private
+
+  def startup_homecontroller; @subapplication = :home end
 end
