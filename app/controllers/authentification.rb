@@ -1,10 +1,13 @@
 # -*- encoding : utf-8 -*-
 module Authentification
+  ALL_APPLICATIONS = ['tel100', 'admin']
+
   def self.included(base)
     base.before_filter :validate_login
     base.helper_method :current_user
     base.helper_method :my_applications
     base.helper_method :current_application
+    base.helper_method :all_applications
   end
 
   def current_user
@@ -13,7 +16,8 @@ module Authentification
     end
   end
 
-  def my_applications; ['tel100', 'admin'] end
+  def all_applications; ALL_APPLICATIONS end
+  def my_applications; ALL_APPLICATIONS end
   def current_application; @application || 'tel100' end
 
   def validate_login
