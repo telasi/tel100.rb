@@ -6,22 +6,25 @@
   <thead>
     <tr>
       <th width="50">თანამშრ.#</th>
-      <th>სახელი, გვარი</th>
-      <th class="text-center"><i class="fa fa-cog"></i></th>
+      <th>სახელი, გვარი, თანამდებობა</th>
+      <th class="text-center" width="50"><i class="fa fa-cog"></i></th>
     </tr>
   </thead>
 <% if @employees.any? %>
   <% @employees.each do |employee| %>
     <tr>
       <td><code><%= employee.person_number %></code></td>
-      <td><%= employee.full_name %></td>
+      <td>
+        <%= employee.full_name %> &mdash;
+        <span class="text-muted"><%= employee.organization.name %></span>
+      </td>
       <td>?</td>
     </tr>
   <% end %>
 <% else %>
   <tr>
-    <td colspan="5" class="no-data">
-      არც ერთი მომხმარებელი
+    <td colspan="3" class="no-data">
+      არც ერთი თანამშრომელი
     </td>
   </tr>
 <% end %>
