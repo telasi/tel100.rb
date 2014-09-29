@@ -7,6 +7,7 @@ module Authentification
     base.helper_method :current_user
     base.helper_method :my_applications
     base.helper_method :current_application
+    base.helper_method :current_app
     base.helper_method :all_applications
   end
 
@@ -19,6 +20,7 @@ module Authentification
   def all_applications; ALL_APPLICATIONS end
   def my_applications; ALL_APPLICATIONS end
   def current_application; @application || 'tel100' end
+  alias_method :current_app, :current_application
 
   def validate_login
     if current_user.blank? and Sys::User.any? and action_name != 'login'
