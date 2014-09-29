@@ -8,7 +8,7 @@ module Localized
       end
       # setter
       define_method("#{field}=") do |value|
-        self.send("#{field}_#{I18n.locale}")
+        self.send("#{field}_#{I18n.locale}=", value)
       end
     end
   end
