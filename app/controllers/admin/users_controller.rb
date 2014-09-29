@@ -7,6 +7,10 @@ class Admin::UsersController < AdminController
     @users = active_users
   end
 
+  def new
+    @title = 'ახალი მომხმარებელი'
+  end
+
   private
 
   def startup_userscontroller; @subapplication = :users end
