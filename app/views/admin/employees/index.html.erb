@@ -1,3 +1,29 @@
 <div class="page-header">
   <h1><%= @title %> (<code><%= number_with_delimiter @employees.count %></code>)</h1>
 </div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th width="50">თანამშრ.#</th>
+      <th>სახელი, გვარი</th>
+      <th class="text-center"><i class="fa fa-cog"></i></th>
+    </tr>
+  </thead>
+<% if @employees.any? %>
+  <% @employees.each do |employee| %>
+    <tr>
+      <td><code><%= employee.person_number %></code></td>
+      <td><%= employee.full_name %></td>
+      <td>?</td>
+    </tr>
+  <% end %>
+<% else %>
+  <tr>
+    <td colspan="5" class="no-data">
+      არც ერთი მომხმარებელი
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @employees, renderer: BootstrapPagination::Rails %>
