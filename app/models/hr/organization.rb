@@ -3,4 +3,7 @@ class HR::Organization < ActiveRecord::Base
   self.table_name  = 'hr_organizations'
   self.sequence_name = 'hr_orgs_seq'
   self.localized_field('name')
+  belongs_to :parent, class_name: 'HR::Organization', foreign_key: 'parent_id'
+
+  def chain; self.parent ? self.parent.chain << self : [self] end
 end
