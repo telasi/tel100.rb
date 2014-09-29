@@ -42,4 +42,4 @@ gem 'debugger', group: [:development, :test]
 gem 'ruby-oci8'
 gem 'activerecord-oracle_enhanced-adapter', '1.5.5'
 gem 'rspec-rails', '~> 3.0.0', group: [:development, :test]
-gem 'forma', '~> 0.1'
+gem 'rails-backbone'
