@@ -7,7 +7,6 @@
     <tr>
       <th width="50">თანამშრ.#</th>
       <th>სახელი, გვარი, თანამდებობა</th>
-      <th class="text-center" width="50"><i class="fa fa-cog"></i></th>
     </tr>
   </thead>
 <% if @employees.any? %>
@@ -16,23 +15,20 @@
       <td><code><%= employee.person_number %></code></td>
       <td>
         <%= link_to employee.full_name, admin_employee_url(id: employee.id) %> &mdash;
-        <span class="text-muted">
+        <span class="js-orgstructure text-muted"
+              data-toggle="popover"
+              data-content="<%= employee_org_chain(employee) %>"
+              title="<strong><%= employee.full_name %></strong>"
+              data-container="body" data-trigger="hover">
           <%= employee.organization.name %>
-          <span class="js-orgstructure"
-                data-toggle="popover"
-                data-content="<%= employee_org_chain(employee) %>"
-                title="<strong><%= employee.full_name %></strong>"
-                data-container="body" data-trigger="hover">
-            <i class="fa fa-ellipsis-h"></i>
-          </span>
+          <i class="fa fa-ellipsis-h"></i>
         </span>
       </td>
-      <td>?</td>
     </tr>
   <% end %>
 <% else %>
   <tr>
-    <td colspan="3" class="no-data">
+    <td colspan="2" class="no-data">
       არც ერთი თანამშრომელი
     </td>
   </tr>
