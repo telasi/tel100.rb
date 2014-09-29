@@ -34,10 +34,9 @@
   </tr>
 <% end %>
 </table>
-<%= will_paginate @employees, renderer: BootstrapPagination::Rails %>
+<%= paginate2 @employees, keyboardNavigation: true %>
 <script type="text/javascript">
 $(function() {
   $('.js-orgstructure').popover({html: true, animation: true, placement: 'bottom'});
-  $('body').keyup(Tel100.paginateNavigation);
 });
 </script>

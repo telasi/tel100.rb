@@ -38,6 +38,25 @@ var Tel100 = (function() {
         if (url) { openUrl(url); }
       }
     },
+
+    trackingSearch: function() {
+      $('a[data-save-search]').click(function(evt) {
+        evt.preventDefault();
+        var path
+          , href = $(this).attr('href')
+          , origin = window.location.origin;
+        if (href.indexOf(origin) === 0) { path = href.slice(window.location.origin.length); }
+        else { path = href; }
+        var search = window.localStorage.getItem('pathsearch:'+path);
+        window.location = href + (search || '');
+      });
+
+      window.onload = function() {
+        if (window.location.search) {
+          window.localStorage.setItem('pathsearch:' + window.location.pathname, window.location.search);
+        }
+      };
+    }
   };
 
 })();

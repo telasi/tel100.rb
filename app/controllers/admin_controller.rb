@@ -10,8 +10,8 @@ class AdminController < ApplicationController
   def side_links
     {
       home: { label: 'საწყისი', url: admin_home_url },
-      users: { label: "მომხმარებლები (#{number_with_delimiter active_users.count})", url: admin_users_url },
-      employees: { label: "თანამშრომლები (#{number_with_delimiter active_employees.count})", url: admin_employees_url }
+      users: { label: "მომხმარებლები (#{number_with_delimiter active_users.count})", url: admin_users_url, save_search: true },
+      employees: { label: "თანამშრომლები (#{number_with_delimiter active_employees.count})", url: admin_employees_url, save_search: true }
     }
   end
 

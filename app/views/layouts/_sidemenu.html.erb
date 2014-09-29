@@ -4,7 +4,7 @@
   <ul class="sidemenu">
     <% side_links.each do |key, value| %>
       <li class="<%= key == curr_subapp ? 'active' : 'common' %>">
-        <a href="<%= value[:url] %>"><%= value[:label] %></a>
+        <a href="<%= value[:url] %>" <%if value[:save_search] %>data-save-search<% end %>><%= value[:label] %></a>
       </li>
     <% end %>
   </ul>

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module EmployeeHelper
 
   def employee_org_chain(empl)
