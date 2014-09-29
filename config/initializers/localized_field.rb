@@ -4,7 +4,7 @@ module Localized
     fields.each do |field|
       # getter
       define_method("#{field}") do
-        self.send("#{field}_#{I18n.locale}")
+        self.send("#{field}_#{I18n.locale}") || self.send("#{field}_#{I18n.default_locale}")
       end
       # setter
       define_method("#{field}=") do |value|
