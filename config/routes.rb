@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     scope '/employees', controller: 'employees' do
       get '/', action: 'index', as: 'employees'
+      get '/show/:id', action: 'show', as: 'employee'
     end
   end
 

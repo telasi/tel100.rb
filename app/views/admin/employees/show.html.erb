@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>
+    <code><%= @employee.person_number %></code>
+    <%= @employee.full_name %>
+  </h1>
+</div>
+
+<div>
+  <%= link_to '&larr; უკან დაბრუნება'.html_safe, admin_employees_url, class: ['btn', 'btn-default', 'js-back'] %>
+</div>
+
+<script type="text/javascript">
+$(function() {
+  $('.js-back').click(Tel100.historyBack);
+});
+</script>

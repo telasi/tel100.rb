@@ -15,7 +15,7 @@
     <tr>
       <td><code><%= employee.person_number %></code></td>
       <td>
-        <%= employee.full_name %> &mdash;
+        <%= link_to employee.full_name, admin_employee_url(id: employee.id) %> &mdash;
         <span class="text-muted">
           <%= employee.organization.name %>
           <span class="js-orgstructure"
