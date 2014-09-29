@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', controller: 'home', action: 'index', as: 'home'
     scope '/users', controller: 'users' do
+      get '/', action: 'index', as: 'users'
     end
   end
 

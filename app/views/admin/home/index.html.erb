@@ -1,2 +1,7 @@
-<p>Active Users: <code><%= @users.count %></code></p>
+<div class="page-header">
+  <h1><%= @title %></h1>
+</div>
+<p>Active Users: <code><%= @users.count %></code> <%= link_to 'users', admin_users_url %></p>
 <p>Active Employees: <code><%= @employees.count %></code></p>
+
+<%= admin_home_url %>
