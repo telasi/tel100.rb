@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       get '/', action: 'index', as: 'users'
       match '/new', action: 'new', as: 'new_user', via: ['get', 'post']
     end
+    scope '/employees', controller: 'employees' do
+      get '/', action: 'index', as: 'employees'
+    end
   end
 
   scope controller: 'site' do

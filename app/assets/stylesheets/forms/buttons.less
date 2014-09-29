@@ -1,17 +1,19 @@
 @import "../colors.less";
 @import "functions.less";
 
-.button {
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-  background: @blue1;
-  .border-radius(3px);
-  padding: 20px 40px;
-  &:hover {
-    background: @blue2;
-    color: white;
+.page-header {
+  .button {
     text-decoration: none;
-    .transition(all 0.3s ease);
+    color: white;
+    font-size: 16px;
+    background: @blue1;
+    .border-radius(3px);
+    padding: 15px 30px;
+    &:hover {
+      background: @blue2;
+      color: white;
+      text-decoration: none;
+      .transition(all 0.3s ease);
+    }
   }
 }
