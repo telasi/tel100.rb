@@ -31,8 +31,10 @@
 
       li {
         padding: 12px 16px;
+        .border-radius(4px);
         &.active {
           background: #f5f5f5;
+          a { color: @blue1; }
         }
         a {
           color: #666;
@@ -49,6 +51,8 @@
     right: 0;
     padding-right: 8px;
     left: @sidebar-width;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   #applications {
