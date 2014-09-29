@@ -1,0 +1,17 @@
+{
+  "name": "tel100",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^5.12.1",
+    "gulp": "^3.8.8",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
