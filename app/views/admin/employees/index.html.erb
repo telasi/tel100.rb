@@ -16,7 +16,16 @@
       <td><code><%= employee.person_number %></code></td>
       <td>
         <%= employee.full_name %> &mdash;
-        <span class="text-muted"><%= employee.organization.name %></span>
+        <span class="text-muted">
+          <%= employee.organization.name %>
+          <span class="js-orgstructure"
+                data-toggle="popover"
+                data-content="<%= employee_org_chain(employee) %>"
+                title="<strong><%= employee.full_name %></strong>"
+                data-container="body" data-trigger="hover">
+            <i class="fa fa-ellipsis-h"></i>
+          </span>
+        </span>
       </td>
       <td>?</td>
     </tr>
@@ -30,3 +39,6 @@
 <% end %>
 </table>
 <%= will_paginate @employees, renderer: BootstrapPagination::Rails %>
+<script type="text/javascript">
+$(function() { $('.js-orgstructure').popover({html: true, animation: true, placement: 'bottom'}); });
+</script>
