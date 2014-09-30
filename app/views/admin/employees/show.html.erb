@@ -64,6 +64,7 @@ $(function() { $('.js-back').click(Tel100.historyBack); });
       <th>სისტემის მომხმარებელი</th>
       <td style="padding: 12px 8px;">
         <span class="well well-sm">
+          <i class="fa fa-user"></i>
           <code><%= @employee.user.username %></code>
           <%= link_to @employee.user.full_name, admin_user_url(id: @employee.user.id) %>
         </span>

@@ -14,6 +14,9 @@
     <tr>
       <td><code><%= employee.person_number %></code></td>
       <td>
+        <% if employee.user.present? %>
+          <i class="fa fa-user"></i>
+        <% end %>
         <%= link_to employee.full_name, admin_employee_url(id: employee.id) %> &mdash;
         <span class="js-orgstructure text-muted"
               data-toggle="popover"
