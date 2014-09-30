@@ -3,7 +3,7 @@ class Admin::UsersController < AdminController
 
   def index
     @title = 'მომხმარებლები'
-    @users = active_users
+    @users = Sys::User.active
   end
 
   def new

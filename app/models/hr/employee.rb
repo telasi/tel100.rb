@@ -7,4 +7,6 @@ class HR::Employee < ActiveRecord::Base
 
   def person_number; self.person_id.to_s.rjust(5, '0') end
   def full_name; "#{first_name} #{last_name}" end
+
+  def self.active; HR::Employee.where(is_active: true) end
 end

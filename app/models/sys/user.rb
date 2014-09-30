@@ -14,6 +14,8 @@ class Sys::User < ActiveRecord::Base
     self.password_hash = @password
   end
 
+  def self.active; Sys::User.where(is_active: true) end
+
   def self.register(params)
     password = params.delete(:password)
     user = Sys::User.new(params)
