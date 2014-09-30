@@ -56,7 +56,9 @@ var Tel100 = (function() {
           window.localStorage.setItem('pathsearch:' + window.location.pathname, window.location.search);
         }
       };
-    }
+    },
+
+    openUrl: openUrl,
   };
 
 })();

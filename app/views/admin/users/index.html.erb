@@ -12,17 +12,27 @@
       <th>სახელი, გვარი</th>
       <th>მობილური</th>
       <th>ელ.ფოსტა</th>
-      <th class="text-center"><i class="fa fa-cog"></i></th>
     </tr>
   </thead>
 <% if @users.any? %>
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.username %></td>
-      <td><%= user.full_name %></td>
-      <td><%= user.mobile %></td>
-      <td><%= user.email %></td>
-      <td>?</td>
+      <td><code><%= user.username %></code></td>
+      <td><%= link_to user.full_name, admin_user_url(id: user.id) %></td>
+      <td>
+        <% if user.mobile.blank? %>
+          <span class="text-muted">(ცარიელი)</span>
+        <% else %>
+          <%= user.mobile %>
+        <% end %>
+      </td>
+      <td>
+        <% if user.email.blank? %>
+          <span class="text-muted">(ცარიელი)</span>
+        <% else %>
+          <%= user.email %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 <% else %>

@@ -11,6 +11,19 @@ class Admin::UsersController < AdminController
     @user = Sys::User.new
   end
 
+  def show
+    @user = Sys::User.find(params[:id])
+    @title = @user.full_name
+  end
+
+  def register
+    employee = HR::Employee.find(params[:employee_id])
+    user = Sys::User.new(params.permit(:username, :password))
+    user.employee = employee
+    user.save
+    render json: { id: user.id }
+  end
+
   def check_username
     username = params[:username]
     if username.blank?
@@ -20,7 +33,7 @@ class Admin::UsersController < AdminController
     elsif Sys::User.where(username: username.downcase).first
       resp = { error: 'მომხმარებლის სახელი დაკავებულია' }
     else
-      resp = { status: 'ok' }
+      resp = { username: username }
     end
     render json: resp
   end

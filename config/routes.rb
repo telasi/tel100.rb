@@ -5,8 +5,10 @@ Rails.application.routes.draw do
     get '/', controller: 'home', action: 'index', as: 'home'
     scope '/users', controller: 'users' do
       get '/', action: 'index', as: 'users'
-      match '/new', action: 'new', as: 'new_user', via: ['get', 'post']
+      get '/show/:id', action: 'show', as: 'user'
+      get '/new', action: 'new', as: 'new_user'
       get '/check_username', action: 'check_username', as: 'check_username'
+      post '/register', action: 'register', as: 'register_user'
     end
     scope '/employees', controller: 'employees' do
       get '/', action: 'index', as: 'employees'
