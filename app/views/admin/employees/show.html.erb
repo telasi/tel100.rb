@@ -59,9 +59,9 @@ $(function() { $('.js-back').click(Tel100.historyBack); });
       <% end %>
     </td>
   </tr>
-  <% if @employee.user %>
-    <tr>
-      <th>სისტემის მომხმარებელი</th>
+  <tr>
+    <th>სისტემის მომხმარებელი</th>
+    <% if @employee.user %>
       <td style="padding: 12px 8px;">
         <span class="well well-sm">
           <i class="fa fa-user"></i>
@@ -69,8 +69,12 @@ $(function() { $('.js-back').click(Tel100.historyBack); });
           <%= link_to @employee.user.full_name, admin_user_url(id: @employee.user.id) %>
         </span>
       </td>
-    </tr>
-  <% end %>
+    <% else %>
+      <td>
+        <%= link_to 'მომხმარებლის შექმნა', admin_new_user_url(employee_id: @employee.id), class: ['btn', 'btn-default'] %>
+      </td>
+    <% end %>
+  </tr>
   <tr class="text-muted">
     <th>სინქრონიზაციის თარიღი</th>
     <td><%= @employee.created_at.localtime.strftime('%d-%b-%Y %H:%M:%S %z') %></td>
