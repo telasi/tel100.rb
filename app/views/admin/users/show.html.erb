@@ -4,3 +4,30 @@
     <%= @user.full_name %>
   </h1>
 </div>
+
+<div style="margin-bottom: 16px;">
+  <%= link_to '&larr; უკან დაბრუნება'.html_safe, admin_users_url, class: ['btn', 'btn-default', 'js-back'] %>
+  <script type="text/javascript">
+    $(function() { $('.js-back').click(Tel100.historyBack); });
+  </script>
+</div>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th width="220">მომხმ.სახელი</th>
+    <td><code><%= @user.username %></code></td>
+  </tr>
+  <tr>
+    <th>სახელი, გვარი</th>
+    <td><%= @user.full_name  %></td>
+  </tr>
+  
+  <tr class="text-muted">
+    <th>რეგისტრაციის თარიღი</th>
+    <td><%= @user.created_at.localtime.strftime('%d-%b-%Y %H:%M:%S %z') %></td>
+  </tr>
+  <tr class="text-muted">
+    <th>ბოლო ცლილების თარიღი</th>
+    <td><%= @user.updated_at.localtime.strftime('%d-%b-%Y %H:%M:%S %z') %></td>
+  </tr>
+</table>

@@ -29,7 +29,12 @@
 <% else %>
   <tr>
     <td colspan="2" class="no-data">
-      არც ერთი თანამშრომელი
+      <% if @employees.total_entries %>
+        ამ გვერდზე არაა ინფორმაცია თანამშრომლების შესახებ.
+        <%= link_to 'დაბრუნდით პირველ გვერდზე', admin_employees_url(page: 1) %>
+      <% else %>
+        არც ერთი თანამშრომელი
+      <% end %>
     </td>
   </tr>
 <% end %>

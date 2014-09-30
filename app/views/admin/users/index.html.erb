@@ -38,7 +38,12 @@
 <% else %>
   <tr>
     <td colspan="5" class="no-data">
-      არც ერთი მომხმარებელი
+      <% if @users.total_entries > 0 %>
+        ამ გვერდზე არ არის ინფორმაცია მომხმარებლებზე.
+        <%= link_to ' პირველ გვერდზე დაბრუნება', admin_users_url(page: 1) %>
+      <% else %>
+        არც ერთი მომხმარებელი
+      <% end %>
     </td>
   </tr>
 <% end %>
