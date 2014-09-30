@@ -59,6 +59,17 @@ $(function() { $('.js-back').click(Tel100.historyBack); });
       <% end %>
     </td>
   </tr>
+  <% if @employee.user %>
+    <tr>
+      <th>სისტემის მომხმარებელი</th>
+      <td style="padding: 12px 8px;">
+        <span class="well well-sm">
+          <code><%= @employee.user.username %></code>
+          <%= link_to @employee.user.full_name, admin_user_url(id: @employee.user.id) %>
+        </span>
+      </td>
+    </tr>
+  <% end %>
   <tr class="text-muted">
     <th>სინქრონიზაციის თარიღი</th>
     <td><%= @employee.created_at.localtime.strftime('%d-%b-%Y %H:%M:%S %z') %></td>

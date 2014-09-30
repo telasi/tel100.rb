@@ -5,6 +5,7 @@ class HR::Employee < ActiveRecord::Base
   self.localized_fields('first_name', 'last_name')
   self.set_integer_columns :is_active, :employee_status_id
   belongs_to :organization, class_name: 'HR::Organization'
+  has_one :user, class_name: 'Sys::User'
 
   def person_number; self.person_id.to_s.rjust(5, '0') end
   def full_name; "#{first_name} #{last_name}" end
