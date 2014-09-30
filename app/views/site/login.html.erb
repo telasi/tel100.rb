@@ -1,6 +1,6 @@
 <%= render partial: 'layouts/logolarge' %>
 
-<%= form_tag request.url, class: 'form-vertical', autocomplete: 'on' do %>
+<%= form_tag request.url, class: 'form-vertical centered', style: 'width: 329px; margin: 0 auto;', autocomplete: 'off' do %>
   <% if @error %>
     <div class="alert alert-danger"><%= @error %></div>
   <% end %>

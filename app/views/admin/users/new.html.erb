@@ -2,147 +2,26 @@
   <h1><%= @title %></h1>
 </div>
 
-<style type="text/css">
-label {
-  width: 150px;
-  text-align: right;
-  margin-right: 16px;
-}
-.form-control {
-  display: inline-block;
-  width: 300px;
-}
-.field-info {
-  display: inline-block;
-}
-button[type=submit] {
-  margin-left: 170px;
-  width: 300px;
-}
-</style>
+<%= form_tag request.url, class: 'form-vertical' do %>
+  <% if @errors %>
+    <div class="alert alert-danger"><%= @errors %></div>
+  <% end %>
 
-<%= form_for @user, url: request.url do |f| %>
+  <% if @employee %>
+    <label>მომხმარებლის შექმნა თანამშრომლისთვის:</label>
+    <div class="well well-sm">
+      <code><%= @employee.person_number %></code>
+      <%= link_to @employee.full_name, admin_employee_url(id: @employee.id) %> &mdash;
+      <span class="text-muted"><%= @employee.organization.name %></span>
+    </div>
+  <% end %>
 
-  <p>
-    როგორც წესი, მომხმარებელი უნდა შეესაბამებოდეს არსებულ თანამშრომელს.
-    თანამშრომლის მომხმარებლად რეგისტრაციისთვის საჭიროა თანამშრომლის ნომრის მითითება.
-  </p>
+  <%= label_tag :username, 'მომხმარებლის სახელი' %>
+  <%= text_field_tag :username, params[:username], class: 'form-control', placeholder: 'მომხმარებლის სახელი', autofocus: true  %>
 
-  <hr/>
+  <%= label_tag :password, 'პაროლი' %>
+  <%= password_field_tag :password, params[:password], class: 'form-control', placeholder: 'პაროლი'  %>
 
-  <div class="form-group">
-    <label for="sys_user_person_id"><i class="fa fa-building-o"></i> თანამშრ.#</label>
-    <%= f.text_field :person_id, class: 'form-control', placeholder: 'თანამშრომლის კოდი', autofocus: true %>
-    <div id="js-employee-info" class="field-info"></div>
-  </div>
 
-  <div class="form-group">
-    <label for="sys_user_person_id"><i class="fa fa-user"></i> მომხმ.სახელი</label>
-    <%= f.text_field :username, class: 'form-control', placeholder: 'მომხმარებლის სახელი'  %>
-    <div id="js-username-info" class="field-info"></div>
-  </div>
-
-  <div class="form-group">
-    <label for="sys_user_password"><i class="fa fa-lock"></i> პაროლი</label>
-    <%= f.password_field :password, class: 'form-control', placeholder: 'პაროლი'  %>
-  </div>
-
-  <div >
-    <button type="submit" class="btn btn-primary btn-lg" disabled> მომხმარებლის შექმნა</button>
-  </div>
-
+  <button type="submit" class="btn btn-primary btn-lg"> მომხმარებლის შექმნა</button>
 <% end %>
-
-<script type="text/javascript">
-var employeeData;
-var usernameData;
-var password;
-
-var resetEmployeeInfo = function(data) {
-  var $emplInfo = $('#js-employee-info');
-  employeeData = data;
-  if (employeeData) {
-    if (employeeData.error) {
-      $emplInfo.html('<span class="text-danger"><i class="fa fa-remove"></i> ' + employeeData.error + '</span>');
-    } else {
-      $emplInfo.html('<span class="text-success"> '
-        + '<code>' + employeeData.person_number + '</code> '
-        + employeeData.first_name + ' ' + employeeData.last_name + '</span>');
-    }
-  } else {
-    $emplInfo.html('');
-  }
-  resetSubmitButton();
-};
-
-var resetUsernameInfo = function(data) {
-  var $usernameInfo = $('#js-username-info');
-  usernameData = data;
-  if (usernameData) {
-    if (usernameData.error) {
-      $usernameInfo.html('<span class="text-danger"><i class="fa fa-remove"></i> ' + usernameData.error + '</span>');
-    } else {
-      $usernameInfo.html('<span class="text-success"><i class="fa fa-check"></i></span>');
-    }
-  } else {
-    $usernameInfo.html('');
-  }
-  resetSubmitButton();
-};
-
-var isOkToSend = function() {
-  return employeeData && employeeData.person_number
-      && usernameData && usernameData.username
-      && password && password.length > 3;
-}
-
-var resetSubmitButton = function() {
-  var $submitButton = $('button[type=submit]');
-  if (  isOkToSend() ) {
-    $submitButton.removeAttr('disabled');
-  } else {
-    $submitButton.attr('disabled', 'disabled');
-  }
-};
-
-var onFormSubmit = function(evt) {
-  evt.preventDefault();
-  if ( isOkToSend() ) {
-    var data = {
-      authenticity_token: $('input[name=authenticity_token]').val(),
-      employee_id: employeeData.employee_id,
-      username: usernameData.username,
-      password: password,
-    };
-    $.post('<%= admin_register_user_url %>', data, function(data) {
-      Tel100.openUrl( '<%= admin_users_url %>/show/' + data.id );
-    })
-  }
-};
-
-$(function() {
-  $('#sys_user_person_id').blur(function() {
-    var personId = $('#sys_user_person_id').val();
-    if (Number(personId) != Number(employeeData && employeeData.person_number)) { // person number changed!
-      resetEmployeeInfo( null );
-      if (personId) {
-        $.get('<%= admin_employee_info_url %>', { person_id: personId }, resetEmployeeInfo);
-      }
-    }
-  });
-  $('#sys_user_username').blur(function() {
-    var username = $('#sys_user_username').val();
-    if ( username != (usernameData && usernameData.username) ) {
-      resetUsernameInfo( null );
-      if (username) {
-        $.get('<%= admin_check_username_url %>', { username: username }, resetUsernameInfo);
-      }
-    }
-  });
-  $('#sys_user_password').keyup(function() {
-    password = $('#sys_user_password').val();
-    resetSubmitButton();
-  });
-  $('form').submit(onFormSubmit);
-});
-</script>

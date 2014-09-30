@@ -9,6 +9,8 @@ class Sys::User < ActiveRecord::Base
   belongs_to :employee, class_name: 'HR::Employee'
   before_save :on_before_save
 
+  validates :username, uniqueness: { message: 'ეს მომხმარებელის სახელი დაკავებულია' }, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
+
   def full_name; "#{self.first_name} #{self.last_name}" end
   def password; @password ||= Password.new(self.password_hash) end
 
@@ -19,13 +21,13 @@ class Sys::User < ActiveRecord::Base
 
   def self.active; Sys::User.where(is_active: 1) end
 
-  def self.register(params)
-    password = params.delete(:password)
-    user = Sys::User.new(params)
-    user.password = password
-    user.save
-    user
-  end
+  # def self.register(params)
+  #   password = params.delete(:password)
+  #   user = Sys::User.new(params)
+  #   user.password = password
+  #   user.save
+  #   user
+  # end
 
   def self.authenticate(userID, password)
     user = Sys::User.find_by_username(userID)

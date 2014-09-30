@@ -11,16 +11,4 @@ class Admin::EmployeesController < AdminController
     @title = @employee.full_name
   end
 
-  def info
-    employee = HR::Employee.active.where(person_id: params[:person_id].to_i).first
-    render json: employee ? {
-      employee_id: employee.id,
-      person_number: employee.person_number,
-      first_name: employee.first_name,
-      last_name: employee.last_name
-    } : {
-      error: 'თანამშრომელი ვერ მოიძებნა'
-    }
-  end
-
 end
