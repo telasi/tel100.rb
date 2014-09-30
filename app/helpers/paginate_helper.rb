@@ -1,9 +1,10 @@
 # -*- encoding : utf-8 -*-
 module PaginateHelper
 
-  def paginate2(collection, opts={})
+  def paginate(collection, opts={})
     html = [ will_paginate(collection, renderer: BootstrapPagination::Rails) ]
-    if (opts[:keyboardNavigation])
+
+    if (opts[:keyboardNavigation] && collection.total_pages > 1)
       html << %Q{
         <div class="text-muted">
           გამოიყენეთ კომბინაცია <code>Ctrl &rarr;</code> და <code>Ctrl &larr;</code>

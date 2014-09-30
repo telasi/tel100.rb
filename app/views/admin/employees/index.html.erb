@@ -34,7 +34,7 @@
   </tr>
 <% end %>
 </table>
-<%= paginate2 @employees, keyboardNavigation: true %>
+<%= paginate @employees, keyboardNavigation: true %>
 <script type="text/javascript">
 $(function() {
   $('.js-orgstructure').popover({html: true, animation: true, placement: 'bottom'});
