@@ -19,9 +19,40 @@
   </tr>
   <tr>
     <th>სახელი, გვარი</th>
-    <td><%= @user.full_name  %></td>
+    <td><%= @user.full_name %></td>
   </tr>
-  
+  <tr>
+    <th>მობილური</th>
+    <td>
+      <% if @user.mobile.blank? %>
+        <span class="text-muted">(ცარიელი)</span>
+      <% else %>
+        <%= @user.mobile %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>ელ.ფოსტა</th>
+    <td>
+      <% if @user.email.blank? %>
+        <span class="text-muted">(ცარიელი)</span>
+      <% else %>
+        <%= @user.email %>
+      <% end %>
+    </td>
+  </tr>
+  <% if @user.employee %>
+    <tr>
+      <th>თანამშრომელი</th>
+      <td style="padding: 12px 8px;">
+        <span class="well well-sm">
+          <code><%= @user.employee.person_number %></code>
+          <%= link_to @user.employee.full_name, admin_employee_url(id: @user.employee.id) %> &mdash;
+          <span class="text-muted"><%= @user.employee.organization.name %></span>
+        </span>
+      </td>
+    </tr>
+  <% end %>
   <tr class="text-muted">
     <th>რეგისტრაციის თარიღი</th>
     <td><%= @user.created_at.localtime.strftime('%d-%b-%Y %H:%M:%S %z') %></td>
