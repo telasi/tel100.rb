@@ -4,6 +4,7 @@ require 'bcrypt'
 class Sys::User < ActiveRecord::Base
   include BCrypt
   self.table_name  = 'users'
+  self.set_integer_columns :is_active
 
   def password
     @password ||= Password.new(self.password_hash)
@@ -14,7 +15,7 @@ class Sys::User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def self.active; Sys::User.where(is_active: true) end
+  def self.active; Sys::User.where(is_active: 1) end
 
   def self.register(params)
     password = params.delete(:password)

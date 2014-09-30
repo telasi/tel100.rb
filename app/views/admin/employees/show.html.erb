@@ -5,12 +5,62 @@
   </h1>
 </div>
 
-<div>
+<div style="margin-bottom: 16px;">
   <%= link_to '&larr; უკან დაბრუნება'.html_safe, admin_employees_url, class: ['btn', 'btn-default', 'js-back'] %>
 </div>
 
 <script type="text/javascript">
-$(function() {
-  $('.js-back').click(Tel100.historyBack);
-});
+$(function() { $('.js-back').click(Tel100.historyBack); });
 </script>
+
+<!-- employee details -->
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th width="200">თანამშრ.#</th>
+    <td><code><%= @employee.person_number %></code></td>
+  </tr>
+  <tr>
+    <th>სახელი, გვარი</th>
+    <td><%= @employee.full_name  %></td>
+  </tr>
+  <tr>
+    <th>ორგ.სტრუქტურა</th>
+    <td>
+      <% orgs = @employee.organization.chain %>
+      <% orgs.each_with_index do |org, i| %>
+        <code><%= org.saporg_number %></code>
+        <% if i == orgs.size - 1 %>
+          <strong><%= org.name %></strong>
+        <% else %>
+          <%= org.name %>
+          <hr style="margin: 3px 0;" />
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>სტატუსი</th>
+    <td><%= @employee.employee_status %></td>
+  </tr>
+  <tr>
+    <th>სისტემური სტატუსი</th>
+    <td>
+      <% if @employee.active? %>
+        <span class="text-success">
+          <i class="fa fa-check"></i>
+          აქტიური
+        </span>
+      <% else %>
+        <span class="text-danger">
+          <i class="fa fa-remove"></i>
+          პასიური
+        </span>
+      <% end %>
+    </td>
+  </tr>
+  <tr class="text-muted">
+    <th>სინქრონიზაციის თარიღი</th>
+    <td><%= @employee.created_at.localtime.strftime('%d-%b-%Y %H:%M:%S %z') %></td>
+  </tr>
+</table>
