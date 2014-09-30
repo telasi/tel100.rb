@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     scope '/employees', controller: 'employees' do
       get '/', action: 'index', as: 'employees'
       get '/show/:id', action: 'show', as: 'employee'
+      get '/info', action: 'info', as: 'employee_info'
     end
   end
 
