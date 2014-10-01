@@ -22,6 +22,16 @@
     <td><%= @user.full_name %></td>
   </tr>
   <tr>
+    <th>ადმინისტრატორი?</th>
+    <td>
+      <% if @user.admin? %>
+        <i class="fa fa-check-circle-o text-success"></i>
+      <% else %>
+        <i class="fa fa-circle-o text-danger"></i>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
     <th>მობილური</th>
     <td>
       <% if @user.mobile.blank? %>

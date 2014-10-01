@@ -41,7 +41,7 @@ class Sys::User < ActiveRecord::Base
 
   def on_before_create
     # first user is admin
-    self.is_admin = 1 if Sys::User.empty?
+    self.is_admin = 1 if Sys::User.count == 0
     # user is active
     self.is_active = 1
   end
