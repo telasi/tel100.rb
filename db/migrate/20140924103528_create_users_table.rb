@@ -8,6 +8,10 @@ class CreateUsersTable < ActiveRecord::Migration
         MOBILE varchar2(100 CHAR),
         PHONE varchar2(10 CHAR),
         USERNAME varchar2(100 CHAR) not null,
+        EMAIL_CONFIRMED  number(1, 0) default 0 not null,
+        MOBILE_CONFIRMED number(1, 0) default 0 not null,
+        IS_ACTIVE        number(1, 0) default 1 not null,
+        IS_ADMIN         number(1, 0) default 0 not null,
         -- get this information from the last employee the user was assigned
         EMPLOYEE_ID number(10, 0) not null,
         PERSON_ID varchar2(8 CHAR) not null, -- hr_id
@@ -19,9 +23,6 @@ class CreateUsersTable < ActiveRecord::Migration
         LAST_NAME_EN varchar2(50 CHAR),
         ---------------------------------------------------------
         PASSWORD_HASH char(60 CHAR) not null,
-        EMAIL_CONFIRMED  number(1, 0) default 0 not null,
-        MOBILE_CONFIRMED number(1, 0) default 0 not null ,
-        IS_ACTIVE number(1, 0)        default 1 not null,
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint USERS_PRIMARYKEY primary key ( id ) enable

@@ -4,15 +4,18 @@ require 'bcrypt'
 class Sys::User < ActiveRecord::Base
   include BCrypt
   self.table_name  = 'users'
-  self.set_integer_columns :is_active
+  self.set_integer_columns :is_active, :is_admin
   self.localized_fields('first_name', 'last_name')
   belongs_to :employee, class_name: 'HR::Employee'
+  before_create :on_before_create
   before_save :on_before_save
 
   validates :username, uniqueness: { message: 'ეს მომხმარებელის სახელი დაკავებულია' }, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
 
   def full_name; "#{self.first_name} #{self.last_name}" end
   def password; @password ||= Password.new(self.password_hash) end
+  def active?; self.is_active == 1 end
+  def admin?; self.is_admin == 1 end
 
   def password=(new_password)
     @password = Password.create(new_password)
@@ -35,6 +38,13 @@ class Sys::User < ActiveRecord::Base
   end
 
   private
+
+  def on_before_create
+    # first user is admin
+    self.is_admin = 1 if Sys::User.empty?
+    # user is active
+    self.is_active = 1
+  end
 
   def on_before_save
     if self.employee
