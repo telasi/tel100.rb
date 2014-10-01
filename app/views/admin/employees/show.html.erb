@@ -22,7 +22,12 @@ $(function() { $('.js-back').click(Tel100.historyBack); });
   </tr>
   <tr>
     <th>სახელი, გვარი</th>
-    <td><%= @employee.full_name  %></td>
+    <td>
+      <%= @employee.full_name  %>
+      <% if @employee.organization.manager? %>
+        <span class="label label-info">ხელმძღვანელი</span>
+      <% end %>
+    </td>
   </tr>
   <tr>
     <th>ორგ.სტრუქტურა</th>
