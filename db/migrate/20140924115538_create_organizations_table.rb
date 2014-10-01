@@ -13,6 +13,8 @@ class CreateOrganizationsTable < ActiveRecord::Migration
         NAME_KA     varchar2(500 CHAR) not null,
         NAME_RU     varchar2(500 CHAR),
         NAME_EN     varchar2(500 CHAR),
+        IS_MANAGER  number(1, 0) default 0 not null,
+        PRIORITY    varchar2( 2 CHAR),
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint HR_ORGS_PRIMARYKEY primary key ( id ) enable

@@ -33,16 +33,18 @@ ActiveRecord::Schema.define(version: 20140924115538) do
 
   create_table "hr_organizations", force: true do |t|
     t.integer   "parent_id",    limit: 10,  precision: 10, scale: 0
-    t.integer   "tree_level",   limit: 3,   precision: 3,  scale: 0, default: 0,    null: false
-    t.boolean   "is_active",                precision: 1,  scale: 0, default: true, null: false
-    t.integer   "saporg_id",    limit: 8,   precision: 8,  scale: 0,                null: false
-    t.string    "saporg_type",  limit: 1,                                           null: false
+    t.integer   "tree_level",   limit: 3,   precision: 3,  scale: 0, default: 0,     null: false
+    t.boolean   "is_active",                precision: 1,  scale: 0, default: true,  null: false
+    t.integer   "saporg_id",    limit: 8,   precision: 8,  scale: 0,                 null: false
+    t.string    "saporg_type",  limit: 1,                                            null: false
     t.integer   "sapparent_id", limit: 8,   precision: 8,  scale: 0
-    t.string    "name_ka",      limit: 500,                                         null: false
+    t.string    "name_ka",      limit: 500,                                          null: false
     t.string    "name_ru",      limit: 500
     t.string    "name_en",      limit: 500
-    t.timestamp "created_at",   limit: 6,                                           null: false
-    t.timestamp "updated_at",   limit: 6,                                           null: false
+    t.boolean   "is_manager",               precision: 1,  scale: 0, default: false, null: false
+    t.string    "priority",     limit: 2
+    t.timestamp "created_at",   limit: 6,                                            null: false
+    t.timestamp "updated_at",   limit: 6,                                            null: false
   end
 
   create_table "users", force: true do |t|
