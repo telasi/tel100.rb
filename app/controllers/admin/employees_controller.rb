@@ -11,4 +11,9 @@ class Admin::EmployeesController < AdminController
     @title = @employee.full_name
   end
 
+  def sync
+    HR::Employee.connection.execute('BEGIN TEMOCH.copy_to_docflow; COMMIT; END;')
+    redirect_to admin_employees_url
+  end
+
 end

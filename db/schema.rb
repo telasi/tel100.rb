@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20140924115538) do
 
   create_table "hr_employees", force: true do |t|
     t.boolean   "is_active",                     precision: 1,  scale: 0, default: true,  null: false
-    t.string    "person_id",          limit: 8,                                           null: false
+    t.integer   "person_id",          limit: 8,  precision: 8,  scale: 0,                 null: false
     t.integer   "user_id",            limit: 10, precision: 10, scale: 0
     t.string    "first_name_ka",      limit: 50,                                          null: false
     t.string    "first_name_ru",      limit: 50
@@ -50,6 +50,10 @@ ActiveRecord::Schema.define(version: 20140924115538) do
     t.string    "mobile",           limit: 100
     t.string    "phone",            limit: 10
     t.string    "username",         limit: 100,                                          null: false
+    t.boolean   "email_confirmed",              precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "mobile_confirmed",             precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_active",                    precision: 1,  scale: 0, default: true,  null: false
+    t.boolean   "is_admin",                     precision: 1,  scale: 0, default: false, null: false
     t.integer   "employee_id",      limit: 10,  precision: 10, scale: 0,                 null: false
     t.string    "person_id",        limit: 8,                                            null: false
     t.string    "first_name_ka",    limit: 50,                                           null: false
@@ -59,9 +63,6 @@ ActiveRecord::Schema.define(version: 20140924115538) do
     t.string    "last_name_ru",     limit: 50
     t.string    "last_name_en",     limit: 50
     t.string    "password_hash",    limit: 60,                                           null: false
-    t.boolean   "email_confirmed",              precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "mobile_confirmed",             precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_active",                    precision: 1,  scale: 0, default: true,  null: false
     t.timestamp "created_at",       limit: 6,                                            null: false
     t.timestamp "updated_at",       limit: 6,                                            null: false
   end

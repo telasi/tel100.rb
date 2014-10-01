@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     scope '/employees', controller: 'employees' do
       get '/', action: 'index', as: 'employees'
       get '/show/:id', action: 'show', as: 'employee'
+      post '/sync', action: 'sync', as: 'sync_employees'
     end
   end
 

@@ -2,6 +2,10 @@
   <h1><%= @title %> (<code><%= number_with_delimiter @employees.count %></code>)</h1>
 </div>
 
+<div class="btn-toolbar" style="margin-bottom: 8px;">
+  <%= link_to 'სინქრონიზაცია', admin_sync_employees_url, class: ['btn', 'btn-default'], data: { method: 'post', confirm: 'ნამდვილად გინდათ სინქრონიზაცია?' } %>
+</div>
+
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -32,7 +36,7 @@
 <% else %>
   <tr>
     <td colspan="2" class="no-data">
-      <% if @employees.total_entries %>
+      <% if @employees.total_entries > 0 %>
         ამ გვერდზე არაა ინფორმაცია თანამშრომლების შესახებ.
         <%= link_to 'დაბრუნდით პირველ გვერდზე', admin_employees_url(page: 1) %>
       <% else %>
