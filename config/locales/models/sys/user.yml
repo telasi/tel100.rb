@@ -1,0 +1,13 @@
+ka:
+  models:
+    sys_user:
+      username: მომხ.სახელი
+      full_name: "სახელი, გვარი"
+      mobile: მობილური
+      email: ელ.ფოსტა
+      is_admin: 'ადმინისტრატორია?'
+      is_admin_true: ადმინისტრატორია!
+      is_admin_false: არ არის ადმინისტრატორი
+      employee: თანამშრომელი
+      created_at: რეგისტრაციის თარიღი
+      updated_at: ბოლო ცლილების თარიღი

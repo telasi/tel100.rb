@@ -12,63 +12,19 @@
   </script>
 </div>
 
-<table class="table table-bordered table-striped">
-  <tr>
-    <th width="220">მომხმ.სახელი</th>
-    <td><code><%= @user.username %></code></td>
-  </tr>
-  <tr>
-    <th>სახელი, გვარი</th>
-    <td><%= @user.full_name %></td>
-  </tr>
-  <tr>
-    <th>ადმინისტრატორი?</th>
-    <td>
-      <% if @user.admin? %>
-        <i class="fa fa-check-circle-o text-success"></i>
-      <% else %>
-        <i class="fa fa-circle-o text-danger"></i>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>მობილური</th>
-    <td>
-      <% if @user.mobile.blank? %>
-        <span class="text-muted">(ცარიელი)</span>
-      <% else %>
-        <%= @user.mobile %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>ელ.ფოსტა</th>
-    <td>
-      <% if @user.email.blank? %>
-        <span class="text-muted">(ცარიელი)</span>
-      <% else %>
-        <%= @user.email %>
-      <% end %>
-    </td>
-  </tr>
-  <% if @user.employee %>
-    <tr>
-      <th>თანამშრომელი</th>
-      <td style="padding: 12px 8px;">
-        <span class="well well-sm">
-          <code><%= @user.employee.person_number %></code>
-          <%= link_to @user.employee.full_name, admin_employee_url(id: @user.employee.id) %> &mdash;
-          <span class="text-muted"><%= @user.employee.organization.name %></span>
-        </span>
-      </td>
-    </tr>
-  <% end %>
-  <tr class="text-muted">
-    <th>რეგისტრაციის თარიღი</th>
-    <td><%= @user.created_at.localtime.strftime('%d-%b-%Y %H:%M:%S %z') %></td>
-  </tr>
-  <tr class="text-muted">
-    <th>ბოლო ცლილების თარიღი</th>
-    <td><%= @user.updated_at.localtime.strftime('%d-%b-%Y %H:%M:%S %z') %></td>
-  </tr>
-</table>
+<%= viewer_for @user, label_width: 220 do |v|
+  v.col1 do |c|
+    c.text_field :username, tag: 'code'
+    c.text_field :full_name
+    c.boolean_field :admin?, i18n: 'is_admin'
+    c.text_field :mobile
+    c.text_field :email
+    c.complex_field 'employee', tag: 'div', class_name: 'well well-sm' do |empl|
+      empl.text_field 'person_number', tag: 'code'
+      empl.text_field 'full_name', url: ->(x){ admin_employee_url(id: x.id) }
+      empl.text_field 'organization.name', class_name: 'text-muted'
+    end
+    c.date_field :created_at, format: 'extra', class_name: 'text-muted'
+    c.date_field :updated_at, format: 'extra', class_name: 'text-muted'
+  end
+end %>
