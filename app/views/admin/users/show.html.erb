@@ -21,7 +21,7 @@
     c.text_field :email
     c.complex_field 'employee', tag: 'div', class_name: 'well well-sm' do |empl|
       empl.text_field 'person_number', tag: 'code'
-      empl.text_field 'full_name', url: ->(x){ admin_employee_url(id: x.id) }
+      empl.text_field 'full_name', url: ->(x){ admin_employee_url(id: x.id) }, after: '&mdash;'.html_safe
       empl.text_field 'organization.name', class_name: 'text-muted'
     end
     c.date_field :created_at, format: 'extra', class_name: 'text-muted'
