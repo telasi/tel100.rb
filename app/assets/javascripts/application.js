@@ -16,6 +16,13 @@
 //= require forma
 //= require_tree .
 
+var forma = require('forma');
+
 $(function() {
+
   Tel100.trackingSearch();
+
+  // starting forma application
+  forma.startup();
+
 });
