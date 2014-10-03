@@ -22,4 +22,5 @@ class Admin::UsersController < AdminController
     @user = Sys::User.find(params[:id])
     @title = @user.full_name
   end
+
 end
