@@ -20,9 +20,9 @@ class Sys::User < ActiveRecord::Base
   def virtual_password; @virtual_password end
   def virtual_password=(password)
     @virtual_password = password
-    self.password = @password
+    self.password = password
   end
- 
+
   def password; @password ||= Password.new(self.password_hash) end
   def password=(new_password)
     @password = Password.create(new_password)

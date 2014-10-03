@@ -7,6 +7,7 @@
 
 <div style="margin-bottom: 16px;">
   <%= link_to '&larr; უკან დაბრუნება'.html_safe, admin_employees_url, class: ['btn', 'btn-default', 'js-back'] %>
+  <%= link_to 'მომხმარებლის რეგისტრაცია', admin_new_user_url(employee_id: @employee.id), class: ['btn', 'btn-default'] %>
 </div>
 
 <script type="text/javascript">
