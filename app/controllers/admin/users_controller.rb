@@ -10,12 +10,11 @@ class Admin::UsersController < AdminController
     @title = 'ახალი მომხმარებელი'
     @employee = HR::Employee.find(params[:employee_id]) if params[:employee_id]
     if request.post?
-      user = Sys::User.new(employee: @employee, username: params[:username], password: params[:password])
-      if user.save
-        redirect_to admin_user_url(id: user.id)
-      else
-        @errors = user.errors.full_messages
-      end
+      @user = Sys::User.new(params.require(:sys_user).permit(:username, :virtual_password))
+      @user.employee = @employee
+      redirect_to admin_user_url(id: @user.id) if @user.save
+    else
+      @user = Sys::User.new(employee: @employee)
     end
   end
 
@@ -23,13 +22,4 @@ class Admin::UsersController < AdminController
     @user = Sys::User.find(params[:id])
     @title = @user.full_name
   end
-
-  # def register
-  #   employee = HR::Employee.find(params[:employee_id])
-  #   user = Sys::User.new(params.permit(:username, :password))
-  #   user.employee = employee
-  #   user.save
-  #   render json: { id: user.id }
-  # end
-
 end

@@ -13,18 +13,16 @@
 </div>
 
 <%= viewer_for @user, label_width: 220 do |v|
-  v.col1 do |c|
-    c.required_text_field :username, tag: 'code'
-    c.required_text_field :full_name
-    c.boolean_field :admin?, i18n: 'is_admin'
-    c.text_field :mobile
-    c.text_field :email
-    c.complex_field 'employee', tag: 'div', class_name: 'well well-sm' do |empl|
-      empl.text_field 'person_number', tag: 'code'
-      empl.text_field 'full_name', url: ->(x){ admin_employee_url(id: x.id) }, after: '&mdash;'.html_safe
-      empl.text_field 'organization.name', class_name: 'text-muted'
-    end
-    c.date_field :created_at, format: 'extra', class_name: 'text-muted'
-    c.date_field :updated_at, format: 'extra', class_name: 'text-muted'
+  v.required_text_field :username, tag: 'code'
+  v.required_text_field :full_name
+  v.boolean_field :admin?, i18n: 'is_admin'
+  v.text_field :mobile
+  v.text_field :email
+  v.complex_field 'employee', tag: 'div', class_name: 'well well-sm' do |empl|
+    empl.text_field 'person_number', tag: 'code'
+    empl.text_field 'full_name', url: ->(x){ admin_employee_url(id: x.id) }, after: '&mdash;'.html_safe
+    empl.text_field 'organization.name', class_name: 'text-muted'
   end
+  v.date_field :created_at, format: 'extra', class_name: 'text-muted'
+  v.date_field :updated_at, format: 'extra', class_name: 'text-muted'
 end %>

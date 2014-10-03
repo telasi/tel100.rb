@@ -10,27 +10,26 @@ class Sys::User < ActiveRecord::Base
   before_create :on_before_create
   before_save :on_before_save
 
-  validates :username, uniqueness: { message: 'ეს მომხმარებელის სახელი დაკავებულია' }, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
+  validates :username, uniqueness: { message: 'ეს მომხმარებელის სახელი დაკავებულია' }
+  validates :username, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
 
   def full_name; "#{self.first_name} #{self.last_name}" end
-  def password; @password ||= Password.new(self.password_hash) end
   def active?; self.is_active == 1 end
   def admin?; self.is_admin == 1 end
 
+  def virtual_password; @virtual_password end
+  def virtual_password=(password)
+    @virtual_password = password
+    self.password = @password
+  end
+ 
+  def password; @password ||= Password.new(self.password_hash) end
   def password=(new_password)
     @password = Password.create(new_password)
     self.password_hash = @password
   end
 
   def self.active; Sys::User.where(is_active: 1) end
-
-  # def self.register(params)
-  #   password = params.delete(:password)
-  #   user = Sys::User.new(params)
-  #   user.password = password
-  #   user.save
-  #   user
-  # end
 
   def self.authenticate(userID, password)
     user = Sys::User.find_by_username(userID)

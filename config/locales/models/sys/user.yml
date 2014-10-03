@@ -5,6 +5,7 @@ ka:
       full_name: "სახელი, გვარი"
       mobile: მობილური
       email: ელ.ფოსტა
+      password: პაროლი
       is_admin: 'ადმინისტრატორია?'
       is_admin_true: ადმინისტრატორია!
       is_admin_false: არ არის ადმინისტრატორი
