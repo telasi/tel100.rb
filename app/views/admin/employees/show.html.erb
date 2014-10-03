@@ -10,90 +10,23 @@
 </div>
 
 <script type="text/javascript">
-$(function() { $('.js-back').click(Tel100.historyBack); });
+  $(function() {
+    $('.js-back').click(Tel100.historyBack);
+  });
 </script>
 
 <%= viewer_for @employee do |v|
   v.required_text_field 'person_number', tag: 'code'
   v.required_text_field 'full_name'
   v.required_text_field 'employee_status'
-  v.required_boolean_field 'active?' # TODO:
+  v.array_field 'organization.chain', i18n: 'organization' do |fld|
+    fld.text_field 'saporg_number', tag: 'code'
+    fld.text_field 'name'
+  end
+  v.boolean_field 'active?'
   v.complex_field 'user', tag: 'div', class_name: 'well well-sm' do |c|
     c.text_field 'username', tag: 'code'
     c.text_field 'full_name', url: ->(x) { admin_user_url(id: x.id) }
   end
   v.date_field 'created_at', format: :extra, class_name: 'text-muted'
 end %>
-
-<!-- employee details -->
-
-<table class="table table-bordered table-striped">
-  <tr>
-    <th width="200">თანამშრ.#</th>
-    <td><code><%= @employee.person_number %></code></td>
-  </tr>
-  <tr>
-    <th>სახელი, გვარი</th>
-    <td>
-      <%= @employee.full_name  %>
-      <% if @employee.organization.manager? %>
-        <span class="label label-info">ხელმძღვანელი</span>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>ორგ.სტრუქტურა</th>
-    <td>
-      <% orgs = @employee.organization.chain %>
-      <% orgs.each_with_index do |org, i| %>
-        <code><%= org.saporg_number %></code>
-        <% if i == orgs.size - 1 %>
-          <strong><%= org.name %></strong>
-        <% else %>
-          <%= org.name %>
-          <hr style="margin: 3px 0;" />
-        <% end %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>სტატუსი</th>
-    <td><%= @employee.employee_status %></td>
-  </tr>
-  <tr>
-    <th>სისტემური სტატუსი</th>
-    <td>
-      <% if @employee.active? %>
-        <span class="text-success">
-          <i class="fa fa-check"></i>
-          აქტიური
-        </span>
-      <% else %>
-        <span class="text-danger">
-          <i class="fa fa-remove"></i>
-          პასიური
-        </span>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>სისტემის მომხმარებელი</th>
-    <% if @employee.user %>
-      <td style="padding: 12px 8px;">
-        <span class="well well-sm">
-          <i class="fa fa-user"></i>
-          <code><%= @employee.user.username %></code>
-          <%= link_to @employee.user.full_name, admin_user_url(id: @employee.user.id) %>
-        </span>
-      </td>
-    <% else %>
-      <td>
-        <%= link_to 'მომხმარებლის შექმნა', admin_new_user_url(employee_id: @employee.id), class: ['btn', 'btn-default'] %>
-      </td>
-    <% end %>
-  </tr>
-  <tr class="text-muted">
-    <th>სინქრონიზაციის თარიღი</th>
-    <td><%= @employee.created_at.localtime.strftime('%d-%b-%Y %H:%M:%S %z') %></td>
-  </tr>
-</table>

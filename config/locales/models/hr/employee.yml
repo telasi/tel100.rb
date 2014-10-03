@@ -4,8 +4,10 @@ ka:
       person_number: "თანამშრ.#"
       full_name: "სახელი, გვარი"
       organization: "ორგ.სტრუქტურა"
-      employee_status: სტატუსი
-      active?: სისტემური სტატუსი
+      employee_status: თანამშრომლის ტიპი
+      active?: "სტატუსი"
+      active?_true: "თანამშრომელი აქტიურია"
+      active?_false: "თანამშრომელი პასიურია"
       user: მომხმარებელი
       created_at: სინქრონიზაციის თარიღი
       employee_status_id:

@@ -6,49 +6,17 @@
   <%= link_to 'სინქრონიზაცია', admin_sync_employees_url, class: ['btn', 'btn-default'], data: { method: 'post', confirm: 'ნამდვილად გინდათ სინქრონიზაცია?' } %>
 </div>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th width="50">თანამშრ.#</th>
-      <th>სახელი, გვარი, თანამდებობა</th>
-    </tr>
-  </thead>
-<% if @employees.any? %>
-  <% @employees.each do |employee| %>
-    <tr>
-      <td><code><%= employee.person_number %></code></td>
-      <td>
-        <% if employee.user.present? %>
-          <i class="fa fa-user"></i>
-        <% end %>
-        <%= link_to employee.full_name, admin_employee_url(id: employee.id) %> &mdash;
-        <span class="js-orgstructure text-muted"
-              data-toggle="popover"
-              data-content="<%= employee_org_chain(employee) %>"
-              title="<strong><%= employee.full_name %></strong>"
-              data-container="body" data-trigger="hover">
-          <%= employee.organization.name %>
-          <i class="fa fa-ellipsis-h"></i>
-        </span>
-      </td>
-    </tr>
-  <% end %>
-<% else %>
-  <tr>
-    <td colspan="2" class="no-data">
-      <% if @employees.total_entries > 0 %>
-        ამ გვერდზე არაა ინფორმაცია თანამშრომლების შესახებ.
-        <%= link_to 'დაბრუნდით პირველ გვერდზე', admin_employees_url(page: 1) %>
-      <% else %>
-        არც ერთი თანამშრომელი
-      <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
+<%= table_for @employees do |t|
+  t.text_field 'person_number', tag: 'code', width: 100
+  t.complex_field nil, i18n: 'full_name' do |c|
+    c.text_field 'full_name', after: '&mdash;'.html_safe, url: ->(x){ admin_employee_url(id: x.id) }
+    c.text_field 'organization.name', class_name: 'text-muted'
+  end
+end %>
+
 <%= paginate @employees, keyboardNavigation: true %>
 <script type="text/javascript">
-$(function() {
-  $('.js-orgstructure').popover({html: true, animation: true, placement: 'bottom'});
-});
+  $(function() {
+    $('.js-orgstructure').popover({html: true, animation: true, placement: 'bottom'});
+  });
 </script>

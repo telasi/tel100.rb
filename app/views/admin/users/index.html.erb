@@ -49,7 +49,7 @@
 <%
   empty_text = @users.total_entries == 0 ?
     'არც ერთი მომხმარებელი არაა რეგისტრირებული!' :
-    "თქვენ არასწორ გვერდზე ბრძანდებით! გადადით #{link_to 'პირველ გვერდზე', admin_users_url(page: 1)}."
+    "თქვენ იმყოფებით <strong>არარსებულ გვერდზე</strong>! გადადით #{link_to 'პირველ გვერდზე', admin_users_url(page: 1)}."
 %>
 
 <%= table_for @users, model_name: 'Sys::User', empty_text: empty_text do |t|
