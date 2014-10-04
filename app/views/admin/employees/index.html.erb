@@ -6,7 +6,7 @@
   <%= link_to 'სინქრონიზაცია', admin_sync_employees_url, class: ['btn', 'btn-default'], data: { method: 'post', confirm: 'ნამდვილად გინდათ სინქრონიზაცია?' } %>
 </div>
 
-<%= table_for @employees do |t|
+<%= table_for @employees, model_name: 'HR::Employee', empty_text: empty_text(@employees, admin_employees_url(page:1)) do |t|
   t.text_field 'person_number', tag: 'code', width: 100
   t.complex_field nil, i18n: 'full_name', icon: ->(x){ x.user.present? ? 'user' : nil } do |c|
     c.text_field 'full_name', after: '&mdash;'.html_safe, url: ->(x){ admin_employee_url(id: x.id) }
