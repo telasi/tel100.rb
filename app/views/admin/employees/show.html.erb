@@ -5,17 +5,8 @@
   </h1>
 </div>
 
-<div style="margin-bottom: 16px;">
-  <%= link_to '&larr; უკან დაბრუნება'.html_safe, admin_employees_url, class: ['btn', 'btn-default', 'js-back'] %>
-</div>
-
-<script type="text/javascript">
-  $(function() {
-    $('.js-back').click(Tel100.historyBack);
-  });
-</script>
-
 <%= viewer_for @employee do |v|
+  v.button_action '#', label: '&larr; უკან დაბრუნება'.html_safe, js: 'back'
   v.button_action admin_new_user_url(employee_id: @employee.id), label: 'მომხმარებლად რეგისტრაცია', icon: 'user' unless @employee.user
   v.required_text_field 'person_number', tag: 'code'
   v.required_text_field 'full_name'
