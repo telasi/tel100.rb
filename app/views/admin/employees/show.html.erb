@@ -6,7 +6,7 @@
 </div>
 
 <%= viewer_for @employee do |v|
-  v.button_action '#', label: '&larr; უკან დაბრუნება'.html_safe, js: 'back'
+  v.button_action '', label: 'უკან დაბრუნება'.html_safe, js: 'back', icon: 'arrow-left'
   v.button_action admin_new_user_url(employee_id: @employee.id), label: 'მომხმარებლად რეგისტრაცია', icon: 'user' unless @employee.user
   v.required_text_field 'person_number', tag: 'code'
   v.required_text_field 'full_name'
