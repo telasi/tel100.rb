@@ -8,7 +8,7 @@
 
 <%= table_for @employees do |t|
   t.text_field 'person_number', tag: 'code', width: 100
-  t.complex_field nil, i18n: 'full_name', icon: ->(x){ x.user ? 'user' : nil } do |c|
+  t.complex_field nil, i18n: 'full_name', icon: ->(x){ x.user.present? ? 'user' : nil } do |c|
     c.text_field 'full_name', after: '&mdash;'.html_safe, url: ->(x){ admin_employee_url(id: x.id) }
     c.text_field 'organization.name', class_name: 'text-muted'
   end
