@@ -7,7 +7,6 @@
 
 <div style="margin-bottom: 16px;">
   <%= link_to '&larr; უკან დაბრუნება'.html_safe, admin_employees_url, class: ['btn', 'btn-default', 'js-back'] %>
-  <%= link_to 'მომხმარებლის რეგისტრაცია', admin_new_user_url(employee_id: @employee.id), class: ['btn', 'btn-default'] unless @employee.user %>
 </div>
 
 <script type="text/javascript">
@@ -17,6 +16,7 @@
 </script>
 
 <%= viewer_for @employee do |v|
+  v.button_action admin_new_user_url(employee_id: @employee.id), label: 'მომხმარებლად რეგისტრაცია', icon: 'user' unless @employee.user
   v.required_text_field 'person_number', tag: 'code'
   v.required_text_field 'full_name'
   v.required_text_field 'employee_status'
