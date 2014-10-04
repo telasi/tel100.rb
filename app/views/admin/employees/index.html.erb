@@ -1,9 +1,10 @@
-<div class="page-header">
-  <h1><%= @title %> (<code><%= number_with_delimiter @employees.count %></code>)</h1>
-</div>
+<h1 class="page-header">
+  <%= @title %>
+  (<code><%= number_with_delimiter @employees.count %></code>)
+</h1>
 
 <%= table_for @employees, model_name: 'HR::Employee', empty_text: empty_text(@employees, admin_employees_url(page:1)) do |t|
-  t.button_action admin_sync_employees_url(return_url: request.url), label: 'სინქრონიზაცია', icon: 'refresh', http_method: 'post', confirm: 'ნამდვილად გინდათ სინქრონიზაცია?'
+  t.action admin_sync_employees_url(return_url: request.url), label: 'სინქრონიზაცია', icon: 'refresh', http_method: 'post', confirm: 'ნამდვილად გინდათ სინქრონიზაცია?', button: 'danger'
   t.text_field 'person_number', tag: 'code', width: 100
   t.complex_field nil, i18n: 'full_name', icon: ->(x){ x.user.present? ? 'user' : nil } do |c|
     c.text_field 'full_name', after: '&mdash;'.html_safe, url: ->(x){ admin_employee_url(id: x.id) }
