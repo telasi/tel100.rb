@@ -13,7 +13,7 @@ class Admin::EmployeesController < AdminController
 
   def sync
     HR::Employee.connection.execute('BEGIN TEMOCH.copy_to_docflow; COMMIT; END;')
-    redirect_to admin_employees_url
+    redirect_to return_url || admin_employees_url
   end
 
 end
