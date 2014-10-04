@@ -12,7 +12,8 @@ class Admin::EmployeesController < AdminController
   end
 
   def sync
-    HR::Employee.connection.execute('BEGIN TEMOCH.copy_to_docflow; COMMIT; END;')
+    # TODO: this procedure fails to reconnect users with employees
+    # HR::Employee.connection.execute('BEGIN TEMOCH.copy_to_docflow; COMMIT; END;')
     redirect_to return_url || admin_employees_url
   end
 
