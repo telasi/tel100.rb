@@ -13,8 +13,8 @@ class CreateUsersTable < ActiveRecord::Migration
         IS_ACTIVE        number(1, 0) default 1 not null,
         IS_ADMIN         number(1, 0) default 0 not null,
         -- get this information from the last employee the user was assigned
-        EMPLOYEE_ID number(10, 0) not null,
-        PERSON_ID varchar2(8 CHAR) not null, -- hr_id
+        EMPLOYEE_ID number(10, 0),
+        PERSON_ID   number( 8, 0), -- hr_id
         FIRST_NAME_KA varchar2(50 CHAR) not null,
         FIRST_NAME_RU varchar2(50 CHAR),
         FIRST_NAME_EN varchar2(50 CHAR),

@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20140924115538) do
     t.boolean   "mobile_confirmed",             precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_active",                    precision: 1,  scale: 0, default: true,  null: false
     t.boolean   "is_admin",                     precision: 1,  scale: 0, default: false, null: false
-    t.integer   "employee_id",      limit: 10,  precision: 10, scale: 0,                 null: false
-    t.string    "person_id",        limit: 8,                                            null: false
+    t.integer   "employee_id",      limit: 10,  precision: 10, scale: 0
+    t.integer   "person_id",        limit: 8,   precision: 8,  scale: 0
     t.string    "first_name_ka",    limit: 50,                                           null: false
     t.string    "first_name_ru",    limit: 50
     t.string    "first_name_en",    limit: 50

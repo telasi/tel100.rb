@@ -12,6 +12,8 @@ class Sys::User < ActiveRecord::Base
 
   validates :username, uniqueness: { message: 'ეს მომხმარებელის სახელი დაკავებულია' }
   validates :username, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
+  validates :mobile, mobile: { message: 'არასწორი მობილურის ნომერი' }
+  validates :email, email: { message: 'არასწორი ელ.ფოსტა' }
 
   def full_name; "#{self.first_name} #{self.last_name}" end
   def active?; self.is_active == 1 end
