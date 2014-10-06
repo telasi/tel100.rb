@@ -1,8 +1,10 @@
-<div class="page-header">
-  <h1><%= @title %> (<code><%= @users.count %></code>)</h1>
-</div>
+<h1 class="page-header">
+  <%= @title %>
+  (<code><%= @users.count %></code>)
+</h1>
 
 <%= table_for @users, model_name: 'Sys::User', empty_text: empty_text(@users, admin_users_url(page:1)) do |t|
+  t.button_action admin_new_user_url, label: 'ახალი მომხმარებელი', icon: 'plus'
   t.text_field 'username', tag: 'code'
   t.text_field 'full_name', url: ->(x){ admin_user_url(id: x.id) }, icon: ->(x){ x.admin? ? 'cogs' : nil }
   t.text_field 'mobile'
