@@ -19,6 +19,7 @@ class Sys::User < ActiveRecord::Base
   def full_name; "#{self.first_name} #{self.last_name}" end
   def active?; self.is_active == 1 end
   def admin?; self.is_admin == 1 end
+  def mobile_formatted; KA.format_mobile(self.mobile) if self.mobile.present? end
 
   def virtual_password; @virtual_password end
   def virtual_password=(password)
