@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 require 'rails_helper'
 
-RSpec.describe Sys::User, type: :model do
+RSpec.describe Sys::User do
   before(:example) do
     @user = Sys::User.create({
       username: 'DIMAKURA',

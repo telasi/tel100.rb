@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 require 'rails_helper'
 
-RSpec.describe HR::Organization, type: :model do
+RSpec.describe HR::Organization do
   before(:example) do
     @org = HR::Organization.create(name_ka: 'სს თელასი', name_ru: 'ОО Теласи')
   end
