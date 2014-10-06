@@ -4,10 +4,11 @@ require 'rails_helper'
 RSpec.describe Sys::User, type: :model do
   before(:example) do
     @user = Sys::User.create({
-      username: 'dimakura',
+      username: 'DIMAKURA',
       password: 'dima123',
       first_name: 'დიმიტრი',
       last_name: 'ყურაშვილი',
+      email: 'DIMAKURA@GMAIL.COM',
       person_id: 3015
     })
   end
@@ -22,6 +23,8 @@ RSpec.describe Sys::User, type: :model do
     expect(subject.admin?).to eq(true)
     expect(subject.active?).to eq(true)
     expect(subject.password_hash.length).to eq(60)
+    expect(subject.username).to eq('dimakura')
+    expect(subject.email).to eq('dimakura@gmail.com')
   end
 
   it 'should authenticate' do
@@ -57,5 +60,22 @@ RSpec.describe Sys::User, type: :model do
     # invalid email
     subject.email = 'dimakura@'
     expect(subject.valid?).to be(false)
+  end
+
+  it 'validates username' do
+    expect(subject.valid?).to be(true)
+
+    # username.length > 3
+    subject.username = 'dim'
+    expect(subject.valid?).to be(false)
+    subject.username = 'dima'
+    expect(subject.valid?).to be(true)    
+
+    # username starts with number
+    subject.username = '79dim'
+    expect(subject.valid?).to be(false)
+    subject.username = 'dim79'
+    expect(subject.valid?).to be(true)
+
   end
 end

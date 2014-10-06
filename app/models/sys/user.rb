@@ -14,6 +14,7 @@ class Sys::User < ActiveRecord::Base
   validates :username, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
   validates :mobile, mobile: { message: 'არასწორი მობილურის ნომერი' }
   validates :email, email: { message: 'არასწორი ელ.ფოსტა' }
+  validates :username, username: { message: 'არასწორი მომხმარებლის სახელი' }
 
   def full_name; "#{self.first_name} #{self.last_name}" end
   def active?; self.is_active == 1 end
@@ -48,6 +49,9 @@ class Sys::User < ActiveRecord::Base
   end
 
   def on_before_save
+    self.username = self.username.downcase.strip
+    self.email = self.email.downcase.strip if self.email.present?
+
     if self.employee
       self.person_id = self.employee.person_id
       self.first_name_ka = self.employee.first_name_ka

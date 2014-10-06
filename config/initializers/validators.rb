@@ -14,3 +14,11 @@ class MobileValidator < ActiveModel::EachValidator
     end
   end
 end
+
+class UsernameValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    if value.present? and not value =~ /[a-z][a-z0-9_]{3,}/i
+      record.errors[attribute] << (options[:message] || "illegal username")
+    end
+  end
+end
