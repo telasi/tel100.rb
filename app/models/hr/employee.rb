@@ -7,6 +7,7 @@ class HR::Employee < ActiveRecord::Base
   belongs_to :organization, class_name: 'HR::Organization'
   has_one :user, class_name: 'Sys::User'
 
+  def to_s; "#{self.person_number} - #{self.full_name}" end
   def person_number; self.person_id.to_s.rjust(5, '0') end
   def full_name; "#{first_name} #{last_name}" end
   def active?; self.is_active == 1 end

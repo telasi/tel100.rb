@@ -1,12 +1,9 @@
-<div class="page-header">
-  <h1><%= @title %></h1>
-</div>
+<h1 class="page-header"><%= @title %></h1>
 
 <%= editor_for @user do |e|
-  e.readonly_complex_field i18n: 'employee', tag: 'div', class_name: 'form-control-static' do |c|
-    c.text_field 'employee.person_number', tag: 'code'
-    c.text_field 'employee.full_name', after: '&mdash;'.html_safe, url: ->(x){ admin_employee_url(id: x.employee.id) }
-    c.text_field 'employee.organization.name', class_name: 'text-muted'
+  e.required_combo_field 'employee_id', i18n: 'employee' do |f|
+    f.collection HR::Employee.active.order(:person_id)
+    f.placeholder 'აარჩიეთ თანამშრომელი'
   end
   e.autofocused_required_text_field 'username'
   e.required_password_field 'virtual_password', i18n: 'password'
