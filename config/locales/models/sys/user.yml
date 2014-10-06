@@ -10,5 +10,8 @@ ka:
       is_admin_true: ადმინისტრატორია!
       is_admin_false: არ არის ადმინისტრატორი
       employee: თანამშრომელი
+      is_active: "სტატუსი"
+      is_active_true: "მომხმარებელი აქტიურია"
+      is_active_false: "მომხმარებელი პასიურია"
       created_at: რეგისტრაციის თარიღი
       updated_at: ბოლო ცლილების თარიღი

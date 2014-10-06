@@ -15,6 +15,7 @@
     empl.text_field 'organization.name', class_name: 'text-muted'
   end
   v.boolean_field :admin?, i18n: 'is_admin'
+  v.boolean_field :active?, i18n: 'is_active'
   v.text_field :mobile
   v.text_field :email
   v.date_field :created_at, format: 'extra', class_name: 'text-muted'

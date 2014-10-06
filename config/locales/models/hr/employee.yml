@@ -5,9 +5,9 @@ ka:
       full_name: "სახელი, გვარი"
       organization: "ორგ.სტრუქტურა"
       employee_status: თანამშრომლის ტიპი
-      active?: "სტატუსი"
-      active?_true: "თანამშრომელი აქტიურია"
-      active?_false: "თანამშრომელი პასიურია"
+      is_active: "სტატუსი"
+      is_active_true: "თანამშრომელი აქტიურია"
+      is_active_false: "თანამშრომელი პასიურია"
       user: მომხმარებელი
       created_at: სინქრონიზაციის თარიღი
       employee_status_id:
