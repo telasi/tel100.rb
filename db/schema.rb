@@ -43,20 +43,21 @@ ActiveRecord::Schema.define(version: 20141006142823) do
   end
 
   create_table "documents_motion", force: true do |t|
-    t.integer   "parent_id",    limit: 12,   precision: 12, scale: 0
-    t.string    "status",       limit: 20,                            default: "open", null: false
-    t.integer   "from_user_id", limit: 10,   precision: 10, scale: 0
-    t.integer   "from_id",      limit: 10,   precision: 10, scale: 0
-    t.string    "from_type",    limit: 50
-    t.string    "from_text",    limit: 1000
-    t.boolean   "from_is_read",              precision: 1,  scale: 0, default: false,  null: false
-    t.integer   "to_user_id",   limit: 10,   precision: 10, scale: 0
-    t.integer   "to_id",        limit: 10,   precision: 10, scale: 0
-    t.string    "to_type",      limit: 50
-    t.string    "to_text",      limit: 1000
-    t.boolean   "to_is_read",                precision: 1,  scale: 0, default: false,  null: false
-    t.timestamp "created_at",   limit: 6,                                              null: false
-    t.timestamp "updated_at",   limit: 6,                                              null: false
+    t.integer   "parent_id",        limit: 12,   precision: 12, scale: 0
+    t.integer   "document_id",      limit: 10,   precision: 10, scale: 0,                  null: false
+    t.string    "status",           limit: 20,                            default: "open", null: false
+    t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
+    t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
+    t.string    "sender_type",      limit: 50
+    t.string    "sender_text",      limit: 1000
+    t.boolean   "sender_is_read",                precision: 1,  scale: 0, default: false,  null: false
+    t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
+    t.string    "receiver_type",    limit: 50
+    t.string    "receiver_text",    limit: 1000
+    t.boolean   "receiver_is_read",              precision: 1,  scale: 0, default: false,  null: false
+    t.timestamp "created_at",       limit: 6,                                              null: false
+    t.timestamp "updated_at",       limit: 6,                                              null: false
   end
 
   create_table "hr_employees", force: true do |t|
