@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddDocumentsTable < ActiveRecord::Migration
   def up
     execute <<-SQL
@@ -5,29 +6,29 @@ class AddDocumentsTable < ActiveRecord::Migration
         ID          number(10, 0) not null,
         LANGUAGE    char(2) default 'KA' not null,
         PARENT_ID   number(10, 0),
-        DOCTYPE     varchar2(20) default 'letter' not null,
-        DIRECTION   varchar2(20) default 'inner'  not null,
-        SUBJECT     varchar2(1000),
+        DOCTYPE     varchar2(20 CHAR) default 'letter' not null,
+        DIRECTION   varchar2(20 CHAR) default 'inner'  not null,
+        SUBJECT     varchar2(1000 CHAR),
         BODY        clob,
-        ORIGINAL_NUMBER varchar(50),
-        DOCNUMBER   varchar2(20),
+        ORIGINAL_NUMBER varchar(50 CHAR),
+        DOCNUMBER   varchar2(20 CHAR),
         DOCDATE     date not null,
         DOCYEAR     number( 4, 0) not null,
         PAGE_COUNT  number( 6, 0),
         ADDITIONS_COUNT number(6, 0),
         DUE_DATE    date,
         ALARM_DATE  date,
-        STATUS     varchar2(20) default 'open' not null,
+        STATUS     varchar2(20 CHAR) default 'open' not null,
         -----
         AUTHOR_USER_ID number(10,0),
         AUTHOR_ID      number(10,0),
-        AUTHOR_TYPE    varchar2(50),
+        AUTHOR_TYPE    varchar2(50 CHAR),
         SENDER_USER_ID number(10,0),
         SENDER_ID      number(10,0),
-        SENDER_TYPE    varchar2(50),
+        SENDER_TYPE    varchar2(50 CHAR),
         OWNER_USER_ID  number(10,0),
         OWNER_ID       number(10,0),
-        OWNER_TYPE     varchar2(50),
+        OWNER_TYPE     varchar2(50 CHAR),
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,

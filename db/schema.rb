@@ -46,15 +46,15 @@ ActiveRecord::Schema.define(version: 20141006142823) do
     t.integer   "parent_id",        limit: 12,   precision: 12, scale: 0
     t.integer   "document_id",      limit: 10,   precision: 10, scale: 0,                  null: false
     t.string    "status",           limit: 20,                            default: "open", null: false
+    t.string    "motion_text",      limit: 1000
+    t.string    "response_text",    limit: 1000
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",      limit: 50
-    t.string    "sender_text",      limit: 1000
     t.boolean   "sender_is_read",                precision: 1,  scale: 0, default: false,  null: false
     t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
     t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
     t.string    "receiver_type",    limit: 50
-    t.string    "receiver_text",    limit: 1000
     t.boolean   "receiver_is_read",              precision: 1,  scale: 0, default: false,  null: false
     t.timestamp "created_at",       limit: 6,                                              null: false
     t.timestamp "updated_at",       limit: 6,                                              null: false

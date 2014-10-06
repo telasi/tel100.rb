@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Document::Status
   DRAFT = 'draft'
   SENT  = 'sent'
