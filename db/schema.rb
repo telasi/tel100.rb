@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006140301) do
+ActiveRecord::Schema.define(version: 20141006142823) do
 
   create_table "documents", force: true do |t|
     t.string    "language",        limit: 2,                             default: "KA",     null: false
@@ -40,6 +40,23 @@ ActiveRecord::Schema.define(version: 20141006140301) do
     t.string    "owner_type",      limit: 50
     t.timestamp "created_at",      limit: 6,                                                null: false
     t.timestamp "updated_at",      limit: 6,                                                null: false
+  end
+
+  create_table "documents_motion", force: true do |t|
+    t.integer   "parent_id",    limit: 12,   precision: 12, scale: 0
+    t.string    "status",       limit: 20,                            default: "open", null: false
+    t.integer   "from_user_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "from_id",      limit: 10,   precision: 10, scale: 0
+    t.string    "from_type",    limit: 50
+    t.string    "from_text",    limit: 1000
+    t.boolean   "from_is_read",              precision: 1,  scale: 0, default: false,  null: false
+    t.integer   "to_user_id",   limit: 10,   precision: 10, scale: 0
+    t.integer   "to_id",        limit: 10,   precision: 10, scale: 0
+    t.string    "to_type",      limit: 50
+    t.string    "to_text",      limit: 1000
+    t.boolean   "to_is_read",                precision: 1,  scale: 0, default: false,  null: false
+    t.timestamp "created_at",   limit: 6,                                              null: false
+    t.timestamp "updated_at",   limit: 6,                                              null: false
   end
 
   create_table "hr_employees", force: true do |t|
@@ -85,8 +102,8 @@ ActiveRecord::Schema.define(version: 20141006140301) do
     t.boolean   "mobile_confirmed",             precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_active",                    precision: 1,  scale: 0, default: true,  null: false
     t.boolean   "is_admin",                     precision: 1,  scale: 0, default: false, null: false
-    t.integer   "employee_id",      limit: 10,  precision: 10, scale: 0,                 null: false
-    t.string    "person_id",        limit: 8,                                            null: false
+    t.integer   "employee_id",      limit: 10,  precision: 10, scale: 0
+    t.integer   "person_id",        limit: 8,   precision: 8,  scale: 0
     t.string    "first_name_ka",    limit: 50,                                           null: false
     t.string    "first_name_ru",    limit: 50
     t.string    "first_name_en",    limit: 50
