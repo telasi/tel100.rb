@@ -11,7 +11,7 @@
   v.required_text_field 'person_number', tag: 'code'
   v.required_text_field 'full_name'
   v.required_text_field 'employee_status'
-  v.array_field 'organization.chain', i18n: 'organization' do |fld|
+  v.required_array_field 'organization.chain', i18n: 'organization' do |fld|
     fld.complex_field tag: ->(x){ x == @employee.organization ? 'strong' : 'span' } do |c|
       c.text_field 'saporg_number', tag: 'code'
       c.text_field 'name'

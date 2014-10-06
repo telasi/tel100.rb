@@ -8,13 +8,12 @@ class Admin::UsersController < AdminController
 
   def new
     @title = 'ახალი მომხმარებელი'
-    @employee = HR::Employee.find(params[:employee_id]) if params[:employee_id]
     if request.post?
-      @user = Sys::User.new(params.require(:sys_user).permit(:username, :virtual_password))
-      @user.employee = @employee
+      @user = Sys::User.new(params.require(:sys_user).permit(:username, :virtual_password, :employee_id))
       redirect_to admin_user_url(id: @user.id) if @user.save
     else
-      @user = Sys::User.new(employee: @employee)
+      employee = HR::Employee.find(params[:employee_id]) if params[:employee_id]
+      @user = Sys::User.new(employee: employee)
     end
   end
 
