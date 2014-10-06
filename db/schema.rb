@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924115538) do
+ActiveRecord::Schema.define(version: 20141006140301) do
+
+  create_table "documents", force: true do |t|
+    t.string    "language",        limit: 2,                             default: "KA",     null: false
+    t.integer   "parent_id",       limit: 10,   precision: 10, scale: 0
+    t.string    "doctype",         limit: 20,                            default: "letter", null: false
+    t.string    "direction",       limit: 20,                            default: "inner",  null: false
+    t.string    "subject",         limit: 1000
+    t.text      "body"
+    t.string    "original_number", limit: 50
+    t.string    "docnumber",       limit: 20
+    t.datetime  "docdate",                                                                  null: false
+    t.integer   "docyear",         limit: 4,    precision: 4,  scale: 0,                    null: false
+    t.integer   "page_count",      limit: 6,    precision: 6,  scale: 0
+    t.integer   "additions_count", limit: 6,    precision: 6,  scale: 0
+    t.datetime  "due_date"
+    t.datetime  "alarm_date"
+    t.string    "status",          limit: 20,                            default: "open",   null: false
+    t.integer   "author_user_id",  limit: 10,   precision: 10, scale: 0
+    t.integer   "author_id",       limit: 10,   precision: 10, scale: 0
+    t.string    "author_type",     limit: 50
+    t.integer   "sender_user_id",  limit: 10,   precision: 10, scale: 0
+    t.integer   "sender_id",       limit: 10,   precision: 10, scale: 0
+    t.string    "sender_type",     limit: 50
+    t.integer   "owner_user_id",   limit: 10,   precision: 10, scale: 0
+    t.integer   "owner_id",        limit: 10,   precision: 10, scale: 0
+    t.string    "owner_type",      limit: 50
+    t.timestamp "created_at",      limit: 6,                                                null: false
+    t.timestamp "updated_at",      limit: 6,                                                null: false
+  end
 
   create_table "hr_employees", force: true do |t|
     t.boolean   "is_active",                     precision: 1,  scale: 0, default: true,  null: false
@@ -56,8 +85,8 @@ ActiveRecord::Schema.define(version: 20140924115538) do
     t.boolean   "mobile_confirmed",             precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_active",                    precision: 1,  scale: 0, default: true,  null: false
     t.boolean   "is_admin",                     precision: 1,  scale: 0, default: false, null: false
-    t.integer   "employee_id",      limit: 10,  precision: 10, scale: 0
-    t.integer   "person_id",        limit: 8,   precision: 8,  scale: 0
+    t.integer   "employee_id",      limit: 10,  precision: 10, scale: 0,                 null: false
+    t.string    "person_id",        limit: 8,                                            null: false
     t.string    "first_name_ka",    limit: 50,                                           null: false
     t.string    "first_name_ru",    limit: 50
     t.string    "first_name_en",    limit: 50
