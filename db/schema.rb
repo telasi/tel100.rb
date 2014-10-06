@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20140924115538) do
     t.integer   "parent_id",    limit: 10,  precision: 10, scale: 0
     t.integer   "tree_level",   limit: 3,   precision: 3,  scale: 0, default: 0,     null: false
     t.boolean   "is_active",                precision: 1,  scale: 0, default: true,  null: false
-    t.integer   "saporg_id",    limit: 8,   precision: 8,  scale: 0,                 null: false
-    t.string    "saporg_type",  limit: 1,                                            null: false
+    t.integer   "saporg_id",    limit: 8,   precision: 8,  scale: 0
+    t.string    "saporg_type",  limit: 1
     t.integer   "sapparent_id", limit: 8,   precision: 8,  scale: 0
     t.string    "name_ka",      limit: 500,                                          null: false
     t.string    "name_ru",      limit: 500
