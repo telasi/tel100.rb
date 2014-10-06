@@ -2,8 +2,8 @@
   <%= @title %>
   (<code><%= number_with_delimiter @employees.count %></code>)
 </h1>
-
-<%= table_for @employees, model_name: 'HR::Employee', empty_text: empty_text(@employees, admin_employees_url(page:1)) do |t|
+<% empty_text = empty_text(@employees, admin_employees_url(page:1)) %>
+<%= table_for @employees, model_name: 'HR::Employee', empty_text: empty_text do |t|
   t.action admin_sync_employees_url(return_url: request.url), label: 'სინქრონიზაცია', icon: 'refresh', http_method: 'post', confirm: 'ნამდვილად გინდათ სინქრონიზაცია?', button: 'danger'
   t.text_field 'person_number', tag: 'code', width: 100
   t.complex_field nil, i18n: 'full_name', icon: ->(x){ x.user.present? ? 'user' : nil } do |c|
@@ -13,8 +13,3 @@
 end %>
 
 <%= paginate @employees, keyboardNavigation: true %>
-<script type="text/javascript">
-  $(function() {
-    $('.js-orgstructure').popover({html: true, animation: true, placement: 'bottom'});
-  });
-</script>

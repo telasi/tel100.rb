@@ -9,5 +9,5 @@
   e.text_field :mobile
   e.text_field :email
   e.submit 'შენახვა'
-  e.button_action '', js: 'back', label: 'გაუქმება', icon: 'remove'
+  e.button_action admin_user_url(id: @user.id), label: 'გაუქმება', icon: 'remove'
 end %>

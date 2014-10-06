@@ -6,7 +6,7 @@
 </div>
 
 <%= viewer_for @user, label_width: 220 do |v|
-  v.button_action '', label: 'უკან დაბრუნება'.html_safe, js: 'back', icon: 'arrow-left'
+  v.save_search_action admin_users_url, label: 'უკან დაბრუნება', icon: 'arrow-left'
   v.button_action admin_edit_user_url(id: @user.id), label: 'შეცვლა', icon: 'pencil'
   v.required_text_field :username, tag: 'code'
   v.required_text_field :full_name
