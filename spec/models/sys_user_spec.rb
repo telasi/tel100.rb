@@ -76,6 +76,5 @@ RSpec.describe Sys::User, type: :model do
     expect(subject.valid?).to be(false)
     subject.username = 'dim79'
     expect(subject.valid?).to be(true)
-
   end
 end
