@@ -22,4 +22,14 @@ class Admin::UsersController < AdminController
     @title = @user.full_name
   end
 
+  def edit
+    @title = 'მომხმარებელის შეცვლა'
+    @user = Sys::User.find(params[:id])
+    if request.post?
+      if @user.update_attributes(params.require(:sys_user).permit(:mobile, :email))
+        redirect_to (return_url || admin_user_url(id: @user.id))
+      end
+    end
+  end
+
 end

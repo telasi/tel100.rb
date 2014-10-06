@@ -1,0 +1,13 @@
+<h1 class="page-header">
+  <%= @title %>
+</h1>
+<div class="well well-sm">
+  <code><%= @user.username %></code> &mdash;
+  <%= @user.full_name %>
+</div>
+<%= editor_for @user do |e|
+  e.text_field :mobile
+  e.text_field :email
+  e.submit 'შენახვა'
+  e.button_action '', js: 'back', label: 'გაუქმება', icon: 'remove'
+end %>
