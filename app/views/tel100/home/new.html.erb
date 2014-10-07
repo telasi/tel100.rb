@@ -2,9 +2,21 @@
   <%= @title %>
 </h1>
 
-<%= editor_for @document do |f|
+<%= editor_for @document, label_width: 150 do |f|
   f.autofocus_required_text_field 'subject', placeholder: 'ჩაწერეთ სათაური', label: false
-  f.required_froala_field 'body', label: false, placeholder: 'ჩაწერეთ შინაარსი'
+  f.froala_field 'body', label: false, placeholder: 'ჩაწერეთ შინაარსი'
+  f.many_field :motions, label: 'წერილის ადრესატები', add_text: 'თანამშრომელი', label_width: 100 do |motions_form|
+    motions_form.combo_field 'receiver_id', label: 'ადრესატი' do |f|
+      f.collection HR::Employee.active.order(:person_id)
+      f.placeholder 'აარჩიეთ თანამშრომელი'
+    end
+    motions_form.text_field :motion_text, label: 'რეზოლუცია'
+  end
+
+  # e.many_field :contacts, add_text: 'New Contact' do |contacts_form|
+  #   contacts_form.text_field :type
+  #   contacts_form.text_field :value
+  # end
 
   f.submit 'დოკუმენტის გაგზავნა'
   f.button_action tel100_documents_url, label: 'გაუქმება', icon: 'remove'
