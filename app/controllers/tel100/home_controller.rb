@@ -4,6 +4,10 @@ class Tel100::HomeController < ApplicationController
 
   def new
     @title = 'ახალი დოკუმენტი'
-    @document = Document::Base.new(subject: 'სატესტო დავალება',  body: '<p>გთხოვთ გამიშვათ შვებულებაში!</p>')
+    if request.post?
+      @document = Document::Base.new(params.require(:document_base).permit(:subject, :body))
+    else
+      @document = Document::Base.new
+    end
   end
 end
