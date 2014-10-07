@@ -7,24 +7,26 @@ module Document::Who
 
   module ClassMethods
     def who_eval(whom, opts)
-      data = opts[whom]
-      who = user = text = nil
+      id = opts[ "#{whom.to_s}_id".to_sym ]
+      type = opts[ "#{whom.to_s}_type".to_sym ]
 
-      if data.instance_of?(Hash)
-        if data[:user] then  user = data[:user] ; who  = whose_user(user)
-        elsif data[:who] then  who = data[:who] ; user = user_by_who(who)
-        end
-        text = data[:text]
+      return [ nil, nil ] if ( id.blank? or type.blank? )
+
+      who = user = nil
+      if type == 'Sys::User'
+        user = Sys::User.find(id)
+        who = whose_user( user )
+      else
+        who = type.constantize.find(id)
+        user = user_by_who( who )
       end
 
-      # checking data
       if user.present? and who.present?
         user2 = user_by_who(who)
         raise "users do not match" if user != user2
       end
-      raise "not a user: #{user}" if (user.present? and not user.instance_of?(Sys::User))
 
-      [ user, who, text ]
+      return [ user, who ]
     end
 
     def user_by_who(who)

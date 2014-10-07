@@ -14,13 +14,12 @@ class Document::Base < ActiveRecord::Base
   belongs_to :owner,  polymorphic: true
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
 
-  def self.new_document(opts = {})
+  def self.new_document(sender_user, opts = {})
+    raise 'sender not defined' if sender_user.blank?
+    sender = whose_user(sender_user)
+
     status = status_eval(opts)
 
-    sender_user, sender = who_eval(:sender, opts)
-    raise 'sender not defined' if (sender.blank? and sender_user.blank?)
-    receiver_user, receiver, motion_text = who_eval(:receiver, opts)
-    # TODO: receiver is required for non-draft documents
     author_user, author = who_eval(:author, opts)
     owner_user, owner = who_eval(:owner, opts)
     ( owner_user = sender_user ; owner = sender ) if owner_user.blank?
@@ -38,12 +37,16 @@ class Document::Base < ActiveRecord::Base
         sender_user: sender_user, sender: sender,
         owner_user: owner_user, owner: owner,
       })
-      motion = Document::Motion.create({
-        document: doc, status: status,
-        sender_user: sender_user, sender: sender, sender_is_read: 1,
-        receiver_user: receiver_user, receiver: receiver, receiver_is_read: 0,
-        motion_text: motion_text
-      })
+      opts[:motions].each do |motion_opts|
+        receiver_user, receiver = who_eval(:receiver, motion_opts)
+        motion_text = motion_opts[:motion_text]
+        motion = Document::Motion.create({
+          document: doc, status: status,
+          sender_user: sender_user, sender: sender, sender_is_read: 1,
+          receiver_user: receiver_user, receiver: receiver, receiver_is_read: 0,
+          motion_text: motion_text
+        })
+      end
       doc
     end
   end
