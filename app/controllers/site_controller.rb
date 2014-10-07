@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class SiteController < ApplicationController
-  def index; @title = 'საწყისი' end
+  def index; redirect_to tel100_home_url end
 
   def login
     @title = 'შესვლა'

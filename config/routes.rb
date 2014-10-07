@@ -16,6 +16,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :tel100 do
+    scope '/', controller: 'home' do
+      get '/', action: 'index', as: 'documents'
+      match '/new', action: 'new', as: 'new_document', via: ['get', 'post']
+    end
+  end
+
   scope controller: 'site' do
     match '/login', action: 'login', as: 'login', via: ['get','post']
     match '/register', action: 'register', as: 'register', via: ['get', 'post']
