@@ -3,8 +3,8 @@
 </h1>
 
 <%= editor_for @document do |f|
-  f.required_text_field 'subject', placeholder: 'test'
-  f.autofocus_required_text_field 'body'
+  f.autofocus_required_text_field 'subject', placeholder: 'ჩაწერეთ სათაური', label: false
+  f.required_froala_field 'body', label: false
 
   f.submit 'დოკუმენტის გაგზავნა'
   f.button_action tel100_documents_url, label: 'გაუქმება', icon: 'remove'
