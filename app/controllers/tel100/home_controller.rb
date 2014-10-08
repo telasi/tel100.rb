@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 class Tel100::HomeController < ApplicationController
-  def index; @title = 'საწყისი' end
+  def index
+    @title = 'გაგზავნილი'
+    # @motions = Document::Motion.paginate(per_page: 10, page: params[:page])
+    @documents = Document::Base.joins('INNER JOIN documents_motion ON documents_motion.document_id=documents.id').paginate(per_page: 20, page: params[:page])
+  end
 
   def new
     @title = 'ახალი დოკუმენტი'
