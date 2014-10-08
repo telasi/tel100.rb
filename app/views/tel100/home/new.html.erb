@@ -2,22 +2,31 @@
   <%= @title %>
 </h1>
 
+<!--
+<%= form_for @document, url: request.url do |f| %>
+  <div style="padding:4px;">Subject: <%= f.text_field :subject %></div>
+  <div style="padding:4px;">Body: <%= f.text_field :body %></div>
+  <%= f.fields_for "motions" do |ff| %>
+    <div style="padding:4px;">
+      ID: <%= ff.text_field :id %>
+      TEXT: <%= ff.text_field :motion_text %>
+    </div>
+  <% end %>
+  <%= f.submit %>
+<% end %>
+<br/><br/>
+-->
+
 <%= editor_for @document, label_width: 150 do |f|
-  f.autofocus_required_text_field 'subject', placeholder: 'ჩაწერეთ სათაური', label: false
+  f.autofocus_required_text_field 'subject', placeholder: 'ჩაწერეთ თემა', label: false
   f.froala_field 'body', label: false, placeholder: 'ჩაწერეთ შინაარსი'
-  f.many_field :motions, label: 'წერილის ადრესატები', add_text: 'თანამშრომელი', label_width: 100 do |motions_form|
+  f.many_field :motions, label: false, add_text: 'თანამშრომელი', remove_text: 'თანამშრომლის წაშლა', label_width: 100 do |motions_form|
     motions_form.combo_field 'receiver_id', label: 'ადრესატი' do |f|
       f.collection HR::Employee.active.order(:person_id)
       f.placeholder 'აარჩიეთ თანამშრომელი'
     end
     motions_form.text_field :motion_text, label: 'რეზოლუცია'
   end
-
-  # e.many_field :contacts, add_text: 'New Contact' do |contacts_form|
-  #   contacts_form.text_field :type
-  #   contacts_form.text_field :value
-  # end
-
   f.submit 'დოკუმენტის გაგზავნა'
   f.button_action tel100_documents_url, label: 'გაუქმება', icon: 'remove'
 end %>

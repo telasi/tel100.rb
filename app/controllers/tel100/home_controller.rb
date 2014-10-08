@@ -5,15 +5,17 @@ class Tel100::HomeController < ApplicationController
   def new
     @title = 'ახალი დოკუმენტი'
     if request.post?
-      @document = Document::Base.new(params.require(:document_base).permit(:subject, :body))
+      @document = Document::Base.new(params.require(:document_base).permit(:subject, :body,
+        motions_attributes: [:id, :receiver_id, :motion_text]))
+      @document.motions.each { |m| m.receiver_type = 'HR::Employee' }
+      @document.docdate = Date.today
+      @document.docyear = Date.today.year
+      @document.save
+      # TODO:
+
     else
-      r1 = Sys::User.find_by_username('ekash').employee
-      r2 = Sys::User.find_by_username('makame').employee
-      @motions = [
-        Document::Motion.new(receiver: r1, motion_text: 'motion 1'),
-        Document::Motion.new(receiver: r2, motion_text: 'motion 2'),
-      ]
-      @document = Document::Base.new(subject: 'subject', body: 'test', motions: @motions)
+      @document = Document::Base.new
+      @document.motions.build
     end
   end
 end

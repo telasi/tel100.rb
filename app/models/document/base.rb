@@ -5,6 +5,7 @@ class Document::Base < ActiveRecord::Base
 
   self.table_name  = 'documents'
   self.sequence_name = 'documents_seq'
+
   belongs_to :parent, class_name: 'Document::Base', foreign_key: 'parent_id'
   belongs_to :author_user, class_name: 'Sys::User', foreign_key: 'author_user_id'
   belongs_to :author, polymorphic: true
@@ -13,6 +14,7 @@ class Document::Base < ActiveRecord::Base
   belongs_to :owner_user, class_name: 'Sys::User', foreign_key: 'owner_user_id'
   belongs_to :owner,  polymorphic: true
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
+  accepts_nested_attributes_for :motions
 
   def self.new_document(sender_user, opts = {})
     raise 'sender not defined' if sender_user.blank?
