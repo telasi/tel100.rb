@@ -5,17 +5,10 @@ class Tel100::HomeController < ApplicationController
   def new
     @title = 'ახალი დოკუმენტი'
     if request.post?
-      @document = Document::Base.new(params.require(:document_base).permit(:subject, :body,
-        motions_attributes: [:id, :receiver_id, :motion_text]))
-      @document.motions.each { |m| m.receiver_type = 'HR::Employee' }
-      @document.docdate = Date.today
-      @document.docyear = Date.today.year
-      @document.save
-      # TODO:
-
+      @document = Document::Base.new_document(current_user, params[:document_base])
+      # in case of exception use params[:document_base] as param
     else
       @document = Document::Base.new
-      @document.motions.build
     end
   end
 end

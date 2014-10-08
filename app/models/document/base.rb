@@ -14,7 +14,7 @@ class Document::Base < ActiveRecord::Base
   belongs_to :owner_user, class_name: 'Sys::User', foreign_key: 'owner_user_id'
   belongs_to :owner,  polymorphic: true
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
-  accepts_nested_attributes_for :motions
+  # accepts_nested_attributes_for :motions
 
   def self.new_document(sender_user, opts = {})
     raise 'sender not defined' if sender_user.blank?
@@ -39,7 +39,9 @@ class Document::Base < ActiveRecord::Base
         sender_user: sender_user, sender: sender,
         owner_user: owner_user, owner: owner,
       })
-      opts[:motions].each do |motion_opts|
+
+      opts[:motions_attributes].values.each do |motion_opts|
+        motion_opts[:receiver_type] = 'HR::Employee'
         receiver_user, receiver = who_eval(:receiver, motion_opts)
         motion_text = motion_opts[:motion_text]
         motion = Document::Motion.create({

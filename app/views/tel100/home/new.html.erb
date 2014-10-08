@@ -2,30 +2,22 @@
   <%= @title %>
 </h1>
 
-<!--
-<%= form_for @document, url: request.url do |f| %>
-  <div style="padding:4px;">Subject: <%= f.text_field :subject %></div>
-  <div style="padding:4px;">Body: <%= f.text_field :body %></div>
-  <%= f.fields_for "motions" do |ff| %>
-    <div style="padding:4px;">
-      ID: <%= ff.text_field :id %>
-      TEXT: <%= ff.text_field :motion_text %>
-    </div>
-  <% end %>
-  <%= f.submit %>
-<% end %>
-<br/><br/>
--->
-
 <%= editor_for @document, label_width: 150 do |f|
   f.autofocus_required_text_field 'subject', placeholder: 'ჩაწერეთ თემა', label: false
   f.froala_field 'body', label: false, placeholder: 'ჩაწერეთ შინაარსი'
-  f.many_field :motions, label: false, add_text: 'თანამშრომელი', remove_text: 'თანამშრომლის წაშლა', label_width: 100 do |motions_form|
-    motions_form.combo_field 'receiver_id', label: 'ადრესატი' do |f|
-      f.collection HR::Employee.active.order(:person_id)
-      f.placeholder 'აარჩიეთ თანამშრომელი'
-    end
-    motions_form.text_field :motion_text, label: 'რეზოლუცია'
+  f.many_field 'motions', label: false, label_width: 100, add_text: 'თანამშრომელი', remove_text: 'თანამშრომლის წაშლა' do |mf|
+    # HR::Employee
+    #mf.poly type: 'HR::Employee', field: 'receiver_type', add_text: 'თანამშრომელი', remove_text: 'თანამშრომლის წაშლა' do |poly|
+      mf.combo_field 'receiver_id', label: 'ადრესატი' do |combo|
+        combo.collection HR::Employee.active.order(:person_id)
+        combo.placeholder 'აარჩიეთ თანამშრომელი'
+      end
+    #end
+    # HR::Organization
+    # mf.poly type: 'HR::Organization', field: 'receiver_type', add_text: 'სტრუქ.ერთეული', remove_text: 'სტრუქ. ერთეულის წაშლა' do |poly|
+    #   poly.combo_field 'receiver_id'
+    # end
+    mf.text_field :motion_text, label: 'რეზოლუცია'
   end
   f.submit 'დოკუმენტის გაგზავნა'
   f.button_action tel100_documents_url, label: 'გაუქმება', icon: 'remove'
