@@ -14,7 +14,16 @@ class Document::Base < ActiveRecord::Base
   belongs_to :owner_user, class_name: 'Sys::User', foreign_key: 'owner_user_id'
   belongs_to :owner,  polymorphic: true
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
-  # accepts_nested_attributes_for :motions
+  has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
+
+  def body
+    self.text.body if self.text.present?
+  end
+
+  def body=(text)
+    self.text = Document::Text.new if self.text.blank?
+    self.text.body = text
+  end
 
   def self.new_document(sender_user, opts = {})
     raise 'sender not defined' if sender_user.blank?

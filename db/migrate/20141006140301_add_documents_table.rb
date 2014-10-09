@@ -9,7 +9,6 @@ class AddDocumentsTable < ActiveRecord::Migration
         DOCTYPE     varchar2(20 CHAR) default 'letter' not null,
         DIRECTION   varchar2(20 CHAR) default 'inner'  not null,
         SUBJECT     varchar2(1000 CHAR),
-        BODY        clob,
         ORIGINAL_NUMBER varchar(50 CHAR),
         DOCNUMBER   varchar2(20 CHAR),
         DOCDATE     date not null,
@@ -18,7 +17,7 @@ class AddDocumentsTable < ActiveRecord::Migration
         ADDITIONS_COUNT number(6, 0),
         DUE_DATE    date,
         ALARM_DATE  date,
-        STATUS     varchar2(20 CHAR) default 'open' not null,
+        STATUS      varchar2(20 CHAR) default 'open' not null,
         -----
         AUTHOR_USER_ID number(10,0),
         AUTHOR_ID      number(10,0),

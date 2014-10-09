@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006142823) do
+ActiveRecord::Schema.define(version: 20141009061501) do
+
+  create_table "document_texts", primary_key: "document_id", force: true do |t|
+    t.text "body"
+  end
 
   create_table "documents", force: true do |t|
     t.string    "language",        limit: 2,                             default: "KA",     null: false
@@ -19,7 +23,6 @@ ActiveRecord::Schema.define(version: 20141006142823) do
     t.string    "doctype",         limit: 20,                            default: "letter", null: false
     t.string    "direction",       limit: 20,                            default: "inner",  null: false
     t.string    "subject",         limit: 1000
-    t.text      "body"
     t.string    "original_number", limit: 50
     t.string    "docnumber",       limit: 20
     t.datetime  "docdate",                                                                  null: false
