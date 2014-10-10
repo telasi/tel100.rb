@@ -1,21 +1,10 @@
 Ext.application({
-  name   : 'Telasi',
-  paths  : { 'Telasi' : 'js/app' },
-  width  : '100%',
-  height : '100%',
+  name: 'Telasi',
+  paths  : { 'Telasi' : '/js/app' },
 
-  launch : function() {
-    var login = Ext.create('Telasi.view.form.LoginForm');
+  autoCreateViewport: true,
 
-    Ext.create('Ext.Panel', {
-      height: 400,
-      //width:  '100%',
-      layout: 'center',
-      items: [
-        login
-      ],
-      renderTo: Ext.getBody(),
-    });
-
-  }
+  controllers: [
+    'user.Login'
+  ]
 });
