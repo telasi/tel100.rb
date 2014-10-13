@@ -4,6 +4,10 @@ class ApiController < ActionController::Base
 
   def login
     user = Sys::User.authenticate(params[:userID], params[:password])
-    render json: user.to_json
+    if user.blank?
+      render json: { status: false }
+    else
+      render json: user.to_json
+    end
   end
 end

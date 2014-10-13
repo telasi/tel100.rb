@@ -1,17 +1,18 @@
 Ext.define('Telasi.view.user.Login', {
   extend: 'Ext.form.Panel',
   alias : 'widget.userlogin',
+  controller: 'userlogin',
 
-  title: '',
+  title: null,
   frame: false,
   layout: 'center',
+  url: '/api/login',
 
   items: [
     {
       xtype: 'panel',
       title: 'შესვლა',
       width: 400,
-      // height: 200,
       bodyPadding: 10,
       items: [{
         xtype: 'textfield',
@@ -31,10 +32,9 @@ Ext.define('Telasi.view.user.Login', {
       }],
       buttons: [{
         text:'შესვლა',
-        action: 'login'
+        formBind: true,
+        handler: 'onLogin'
       }],
     }
   ],
-
-  
 });
