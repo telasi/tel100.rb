@@ -3,12 +3,23 @@ Ext.define('Telasi.view.user.LoginController', {
   alias: 'controller.userlogin',
 
   onLogin: function(button) {
-    console.log('onLogin');
-    var form = button.up('form');
-    // var form = formElement.getForm();
-    if (form.isValid()) {
-      // form.setLoading('დაელოდეთ...');
-      form.submit();
+    var self = this;
+    var loginform = button.up('form');
+    if (loginform.isValid()) {
+      loginform.setLoading('დაელოდეთ...');
+      loginform.submit({
+        url: '/api/login',
+        success: function(form, action) {
+          console.log('SUCCESS:', action.result)
+          loginform.setLoading(false);
+          self.fireEvent('loggedin', action.result);
+        },
+        failure: function(form, action) {
+          console.log('FAILURE:', action.result)
+          loginform.setLoading(false);
+          // loginform.fireEvent('onLogin', action.result);
+        },
+      });
     }
   },
 });

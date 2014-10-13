@@ -7,16 +7,15 @@ Ext.define('Telasi.controller.Main', {
   ],
 
   init: function() {
-    // this.control({
-    //   'userlogin button[action=login]': {
-    //     click: function(button) {
-    //       var formElement = button.up('form');
-    //       var form = formElement.getForm();
-    //       if (form.isValid()) {
-    //         formElement.setLoading('დაელოდეთ...');
-    //       }
-    //     }
-    //   }
-    // });
+    this.control({
+      'userlogin': {
+        loggedin: function(userData) {
+
+          /// NOT WORKING !!!!
+
+          console.log('logged in!');
+        }
+      }
+    });
   },
 });

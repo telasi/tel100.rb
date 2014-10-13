@@ -6,7 +6,6 @@ Ext.define('Telasi.view.user.Login', {
   title: null,
   frame: false,
   layout: 'center',
-  url: '/api/login',
 
   items: [
     {
