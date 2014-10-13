@@ -3,10 +3,7 @@ class ApiController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def login
-    # sleep 5
-    render json: {
-      success: true,
-      message: 'Hello Dimitri'
-    }
+    user = Sys::User.authenticate(params[:userID], params[:password])
+    render json: user.to_json
   end
 end
