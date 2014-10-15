@@ -6,13 +6,8 @@ Ext.define('Telasi.view.viewports.Main', {
         xtype: 'panel',
         layout: 'border',
         items: [{
-          xtype: 'panel',
-          region: 'north',
-          split: true,
-          items: [{
-            xtype: 'label',
-            bind: '{currentUser.fullName} '
-          }]
+          xtype: 'userbox',
+          region: 'north'
         }, {
           xtype: 'panel',
           region: 'center',

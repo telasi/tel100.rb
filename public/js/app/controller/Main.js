@@ -5,6 +5,7 @@ Ext.define('Telasi.controller.Main', {
     'viewports.Login@Telasi.view',
     'viewports.Main@Telasi.view',
     'user.Login@Telasi.view',
+    'user.Box@Telasi.view',
     'user.LoginController@Telasi.view',
   ],
 
