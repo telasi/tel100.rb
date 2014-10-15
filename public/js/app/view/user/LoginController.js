@@ -6,6 +6,7 @@ Ext.define('Telasi.view.user.LoginController', {
     var loginform = button.up('form');
     if (loginform.isValid()) {
       loginform.setLoading('დაელოდეთ...');
+      loginform.down('label').setVisible(false);
       loginform.submit({
         url: '/api/login',
         success: function(form, action) {
@@ -14,6 +15,7 @@ Ext.define('Telasi.view.user.LoginController', {
         },
         failure: function(form, action) {
           loginform.setLoading(false);
+          loginform.down('label').setVisible(true);
         },
       });
     }

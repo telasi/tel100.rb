@@ -28,6 +28,11 @@ Ext.define('Telasi.view.user.Login', {
         emptyText: 'ჩაწერეთ პაროლი',
         inputType: 'password',
         width: '100%'
+      }, {
+        xtype: 'label',
+        hidden: true,
+        text: 'არასწორი მომხმარებელი/პაროლი',
+        cls: 'text-error'
       }],
       buttons: [{
         text:'შესვლა',
