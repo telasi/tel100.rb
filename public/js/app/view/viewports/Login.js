@@ -1,4 +1,4 @@
-Ext.define('Telasi.view.Viewport', {
+Ext.define('Telasi.view.viewports.Login', {
     extend: 'Ext.container.Viewport',
 
     layout: 'fit',

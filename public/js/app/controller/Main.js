@@ -2,6 +2,8 @@ Ext.define('Telasi.controller.Main', {
   extend: 'Ext.app.Controller',
 
   views: [
+    'viewports.Login@Telasi.view',
+    'viewports.Main@Telasi.view',
     'user.Login@Telasi.view',
     'user.LoginController@Telasi.view',
   ],
@@ -10,12 +12,24 @@ Ext.define('Telasi.controller.Main', {
     'sys.User@Telasi.model',
   ],
 
+  onLaunch: function() {
+    this.login = Ext.create('Telasi.view.viewports.Login');
+  },
+
   init: function() {
+    window.Telasi = {};
     this.control({
       'userlogin': {
         loggedin: function(userData) {
-          var user = Ext.create('Telasi.model.sys.User', userData.user);
-          console.log(user);
+          this.login.destroy();
+          this.user = Ext.create('Telasi.model.sys.User', userData.user);
+          this.viewport = Ext.create('Telasi.view.viewports.Main', {
+            viewModel: {
+              data: {
+                currentUser: this.user
+              }
+            }
+          });
         }
       }
     });
