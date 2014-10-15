@@ -11,18 +11,9 @@
  * file per style scope.
  *
  *= require_tree .
- *= require select2
- *= require select2-bootstrap
- *= require forma
  *= require_self
  */
-body {
-  overflow: hidden;
-}
 
-.select2-container.forma-combo2-field {
-  display: block;
-  width: 100%;
-}
-
- /*select2-container forma-combo-field*/
+ .text-error {
+  color: red;
+ }
