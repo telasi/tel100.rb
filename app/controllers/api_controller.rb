@@ -11,7 +11,7 @@ class ApiController < ActionController::Base
     else
       render json: {
         success: true,
-        user: user.to_json(except: 'password_hash')
+        user: user.as_json(except: 'password_hash')
       }
     end
   end
