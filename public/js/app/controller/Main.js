@@ -10,10 +10,8 @@ Ext.define('Telasi.controller.Main', {
     this.control({
       'userlogin': {
         loggedin: function(userData) {
-
-          /// NOT WORKING !!!!
-
-          console.log('logged in!');
+          // TODO: authorize user
+          console.log('logged in!', userData);
         }
       }
     });
