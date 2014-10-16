@@ -11,6 +11,12 @@ Ext.define('Telasi.model.hr.Employee', {
     { name: 'last_name_ru', type: 'string' },
     { name: 'last_name_en', type: 'string' },
     {
+      name: 'organization',
+      convert: function(data) {
+        if (data) { return Ext.create('Telasi.model.hr.Organization', data); }
+      },
+    },
+    {
       name: 'firstName',
       type: 'string',
       calculate: function(data) {

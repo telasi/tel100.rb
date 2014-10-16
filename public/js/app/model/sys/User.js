@@ -1,6 +1,5 @@
 Ext.define('Telasi.model.sys.User', {
   extend: 'Ext.data.Model',
-  // requires: ['Telasi.model.hr.Employee'],
   fields: [
     { name: 'id', type: 'int' },
     { name: 'is_active', type: 'int' },
@@ -20,7 +19,7 @@ Ext.define('Telasi.model.sys.User', {
     {
       name: 'employee',
       convert: function(data) {
-        return Ext.create('Telasi.model.hr.Employee', data);
+        if (data) {  return Ext.create('Telasi.model.hr.Employee', data); }
       },
     },
     {
@@ -44,8 +43,4 @@ Ext.define('Telasi.model.sys.User', {
       },
     },
   ],
-  // belongsTo: [{
-  //   model: 'hr.Employee',
-  //   associationKey: 'employee',
-  // }],
 });

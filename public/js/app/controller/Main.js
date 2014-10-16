@@ -11,6 +11,7 @@ Ext.define('Telasi.controller.Main', {
 
   models: [
     'hr.Employee@Telasi.model',
+    'hr.Organization@Telasi.model',
     'sys.User@Telasi.model',
   ],
 
@@ -25,7 +26,6 @@ Ext.define('Telasi.controller.Main', {
         loggedin: function(userData) {
           this.login.destroy();
           this.user = Ext.create('Telasi.model.sys.User', userData.user);
-          // this.user.employee = Ext.create('Telasi.model.hr.Employee', userData.user.employee);
           this.viewport = Ext.create('Telasi.view.viewports.Main', {
             viewModel: {
               data: {
