@@ -1,6 +1,10 @@
 Ext.define('Telasi.view.user.Box', {
   extend: 'Ext.form.Panel',
   alias : 'widget.userbox',
+  requires: [
+    'Telasi.view.user.BoxController'
+  ],
+  controller: 'userbox',
 
   title: null,
   frame: false,
@@ -17,14 +21,10 @@ Ext.define('Telasi.view.user.Box', {
     menu: {
       items: [{
         text: 'პროფილის მართვა',
-        handler: function() {
-          console.log('TODO: call profile editor');
-        },
+        handler: 'onProfile',
       }, {
         text: 'პროგრამიდან გასვლა',
-        handler: function() {
-          this.up('userbox').fireEvent('loggedout');
-        },
+        handler: 'onLogout',
       }],
       width: 250
     }
