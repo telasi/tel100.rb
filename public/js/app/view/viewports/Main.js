@@ -2,7 +2,8 @@ Ext.define('Telasi.view.viewports.Main', {
     extend: 'Ext.container.Viewport',
     requires: [
       'Telasi.view.common.Header',
-      'Telasi.view.common.center.CenterPanel'
+      'Telasi.view.common.center.CenterPanel',
+      'Telasi.view.document.Folders'
     ],
 
     layout: 'fit',
@@ -15,6 +16,9 @@ Ext.define('Telasi.view.viewports.Main', {
         }, {
           xtype: 'centerpanel',
           region: 'center'
+        }, {
+          xtype: 'documentFolders',
+          region: 'west'
         }]
     }]
 });
