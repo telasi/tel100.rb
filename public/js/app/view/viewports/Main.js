@@ -1,7 +1,8 @@
 Ext.define('Telasi.view.viewports.Main', {
     extend: 'Ext.container.Viewport',
     requires: [
-      'Telasi.view.common.Header'
+      'Telasi.view.common.Header',
+      'Telasi.view.common.Center',
     ],
 
     layout: 'fit',
@@ -12,9 +13,8 @@ Ext.define('Telasi.view.viewports.Main', {
           xtype: 'appheader',
           region: 'north'
         }, {
-          xtype: 'panel',
+          xtype: 'appcenter',
           region: 'center',
-          text: 'Center Label'
         }]
     }]
 });
