@@ -13,17 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require select2
-//= require forma
 //= require_tree .
-
-var forma = require('forma');
-
-$(function() {
-
-  Tel100.trackingSearch();
-
-  // starting forma application
-  forma.startup();
-
-});
