@@ -16,6 +16,7 @@ Ext.define('Telasi.model.sys.User', {
     { name: 'email_confirmed', type: 'boolean' },
     { name: 'mobile', type: 'string' },
     { name: 'mobile_confirmed', type: 'boolean' },
+    { name: 'phone', type: 'string' },
     {
       name: 'employee',
       convert: function(data) {

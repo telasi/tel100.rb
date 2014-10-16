@@ -30,8 +30,7 @@ Ext.define('Telasi.view.user.Box', {
     }
   }, {
     xtype: 'label',
-    bind: '<strong>{currentUser.employee.personNumber}</strong> {currentUser.employee.organization.name}',
+    bind: '<span class="text-muted">{currentUser.employee.organization.name}</span>',
     margin: '5 10 10 10',
-    cls: 'text-muted',
   }, ],
 });

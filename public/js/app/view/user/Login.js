@@ -36,7 +36,7 @@ Ext.define('Telasi.view.user.Login', {
         xtype: 'label',
         hidden: true,
         text: 'არასწორი მომხმარებელი/პაროლი',
-        cls: 'text-error'
+        cls: 'text-danger'
       }],
       buttons: [{
         text:'შესვლა',
