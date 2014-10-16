@@ -1,16 +1,18 @@
-Ext.define('Telasi.view.common.docgrid.DocViewModel',{
+Ext.define('Telasi.view.common.document.ViewModel',{
 	extend: 'Ext.app.ViewModel',
 	alias: 'viewmodel.documents',
 
 	requires: [
-		'Telasi.view.common.docgrid.DocModel'
+		'Telasi.model.document.Base'
 	],
 
 	stores:{
 		documents: {
-			model: 'Telasi.view.common.docgrid.DocModel',
+			model: 'Telasi.model.document.Base',
+			pageSize: 1,
 		    proxy: {
 		        type: 'ajax',
+		        enablePaging: true,
 		        reader: {
 		            type: 'json',
 		            typeProperty: 'mtype'

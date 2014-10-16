@@ -5,7 +5,7 @@ Ext.define('Telasi.view.common.center.CenterPanel', {
 
     requires: [
         'Telasi.view.common.center.SearchPanel',
-        'Telasi.view.common.docgrid.DocGrid'
+        'Telasi.view.common.document.Grid'
     ],
 
     initComponent: function(){
