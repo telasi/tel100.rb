@@ -4,21 +4,34 @@ Ext.define('Telasi.view.user.Box', {
 
   title: null,
   frame: false,
-  layout: 'vbox',
+  layout: {
+    type: 'vbox',
+    align: 'end',
+  },
+  cls: 'user-box',
 
   items: [{
-    xtype: 'splitbutton',
-    bind: '<i class="fa fa-user"></i> {currentUser.username}',
+    xtype: 'button',
+    bind: '<i class="fa fa-user"></i> <strong>{currentUser.username}</strong> {currentUser.fullName}',
     margin: '5 10 0 10',
-    menu: [{
-      text: 'პროფილი'
-    }, {
-      text: 'გასვლა'
-    }]
+    menu: {
+      items: [{
+        text: 'პროფილის მართვა',
+        handler: function() {
+          console.log('TODO: call profile editor');
+        },
+      }, {
+        text: 'პროგრამიდან გასვლა',
+        handler: function() {
+          console.log('TODO: call exit action');
+        },
+      }],
+      width: 250
+    }
   }, {
     xtype: 'label',
     bind: '{currentUser.employee.organization.name}',
+    margin: '5 10 10 10',
     cls: 'text-muted',
-    margin: '5 10 5 10',
-  }],
+  }, ],
 });
