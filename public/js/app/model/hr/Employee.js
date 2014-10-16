@@ -1,28 +1,15 @@
-Ext.define('Telasi.model.sys.User', {
+Ext.define('Telasi.model.hr.Employee', {
   extend: 'Ext.data.Model',
-  // requires: ['Telasi.model.hr.Employee'],
   fields: [
     { name: 'id', type: 'int' },
     { name: 'is_active', type: 'int' },
-    { name: 'is_admin', type: 'int' },
-    { name: 'username', type: 'string' },
+    { name: 'person_id', type: 'string' },
     { name: 'first_name_ka', type: 'string' },
     { name: 'first_name_ru', type: 'string' },
     { name: 'first_name_en', type: 'string' },
     { name: 'last_name_ka', type: 'string' },
     { name: 'last_name_ru', type: 'string' },
     { name: 'last_name_en', type: 'string' },
-    { name: 'person_id', type: 'string' },
-    { name: 'email', type: 'string' },
-    { name: 'email_confirmed', type: 'boolean' },
-    { name: 'mobile', type: 'string' },
-    { name: 'mobile_confirmed', type: 'boolean' },
-    {
-      name: 'employee',
-      convert: function(data) {
-        return Ext.create('Telasi.model.hr.Employee', data);
-      },
-    },
     {
       name: 'firstName',
       type: 'string',
@@ -43,9 +30,11 @@ Ext.define('Telasi.model.sys.User', {
         return data.firstName + ' ' + data.lastName;
       },
     },
+    {
+      name: 'personNumber',
+      calculate: function(data) {
+        return '0' + data.person_id;
+      }
+    }
   ],
-  // belongsTo: [{
-  //   model: 'hr.Employee',
-  //   associationKey: 'employee',
-  // }],
 });

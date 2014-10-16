@@ -9,11 +9,11 @@ Ext.define('Telasi.view.user.Box', {
   items: [{
     xtype: 'label',
     bind:  '{currentUser.fullName} <strong>({currentUser.username})</strong>',
-    padding: [5, 5, 0, 0],
+    padding: 5,
   }, {
     xtype: 'label',
-    bind: '1 კატეგორიის პროგრამისტი',
+    bind: '{currentUser.employee.personNumber}',
     cls: 'text-muted',
-    padding: [5, 5, 0, 0],
+    padding: 5,
   }],
 });
