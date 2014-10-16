@@ -2,6 +2,7 @@ Ext.define('Telasi.view.user.ProfileWindow', {
   extend: 'Ext.window.Window',
   alias : 'widget.profileWindow',
   modal: true,
+  resizable: false,
 
   requires: [
     'Telasi.view.user.HRInfo',

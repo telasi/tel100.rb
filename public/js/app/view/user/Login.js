@@ -10,12 +10,25 @@ Ext.define('Telasi.view.user.Login', {
   frame: false,
   layout: 'center',
 
-  items: [
-    {
+  items: [{
+    xtype: 'panel',
+    layout: 'vbox',
+    width: 400,
+    items: [{
+      xtype: 'panel',
+      cls: 'application-title',
+      width: '100%',
+      items: [{
+        xtype: 'label',
+        width: '100%',
+        html: '<i class="fa fa-send-o"></i> tel100',
+        style: 'display:block;text-align:center;padding:32px 0;'
+      }]
+    }, {
       xtype: 'panel',
       title: 'შესვლა',
-      width: 400,
       bodyPadding: 10,
+      width: 400,
       items: [{
         xtype: 'textfield',
         id: 'userID',
@@ -43,6 +56,6 @@ Ext.define('Telasi.view.user.Login', {
         formBind: true,
         handler: 'onLogin'
       }],
-    }
-  ],
+    }]
+  }],
 });
