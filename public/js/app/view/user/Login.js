@@ -18,6 +18,7 @@ Ext.define('Telasi.view.user.Login', {
       bodyPadding: 10,
       items: [{
         xtype: 'textfield',
+        id: 'userID',
         allowBlank: false,
         name: 'userID',
         fieldLabel: 'მომხმარებელი',

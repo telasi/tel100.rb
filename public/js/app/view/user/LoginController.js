@@ -2,6 +2,12 @@ Ext.define('Telasi.view.user.LoginController', {
   extend : 'Ext.app.ViewController',
   alias: 'controller.userlogin',
 
+  init: function() {
+    this.getView().on('afterrender', function() {
+      this.getView().down('#userID').focus();
+    }, this);
+  },
+
   onLogin: function(button) {
     var loginform = button.up('form');
     if (loginform.isValid()) {
