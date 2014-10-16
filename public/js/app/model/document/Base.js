@@ -1,4 +1,4 @@
-Ext.define('Telasi.view.common.docgrid.DocModel', {
+Ext.define('Telasi.model.document.Base', {
     extend: 'Ext.data.Model',
     idProperty: 'id',
     fields: [
