@@ -6,8 +6,6 @@ Ext.define('Telasi.view.user.Login', {
   alias : 'widget.userlogin',
   controller: 'userlogin',
 
-  title: null,
-  frame: false,
   layout: 'center',
 
   items: [{
@@ -16,17 +14,8 @@ Ext.define('Telasi.view.user.Login', {
     width: 400,
     items: [{
       xtype: 'panel',
-      cls: 'application-title',
-      width: '100%',
-      items: [{
-        xtype: 'label',
-        width: '100%',
-        html: '<i class="fa fa-send-o"></i> tel100',
-        style: 'display:block;text-align:center;padding:8px 0;'
-      }]
-    }, {
-      xtype: 'panel',
       title: 'შესვლა',
+      frame: true,
       bodyPadding: 10,
       width: 400,
       items: [{
@@ -54,6 +43,7 @@ Ext.define('Telasi.view.user.Login', {
       dockedItems: [{
         xtype: 'panel',
         dock: 'bottom',
+        padding: 10,
         items: [{
           xtype: 'button',
           text: 'სისტემაში შესვლა',
@@ -63,6 +53,16 @@ Ext.define('Telasi.view.user.Login', {
           scale: 'medium'
         }]
       }]
-    }]
+    }, {
+      xtype: 'panel',
+      //cls: 'application-title',
+      width: '100%',
+      items: [{
+        xtype: 'label',
+        width: '100%',
+        html: '<i class="fa fa-send-o"></i> tel100 <br> 2015 &copy; სს "თელასი"',
+        style: 'display:block;text-align:center;padding:8px 0;'
+      }]
+    }, ]
   }],
 });
