@@ -7,13 +7,18 @@ Ext.define('Telasi.view.user.Box', {
   layout: 'vbox',
 
   items: [{
-    xtype: 'label',
-    bind:  '{currentUser.fullName} <strong>({currentUser.username})</strong>',
-    padding: '5 10 0 10',
+    xtype: 'splitbutton',
+    bind: '<i class="fa fa-user"></i> {currentUser.username}',
+    margin: '5 10 0 10',
+    menu: [{
+      text: 'პროფილი'
+    }, {
+      text: 'გასვლა'
+    }]
   }, {
     xtype: 'label',
     bind: '{currentUser.employee.organization.name}',
     cls: 'text-muted',
-    padding: '0 10 5 10',
+    margin: '5 10 5 10',
   }],
 });
