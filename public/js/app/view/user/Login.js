@@ -22,7 +22,7 @@ Ext.define('Telasi.view.user.Login', {
         xtype: 'label',
         width: '100%',
         html: '<i class="fa fa-send-o"></i> tel100',
-        style: 'display:block;text-align:center;padding:32px 0;'
+        style: 'display:block;text-align:center;padding:8px 0;'
       }]
     }, {
       xtype: 'panel',
@@ -51,11 +51,18 @@ Ext.define('Telasi.view.user.Login', {
         text: 'არასწორი მომხმარებელი/პაროლი',
         cls: 'text-danger'
       }],
-      buttons: [{
-        text:'შესვლა',
-        formBind: true,
-        handler: 'onLogin'
-      }],
+      dockedItems: [{
+        xtype: 'panel',
+        dock: 'bottom',
+        items: [{
+          xtype: 'button',
+          text: 'სისტემაში შესვლა',
+          formBind: true,
+          width: '100%',
+          handler: 'onLogin',
+          scale: 'medium'
+        }]
+      }]
     }]
   }],
 });
