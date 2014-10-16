@@ -3,7 +3,6 @@ require 'bcrypt'
 
 class Sys::User < ActiveRecord::Base
   include BCrypt
-  include CamelizedModel
   self.table_name  = 'users'
   self.set_integer_columns :is_active, :is_admin
   self.localized_fields('first_name', 'last_name')
