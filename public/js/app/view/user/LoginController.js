@@ -14,7 +14,7 @@ Ext.define('Telasi.view.user.LoginController', {
       loginform.setLoading('დაელოდეთ...');
       loginform.down('label').setVisible(false);
       loginform.submit({
-        url: '/api/login',
+        url: '/api/user/login',
         success: function(form, action) {
           loginform.setLoading(false);
           loginform.fireEvent('loggedin', action.result);

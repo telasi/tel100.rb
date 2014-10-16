@@ -1,7 +1,9 @@
 # -*- encoding : utf-8 -*-
 Rails.application.routes.draw do
-  scope 'api', controller: 'api' do
-    post '/login', action: 'login'
+  namespace 'api' do
+    scope 'user', controller: 'user' do
+      post '/login', action: 'login'
+    end
   end
 
   scope 'document', controller: 'document' do
