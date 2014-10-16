@@ -39,7 +39,16 @@ Ext.define('Telasi.model.hr.Employee', {
     {
       name: 'personNumber',
       calculate: function(data) {
-        return '0' + data.person_id;
+        var minLength = 5
+          , pid = String(data.person_id)
+          , prefix = ''
+          ;
+        if (pid.length < minLength) {
+          for(var i = pid.length; i < minLength; i++) {
+            prefix += '0';
+          }
+        }
+        return prefix + pid;
       }
     }
   ],
