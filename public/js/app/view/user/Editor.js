@@ -26,13 +26,12 @@ Ext.define('Telasi.view.user.Editor', {
       fieldLabel: 'შიდა ტელ. #',
       width: '100%',
     }],
-
     dockedItems: [{
       xtype: 'panel',
       dock: 'bottom',
       items: [{
         xtype: 'button',
-        text: 'შენახვა',
+        text: 'მონაცემების შენახვა',
         width: '100%'
       }]
     }]
