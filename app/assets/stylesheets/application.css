@@ -16,3 +16,7 @@
 
  .text-error { color: red; }
  .text-muted { color: #aaa; }
+
+ .x-panel-header-title-default>.x-title-text-default:after {
+  content: none !important;
+ }
