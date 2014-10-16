@@ -14,9 +14,6 @@ Ext.define('Telasi.view.common.center.CenterPanel', {
                 {
                     xtype: 'searchpanel',
                     region: 'north',
-                    collapsible: true,
-                    collapsed: true,
-                    margins: '0 0 5 5'
                 },
                 {
                     xtype: 'docgrid',

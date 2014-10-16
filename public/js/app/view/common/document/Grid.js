@@ -5,25 +5,14 @@ Ext.define('Telasi.view.common.document.Grid', {
 
     requires:[
         'Telasi.view.common.document.ViewModel',
-        'Telasi.controller.common.document.GridController'
+        'Telasi.view.common.document.GridController',
+        'Telasi.model.document.BaseTexts'
     ],
 
     viewModel: { type: 'documents' },
     bind: '{documents}',
 
 //  texts
-    text_attachmentField:   '',
-    text_actionField:       'მოქმედება',
-    text_TypeField:         'ტიპი',
-    text_DocNumberField:    'გარე დოკუმენტის #',
-    text_DocDateField:      'დოკუმენტის თარიღი',
-    text_InnerNumberField:  'დოკუმენტის #',
-    text_DeadlineField:     'ვადა',
-    text_AuthorsField:      'ავტორები',
-    text_AnswersField:      'პასურები',
-    text_RecieversField:    'ადრესატები',
-    text_SubjectField:      'თემა',
-
 //  pager
     text_beforePageText:    'გვერდი',
     text_afterPageText:     '{0}-დან',
@@ -55,17 +44,17 @@ Ext.define('Telasi.view.common.document.Grid', {
         Ext.apply(this,
         {
             columns: [
-                { dataIndex: 'docnumber',           text: this.text_InnerNumberField,  width: 120, locked: true},
-                { dataIndex: 'docdate',             text: this.text_DocDateField,      width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat, locked: true },
-                { dataIndex: 'doctype',             text: this.text_TypeField,         width: 120, },
-                { dataIndex: 'original_number',     text: this.text_DocNumberField,    width: 150, },
-                { dataIndex: 'subject',             text: this.text_SubjectField,      width: 250, },
-                { dataIndex: 'due_date',            text: this.text_DeadlineField,     width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat},
-                { dataIndex: 'fullname',            text: this.text_AuthorsField,      width: 200, },
-                {                                   text: this.text_actionField,       width: 120, },
-                {                                   text: this.text_AnswersField,      width: 120, },
-                {                                   text: this.text_RecieversField,    width: 200, },
-                {                                   text: this.text_attachmentField,   width: 50, },
+                { dataIndex: 'docnumber',           text: Telasi.model.document.BaseTexts.text_InnerNumberField,  width: 120, locked: true},
+                { dataIndex: 'docdate',             text: Telasi.model.document.BaseTexts.text_DocDateField,      width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat, locked: true },
+                { dataIndex: 'doctype',             text: Telasi.model.document.BaseTexts.text_TypeField,         width: 120, },
+                { dataIndex: 'original_number',     text: Telasi.model.document.BaseTexts.text_DocNumberField,    width: 150, },
+                { dataIndex: 'subject',             text: Telasi.model.document.BaseTexts.text_SubjectField,      width: 250, },
+                { dataIndex: 'due_date',            text: Telasi.model.document.BaseTexts.text_DeadlineField,     width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat},
+                { dataIndex: 'fullname',            text: Telasi.model.document.BaseTexts.text_AuthorsField,      width: 200, },
+                {                                   text: Telasi.model.document.BaseTexts.text_actionField,       width: 120, },
+                {                                   text: Telasi.model.document.BaseTexts.text_AnswersField,      width: 120, },
+                {                                   text: Telasi.model.document.BaseTexts.text_RecieversField,    width: 200, },
+                {                                   text: Telasi.model.document.BaseTexts.text_attachmentField,   width: 50, },
             ],
 
                 dockedItems: [{

@@ -1,48 +1,79 @@
 Ext.define('Telasi.view.common.center.SearchPanel', {
     extend: 'Ext.panel.Panel',
     xtype: 'searchpanel',
-    layout: 'table',
-    collapsible: true,
-    titleCollapse: true,
-    collapsed: true,
-    cls: 'my-panel',
-    collapsedCls: 'my-panel',
-    border: 1,
+    // layout: 'column',
+    // defauls: {
+    //     bodyPadding: 15,
+    //     padding: 5,
+    // },
+
+    requires:[
+        'Telasi.model.document.BaseTexts'
+    ],
 
 //  texts
     text_SearchHeader: 'ძებნა',
+    text_FilterButton: 'ფილტრი',
 //  texts
 
-    title: this.text_SearchHeader,
-
-    items: [
-        {
-            xtype: 'textfield',
-            name: 'userID',
-            fieldLabel: 'მომხმარებელი',
-            emptyText: 'მომხმარებელი',
-            allowBlank: false
-        }, 
-        {
-            xtype: 'textfield',
-            name: 'password',
-            inputType: 'password',
-            fieldLabel: 'პაროლი',
-            emptyText: 'პაროლი',
-            allowBlank: false
-        }
-    ],
-
-    buttons: [{
-            text: 'Filter',
-            formBind: true,
-            listeners: {
-                click: 'onLoginClick'
-            }
-    }],
+    buttonAlign: 'center',
 
     initComponent: function(){
-        Ext.apply(this, { title: this.text_SearchHeader });
+        Ext.apply(this, { 
+            defaults: {
+                padding: 5,
+            },
+            items: [{
+                xtype: 'fieldset',
+                collapsible: true,
+                collapsed: true,
+                title: this.text_FilterButton,
+                items: [
+                    {
+                        columnWidth: 0.3,
+                        xtype: 'textfield',
+                        name: 'from_docnumber',
+                        fieldLabel: Telasi.model.document.BaseTexts.text_InnerNumberField,
+                        emptyText: Telasi.model.document.BaseTexts.text_InnerNumberField,
+                    }, 
+                    {
+                        columnWidth: 0.3,
+                        xtype: 'fieldcontainer',
+                        fieldLabel: Telasi.model.document.BaseTexts.text_DocDateField,
+                        layout: 'hbox',
+                        defauts: {
+                            flex: 1
+                        },
+                        items: [{
+                                xtype: 'datefield',
+                                name: 'from_docdate',
+                            },
+                            {
+                                xtype: 'datefield',
+                                name: 'to_docdate',
+                            }],
+                    },
+                    {
+                        columnWidth: 0.3,
+                        xtype: 'datefield',
+                        name: 'doctype',
+                        fieldLabel: Telasi.model.document.BaseTexts.text_DocDateField,
+                        emptyText: Telasi.model.document.BaseTexts.text_DocDateField,
+                    },
+                    {
+                        columnWidth: 0.3,
+                        xtype: 'datefield',
+                        name: 'doctype',
+                        fieldLabel: Telasi.model.document.BaseTexts.text_DocDateField,
+                        emptyText: Telasi.model.document.BaseTexts.text_DocDateField,
+                    },
+                    {
+                        xtype: 'button',
+                        text: this.text_FilterButton
+                    }
+                ],
+            }],
+        });
 
         this.callParent();
     }

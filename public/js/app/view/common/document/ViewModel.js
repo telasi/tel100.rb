@@ -9,7 +9,6 @@ Ext.define('Telasi.view.common.document.ViewModel',{
 	stores:{
 		documents: {
 			model: 'Telasi.model.document.Base',
-			pageSize: 1,
 		    proxy: {
 		        type: 'ajax',
 		        enablePaging: true,
