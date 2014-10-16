@@ -4,8 +4,6 @@ Ext.define('Telasi.controller.Main', {
   views: [
     'viewports.Login@Telasi.view',
     'viewports.Main@Telasi.view',
-    'user.Login@Telasi.view',
-    'user.LoginController@Telasi.view',
   ],
 
   models: [

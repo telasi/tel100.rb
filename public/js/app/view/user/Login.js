@@ -1,5 +1,8 @@
 Ext.define('Telasi.view.user.Login', {
   extend: 'Ext.form.Panel',
+  requires: [
+    'Telasi.view.user.LoginController'
+  ],
   alias : 'widget.userlogin',
   controller: 'userlogin',
 
