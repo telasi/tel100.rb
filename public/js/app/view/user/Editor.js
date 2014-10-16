@@ -7,22 +7,22 @@ Ext.define('Telasi.view.user.Editor', {
     padding: 10,
     items: [{
       xtype: 'textfield',
-      bind: '{currentUser.username}',
+      bind: '{user.username}',
       fieldLabel: 'მომხმ.სახელი',
       width: '100%',
     }, {
       xtype: 'textfield',
-      bind: '{currentUser.email}',
+      bind: '{user.email}',
       fieldLabel: 'ელ.ფოსტა',
       width: '100%',
     }, {
       xtype: 'textfield',
-      bind: '{currentUser.mobile}',
+      bind: '{user.mobile}',
       fieldLabel: 'მობილური',
       width: '100%',
     }, {
       xtype: 'textfield',
-      bind: '{currentUser.phone}',
+      bind: '{user.phone}',
       fieldLabel: 'შიდა ტელ. #',
       width: '100%',
     }],

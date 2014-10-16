@@ -10,7 +10,14 @@ Ext.define('Telasi.view.user.BoxController', {
   },
 
   onProfile: function(button) {
-    var profile = Ext.create('Telasi.view.user.ProfileWindow');
+    var user = button.up('viewport').viewModel.get('currentUser');
+    var profile = Ext.create('Telasi.view.user.ProfileWindow', {
+      viewModel: {
+        data: {
+          user: user
+        }
+      }
+    });
     profile.show();
   },
 });

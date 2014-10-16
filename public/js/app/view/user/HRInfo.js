@@ -5,15 +5,15 @@ Ext.define('Telasi.view.user.HRInfo', {
 
   items: [{
     xtype: 'displayfield',
-    bind: '<strong>{currentUser.employee.personNumber}</strong>',
+    bind: '<strong>{user.employee.personNumber}</strong>',
     fieldLabel: 'თანამშრ.#',
   }, {
     xtype: 'displayfield',
-    bind: '{currentUser.employee.organization.name}',
+    bind: '{user.employee.organization.name}',
     fieldLabel: 'თანამდებობა',
   }, {
     xtype: 'displayfield',
-    bind: '{currentUser.employee.fullName}',
+    bind: '{user.employee.fullName}',
     fieldLabel: 'სახელი,გვარი',
   }],
 });

@@ -14,11 +14,11 @@ Ext.define('Telasi.view.user.ProfileWindow', {
   items: [{
     xtype: 'tabpanel',
     items: [{
-      title: 'პერსონალური',
-      items: { xtype: 'userEditor' }
-    }, {
       title: 'HR',
       items: { xtype: 'profileHRInfo' }
+    }, {
+      title: 'პერსონალური',
+      items: { xtype: 'userEditor' }
     }]
   }]
 });
