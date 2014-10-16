@@ -23,7 +23,7 @@ Ext.define('Telasi.view.user.Box', {
       }, {
         text: 'პროგრამიდან გასვლა',
         handler: function() {
-          console.log('TODO: call exit action');
+          this.up('userbox').fireEvent('loggedout');
         },
       }],
       width: 250

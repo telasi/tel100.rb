@@ -19,7 +19,6 @@ Ext.define('Telasi.controller.Main', {
   },
 
   init: function() {
-    window.Telasi = {};
     this.control({
       'userlogin': {
         loggedin: function(userData) {
@@ -33,6 +32,13 @@ Ext.define('Telasi.controller.Main', {
             }
           });
         }
+      },
+      'userbox': {
+        loggedout: function() {
+          this.viewport.destroy();
+          this.user = null;
+          this.login = Ext.create('Telasi.view.viewports.Login');
+        },
       }
     });
   },
