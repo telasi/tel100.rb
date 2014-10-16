@@ -4,5 +4,9 @@ Rails.application.routes.draw do
     post '/login', action: 'login'
   end
 
+  scope 'document', controller: 'document' do
+  	root controller: 'document', action: 'index', as: 'get_documents'
+  end
+
   root controller: 'site', action: 'index'
 end
