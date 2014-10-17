@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace 'admin' do
     scope 'hr', controller: 'hr' do
       get '/', action: 'index', as: 'hr'
+      get '/employees/:id', action: 'employee', as: 'employee'
     end
   end
 

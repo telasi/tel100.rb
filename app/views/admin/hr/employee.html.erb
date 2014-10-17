@@ -1,0 +1,11 @@
+<h1 class="page-header">
+  <%= @title %>
+</h1>
+<%= viewer_for @employee do |v|
+  v.text_field 'person_number', tag: 'code', required: true
+  v.text_field 'full_name', required: true
+  v.array_field 'organization.chain', i18n: 'organization' do |a|
+    a.text_field 'name'
+  end
+  v.boolean_field 'active?', i18n: 'active'
+end %>
