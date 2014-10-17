@@ -43,3 +43,5 @@ gem 'ka'
 gem 'ruby-oci8'
 gem 'activerecord-oracle_enhanced-adapter', '1.5.5'
 gem 'rspec-rails', '~> 3.0.0', group: [:development, :test]
+gem 'forma', path: '../forma'
+gem 'will_paginate-bootstrap'

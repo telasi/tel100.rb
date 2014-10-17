@@ -1,4 +1,6 @@
 # -*- encoding : utf-8 -*-
 class SiteController < ApplicationController
-  def index; end
+  def index
+    render layout: 'extjs'
+  end
 end

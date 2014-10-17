@@ -1,0 +1,9 @@
+<h1 class="page-header">
+  <%= @title %> <code><%= @employees.total_entries %></code>
+</h1>
+<%= table_for @employees do |t|
+  t.text_field 'person_number', width: 100, tag: 'code'
+  t.text_field 'full_name'
+  t.text_field 'employee_status'
+end %>
+<%= paginate @employees %>
