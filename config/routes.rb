@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     scope 'hr', controller: 'hr' do
       scope 'employees' do
         get '/', action: 'employees', as: 'employees'
-        get '/:id', action: 'employee', as: 'employee'
+        get '/show/:id', action: 'employee', as: 'employee'
       end
       scope 'organization' do
         get '/(:parent_id)', action: 'organization', as: 'organization'
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
     scope 'users', controller: 'users' do
       get '/', action: 'index', as: 'users'
-      get '/:id', action: 'show', as: 'user'
+      get '/show/:id', action: 'show', as: 'user'
       match '/new', action: 'new', as: 'new_user', via: ['get', 'post']
       match '/edit/:id', action: 'edit', as: 'edit_user', via: ['get', 'post']
       delete '/delete/:id', action: 'destroy', as: 'delete_user'

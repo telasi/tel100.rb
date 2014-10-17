@@ -12,4 +12,5 @@
   t.text_field 'full_name', url: ->(x) { admin_user_url(id: x.id) }
   t.email_field 'email'
   t.text_field 'mobile_formatted', i18n: 'mobile'
+  t.button_action admin_new_user_url, label: 'ახალი მომხმარებელი', icon: 'plus'
 end %>
