@@ -1,0 +1,15 @@
+<h1 class="page-header">
+  <%= @title %> <code><%= @users.count %></code>
+</h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<%= table_for @users do |t|
+  t.text_field 'username', tag: 'code'
+  t.text_field 'full_name', url: ->(x) { admin_user_url(id: x.id) }
+  t.email_field 'email'
+  t.text_field 'mobile_formatted', i18n: 'mobile'
+end %>

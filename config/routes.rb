@@ -11,6 +11,10 @@ Rails.application.routes.draw do
         get '/(:parent_id)', action: 'organization', as: 'organization'
       end
     end
+    scope 'users', controller: 'users' do
+      get '/', action: 'index', as: 'users'
+      get '/:id', action: 'show', as: 'user'
+    end
   end
 
   namespace 'api' do

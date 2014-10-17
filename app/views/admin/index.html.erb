@@ -7,4 +7,7 @@
     <%= link_to "თანამშრომლები <code>#{HR::Employee.active.count}</code>".html_safe, admin_employees_url, class: ['btn', 'btn-default'] %>
     <%= link_to 'ორგანიზაციული სტრუქტურა', admin_organization_url, class: ['btn', 'btn-default'] %>
   </div>
+  <div class="col-sm-6">
+    <%= link_to "მომხმარებლები <code>#{Sys::User.active.count}</code>".html_safe, admin_users_url, class: ['btn', 'btn-default'] %>
+  </div>
 </div>
