@@ -1,0 +1,20 @@
+<h1 class="page-header">
+  <%= @title %>
+</h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li><%= link_to 'მომხმარებლები', admin_users_url %></li>
+  <li><%= link_to @user.full_name, admin_user_url(id: @user.id) %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<%= editor_for @user do |e|
+  e.text_field 'username'
+  e.password_field 'virtual_password', i18n: 'password'
+  e.text_field 'email'
+  e.text_field 'mobile'
+  e.text_field 'phone'
+  e.submit 'მონაცემების შენახვა'
+  e.button_action admin_user_url(id: @user.id), label: ' გაუქმება'
+end %>
