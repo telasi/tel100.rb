@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   namespace 'admin' do
     get '/', controller: 'base', action: 'index', as: 'home'
     scope 'hr', controller: 'hr' do
-      get '/', action: 'index', as: 'employees'
-      get '/employees/:id', action: 'employee', as: 'employee'
+      scope 'employees' do
+        get '/', action: 'employees', as: 'employees'
+        get '/:id', action: 'employee', as: 'employee'
+      end
     end
   end
 

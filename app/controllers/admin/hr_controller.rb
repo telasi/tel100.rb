@@ -1,5 +1,5 @@
 class Admin::HrController < AdminController
-  def index
+  def employees
     @title = 'თანამშრომლები'
     @employees = HR::Employee.active.order('person_id')
   end
