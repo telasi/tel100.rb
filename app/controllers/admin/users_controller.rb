@@ -9,4 +9,10 @@ class Admin::UsersController < AdminController
     @user = Sys::User.find(params[:id])
     @title = @user.full_name
   end
+
+  def destroy
+    user = Sys::User.find(params[:id])
+    user.destroy
+    redirect_to admin_users_url
+  end
 end

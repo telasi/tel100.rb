@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     scope 'users', controller: 'users' do
       get '/', action: 'index', as: 'users'
       get '/:id', action: 'show', as: 'user'
+      match '/new', action: 'new', as: 'new_user', via: ['get', 'post']
+      match '/edit/:id', action: 'edit', as: 'edit_user', via: ['get', 'post']
+      delete '/delete/:id', action: 'destroy', as: 'delete_user'
     end
   end
 
