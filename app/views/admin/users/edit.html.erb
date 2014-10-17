@@ -16,6 +16,8 @@
   e.text_field 'mobile'
   e.text_field 'phone'
   e.combo_field 'employee_id', collection: HR::Employee.active.order('person_id'), i18n: 'employee'
+  e.boolean_field 'is_active'
+  e.boolean_field 'is_admin'
   e.submit 'მონაცემების შენახვა'
   e.button_action admin_user_url(id: @user.id), label: ' გაუქმება', icon: 'remove'
 end %>
