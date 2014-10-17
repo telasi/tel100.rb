@@ -15,8 +15,8 @@ Ext.define('Telasi.view.common.center.TabPanel', {
         }
     ],
 
-    initComponent: function(){
-        this.getController('tabcontroller').viewDocument();
-    }
+    // initComponent: function(){
+    //     // this.getController('tabcontroller').viewDocument();
+    // }
     
 });
