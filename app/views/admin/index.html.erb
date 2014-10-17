@@ -1,0 +1,9 @@
+<h1 class="page-header">
+  <%= @title %>
+</h1>
+
+<div class="row">
+  <div class="col-sm-6">
+    <%= link_to "თანამშრომლები <code>#{HR::Employee.active.count}</code>".html_safe, admin_employees_url, class: ['btn', 'btn-default'] %>
+  </div>
+</div>
