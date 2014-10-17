@@ -1,0 +1,33 @@
+<h1 class="page-header">
+  <%= @title %>
+</h1>
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <% if @organization.present? %>
+    <li><%= link_to 'სს თელასი', admin_organization_url %></li>
+    <% @organization.chain.each do |org| %>
+      <% if org == @organization %>
+        <li class="active"><%= org.name %></li>
+      <% else %>
+        <li><%= link_to org.name, admin_organization_url(parent_id: org.id) %></li>
+      <% end %>
+    <% end %>
+  <% else %>
+    <li class="active">სს თელასი</li>
+  <% end %>
+</ol>
+<!-- organizations -->
+<% @children.each do |org| %>
+  <div style="padding: 5px; border-top: 1px solid #ddd;">
+    <i class="fa fa-building"></i>
+    <%= link_to org.name, admin_organization_url(parent_id: org.id) %>
+  </div>
+<% end %>
+
+<!-- employees -->
+<% @employees.each do |empl| %>
+  <div style="padding: 5px; border-top: 1px solid #ddd;">
+    <i class="fa fa-user"></i>
+    <%= link_to empl.full_name, admin_employee_url(id: empl.id) %>
+  </div>
+<% end %>

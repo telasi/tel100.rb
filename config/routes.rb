@@ -7,6 +7,9 @@ Rails.application.routes.draw do
         get '/', action: 'employees', as: 'employees'
         get '/:id', action: 'employee', as: 'employee'
       end
+      scope 'organization' do
+        get '/(:parent_id)', action: 'organization', as: 'organization'
+      end
     end
   end
 
