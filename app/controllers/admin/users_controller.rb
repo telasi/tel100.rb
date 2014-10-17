@@ -14,7 +14,7 @@ class Admin::UsersController < AdminController
     @title = 'მომხმარებლის შეცვლა'
     @user = Sys::User.find(params[:id])
     if request.post?
-      if @user.update_attributes(params.require(:sys_user).permit(:username, :virtual_password, :email, :mobile, :phone))
+      if @user.update_attributes(params.require(:sys_user).permit(:username, :virtual_password, :email, :mobile, :phone, :employee_id))
         redirect_to admin_user_url(id: @user.id)
       end
     end

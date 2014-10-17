@@ -12,4 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require select2
+//= require forma
 //= require_tree .
+
+var forma = require('forma');
+
+$(function() {
+  forma.startup();
+});

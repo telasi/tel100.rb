@@ -10,11 +10,12 @@
 </ol>
 
 <%= editor_for @user do |e|
-  e.text_field 'username'
+  e.required_text_field 'username'
   e.password_field 'virtual_password', i18n: 'password'
   e.text_field 'email'
   e.text_field 'mobile'
   e.text_field 'phone'
+  e.combo_field 'employee_id', collection: HR::Employee.active.order('person_id'), i18n: 'employee'
   e.submit 'მონაცემების შენახვა'
-  e.button_action admin_user_url(id: @user.id), label: ' გაუქმება'
+  e.button_action admin_user_url(id: @user.id), label: ' გაუქმება', icon: 'remove'
 end %>
