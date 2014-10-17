@@ -4,4 +4,9 @@ class Admin::UsersController < AdminController
     @title = 'მომხმარებლები'
     @users = Sys::User.active.order('username')
   end
+
+  def show
+    @user = Sys::User.find(params[:id])
+    @title = @user.full_name
+  end
 end

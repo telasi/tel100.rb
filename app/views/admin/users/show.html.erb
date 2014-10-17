@@ -1,0 +1,21 @@
+<h1 class="page-header"><%= @title %></h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li><%= link_to 'მომხმარებლები', admin_users_url %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<%= viewer_for @user do |v|
+  v.text_field 'username', tag: 'code'
+  v.text_field 'full_name'
+  v.email_field 'email'
+  v.text_field 'mobile_formatted', i18n: 'mobile'
+  v.text_field 'phone'
+  v.boolean_field 'active?', i18n: 'is_active'
+  v.boolean_field 'admin?', i18n: 'is_admin'
+  v.complex_field 'employee' do |c|
+    c.text_field 'person_number', tag: 'code'
+    c.text_field 'full_name', url: ->(x){ admin_employee_url(id: x.id) }
+  end
+end %>

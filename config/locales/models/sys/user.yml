@@ -4,6 +4,7 @@ ka:
       username: მომხ.სახელი
       full_name: "სახელი, გვარი"
       mobile: მობილური
+      phone: შიდა ნომერი
       email: ელ.ფოსტა
       password: პაროლი
       is_admin: 'ადმინისტრატორია?'
