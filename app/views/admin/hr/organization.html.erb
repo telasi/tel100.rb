@@ -20,6 +20,7 @@
 <% @children.each do |org| %>
   <div style="padding: 5px; border-top: 1px solid #ddd;">
     <i class="fa fa-building"></i>
+    <code><%= org.saporg_number %></code>
     <%= link_to org.name, admin_organization_url(parent_id: org.id) %>
   </div>
 <% end %>
@@ -28,6 +29,7 @@
 <% @employees.each do |empl| %>
   <div style="padding: 5px; border-top: 1px solid #ddd;">
     <i class="fa fa-user"></i>
+    <code><%= empl.person_number %></code>
     <%= link_to empl.full_name, admin_employee_url(id: empl.id) %>
   </div>
 <% end %>
