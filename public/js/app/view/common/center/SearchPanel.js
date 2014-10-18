@@ -7,6 +7,8 @@ Ext.define('Telasi.view.common.center.SearchPanel', {
     //     padding: 5,
     // },
 
+    // height: 20,
+
     requires:[
         'Telasi.model.document.BaseTexts'
     ],

@@ -4,13 +4,21 @@ Ext.define('Telasi.view.common.document.Grid', {
     controller: 'documentgrid',
 
     requires:[
-        'Telasi.view.common.document.ViewModel',
+        'Telasi.view.common.document.DocumentsViewModel',
         'Telasi.view.common.document.GridController',
         'Telasi.model.document.BaseTexts'
     ],
 
     viewModel: { type: 'documents' },
-    bind: '{documents}',
+    publishes: ['currentDocument'],
+    bind: {
+        currentDocument: 'currentDocument',
+        store: '{documents}',
+    },
+
+    config: {
+        currentDocument: null
+    },
 
 //  texts
 //  pager
@@ -29,16 +37,16 @@ Ext.define('Telasi.view.common.document.Grid', {
     margins: '0 0 5 5',
     loadMask: true,
 
-    viewConfig: {
-        listeners: {
-            refresh: function(dataview) {
-                Ext.each(dataview.panel.columns, function(column) {
-                    if (column.autoSizeColumn === true)
-                        column.autoSize();
-                })
-            }
-        }
-    },
+    // viewConfig: {
+    //     listeners: {
+    //         refresh: function(dataview) {
+    //             Ext.each(dataview.panel.columns, function(column) {
+    //                 if (column.autoSizeColumn === true)
+    //                     column.autoSize();
+    //             })
+    //         }
+    //     }
+    // },
 
     initComponent: function(){
         Ext.apply(this,

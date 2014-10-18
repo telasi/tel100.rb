@@ -1,4 +1,4 @@
-Ext.define('Telasi.view.common.document.ViewModel',{
+Ext.define('Telasi.view.common.document.DocumentsViewModel',{
 	extend: 'Ext.app.ViewModel',
 	alias: 'viewmodel.documents',
 

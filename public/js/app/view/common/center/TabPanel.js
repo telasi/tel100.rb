@@ -2,10 +2,12 @@ Ext.define('Telasi.view.common.center.TabPanel', {
     extend: 'Ext.tab.Panel',
     xtype: 'documenttab',
     controller: 'tabcontroller',
+    reference: 'documenttab',
 
     requires: [
         'Telasi.view.common.center.CenterPanel',
         'Telasi.view.common.center.TabController',
+        'Telasi.view.document.DocumentView',
     ],
 
     items:[
@@ -14,9 +16,5 @@ Ext.define('Telasi.view.common.center.TabPanel', {
           xtype: 'centerpanel',
         }
     ],
-
-    // initComponent: function(){
-    //     // this.getController('tabcontroller').viewDocument();
-    // }
     
 });

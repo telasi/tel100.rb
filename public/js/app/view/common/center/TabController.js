@@ -3,18 +3,27 @@ Ext.define('Telasi.view.common.center.TabController', {
      alias: 'controller.tabcontroller',
 
      init: function(){
-     	    	this.control({
-    		'documenttab': {
-    			viewDocument: function(){
-    				var tabpanel = Ext.getCmp('documenttab');
+		this.listen({
+			controller:{
+				'*': {
+					centalgriddblclick: 'gridcellDblClicked'
+				}
+			}
+		})
+     },
 
-			     	tabpanel.add({
-			     		title: 'view',
-			     		html: 'new view'
-			     	});
-    			}
-    		}
-    	})
+     gridcellDblClicked: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts){
+          var tabcontrol = table.up('documenttab');
+          var newTab = new Ext.create('Telasi.view.document.DocumentView', {
+                viewModel: {
+                  data: {
+                    currentDocument: record
+                  }
+                },
+                closable: true,
+          });
+     	tabcontrol.add(newTab);
+          tabcontrol.setActiveTab(newTab);
      }
 
 });
