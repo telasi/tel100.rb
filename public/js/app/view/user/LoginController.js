@@ -2,6 +2,19 @@ Ext.define('Telasi.view.user.LoginController', {
   extend : 'Ext.app.ViewController',
   alias: 'controller.userlogin',
 
+  control: {
+    '*': {
+      specialKey: 'onSpecialKey'
+    }
+  },
+
+  onSpecialKey: function(field, el){
+      if(el.getKey() == Ext.EventObject.ENTER)
+      {
+        this.onLogin(this.getComponent('submitbutton'));
+      }
+  }, 
+
   init: function() {
     this.getView().on('afterrender', function() {
       this.getView().down('#userID').focus();

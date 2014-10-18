@@ -58,7 +58,7 @@ Ext.define('Telasi.view.common.document.Grid', {
                 { dataIndex: 'original_number',     text: Telasi.model.document.BaseTexts.text_DocNumberField,    width: 150, },
                 { dataIndex: 'subject',             text: Telasi.model.document.BaseTexts.text_SubjectField,      width: 250, },
                 { dataIndex: 'due_date',            text: Telasi.model.document.BaseTexts.text_DeadlineField,     width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat},
-                { dataIndex: 'fullname',            text: Telasi.model.document.BaseTexts.text_AuthorsField,      width: 200, },
+                { dataIndex: 'author_fullname',     text: Telasi.model.document.BaseTexts.text_AuthorsField,      width: 200, },
                 {                                   text: Telasi.model.document.BaseTexts.text_actionField,       width: 120, },
                 {                                   text: Telasi.model.document.BaseTexts.text_AnswersField,      width: 120, },
                 {                                   text: Telasi.model.document.BaseTexts.text_RecieversField,    width: 200, },

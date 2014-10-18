@@ -30,33 +30,36 @@ Ext.define('Telasi.view.document.DocumentView',{
 			// 		text: '<i class="fa fa-print">',
 			// 	}
 			// ],
-			xtype: 'container',
+			xtype: 'form',
 			width: '100%',
-			layout: {
-				type: 'vbox',
-				aligh: 'stretch'
+
+			fieldDefaults: {
+				labelAlign: 'right',
+				labelWidth: 100,
+				msgTarget: 'side'
 			},
+
 			// defaults: {
 			// 	layout: 'hbox',
 			// 	xtype:'container'
 			// },
 			items:[
-				{
-					xtype:'panel',
-					layout: 'hbox',
-					items: [
-						{
-							html: 'a',
-							flex: 1
-						},
-						{
-							html: 'b',
-							flex: 10
-						}
-					]
-				}
+				{ xtype: 'displayfield', fieldLabel: 'თემა', bind: '{currentDocument.subject}'},
+				{ xtype: 'displayfield', fieldLabel: 'ავტორი', bind: '{currentDocument.author_fullname}'},
+				{ xtype: 'displayfield', fieldLabel: 'გამგზავნი', bind: '{currentDocument.sender_fullname}'},
+				{ xtype: 'displayfield', fieldLabel: 'მფლობელი', bind: '{currentDocument.owner_fullname}'},
+				{ xtype: 'displayfield', fieldLabel: 'ადრესატი', bind: '{currentDocument.fullname}'},
 			],
 			region: 'north'
+		},
+		{
+			xtype: 'panel',
+			// html: 'Document text',
+			bind: {
+				html: '{currentDocument.body}',
+			},
+			border: 1,
+			region: 'center'
 		}
 	],
 

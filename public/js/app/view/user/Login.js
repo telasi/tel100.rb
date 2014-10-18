@@ -12,12 +12,24 @@ Ext.define('Telasi.view.user.Login', {
     xtype: 'panel',
     layout: 'vbox',
     width: 400,
+
     items: [{
       xtype: 'panel',
       title: 'შესვლა',
       frame: true,
       bodyPadding: 10,
       width: 400,
+
+    //       defaults: {
+    //   listeners: {
+    //     specialKey: function(field, el){
+    //       if(el.getKey() == Ext.EventObject.ENTER)
+    //       {
+    //         Ext.getCmp('submitbutton').handler.call(Ext.getCmp('submitbutton').scope);
+    //       }
+    //     }
+    //   },
+    // },
       items: [{
         xtype: 'textfield',
         id: 'userID',
@@ -46,6 +58,7 @@ Ext.define('Telasi.view.user.Login', {
         padding: 10,
         items: [{
           xtype: 'button',
+          itemId: 'submitbutton',
           text: 'სისტემაში შესვლა',
           formBind: true,
           width: '100%',
