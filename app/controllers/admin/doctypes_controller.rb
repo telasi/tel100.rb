@@ -22,6 +22,16 @@ class Admin::DoctypesController < AdminController
     end
   end
 
+  def edit
+    @type = Document::Type.find params[:id]
+    @title = @type.name
+    if request.post?
+      if @type.update_attributes(doctype_params)
+        redirect_to admin_doctype_url(id: @type.id)
+      end
+    end
+  end
+
   private
 
   def doctype_params; params.require(:document_type).permit(:name_ka, :name_ru, :name_en, :order_by) end

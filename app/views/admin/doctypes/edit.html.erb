@@ -8,10 +8,4 @@
   <li class="active"><%= @title %></li>
 </ol>
 
-<%= viewer_for @type do |v|
-  v.required_text_field 'name_ka'
-  v.text_field 'name_ru'
-  v.text_field 'name_en'
-  v.required_text_field 'order_by', tag: 'code'
-  v.button_action admin_edit_doctype_url(id: @type.id), label: 'შეცვლა', icon: 'pencil'
-end %>
+<%= render partial: 'form' %>

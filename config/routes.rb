@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         get '/', action: 'index', as: 'doctypes'
         get '/show/:id', action: 'show', as: 'doctype'
         match '/new', action: 'new', as: 'new_doctype', via: ['get', 'post']
+        match '/edit/:id', action: 'edit', as: 'edit_doctype', via: ['get', 'post']
       end
     end
   end
