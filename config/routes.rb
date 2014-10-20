@@ -18,6 +18,11 @@ Rails.application.routes.draw do
       match '/edit/:id', action: 'edit', as: 'edit_user', via: ['get', 'post']
       delete '/delete/:id', action: 'destroy', as: 'delete_user'
     end
+    scope 'document' do
+      scope 'types', controller: 'doctypes' do
+        get '/', action: 'index', as: 'doctypes'
+      end
+    end
   end
 
   namespace 'api' do
@@ -27,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   scope 'document', controller: 'document' do
-  	root controller: 'document', action: 'index', as: 'get_documents'
+  	root action: 'index', as: 'get_documents'
   end
 
   root controller: 'site', action: 'index'
