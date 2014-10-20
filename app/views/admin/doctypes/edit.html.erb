@@ -5,6 +5,7 @@
 <ol class="breadcrumb">
   <li><%= link_to 'საწყისი', admin_home_url %></li>
   <li><%= link_to 'დოკუმენტების სახეობები', admin_doctypes_url %></li>
+  <li><%= link_to @type.name, admin_doctype_url(id: @type.id) %></li>
   <li class="active"><%= @title %></li>
 </ol>
 

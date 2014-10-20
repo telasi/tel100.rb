@@ -23,13 +23,19 @@ class Admin::DoctypesController < AdminController
   end
 
   def edit
+    @title = 'სახეობის შეცვლა'
     @type = Document::Type.find params[:id]
-    @title = @type.name
     if request.post?
       if @type.update_attributes(doctype_params)
         redirect_to admin_doctype_url(id: @type.id)
       end
     end
+  end
+
+  def destroy
+    type = Document::Type.find params[:id]
+    type.destroy
+    redirect_to admin_doctypes_url
   end
 
   private

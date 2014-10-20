@@ -14,4 +14,5 @@
   v.text_field 'name_en'
   v.required_text_field 'order_by', tag: 'code'
   v.button_action admin_edit_doctype_url(id: @type.id), label: 'შეცვლა', icon: 'pencil'
+  v.button_action admin_delete_doctype_url(id: @type.id), label: 'წაშლა', icon: 'trash', confirm: 'ნამდვილად გინდათ ამ სახეობის წაშლა?', http_method: 'delete'
 end %>
