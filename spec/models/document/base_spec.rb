@@ -6,7 +6,7 @@ RSpec.describe Document::Base do
     create_default_schema
   end
 
-  it 'a user sends to single receiver' do
+  it 'document sent to a single receiver' do
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')
     nino    = Sys::User.find_by_username('nino')
@@ -14,7 +14,8 @@ RSpec.describe Document::Base do
     doc = Document::Base.new_document(dimitri, {
       subject: 'სატესტო დოკუმენტი',
       body: 'სატესტო დოკუმენტის აღწერილობა',
-      motions: [
+      type_id: 1,
+      motions_attributes: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში' },
         { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში' },
       ]

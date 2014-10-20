@@ -52,16 +52,23 @@ module DefaultSchema
     @shalva = create_user('shalva', 'shalva123', @shalva_e)
   end
 
+  def create_document_types
+    Document::Type.create(id: 1, name_ka: 'წერილი', order_by: 1)
+    Document::Type.create(id: 2, name_ka: 'ბრძანება', order_by: 2)
+  end
+
   module_function :create_organizations
   module_function :create_organization
   module_function :create_employees
   module_function :create_employee
   module_function :create_users
   module_function :create_user
+  module_function :create_document_types
 end
 
 def create_default_schema
   DefaultSchema.create_organizations
   DefaultSchema.create_employees
   DefaultSchema.create_users
+  DefaultSchema.create_document_types
 end

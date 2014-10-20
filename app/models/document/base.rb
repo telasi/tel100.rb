@@ -14,8 +14,8 @@ class Document::Base < ActiveRecord::Base
   belongs_to :owner_user, class_name: 'Sys::User', foreign_key: 'owner_user_id'
   belongs_to :owner,  polymorphic: true
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
-  has_many :motions, class_name: 'Document::Motion'
-  has_one :text, class_name: 'Document::Text'
+  has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
+  has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
 
   def body
     self.text.body if self.text.present?
@@ -38,10 +38,11 @@ class Document::Base < ActiveRecord::Base
 
     subject = opts[:subject]
     body = opts[:body]
+    type = Document::Type.find(opts[:type_id])
 
     Document::Base.transaction do
       doc = Document::Base.create({
-        doctype: 'letter', direction: 'inner',
+        type: type, direction: 'inner',
         subject: subject, body: body, docnumber: '1',
         docdate: Date.today, docyear: Date.today.year,
         status: status,
@@ -50,7 +51,7 @@ class Document::Base < ActiveRecord::Base
         owner_user: owner_user, owner: owner,
       })
 
-      opts[:motions_attributes].values.each do |motion_opts|
+      opts[:motions_attributes].each do |motion_opts|
         motion_opts[:receiver_type] = 'HR::Employee'
         receiver_user, receiver = who_eval(:receiver, motion_opts)
         motion_text = motion_opts[:motion_text]
