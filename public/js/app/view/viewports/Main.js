@@ -3,7 +3,7 @@ Ext.define('Telasi.view.viewports.Main', {
     requires: [
       'Telasi.view.common.Header',
       'Telasi.view.document.Folders',
-      'Telasi.view.common.center.TabPanel'
+      'Telasi.view.document.Tab'
     ],
 
     layout: 'fit',
@@ -14,7 +14,7 @@ Ext.define('Telasi.view.viewports.Main', {
           xtype: 'appheader',
           region: 'north'
         }, {
-          xtype: 'documenttab',
+          xtype: 'documentTab',
           region: 'center'
         }, {
           xtype: 'documentFolders',

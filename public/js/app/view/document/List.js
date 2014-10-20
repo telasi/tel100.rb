@@ -1,15 +1,15 @@
-Ext.define('Telasi.view.common.center.CenterPanel', {
+Ext.define('Telasi.view.document.List', {
   extend: 'Ext.panel.Panel',
-  xtype: 'centerpanel',
+  xtype: 'documentList',
   layout: 'border',
 
   requires: [
-    'Telasi.view.common.center.SearchPanel',
+    'Telasi.view.document.Search',
     'Telasi.view.common.document.Grid'
   ],
 
   items: [{
-    xtype: 'searchpanel',
+    xtype: 'documentSearch',
     region: 'north',
   }, {
     xtype: 'docgrid',
