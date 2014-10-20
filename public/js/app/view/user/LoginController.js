@@ -9,11 +9,10 @@ Ext.define('Telasi.view.user.LoginController', {
   },
 
   onSpecialKey: function(field, el){
-      if(el.getKey() == Ext.EventObject.ENTER)
-      {
-        this.onLogin(this.getComponent('submitbutton'));
-      }
-  }, 
+    if (el.getKey() === Ext.EventObject.ENTER) {
+      this.onLoginWithEnter(field);
+    }
+  },
 
   init: function() {
     this.getView().on('afterrender', function() {
@@ -21,8 +20,15 @@ Ext.define('Telasi.view.user.LoginController', {
     }, this);
   },
 
-  onLogin: function(button) {
-    var loginform = button.up('form');
+  onLoginWithEnter: function(field) {
+    this.onLogin(field.up('form'));
+  },
+
+  onLoginWithButton: function(button) {
+    this.onLogin(button.up('form'));
+  },
+
+  onLogin: function(loginform) {
     if (loginform.isValid()) {
       loginform.setLoading('დაელოდეთ...');
       loginform.down('label').setVisible(false);
