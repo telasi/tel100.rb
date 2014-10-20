@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         get '/show/:id', action: 'show', as: 'doctype'
         match '/new', action: 'new', as: 'new_doctype', via: ['get', 'post']
         match '/edit/:id', action: 'edit', as: 'edit_doctype', via: ['get', 'post']
+        delete '/delete/:id', action: 'destroy', as: 'delete_doctype'
       end
     end
   end
@@ -31,6 +32,11 @@ Rails.application.routes.draw do
   namespace 'api' do
     scope 'user', controller: 'user' do
       post '/login', action: 'login'
+    end
+    namespace 'docs' do
+      scope 'types', controller: 'types' do
+        get '/', action: 'index'
+      end
     end
   end
 
