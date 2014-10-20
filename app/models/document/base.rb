@@ -26,6 +26,13 @@ class Document::Base < ActiveRecord::Base
     self.text.body = text
   end
 
+  def self.docnumber_eval(type, date)
+    last_doc = Document::Base.where(docdate: date).order('id DESC').first
+    last_number = '1'
+    last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
+    "#{date.strftime('%m%d')}/#{last_number.rjust(3,'0')}"
+  end
+
   def self.new_document(sender_user, opts = {})
     raise 'sender not defined' if sender_user.blank?
     sender = whose_user(sender_user)
@@ -39,13 +46,14 @@ class Document::Base < ActiveRecord::Base
     subject = opts[:subject]
     body = opts[:body]
     type = Document::Type.find(opts[:type_id])
+    date = opts[:date] || Date.today
+    numb = docnumber_eval(type, date)
 
     Document::Base.transaction do
       doc = Document::Base.create({
-        type: type, direction: 'inner',
-        subject: subject, body: body, docnumber: '1',
-        docdate: Date.today, docyear: Date.today.year,
-        status: status,
+        type: type, direction: 'inner', docnumber: numb,
+        docdate: date, docyear: date.year,
+        subject: subject, body: body, status: status,
         author_user: author_user, author: author,
         sender_user: sender_user, sender: sender,
         owner_user: owner_user, owner: owner,

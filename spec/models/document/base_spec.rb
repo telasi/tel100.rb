@@ -6,15 +6,40 @@ RSpec.describe Document::Base do
     create_default_schema
   end
 
+  it 'document numbering' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    shalva  = Sys::User.find_by_username('shalva')
+    date    = Date.new(2014, 10, 5)
+
+    doc1 = Document::Base.new_document(dimitri, {
+      subject: 'test1', body: 'test body 1', type_id: 1, date: date,
+      motions_attributes: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 1' }, ]
+    }).reload
+    doc2 = Document::Base.new_document(dimitri, {
+      subject: 'test2', body: 'test body 2', type_id: 1, date: date,
+      motions_attributes: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 2' }, ]
+    }).reload
+    doc3 = Document::Base.new_document(dimitri, {
+      subject: 'test3', body: 'test body 3', type_id: 1, date: date,
+      motions_attributes: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 3' }, ]
+    }).reload
+
+    expect(doc1.docnumber).to eq('1005/001')
+    expect(doc2.docnumber).to eq('1005/002')
+    expect(doc3.docnumber).to eq('1005/003')
+  end
+
   it 'document sent to a single receiver' do
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')
     nino    = Sys::User.find_by_username('nino')
+    date    = Date.new(2014, 10, 1)
 
     doc = Document::Base.new_document(dimitri, {
       subject: 'სატესტო დოკუმენტი',
       body: 'სატესტო დოკუმენტის აღწერილობა',
       type_id: 1,
+      date: date,
       motions_attributes: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში' },
         { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში' },
@@ -25,8 +50,9 @@ RSpec.describe Document::Base do
 
     expect(doc.subject).to eq('სატესტო დოკუმენტი')
     expect(doc.body).to eq('სატესტო დოკუმენტის აღწერილობა')
-    expect(doc.docdate).to eq(Date.today)
-    expect(doc.docyear).to eq(Date.today.year)
+    expect(doc.docdate).to eq(date)
+    expect(doc.docyear).to eq(date.year)
+    expect(doc.docnumber).to eq("#{date.strftime('%m%d')}/001")
     expect(doc.sender_user).to eq(dimitri)
     expect(doc.sender).to eq(dimitri.employee)
     expect(doc.owner_user).to eq(dimitri)
