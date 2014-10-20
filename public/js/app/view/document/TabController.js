@@ -13,8 +13,7 @@ Ext.define('Telasi.view.document.TabController', {
   },
 
   gridcellDblClicked: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts){
-    var tabcontrol = table.up('documentTab');
-    var newTab = new Ext.create('Telasi.view.document.DocumentView', {
+    var viewer = new Ext.create('Telasi.view.document.DocumentView', {
       viewModel: {
         data: {
           currentDocument: record
@@ -22,7 +21,12 @@ Ext.define('Telasi.view.document.TabController', {
       },
       closable: true,
     });
-    tabcontrol.add(newTab);
-    tabcontrol.setActiveTab(newTab);
+    this.openTab( viewer );
+  },
+
+  openTab: function(component) {
+    var tabcontrol = this.getView();
+    tabcontrol.add(component);
+    tabcontrol.setActiveTab(component);
   },
 });
