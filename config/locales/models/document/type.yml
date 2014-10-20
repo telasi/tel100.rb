@@ -1,0 +1,8 @@
+ka:
+  models:
+    document_type:
+      name: დასახელება
+      order_by: დალაგება
+      name_ka: დასახელება (ქარ.)
+      name_ru: დასახელება (რუს.)
+      name_en: დასახელება (ინგ.)

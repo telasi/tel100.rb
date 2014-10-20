@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     scope 'document' do
       scope 'types', controller: 'doctypes' do
         get '/', action: 'index', as: 'doctypes'
+        get '/show/:id', action: 'show', as: 'doctype'
+        match '/new', action: 'new', as: 'new_doctype', via: ['get', 'post']
       end
     end
   end

@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20141020063200) do
   create_table "document_type", force: true do |t|
     t.string    "name_ka",    limit: 50,                                     null: false
     t.string    "name_ru",    limit: 50
-    t.string    "name_end",   limit: 50
+    t.string    "name_en",    limit: 50
     t.integer   "order_by",   limit: 5,  precision: 5, scale: 0, default: 0, null: false
     t.timestamp "created_at", limit: 6,                                      null: false
     t.timestamp "updated_at", limit: 6,                                      null: false

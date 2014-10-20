@@ -1,0 +1,14 @@
+<h1 class="page-header">
+  <%= @title %>
+</h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<%= table_for @types, model_name: 'Document::Type' do |t|
+  t.text_field 'order_by', tag: 'code', width: 100
+  t.text_field 'name', url: ->(x){ admin_doctype_url(id:x.id) }
+  t.button_action admin_new_doctype_url, label: 'ახალი სახეობა', icon: 'plus'
+end %>
