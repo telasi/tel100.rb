@@ -13,32 +13,21 @@
 
 ActiveRecord::Schema.define(version: 20141020063200) do
 
-  create_table "doc_types", force: true do |t|
-    t.string  "name_ka",  limit: 50,                                     null: false
-    t.string  "name_ru",  limit: 50
-    t.string  "name_end", limit: 50
-    t.integer "order_by", limit: 5,  precision: 5, scale: 0, default: 0, null: false
-  end
-
-  create_table "document_texts", primary_key: "document_id", force: true do |t|
-    t.text "body"
-  end
-
-  create_table "documents", force: true do |t|
-    t.string    "language",        limit: 2,                             default: "KA",     null: false
+  create_table "document_base", force: true do |t|
+    t.string    "language",        limit: 2,                             default: "KA",    null: false
     t.integer   "parent_id",       limit: 10,   precision: 10, scale: 0
-    t.string    "doctype",         limit: 20,                            default: "letter", null: false
-    t.string    "direction",       limit: 20,                            default: "inner",  null: false
+    t.integer   "type_id",         limit: 5,    precision: 5,  scale: 0,                   null: false
+    t.string    "direction",       limit: 20,                            default: "inner", null: false
     t.string    "subject",         limit: 1000
     t.string    "original_number", limit: 50
     t.string    "docnumber",       limit: 20
-    t.datetime  "docdate",                                                                  null: false
-    t.integer   "docyear",         limit: 4,    precision: 4,  scale: 0,                    null: false
+    t.datetime  "docdate",                                                                 null: false
+    t.integer   "docyear",         limit: 4,    precision: 4,  scale: 0,                   null: false
     t.integer   "page_count",      limit: 6,    precision: 6,  scale: 0
     t.integer   "additions_count", limit: 6,    precision: 6,  scale: 0
     t.datetime  "due_date"
     t.datetime  "alarm_date"
-    t.string    "status",          limit: 20,                            default: "open",   null: false
+    t.string    "status",          limit: 20,                            default: "open",  null: false
     t.integer   "author_user_id",  limit: 10,   precision: 10, scale: 0
     t.integer   "author_id",       limit: 10,   precision: 10, scale: 0
     t.string    "author_type",     limit: 50
@@ -48,11 +37,11 @@ ActiveRecord::Schema.define(version: 20141020063200) do
     t.integer   "owner_user_id",   limit: 10,   precision: 10, scale: 0
     t.integer   "owner_id",        limit: 10,   precision: 10, scale: 0
     t.string    "owner_type",      limit: 50
-    t.timestamp "created_at",      limit: 6,                                                null: false
-    t.timestamp "updated_at",      limit: 6,                                                null: false
+    t.timestamp "created_at",      limit: 6,                                               null: false
+    t.timestamp "updated_at",      limit: 6,                                               null: false
   end
 
-  create_table "documents_motion", force: true do |t|
+  create_table "document_motion", force: true do |t|
     t.integer   "parent_id",        limit: 12,   precision: 12, scale: 0
     t.integer   "document_id",      limit: 10,   precision: 10, scale: 0,                  null: false
     t.string    "status",           limit: 20,                            default: "open", null: false
@@ -68,6 +57,19 @@ ActiveRecord::Schema.define(version: 20141020063200) do
     t.boolean   "receiver_is_read",              precision: 1,  scale: 0, default: false,  null: false
     t.timestamp "created_at",       limit: 6,                                              null: false
     t.timestamp "updated_at",       limit: 6,                                              null: false
+  end
+
+  create_table "document_text", primary_key: "document_id", force: true do |t|
+    t.text "body"
+  end
+
+  create_table "document_type", force: true do |t|
+    t.string    "name_ka",    limit: 50,                                     null: false
+    t.string    "name_ru",    limit: 50
+    t.string    "name_end",   limit: 50
+    t.integer   "order_by",   limit: 5,  precision: 5, scale: 0, default: 0, null: false
+    t.timestamp "created_at", limit: 6,                                      null: false
+    t.timestamp "updated_at", limit: 6,                                      null: false
   end
 
   create_table "hr_employees", force: true do |t|
@@ -113,8 +115,8 @@ ActiveRecord::Schema.define(version: 20141020063200) do
     t.boolean   "mobile_confirmed",             precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_active",                    precision: 1,  scale: 0, default: true,  null: false
     t.boolean   "is_admin",                     precision: 1,  scale: 0, default: false, null: false
-    t.integer   "employee_id",      limit: 10,  precision: 10, scale: 0,                 null: false
-    t.string    "person_id",        limit: 8,                                            null: false
+    t.integer   "employee_id",      limit: 10,  precision: 10, scale: 0
+    t.integer   "person_id",        limit: 8,   precision: 8,  scale: 0
     t.string    "first_name_ka",    limit: 50,                                           null: false
     t.string    "first_name_ru",    limit: 50
     t.string    "first_name_en",    limit: 50

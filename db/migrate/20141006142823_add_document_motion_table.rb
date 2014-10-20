@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
-class AddDocumentsMotionTable < ActiveRecord::Migration
+class AddDocumentMotionTable < ActiveRecord::Migration
   def up
     execute <<-SQL
-      create table DOCUMENTS_MOTION (
+      create table DOCUMENT_MOTION (
         ID        number(12, 0) not null,
         PARENT_ID number(12, 0),
         DOCUMENT_ID number(10, 0) not null,
@@ -32,7 +32,7 @@ class AddDocumentsMotionTable < ActiveRecord::Migration
 
     execute <<-SQL
       create trigger DOCMOTION_BEFORE_INSERT
-      before insert on DOCUMENTS_MOTION
+      before insert on DOCUMENT_MOTION
       for each row
       BEGIN
         IF :new.ID is null
@@ -46,6 +46,6 @@ class AddDocumentsMotionTable < ActiveRecord::Migration
   def down
     execute "drop trigger DOCMOTION_BEFORE_INSERT"
     execute "drop sequence DOCMOTION_SEQ"
-    execute "drop table DOCUMENTS_MOTION"
+    execute "drop table DOCUMENT_MOTION"
   end
 end

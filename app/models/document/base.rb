@@ -3,8 +3,8 @@ class Document::Base < ActiveRecord::Base
   include Document::Status
   include Document::Who
 
-  self.table_name  = 'documents'
-  self.sequence_name = 'documents_seq'
+  self.table_name  = 'document_base'
+  self.sequence_name = 'docbase_seq'
 
   belongs_to :parent, class_name: 'Document::Base', foreign_key: 'parent_id'
   belongs_to :author_user, class_name: 'Sys::User', foreign_key: 'author_user_id'
@@ -13,8 +13,9 @@ class Document::Base < ActiveRecord::Base
   belongs_to :sender, polymorphic: true
   belongs_to :owner_user, class_name: 'Sys::User', foreign_key: 'owner_user_id'
   belongs_to :owner,  polymorphic: true
-  has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
-  has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
+  belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
+  has_many :motions, class_name: 'Document::Motion'
+  has_one :text, class_name: 'Document::Text'
 
   def body
     self.text.body if self.text.present?
