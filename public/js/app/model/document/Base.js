@@ -4,7 +4,7 @@ Ext.define('Telasi.model.document.Base', {
     fields: [
         'id',
         'language',
-        'doctype',
+        { name: 'type_id', type: 'int' },
         'direction',
         'subject',
         { name: 'body', mapping: 'text.body' },
