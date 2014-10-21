@@ -1,6 +1,7 @@
 Ext.define('Telasi.view.document.Editor', {
   extend: 'Ext.form.Panel',
   alias: 'widget.documentEditor',
+  border: false,
   requires: [
     'Telasi.model.document.Type',
     'Telasi.store.document.Type',
@@ -10,7 +11,7 @@ Ext.define('Telasi.view.document.Editor', {
   // controller: 'documentEditor',
 
   bind: {
-    title: 'ახალი {typeName}'
+    title: '<i class="fa fa-bookmark-o"></i> ახალი {typeName}'
   },
   closable: true,
   layout: 'border',
@@ -24,7 +25,7 @@ Ext.define('Telasi.view.document.Editor', {
       region: 'north',
     }, {
       xtype: 'documentEditorCenter',
-      region: 'center'
+      region: 'center',
     }]
   }, {
     xtype: 'documentEditorEast',
@@ -36,9 +37,11 @@ Ext.define('Telasi.view.document.Editor', {
 
 Ext.define('Telasi.view.document.EditorNorth', {
   extend: 'Ext.form.Panel',
+  border: false,
   alias: 'widget.documentEditorNorth',
   items: [{
     xtype: 'panel',
+    border: false,
     layout: {
       type: 'hbox',
       align: 'stretch',
@@ -47,36 +50,16 @@ Ext.define('Telasi.view.document.EditorNorth', {
     items: [],
   }, {
     xtype: 'panel',
+    border: false,
     layout: {
       type: 'hbox',
       align: 'stretch',
       padding: '0 5px 5px 5px'
     },
-    items: [{
-      xtype: 'combo',
-      displayField: 'name',
-      valueField: 'id',
-      editable: false,
-      emptyText: 'აარჩიეთ ენა',
-      padding: '0 5px 0 0',
-      fieldLabel: 'ენა',
-      labelAlign: 'top',
-      store: 'languages',
-      width: 100,
-      bind: '{doc.language}'
-    }, {
-      xtype: 'textfield',
-      emptyText: 'დატოვეთ ცარიელი ავტომატური გენერაციისთვის',
-      padding: 0,
-      flex: 1,
-      // fieldLabel: 'დოკუმენტის ნომერი',
-      labelAlign: 'top',
-      bind: {
-        fieldLabel: '{typeNameGenitive} ნომერი'
-      }
-    } ],
+    items: [ ],
   }, {
     xtype: 'panel',
+    border: false,
     layout: {
       type: 'hbox',
       align: 'stretch',
@@ -84,7 +67,7 @@ Ext.define('Telasi.view.document.EditorNorth', {
     },
     items: [{
       xtype: 'textfield',
-      emptyText: 'დოკუმენტის შინაარსი',
+      emptyText: 'ჩაწერეთ მოკლე შინაარსი',
       flex: 1
     }]
   }],
@@ -94,9 +77,11 @@ Ext.define('Telasi.view.document.EditorCenter', {
   extend: 'Ext.form.Panel',
   alias: 'widget.documentEditorCenter',
   layout: 'fit',
+  border: false,
   items: [{
     xtype: 'htmleditor',
-    padding: 5
+    padding: 5,
+    emptyText: 'ჩაწერეთ დაწვრილებითი შინაარსი'
   }],
 });
 
@@ -113,16 +98,19 @@ Ext.define('Telasi.view.document.EditorEast', {
 
   items: [{
     xtype: 'documentEditorMain',
-    title: 'ძირითადი'
+    title: '<i class="fa fa-bookmark-o"></i> ძირითადი',
+    autoScroll: true
   }, {
     xtype: 'panel',
-    html: 'ადრესატები',
-    title: 'ადრესატები'
+    border: false,
+    title: '<i class="fa fa-users"></i> ადრესატები',
+    html: 'TODO: ადრესატები',
   }]
 });
 
 Ext.define('Telasi.view.document.EditorMain', {
   extend: 'Ext.form.Panel',
+  border: false,
   alias: 'widget.documentEditorMain',
   items: [{
     xtype: 'combo',
@@ -131,10 +119,55 @@ Ext.define('Telasi.view.document.EditorMain', {
     valueField: 'id',
     editable: false,
     emptyText: 'აარჩიეთ ტიპი',
-    padding: '5px 0 0 0',
     fieldLabel: 'ტიპი',
     width: '100%',
-    bind: '{doc.type_id}'
+    bind: '{doc.typeId}'
+  }, {
+    xtype: 'combo',
+    displayField: 'name',
+    valueField: 'id',
+    editable: false,
+    emptyText: 'აარჩიეთ ენა',
+    store: 'languages',
+    width: '100%',
+    bind: {
+      value: '{doc.language}',
+      fieldLabel: '{typeNameGenitive} ენა',
+    },
+  }, {
+    xtype: 'textfield',
+    emptyText: 'ჩაწერეთ დოკუმენტის #',
+    padding: 0,
+    width: '100%',
+    fieldLabel: 'ნომერი'
+  }, {
+    xtype: 'numberfield',
+    fieldLabel: 'გვერდები',
+    width: '100%',
+    bind: '{doc.pageCount}',
+    minValue: 0,
+    allowDecimals: false,
+  }, {
+    xtype: 'numberfield',
+    fieldLabel: 'დანართები',
+    width: '100%',
+    bind: '{doc.additionsCount}',
+    minValue: 0,
+    allowDecimals: false,
+  }, {
+    xtype: 'datefield',
+    fieldLabel: 'ვადა',
+    width: '100%',
+    bind: '{doc.dueDate}',
+    format: 'd/m/Y',
+    emptyText: 'შესრულების ვადა'
+  }, {
+    xtype: 'datefield',
+    fieldLabel: 'საკონტროლო',
+    width: '100%',
+    bind: '{doc.alertDate}',
+    format: 'd/m/Y',
+    emptyText: 'საკონტროლო ვადა'
   }, {
     xtype: 'combo',
     store: 'documentDirections',
@@ -142,7 +175,6 @@ Ext.define('Telasi.view.document.EditorMain', {
     valueField: 'id',
     editable: false,
     emptyText: 'აარჩიეთ მიმართულება',
-    padding: '5px 0 0 0',
     fieldLabel: 'მიმართულება',
     width: '100%',
     bind: '{doc.direction}'

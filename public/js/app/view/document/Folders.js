@@ -7,7 +7,7 @@ Ext.define('Telasi.view.document.Folders', {
   controller: 'documentfolders',
 
   html: 'this is west',
-  width: 300,
+  width: 200,
   split: true,
   collapsible: true,
   title: '<i class="fa fa-bars"></i> სტატუსები',

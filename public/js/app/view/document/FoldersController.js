@@ -14,7 +14,7 @@ Ext.define('Telasi.view.document.FoldersController', {
     var doc = Ext.create('Telasi.model.document.Base', {
       language: 'ka',
       direction: directions.data.items[0].id,
-      type_id: types.data.items[0].id,
+      typeId: types.data.items[0].id,
     });
 
     var docModel = new Ext.app.ViewModel({
@@ -26,7 +26,7 @@ Ext.define('Telasi.view.document.FoldersController', {
           return get('doc.direction') === 'in';
         },
         typeName: function(get) {
-          var typeId = get('doc.type_id');
+          var typeId = get('doc.typeId');
           var store = Ext.data.StoreManager.lookup('documentTypes');
           var type = store.getById(typeId);
           return type.get('name');

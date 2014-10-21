@@ -1,6 +1,7 @@
 Ext.define('Telasi.view.document.Tab', {
   extend: 'Ext.tab.Panel',
   xtype: 'documentTab',
+  border: false,
   controller: 'documentTabController',
   reference: 'documentTab',
 
