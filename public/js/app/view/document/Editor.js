@@ -14,24 +14,31 @@ Ext.define('Telasi.view.document.Editor', {
     title: '<i class="fa fa-bookmark-o"></i> ახალი {typeName}'
   },
   closable: true,
-  layout: 'border',
+  layout: 'fit',
 
   items: [{
     xtype: 'panel',
+    margin: 3,
     layout: 'border',
-    region: 'center',
+    border: false,
     items: [{
-      xtype: 'documentEditorNorth',
-      region: 'north',
-    }, {
-      xtype: 'documentEditorCenter',
+      xtype: 'panel',
+      border: true,
+      layout: 'border',
       region: 'center',
+      items: [{
+        xtype: 'documentEditorNorth',
+        region: 'north',
+      }, {
+        xtype: 'documentEditorCenter',
+        region: 'center',
+      }]
+    }, {
+      xtype: 'documentEditorEast',
+      region: 'east',
+      width: 300,
+      split: true
     }]
-  }, {
-    xtype: 'documentEditorEast',
-    region: 'east',
-    width: 300,
-    split: true
   }],
 });
 
