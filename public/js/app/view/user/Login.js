@@ -11,12 +11,14 @@ Ext.define('Telasi.view.user.Login', {
   items: [{
     xtype: 'panel',
     layout: 'vbox',
+    border: false,
     width: 400,
 
     items: [{
       xtype: 'panel',
-      title: 'შესვლა',
+      title: '<i class="fa fa-user"></i> შესვლა',
       frame: true,
+      border: false,
       bodyPadding: 10,
       width: 400,
       items: [{
@@ -42,22 +44,19 @@ Ext.define('Telasi.view.user.Login', {
         cls: 'text-danger'
       }],
       dockedItems: [{
-        xtype: 'panel',
-        dock: 'bottom',
-        padding: 10,
-        items: [{
           xtype: 'button',
+          dock: 'bottom',
           itemId: 'submitbutton',
           text: 'სისტემაში შესვლა',
           formBind: true,
           width: '100%',
           handler: 'onLoginWithButton',
           scale: 'medium'
-        }]
       }]
     }, {
       xtype: 'panel',
       width: '100%',
+      border: false,
       items: [{
         xtype: 'label',
         width: '100%',
