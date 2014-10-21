@@ -5,6 +5,7 @@ Ext.define('Telasi.view.viewports.Login', {
     ],
 
     layout: 'fit',
+    border: false,
     items: [{
         xtype: 'userlogin'
     }]

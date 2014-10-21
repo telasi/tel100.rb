@@ -3,6 +3,7 @@ Ext.define('Telasi.view.user.ProfileWindow', {
   alias : 'widget.profileWindow',
   modal: true,
   resizable: false,
+  border: false,
 
   requires: [
     'Telasi.view.user.HRInfo',
@@ -15,15 +16,19 @@ Ext.define('Telasi.view.user.ProfileWindow', {
 
   items: [{
     xtype: 'tabpanel',
+    border: false,
     items: [{
       title: '<i class="fa fa-bank"></i> თანამშრომელი',
-      items: { xtype: 'profileHRInfo' }
+      items: { xtype: 'profileHRInfo' },
+      border: false,
     }, {
       title: '<i class="fa fa-user"></i> სისტემური',
-      items: { xtype: 'userEditor' }
+      items: { xtype: 'userEditor' },
+      border: false,
     }, {
       title: '<i class="fa fa-lock"></i> პაროლის შეცვლა',
-      items: { xtype: 'changePassword' }
+      items: { xtype: 'changePassword' },
+      border: false,
     }]
   }]
 });

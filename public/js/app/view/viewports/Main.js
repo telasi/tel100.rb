@@ -7,9 +7,11 @@ Ext.define('Telasi.view.viewports.Main', {
     ],
 
     layout: 'fit',
+    border: false,
     items: [{
         xtype: 'panel',
         layout: 'border',
+        border: false,
         items: [{
           xtype: 'appheader',
           region: 'north'

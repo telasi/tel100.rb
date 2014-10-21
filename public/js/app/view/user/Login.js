@@ -7,6 +7,7 @@ Ext.define('Telasi.view.user.Login', {
   controller: 'userlogin',
 
   layout: 'center',
+  border: false,
 
   items: [{
     xtype: 'panel',
@@ -44,14 +45,14 @@ Ext.define('Telasi.view.user.Login', {
         cls: 'text-danger'
       }],
       dockedItems: [{
-          xtype: 'button',
-          dock: 'bottom',
-          itemId: 'submitbutton',
-          text: 'სისტემაში შესვლა',
-          formBind: true,
-          width: '100%',
-          handler: 'onLoginWithButton',
-          scale: 'medium'
+        xtype: 'button',
+        dock: 'bottom',
+        itemId: 'submitbutton',
+        text: 'სისტემაში შესვლა',
+        formBind: true,
+        width: '100%',
+        handler: 'onLoginWithButton',
+        scale: 'medium'
       }]
     }, {
       xtype: 'panel',

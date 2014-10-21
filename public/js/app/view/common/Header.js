@@ -6,6 +6,7 @@ Ext.define('Telasi.view.common.Header', {
     'Telasi.view.user.Box',
     'Telasi.view.common.Title'
   ],
+  border: false,
 
   layout: 'hbox',
   items: [{

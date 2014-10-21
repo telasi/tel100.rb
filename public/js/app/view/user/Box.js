@@ -5,6 +5,7 @@ Ext.define('Telasi.view.user.Box', {
     'Telasi.view.user.BoxController'
   ],
   controller: 'userbox',
+  border: false,
 
   title: null,
   frame: false,

@@ -2,6 +2,7 @@ Ext.define('Telasi.view.user.HRInfo', {
   extend: 'Ext.panel.Panel',
   alias : 'widget.profileHRInfo',
   padding: 10,
+  border: false,
 
   items: [{
     xtype: 'displayfield',
