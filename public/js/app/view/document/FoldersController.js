@@ -31,10 +31,10 @@ Ext.define('Telasi.view.document.FoldersController', {
           var type = store.getById(typeId);
           return type.get('name');
         },
-        // typeNameGenitive: function(get) {
-        //   var type = get('doc.type_id');
-        //   return type;
-        // },
+        typeNameGenitive: function(get) {
+          var typeName = get('typeName');
+          return typeName.substr(0, typeName.length - 1) + 'ის';
+        },
       }
     });
 

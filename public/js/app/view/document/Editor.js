@@ -16,11 +16,21 @@ Ext.define('Telasi.view.document.Editor', {
   layout: 'border',
 
   items: [{
-    xtype: 'documentEditorNorth',
-    region: 'north',
+    xtype: 'panel',
+    layout: 'border',
+    region: 'center',
+    items: [{
+      xtype: 'documentEditorNorth',
+      region: 'north',
+    }, {
+      xtype: 'documentEditorCenter',
+      region: 'center'
+    }]
   }, {
-    xtype: 'documentEditorCenter',
-    region: 'center'
+    xtype: 'documentEditorEast',
+    region: 'east',
+    width: 300,
+    split: true
   }],
 });
 
@@ -97,8 +107,11 @@ Ext.define('Telasi.view.document.EditorNorth', {
       emptyText: 'დატოვეთ ცარიელი ავტომატური გენერაციისთვის',
       padding: 0,
       flex: 1,
-      fieldLabel: 'დოკუმენტის ნომერი',
-      labelAlign: 'top'
+      // fieldLabel: 'დოკუმენტის ნომერი',
+      labelAlign: 'top',
+      bind: {
+        fieldLabel: '{typeNameGenitive} ნომერი'
+      }
     } ],
   }, {
     xtype: 'panel',
@@ -115,6 +128,40 @@ Ext.define('Telasi.view.document.EditorNorth', {
   }],
 });
 
+Ext.define('Telasi.view.document.EditorCenter', {
+  extend: 'Ext.form.Panel',
+  alias: 'widget.documentEditorCenter',
+  layout: 'fit',
+  items: [{
+    xtype: 'htmleditor',
+    padding: 5
+  }],
+});
+
+Ext.define('Telasi.view.document.EditorEast', {
+  extend: 'Ext.form.Panel',
+  alias: 'widget.documentEditorEast',
+  layout: 'accordion',
+  bodyPadding: 0,
+  defaults: {
+    bodyPadding: 5,
+    bodyBorder: false,
+    hideCollapseTool: true
+  },
+
+  items: [{
+    xtype: 'panel',
+    html: 'ძირითადი',
+    title: 'ძირითადი'
+  }, {
+    xtype: 'panel',
+    html: 'ადრესატები',
+    title: 'ადრესატები'
+  }]
+});
+
+//
+
 Ext.define('Telasi.view.document.EditorDirectionIn', {
   extend: 'Ext.form.Panel',
   alias: 'widget.documentEditorDirectionIn',
@@ -128,25 +175,21 @@ Ext.define('Telasi.view.document.EditorDirectionIn', {
       xtype: 'datefield',
       emptyText: 'აარჩიეთ თარიღი',
       format: 'd/m/Y',
-      fieldLabel: 'შემოსული დოკუმენტის თარიღი',
-      labelAlign: 'top'
+      // fieldLabel: 'შემოსული დოკუმენტის თარიღი',
+      labelAlign: 'top',
+      bind: {
+        fieldLabel: 'შემოსული {typeNameGenitive} თარიღი'
+      }
     }, {
       xtype: 'textfield',
       emptyText: 'ჩაწერეთ გარე დოკუმენტის ნომერი',
-      fieldLabel: 'დოკუმენტის ნომერი',
+      // fieldLabel: 'დოკუმენტის ნომერი',
       labelAlign: 'top',
       flex: 1,
-      padding: '0 0 0 5px'
+      padding: '0 0 0 5px',
+      bind: {
+        fieldLabel: 'შემოსული {typeNameGenitive} ნომერი'
+      }
     }]
   }], 
-});
-
-Ext.define('Telasi.view.document.EditorCenter', {
-  extend: 'Ext.form.Panel',
-  alias: 'widget.documentEditorCenter',
-  layout: 'fit',
-  items: [{
-    xtype: 'htmleditor',
-    padding: 5
-  }],
 });

@@ -4,6 +4,7 @@ Ext.define('Telasi.store.Language', {
   data: [
     { id: 'ka', name: 'ქართული' },
     { id: 'ru', name: 'Русский' },
+    { id: 'en', name: 'English' },
   ]
 });
 
