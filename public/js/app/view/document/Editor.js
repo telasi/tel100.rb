@@ -97,6 +97,11 @@ Ext.define('Telasi.view.document.EditorEast', {
   alias: 'widget.documentEditorEast',
   layout: 'accordion',
   bodyPadding: 0,
+
+  requires: [
+    'Telasi.view.document.MotionsEditor',
+  ],
+
   defaults: {
     bodyPadding: 5,
     bodyBorder: false,
@@ -108,10 +113,8 @@ Ext.define('Telasi.view.document.EditorEast', {
     title: '<i class="fa fa-bookmark-o"></i> ძირითადი',
     autoScroll: true
   }, {
-    xtype: 'panel',
-    border: false,
+    xtype: 'documentMotionsEditor',
     title: '<i class="fa fa-users"></i> ადრესატები',
-    html: 'TODO: ადრესატები',
   }]
 });
 
