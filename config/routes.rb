@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       scope 'organization' do
         get '/(:parent_id)', action: 'organization', as: 'organization'
       end
+      get '/structure', action: 'structure', as: 'structure'
     end
     scope 'users', controller: 'users' do
       get '/', action: 'index', as: 'users'

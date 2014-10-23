@@ -1,23 +1,9 @@
-Ext.define('Telasi.view.common.hr.form.HRtree', {
+Ext.define('Telasi.view.common.hr.HRtree', {
     extend: 'Ext.tree.Panel',
     alias: 'widget.HRtree',
 
     xtype: 'heterogeneous-tree',
 
-    // store: 'Telasi.HR.store.HRData',
-    // store: Ext.create('Telasi.HR.store.HRData'),
-    // store: Ext.create('Telasi.HR.store.HRData', {
-    //     listeners: {
-    //         'load': function (store, records, success) {
-                
-    //         },
-    //         'beforeload': function (store, options) {
-    //             alert('asdas');
-    //                              // store.up('treepanel').setLoading();
-    //             // this.ownerTree.getEl().mask("Loading", 'x-mask-loading');
-    //         }
-    //     }
-    // }),
     rootVisible: false,
     animate: true,
     frame: true,
@@ -33,21 +19,17 @@ Ext.define('Telasi.view.common.hr.form.HRtree', {
         sortable: false
     }],
 
-    // selModel: {
-    //     allowDeselect: true,
-    //     // listeners: {
-    //     //     selectionchange: function(selModel, selection) {
-    //     //         // Go up from the view to the owning TreePanel
-    //     //         var panel = selModel.view.up('');
-    //     //         panel.onSelectionChange.apply(panel, arguments);
-    //     //     }
-    //     // },
-    //     // onKeyEnter: function() {
-    //     //     // Go up from the view to the owning TreePanel
-    //     //     var panel = this.view.up('');
-    //     //     panel.down('#new-name').focus();
-    //     // }
-    // },
+    selModel: {
+        allowDeselect: true,
+        listeners: {
+            selectionchange: function(selModel, selection) {
+                selModel.view.up('').fireEvent('hrtreeselectionchanged', selModel, selection)
+                // Go up from the view to the owning TreePanel
+                // var panel = selModel.view.up('');
+                // panel.onSelectionChange.apply(panel, arguments);
+            }
+        },
+    },
 
     tbar: [{
         labelWidth: 50,
@@ -147,11 +129,6 @@ Ext.define('Telasi.view.common.hr.form.HRtree', {
         this.setLoading(true);
         // this.getStore().load();
     },
-
-    // onStoreBeforeLoad: function(that){
-    //     alert('asds');
-    //     that.setLoading('Loading...');
-    // }
 
     // onSelectionChange: function(selModel, selection) {
     //     var button = this.down('#add-button'),
