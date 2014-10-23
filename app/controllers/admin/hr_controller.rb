@@ -19,7 +19,6 @@ class Admin::HrController < AdminController
 
   def structure
     @structure = HR::Organization.where(is_active: 1).order(saporg_type: :desc).order(is_manager: :desc).order(priority: :asc)
-    #@structure = HR::Organization.where(saporg_id: nil).where(is_active: 1).order(is_manager: :desc).order(priority: :asc)
     @employees = HR::Employee.where(is_active: 1)
 
     structureArray = @structure.as_json(except: [:created_at, :updated_at])
@@ -33,34 +32,41 @@ class Admin::HrController < AdminController
     end
 
     employeeArray.each do |item|
-      item.store('key', "#{item.delete('id')}")
+      item.store('key', "P#{item.delete('id')}")
+      item.store('id', item['key'])
+      item.store('parent_id', item.delete('organization_id'))
       item.store('title', item.delete("first_name_#{I18n.locale}") + " " + item.delete("last_name_#{I18n.locale}"))
       item.store('icon', "images/tree/HRtreeiconP.png")
       item.store('leaf', true)
     end
 
     structureArray = structureArray + employeeArray
-    render :json => @structureData = array_to_tree(structureArray)
+    @structureData = array_to_tree_hash(structureArray)
+    render :json => @structureData
   end
 
-  def array_to_tree(data)
-    data.select{|i| i.has_key?('saporg_id')}.each do |item|
-       item['children'] = data.select { |_item| ( _item['parent_id'] == item['id'] or _item['organization_id'] == item['id'] )}
-       item.delete('leaf') if item.has_key?('children')
-    end
-    data.delete_if{ |item| item.has_key?('organization_id') }
-    
-    # data.select{|i| i.has_key?('children')}.each do |item|
-    #   item.store('leaf', true)
-    # end
+  def array_to_tree_hash(data)
+    object_hash = data.index_by{|node| node["id"]}
+    object_hash[nil] = {:root => true}
 
-    # data.each do |item|
-    #   if !item.has_key?('children')
-    #     raise item.has_key?('children').inspect
-    #   end
-    #    item.store('leaf', true) if not item.has_key?('children')
-    # end
+    object_hash.each_value {|node|
+      next if node[:root]
+      next if node["parent_id"] && !object_hash[node["parent_id"]] # throw away orphans
 
-    data.select{ |item| item['parent_id'] == nil }
+      children = object_hash[node["parent_id"]][:children] ||= []
+      children << node
+      object_hash[node["parent_id"]][:leaf] = false
+    }
+
+    tree = object_hash[nil]
   end
+
+  # def array_to_tree(data)
+  #   data.select{|i| i.has_key?('saporg_id')}.each do |item|
+  #      item['children'] = data.select { |_item| ( _item['parent_id'] == item['id'] or _item['organization_id'] == item['id'] )}
+  #      item.delete('leaf') if item.has_key?('children')
+  #   end
+  #   data.delete_if{ |item| item.has_key?('organization_id') }
+  #   data.select{ |item| item['parent_id'] == nil }
+  # end
 end
