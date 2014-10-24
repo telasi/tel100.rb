@@ -1,6 +1,10 @@
 Ext.define('Telasi.model.document.Base', {
-  extend: 'Ext.data.Model',
-  idProperty: 'id',
+  extend: 'Telasi.model.Base',
+  requires: [
+    'Telasi.model.Base',
+    'Telasi.model.document.Motion'
+  ],
+
   fields: [
     { name: 'id', type: 'int' },
     { name: 'language' },
@@ -21,5 +25,5 @@ Ext.define('Telasi.model.document.Base', {
     { name: 'ownerUserId', type: 'int' },
     { name: 'ownerId', type: 'int' },
     { name: 'ownerType' },
-  ]
+  ],
 });
