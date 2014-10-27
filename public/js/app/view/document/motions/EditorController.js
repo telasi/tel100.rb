@@ -1,4 +1,4 @@
-Ext.define('Telasi.view.document.MotionsEditorController', {
+Ext.define('Telasi.view.document.motions.EditorController', {
   extend : 'Ext.app.ViewController',
   alias: 'controller.motionsEditorController',
   requires: [
@@ -8,9 +8,11 @@ Ext.define('Telasi.view.document.MotionsEditorController', {
 
   onNewEmployee: function() {
     console.log( 'onNewEmployee' );
-    var hrForm = Ext.create('Telasi.view.common.hr.HRChoseForm');
-    hrForm.modal = true;
-    hrForm.show();
+    // var hrForm = Ext.create('Telasi.view.common.hr.HRChoseForm');
+    // hrForm.modal = true;
+    // hrForm.show();
+    var dialog = Ext.create('Telasi.view.document.motions.EditorDialog');
+    dialog.show();
   },
 
   onNewOrganization: function() {

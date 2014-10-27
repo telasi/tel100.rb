@@ -1,9 +1,9 @@
-Ext.define('Telasi.view.document.MotionsEditor', {
+Ext.define('Telasi.view.document.motions.Editor', {
   extend: 'Ext.form.Panel',
   xtype: 'documentMotionsEditor',
   controller: 'motionsEditorController',
   requires: [
-    'Telasi.view.document.MotionsEditorController'
+    'Telasi.view.document.motions.EditorController'
   ],
   border: false,
   autoScroll: true,

@@ -99,7 +99,7 @@ Ext.define('Telasi.view.document.EditorEast', {
   bodyPadding: 0,
 
   requires: [
-    'Telasi.view.document.MotionsEditor',
+    'Telasi.view.document.motions.Editor',
   ],
 
   defaults: {
