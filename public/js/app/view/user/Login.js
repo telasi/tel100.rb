@@ -65,11 +65,6 @@ Ext.define('Telasi.view.user.Login', {
         html: '<i class="fa fa-send-o"></i> tel100 <br> 2015 &copy; სს "თელასი"',
         style: 'display:block;text-align:center;padding:8px 0;'
       }]
-    }, 
-    {
-      xtype: Ext.create('Telasi.component.hr.HRComboPicker'),
-      width: 500,
-    }
-    ]
+    }]
   }],
 });

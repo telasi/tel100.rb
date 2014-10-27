@@ -6,8 +6,7 @@ Ext.define('Telasi.view.common.hr.HRtree', {
 
     rootVisible: false,
     animate: true,
-    frame: true,
-    height: 600,
+    // frame: true,
     reserveScrollbar: true,
     hideHeaders: true,
     loadMask: true,

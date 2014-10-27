@@ -1,28 +1,30 @@
 Ext.define('Telasi.view.common.hr.HRChoseForm', {
-    extend: 'Ext.window.Window',
+    extend: 'Telasi.component.common.FitWindow',
     alias: 'widget.HRChoseForm',
-    // xtype: 'form-login',
+
+    // requires: [
+    //     'Telasi.view.common.hr.HRTree'
+    // ],
 
     title: 'Chose',
     frame:true,
-    width: 650,
-    // height: 600,
-    // bodyPadding: 10,
-    defaultType: 'textfield',
+    monitorResize: true,
+    width: '70%',
+    height: '70%',
+    layout: 'fit',
 
-    // items:{
+    // items:[{
     //     xtype: 'tabpanel',
     //     items:[{
     //         title: 'თანამშრომელი',
-    //         xtype: Ext.create('Telasi.view.common.hr.HRtree'),
-    //         layout: 'fit'
+    //         xtype: 'HRtree',
     //     }]
-    // },
+    // }],
     
     buttons: [
-        { text:'Ok' },
+        { text:'არჩევა' },
         { 
-            text:'Cancel',
+            text:'გაუქმება',
             handler: function(){
                 this.up('window').close();
             }
@@ -33,15 +35,9 @@ Ext.define('Telasi.view.common.hr.HRChoseForm', {
         Ext.apply(this, {
             items: [{
                 xtype: Ext.create('Telasi.view.common.hr.HRtree'),
-                layout: 'fit'
             }]
         })
 
-        this.defaults = {
-            anchor: '100%',
-            labelWidth: 120
-        };
-        
         this.callParent();
     }
 });

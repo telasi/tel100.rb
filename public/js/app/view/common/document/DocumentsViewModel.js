@@ -18,6 +18,7 @@ Ext.define('Telasi.view.common.document.DocumentsViewModel',{
 		        },
 		        url: '/document'
 		    },
+		    remoteFilter: true,
 		    autoLoad: true,
 		}
 	}

@@ -29,4 +29,14 @@ Ext.define('Telasi.view.document.TabController', {
     tabcontrol.add(component);
     tabcontrol.setActiveTab(component);
   },
+
+  onDocumentGridFilter: function(){
+    var gridstore = this.getView().down('docgrid').getStore();
+    var filter = [];
+    this.getView().down('');
+
+    gridstore.filter([{ property: 'docnumber', value: '1' },
+                      { property: 'doctype', value: 'letter' },
+                     ]);
+  }
 });
