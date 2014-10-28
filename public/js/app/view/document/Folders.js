@@ -5,20 +5,16 @@ Ext.define('Telasi.view.document.Folders', {
     'Telasi.view.document.FoldersController'
   ],
   controller: 'documentfolders',
-
-  html: 'this is west',
   width: 200,
   split: true,
   collapsible: true,
   title: '<i class="fa fa-bars"></i> სტატუსები',
-
-  dockedItems: [{
-    dock: 'top',
-    xtype: 'toolbar',
-    items: [{
-      xtype: 'button',
-      html: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
-      handler: 'onNewDocument'
-    }]
-  }]
+  tools: [{
+    type: 'plus',
+    tooltip: 'ახალი დოკუმენტი',
+    callback: function (folders) {
+      folders.controller.onNewDocument(folders);
+    }
+  }],
+  html: 'this is west',
 });

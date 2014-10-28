@@ -8,7 +8,6 @@ Ext.define('Telasi.view.document.Editor', {
     'Telasi.store.document.Direction',
     'Telasi.store.Language',
   ],
-  // controller: 'documentEditor',
 
   bind: {
     title: '<i class="fa fa-bookmark-o"></i> ახალი {typeName}'
@@ -36,7 +35,7 @@ Ext.define('Telasi.view.document.Editor', {
     }, {
       xtype: 'documentEditorEast',
       region: 'east',
-      width: 300,
+      width: 400,
       split: true
     }]
   }],

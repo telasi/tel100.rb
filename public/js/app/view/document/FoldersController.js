@@ -6,7 +6,7 @@ Ext.define('Telasi.view.document.FoldersController', {
     'Telasi.model.document.Base'
   ],
 
-  onNewDocument: function(button) {
+  onNewDocument: function(folders) {
     var docTab = this.getView().up().down('documentTab');
     var types = Ext.data.StoreManager.lookup('documentTypes');
     var directions = Ext.data.StoreManager.lookup('documentDirections');
