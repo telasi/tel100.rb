@@ -31,12 +31,28 @@ Ext.define('Telasi.view.document.TabController', {
   },
 
   onDocumentGridFilter: function(){
+    var me = this;
     var gridstore = this.getView().down('docgrid').getStore();
     var filter = [];
-    this.getView().down('');
+    var form = this.getView().down('form').getForm();
+    var filter = [];
 
-    gridstore.filter([{ property: 'docnumber', value: '1' },
-                      { property: 'doctype', value: 'letter' },
-                     ]);
+    if(form.isValid()) {
+      gridstore.clearFilter(true);
+
+      form.getFields().each(function(item) {
+        if(item.value != null && item.value != 0 && item.value != ""){
+          filter.push({id: item.name, property: item.name, value: item.value });
+        }
+      });
+
+      gridstore.addFilter(filter);
+    }
+  },
+
+  onDocumentResetFilter: function(){
+    var gridstore = this.getView().down('docgrid').getStore();
+    gridstore.clearFilter();
   }
+
 });

@@ -2,6 +2,10 @@ Ext.define('Telasi.view.common.hr.HRtree', {
     extend: 'Ext.tree.Panel',
     alias: 'widget.HRtree',
 
+    requires: [
+      'Telasi.store.hr.HRData',
+    ],
+
     xtype: 'heterogeneous-tree',
 
     rootVisible: false,
@@ -18,14 +22,13 @@ Ext.define('Telasi.view.common.hr.HRtree', {
         sortable: false
     }],
 
+    store: 'HRData',
+
     selModel: {
         allowDeselect: true,
         listeners: {
             selectionchange: function(selModel, selection) {
                 selModel.view.up('').fireEvent('hrtreeselectionchanged', selModel, selection)
-                // Go up from the view to the owning TreePanel
-                // var panel = selModel.view.up('');
-                // panel.onSelectionChange.apply(panel, arguments);
             }
         },
     },
@@ -33,7 +36,7 @@ Ext.define('Telasi.view.common.hr.HRtree', {
     tbar: [{
         labelWidth: 50,
         xtype: 'textfield',
-        fieldLabel: 'Filter',
+        fieldLabel: 'ფილტრი',
         // itemId: 'search_string',
         // enableKeyEvents: true,
         triggerCls: 'x-form-clear-trigger',
@@ -104,30 +107,23 @@ Ext.define('Telasi.view.common.hr.HRtree', {
     }
     ],
 
-    initComponent: function(){
-        var me = this;
+    // initComponent: function(){
+    //     var me = this;
 
-        this.store = Ext.create('Telasi.store.hr.HRData'
-        , {
-             listeners: {
-                            'load': function (store, records, success) {
-                                me.setLoading(false);
-                        },
-                            'beforeload': function (store, options) {
-                                me.setLoading(true);
-                        }
-            }
-        });
+    //     this.store = Ext.create('Telasi.store.hr.HRData'
+    //     , {
+    //          listeners: {
+    //                         'load': function (store, records, success) {
+    //                             me.setLoading(false);
+    //                     },
+    //                         'beforeload': function (store, options) {
+    //                             me.setLoading(true);
+    //                     }
+    //         }
+    //     });
 
-        this.callParent();
-        this.on('render', this.LoadStore, this);
-        // this.store.on('beforeload', me.onStoreBeforeLoad, me);
-    },
-
-    LoadStore: function(){
-        this.setLoading(true);
-        // this.getStore().load();
-    },
+    //     this.callParent();
+    // },
 
     // onSelectionChange: function(selModel, selection) {
     //     var button = this.down('#add-button'),

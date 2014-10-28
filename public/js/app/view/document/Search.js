@@ -61,7 +61,7 @@ Ext.define('Telasi.view.document.Search', {
                           store: Ext.create('Telasi.store.document.Type',{
                             listeners: {
                               load: function(store){
-                                var rec = { id: '', order_by: '', name_ka: '\u00a0', name_ru: '\u00a0', name_en: '\u00a0' };
+                                var rec = { id: '0', order_by: '', name_ka: '\u00a0', name_ru: '\u00a0', name_en: '\u00a0' };
                                 store.insert(0,rec);
                               }
                             }
@@ -102,9 +102,14 @@ Ext.define('Telasi.view.document.Search', {
             ],
 
           buttons: [{
+            xtype: 'splitbutton',
             text: this.text_FilterButton,
             handler: "onDocumentGridFilter",
-            width: '100%'
+            width: '100%',
+            menu:[{
+              text: 'ფილტრის მოხსნა',
+              handler: "onDocumentResetFilter",
+            }]
           }]
 
         }],

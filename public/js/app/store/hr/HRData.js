@@ -21,3 +21,7 @@ Ext.define('Telasi.store.hr.HRData', {
 
     lazyFill: false
 });
+
+Ext.create('Telasi.store.hr.HRData', {
+    storeId: 'HRData'
+});
