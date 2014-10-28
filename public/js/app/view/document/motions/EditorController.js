@@ -6,8 +6,8 @@ Ext.define('Telasi.view.document.motions.EditorController', {
     'Telasi.model.document.Base'
   ],
 
-  onEditMotions: function(item, event) {
-    var editor = item.up('documentMotionsEditor');
+  onEditMotions: function(editor) {
+    // var editor = item.up('documentMotionsEditor');
     var grid = editor.down('document-motions-grid');
     var dialog = Ext.create('Telasi.view.document.motions.EditorDialog', {
       store: grid.getStore()

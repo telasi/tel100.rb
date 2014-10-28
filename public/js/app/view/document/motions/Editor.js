@@ -13,17 +13,14 @@ Ext.define('Telasi.view.document.motions.Editor', {
   items: [{
     xtype: 'document-motions-grid',
     store: { fields: ['id', 'name', 'motionText'] },
-    border: false,
-    margin: 0,
+    // border: false,
+    // margin: 0,
   }],
-  dockedItems: [{
-    dock: 'top',
-    xtype: 'toolbar',
-    border: false,
-    items: [{
-      xtype: 'button',
-      html: '<i class="fa fa-pencil"></i> ადრესატების რედაქტირება',
-      handler: 'onEditMotions',
-    }]
+  tools: [{
+    type: 'plus',
+    tooltip: 'ადრესატების დამატება',
+    callback: function (editor) {
+      editor.controller.onEditMotions(editor);
+    }
   }]
 });

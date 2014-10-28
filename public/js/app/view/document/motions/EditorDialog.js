@@ -6,7 +6,7 @@ Ext.define('Telasi.view.document.motions.EditorDialog', {
   bodyBorder: false,
   border: false,
   modal: true,
-  title: '<i class="fa fa-users"></i> ადრესატების რედაქტირება',
+  title: '<i class="fa fa-users"></i> ადრესატების დამატება',
   requires: [
     'Telasi.view.common.hr.HRtree',
     'Telasi.view.document.motions.Grid',
