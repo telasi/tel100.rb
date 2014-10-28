@@ -13,7 +13,7 @@ Ext.define('Telasi.view.document.TabController', {
   },
 
   gridcellDblClicked: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts){
-    var viewer = new Ext.create('Telasi.view.document.DocumentView', {
+    var viewer = new Ext.create('Telasi.view.document.list.DocumentView', {
       viewModel: {
         data: {
           currentDocument: record

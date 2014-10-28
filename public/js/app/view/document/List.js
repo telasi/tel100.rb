@@ -4,8 +4,8 @@ Ext.define('Telasi.view.document.List', {
   layout: 'border',
 
   requires: [
-    'Telasi.view.document.Search',
-    'Telasi.view.common.document.Grid'
+    'Telasi.view.document.list.Search',
+    'Telasi.view.document.list.Grid'
   ],
 
   items: [{

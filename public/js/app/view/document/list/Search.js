@@ -1,4 +1,4 @@
-Ext.define('Telasi.view.document.Search', {
+Ext.define('Telasi.view.document.list.Search', {
   extend: 'Ext.panel.Panel',
   xtype: 'documentSearch',
 
