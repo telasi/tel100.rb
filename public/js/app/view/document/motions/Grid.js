@@ -4,9 +4,6 @@ Ext.define('Telasi.view.document.motions.Grid', {
   plugins: [
     new Ext.grid.plugin.CellEditing({ clicksToEdit: 1 }),
   ],
-  store: {
-    fields: ['id', 'name', 'motionText']
-  },
   columns: [{
     text: 'ადრესატი',
     dataIndex: 'name',

@@ -2,6 +2,12 @@ Ext.define('Telasi.view.document.motions.EditorDialogController', {
   extend : 'Ext.app.ViewController',
   alias: 'controller.motionsEditorDialogController',
   control: {
+    'document-motions-grid': {
+      afterrender: function(grid, opts) {
+        var dialog = grid.up('documentEditorDialog');
+        grid.setStore( dialog.store );
+      },
+    },
     'HRtree': {
       selectionchange: function(tree, selection, opts) {
         var grid = Ext.ComponentQuery.query('document-motions-grid')[0];

@@ -1,16 +1,34 @@
 Ext.define('Telasi.view.document.motions.Editor', {
-  extend: 'Ext.form.Panel',
+  extend: 'Ext.grid.Panel',
   xtype: 'documentMotionsEditor',
   controller: 'motionsEditorController',
+  padding: 0,
+  bodyPadding: 0,
+  plugins: [
+    new Ext.grid.plugin.CellEditing({ clicksToEdit: 1 }),
+  ],
   requires: [
     'Telasi.view.document.motions.EditorController'
   ],
   border: false,
-  autoScroll: true,
-  items: [{
-    xtype: 'button',
-    text: 'dump'
-  }, ],
+  scroll: 'vertical',
+  store: {
+    fields: ['id', 'name', 'motionText']
+  },
+  columns: [{
+    text: 'ადრესატი',
+    dataIndex: 'name',
+    flex: 2,
+    menuDisabled: true,
+    sortable: false,
+  }, {
+    text: 'ტექსტი',
+    dataIndex: 'motionText',
+    flex: 1,
+    editor: { allowBlank: true },
+    menuDisabled: true,
+    sortable: false,
+  }],
   dockedItems: [{
     dock: 'top',
     xtype: 'toolbar',

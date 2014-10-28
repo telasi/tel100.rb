@@ -1,5 +1,6 @@
 Ext.define('Telasi.view.document.motions.EditorDialog', {
   extend: 'Telasi.component.common.FitWindow',
+  xtype: 'documentEditorDialog',
   closable: true,
   resizable: true,
   bodyBorder: false,
