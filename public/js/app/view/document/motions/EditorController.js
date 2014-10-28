@@ -7,7 +7,7 @@ Ext.define('Telasi.view.document.motions.EditorController', {
   ],
 
   onNewEmployee: function() {
-    console.log( 'onNewEmployee' );
+    // console.log( 'onNewEmployee' );
     // var hrForm = Ext.create('Telasi.view.common.hr.HRChoseForm');
     // hrForm.modal = true;
     // hrForm.show();
