@@ -111,10 +111,12 @@ Ext.define('Telasi.view.document.EditorEast', {
   items: [{
     xtype: 'documentEditorMain',
     title: '<i class="fa fa-bookmark-o"></i> ძირითადი',
-    autoScroll: true
+    autoScroll: true,
   }, {
     xtype: 'documentMotionsEditor',
     title: '<i class="fa fa-users"></i> ადრესატები',
+    padding: 0,
+    bodyPadding: 0,
   }]
 });
 
