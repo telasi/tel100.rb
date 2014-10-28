@@ -16,16 +16,9 @@ Ext.define('Telasi.view.document.motions.Editor', {
     xtype: 'toolbar',
     border: false,
     items: [{
-      xtype: 'splitbutton',
-      html: '<i class="fa fa-user"></i> თანამშრომელი',
-      handler: 'onNewEmployee',
-      menu: [{
-        text: 'სტრუქტურული ერთეული',
-        handler: 'onNewOrganization',
-      }, {
-        text: 'გარე ორგანიზაცია / აბონენტი',
-        handler: 'onNewContact',
-      }]
+      xtype: 'button',
+      html: '<i class="fa fa-pencil"></i> ადრესატების რედაქტირება',
+      handler: 'onEditMotions',
     }]
   }]
 });
