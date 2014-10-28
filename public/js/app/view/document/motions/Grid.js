@@ -6,6 +6,15 @@ Ext.define('Telasi.view.document.motions.Grid', {
   ],
   scroll: 'vertical',
   columns: [{
+    width: 22,
+    resizable: true,
+    menuDisabled: true,
+    sortable: false,
+    dataIndex: 'icon',
+    renderer: function(value) {
+      return '<img src="' + value + '"/>'
+    },
+  }, {
     text: 'ადრესატი',
     dataIndex: 'name',
     flex: 1,
@@ -21,8 +30,9 @@ Ext.define('Telasi.view.document.motions.Grid', {
   }, {
     xtype: 'actioncolumn',
     width: 30,
-    sortable: false,
+    resizable: true,
     menuDisabled: true,
+    sortable: false,
     items: [{
       icon: '/images/delete.gif',
       tooltip: 'ადრესატის წაშლა',
