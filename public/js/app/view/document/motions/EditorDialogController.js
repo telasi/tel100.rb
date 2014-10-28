@@ -10,7 +10,7 @@ Ext.define('Telasi.view.document.motions.EditorDialogController', {
     },
     'HRtree': {
       itemclick: function(tree, record, item, index, e, eOpts) {
-        var grid = Ext.ComponentQuery.query('document-motions-grid')[0];
+        var grid = tree.up('documentEditorDialog').down('document-motions-grid');
         var store = grid.getStore();
         var data = record.getData();
         if (store.find('id', data.key) === -1) {
