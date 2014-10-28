@@ -13,11 +13,10 @@ Ext.define('Telasi.view.document.motions.EditorDialogController', {
         var grid = Ext.ComponentQuery.query('document-motions-grid')[0];
         var store = grid.getStore();
         var data = record.getData();
-        if (store.find('key', data.key) === -1) {
+        if (store.find('id', data.key) === -1) {
           store.add({
-            id: record.id,
-            icon: data.icon,
-            key: data.key,
+            id: record.key,
+            icon: (data.key.charAt(0) === 'P' ? 'user' : 'bank'),
             name: data.title,
             motionText: ''
           });

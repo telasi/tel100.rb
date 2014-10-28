@@ -12,7 +12,7 @@ Ext.define('Telasi.view.document.motions.Grid', {
     sortable: false,
     dataIndex: 'icon',
     renderer: function(value) {
-      return '<img src="' + value + '"/>'
+      return '<i class="fa fa-' + value + '"></i>'
     },
   }, {
     text: 'ადრესატი',
