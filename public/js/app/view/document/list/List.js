@@ -1,4 +1,4 @@
-Ext.define('Telasi.view.document.List', {
+Ext.define('Telasi.view.document.list.List', {
   extend: 'Ext.panel.Panel',
   xtype: 'documentList',
   layout: 'border',
@@ -11,6 +11,8 @@ Ext.define('Telasi.view.document.List', {
   items: [{
     xtype: 'documentSearch',
     region: 'north',
+    border: false,
+    bodyPadding: 5,
   }, {
     xtype: 'docgrid',
     region: 'center'
