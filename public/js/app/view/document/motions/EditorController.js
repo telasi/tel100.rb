@@ -2,7 +2,7 @@ Ext.define('Telasi.view.document.motions.EditorController', {
   extend : 'Ext.app.ViewController',
   alias: 'controller.motionsEditorController',
   requires: [
-    'Telasi.view.document.Editor',
+    // 'Telasi.view.document.Editor',
     'Telasi.model.document.Base'
   ],
 

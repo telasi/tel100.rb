@@ -1,4 +1,4 @@
-Ext.define('Telasi.view.document.Editor', {
+Ext.define('Telasi.view.document.editor.Editor', {
   extend: 'Ext.form.Panel',
   alias: 'widget.documentEditor',
   border: false,
@@ -41,7 +41,7 @@ Ext.define('Telasi.view.document.Editor', {
   }],
 });
 
-Ext.define('Telasi.view.document.EditorNorth', {
+Ext.define('Telasi.view.document.editor.EditorNorth', {
   extend: 'Ext.form.Panel',
   border: false,
   alias: 'widget.documentEditorNorth',
@@ -79,7 +79,7 @@ Ext.define('Telasi.view.document.EditorNorth', {
   }],
 });
 
-Ext.define('Telasi.view.document.EditorCenter', {
+Ext.define('Telasi.view.document.editor.EditorCenter', {
   extend: 'Ext.form.Panel',
   alias: 'widget.documentEditorCenter',
   layout: 'fit',
@@ -91,7 +91,7 @@ Ext.define('Telasi.view.document.EditorCenter', {
   }],
 });
 
-Ext.define('Telasi.view.document.EditorEast', {
+Ext.define('Telasi.view.document.editor.EditorEast', {
   extend: 'Ext.form.Panel',
   alias: 'widget.documentEditorEast',
   layout: 'accordion',
@@ -119,7 +119,7 @@ Ext.define('Telasi.view.document.EditorEast', {
   }]
 });
 
-Ext.define('Telasi.view.document.EditorMain', {
+Ext.define('Telasi.view.document.editor.EditorMain', {
   extend: 'Ext.form.Panel',
   border: false,
   alias: 'widget.documentEditorMain',
@@ -198,7 +198,7 @@ Ext.define('Telasi.view.document.EditorMain', {
   }]
 });
 
-Ext.define('Telasi.view.document.EditorDirectionIn', {
+Ext.define('Telasi.view.document.editor.EditorDirectionIn', {
   extend: 'Ext.form.FieldSet',
   alias: 'widget.documentEditorDirectionIn',
   margin: '10px 0',
