@@ -7,11 +7,8 @@ Ext.define('Telasi.view.document.motions.EditorController', {
   ],
 
   onEditMotions: function(editor) {
-    // var editor = item.up('documentMotionsEditor');
     var grid = editor.down('document-motions-grid');
-    var dialog = Ext.create('Telasi.view.document.motions.EditorDialog', {
-      store: grid.getStore()
-    });
+    var dialog = Ext.create('Telasi.view.document.motions.EditorDialog', { store: grid.getStore() });
     dialog.show();
   }
 });

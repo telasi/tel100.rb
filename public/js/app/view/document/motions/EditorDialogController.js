@@ -9,18 +9,18 @@ Ext.define('Telasi.view.document.motions.EditorDialogController', {
       },
     },
     'HRtree': {
-      selectionchange: function(tree, selection, opts) {
+      itemclick: function(tree, record, item, index, e, eOpts) {
         var grid = Ext.ComponentQuery.query('document-motions-grid')[0];
         var store = grid.getStore();
-        var model = selection[0].getData();
-        if (typeof(model.id) === 'string' && model.id.charAt(0) === 'P') {
-          if (store.find('id', model.id) === -1) {
-            store.add({
-              id: model.id,
-              name: model.title,
-              motionText: ''
-            });
-          }
+        var data = record.getData();
+
+        if (store.find('key', record.key) === -1) {
+          store.add({
+            id: record.id,
+            key: record.key,
+            name: data.title,
+            motionText: ''
+          });
         }
       }
     },
