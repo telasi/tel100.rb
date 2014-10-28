@@ -4,16 +4,17 @@ Ext.define('Telasi.view.document.motions.Grid', {
   plugins: [
     new Ext.grid.plugin.CellEditing({ clicksToEdit: 1 }),
   ],
+  scroll: 'vertical',
   columns: [{
     text: 'ადრესატი',
     dataIndex: 'name',
-    width: 300,
+    flex: 1,
     menuDisabled: true,
     sortable: false,
   }, {
     text: 'ტექსტი',
     dataIndex: 'motionText',
-    flex: 1,
+    flex: 2,
     editor: { allowBlank: true },
     menuDisabled: true,
     sortable: false,
