@@ -7,8 +7,7 @@ Ext.define('Telasi.view.document.Tab', {
 
   requires: [
     'Telasi.view.document.list.List',
-    'Telasi.view.document.TabController',
-    'Telasi.view.document.list.DocumentView',
+    'Telasi.view.document.TabController'
   ],
 
   items:[{  

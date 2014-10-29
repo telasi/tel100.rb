@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Admin::HrController < AdminController
+  include Utils
+
   def employees
     @title = 'თანამშრომლები'
     @employees = HR::Employee.active.order('person_id')
@@ -29,6 +31,7 @@ class Admin::HrController < AdminController
       item.store('key', "#{item['id']}")
       item.store('title', item.delete("name_#{I18n.locale}") )
       item.store('icon', "images/tree/HRtreeicon#{item['saporg_type']}#{'M' if item['is_manager']}.png")
+      item.store('type', 'O')
       item.store('leaf', true)
 
       employee = employee_hash[item['id']]
@@ -36,6 +39,7 @@ class Admin::HrController < AdminController
         item.store('key', "P#{employee[:id]}")
         item.store('title', employee["first_name_#{I18n.locale}"] + " " + employee["last_name_#{I18n.locale}"] + " (" + item['title'] + ")")
         item.store('icon', "images/tree/HRtreeiconP.png")
+        item.store('type', 'P')
         item.store('leaf', true)
       end
     end
@@ -50,32 +54,8 @@ class Admin::HrController < AdminController
     # end
 
     # structureArray = structureArray + employeeArray
-    @structureData = array_to_tree_hash(structureArray)
+    @structureData = array_to_tree(structureArray)
     render :json => @structureData
   end
 
-  def array_to_tree_hash(structure)
-    object_hash = structure.index_by{|node| node["id"]}
-    object_hash[nil] = {:root => true}
-
-    object_hash.each_value {|node|
-      next if node[:root]
-      next if node["parent_id"] && !object_hash[node["parent_id"]] # throw away orphans
-
-      children = object_hash[node["parent_id"]][:children] ||= []
-      children << node
-      object_hash[node["parent_id"]][:leaf] = false
-    }
-
-    tree = object_hash[nil]
-  end
-
-  # def array_to_tree(data)
-  #   data.select{|i| i.has_key?('saporg_id')}.each do |item|
-  #      item['children'] = data.select { |_item| ( _item['parent_id'] == item['id'] or _item['organization_id'] == item['id'] )}
-  #      item.delete('leaf') if item.has_key?('children')
-  #   end
-  #   data.delete_if{ |item| item.has_key?('organization_id') }
-  #   data.select{ |item| item['parent_id'] == nil }
-  # end
 end

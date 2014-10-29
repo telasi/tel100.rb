@@ -38,11 +38,13 @@ Rails.application.routes.draw do
       scope 'types', controller: 'types' do
         get '/', action: 'index'
       end
+      scope 'documents', controller: 'documents' do
+        get '/', action: 'index'
+      end
+      scope 'motions', controller: 'motions' do
+        get '/:id', action: 'index'
+      end
     end
-  end
-
-  scope 'document', controller: 'document' do
-  	root action: 'index', as: 'get_documents'
   end
 
   root controller: 'site', action: 'index'

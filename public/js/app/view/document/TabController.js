@@ -13,7 +13,7 @@ Ext.define('Telasi.view.document.TabController', {
   },
 
   gridcellDblClicked: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts){
-    var viewer = new Ext.create('Telasi.view.document.list.DocumentView', {
+    var viewer = new Ext.create('Telasi.view.document.viewer.Viewer', {
       viewModel: {
         data: {
           currentDocument: record
@@ -29,30 +29,5 @@ Ext.define('Telasi.view.document.TabController', {
     tabcontrol.add(component);
     tabcontrol.setActiveTab(component);
   },
-
-  onDocumentGridFilter: function(){
-    var me = this;
-    var gridstore = this.getView().down('docgrid').getStore();
-    var filter = [];
-    var form = this.getView().down('form').getForm();
-    var filter = [];
-
-    if(form.isValid()) {
-      gridstore.clearFilter(true);
-
-      form.getFields().each(function(item) {
-        if(item.value != null && item.value != 0 && item.value != ""){
-          filter.push({id: item.name, property: item.name, value: item.value });
-        }
-      });
-
-      gridstore.addFilter(filter);
-    }
-  },
-
-  onDocumentResetFilter: function(){
-    var gridstore = this.getView().down('docgrid').getStore();
-    gridstore.clearFilter();
-  }
 
 });

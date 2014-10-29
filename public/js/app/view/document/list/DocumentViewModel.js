@@ -5,7 +5,7 @@ Ext.define('Telasi.view.document.list.DocumentViewModel', {
 		'Telasi.model.document.Base'
 	],
 	stores:{
-		document: {
+		documents: {
 		model: 'Telasi.model.document.Base',
 			proxy: {
 				type: 'ajax',
@@ -13,7 +13,7 @@ Ext.define('Telasi.view.document.list.DocumentViewModel', {
 					type: 'json',
 					typeProperty: 'mtype'
 				},
-				url: '/document'
+				url: '/api/docs/documents'
 			},
 			autoLoad: true,
 		}

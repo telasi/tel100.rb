@@ -4,7 +4,7 @@ Ext.define('Telasi.view.document.list.Grid', {
   controller: 'documentgrid',
 
   requires:[
-    'Telasi.view.common.document.DocumentsViewModel',
+    'Telasi.view.document.list.DocumentViewModel',
     'Telasi.view.document.list.GridController',
     'Telasi.model.document.BaseTexts'
   ],

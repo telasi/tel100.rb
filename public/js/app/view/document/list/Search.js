@@ -2,8 +2,11 @@ Ext.define('Telasi.view.document.list.Search', {
   extend: 'Ext.panel.Panel',
   xtype: 'documentSearch',
 
+  controller: 'search',
+
   requires:[
-    'Telasi.model.document.BaseTexts'
+    'Telasi.model.document.BaseTexts',
+    'Telasi.view.document.list.SearchController'
   ],
 
   //  texts
