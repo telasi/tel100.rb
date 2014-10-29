@@ -9,7 +9,21 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     var motionsStore = motionsGrid.getStore();
     var motions = [];
     for (var i = 0, l = motionsStore.data.length; i < l; i++) {
-      motions.push(motionsStore.getAt(i).data);
+      var motionData = motionsStore.getAt(i).data;
+      // console.log(motionData);
+      var receiver_id = motionData.id;
+      var receiver_type;
+      if (receiver_id.charAt(0) == 'P') {
+        receiver_id = receiver_id.substring(1);
+        receiver_type = 'HR::Employee';
+      } else {
+        receiver_type = 'HR::Organization';
+      }
+      motions.push({
+        receiver_id: receiver_id,
+        receiver_type: receiver_type,
+        motion_text: motionData.motion_text,
+      });
     }
 
     // main model
@@ -19,13 +33,13 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     var doc = {
       subject: model.get('subject'),
       body: model.get('body'),
-      typeId: model.get('typeId'),
+      type_id: model.get('typeId'),
       language: model.get('language'),
       docnumber: model.get('docnumber'),
-      pageCount: model.get('pageCount'),
-      additionsCount: model.get('additionsCount'),
-      dueDate: model.get('dueDate'),
-      alertDate: model.get('alertDate'),
+      page_count: model.get('pageCount'),
+      additions_count: model.get('additionsCount'),
+      due_date: model.get('dueDate'),
+      alert_date: model.get('alertDate'),
       direction: model.get('direction'),
     };
     doc.motions = motions;
