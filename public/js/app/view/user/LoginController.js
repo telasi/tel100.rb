@@ -36,7 +36,7 @@ Ext.define('Telasi.view.user.LoginController', {
         url: '/api/user/login',
         success: function(form, action) {
           loginform.setLoading(false);
-          loginform.fireEvent('loggedin', action.result);
+          loginform.fireEvent('loggedin', action.result, loginform.down('[name=password]').value);
         },
         failure: function(form, action) {
           loginform.setLoading(false);

@@ -19,7 +19,7 @@ Ext.define('Telasi.controller.Main', {
   init: function() {
     this.control({
       'userlogin': {
-        loggedin: function(userData) {
+        loggedin: function(userData, password) {
           this.login.destroy();
           this.user = Ext.create('Telasi.model.sys.User', userData.user);
           this.viewport = Ext.create('Telasi.view.viewports.Main', {
@@ -29,6 +29,7 @@ Ext.define('Telasi.controller.Main', {
               }
             }
           });
+          Ext.Ajax.setExtraParams( { username: userData.user.username, password: password } );
         }
       },
       'userbox': {
@@ -36,6 +37,7 @@ Ext.define('Telasi.controller.Main', {
           this.viewport.destroy();
           this.user = null;
           this.login = Ext.create('Telasi.view.viewports.Login');
+          Ext.Ajax.setExtraParams( { username: '', password: '' } );
         },
       }
     });
