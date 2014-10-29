@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       end
       scope 'documents', controller: 'documents' do
         get '/', action: 'index'
+        post '/create', action: 'create'
       end
       scope 'motions', controller: 'motions' do
         get '/:id', action: 'index'

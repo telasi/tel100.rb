@@ -40,7 +40,5 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         console.log(response);
       },
     });
-
-    console.log( doc );
   },
 });
