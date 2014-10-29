@@ -1,6 +1,6 @@
 Ext.define('Telasi.view.document.motions.Editor', {
   extend: 'Ext.panel.Panel',
-  xtype: 'documentMotionsEditor',
+  xtype: 'document-motions-editor',
   controller: 'motionsEditorController',
   layout: 'fit',
   padding: 0,

@@ -1,10 +1,12 @@
 Ext.define('Telasi.view.document.editor.Editor', {
   extend: 'Ext.form.Panel',
-  alias: 'widget.documentEditor',
+  xtype: 'document-editor',
   border: false,
+  controller: 'documenteditor',
   requires: [
     'Telasi.view.document.editor.Main',
     'Telasi.view.document.editor.Details',
+    'Telasi.view.document.editor.EditorController',
   ],
   bind: {
     title: '<i class="fa fa-bookmark-o"></i> ახალი {typeName}'
@@ -21,4 +23,19 @@ Ext.define('Telasi.view.document.editor.Editor', {
     width: 400,
     split: true
   }],
+  dockedItems: [{
+    xtype: 'toolbar',
+    dock: 'top',
+    border: false,
+    items: [{
+      xtype: 'button',
+      bind: {
+        text: '<i class="fa fa-send-o"></i> {typeNameGenitive} გაგზავნა'
+      },
+      handler: 'onSendDocument',
+      // handler: function() {
+      //   console.log('click!');
+      // },
+    }]
+  }]
 });

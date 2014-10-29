@@ -36,7 +36,10 @@ Ext.define('Telasi.view.document.editor.General', {
     emptyText: 'ჩაწერეთ დოკუმენტის #',
     padding: 0,
     width: '100%',
-    fieldLabel: 'ნომერი'
+    fieldLabel: 'ნომერი',
+    bind: {
+      value: '{doc.docnumber}'
+    }
   }, {
     xtype: 'numberfield',
     fieldLabel: 'გვერდები',

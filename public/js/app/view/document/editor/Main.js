@@ -8,10 +8,16 @@ Ext.define('Telasi.view.document.editor.Main', {
     emptyText: 'ჩაწერეთ მოკლე შინაარსი',
     region: 'north',
     padding: '5 5 0 5',
+    bind: {
+      value: '{doc.subject}'
+    }
   }, {
     xtype: 'htmleditor',
     padding: 5,
     emptyText: 'ჩაწერეთ დაწვრილებითი შინაარსი',
-    region: 'center'
+    region: 'center',
+    bind: {
+      value: '{doc.body}'
+    }
   }],
 });
