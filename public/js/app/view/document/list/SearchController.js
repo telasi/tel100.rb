@@ -10,7 +10,7 @@ Ext.define('Telasi.view.document.list.SearchController', {
     var filter = [];
 
     if(form.isValid()) {
-      gridstore.clearFilter(true);
+      gridstore.clearFilter(false);
 
       form.getFields().each(function(item) {
         if(item.value != null && item.value != 0 && item.value != ""){

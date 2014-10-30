@@ -1,9 +1,10 @@
 # -*- encoding : utf-8 -*-
 class Api::Docs::DocumentsController < ApiController
   before_filter :validate_login
+  include Utils
 
   def index
-    documents = Document::Base
+    documents = Document::Base.order('docnumber DESC')
     filter = params[:filter]
     if filter
       filter = JSON.parse(filter)
@@ -19,19 +20,24 @@ class Api::Docs::DocumentsController < ApiController
       documents = documents.where("dueDate <= ?", Date.strptime(filter['to_dueDate']['value'])) if filter['to_dueDate'].present?
     end
 
-    render json: documents.all.to_json(:include => [{ :author_user => { :only => [:first_name_ka, :last_name_ka,
-                                                      :first_name_ru, :last_name_ru,
-                                                      :first_name_en, :last_name_en
-                                                    ]}},
-                                       { :sender_user => { :only => [:first_name_ka, :last_name_ka,
-                                                                     :first_name_ru, :last_name_ru,
-                                                                     :first_name_en, :last_name_en
-                                                ]}},
-                                    :text])
-  end
+		render json: documents.all.to_json(:include => [{ :author_user => { :only => [:first_name_ka, :last_name_ka,
+																						  :first_name_ru, :last_name_ru,
+																						  :first_name_en, :last_name_en
+																			  ]}},
+															 { :sender_user => { :only => [:first_name_ka, :last_name_ka,
+																						  :first_name_ru, :last_name_ru,
+																						  :first_name_en, :last_name_en
+																			  ]}},
+														:text])
+	end
 
   def create
     doc = Document::Base.new_document(current_user, params)
     render json: { success: true, document: { id: doc.id } }
   end
+
+	def show
+		@document = Document::Base.where(id: params[:id]).first
+		@motions_tree = array_to_tree(Document::Motion.where(document_id: params[:id]).as_json)
+	end
 end

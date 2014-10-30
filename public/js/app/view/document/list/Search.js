@@ -41,8 +41,8 @@ Ext.define('Telasi.view.document.list.Search', {
               items: [{
                         xtype: 'textfield',
                         name: 'docnumber',
-                        fieldLabel: Telasi.model.document.BaseTexts.text_IDField,
-                        emptyText: Telasi.model.document.BaseTexts.text_IDField,
+                        fieldLabel: Telasi.model.document.BaseTexts.text_DocNumberField,
+                        emptyText: Telasi.model.document.BaseTexts.text_DocNumberField,
                       }, {
                         xtype: 'fieldcontainer',
                         fieldLabel: Telasi.model.document.BaseTexts.text_DocDateField,
@@ -78,9 +78,9 @@ Ext.define('Telasi.view.document.list.Search', {
                 },{
               items: [{
                           xtype: 'textfield',
-                          name: 'docnumber',
-                          fieldLabel: Telasi.model.document.BaseTexts.text_DocNumberField,
-                          emptyText: Telasi.model.document.BaseTexts.text_DocNumberField,
+                          name: 'original_number',
+                          fieldLabel: Telasi.model.document.BaseTexts.text_OriginalNumberField,
+                          emptyText: Telasi.model.document.BaseTexts.text_OriginalNumberField,
                       },{
                         xtype: 'textfield',
                         name: 'subject',
