@@ -6,7 +6,8 @@ Ext.define('Telasi.view.document.list.Grid', {
   requires:[
     'Telasi.view.document.list.ViewModel',
     'Telasi.view.document.list.GridController',
-    'Telasi.model.document.BaseTexts'
+    'Telasi.model.document.BaseTexts',
+    'Telasi.view.document.Utils'
   ],
 
   viewModel: { type: 'list-document-view-model' },
@@ -52,12 +53,8 @@ Ext.define('Telasi.view.document.list.Grid', {
           width: 100,
           dataIndex: 'type_id',
           text: Telasi.model.document.BaseTexts.text_TypeField,
-          renderer: function(value) {
-            var store = Ext.data.StoreManager.lookup('documentTypes');
-            var type = store.getById(value);
-            return type.get('name');
-          },
-         },
+          renderer: documentUtils.getTypeName
+        },
         { dataIndex: 'subject',             text: Telasi.model.document.BaseTexts.text_SubjectField,        width: 250, },
         { dataIndex: 'original_number',     text: Telasi.model.document.BaseTexts.text_OriginalNumberField, width: 150, },
         { dataIndex: 'dueDate',             text: Telasi.model.document.BaseTexts.text_DeadlineField,       width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat},
