@@ -17,9 +17,7 @@ class Document::Base < ActiveRecord::Base
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
 
-  def body
-    self.text.body if self.text.present?
-  end
+  def body; self.text.body if self.text.present? end
 
   def body=(text)
     self.text = Document::Text.new if self.text.blank?
@@ -59,7 +57,7 @@ class Document::Base < ActiveRecord::Base
         owner_user: owner_user, owner: owner,
       })
 
-      opts[:motions_attributes].each do |motion_opts|
+      (opts[:motions_attributes] || opts[:motions]).each do |motion_opts|
         motion_opts[:receiver_type] = 'HR::Employee'
         receiver_user, receiver = who_eval(:receiver, motion_opts)
         motion_text = motion_opts[:motion_text]

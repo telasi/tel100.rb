@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Api::Docs::DocumentsController < ApiController
+  before_filter :validate_login
 
   def index
     documents = Document::Base
@@ -30,7 +31,7 @@ class Api::Docs::DocumentsController < ApiController
   end
 
   def create
-    puts params
-    render json: { status: 'ok' }
+    doc = Document::Base.new_document(current_user, params)
+    render json: { success: true, document: { id: doc.id } }
   end
 end
