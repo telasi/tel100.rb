@@ -48,7 +48,16 @@ Ext.define('Telasi.view.document.list.Grid', {
         width: 100, xtype: 'datecolumn',
         locked: true
       },
-        { dataIndex: 'type',                text: Telasi.model.document.BaseTexts.text_TypeField,           width: 120, },
+        {
+          width: 100,
+          dataIndex: 'type_id',
+          text: Telasi.model.document.BaseTexts.text_TypeField,
+          renderer: function(value) {
+            var store = Ext.data.StoreManager.lookup('documentTypes');
+            var type = store.getById(value);
+            return type.get('name');
+          },
+         },
         { dataIndex: 'subject',             text: Telasi.model.document.BaseTexts.text_SubjectField,        width: 250, },
         { dataIndex: 'original_number',     text: Telasi.model.document.BaseTexts.text_OriginalNumberField, width: 150, },
         { dataIndex: 'dueDate',             text: Telasi.model.document.BaseTexts.text_DeadlineField,       width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat},
