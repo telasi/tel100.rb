@@ -20,27 +20,6 @@ Ext.define('Telasi.view.document.editor.General', {
     width: '100%',
     bind: '{doc.typeId}'
   }, {
-    xtype: 'combo',
-    displayField: 'name',
-    valueField: 'id',
-    editable: false,
-    emptyText: 'აარჩიეთ ენა',
-    store: 'languages',
-    width: '100%',
-    bind: {
-      value: '{doc.language}',
-      fieldLabel: '{typeNameGenitive} ენა',
-    },
-  }, {
-    xtype: 'textfield',
-    emptyText: 'ჩაწერეთ დოკუმენტის #',
-    padding: 0,
-    width: '100%',
-    fieldLabel: 'ნომერი',
-    bind: {
-      value: '{doc.docnumber}'
-    }
-  }, {
     xtype: 'numberfield',
     fieldLabel: 'გვერდები',
     width: '100%',
