@@ -6,7 +6,7 @@ Ext.define('Telasi.view.document.ViewModel', {
   ],
   formulas: {
     directionIn: function(get) { return get('doc.direction') === 'in'; },
-    typeName: function(get) { return documentUtils.getTypeName(get('doc.typeId')); },
-    typeNameGenitive: function(get) { return documentUtils.getTypeNameGenitive(get('doc.typeId')); },
+    typeName: function(get) { return documentUtils.getTypeName(get('doc.type_id')); },
+    typeNameGenitive: function(get) { return documentUtils.getTypeNameGenitive(get('doc.type_id')); },
   }
 });

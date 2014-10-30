@@ -14,7 +14,7 @@ Ext.define('Telasi.view.document.FoldersController', {
     var doc = Ext.create('Telasi.model.document.Base', {
       language: 'ka',
       direction: directions.data.items[0].id,
-      typeId: types.data.items[0].id,
+      type_id: types.data.items[0].id,
     });
     var model = new Telasi.view.document.ViewModel({ data: { doc: doc } });
     var editor = Ext.create('Telasi.view.document.editor.Editor', { viewModel: model });

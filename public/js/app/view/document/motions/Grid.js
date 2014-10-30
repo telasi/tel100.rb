@@ -22,7 +22,7 @@ Ext.define('Telasi.view.document.motions.Grid', {
     sortable: false,
   }, {
     text: 'რეზოლუცია',
-    dataIndex: 'motionText',
+    dataIndex: 'motion_text',
     flex: 2,
     editor: { allowBlank: true },
     menuDisabled: true,

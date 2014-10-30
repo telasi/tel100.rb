@@ -22,7 +22,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       motions.push({
         receiver_id: receiver_id,
         receiver_type: receiver_type,
-        motion_text: motionData.motionText,
+        motion_text: motionData.motion_text,
       });
     }
 
@@ -33,13 +33,11 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     var doc = {
       subject: model.get('subject'),
       body: model.get('body'),
-      type_id: model.get('typeId'),
-      // language: model.get('language'),
-      // docnumber: model.get('docnumber'),
-      page_count: model.get('pageCount'),
-      additions_count: model.get('additionsCount'),
-      due_date: model.get('dueDate'),
-      alert_date: model.get('alertDate'),
+      type_id: model.get('type_id'),
+      page_count: model.get('page_count'),
+      additions_count: model.get('additions_count'),
+      due_date: model.get('due_date'),
+      alert_date: model.get('alert_date'),
       direction: model.get('direction'),
     };
     doc.motions = motions;

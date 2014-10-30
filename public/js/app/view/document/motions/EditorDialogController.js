@@ -18,7 +18,7 @@ Ext.define('Telasi.view.document.motions.EditorDialogController', {
             id: data.key,
             icon: (data.key.charAt(0) === 'P' ? 'user' : 'bank'),
             name: data.title,
-            motionText: ''
+            motion_text: ''
           });
         }
       }

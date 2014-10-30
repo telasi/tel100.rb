@@ -16,8 +16,8 @@ Ext.define('Telasi.model.document.Motion', {
         association: 'motions'
       }
     },
-    { name: 'motionText' },
-    { name: 'responseText' },
+    { name: 'motion_text' },
+    { name: 'response_text' },
     {
       name: 'receiverId',
       type: 'int'

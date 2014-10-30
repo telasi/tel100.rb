@@ -18,33 +18,33 @@ Ext.define('Telasi.view.document.editor.General', {
     emptyText: 'აარჩიეთ ტიპი',
     fieldLabel: 'ტიპი',
     width: '100%',
-    bind: '{doc.typeId}'
+    bind: '{doc.type_id}'
   }, {
     xtype: 'numberfield',
     fieldLabel: 'გვერდები',
     width: '100%',
-    bind: '{doc.pageCount}',
+    bind: '{doc.page_count}',
     minValue: 0,
     allowDecimals: false,
   }, {
     xtype: 'numberfield',
     fieldLabel: 'დანართები',
     width: '100%',
-    bind: '{doc.additionsCount}',
+    bind: '{doc.additions_count}',
     minValue: 0,
     allowDecimals: false,
   }, {
     xtype: 'datefield',
     fieldLabel: 'ვადა',
     width: '100%',
-    bind: '{doc.dueDate}',
+    bind: '{doc.due_date}',
     format: Ext.Date.defaultFormat,
     emptyText: 'შესრულების ვადა'
   }, {
     xtype: 'datefield',
     fieldLabel: 'საკონტროლო',
     width: '100%',
-    bind: '{doc.alertDate}',
+    bind: '{doc.alert_date}',
     format: Ext.Date.defaultFormat,
     emptyText: 'საკონტროლო ვადა'
   }, {
