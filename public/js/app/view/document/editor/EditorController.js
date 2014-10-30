@@ -13,7 +13,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       // console.log(motionData);
       var receiver_id = motionData.id;
       var receiver_type;
-      if (receiver_id.charAt(0) == 'P') {
+      if (receiver_id.charAt(0) === 'P') {
         receiver_id = receiver_id.substring(1);
         receiver_type = 'HR::Employee';
       } else {
@@ -22,7 +22,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       motions.push({
         receiver_id: receiver_id,
         receiver_type: receiver_type,
-        motion_text: motionData.motion_text,
+        motion_text: motionData.motionText,
       });
     }
 
@@ -34,8 +34,8 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       subject: model.get('subject'),
       body: model.get('body'),
       type_id: model.get('typeId'),
-      language: model.get('language'),
-      docnumber: model.get('docnumber'),
+      // language: model.get('language'),
+      // docnumber: model.get('docnumber'),
       page_count: model.get('pageCount'),
       additions_count: model.get('additionsCount'),
       due_date: model.get('dueDate'),
@@ -49,7 +49,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     Ext.Ajax.request({
       url: '/api/docs/documents/create',
       method: 'POST',
-      params: doc,
+      jsonData: doc,
       success: function(response) {
         console.log(response);
       },

@@ -33,9 +33,6 @@ Ext.define('Telasi.view.document.editor.Editor', {
         text: '<i class="fa fa-send-o"></i> {typeNameGenitive} გაგზავნა'
       },
       handler: 'onSendDocument',
-      // handler: function() {
-      //   console.log('click!');
-      // },
     }]
   }]
 });
