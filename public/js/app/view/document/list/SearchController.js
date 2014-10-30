@@ -13,8 +13,8 @@ Ext.define('Telasi.view.document.list.SearchController', {
       gridstore.clearFilter(false);
 
       form.getFields().each(function(item) {
-        if(item.value != null && item.value != 0 && item.value != ""){
-          filter.push({id: item.name, property: item.name, value: item.value });
+        if(item.value != null && item.value != 0 && item.value != "") {
+          filter.push({ id: item.name, property: item.name, value: item.value });
         }
       });
 
