@@ -26,22 +26,16 @@ Ext.define('Telasi.model.sys.User', {
     {
       name: 'firstName',
       type: 'string',
-      calculate: function(data) {
-        return data.first_name_ka;
-      }
+      calculate: function(data) { return data.first_name_ka; }
     },
     {
       name: 'lastName',
       type: 'string',
-      calculate: function(data) {
-        return data.last_name_ka;
-      }
+      calculate: function(data) { return data.last_name_ka; }
     },
     {
       name: 'fullName',
-      calculate: function(data) {
-        return data.firstName + ' ' + data.lastName;
-      },
+      calculate: function(data) { return data.firstName + ' ' + data.lastName; },
     },
   ],
 });
