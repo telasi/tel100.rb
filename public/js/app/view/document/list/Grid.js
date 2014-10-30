@@ -4,12 +4,12 @@ Ext.define('Telasi.view.document.list.Grid', {
   controller: 'documentgrid',
 
   requires:[
-    'Telasi.view.document.list.DocumentViewModel',
+    'Telasi.view.document.list.ViewModel',
     'Telasi.view.document.list.GridController',
     'Telasi.model.document.BaseTexts'
   ],
 
-  viewModel: { type: 'documents' },
+  viewModel: { type: 'list-document-view-model' },
   publishes: ['currentDocument'],
   bind: {
     currentDocument: 'currentDocument',
@@ -48,7 +48,7 @@ Ext.define('Telasi.view.document.list.Grid', {
         width: 100, xtype: 'datecolumn',
         locked: true
       },
-        { dataIndex: 'typeId',              text: Telasi.model.document.BaseTexts.text_TypeField,           width: 120, },
+        { dataIndex: 'type',                text: Telasi.model.document.BaseTexts.text_TypeField,           width: 120, },
         { dataIndex: 'subject',             text: Telasi.model.document.BaseTexts.text_SubjectField,        width: 250, },
         { dataIndex: 'original_number',     text: Telasi.model.document.BaseTexts.text_OriginalNumberField, width: 150, },
         { dataIndex: 'dueDate',             text: Telasi.model.document.BaseTexts.text_DeadlineField,       width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat},
