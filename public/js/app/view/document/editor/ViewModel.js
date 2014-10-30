@@ -1,4 +1,4 @@
-Ext.define('Telasi.view.document.ViewModel', {
+Ext.define('Telasi.view.document.editor.ViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.base-document-view-model',
   require: [

@@ -4,7 +4,7 @@ Ext.define('Telasi.view.document.FoldersController', {
   requires: [
     'Telasi.view.document.editor.Editor',
     'Telasi.model.document.Base',
-    'Telasi.view.document.ViewModel'
+    'Telasi.view.document.editor.ViewModel'
   ],
 
   onNewDocument: function(folders) {
@@ -16,7 +16,7 @@ Ext.define('Telasi.view.document.FoldersController', {
       direction: directions.data.items[0].id,
       type_id: types.data.items[0].id,
     });
-    var model = new Telasi.view.document.ViewModel({ data: { doc: doc } });
+    var model = new Telasi.view.document.editor.ViewModel({ data: { doc: doc } });
     var editor = Ext.create('Telasi.view.document.editor.Editor', { viewModel: model });
     docTab.controller.openTab( editor );
   },
