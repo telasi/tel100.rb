@@ -38,14 +38,14 @@ Ext.define('Telasi.view.document.editor.General', {
     fieldLabel: 'ვადა',
     width: '100%',
     bind: '{doc.dueDate}',
-    format: 'd/m/Y',
+    format: Ext.Date.defaultFormat,
     emptyText: 'შესრულების ვადა'
   }, {
     xtype: 'datefield',
     fieldLabel: 'საკონტროლო',
     width: '100%',
     bind: '{doc.alertDate}',
-    format: 'd/m/Y',
+    format: Ext.Date.defaultFormat,
     emptyText: 'საკონტროლო ვადა'
   }, {
     xtype: 'combo',

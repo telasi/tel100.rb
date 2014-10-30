@@ -17,7 +17,7 @@ Ext.define('Telasi.view.document.editor.DirectionInProperties', {
     items: [{
       xtype: 'datefield',
       emptyText: 'აარჩიეთ თარიღი',
-      format: 'd/m/Y',
+      format: Ext.Date.defaultFormat,
       width: '100%',
       fieldLabel: 'თარიღი'
     }]
