@@ -4,6 +4,7 @@ Ext.define('Telasi.model.document.BaseTexts',{
 
     text_DocNumberField:        'დოკუმენტის #',
     text_DocDateField:          'დოკუმენტის თარიღი',
+    text_DocDateField2:         'თარიღი',
     text_TypeField:             'ტიპი',
     text_OriginalNumberField:   'გარე დოკუმენტის #',
     text_SubjectField:          'თემა',

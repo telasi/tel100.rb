@@ -38,9 +38,16 @@ Ext.define('Telasi.view.document.list.Grid', {
 
   initComponent: function(){
     Ext.apply(this, {
-      columns: [
-        { dataIndex: 'docnumber',           text: Telasi.model.document.BaseTexts.text_DocNumberField,    width: 150, locked: true},
-        { dataIndex: 'docdate',             text: Telasi.model.document.BaseTexts.text_DocDateField,        width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat, locked: true },
+      columns: [{
+        dataIndex: 'docnumber',
+        text: Telasi.model.document.BaseTexts.text_DocNumberField,
+        width: 100, locked: true
+      }, {
+        dataIndex: 'docdate',
+        text: Telasi.model.document.BaseTexts.text_DocDateField2,
+        width: 100, xtype: 'datecolumn',
+        locked: true
+      },
         { dataIndex: 'typeId',              text: Telasi.model.document.BaseTexts.text_TypeField,           width: 120, },
         { dataIndex: 'subject',             text: Telasi.model.document.BaseTexts.text_SubjectField,        width: 250, },
         { dataIndex: 'original_number',     text: Telasi.model.document.BaseTexts.text_OriginalNumberField, width: 150, },
