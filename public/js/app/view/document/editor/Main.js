@@ -8,6 +8,7 @@ Ext.define('Telasi.view.document.editor.Main', {
     emptyText: 'ჩაწერეთ მოკლე შინაარსი',
     region: 'north',
     padding: '5 5 0 5',
+    allowBlank: false,
     bind: {
       value: '{doc.subject}'
     }

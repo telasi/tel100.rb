@@ -29,6 +29,7 @@ Ext.define('Telasi.view.document.editor.Editor', {
     border: false,
     items: [{
       xtype: 'button',
+      formBind: true,
       bind: {
         text: '<i class="fa fa-send-o"></i> {typeNameGenitive} გაგზავნა'
       },
