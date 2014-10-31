@@ -11,15 +11,15 @@ RSpec.describe Document::Base do
     shalva  = Sys::User.find_by_username('shalva')
     date    = Date.new(2014, 10, 5)
 
-    doc1 = Document::Base.new_document(dimitri, {
+    doc1 = Document::Base.sending_document(dimitri, {
       subject: 'test1', body: 'test body 1', type_id: 1, docdate: date,
       motions: [ {receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 1' }, ]
     }).reload
-    doc2 = Document::Base.new_document(dimitri, {
+    doc2 = Document::Base.sending_document(dimitri, {
       subject: 'test2', body: 'test body 2', type_id: 1, docdate: date,
       motions: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 2' }, ]
     }).reload
-    doc3 = Document::Base.new_document(dimitri, {
+    doc3 = Document::Base.sending_document(dimitri, {
       subject: 'test3', body: 'test body 3', type_id: 1, docdate: date,
       motions: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 3' }, ]
     }).reload
@@ -35,7 +35,7 @@ RSpec.describe Document::Base do
     nino    = Sys::User.find_by_username('nino')
     date    = Date.new(2014, 10, 1)
 
-    doc = Document::Base.new_document(dimitri, {
+    doc = Document::Base.sending_document(dimitri, {
       subject: 'სატესტო დოკუმენტი',
       body: 'სატესტო დოკუმენტის აღწერილობა',
       type_id: 1, docdate: date,

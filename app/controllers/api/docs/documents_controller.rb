@@ -32,7 +32,7 @@ class Api::Docs::DocumentsController < ApiController
 	end
 
   def create
-    doc = Document::Base.new_document(current_user, params)
+    doc = Document::Base.sending_document(current_user, params)
     render json: { success: true, document: { id: doc.id } }
   end
 

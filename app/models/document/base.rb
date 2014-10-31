@@ -30,7 +30,7 @@ class Document::Base < ActiveRecord::Base
   end
 
   def self.docnumber_eval(type, status, date)
-    if status == Document::Status.SENT
+    if status == Document::Status::SENT
       last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('id DESC').first
       last_number = '1'
       last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
@@ -38,7 +38,7 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
-  def self.new_document(sender_user, opts = {})
+  def self.sending_document(sender_user, opts = {})
     raise 'sender not defined' if sender_user.blank?
     sender = whose_user(sender_user)
     status = status_eval(opts)
@@ -54,17 +54,21 @@ class Document::Base < ActiveRecord::Base
     direction = opts[:direction] || 'inner'
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0
 
+    docparams = { type: type, direction: direction, docnumber: numb, docdate: date, docyear: date.year,
+      subject: subject, body: body, status: status, author_user: author_user, author: author,
+      sender_user: sender_user, sender: sender, owner_user: owner_user, owner: owner,
+      page_count: page_count, additions_count: additions_count
+    }
+    motionparams = opts[:motions_attributes] || opts[:motions]
+
     Document::Base.transaction do
-      doc = Document::Base.create!({
-        type: type, direction: direction, docnumber: numb,
-        docdate: date, docyear: date.year,
-        subject: subject, body: body, status: status,
-        author_user: author_user, author: author,
-        sender_user: sender_user, sender: sender,
-        owner_user: owner_user, owner: owner,
-        page_count: page_count, additions_count: additions_count
-      })
-      (opts[:motions_attributes] || opts[:motions]).each do |motion_opts|
+      if opts[:id]
+        doc = Document::Base.find(opts[:id])
+        doc.update_attributes!(docparams)
+      else
+        doc = Document::Base.create!(docparams)
+      end
+      motionparams.each do |motion_opts|
         motion_opts[:receiver_type] = 'HR::Employee'
         receiver_user, receiver = who_eval(:receiver, motion_opts)
         motion_text = motion_opts[:motion_text]
