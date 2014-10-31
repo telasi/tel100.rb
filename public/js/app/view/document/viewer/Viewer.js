@@ -4,13 +4,14 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
 
   requires: [
     'Telasi.view.document.viewer.Main',
-    'Telasi.view.document.viewer.Detail'
+    'Telasi.view.document.viewer.Detail',
+    'Telasi.view.document.viewer.DocumentViewModel',
   ],
 
   layout: 'border',
 
   bind: {
-    title: '{currentDocument.doctype} - {currentDocument.docnumber}'
+    title: '{doc.docnumber}'
   },
 
   items: [{
