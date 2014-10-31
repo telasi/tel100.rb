@@ -29,27 +29,28 @@ class Document::Base < ActiveRecord::Base
     self.text.body = text
   end
 
-  def self.docnumber_eval(type, date)
-    last_doc = Document::Base.where(docdate: date).order('id DESC').first
-    last_number = '1'
-    last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
-    "#{date.strftime('%m%d')}/#{last_number.rjust(3,'0')}"
+  def self.docnumber_eval(type, status, date)
+    if status == Document::Status.SENT
+      last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('id DESC').first
+      last_number = '1'
+      last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
+      "#{date.strftime('%m%d')}/#{last_number.rjust(3,'0')}"
+    end
   end
 
   def self.new_document(sender_user, opts = {})
     raise 'sender not defined' if sender_user.blank?
     sender = whose_user(sender_user)
-
     status = status_eval(opts)
-
     author_user, author = who_eval(:author, opts)
     owner_user, owner = who_eval(:owner, opts)
     ( owner_user = sender_user ; owner = sender ) if owner_user.blank?
 
     subject = opts[:subject] ; body = opts[:body]
+    raise 'subject not defined' if subject.blank?
     type = Document::Type.find(opts[:type_id])
     date = opts[:docdate] || Date.today
-    numb = docnumber_eval(type, date)
+    numb = Document::Base.docnumber_eval(type, status, date)
     direction = opts[:direction] || 'inner'
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0
 
