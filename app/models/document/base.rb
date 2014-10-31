@@ -48,7 +48,7 @@ class Document::Base < ActiveRecord::Base
 
     subject = opts[:subject] ; body = opts[:body]
     type = Document::Type.find(opts[:type_id])
-    date = opts[:date] || Date.today
+    date = opts[:docdate] || Date.today
     numb = docnumber_eval(type, date)
     direction = opts[:direction] || 'inner'
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0

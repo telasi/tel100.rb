@@ -12,15 +12,15 @@ RSpec.describe Document::Base do
     date    = Date.new(2014, 10, 5)
 
     doc1 = Document::Base.new_document(dimitri, {
-      subject: 'test1', body: 'test body 1', type_id: 1, date: date,
+      subject: 'test1', body: 'test body 1', type_id: 1, docdate: date,
       motions: [ {receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 1' }, ]
     }).reload
     doc2 = Document::Base.new_document(dimitri, {
-      subject: 'test2', body: 'test body 2', type_id: 1, date: date,
+      subject: 'test2', body: 'test body 2', type_id: 1, docdate: date,
       motions: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 2' }, ]
     }).reload
     doc3 = Document::Base.new_document(dimitri, {
-      subject: 'test3', body: 'test body 3', type_id: 1, date: date,
+      subject: 'test3', body: 'test body 3', type_id: 1, docdate: date,
       motions: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 3' }, ]
     }).reload
 
@@ -38,7 +38,7 @@ RSpec.describe Document::Base do
     doc = Document::Base.new_document(dimitri, {
       subject: 'სატესტო დოკუმენტი',
       body: 'სატესტო დოკუმენტის აღწერილობა',
-      type_id: 1, date: date,
+      type_id: 1, docdate: date,
       page_count: 10, additions_count: 5,
       motions: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში', due_date: date + 3.days },
