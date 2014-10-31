@@ -29,7 +29,7 @@ Ext.define('Telasi.controller.Main', {
               }
             }
           });
-          Ext.Ajax.setExtraParams( { username: userData.user.username, password: password } );
+          Ext.Ajax.setExtraParams( { api_username: userData.user.username, api_password: password } );
         }
       },
       'userbox': {
@@ -37,7 +37,7 @@ Ext.define('Telasi.controller.Main', {
           this.viewport.destroy();
           this.user = null;
           this.login = Ext.create('Telasi.view.viewports.Login');
-          Ext.Ajax.setExtraParams( { username: '', password: '' } );
+          Ext.Ajax.setExtraParams( { api_username: undefined, api_password: undefined } );
         },
       }
     });
