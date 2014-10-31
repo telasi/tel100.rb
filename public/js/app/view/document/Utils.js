@@ -10,6 +10,12 @@ Ext.define('Telasi.view.document.Utils', {
     var typeName = this.getTypeName(id);
     return typeName.substr(0, typeName.length - 1) + 'ის'
   },
+
+  getDirectionName: function(id) {
+    var store = Ext.data.StoreManager.lookup('documentDirections');
+    var direction = store.getById(id);
+    return direction.get('name');
+  },
 });
 
 var documentUtils = new Telasi.view.document.Utils();

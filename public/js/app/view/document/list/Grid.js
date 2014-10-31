@@ -54,6 +54,11 @@ Ext.define('Telasi.view.document.list.Grid', {
         text: Telasi.model.document.BaseTexts.text_TypeField,
         renderer: documentUtils.getTypeName
       }, {
+        width: 100,
+        dataIndex: 'direction',
+        text: Telasi.model.document.BaseTexts.text_DirectionField,
+        renderer: documentUtils.getDirectionName
+      }, {
         dataIndex: 'subject',
         text: Telasi.model.document.BaseTexts.text_SubjectField,
         width: 400,
