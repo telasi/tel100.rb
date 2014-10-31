@@ -23,6 +23,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         receiver_id: receiver_id,
         receiver_type: receiver_type,
         motion_text: motionData.motion_text,
+        due_date: motionData.due_date
       });
     }
 
