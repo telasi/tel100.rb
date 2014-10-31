@@ -37,8 +37,6 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       type_id: model.get('type_id'),
       page_count: model.get('page_count'),
       additions_count: model.get('additions_count'),
-      due_date: model.get('due_date'),
-      alert_date: model.get('alert_date'),
       direction: model.get('direction'),
     };
     doc.motions = motions;

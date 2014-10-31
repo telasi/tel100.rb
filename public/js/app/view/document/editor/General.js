@@ -34,20 +34,6 @@ Ext.define('Telasi.view.document.editor.General', {
     minValue: 0,
     allowDecimals: false,
   }, {
-    xtype: 'datefield',
-    fieldLabel: 'ვადა',
-    width: '100%',
-    bind: '{doc.due_date}',
-    format: Ext.Date.defaultFormat,
-    emptyText: 'შესრულების ვადა'
-  }, {
-    xtype: 'datefield',
-    fieldLabel: 'საკონტროლო',
-    width: '100%',
-    bind: '{doc.alert_date}',
-    format: Ext.Date.defaultFormat,
-    emptyText: 'საკონტროლო ვადა'
-  }, {
     xtype: 'combo',
     store: 'documentDirections',
     displayField: 'name',
