@@ -13,15 +13,15 @@ RSpec.describe Document::Base do
 
     doc1 = Document::Base.new_document(dimitri, {
       subject: 'test1', body: 'test body 1', type_id: 1, date: date,
-      motions_attributes: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 1' }, ]
+      motions: [ {receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 1' }, ]
     }).reload
     doc2 = Document::Base.new_document(dimitri, {
       subject: 'test2', body: 'test body 2', type_id: 1, date: date,
-      motions_attributes: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 2' }, ]
+      motions: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 2' }, ]
     }).reload
     doc3 = Document::Base.new_document(dimitri, {
       subject: 'test3', body: 'test body 3', type_id: 1, date: date,
-      motions_attributes: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 3' }, ]
+      motions: [ { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 3' }, ]
     }).reload
 
     expect(doc1.docnumber).to eq('1005/001')
@@ -40,13 +40,11 @@ RSpec.describe Document::Base do
       body: 'სატესტო დოკუმენტის აღწერილობა',
       type_id: 1,
       date: date,
-      motions_attributes: [
-        { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში' },
-        { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში' },
+      motions: [
+        { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში', due_date: date + 3.days },
+        { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში', due_date: date + 5.days },
       ]
-    })
-
-    doc.reload
+    }).reload
 
     expect(doc.subject).to eq('სატესტო დოკუმენტი')
     expect(doc.body).to eq('სატესტო დოკუმენტის აღწერილობა')
@@ -61,6 +59,8 @@ RSpec.describe Document::Base do
     expect(doc.author).to be_blank
     expect(doc.type.id).to eq(1)
     expect(doc.type.name).to eq('წერილი')
+    expect(doc.due_date).to eq(date + 5.days)
+    expect(doc.alarm_date).to eq(date + 3.days)
 
     expect(doc.motions.size).to eq(2)
     motion1 = doc.motions.first
@@ -85,6 +85,9 @@ RSpec.describe Document::Base do
     expect(motion1.response_text).to be_blank
     expect(motion2.motion_text).to eq('ნინო, გთხოვთ გამიშვით შვებულებაში')
     expect(motion2.response_text).to be_blank
+
+    expect(motion1.due_date).to eq(date + 3.days)
+    expect(motion2.due_date).to eq(date + 5.days)
   end
 
 end

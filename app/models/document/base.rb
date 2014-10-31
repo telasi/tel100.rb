@@ -54,7 +54,7 @@ class Document::Base < ActiveRecord::Base
     direction = opts[:direction] || 'inner'
 
     Document::Base.transaction do
-      doc = Document::Base.create({
+      doc = Document::Base.create!({
         type: type, direction: direction, docnumber: numb,
         docdate: date, docyear: date.year,
         subject: subject, body: body, status: status,
@@ -62,18 +62,23 @@ class Document::Base < ActiveRecord::Base
         sender_user: sender_user, sender: sender,
         owner_user: owner_user, owner: owner,
       })
-
       (opts[:motions_attributes] || opts[:motions]).each do |motion_opts|
         motion_opts[:receiver_type] = 'HR::Employee'
         receiver_user, receiver = who_eval(:receiver, motion_opts)
         motion_text = motion_opts[:motion_text]
-        motion = Document::Motion.create({
+        due_date = motion_opts[:due_date]
+        if due_date
+          doc.due_date = due_date if (doc.due_date.blank? or doc.due_date < due_date)
+          doc.alarm_date = due_date if (doc.alarm_date.blank? or doc.alarm_date > due_date)
+        end
+        motion = Document::Motion.create!({
           document: doc, status: status,
           sender_user: sender_user, sender: sender, sender_is_read: 1,
           receiver_user: receiver_user, receiver: receiver, receiver_is_read: 0,
-          motion_text: motion_text
+          motion_text: motion_text, due_date: due_date
         })
       end
+      doc.save!
       doc
     end
   end
