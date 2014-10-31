@@ -9,6 +9,7 @@ class AddDocumentMotionTable < ActiveRecord::Migration
         STATUS    varchar2(20 CHAR) default 'open' not null,
         MOTION_TEXT varchar2(1000 CHAR),
         RESPONSE_TEXT varchar2(1000 CHAR),
+        DUE_DATE date,
         ---------
         SENDER_USER_ID number(10, 0),
         SENDER_ID      number(10, 0),

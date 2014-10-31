@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20141020063200) do
     t.string    "status",           limit: 20,                            default: "open", null: false
     t.string    "motion_text",      limit: 1000
     t.string    "response_text",    limit: 1000
+    t.datetime  "due_date"
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",      limit: 50
