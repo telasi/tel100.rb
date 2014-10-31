@@ -35,6 +35,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       subject: model.get('subject'),
       body: model.get('body'),
       type_id: model.get('type_id'),
+      docdate: model.get('docdate'),
       page_count: model.get('page_count'),
       additions_count: model.get('additions_count'),
       direction: model.get('direction'),

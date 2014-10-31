@@ -50,7 +50,7 @@ class Document::Base < ActiveRecord::Base
     subject = opts[:subject] ; body = opts[:body]
     raise 'subject not defined' if subject.blank?
     type = Document::Type.find(opts[:type_id])
-    date = opts[:docdate] || Date.today
+    date = opts[:docdate].present? ? Date.parse(opts[:docdate]) : Date.today
     numb = Document::Base.docnumber_eval(type, status, date)
     direction = opts[:direction] || 'inner'
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0

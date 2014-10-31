@@ -20,6 +20,12 @@ Ext.define('Telasi.view.document.editor.General', {
     width: '100%',
     bind: '{doc.type_id}'
   }, {
+    xtype: 'datefield',
+    format: Ext.Date.defaultFormat,
+    fieldLabel: 'დოკუმენტის თარიღი',
+    bind: '{doc.docdate}',
+    width: '100%',
+  }, {
     xtype: 'numberfield',
     fieldLabel: 'გვერდები',
     width: '100%',
