@@ -50,14 +50,19 @@ Ext.define('Telasi.view.document.list.Grid', {
         locked: true
       }, {
         width: 100,
+        dataIndex: 'status',
+        text: Telasi.model.document.BaseTexts.text_StatusField,
+        renderer: window.Telasi.documentUtils.getStatusName
+      }, {
+        width: 100,
         dataIndex: 'type_id',
         text: Telasi.model.document.BaseTexts.text_TypeField,
-        renderer: documentUtils.getTypeName
+        renderer: window.Telasi.documentUtils.getTypeName
       }, {
         width: 100,
         dataIndex: 'direction',
         text: Telasi.model.document.BaseTexts.text_DirectionField,
-        renderer: documentUtils.getDirectionName
+        renderer: window.Telasi.documentUtils.getDirectionName
       }, {
         dataIndex: 'subject',
         text: Telasi.model.document.BaseTexts.text_SubjectField,

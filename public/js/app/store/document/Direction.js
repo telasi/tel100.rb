@@ -6,8 +6,8 @@ Ext.define('Telasi.store.document.Direction', {
     { id: 'in',    name: 'შემოსული' },
     { id: 'out',   name: 'გასული' },
   ]
-});
-
-Ext.create('Telasi.store.document.Direction', {
-  storeId: 'documentDirections',
+}, function() {
+  Ext.create('Telasi.store.document.Direction', {
+    storeId: 'document-directions',
+  });
 });

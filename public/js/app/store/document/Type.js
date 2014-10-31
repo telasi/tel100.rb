@@ -10,8 +10,9 @@ Ext.define('Telasi.store.document.Type', {
     }
   },
   autoLoad: true
-});
-
-Ext.create('Telasi.store.document.Type', {
-  storeId: 'documentTypes',
+}, function() {
+  // create type store
+  Ext.create('Telasi.store.document.Type', {
+    storeId: 'documentTypes'
+  });
 });

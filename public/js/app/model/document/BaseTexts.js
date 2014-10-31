@@ -13,6 +13,7 @@ Ext.define('Telasi.model.document.BaseTexts',{
     text_PagecountField:        'გვერდები',
     text_AttachmentsField:      'დანართები',
     text_DirectionField:        'მიმართულება',
+    text_StatusField:           'სტატუსი',
 
     text_attachmentField:       '',
     text_actionField:           'მოქმედება',

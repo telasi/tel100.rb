@@ -35,7 +35,7 @@ Ext.define('Telasi.view.document.editor.General', {
     allowDecimals: false,
   }, {
     xtype: 'combo',
-    store: 'documentDirections',
+    store: 'document-directions',
     displayField: 'name',
     valueField: 'id',
     editable: false,

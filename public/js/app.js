@@ -1,3 +1,7 @@
+// declare global object
+
+window.Telasi = {};
+
 // setting default format
 
 Ext.Date.defaultFormat = 'd/m/Y';

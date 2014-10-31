@@ -10,7 +10,7 @@ Ext.define('Telasi.view.document.FoldersController', {
   onNewDocument: function(folders) {
     var docTab = this.getView().up().down('documentTab');
     var types = Ext.data.StoreManager.lookup('documentTypes');
-    var directions = Ext.data.StoreManager.lookup('documentDirections');
+    var directions = Ext.data.StoreManager.lookup('document-directions');
     var doc = Ext.create('Telasi.model.document.Base', {
       language: 'ka',
       direction: directions.data.items[0].id,
