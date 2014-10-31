@@ -38,8 +38,8 @@ RSpec.describe Document::Base do
     doc = Document::Base.new_document(dimitri, {
       subject: 'სატესტო დოკუმენტი',
       body: 'სატესტო დოკუმენტის აღწერილობა',
-      type_id: 1,
-      date: date,
+      type_id: 1, date: date,
+      page_count: 10, additions_count: 5,
       motions: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში', due_date: date + 3.days },
         { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში', due_date: date + 5.days },
@@ -59,6 +59,8 @@ RSpec.describe Document::Base do
     expect(doc.author).to be_blank
     expect(doc.type.id).to eq(1)
     expect(doc.type.name).to eq('წერილი')
+    expect(doc.page_count).to eq(10)
+    expect(doc.additions_count).to eq(5)
     expect(doc.due_date).to eq(date + 5.days)
     expect(doc.alarm_date).to eq(date + 3.days)
 

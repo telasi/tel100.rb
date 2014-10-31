@@ -46,12 +46,12 @@ class Document::Base < ActiveRecord::Base
     owner_user, owner = who_eval(:owner, opts)
     ( owner_user = sender_user ; owner = sender ) if owner_user.blank?
 
-    subject = opts[:subject]
-    body = opts[:body]
+    subject = opts[:subject] ; body = opts[:body]
     type = Document::Type.find(opts[:type_id])
     date = opts[:date] || Date.today
     numb = docnumber_eval(type, date)
     direction = opts[:direction] || 'inner'
+    page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0
 
     Document::Base.transaction do
       doc = Document::Base.create!({
@@ -61,6 +61,7 @@ class Document::Base < ActiveRecord::Base
         author_user: author_user, author: author,
         sender_user: sender_user, sender: sender,
         owner_user: owner_user, owner: owner,
+        page_count: page_count, additions_count: additions_count
       })
       (opts[:motions_attributes] || opts[:motions]).each do |motion_opts|
         motion_opts[:receiver_type] = 'HR::Employee'
