@@ -42,6 +42,7 @@ class Document::Base < ActiveRecord::Base
     raise 'sender not defined' if sender_user.blank?
     sender = whose_user(sender_user)
     status = status_eval(opts)
+    raise 'not supported status' unless Document::Status::OPEN_STATUSES.include?(status)
     author_user, author = who_eval(:author, opts)
     owner_user, owner = who_eval(:owner, opts)
     ( owner_user = sender_user ; owner = sender ) if owner_user.blank?
@@ -60,6 +61,7 @@ class Document::Base < ActiveRecord::Base
       page_count: page_count, additions_count: additions_count
     }
     motionparams = opts[:motions_attributes] || opts[:motions]
+    raise 'document cannot be sent with empty motions' if (status == Document::Status::SENT and motionparams.blank?)
 
     Document::Base.transaction do
       if opts[:id]
