@@ -32,11 +32,24 @@ Ext.define('Telasi.view.document.Utils', {
     return directions.getAt(0);
   },
 
-  getStatusName: function(id) {
+  getStatus: function(id) {
     var store = Ext.data.StoreManager.lookup('document-statuses');
-    var status = store.getById(id);
-    return status.get('name');
-  }
+    return store.getById(id);
+  },
+
+  getStatusRendering: function(id) {
+    var status = window.Telasi.documentUtils.getStatus(id);
+    return [
+      '<span class="', status.get('class'),
+      '"><i class="fa ', status.get('icon'), '"></i> ',
+      status.get('name'), '</span>'
+    ].join('');
+  },
+
+  gridRenderer: function(value, metaInfo, record) {
+    var status = window.Telasi.documentUtils.getStatus(record.get('status'));
+    return ['<span class="', status.get('class'), '">', value, '</span>'].join('');
+  },
 }, function() {
   window.Telasi.documentUtils = new Telasi.view.document.Utils();
 });

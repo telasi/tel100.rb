@@ -2,57 +2,50 @@ Ext.define('Telasi.view.document.list.Grid', {
   extend: 'Ext.grid.Panel',
   xtype: 'docgrid',
   controller: 'documentgrid',
-
   requires:[
     'Telasi.view.document.list.ViewModel',
     'Telasi.view.document.list.GridController',
     'Telasi.model.document.BaseTexts',
     'Telasi.view.document.Utils'
   ],
-
   viewModel: { type: 'list-document-view-model' },
   publishes: ['currentDocument'],
   bind: {
     currentDocument: 'currentDocument',
     store: '{documents}',
   },
-
   config: {
     currentDocument: null
   },
-
-//  texts
   text_beforePageText: 'გვერდი',
   text_afterPageText:  '{0}-დან',
   text_displayMsg:     'ნაჩვენებია {0}-დან {1}-მდე. სულ {2}',
-//  texts
-
   title: this.text_SearchHeader,
-
   defaults: {
     sortable: true,
     hideable: true
   },
-
   margins: '0 0 5 5',
   loadMask: true,
-
-  initComponent: function(){
+  initComponent: function() {
     Ext.apply(this, {
       columns: [{
         dataIndex: 'docnumber',
         text: Telasi.model.document.BaseTexts.text_DocNumberField,
-        width: 100, locked: true
+        width: 100,
+        locked: true,
+        // renderer: window.Telasi.documentUtils.gridRenderer
       }, {
         dataIndex: 'docdate',
         text: Telasi.model.document.BaseTexts.text_DocDateField2,
         width: 100, xtype: 'datecolumn',
-        locked: true
+        locked: true,
+        // renderer: window.Telasi.documentUtils.gridRenderer
       }, {
         width: 100,
         dataIndex: 'status',
         text: Telasi.model.document.BaseTexts.text_StatusField,
-        renderer: window.Telasi.documentUtils.getStatusName
+        renderer: window.Telasi.documentUtils.getStatusRendering,
       }, {
         width: 100,
         dataIndex: 'type_id',
