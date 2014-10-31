@@ -13,13 +13,16 @@ Ext.define('Telasi.view.document.TabController', {
   },
 
   gridcellDblClicked: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts){
-    var viewer = new Ext.create('Telasi.view.document.viewer.Viewer', {
-      viewModel: {
-        data: {
-          currentDocument: record
-        }
-      },
+    var viewer = new Ext.create('Telasi.view.document.viewer.Viewer',{
       closable: true,
+      viewModel:{
+        links: {
+          doc: {
+            reference: 'Telasi.model.document.Base',
+            id: record.data.id
+          }
+        }
+      }
     });
     this.openTab( viewer );
   },

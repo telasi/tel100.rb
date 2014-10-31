@@ -9,6 +9,8 @@ Ext.define('Telasi.view.document.viewer.MotionTree', {
   items: [
           {
             xtype: 'treepanel',
+            store: Ext.create('Telasi.store.document.MotionTree',{
+            }),
             flex: 1,
           },
           {
