@@ -32,60 +32,65 @@ Ext.define('Telasi.view.document.list.Grid', {
       columns: [{
         dataIndex: 'docnumber',
         text: Telasi.model.document.BaseTexts.text_DocNumberField,
-        width: 100,
+        width: 75,
         locked: true,
-        // renderer: window.Telasi.documentUtils.gridRenderer
+        renderer: window.Telasi.documentUtils.gridTextRenderer
       }, {
+        width: 120,
+        dataIndex: 'status',
+        text: Telasi.model.document.BaseTexts.text_StatusField,
+        renderer: window.Telasi.documentUtils.gridStatusRenderer,
+        locked: true
+      }, {
+        xtype: 'datecolumn',
         dataIndex: 'docdate',
         text: Telasi.model.document.BaseTexts.text_DocDateField2,
         width: 100, xtype: 'datecolumn',
-        locked: true,
-        // renderer: window.Telasi.documentUtils.gridRenderer
-      }, {
-        width: 100,
-        dataIndex: 'status',
-        text: Telasi.model.document.BaseTexts.text_StatusField,
-        renderer: window.Telasi.documentUtils.getStatusRendering,
+        renderer: window.Telasi.documentUtils.gridDateRenderer,
       }, {
         width: 100,
         dataIndex: 'type_id',
         text: Telasi.model.document.BaseTexts.text_TypeField,
-        renderer: window.Telasi.documentUtils.getTypeName
+        renderer: window.Telasi.documentUtils.gridTypeRenderer
       }, {
         width: 100,
         dataIndex: 'direction',
         text: Telasi.model.document.BaseTexts.text_DirectionField,
-        renderer: window.Telasi.documentUtils.getDirectionName
+        renderer: window.Telasi.documentUtils.gridDirectionRenderer,
       }, {
         dataIndex: 'subject',
         text: Telasi.model.document.BaseTexts.text_SubjectField,
+        renderer: window.Telasi.documentUtils.gridTextRenderer,
         width: 400,
       }, {
         dataIndex: 'original_number',
         text: Telasi.model.document.BaseTexts.text_OriginalNumberField,
+        renderer: window.Telasi.documentUtils.gridTextRenderer,
         width: 150,
       }, {
         xtype: 'datecolumn',
         dataIndex: 'due_date',
         text: Telasi.model.document.BaseTexts.text_DeadlineField,
+        renderer: window.Telasi.documentUtils.gridDateRenderer,
         width: 100,
-        format: Ext.Date.defaultFormat
       }, {
         xtype: 'datecolumn',
         dataIndex: 'alarm_date',
         text: Telasi.model.document.BaseTexts.text_AlarmField,
+        renderer: window.Telasi.documentUtils.gridDateRenderer,
         width: 100,
-        format: Ext.Date.defaultFormat
       }, {
         xtype: 'numbercolumn',
         dataIndex: 'page_count',
         text: Telasi.model.document.BaseTexts.text_PagecountField,
+        renderer: window.Telasi.documentUtils.gridTextRenderer,
         width: 100,
         format: '0',
       }, {
         xtype: 'numbercolumn',
         dataIndex: 'additions_count',
         text: Telasi.model.document.BaseTexts.text_AttachmentsField,
+        renderer: window.Telasi.documentUtils.gridTextRenderer,
         width: 100,
         format: '0',
       }, /*{

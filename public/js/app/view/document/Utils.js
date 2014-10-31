@@ -5,9 +5,14 @@ Ext.define('Telasi.view.document.Utils', {
     'Telasi.store.document.Status',
     'Telasi.store.document.Type',
   ],
-  getTypeName: function(id) {
+
+  getType: function(id) {
     var store = Ext.data.StoreManager.lookup('documentTypes');
-    var type = store.getById(id);
+    return store.getById(id);
+  },
+
+  getTypeName: function(id) {
+    var type = window.Telasi.documentUtils.getType(id);
     return type.get('name');
   },
 
@@ -21,10 +26,9 @@ Ext.define('Telasi.view.document.Utils', {
     return types.getAt(0);
   },
 
-  getDirectionName: function(id) {
+  getDirection: function(id) {
     var store = Ext.data.StoreManager.lookup('document-directions');
-    var direction = store.getById(id);
-    return direction.get('name');
+    return store.getById(id);
   },
 
   getDefaultDirection: function() {
@@ -37,18 +41,39 @@ Ext.define('Telasi.view.document.Utils', {
     return store.getById(id);
   },
 
-  getStatusRendering: function(id) {
-    var status = window.Telasi.documentUtils.getStatus(id);
-    return [
-      '<span class="', status.get('class'),
-      '"><i class="fa ', status.get('icon'), '"></i> ',
-      status.get('name'), '</span>'
-    ].join('');
+// doc grid renderings
+
+  statusify: function(value, metaInfo, record) {
+    var status = window.Telasi.documentUtils.getStatus(record.get('status'));
+    metaInfo.tdCls = status.get('class');
+    return status;
   },
 
-  gridRenderer: function(value, metaInfo, record) {
-    var status = window.Telasi.documentUtils.getStatus(record.get('status'));
-    return ['<span class="', status.get('class'), '">', value, '</span>'].join('');
+  gridStatusRenderer: function(value, metaInfo, record) {
+    var status = window.Telasi.documentUtils.statusify(value, metaInfo, record);
+    return [ '<i class="fa ', status.get('icon'), '"></i> ', status.get('name') ].join('');
+  },
+
+  gridTextRenderer: function(value, metaInfo, record) {
+    window.Telasi.documentUtils.statusify(value, metaInfo, record);
+    return value;
+  },
+
+  gridDateRenderer: function(value, metaInfo, record) {
+    window.Telasi.documentUtils.statusify(value, metaInfo, record);
+    return Ext.Date.format(value, Ext.Date.defaultFormat);
+  },
+
+  gridDirectionRenderer: function(value, metaInfo, record) {
+    window.Telasi.documentUtils.statusify(value, metaInfo, record);
+    var direction = window.Telasi.documentUtils.getDirection(value);
+    return direction.get('name');
+  },
+
+  gridTypeRenderer: function(value, metaInfo, record) {
+    window.Telasi.documentUtils.statusify(value, metaInfo, record);
+    return window.Telasi.documentUtils.getTypeName(value);
+
   },
 }, function() {
   window.Telasi.documentUtils = new Telasi.view.document.Utils();
