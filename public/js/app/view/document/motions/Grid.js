@@ -28,6 +28,16 @@ Ext.define('Telasi.view.document.motions.Grid', {
     menuDisabled: true,
     sortable: false,
   }, {
+    text: 'ვადა',
+    width: 100,
+    dataIndex: 'due_date',
+    xtype: 'datecolumn',
+    editor: {
+      xtype: 'datefield',
+      allowBlank: false,
+      format: Ext.Date.defaultFormat,
+    }
+  }, {
     xtype: 'actioncolumn',
     width: 30,
     resizable: true,
