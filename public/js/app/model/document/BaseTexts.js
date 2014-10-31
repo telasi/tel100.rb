@@ -9,10 +9,13 @@ Ext.define('Telasi.model.document.BaseTexts',{
     text_OriginalNumberField:   'გარე დოკუმენტის #',
     text_SubjectField:          'თემა',
     text_DeadlineField:         'ვადა',
+    text_AlarmField:            'კონტროლი',
+    text_PagecountField:        'გვერდები',
+    text_AttachmentsField:      'დანართები',
 
     text_attachmentField:       '',
     text_actionField:           'მოქმედება',
     text_AuthorsField:          'ავტორები',
-    text_AnswersField:          'პასურები',
+    text_AnswersField:          'პასუხები',
     text_RecieversField:        'ადრესატები',
 });

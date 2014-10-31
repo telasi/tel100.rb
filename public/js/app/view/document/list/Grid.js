@@ -48,21 +48,48 @@ Ext.define('Telasi.view.document.list.Grid', {
         text: Telasi.model.document.BaseTexts.text_DocDateField2,
         width: 100, xtype: 'datecolumn',
         locked: true
-      },
-        {
-          width: 100,
-          dataIndex: 'type_id',
-          text: Telasi.model.document.BaseTexts.text_TypeField,
-          renderer: documentUtils.getTypeName
-        },
-        { dataIndex: 'subject',             text: Telasi.model.document.BaseTexts.text_SubjectField,        width: 250, },
-        { dataIndex: 'original_number',     text: Telasi.model.document.BaseTexts.text_OriginalNumberField, width: 150, },
-        { dataIndex: 'dueDate',             text: Telasi.model.document.BaseTexts.text_DeadlineField,       width: 170, xtype: 'datecolumn', format: Ext.Date.defaultFormat},
-        { dataIndex: 'author_fullname',     text: Telasi.model.document.BaseTexts.text_AuthorsField,        width: 200, },
-        {                                   text: Telasi.model.document.BaseTexts.text_actionField,         width: 120, },
-        {                                   text: Telasi.model.document.BaseTexts.text_AnswersField,        width: 120, },
-        {                                   text: Telasi.model.document.BaseTexts.text_RecieversField,      width: 200, },
-        {                                   text: Telasi.model.document.BaseTexts.text_attachmentField,     width: 50, },
+      }, {
+        width: 100,
+        dataIndex: 'type_id',
+        text: Telasi.model.document.BaseTexts.text_TypeField,
+        renderer: documentUtils.getTypeName
+      }, {
+        dataIndex: 'subject',
+        text: Telasi.model.document.BaseTexts.text_SubjectField,
+        width: 400,
+      }, {
+        dataIndex: 'original_number',
+        text: Telasi.model.document.BaseTexts.text_OriginalNumberField,
+        width: 150,
+      }, {
+        xtype: 'datecolumn',
+        dataIndex: 'due_date',
+        text: Telasi.model.document.BaseTexts.text_DeadlineField,
+        width: 100,
+        format: Ext.Date.defaultFormat
+      }, {
+        xtype: 'datecolumn',
+        dataIndex: 'alarm_date',
+        text: Telasi.model.document.BaseTexts.text_AlarmField,
+        width: 100,
+        format: Ext.Date.defaultFormat
+      }, {
+        dataIndex: 'page_count',
+        text: Telasi.model.document.BaseTexts.text_PagecountField,
+        width: 100,
+      }, {
+        dataIndex: 'additions_count',
+        text: Telasi.model.document.BaseTexts.text_AttachmentsField,
+        width: 100,
+      }, /*{
+        dataIndex: 'author_fullname',
+        text: Telasi.model.document.BaseTexts.text_AuthorsField,
+        width: 200,
+      },*/
+      // { text: Telasi.model.document.BaseTexts.text_actionField,         width: 120, },
+      // { text: Telasi.model.document.BaseTexts.text_AnswersField,        width: 120, },
+      // { text: Telasi.model.document.BaseTexts.text_RecieversField,      width: 200, },
+      // { text: Telasi.model.document.BaseTexts.text_attachmentField,     width: 50, },
       ],
       dockedItems: [{
         xtype: 'pagingtoolbar',
