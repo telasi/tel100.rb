@@ -17,6 +17,11 @@ class Document::Base < ActiveRecord::Base
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
 
+  validates :type, presence: { message: 'აარჩიეთ სახეობა' }
+  validates :direction, presence: { message: 'აარჩიეთ მიმართულება' }
+  validates :subject, presence: { message: 'ჩაწერეთ სათაური' }
+  validates :status, presence: { message: 'მიუთითეთ სტატუსი' }
+
   def body; self.text.body if self.text.present? end
 
   def body=(text)
@@ -46,10 +51,11 @@ class Document::Base < ActiveRecord::Base
     type = Document::Type.find(opts[:type_id])
     date = opts[:date] || Date.today
     numb = docnumber_eval(type, date)
+    direction = opts[:direction] || 'inner'
 
     Document::Base.transaction do
       doc = Document::Base.create({
-        type: type, direction: 'inner', docnumber: numb,
+        type: type, direction: direction, docnumber: numb,
         docdate: date, docyear: date.year,
         subject: subject, body: body, status: status,
         author_user: author_user, author: author,
