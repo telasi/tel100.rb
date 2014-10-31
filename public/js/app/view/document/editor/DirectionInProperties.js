@@ -10,14 +10,10 @@ Ext.define('Telasi.view.document.editor.DirectionInProperties', {
       fieldLabel: 'ნომერი',
       emptyText: 'ჩაწერეთ ნომერი'
     }, {
-    xtype: 'panel',
-    border: false,
-    items: [{
       xtype: 'datefield',
       emptyText: 'აარჩიეთ თარიღი',
       format: Ext.Date.defaultFormat,
       width: '100%',
       fieldLabel: 'თარიღი'
-    }]
   }], 
 });
