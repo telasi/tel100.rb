@@ -16,10 +16,20 @@ Ext.define('Telasi.view.document.Utils', {
     return typeName.substr(0, typeName.length - 1) + 'ის'
   },
 
+  getDefaultType: function() {
+    var types = Ext.data.StoreManager.lookup('documentTypes');
+    return types.getAt(0);
+  },
+
   getDirectionName: function(id) {
     var store = Ext.data.StoreManager.lookup('document-directions');
     var direction = store.getById(id);
     return direction.get('name');
+  },
+
+  getDefaultDirection: function() {
+    var directions = Ext.data.StoreManager.lookup('document-directions');
+    return directions.getAt(0);
   },
 
   getStatusName: function(id) {

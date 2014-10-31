@@ -9,12 +9,10 @@ Ext.define('Telasi.view.document.FoldersController', {
 
   onNewDocument: function(folders) {
     var docTab = this.getView().up().down('documentTab');
-    var types = Ext.data.StoreManager.lookup('documentTypes');
-    var directions = Ext.data.StoreManager.lookup('document-directions');
     var doc = Ext.create('Telasi.model.document.Base', {
       language: 'ka',
-      direction: directions.data.items[0].id,
-      type_id: types.data.items[0].id,
+      direction: window.Telasi.documentUtils.getDefaultDirection().id,
+      type_id: window.Telasi.documentUtils.getDefaultType().id,
     });
     var model = new Telasi.view.document.editor.ViewModel({ data: { doc: doc } });
     var editor = Ext.create('Telasi.view.document.editor.Editor', { viewModel: model });
