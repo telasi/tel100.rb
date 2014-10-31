@@ -74,13 +74,17 @@ Ext.define('Telasi.view.document.list.Grid', {
         width: 100,
         format: Ext.Date.defaultFormat
       }, {
+        xtype: 'numbercolumn',
         dataIndex: 'page_count',
         text: Telasi.model.document.BaseTexts.text_PagecountField,
         width: 100,
+        format: '0',
       }, {
+        xtype: 'numbercolumn',
         dataIndex: 'additions_count',
         text: Telasi.model.document.BaseTexts.text_AttachmentsField,
         width: 100,
+        format: '0',
       }, /*{
         dataIndex: 'author_fullname',
         text: Telasi.model.document.BaseTexts.text_AuthorsField,
