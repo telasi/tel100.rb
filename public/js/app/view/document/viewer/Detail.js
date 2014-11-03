@@ -5,11 +5,11 @@ Ext.define('Telasi.view.document.viewer.Detail', {
   bodyPadding: 0,
 
   requires: [
-     'Telasi.view.document.viewer.MotionTree',
+     'Telasi.view.document.viewer.MotionPanel',
   ],
 
   items: [{
-      xtype: 'document-viewer-motiontree',
+      xtype: 'document-viewer-motionpanel',
       title: '<i class="fa fa-random"></i> დოკუმენტის მოძრაობა',
   }]
 });

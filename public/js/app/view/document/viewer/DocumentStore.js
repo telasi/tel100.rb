@@ -1,7 +1,7 @@
-Ext.define('Telasi.store.document.MotionTree', {
+Ext.define('Telasi.view.document.viewer.DocumentStore', {
   extend: 'Ext.data.Store',
 
-  fields: ['sender_full_name'],
+  fields: ['docnumber'],
 
   proxy: {
     type: 'rest',
@@ -9,6 +9,6 @@ Ext.define('Telasi.store.document.MotionTree', {
         type: 'json',
         typeProperty: 'mtype'
     },
-    url: '/api/docs/motions/'
+    url: 'api/docs/documents/show/'
   },
 });

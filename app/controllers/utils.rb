@@ -11,7 +11,10 @@ module Utils
 
       children = object_hash[node["parent_id"]][:children] ||= []
       children << node
-      object_hash[node["parent_id"]][:leaf] = false
+    }
+
+    object_hash.each_value {|node|
+      node[:leaf] = !node[:children].present?
     }
 
     tree = object_hash[nil]

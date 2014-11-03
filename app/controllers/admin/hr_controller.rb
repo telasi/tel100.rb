@@ -32,7 +32,6 @@ class Admin::HrController < AdminController
       item.store('title', item.delete("name_#{I18n.locale}") )
       item.store('icon', "images/tree/HRtreeicon#{item['saporg_type']}#{'M' if item['is_manager']}.png")
       item.store('type', 'O')
-      item.store('leaf', true)
 
       employee = employee_hash[item['id']]
       if employee 
@@ -40,7 +39,6 @@ class Admin::HrController < AdminController
         item.store('title', employee["first_name_#{I18n.locale}"] + " " + employee["last_name_#{I18n.locale}"] + " (" + item['title'] + ")")
         item.store('icon', "images/tree/HRtreeiconP.png")
         item.store('type', 'P')
-        item.store('leaf', true)
       end
     end
 

@@ -29,14 +29,4 @@ Ext.define('Telasi.model.document.Base', {
     { name: 'ownerType' },
   ],
 
-  proxy: {
-    type: 'rest',
-    reader: {
-        type: 'json',
-        typeProperty: 'mtype'
-    },
-    url: 'api/docs/documents/show/'
-  },
-
-  idProperty : 'id'
 });

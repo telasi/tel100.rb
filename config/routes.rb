@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         delete '/delete/:id', action: 'destroy', as: 'delete_doctype'
       end
     end
+
   end
 
   namespace 'api' do

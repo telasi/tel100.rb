@@ -38,6 +38,6 @@ class Api::Docs::DocumentsController < ApiController
 
 	def show
 		@document = Document::Base.where(id: params[:id]).first
-		@motions_tree = array_to_tree(Document::Motion.where(document_id: params[:id]).as_json)
 	end
+
 end

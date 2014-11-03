@@ -3,9 +3,11 @@ Ext.define('Telasi.view.document.TabController', {
   alias: 'controller.documentTabController',
 
   openTab: function(component) {
-    var tabcontrol = this.getView();
-    tabcontrol.add(component);
-    tabcontrol.setActiveTab(component);
+    if (component){
+      var tabcontrol = this.getView();
+      tabcontrol.add(component);
+      tabcontrol.setActiveTab(component);
+    }
   },
 
   removeTab: function(component) {
