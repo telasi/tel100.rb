@@ -2,13 +2,32 @@ Ext.define('Telasi.view.document.editor.EditorController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenteditor',
 
+  init: function() {
+    var doc = this.getViewModel().getData().doc;
+    var self = this;
+    if ( typeof doc.getId() === 'number' ) {
+      Ext.Ajax.request({
+        url: '/api/docs/documents/motions',
+        method: 'GET',
+        params: { flat: 'true', id: doc.getId() },
+        success: function(data) {
+          var motionsStore = self.getMotionsStore();
+          console.log(JSON.parse(data.responseText));
+          motionsStore.add(JSON.parse(data.responseText));
+        }
+      });
+    }
+  },
+
+  getMotionsGrid: function() { return this.getView().down('document-motions-grid'); },
+  getMotionsStore: function() { return this.getMotionsGrid().getStore(); },
+
   sendDocument: function(btn, status) {
     var editor = btn.up('document-editor');
 
     // motions data
 
-    var motionsGrid = this.getView().down('document-motions-grid');
-    var motionsStore = motionsGrid.getStore();
+    var motionsStore = this.getMotionsStore();
     var motions = [];
     for (var i = 0, l = motionsStore.data.length; i < l; i++) {
       var motionData = motionsStore.getAt(i).data;

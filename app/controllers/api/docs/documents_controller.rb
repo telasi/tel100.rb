@@ -41,6 +41,14 @@ class Api::Docs::DocumentsController < ApiController
 	end
 
   def motions
-    render json: array_to_tree(Document::Motion.where(document_id: params[:id]).as_json)
+    if params[:flat]
+      # render json: Document::Motion.where(document_id: params[:id]).map do |x|
+      #   {
+      #     id: x.id,
+      #   }
+      # end.to_json
+    else
+      render json: array_to_tree(Document::Motion.where(document_id: params[:id]).as_json)
+    end
   end
 end
