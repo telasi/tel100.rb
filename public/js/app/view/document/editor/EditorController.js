@@ -54,6 +54,13 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         var data = JSON.parse(response.responseText);
         if (data.success) {
           editor.fireEvent( 'document-sent', data.document );
+        } else {
+          Ext.MessageBox.show({
+            title: 'შეცდომა',
+            msg: data.error,
+            buttons: Ext.MessageBox.OK,
+            icon: Ext.window.MessageBox.ERROR
+        });
         }
       },
     });
