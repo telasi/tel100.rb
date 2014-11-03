@@ -31,6 +31,13 @@ Ext.define('Telasi.view.document.editor.Editor', {
       xtype: 'button',
       formBind: true,
       bind: {
+        text: '<i class="fa fa-save"></i> {typeNameGenitive} შენახვა (დრაფტად)'
+      },
+      handler: 'onSaveDocument'
+    }, {
+      xtype: 'button',
+      formBind: true,
+      bind: {
         text: '<i class="fa fa-send-o"></i> {typeNameGenitive} გაგზავნა'
       },
       handler: 'onSendDocument',
