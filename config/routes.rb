@@ -43,9 +43,7 @@ Rails.application.routes.draw do
         get '/', action: 'index'
         get 'show/:id', action: 'show'
         post '/create', action: 'create'
-      end
-      scope 'motions', controller: 'motions' do
-        get '/:id', action: 'index'
+        get '/motions', action: 'motions'
       end
     end
   end

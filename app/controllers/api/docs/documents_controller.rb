@@ -40,4 +40,7 @@ class Api::Docs::DocumentsController < ApiController
 		@document = Document::Base.where(id: params[:id]).first
 	end
 
+  def motions
+    render json: array_to_tree(Document::Motion.where(document_id: params[:id]).as_json)
+  end
 end
