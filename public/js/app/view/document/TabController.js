@@ -33,4 +33,9 @@ Ext.define('Telasi.view.document.TabController', {
     tabcontrol.setActiveTab(component);
   },
 
+  removeTab: function(component) {
+    var tabcontrol = this.getView();
+    tabcontrol.remove(component, true);
+  },
+
 });

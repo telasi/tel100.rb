@@ -3,6 +3,8 @@ Ext.define('Telasi.view.document.editor.EditorController', {
   alias: 'controller.documenteditor',
 
   onSendDocument: function(btn, evt) {
+    var editor = btn.up('document-editor');
+
     // motions data
 
     var motionsGrid = this.getView().down('document-motions-grid');
@@ -48,8 +50,11 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       url: '/api/docs/documents/create',
       method: 'POST',
       jsonData: doc,
-      success: function(response) {
-        console.log(response);
+      success: function(response, opts) {
+        var data = JSON.parse(response.responseText);
+        if (data.success) {
+          editor.fireEvent( 'document-sent', data.document );
+        }
       },
     });
   },

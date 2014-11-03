@@ -17,5 +17,10 @@ Ext.define('Telasi.view.document.FoldersController', {
     var model = new Telasi.view.document.editor.ViewModel({ data: { doc: doc } });
     var editor = Ext.create('Telasi.view.document.editor.Editor', { viewModel: model });
     docTab.controller.openTab( editor );
+    editor.on('document-sent', function(doc) {
+      console.log( 'Document sent: %s', doc && doc.id );
+      docTab.controller.removeTab(editor);
+      // TODO: refresh document's list
+    });
   },
 });
