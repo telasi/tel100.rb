@@ -60,7 +60,7 @@ class Document::Base < ActiveRecord::Base
       sender_user: sender_user, sender: sender, owner_user: owner_user, owner: owner,
       page_count: page_count, additions_count: additions_count
     }
-    motionparams = opts[:motions_attributes] || opts[:motions]
+    motionparams = opts[:motions_attributes] || opts[:motions] || []
     raise 'document cannot be sent with empty motions' if (status == Document::Status::SENT and motionparams.blank?)
 
     Document::Base.transaction do

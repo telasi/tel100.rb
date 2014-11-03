@@ -2,7 +2,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenteditor',
 
-  onSendDocument: function(btn, evt) {
+  sendDocument: function(btn, status) {
     var editor = btn.up('document-editor');
 
     // motions data
@@ -35,6 +35,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     var model = viewModel.getData().doc;
     var doc = {
       subject: model.get('subject'),
+      status: status,
       body: model.get('body'),
       type_id: model.get('type_id'),
       docdate: model.get('docdate'),
@@ -64,5 +65,13 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         }
       },
     });
+  },
+
+  onSendDocument: function(btn, evt) {
+    this.sendDocument( btn, 'sent' );
+  },
+
+  onSaveDocument: function(btn, evt) {
+    this.sendDocument( btn, 'draft' );
   },
 });
