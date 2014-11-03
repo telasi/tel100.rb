@@ -27,9 +27,16 @@ Ext.define('Telasi.view.document.list.GridController', {
   },
 
   createEditorComponent: function(record) {
+    var self = this;
     var doc = Ext.create('Telasi.model.document.Base', record.data);
     var model = new Telasi.view.document.editor.ViewModel({ data: { doc: doc } });
-    return Ext.create('Telasi.view.document.editor.Editor', { viewModel: model });
+    var editor = Ext.create('Telasi.view.document.editor.Editor', { viewModel: model });
+    editor.on('document-sent', function(doc) {
+      var docTab = self.getView().up('documentTab');
+      docTab.controller.removeTab(editor);
+      // TODO: refresh document's list
+    });
+    return editor;
   },
 
   openDocument: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts) {

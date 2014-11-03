@@ -34,6 +34,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     var viewModel = this.getViewModel();
     var model = viewModel.getData().doc;
     var doc = {
+      id: model.get('id'),
       subject: model.get('subject'),
       status: status,
       body: model.get('body'),
