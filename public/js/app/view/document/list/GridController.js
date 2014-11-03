@@ -1,14 +1,46 @@
 Ext.define('Telasi.view.document.list.GridController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentgrid',
+  requires: [
+    'Telasi.view.document.editor.Editor',
+    'Telasi.view.document.viewer.Viewer'
+  ],
+
   control: {
     '#': {
-      celldblclick: 'cellDblClick'
+      celldblclick: 'openDocument'
     }
   },
 
-  cellDblClick: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts){
-    this.fireEvent('centalgriddblclick', table, td, cellIndex, record, tr, rowIndex, e, eOpts);
+  createViewerComponent: function(record) {
+    return new Ext.create('Telasi.view.document.viewer.Viewer',{
+      closable: true,
+      viewModel: {
+        links: {
+          doc: {
+            reference: 'Telasi.model.document.Base',
+            id: record.id
+          }
+        }
+      }
+    });
+  },
+
+  createEditorComponent: function(record) {
+    var doc = Ext.create('Telasi.model.document.Base', record.data);
+    var model = new Telasi.view.document.editor.ViewModel({ data: { doc: doc } });
+    return Ext.create('Telasi.view.document.editor.Editor', { viewModel: model });
+  },
+
+  openDocument: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    var componentToOpen;
+    if (record.get('status') === 'draft') {
+      componentToOpen = this.createEditorComponent(record);
+    } else {
+      componentToOpen = this.createViewerComponent(record);
+    }
+    var docTab = this.getView().up('documentTab');
+    docTab.controller.openTab( componentToOpen );
   },
 
   init: function() {
