@@ -10,6 +10,7 @@ class AddDocumentBaseTable < ActiveRecord::Migration
         DIRECTION   varchar2(20 CHAR) default 'inner'  not null,
         SUBJECT     varchar2(1000 CHAR),
         ORIGINAL_NUMBER varchar(50 CHAR),
+        ORIGINAL_DATE   date,
         DOCNUMBER   varchar2(20 CHAR),
         DOCDATE     date not null,
         DOCYEAR     number( 4, 0) not null,

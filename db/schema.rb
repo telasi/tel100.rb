@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20141020063200) do
     t.string    "direction",       limit: 20,                            default: "inner", null: false
     t.string    "subject",         limit: 1000
     t.string    "original_number", limit: 50
+    t.datetime  "original_date"
     t.string    "docnumber",       limit: 20
     t.datetime  "docdate",                                                                 null: false
     t.integer   "docyear",         limit: 4,    precision: 4,  scale: 0,                   null: false
