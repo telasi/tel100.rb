@@ -62,12 +62,7 @@ Ext.define('Telasi.view.document.list.Grid', {
         text: Telasi.model.document.BaseTexts.text_SubjectField,
         renderer: window.Telasi.documentUtils.gridTextRenderer,
         width: 400,
-      }, {
-        dataIndex: 'original_number',
-        text: Telasi.model.document.BaseTexts.text_OriginalNumberField,
-        renderer: window.Telasi.documentUtils.gridTextRenderer,
-        width: 150,
-      }, {
+      },  {
         xtype: 'datecolumn',
         dataIndex: 'due_date',
         text: Telasi.model.document.BaseTexts.text_DeadlineField,
@@ -80,6 +75,16 @@ Ext.define('Telasi.view.document.list.Grid', {
         renderer: window.Telasi.documentUtils.gridDateRenderer,
         width: 100,
       }, {
+        dataIndex: 'original_number',
+        text: Telasi.model.document.BaseTexts.text_OriginalNumberField,
+        renderer: window.Telasi.documentUtils.gridTextRenderer,
+        width: 100,
+      }, {
+        dataIndex: 'original_date',
+        text: Telasi.model.document.BaseTexts.text_OriginalDateField,
+        renderer: window.Telasi.documentUtils.gridDateRenderer,
+        width: 100,
+      },{
         xtype: 'numbercolumn',
         dataIndex: 'page_count',
         text: Telasi.model.document.BaseTexts.text_PagecountField,
@@ -93,16 +98,7 @@ Ext.define('Telasi.view.document.list.Grid', {
         renderer: window.Telasi.documentUtils.gridTextRenderer,
         width: 100,
         format: '0',
-      }, /*{
-        dataIndex: 'author_fullname',
-        text: Telasi.model.document.BaseTexts.text_AuthorsField,
-        width: 200,
-      },*/
-      // { text: Telasi.model.document.BaseTexts.text_actionField,         width: 120, },
-      // { text: Telasi.model.document.BaseTexts.text_AnswersField,        width: 120, },
-      // { text: Telasi.model.document.BaseTexts.text_RecieversField,      width: 200, },
-      // { text: Telasi.model.document.BaseTexts.text_attachmentField,     width: 50, },
-      ],
+      }],
       dockedItems: [{
         xtype: 'pagingtoolbar',
         reference: 'pagingtoolbar',
