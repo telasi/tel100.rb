@@ -53,12 +53,17 @@ class Document::Base < ActiveRecord::Base
     date = opts[:docdate].present? ? Date.parse(opts[:docdate]) : Date.today
     numb = Document::Base.docnumber_eval(type, status, date)
     direction = opts[:direction] || 'inner'
+    if direction == 'in'
+      original_number = opts[:original_number]
+      original_date = Date.parse(opts[:original_date]) if opts[:original_date].present?
+    end
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0
 
     docparams = { type: type, direction: direction, docnumber: numb, docdate: date, docyear: date.year,
       subject: subject, body: body, status: status, author_user: author_user, author: author,
       sender_user: sender_user, sender: sender, owner_user: owner_user, owner: owner,
-      page_count: page_count, additions_count: additions_count
+      page_count: page_count, additions_count: additions_count,
+      original_number: original_number, original_date: original_date
     }
     motionparams = opts[:motions_attributes] || opts[:motions] || []
     raise 'document cannot be sent with empty motions' if (status == Document::Status::SENT and motionparams.blank?)

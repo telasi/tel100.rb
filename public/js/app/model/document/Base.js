@@ -17,6 +17,8 @@ Ext.define('Telasi.model.document.Base', {
     { name: 'docnumber' },
     { name: 'docdate', type: 'date' },
     { name: 'due_date', type: 'date' },
+    { name: 'original_date', type: 'date' },
+    { name: 'original_number' },
     { name: 'alarm_date', type: 'date' },
     { name: 'status' },
     { name: 'senderUserId', type: 'int' },
