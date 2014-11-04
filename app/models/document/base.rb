@@ -60,7 +60,7 @@ class Document::Base < ActiveRecord::Base
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0
 
     docparams = { type: type, direction: direction, docnumber: numb, docdate: date, docyear: date.year,
-      subject: subject, body: body, status: status, author_user: author_user, author: author,
+      subject: subject, status: status, author_user: author_user, author: author,
       sender_user: sender_user, sender: sender, owner_user: owner_user, owner: owner,
       page_count: page_count, additions_count: additions_count,
       original_number: original_number, original_date: original_date,
@@ -100,6 +100,8 @@ class Document::Base < ActiveRecord::Base
           end
         end
       end
+      doc.body = body
+      doc.text.save! 
       doc.save!
       doc
     end
