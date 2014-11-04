@@ -2,9 +2,9 @@
 class ApiController < ActionController::Base
   protect_from_forgery with: :null_session
 
-  # rescue_from Exception do |exception|
-  #   render_api_error exception.message
-  # end
+  rescue_from Exception do |exception|
+    render_api_error exception.message
+  end
 
   def render_api_error(error)
     render json: { success: false, error: error.to_s }

@@ -63,10 +63,11 @@ class Document::Base < ActiveRecord::Base
       subject: subject, body: body, status: status, author_user: author_user, author: author,
       sender_user: sender_user, sender: sender, owner_user: owner_user, owner: owner,
       page_count: page_count, additions_count: additions_count,
-      original_number: original_number, original_date: original_date
+      original_number: original_number, original_date: original_date,
+      due_date: nil, alarm_date: nil
     }
     motionparams = opts[:motions_attributes] || opts[:motions] || []
-    raise 'document cannot be sent with empty motions' if (status == Document::Status::SENT and motionparams.blank?)
+    raise 'document cannot be sent with empty motions' if (status == Document::Status::SENT and motionparams.select{|x| not x[:_deleted]}.blank?)
 
     Document::Base.transaction do
       if opts[:id]
@@ -76,20 +77,28 @@ class Document::Base < ActiveRecord::Base
         doc = Document::Base.create!(docparams)
       end
       motionparams.each do |motion_opts|
-        motion_opts[:receiver_type] = 'HR::Employee'
-        receiver_user, receiver = who_eval(:receiver, motion_opts)
-        motion_text = motion_opts[:motion_text]
-        due_date = motion_opts[:due_date]
-        if due_date
-          doc.due_date = due_date if (doc.due_date.blank? or doc.due_date < due_date)
-          doc.alarm_date = due_date if (doc.alarm_date.blank? or doc.alarm_date > due_date)
+        id = motion_opts[:id]
+        deleted = motion_opts[:_deleted]
+        if deleted
+          Document::Motion.find(id).destroy
+        else
+          receiver_user, receiver = who_eval(:receiver, motion_opts)
+          motion_text = motion_opts[:motion_text]
+          due_date = motion_opts[:due_date]
+          if due_date
+            doc.due_date = due_date if (doc.due_date.blank? or doc.due_date < due_date)
+            doc.alarm_date = due_date if (doc.alarm_date.blank? or doc.alarm_date > due_date)
+          end
+          params = { document: doc, status: status,
+            sender_user: sender_user, sender: sender, sender_is_read: 1,
+            receiver_user: receiver_user, receiver: receiver, receiver_is_read: 0,
+            motion_text: motion_text, due_date: due_date }
+          if id
+            Document::Motion.find(id).update_attributes!(params)
+          else
+            Document::Motion.create!(params)
+          end
         end
-        motion = Document::Motion.create!({
-          document: doc, status: status,
-          sender_user: sender_user, sender: sender, sender_is_read: 1,
-          receiver_user: receiver_user, receiver: receiver, receiver_is_read: 0,
-          motion_text: motion_text, due_date: due_date
-        })
       end
       doc.save!
       doc

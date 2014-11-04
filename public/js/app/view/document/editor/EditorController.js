@@ -12,7 +12,6 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         params: { flat: 'true', id: doc.getId() },
         success: function(data) {
           var motionsStore = self.getMotionsStore();
-          console.log(JSON.parse(data.responseText));
           motionsStore.add(JSON.parse(data.responseText));
         }
       });
@@ -31,7 +30,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     var motions = [];
     for (var i = 0, l = motionsStore.data.length; i < l; i++) {
       var motionData = motionsStore.getAt(i).data;
-      // console.log(motionData);
+      var id = motionData.id;
       var receiver_id = motionData.receiver_id;
       var receiver_type;
       if (receiver_id.charAt(0) === 'P') {
@@ -41,11 +40,17 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         receiver_type = 'HR::Organization';
       }
       motions.push({
+        id: typeof id === 'number' ? id : undefined,
         receiver_id: receiver_id,
         receiver_type: receiver_type,
         motion_text: motionData.motion_text,
         due_date: motionData.due_date
       });
+    }
+
+    for(var i = 0, l = motionsStore.removed.length; i < l; i++) {
+      var data = motionsStore.removed[i].data;
+      motions.push({ id: data.id, _deleted: true });
     }
 
     // main model
@@ -84,7 +89,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
             msg: data.error,
             buttons: Ext.MessageBox.OK,
             icon: Ext.window.MessageBox.ERROR
-        });
+          });
         }
       },
     });
