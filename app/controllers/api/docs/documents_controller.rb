@@ -42,11 +42,11 @@ class Api::Docs::DocumentsController < ApiController
 
   def motions
     if params[:flat]
-      # render json: Document::Motion.where(document_id: params[:id]).map do |x|
-      #   {
-      #     id: x.id,
-      #   }
-      # end.to_json
+      render json: (Document::Motion.where(document_id: params[:id]).map do |x|
+        { id: x.id,
+          name: x.receiver.ext_name, receiver_id: x.receiver.ext_id, icon: x.receiver.ext_icon,
+          motion_text: x.motion_text, due_date: x.due_date }
+      end.to_json)
     else
       render json: array_to_tree(Document::Motion.where(document_id: params[:id]).as_json)
     end
