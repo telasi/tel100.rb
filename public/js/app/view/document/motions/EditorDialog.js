@@ -22,6 +22,7 @@ Ext.define('Telasi.view.document.motions.EditorDialog', {
     selectionModel: 'SINGLE',
   }, {
     xtype: 'document-motions-grid',
+    editable: true,
     region: 'center'
   }]
 });

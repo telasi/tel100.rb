@@ -12,6 +12,7 @@ Ext.define('Telasi.view.document.motions.Editor', {
   border: false,
   items: [{
     xtype: 'document-motions-grid',
+    editable: false,
     store: {
       fields: [
         'receiver_id',
