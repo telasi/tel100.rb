@@ -50,12 +50,12 @@ class Document::Base < ActiveRecord::Base
     subject = opts[:subject] ; body = opts[:body]
     raise 'subject not defined' if subject.blank?
     type = Document::Type.find(opts[:type_id])
-    date = opts[:docdate].present? ? Date.parse(opts[:docdate]) : Date.today
+    date = Date.eval(opts[:docdate])
     numb = Document::Base.docnumber_eval(type, status, date)
     direction = opts[:direction] || 'inner'
     if direction == 'in'
       original_number = opts[:original_number]
-      original_date = Date.parse(opts[:original_date]) if opts[:original_date].present?
+      original_date = Date.eval(opts[:original_date])
     end
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0
 
@@ -84,7 +84,7 @@ class Document::Base < ActiveRecord::Base
         else
           receiver_user, receiver = who_eval(:receiver, motion_opts)
           motion_text = motion_opts[:motion_text]
-          due_date = motion_opts[:due_date]
+          due_date = Date.eval(motion_opts[:due_date])
           if due_date
             doc.due_date = due_date if (doc.due_date.blank? or doc.due_date < due_date)
             doc.alarm_date = due_date if (doc.alarm_date.blank? or doc.alarm_date > due_date)
