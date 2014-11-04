@@ -13,7 +13,13 @@ Ext.define('Telasi.view.document.motions.Editor', {
   items: [{
     xtype: 'document-motions-grid',
     store: {
-      fields: [ 'id', 'key', 'name', 'motion_text', 'due_date', 'icon' ]
+      fields: [
+        'receiver_id',
+        'name',
+        'motion_text',
+        { name: 'due_date', type: 'date' },
+        'icon'
+      ]
     },
     border: false,
   }],

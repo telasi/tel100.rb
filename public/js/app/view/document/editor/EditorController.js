@@ -32,7 +32,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     for (var i = 0, l = motionsStore.data.length; i < l; i++) {
       var motionData = motionsStore.getAt(i).data;
       // console.log(motionData);
-      var receiver_id = motionData.id;
+      var receiver_id = motionData.receiver_id;
       var receiver_type;
       if (receiver_id.charAt(0) === 'P') {
         receiver_id = receiver_id.substring(1);
@@ -52,8 +52,9 @@ Ext.define('Telasi.view.document.editor.EditorController', {
 
     var viewModel = this.getViewModel();
     var model = viewModel.getData().doc;
+    var id = model.get('id');
     var doc = {
-      id: model.get('id'),
+      id: typeof id === 'number' ? id : undefined,
       subject: model.get('subject'),
       status: status,
       body: model.get('body'),

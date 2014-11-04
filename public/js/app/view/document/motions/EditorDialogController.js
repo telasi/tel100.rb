@@ -13,9 +13,9 @@ Ext.define('Telasi.view.document.motions.EditorDialogController', {
         var grid = tree.up('documentEditorDialog').down('document-motions-grid');
         var store = grid.getStore();
         var data = record.getData();
-        if (store.find('id', data.key) === -1) {
+        if (store.find('receiver_id', data.key) === -1) {
           store.add({
-            id: data.key,
+            receiver_id: data.key,
             icon: (data.key.charAt(0) === 'P' ? 'user' : 'bank'),
             name: data.title,
             motion_text: ''
