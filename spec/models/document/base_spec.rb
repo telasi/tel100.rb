@@ -91,5 +91,4 @@ RSpec.describe Document::Base do
     expect(motion1.due_date).to eq(date + 3.days)
     expect(motion2.due_date).to eq(date + 5.days)
   end
-
 end
