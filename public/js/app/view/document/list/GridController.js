@@ -34,7 +34,7 @@ Ext.define('Telasi.view.document.list.GridController', {
     editor.on('document-sent', function(doc) {
       var docTab = self.getView().up('documentTab');
       docTab.controller.removeTab(editor);
-      // TODO: refresh document's list
+      docTab.controller.refreshDocuments();
     });
     return editor;
   },

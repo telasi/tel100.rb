@@ -19,7 +19,7 @@ Ext.define('Telasi.view.document.FoldersController', {
     docTab.controller.openTab( editor );
     editor.on('document-sent', function(doc) {
       docTab.controller.removeTab(editor);
-      // TODO: refresh document's list
+      docTab.controller.refreshDocuments();
     });
   },
 });

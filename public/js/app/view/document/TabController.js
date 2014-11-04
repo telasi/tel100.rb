@@ -15,4 +15,9 @@ Ext.define('Telasi.view.document.TabController', {
     tabcontrol.remove(component, true);
   },
 
+  refreshDocuments: function() {
+    var tabcontrol = this.getView();
+    tabcontrol.down('docgrid').down('pagingtoolbar').doRefresh();
+  },
+
 });
