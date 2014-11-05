@@ -15,12 +15,21 @@ Ext.define('Telasi.view.document.editor.EditorController', {
           motionsStore.add(JSON.parse(data.responseText));
         }
       });
+      Ext.Ajax.request({
+        url: '/api/docs/documents/authors',
+        method: 'GET',
+        params: { id: doc.getId() },
+        success: function(data) {
+          var authorsStore = self.getAuthorsStore();
+          authorsStore.add(JSON.parse(data.responseText));
+        }
+      });
     }
   },
 
   getMotionsGrid:  function() { return this.getView().down('document-motions-grid'); },
   getMotionsStore: function() { return this.getMotionsGrid().getStore(); },
-  getAuthorsGrid:  function() { return this.getView().down('document-authors-grid'); }
+  getAuthorsGrid:  function() { return this.getView().down('document-authors-grid'); },
   getAuthorsStore: function() { return this.getAuthorsGrid().getStore(); },
 
   sendDocument: function(btn, status) {
