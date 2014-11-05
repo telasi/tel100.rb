@@ -2,17 +2,15 @@
 class Document::Base < ActiveRecord::Base
   include Document::Status
   include Document::Who
+  include Document::Personalize
 
   self.table_name  = 'document_base'
   self.sequence_name = 'docbase_seq'
 
   belongs_to :parent, class_name: 'Document::Base', foreign_key: 'parent_id'
-  belongs_to :author_user, class_name: 'Sys::User', foreign_key: 'author_user_id'
-  belongs_to :author, polymorphic: true
-  belongs_to :sender_user, class_name: 'Sys::User', foreign_key: 'sender_user_id'
-  belongs_to :sender, polymorphic: true
-  belongs_to :owner_user, class_name: 'Sys::User', foreign_key: 'owner_user_id'
-  belongs_to :owner,  polymorphic: true
+  personalize 'author' # XXX
+  personalize 'sender'
+  personalize 'owner'
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'

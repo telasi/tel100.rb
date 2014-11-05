@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 module Document::Who
-
   def self.included(base)
     base.extend(ClassMethods)
   end
@@ -39,5 +38,4 @@ module Document::Who
       user.employee
     end
   end
-
 end
