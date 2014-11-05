@@ -18,16 +18,9 @@ Ext.define('Telasi.view.document.viewer.MotionPanel', {
           },
           {
             xtype: 'panel',
-            closable: true,
-            title: this.tree,
+            itemId: 'motionDetails',
+            closable: false,
             height: 200,
-          },
-          {
-            xtype: 'button',
-            handler: function(){
-              alert('asda');
-            }
-           
           }
   ],
 });

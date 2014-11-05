@@ -1,5 +1,5 @@
 Ext.define('Telasi.store.document.MotionTree', {
-  extend: 'Ext.data.Store',
+  extend: 'Ext.data.TreeStore',
 
   fields: ['sender_full_name'],
 
@@ -11,4 +11,6 @@ Ext.define('Telasi.store.document.MotionTree', {
     },
     url: '/api/docs/motions/'
   },
+
+  idProperty: 'id'
 });

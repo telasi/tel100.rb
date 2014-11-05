@@ -2,30 +2,31 @@ Ext.define('Telasi.view.document.viewer.MotionTree', {
   extend: 'Ext.tree.Panel',
   xtype: 'document-viewer-motiontree',
 
-  requires: [
-    'Telasi.store.document.MotionTree',
-  ],
-
-  rootVisible: false,
+  rootVisible: true,
   loadMask: true,
+  hideHeaders: true,
   columns: [{
       xtype: 'treecolumn',
       text: 'Name',
-      dataIndex: 'sender_full_name',
+      dataIndex: 'receiver_full_name',
       flex: 1,
       sortable: false
   }],
 
-  // store: 'MotionTree',
-
   initComponent: function(){
-    var store1 = Ext.create('Telasi.store.document.MotionTree');
-    store1.load({ id: this.up('document-viewer-viewer').getViewModel().data.doc.id} );
-    var jsonData = store1.data.items;
-    // Ext.apply(this,{
-    //   store: store1
-    // });
-    
-    this.callParent(arguments);
+    var me = this;
+    var doc = this.up('document-viewer-viewer').getViewModel().data.doc;
+
+    Ext.Ajax.request({
+        url: '/api/docs/documents/motions',
+        method: 'GET',
+        params: { id: doc.getId() },
+        success: function(data) {
+          var Store = me.getStore();
+          Store.loadRawData(JSON.parse(data.responseText));
+        }
+    });
+
+    this.callParent(arguments);    
   }
 });

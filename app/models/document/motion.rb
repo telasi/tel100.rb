@@ -19,9 +19,7 @@ class Document::Motion < ActiveRecord::Base
       if self.sender_user
         json.set! :sender_full_name, self.sender_user.full_name
       end
-      if self.receiver_user
-        json.set! :receiver_full_name, self.receiver_user.full_name
-      end
+      json.set! :receiver_full_name, self.receiver.ext_name
     end
   end
 
