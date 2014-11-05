@@ -5,6 +5,7 @@ Ext.define('Telasi.view.document.viewer.ViewerController', {
     'document-viewer-motiontree': {
       itemclick: function(tree, record, item, index, e, eOpts) {
         var motionDetailPanel = tree.up('document-viewer-viewer').down('#motionDetails');
+        var form = motionDetailPanel.getForm().loadRecord(record);
       }
     },
   },
