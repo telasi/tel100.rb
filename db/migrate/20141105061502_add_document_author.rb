@@ -32,9 +32,14 @@ class AddDocumentAuthor < ActiveRecord::Migration
         END IF;
       END;
     SQL
+
+    execute <<-SQL
+      create index DOCAUTHOR_BASE_IDX on DOCUMENT_AUTHOR (DOCUMENT_ID)
+    SQL
   end
 
   def down
+    execute "drop index DOCAUTHOR_BASE_IDX"
     execute "drop trigger DOCAUTHORS_BEFORE_INSERT"
     execute "drop sequence DOCAUTHORS_SEQ"
     execute "drop table DOCUMENT_AUTHOR"

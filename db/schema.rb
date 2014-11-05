@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20141105061502) do
     t.timestamp "updated_at",     limit: 6,                            null: false
   end
 
+  add_index "document_author", ["document_id"], name: "docauthor_base_idx"
+
   create_table "document_base", force: true do |t|
     t.string    "language",        limit: 2,                             default: "KA",    null: false
     t.integer   "parent_id",       limit: 10,   precision: 10, scale: 0
@@ -70,6 +72,9 @@ ActiveRecord::Schema.define(version: 20141105061502) do
     t.timestamp "created_at",       limit: 6,                                              null: false
     t.timestamp "updated_at",       limit: 6,                                              null: false
   end
+
+  add_index "document_motion", ["document_id"], name: "docmotions_base_idx"
+  add_index "document_motion", ["parent_id"], name: "docmotions_prnt_idx"
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
     t.text "body"
