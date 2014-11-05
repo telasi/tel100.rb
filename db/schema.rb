@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020063200) do
+ActiveRecord::Schema.define(version: 20141105061502) do
+
+  create_table "document_author", force: true do |t|
+    t.integer   "author_user_id", limit: 10,  precision: 10, scale: 0
+    t.integer   "author_id",      limit: 10,  precision: 10, scale: 0
+    t.string    "author_type",    limit: 50
+    t.string    "note",           limit: 500
+    t.timestamp "created_at",     limit: 6,                            null: false
+    t.timestamp "updated_at",     limit: 6,                            null: false
+  end
 
   create_table "document_base", force: true do |t|
     t.string    "language",        limit: 2,                             default: "KA",    null: false
