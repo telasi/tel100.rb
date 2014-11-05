@@ -4,6 +4,7 @@ class AddDocumentAuthor < ActiveRecord::Migration
     execute <<-SQL
       create table DOCUMENT_AUTHOR (
         ID number(12, 0) not null,
+        DOCUMENT_ID number(10, 0) not null,
         ------
         AUTHOR_USER_ID number(10, 0),
         AUTHOR_ID      number(10, 0),

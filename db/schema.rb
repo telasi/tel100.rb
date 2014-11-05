@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20141105061502) do
 
   create_table "document_author", force: true do |t|
+    t.integer   "document_id",    limit: 10,  precision: 10, scale: 0, null: false
     t.integer   "author_user_id", limit: 10,  precision: 10, scale: 0
     t.integer   "author_id",      limit: 10,  precision: 10, scale: 0
     t.string    "author_type",    limit: 50
