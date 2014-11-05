@@ -12,10 +12,5 @@ class HR::Employee < ActiveRecord::Base
   def full_name; "#{first_name} #{last_name}" end
   def active?; self.is_active == 1 end
   def employee_status; I18n.t("models.hr_employee.employee_status_id.val#{self.employee_status_id}") end
-
-  def ext_name; self.full_name end
-  def ext_id; "P#{self.id}" end
-  def ext_icon; 'user' end
-
   def self.active; HR::Employee.where(is_active: 1) end
 end
