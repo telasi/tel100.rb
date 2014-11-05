@@ -13,6 +13,7 @@ class Document::Base < ActiveRecord::Base
   personalize 'owner'
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
+  has_many :authors, class_name: 'Document::Author', foreign_key: 'document_id'
   has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
 
   validates :type, presence: { message: 'აარჩიეთ სახეობა' }
@@ -65,6 +66,7 @@ class Document::Base < ActiveRecord::Base
       due_date: nil, alarm_date: nil
     }
     motionparams = opts[:motions_attributes] || opts[:motions] || []
+    authorparams = opts[:authors_attributes] || opts[:authors] || []
     raise 'document cannot be sent with empty motions' if (status == Document::Status::SENT and motionparams.select{|x| not x[:_deleted]}.blank?)
 
     Document::Base.transaction do
@@ -74,10 +76,11 @@ class Document::Base < ActiveRecord::Base
       else
         doc = Document::Base.create!(docparams)
       end
+
+      # motions
       motionparams.each do |motion_opts|
         id = motion_opts[:id]
-        deleted = motion_opts[:_deleted]
-        if deleted
+        if motion_opts[:_deleted]
           Document::Motion.find(id).destroy
         else
           receiver_user, receiver = who_eval(:receiver, motion_opts)
@@ -98,8 +101,26 @@ class Document::Base < ActiveRecord::Base
           end
         end
       end
+
+      # authors
+      authorparams.each do |author_opts|
+        id = author_opts[:id]
+        if author_opts[:_deleted]
+          Document::Author.find(id).destroy
+        else
+          author_user, author = who_eval(:author, author_opts)
+          note = author_opts[:note]
+          params = { document: doc, author_user: author_user, author: author, note: note }
+          if id
+            Document::Author.find(id).update_attributes!(params)
+          else
+            Document::Author.create!(params)
+          end
+        end
+      end
+
       doc.body = body
-      doc.text.save! 
+      doc.text.save!
       doc.save!
       doc
     end

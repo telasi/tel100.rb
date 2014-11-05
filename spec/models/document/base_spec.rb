@@ -43,6 +43,9 @@ RSpec.describe Document::Base do
       motions: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში', due_date: date + 3.days },
         { receiver_id: "P#{nino.employee.id}", motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში', due_date: date + 5.days },
+      ],
+      authors: [
+        { author_id: shalva.employee.id, author_type: 'HR::Employee', note: 'შალვა არის ავტორი' }
       ]
     }).reload
 
@@ -64,6 +67,7 @@ RSpec.describe Document::Base do
     expect(doc.due_date).to eq(date + 5.days)
     expect(doc.alarm_date).to eq(date + 3.days)
 
+    # check motions
     expect(doc.motions.size).to eq(2)
     motion1 = doc.motions.first
     motion2 = doc.motions.last
@@ -90,5 +94,13 @@ RSpec.describe Document::Base do
 
     expect(motion1.due_date).to eq(date + 3.days)
     expect(motion2.due_date).to eq(date + 5.days)
+
+    # check authors
+    expect(doc.authors.size).to eq(1)
+    author1 = doc.authors.first
+
+    expect(author1.author).to eq(shalva.employee)
+    expect(author1.author_user).to eq(shalva)
+    expect(author1.note).to eq('შალვა არის ავტორი')
   end
 end
