@@ -33,7 +33,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       var id = motionData.id;
       var receiver_id = motionData.receiver_id;
       var receiver_type;
-      if (receiver_id.charAt(0) === 'P') {
+      if (typeof receiver_id === 'string' && receiver_id.charAt(0) === 'P') {
         receiver_id = receiver_id.substring(1);
         receiver_type = 'HR::Employee';
       } else {
