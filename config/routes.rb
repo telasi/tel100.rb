@@ -43,6 +43,7 @@ Rails.application.routes.draw do
         get 'show/:id', action: 'show'
         post '/create', action: 'create'
         get '/motions', action: 'motions'
+        get '/authors', action: 'authors'
       end
     end
   end
