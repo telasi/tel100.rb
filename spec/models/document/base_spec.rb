@@ -42,7 +42,7 @@ RSpec.describe Document::Base do
       page_count: 10, additions_count: 5,
       motions: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში', due_date: date + 3.days },
-        { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში', due_date: date + 5.days },
+        { receiver_id: "P#{nino.employee.id}", motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში', due_date: date + 5.days },
       ]
     }).reload
 

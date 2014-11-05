@@ -9,6 +9,20 @@ module Document::Who
       id = opts[ "#{whom.to_s}_id".to_sym ]
       type = opts[ "#{whom.to_s}_type".to_sym ]
 
+      if type.blank?
+        if id.is_a?(String)
+          if id[0] == 'P'
+            id = id[1..-1].to_i ; type = 'HR::Employee'
+          elsif id[0] == 'U'
+            id = id[1..-1].to_i ; type = 'Sys::User'
+          else
+            id = id.to_i ; type = 'HR::Organization'
+          end
+        else
+          type = 'HR::Organization'
+        end
+      end
+
       return [ nil, nil ] if ( id.blank? or type.blank? )
 
       who = user = nil
