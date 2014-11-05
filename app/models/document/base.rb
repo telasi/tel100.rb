@@ -50,7 +50,7 @@ class Document::Base < ActiveRecord::Base
     subject = opts[:subject] ; body = opts[:body]
     raise 'subject not defined' if subject.blank?
     type = Document::Type.find(opts[:type_id])
-    date = Date.eval(opts[:docdate])
+    date = Date.eval(opts[:docdate]) || Date.today
     numb = Document::Base.docnumber_eval(type, status, date)
     direction = opts[:direction] || 'inner'
     if direction == 'in'
