@@ -7,30 +7,22 @@ Ext.define('Telasi.view.document.authors.Editor', {
   bodyPadding: 0,
   requires: [
     // 'Telasi.view.document.authors.EditorController',
-    // 'Telasi.view.document.authors.Grid',
+    'Telasi.view.document.authors.Grid',
   ],
   border: false,
-  items: [/*{
+  items: [{
     xtype: 'document-authors-grid',
     editable: false,
-    store: {
-      fields: [
-        'receiver_id',
-        'name',
-        'motion_text',
-        { name: 'due_date', type: 'date' },
-        'icon'
-      ]
-    },
     border: false,
-  }*/, {
-    xtype: 'label',
-    text: 'authors'
+    store: {
+      fields: [ 'author_id', 'name', 'note', 'icon' ]
+    },
   }],
   tools: [{
     type: 'plus',
     tooltip: 'ავტორების დამატება',
     callback: function (editor) {
+      console.log('add authors');
       // TODO
     }
   }]

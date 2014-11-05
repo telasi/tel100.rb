@@ -20,7 +20,8 @@ Ext.define('Telasi.view.document.editor.Details', {
   }, {
     xtype: 'document-authors-editor',
     title: '<i class="fa fa-edit"></i> ავტორები',
-    autoScroll: true
+    padding: 0,
+    bodyPadding: 0
   }, {
     xtype: 'document-motions-editor',
     title: '<i class="fa fa-send-o"></i> ადრესატები',
