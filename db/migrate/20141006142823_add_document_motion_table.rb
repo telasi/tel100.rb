@@ -42,9 +42,19 @@ class AddDocumentMotionTable < ActiveRecord::Migration
         END IF;
       END;
     SQL
+
+    execute <<-SQL
+      create index DOCMOTIONS_BASE_IDX on DOCUMENT_MOTION (DOCUMENT_ID)
+    SQL
+
+    execute <<-SQL
+      create index DOCMOTIONS_PRNT_IDX on DOCUMENT_MOTION (PARENT_ID)
+    SQL
   end
 
   def down
+    execute "drop index DOCMOTIONS_PRNT_IDX"
+    execute "drop index DOCMOTIONS_BASE_IDX"
     execute "drop trigger DOCMOTION_BEFORE_INSERT"
     execute "drop sequence DOCMOTION_SEQ"
     execute "drop table DOCUMENT_MOTION"
