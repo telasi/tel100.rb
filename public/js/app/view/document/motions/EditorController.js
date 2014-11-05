@@ -2,8 +2,8 @@ Ext.define('Telasi.view.document.motions.EditorController', {
   extend : 'Ext.app.ViewController',
   alias: 'controller.motionsEditorController',
   requires: [
-    // 'Telasi.view.document.Editor',
-    'Telasi.model.document.Base'
+    'Telasi.model.document.Base',
+    'Telasi.view.document.motions.EditorDialog'
   ],
 
   onEditMotions: function(editor) {

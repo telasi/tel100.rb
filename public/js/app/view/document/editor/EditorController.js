@@ -18,8 +18,10 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     }
   },
 
-  getMotionsGrid: function() { return this.getView().down('document-motions-grid'); },
+  getMotionsGrid:  function() { return this.getView().down('document-motions-grid'); },
   getMotionsStore: function() { return this.getMotionsGrid().getStore(); },
+  getAuthorsGrid:  function() { return this.getView().down('document-authors-grid'); }
+  getAuthorsStore: function() { return this.getAuthorsGrid().getStore(); },
 
   sendDocument: function(btn, status) {
     var editor = btn.up('document-editor');
@@ -31,18 +33,9 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     for (var i = 0, l = motionsStore.data.length; i < l; i++) {
       var motionData = motionsStore.getAt(i).data;
       var id = motionData.id;
-      var receiver_id = motionData.receiver_id;
-      var receiver_type;
-      if (typeof receiver_id === 'string' && receiver_id.charAt(0) === 'P') {
-        receiver_id = receiver_id.substring(1);
-        receiver_type = 'HR::Employee';
-      } else {
-        receiver_type = 'HR::Organization';
-      }
       motions.push({
         id: typeof id === 'number' ? id : undefined,
-        receiver_id: receiver_id,
-        receiver_type: receiver_type,
+        receiver_id: motionData.receiver_id,
         motion_text: motionData.motion_text,
         due_date: motionData.due_date
       });
@@ -51,6 +44,25 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     for(var i = 0, l = motionsStore.removed.length; i < l; i++) {
       var data = motionsStore.removed[i].data;
       motions.push({ id: data.id, _deleted: true });
+    }
+
+    // authors data
+
+    var authorsStore = this.getAuthorsStore();
+    var authors = [];
+    for (var i = 0, l = authorsStore.data.length; i < l; i++) {
+      var authorData = authorsStore.getAt(i).data;
+      var id = authorData.id;
+      authors.push({
+        id: typeof id === 'number' ? id : undefined,
+        author_id: authorData.author_id,
+        note: authorData.note
+      });
+    }
+
+    for(var i = 0, l = authorsStore.removed.length; i < l; i++) {
+      var data = authorsStore.removed[i].data;
+      authors.push({ id: data.id, _deleted: true });
     }
 
     // main model
@@ -72,6 +84,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       original_date: model.get('original_date'),
     };
     doc.motions = motions;
+    doc.authors = authors;
 
     // sending data to server
 

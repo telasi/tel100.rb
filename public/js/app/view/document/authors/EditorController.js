@@ -2,7 +2,6 @@ Ext.define('Telasi.view.document.authors.EditorController', {
   extend : 'Ext.app.ViewController',
   alias: 'controller.authorsEditorController',
   requires: [
-    // 'Telasi.view.document.Editor',
     'Telasi.model.document.Base',
     'Telasi.view.document.authors.EditorDialog'
   ],
