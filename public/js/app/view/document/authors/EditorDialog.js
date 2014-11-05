@@ -1,19 +1,19 @@
-Ext.define('Telasi.view.document.motions.EditorDialog', {
+Ext.define('Telasi.view.document.authors.EditorDialog', {
   extend: 'Telasi.component.common.FitWindow',
-  xtype: 'documentEditorDialog',
+  xtype: 'authorsEditorDialog',
   closable: true,
   resizable: true,
   bodyBorder: false,
   border: false,
   modal: true,
-  title: '<i class="fa fa-send-o"></i> ადრესატების დამატება',
+  title: '<i class="fa fa-edit"></i> ავტორების დამატება',
   requires: [
     'Telasi.view.common.hr.HRtree',
-    'Telasi.view.document.motions.Grid',
-    'Telasi.view.document.motions.EditorDialogController'
+    'Telasi.view.document.authors.Grid',
+    'Telasi.view.document.authors.EditorDialogController'
   ],
   layout: 'border',
-  controller: 'motionsEditorDialogController',
+  controller: 'authorsEditorDialogController',
   items: [{
     xtype: 'HRtree',
     region: 'west',
@@ -21,7 +21,7 @@ Ext.define('Telasi.view.document.motions.EditorDialog', {
     split: true,
     selectionModel: 'SINGLE',
   }, {
-    xtype: 'document-motions-grid',
+    xtype: 'document-authors-grid',
     editable: true,
     region: 'center'
   }]

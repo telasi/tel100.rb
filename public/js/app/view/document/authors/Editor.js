@@ -1,12 +1,12 @@
 Ext.define('Telasi.view.document.authors.Editor', {
   extend: 'Ext.panel.Panel',
   xtype: 'document-authors-editor',
-  // controller: 'authorsEditorController',
+  controller: 'authorsEditorController',
   layout: 'fit',
   padding: 0,
   bodyPadding: 0,
   requires: [
-    // 'Telasi.view.document.authors.EditorController',
+    'Telasi.view.document.authors.EditorController',
     'Telasi.view.document.authors.Grid',
   ],
   border: false,
@@ -22,8 +22,7 @@ Ext.define('Telasi.view.document.authors.Editor', {
     type: 'plus',
     tooltip: 'ავტორების დამატება',
     callback: function (editor) {
-      console.log('add authors');
-      // TODO
+      editor.controller.onEditAuthors(editor);
     }
   }]
 });
