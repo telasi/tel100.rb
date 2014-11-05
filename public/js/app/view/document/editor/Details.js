@@ -6,6 +6,7 @@ Ext.define('Telasi.view.document.editor.Details', {
   requires: [
     'Telasi.view.document.motions.Editor',
     'Telasi.view.document.editor.General',
+    'Telasi.view.document.authors.Editor',
   ],
   defaults: {
     bodyPadding: 5,
@@ -15,11 +16,15 @@ Ext.define('Telasi.view.document.editor.Details', {
   items: [{
     xtype: 'document-editor-general',
     title: '<i class="fa fa-bookmark-o"></i> ძირითადი',
-    autoScroll: true,
+    autoScroll: true
+  }, {
+    xtype: 'document-authors-editor',
+    title: '<i class="fa fa-edit"></i> ავტორები',
+    autoScroll: true
   }, {
     xtype: 'document-motions-editor',
-    title: '<i class="fa fa-users"></i> ადრესატები',
+    title: '<i class="fa fa-send-o"></i> ადრესატები',
     padding: 0,
-    bodyPadding: 0,
+    bodyPadding: 0
   }]
 });
