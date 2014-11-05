@@ -5,8 +5,10 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
   requires: [
     'Telasi.view.document.viewer.Main',
     'Telasi.view.document.viewer.Detail',
-    'Telasi.view.document.viewer.DocumentViewModel',
+    'Telasi.view.document.viewer.ViewerController'
   ],
+
+  controller: 'viewerController',
 
   layout: 'border',
 

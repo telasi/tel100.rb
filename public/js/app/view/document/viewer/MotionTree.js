@@ -8,7 +8,7 @@ Ext.define('Telasi.view.document.viewer.MotionTree', {
   columns: [{
       xtype: 'treecolumn',
       text: 'Name',
-      dataIndex: 'sender_full_name',
+      dataIndex: 'receiver_full_name',
       flex: 1,
       sortable: false
   }],

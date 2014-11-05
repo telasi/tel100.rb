@@ -15,14 +15,14 @@ Ext.define('Telasi.view.document.list.GridController', {
   createViewerComponent: function(record) {
     return new Ext.create('Telasi.view.document.viewer.Viewer',{
       closable: true,
-      viewModel: {
+      viewModel: Ext.create('Ext.app.ViewModel',{
         links: {
           doc: {
             reference: 'Telasi.model.document.Base',
             id: record.id
           }
         }
-      }
+      })
     });
   },
 
