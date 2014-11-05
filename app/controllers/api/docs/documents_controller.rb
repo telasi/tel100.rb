@@ -52,6 +52,6 @@ class Api::Docs::DocumentsController < ApiController
   end
 
   def authors
-    render json: ( Document::Author.where(document_id: params[:id]).map { |x| { id: x.id, note: x.note,  name: x.author_ext_name, author_id: x.author_ext_id, icon: x.author_ext_icon } }.to_json)
+    render json: ( Document::Author.where(document_id: params[:id]).order(:id).map { |x| { id: x.id, note: x.note,  name: x.author_ext_name, author_id: x.author_ext_id, icon: x.author_ext_icon } }.to_json)
   end
 end
