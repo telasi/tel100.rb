@@ -71,7 +71,7 @@ RSpec.describe Document::Base do
     expect(doc.motions.size).to eq(2)
     motion1 = doc.motions.first
     motion2 = doc.motions.last
-    
+
     expect(motion1.sender).to eq(dimitri.employee)
     expect(motion1.sender_user).to eq(dimitri)
     expect(motion2.sender).to eq(dimitri.employee)
@@ -102,5 +102,6 @@ RSpec.describe Document::Base do
     expect(author1.author).to eq(shalva.employee)
     expect(author1.author_user).to eq(shalva)
     expect(author1.note).to eq('შალვა არის ავტორი')
+    expect(author1.signed?).to eq(false)
   end
 end
