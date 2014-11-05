@@ -4,6 +4,7 @@ Ext.define('Telasi.view.document.viewer.MotionPanel', {
 
   requires: [
      'Telasi.view.document.viewer.MotionTree',
+     'Telasi.view.document.Utils'
   ],
 
   layout: {
@@ -17,10 +18,24 @@ Ext.define('Telasi.view.document.viewer.MotionPanel', {
             flex: 1,
           },
           {
-            xtype: 'panel',
+            xtype: 'form',
             itemId: 'motionDetails',
             closable: false,
-            height: 200,
+            height: 150,
+            fieldDefaults: {
+              labelAlign: 'right',
+              labelWidth: 100,
+              msgTarget: 'side',
+            },
+
+            items: [
+              { xtype: 'displayfield', fieldLabel: 'ადრესატი',  name: 'receiver_full_name'},
+              { xtype: 'displayfield', fieldLabel: 'სტატუსი',   name: 'status', renderer: window.Telasi.documentUtils.getStatusText },
+              { xtype: 'displayfield', fieldLabel: 'რეზოლუცია', name: 'motion_text'},
+              { xtype: 'displayfield', fieldLabel: 'შედეგი',    name: 'response_text'},
+              { xtype: 'displayfield', fieldLabel: 'თარიღი',    name: 'due_date', renderer: window.Telasi.documentUtils.getDate },
+            ],
+
           }
   ],
 });

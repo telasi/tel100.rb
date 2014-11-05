@@ -16,6 +16,5 @@ Ext.define('Telasi.view.document.viewer.Header', {
     { xtype: 'displayfield', fieldLabel: 'ავტორები', bind: '{doc.author_user.full_name}'},
     { xtype: 'displayfield', fieldLabel: 'გამგზავნი', bind: '{doc.sender_user.full_name}'},
     { xtype: 'displayfield', fieldLabel: 'მფლობელი', bind: '{doc.owner_user.full_name}'},
-    { xtype: 'displayfield', fieldLabel: 'ადრესატი', bind: '{doc.fullname}'},
   ],
 });

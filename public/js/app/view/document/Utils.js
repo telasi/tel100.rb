@@ -36,9 +36,26 @@ Ext.define('Telasi.view.document.Utils', {
     return directions.getAt(0);
   },
 
-  getStatus: function(id) {
+  getStatus: function(id, metaInfo) {
     var store = Ext.data.StoreManager.lookup('document-statuses');
     return store.getById(id);
+  },
+
+  colorStatus: function(value, metaInfo){
+    var status = window.Telasi.documentUtils.getStatus(value);
+    if (status) { metaInfo.tdCls = status.get('class') };
+    return status;
+  },
+
+  getStatusText: function(id, metaInfo) {
+    window.Telasi.documentUtils.colorStatus(id, metaInfo);
+    var store = Ext.data.StoreManager.lookup('document-statuses');
+    var record = store.getById(id);
+    return record ? record.data.name : "";
+  },
+
+  getDate: function(value){
+    return Ext.Date.format(Ext.Date.parse(value,'c'), Ext.Date.defaultFormat);
   },
 
 // doc grid renderings
@@ -75,6 +92,7 @@ Ext.define('Telasi.view.document.Utils', {
     return window.Telasi.documentUtils.getTypeName(value);
 
   },
+
 }, function() {
   window.Telasi.documentUtils = new Telasi.view.document.Utils();
 });

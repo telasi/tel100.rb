@@ -14,7 +14,7 @@ class Document::Motion < ActiveRecord::Base
 
   def to_jbuilder
     Jbuilder.new do |json|
-      json.(self, :id, :parent_id, :status, :motion_text, :response_text, :sender_is_read, :receiver_is_read)
+      json.(self, :id, :parent_id, :status, :due_date, :motion_text, :response_text, :sender_is_read, :receiver_is_read)
       if self.sender_user
         json.set! :sender_full_name, self.sender_user.full_name
       end

@@ -13,7 +13,7 @@ Ext.define('Telasi.model.document.Base', {
     { name: 'additionsCount', type: 'int' },
     { name: 'direction' },
     { name: 'subject' },
-    { name: 'body', mapping: 'text.body' },
+    { name: 'body' },
     { name: 'docnumber' },
     { name: 'docdate', type: 'date' },
     { name: 'due_date', type: 'date' },
