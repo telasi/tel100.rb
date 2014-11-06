@@ -36,11 +36,16 @@ Ext.define('Telasi.view.document.motions.Grid', {
         }
       }]
     };
-    var cols = [ personCol, resolutionCol, duedateCol, actionsCol ];
+    var cols = this.shortColumns ? [ personCol, actionsCol ] : [ personCol, resolutionCol, duedateCol, actionsCol ];
     if (this.editable) {
       duedateCol.editor = { xtype: 'datefield', allowBlank: true, format: Ext.Date.defaultFormat };
       resolutionCol.editor = { allowBlank: true };
     }
+    cols = cols.map(function(col) {
+      col.sortable = false;
+      col.menuDisabled = true;
+      return col;
+    });
     this.columns = cols;
     this.callParent();
   },

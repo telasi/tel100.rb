@@ -13,6 +13,7 @@ Ext.define('Telasi.view.document.motions.Editor', {
   items: [{
     xtype: 'document-motions-grid',
     editable: false,
+    shortColumns: true,
     store: {
       fields: [ 'receiver_id', 'receiver_type', 'name', 'organization', 'motion_text', { name: 'due_date', type: 'date' }, 'image' ]
     },
