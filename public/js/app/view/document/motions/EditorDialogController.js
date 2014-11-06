@@ -13,11 +13,20 @@ Ext.define('Telasi.view.document.motions.EditorDialogController', {
         var grid = tree.up('documentEditorDialog').down('document-motions-grid');
         var store = grid.getStore();
         var data = record.getData();
-        if (store.find('receiver_id', data.key) === -1) {
+
+        var existingIdx = store.findBy(function( record, id ) {
+          return data.id === record.get('receiver_id')
+              && data.type === record.get('receiver_type');
+        });
+
+        if (existingIdx === -1) {
           store.add({
-            receiver_id: data.key,
-            icon: (data.key.charAt(0) === 'P' ? 'user' : 'bank'),
-            name: data.title,
+            receiver_id: data.id,
+            receiver_type: data.type,
+            organization: data.organization,
+            image: data.image,
+            name: data.name,
+            is_manager: data.is_manager,
             motion_text: ''
           });
         }

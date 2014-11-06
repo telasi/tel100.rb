@@ -6,42 +6,27 @@ Ext.define('Telasi.view.document.motions.Grid', {
   ],
   scroll: 'vertical',
   initComponent: function() {
-    this.columns = [{
-      width: 22,
-      resizable: true,
-      menuDisabled: true,
-      sortable: false,
-      dataIndex: 'icon',
-      renderer: function(value) {
-        return '<i class="fa fa-' + value + '"></i>'
-      },
-    }, {
+    var personCol = {
+      flex: 1,
       text: 'ადრესატი',
-      dataIndex: 'name',
+      renderer: function(value, metaData, record) {
+        return window.Telasi.hrUtils.renderStructure(record);
+      }
+    };
+    var resolutionCol = {
       flex: 1,
-      menuDisabled: true,
-      sortable: false,
-    }, {
       text: 'რეზოლუცია',
-      dataIndex: 'motion_text',
-      flex: 1,
-      menuDisabled: true,
-      sortable: false,
-      editor: this.editable ? { allowBlank: true } : undefined
-    }, {
-      text: 'ვადა',
+      dataIndex: 'motion_text'
+    };
+    var duedateCol = {
       width: 100,
+      text: 'ვადა',
       dataIndex: 'due_date',
-      xtype: 'datecolumn',
-      menuDisabled: true,
-      sortable: false,
-      editor: this.editable ? { xtype: 'datefield', allowBlank: true, format: Ext.Date.defaultFormat } : undefined
-    }, {
+      xtype: 'datecolumn'
+    };
+    var actionsCol = {
       xtype: 'actioncolumn',
       width: 30,
-      resizable: true,
-      menuDisabled: true,
-      sortable: false,
       items: [{
         icon: '/images/delete.gif',
         tooltip: 'ადრესატის წაშლა',
@@ -50,7 +35,13 @@ Ext.define('Telasi.view.document.motions.Grid', {
           grid.getStore().removeAt(rowIndex);
         }
       }]
-    }];
+    };
+    var cols = [ personCol, resolutionCol, duedateCol, actionsCol ];
+    if (this.editable) {
+      duedateCol.editor = { xtype: 'datefield', allowBlank: true, format: Ext.Date.defaultFormat };
+      resolutionCol.editor = { allowBlank: true };
+    }
+    this.columns = cols;
     this.callParent();
   },
 });
