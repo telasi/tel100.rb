@@ -11,17 +11,17 @@ class HR::Employee < ActiveRecord::Base
   belongs_to :organization, class_name: 'HR::Organization'
   has_one :user, class_name: 'Sys::User'
 
+  def self.active; HR::Employee.where(is_active: 1) end
   def to_s; "#{self.person_number} - #{self.full_name}" end
   def person_number; self.person_id.to_s.rjust(5, '0') end
   def full_name; "#{first_name} #{last_name}" end
   def active?; self.is_active == 1 end
   def employee_status; I18n.t("models.hr_employee.employee_status_id.val#{self.employee_status_id}") end
-  def self.active; HR::Employee.where(is_active: 1) end
 
   def icon
-    case self.genger
-    when MALE then 'fa-male'
-    when FEMALE then 'fa-female'
-    else 'fa-user' end
+    case self.gender
+    when MALE then 'male'
+    when FEMALE then 'female'
+    else 'user' end
   end
 end
