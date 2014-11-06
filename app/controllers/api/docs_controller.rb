@@ -37,23 +37,30 @@ class Api::DocsController < ApiController
 
   def motions
     if params[:flat]
-      render json: Document::Motion.where(document_id: params[:id]).map do |x|
-        {
+      render json: (Document::Motion.where(document_id: params[:id]).order(:id).map do |x|
+        resp = {
           id: x.id, receiver_id: x.receiver.id, receiver_type: x.receiver.class.name,
           motion_text: x.motion_text, due_date: x.due_date,
           name: x.receiver_ext_name, image: x.receiver_ext_icon
         }
-      end
+        if x.receiver.is_a?(HR::Employee)
+          resp[:is_manager] = x.receiver.organization.is_manager
+          resp[:organization] = x.receiver.organization.name
+        end
+        resp
+      end)
     else
       render json: array_to_tree(Document::Motion.where(document_id: params[:id]).as_json)
     end
   end
 
   def authors
-    render json: Document::Author.where(document_id: params[:id]).order(:id).map do |x|
+    render json: (Document::Author.where(document_id: params[:id]).order(:id).map do |x|
       {
         id: x.id, author_id: x.author.id, author_type: x.author.class.name,
-        note: x.note, name: x.author_ext_name, icon: x.author_ext_icon }
-    end
+        name: x.author_ext_name, image: x.author_ext_icon,
+        note: x.note, sign_status: x.sign_status
+      }
+    end)
   end
 end
