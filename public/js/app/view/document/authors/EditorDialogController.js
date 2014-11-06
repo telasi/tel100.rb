@@ -13,11 +13,20 @@ Ext.define('Telasi.view.document.authors.EditorDialogController', {
         var grid = tree.up('authorsEditorDialog').down('document-authors-grid');
         var store = grid.getStore();
         var data = record.getData();
-        if (store.find('author_id', data.key) === -1) {
+
+        var existingIdx = store.findBy(function( record, id ) {
+          return data.id === record.get('author_id')
+              && data.type === record.get('author_type');
+        });
+
+        if (existingIdx === -1) {
           store.add({
-            author_id: data.key,
-            icon: (data.key.charAt(0) === 'P' ? 'user' : 'bank'),
-            name: data.title,
+            author_id: data.id,
+            author_type: data.type,
+            organization: data.organization,
+            is_manager: data.is_manager,
+            image: data.image,
+            name: data.name,
             note: ''
           });
         }

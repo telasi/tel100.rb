@@ -56,11 +56,16 @@ class Api::DocsController < ApiController
 
   def authors
     render json: (Document::Author.where(document_id: params[:id]).order(:id).map do |x|
-      {
+      resp = {
         id: x.id, author_id: x.author.id, author_type: x.author.class.name,
         name: x.author_ext_name, image: x.author_ext_icon,
         note: x.note, sign_status: x.sign_status
       }
+      if x.author.is_a?(HR::Employee)
+        resp[:is_manager] = x.author.organization.is_manager
+        resp[:organization] = x.author.organization.name
+      end
+      resp
     end)
   end
 end

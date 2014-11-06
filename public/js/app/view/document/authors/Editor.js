@@ -15,7 +15,7 @@ Ext.define('Telasi.view.document.authors.Editor', {
     editable: false,
     border: false,
     store: {
-      fields: [ 'author_id', 'name', 'note', 'icon' ]
+      fields: [ 'author_id', 'author_type', 'name', 'organization', 'note', 'image' ]
     },
   }],
   tools: [{

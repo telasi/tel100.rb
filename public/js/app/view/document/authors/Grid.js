@@ -6,27 +6,16 @@ Ext.define('Telasi.view.document.authors.Grid', {
   ],
   scroll: 'vertical',
   initComponent: function() {
-    this.columns = [{
-      width: 22,
-      resizable: true,
-      menuDisabled: true,
-      sortable: false,
-      dataIndex: 'icon',
-      renderer: function(value) { return '<i class="fa fa-' + value + '"></i>' },
-    }, {
+    var authorCol = {
       text: 'ავტორი',
-      dataIndex: 'name',
       flex: 1,
       menuDisabled: true,
       sortable: false,
-    }, {
-      text: 'შენიშვნა',
-      dataIndex: 'note',
-      flex: 1,
-      menuDisabled: true,
-      sortable: false,
-      editor: this.editable ? { allowBlank: true } : undefined
-    }, {
+      renderer: function(value, metaData, record) {
+        return window.Telasi.hrUtils.renderStructure(record);
+      }
+    };
+    var actionsCol = {
       xtype: 'actioncolumn',
       width: 30,
       resizable: true,
@@ -40,7 +29,9 @@ Ext.define('Telasi.view.document.authors.Grid', {
           grid.getStore().removeAt(rowIndex);
         }
       }]
-    }];
+    };
+    var cols = [ authorCol, actionsCol ];
+    this.columns = cols;
     this.callParent();
   },
 });
