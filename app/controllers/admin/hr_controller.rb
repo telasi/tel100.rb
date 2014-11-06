@@ -20,40 +20,15 @@ class Admin::HrController < AdminController
   end
 
   def structure
-    @structure = HR::Organization.where(is_active: 1).order(saporg_type: :desc).order(is_manager: :desc).order(priority: :asc)
-    @employees = HR::Employee.where(is_active: 1)
-
-    structureArray = @structure.as_json(except: [:created_at, :updated_at])
-    # employeeArray  = @employees.as_json(only: [ "first_name_#{I18n.locale}", "last_name_#{I18n.locale}", :id, :organization_id, :is_manager])
-    employee_hash = employees.index_by{|node| node["organization_id"]}
-
-    structureArray.each do |item|
-      item.store('key', "#{item['id']}")
-      item.store('title', item.delete("name_#{I18n.locale}") )
-      item.store('icon', "images/tree/HRtreeicon#{item['saporg_type']}#{'M' if item['is_manager']}.png")
-      item.store('type', 'O')
-
-      employee = employee_hash[item['id']]
-      if employee 
-        item.store('key', "P#{employee[:id]}")
-        item.store('title', employee["first_name_#{I18n.locale}"] + " " + employee["last_name_#{I18n.locale}"] + " (" + item['title'] + ")")
-        item.store('icon', "images/tree/HRtreeiconP.png")
-        item.store('type', 'P')
+    employees = HR::Employee.active.index_by{ |node| node['organization_id'] }
+    structureArray = HR::Organization.active.order(saporg_type: :desc).order(is_manager: :desc, priority: :asc).map do |org|
+      if org.saporg_type == 'S'
+        empl = employees[org.id]
+        { id: org.id, type: 'HR::Employee', parent_id: org.parent_id, title: empl.full_name, icon: empl.icon, organization: org.name } if empl
+      else
+        { id: org.id, type: 'HR::Organization', parent_id: org.parent_id, title: org.name, icon: org.icon }
       end
-    end
-
-    # employeeArray.each do |item|
-    #   item.store('key', "P#{item.delete('id')}")
-    #   item.store('id', item['key'])
-    #   # item.store('parent_id', item.delete('organization_id'))
-    #   item.store('title', item.delete("first_name_#{I18n.locale}") + " " + item.delete("last_name_#{I18n.locale}"))
-    #   item.store('icon', "images/tree/HRtreeiconP.png")
-    #   item.store('leaf', true)
-    # end
-
-    # structureArray = structureArray + employeeArray
-    @structureData = array_to_tree(structureArray)
-    render :json => @structureData
+    end.select{ |x| x.present? }
+    render json: array_to_tree(structureArray)
   end
-
 end
