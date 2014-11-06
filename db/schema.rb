@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20141105061502) do
     t.string    "last_name_ka",       limit: 50,                                          null: false
     t.string    "last_name_ru",       limit: 50
     t.string    "last_name_en",       limit: 50
+    t.string    "gender",             limit: 1,                           default: "N",   null: false
     t.integer   "organization_id",    limit: 10, precision: 10, scale: 0,                 null: false
     t.boolean   "employee_status_id",            precision: 1,  scale: 0, default: false, null: false
     t.timestamp "created_at",         limit: 6,                                           null: false
