@@ -7,7 +7,7 @@ Ext.define('Telasi.store.hr.HRData', {
       type: 'json',
       typeProperty: 'mtype'
     },
-    url: '/admin/hr/structure'
+    url: '/api/hr/structure'
   },
 
   lazyFill: false

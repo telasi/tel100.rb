@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     scope 'user', controller: 'user' do
       post '/login', action: 'login'
     end
+    scope '/hr', controller: 'hr' do
+      get '/structure', action: 'structure'
+    end
     namespace 'docs' do
       scope 'types', controller: 'types' do
         get '/', action: 'index'
