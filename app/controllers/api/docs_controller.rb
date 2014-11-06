@@ -39,10 +39,9 @@ class Api::DocsController < ApiController
     if params[:flat]
       render json: Document::Motion.where(document_id: params[:id]).map do |x|
         {
-          id: x.id, name: x.receiver_ext_name,
-          receiver_id: x.receiver.id, receiver_type: x.receiver.class.name,
+          id: x.id, receiver_id: x.receiver.id, receiver_type: x.receiver.class.name,
           motion_text: x.motion_text, due_date: x.due_date,
-          image: x.receiver_ext_icon
+          name: x.receiver_ext_name, image: x.receiver_ext_icon
         }
       end
     else
@@ -51,6 +50,10 @@ class Api::DocsController < ApiController
   end
 
   def authors
-    render json: ( Document::Author.where(document_id: params[:id]).order(:id).map { |x| { id: x.id, note: x.note,  name: x.author_ext_name, author_id: x.author_ext_id, icon: x.author_ext_icon } }.to_json )
+    render json: Document::Author.where(document_id: params[:id]).order(:id).map do |x|
+      {
+        id: x.id, author_id: x.author.id, author_type: x.author.class.name,
+        note: x.note, name: x.author_ext_name, icon: x.author_ext_icon }
+    end
   end
 end

@@ -21,18 +21,6 @@ module Document::Personalize
         end
       end
 
-      self.send(:define_method, "#{field}_ext_id") do
-        obj = self.send("#{field}".to_sym)
-        if obj.present?
-          if obj.is_a?(HR::Employee) then "P#{obj.id}"
-          elsif obj.is_a?(HR::Organization) then obj.id
-          else obj.to_s end
-        else
-          user = self.send("#{field}_user".to_sym)
-          "U#{user.id}" if user
-        end
-      end
-
       self.send(:define_method, "#{field}_ext_icon") do
         obj = self.send("#{field}".to_sym)
         if obj.present?
