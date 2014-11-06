@@ -20,9 +20,6 @@ class AddDocumentBaseTable < ActiveRecord::Migration
         ALARM_DATE  date,
         STATUS      varchar2(20 CHAR) default 'open' not null,
         -----
-        AUTHOR_USER_ID number(10,0),
-        AUTHOR_ID      number(10,0),
-        AUTHOR_TYPE    varchar2(50 CHAR),
         SENDER_USER_ID number(10,0),
         SENDER_ID      number(10,0),
         SENDER_TYPE    varchar2(50 CHAR),

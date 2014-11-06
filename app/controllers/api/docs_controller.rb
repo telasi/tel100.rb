@@ -20,14 +20,12 @@ class Api::DocsController < ApiController
       documents = documents.where("dueDate <= ?", Date.strptime(filter['to_dueDate']['value'])) if filter['to_dueDate'].present?
     end
 
-    render json: documents.all.to_json( :include => [
-      { author_user: { only: [:first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru, :first_name_en, :last_name_en] } },
-      { sender_user: { only: [:first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru, :first_name_en, :last_name_en] } },
-      :text
-    ])
+    render json: documents.all.to_json({
+      include: [ { sender_user: { only: [:first_name, :last_name ] } } ], # XXX
+      methods: :body
+    })
   end
 
-  def types; render json: { success: true, types: Document::Type.order('order_by ASC') } end
   def show; @document = Document::Base.where(id: params[:id]).first end
 
   def create
@@ -67,5 +65,9 @@ class Api::DocsController < ApiController
       end
       resp
     end)
+  end
+
+  def types
+    render json: { success: true, types: Document::Type.order('order_by ASC') }
   end
 end

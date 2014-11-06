@@ -8,7 +8,6 @@ class Document::Base < ActiveRecord::Base
   self.sequence_name = 'docbase_seq'
 
   belongs_to :parent, class_name: 'Document::Base', foreign_key: 'parent_id'
-  personalize 'author' # XXX
   personalize 'sender'
   personalize 'owner'
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
@@ -42,7 +41,6 @@ class Document::Base < ActiveRecord::Base
     sender = whose_user(sender_user)
     status = status_eval(opts)
     raise 'not supported status' unless Document::Status::OPEN_STATUSES.include?(status)
-    author_user, author = who_eval(:author, opts)
     owner_user, owner = who_eval(:owner, opts)
     ( owner_user = sender_user ; owner = sender ) if owner_user.blank?
 
@@ -59,8 +57,7 @@ class Document::Base < ActiveRecord::Base
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0
 
     docparams = { type: type, direction: direction, docnumber: numb, docdate: date, docyear: date.year,
-      subject: subject, status: status, author_user: author_user, author: author,
-      sender_user: sender_user, sender: sender, owner_user: owner_user, owner: owner,
+      subject: subject, status: status, sender_user: sender_user, sender: sender, owner_user: owner_user, owner: owner,
       page_count: page_count, additions_count: additions_count,
       original_number: original_number, original_date: original_date,
       due_date: nil, alarm_date: nil

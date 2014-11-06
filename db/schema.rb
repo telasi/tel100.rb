@@ -42,9 +42,6 @@ ActiveRecord::Schema.define(version: 20141105061502) do
     t.datetime  "due_date"
     t.datetime  "alarm_date"
     t.string    "status",          limit: 20,                            default: "open",  null: false
-    t.integer   "author_user_id",  limit: 10,   precision: 10, scale: 0
-    t.integer   "author_id",       limit: 10,   precision: 10, scale: 0
-    t.string    "author_type",     limit: 50
     t.integer   "sender_user_id",  limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",       limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",     limit: 50
@@ -101,7 +98,7 @@ ActiveRecord::Schema.define(version: 20141105061502) do
     t.string    "last_name_ru",       limit: 50
     t.string    "last_name_en",       limit: 50
     t.string    "gender",             limit: 1,                           default: "N",   null: false
-    t.integer   "organization_id",    limit: 10, precision: 10, scale: 0,                 null: false
+    t.integer   "organization_id",    limit: 10, precision: 10, scale: 0
     t.boolean   "employee_status_id",            precision: 1,  scale: 0, default: false, null: false
     t.timestamp "created_at",         limit: 6,                                           null: false
     t.timestamp "updated_at",         limit: 6,                                           null: false

@@ -58,8 +58,6 @@ RSpec.describe Document::Base do
     expect(doc.sender).to eq(dimitri.employee)
     expect(doc.owner_user).to eq(dimitri)
     expect(doc.owner).to eq(dimitri.employee)
-    expect(doc.author_user).to be_blank
-    expect(doc.author).to be_blank
     expect(doc.type.id).to eq(1)
     expect(doc.type.name).to eq('წერილი')
     expect(doc.page_count).to eq(10)
