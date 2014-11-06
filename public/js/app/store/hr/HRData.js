@@ -1,27 +1,16 @@
 Ext.define('Telasi.store.hr.HRData', {
-    extend: 'Ext.data.TreeStore',
+  extend: 'Ext.data.TreeStore',
 
-    // requires: [
-    //     'Telasi.model.hr.Organization',
-    //     'Telasi.model.hr.Employee'
-    // ],
-
-    // autoLoad: false,
-
-    // model: 'Telasi.model.tree.Organization',
-
-    proxy: {
-        type: 'ajax',
-        reader: {
-            type: 'json',
-            typeProperty: 'mtype'
-        },
-        url: '/admin/hr/structure'
+  proxy: {
+    type: 'ajax',
+    reader: {
+      type: 'json',
+      typeProperty: 'mtype'
     },
+    url: '/admin/hr/structure'
+  },
 
-    lazyFill: false
-});
-
-Ext.create('Telasi.store.hr.HRData', {
-    storeId: 'HRData'
+  lazyFill: false
+}, function() {
+  Ext.create('Telasi.store.hr.HRData', { storeId: 'HRData' });
 });

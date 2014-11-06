@@ -24,9 +24,9 @@ class Admin::HrController < AdminController
     structureArray = HR::Organization.active.order(saporg_type: :desc).order(is_manager: :desc, priority: :asc).map do |org|
       if org.saporg_type == 'S'
         empl = employees[org.id]
-        { id: org.id, type: 'HR::Employee', parent_id: org.parent_id, title: empl.full_name, icon: empl.icon, organization: org.name } if empl
+        { id: org.id, type: 'HR::Employee', parent_id: org.parent_id, name: empl.full_name, image: empl.icon, organization: org.name, is_manager: org.is_manager } if empl
       else
-        { id: org.id, type: 'HR::Organization', parent_id: org.parent_id, title: org.name, icon: org.icon }
+        { id: org.id, type: 'HR::Organization', parent_id: org.parent_id, name: org.name, image: org.icon }
       end
     end.select{ |x| x.present? }
     render json: array_to_tree(structureArray)
