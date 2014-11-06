@@ -30,14 +30,13 @@ Ext.define('Telasi.model.document.Base', {
   ],
 
   proxy: {
-        type: 'rest',
-        reader: {
-            type: 'json',
-            typeProperty: 'mtype'
-        },
-        url: 'api/docs/documents/show/'
+    type: 'rest',
+    reader: {
+      type: 'json',
+      typeProperty: 'mtype'
+    },
+    url: '/api/docs/show/'
   },
 
   idProperty: 'id'
-
 });

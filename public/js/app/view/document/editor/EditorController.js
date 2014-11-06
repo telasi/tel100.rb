@@ -7,7 +7,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     var self = this;
     if ( typeof doc.getId() === 'number' ) {
       Ext.Ajax.request({
-        url: '/api/docs/documents/motions',
+        url: '/api/docs/motions',
         method: 'GET',
         params: { flat: 'true', id: doc.getId() },
         success: function(data) {
@@ -16,7 +16,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         }
       });
       Ext.Ajax.request({
-        url: '/api/docs/documents/authors',
+        url: '/api/docs/authors',
         method: 'GET',
         params: { id: doc.getId() },
         success: function(data) {
@@ -99,7 +99,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     // sending data to server
 
     Ext.Ajax.request({
-      url: '/api/docs/documents/create',
+      url: '/api/docs/create',
       method: 'POST',
       jsonData: doc,
       success: function(response, opts) {

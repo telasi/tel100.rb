@@ -37,17 +37,13 @@ Rails.application.routes.draw do
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
     end
-    namespace 'docs' do
-      scope 'types', controller: 'types' do
-        get '/', action: 'index'
-      end
-      scope 'documents', controller: 'documents' do
-        get '/', action: 'index'
-        get 'show/:id', action: 'show'
-        post '/create', action: 'create'
-        get '/motions', action: 'motions'
-        get '/authors', action: 'authors'
-      end
+    scope 'docs', controller: 'docs' do
+      get '/', action: 'index'
+      get '/types', action: 'types'
+      get '/show/:id', action: 'show'
+      get '/motions', action: 'motions'
+      get '/authors', action: 'authors'
+      post '/create', action: 'create'
     end
   end
 

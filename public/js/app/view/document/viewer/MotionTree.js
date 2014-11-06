@@ -18,7 +18,7 @@ Ext.define('Telasi.view.document.viewer.MotionTree', {
     var doc = this.up('document-viewer-viewer').getViewModel().data.doc;
 
     Ext.Ajax.request({
-        url: '/api/docs/documents/motions',
+        url: '/api/docs/motions',
         method: 'GET',
         params: { id: doc.getId() },
         success: function(data) {

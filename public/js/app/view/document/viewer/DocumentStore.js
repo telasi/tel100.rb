@@ -9,6 +9,6 @@ Ext.define('Telasi.view.document.viewer.DocumentStore', {
         type: 'json',
         typeProperty: 'mtype'
     },
-    url: 'api/docs/documents/show/'
+    url: '/api/docs/show/'
   },
 });

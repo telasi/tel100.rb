@@ -13,7 +13,7 @@ Ext.define('Telasi.view.document.list.ViewModel', {
           type: 'json',
           typeProperty: 'mtype'
         },
-        url: '/api/docs/documents'
+        url: '/api/docs'
       },
       autoLoad: true,
     }

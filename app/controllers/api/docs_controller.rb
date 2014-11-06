@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
-class Api::Docs::DocumentsController < ApiController
+class Api::DocsController < ApiController
   include TreeUtils
-  before_filter :validate_login
+  before_filter :validate_login, except: 'types'
 
   def index
     documents = Document::Base.order('docnumber DESC')
@@ -20,29 +20,31 @@ class Api::Docs::DocumentsController < ApiController
       documents = documents.where("dueDate <= ?", Date.strptime(filter['to_dueDate']['value'])) if filter['to_dueDate'].present?
     end
 
-		render json: documents.all.to_json(:include => [{ :author_user => { :only => [:first_name_ka, :last_name_ka,
-																						  :first_name_ru, :last_name_ru,
-																						  :first_name_en, :last_name_en
-																			  ]}},
-															 { :sender_user => { :only => [:first_name_ka, :last_name_ka,
-																						  :first_name_ru, :last_name_ru,
-																						  :first_name_en, :last_name_en
-																			  ]}},
-														:text])
-	end
+    render json: documents.all.to_json( :include => [
+      { author_user: { only: [:first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru, :first_name_en, :last_name_en] } },
+      { sender_user: { only: [:first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru, :first_name_en, :last_name_en] } },
+      :text
+    ])
+  end
+
+  def types; render json: { success: true, types: Document::Type.order('order_by ASC') } end
+  def show; @document = Document::Base.where(id: params[:id]).first end
 
   def create
     doc = Document::Base.sending_document(current_user, params)
     render json: { success: true, document: { id: doc.id } }
   end
 
-	def show
-		@document = Document::Base.where(id: params[:id]).first
-	end
-
   def motions
     if params[:flat]
-      render json: ( Document::Motion.where(document_id: params[:id]).map { |x| { id: x.id, motion_text: x.motion_text, due_date: x.due_date, name: x.receiver_ext_name, receiver_id: x.receiver_ext_id, icon: x.receiver_ext_icon } }.to_json )
+      render json: Document::Motion.where(document_id: params[:id]).map do |x|
+        {
+          id: x.id, name: x.receiver_ext_name,
+          receiver_id: x.receiver.id, receiver_type: x.receiver.class.name,
+          motion_text: x.motion_text, due_date: x.due_date,
+          image: x.receiver_ext_icon
+        }
+      end
     else
       render json: array_to_tree(Document::Motion.where(document_id: params[:id]).as_json)
     end
