@@ -7,7 +7,7 @@ Ext.define('Telasi.view.common.hr.HRtree', {
   hideHeaders: true,
   loadMask: true,
   bodyCls: 'x-tree-noicon',
-  requires: [ 'Telasi.store.hr.HRData', ],
+  requires: [ 'Telasi.store.hr.HRData', 'Telasi.view.hr.Utils' ],
   store: 'HRData',
 
   columns: [ {
@@ -17,18 +17,7 @@ Ext.define('Telasi.view.common.hr.HRtree', {
     flex: 1,
     sortable: false,
     renderer: function(value, metaInfo) {
-      var record = metaInfo.record;
-      var manager = record.get('is_manager');
-      var name = record.get('name');
-      var org = record.get('organization');
-      var text = '<i class="fa fa-' + record.get('image') + '"></i>';
-      text += ' ' + name;
-      if (org) { text += ' <span class="text-muted">' + org + '</span>'; }
-      if (manager === 1) {
-        return '<strong class="text-info">' + text + '</strong>';
-      } else {
-        return text;
-      }
+      return window.Telasi.hrUtils.renderStructure( metaInfo.record );
     },
   }],
 
