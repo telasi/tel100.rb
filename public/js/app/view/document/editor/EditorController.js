@@ -45,6 +45,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       motions.push({
         id: typeof id === 'number' ? id : undefined,
         receiver_id: motionData.receiver_id,
+        receiver_type: motionData.receiver_type,
         motion_text: motionData.motion_text,
         due_date: motionData.due_date
       });
@@ -65,7 +66,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       authors.push({
         id: typeof id === 'number' ? id : undefined,
         author_id: authorData.author_id,
-        note: authorData.note
+        author_type: authorData.author_type
       });
     }
 
