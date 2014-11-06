@@ -36,9 +36,7 @@ module Document::Personalize
       self.send(:define_method, "#{field}_ext_icon") do
         obj = self.send("#{field}".to_sym)
         if obj.present?
-          if obj.is_a?(HR::Employee) then obj.icon
-          elsif obj.is_a?(HR::Organization) then 'bank'
-          else obj.to_s end
+          obj.icon if obj.respond_to?(:icon)
         else
           user = self.send("#{field}_user".to_sym)
           'user' if user
