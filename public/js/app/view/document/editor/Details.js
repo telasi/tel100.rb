@@ -22,9 +22,7 @@ Ext.define('Telasi.view.document.editor.Details', {
     // title: '<i class="fa fa-edit"></i> ავტორები',
     padding: 0,
     bodyPadding: 0,
-    bind: {
-      title: '<i class="fa fa-edit"></i> ავტორები {store.length}'
-    }
+    title: '<i class="fa fa-edit"></i> ავტორები'
   }, {
     xtype: 'document-motions-editor',
     title: '<i class="fa fa-send-o"></i> ადრესატები',

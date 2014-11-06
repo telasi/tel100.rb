@@ -14,7 +14,7 @@ class CreateEmployeesTable < ActiveRecord::Migration
         LAST_NAME_RU  varchar2(50 CHAR),
         LAST_NAME_EN  varchar2(50 CHAR),
         GENDER        char(1 CHAR) default 'N' not null,
-        ORGANIZATION_ID    number(10, 0) not null,
+        ORGANIZATION_ID    number(10, 0),
         EMPLOYEE_STATUS_ID number( 1, 0) default 3 not null,
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
