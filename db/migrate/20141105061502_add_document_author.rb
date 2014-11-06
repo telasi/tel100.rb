@@ -5,12 +5,12 @@ class AddDocumentAuthor < ActiveRecord::Migration
       create table DOCUMENT_AUTHOR (
         ID number(12, 0) not null,
         DOCUMENT_ID number(10, 0) not null,
-        IS_SIGNED   number(1, 0)  default 0 not null,
         ------
         AUTHOR_USER_ID number(10, 0),
         AUTHOR_ID      number(10, 0),
         AUTHOR_TYPE    varchar2(50 CHAR),
         NOTE           varchar2(500 CHAR),
+        SIGN_STATUS varchar(10)   default 'none' not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,

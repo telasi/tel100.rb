@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(version: 20141105061502) do
 
   create_table "document_author", force: true do |t|
-    t.integer   "document_id",    limit: 10,  precision: 10, scale: 0,                 null: false
-    t.boolean   "is_signed",                  precision: 1,  scale: 0, default: false, null: false
+    t.integer   "document_id",    limit: 10,  precision: 10, scale: 0,                  null: false
     t.integer   "author_user_id", limit: 10,  precision: 10, scale: 0
     t.integer   "author_id",      limit: 10,  precision: 10, scale: 0
     t.string    "author_type",    limit: 50
     t.string    "note",           limit: 500
-    t.timestamp "created_at",     limit: 6,                                            null: false
-    t.timestamp "updated_at",     limit: 6,                                            null: false
+    t.string    "sign_status",    limit: 10,                           default: "none", null: false
+    t.timestamp "created_at",     limit: 6,                                             null: false
+    t.timestamp "updated_at",     limit: 6,                                             null: false
   end
 
   add_index "document_author", ["document_id"], name: "docauthor_base_idx"
