@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 class HR::Employee < ActiveRecord::Base
+  MALE = 'M'
+  FEMALE = 'F'
+  NOT_SPECIFIED = 'N'
+
   self.table_name  = 'hr_employees'
   self.sequence_name = 'hr_employees_seq'
   self.localized_fields('first_name', 'last_name')
@@ -13,4 +17,11 @@ class HR::Employee < ActiveRecord::Base
   def active?; self.is_active == 1 end
   def employee_status; I18n.t("models.hr_employee.employee_status_id.val#{self.employee_status_id}") end
   def self.active; HR::Employee.where(is_active: 1) end
+
+  def icon
+    case self.genger
+    when MALE then 'fa-male'
+    when FEMALE then 'fa-female'
+    else 'fa-user' end
+  end
 end
