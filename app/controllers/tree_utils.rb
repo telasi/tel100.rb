@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-module Utils
+module TreeUtils
   def array_to_tree(array)
     object_hash = array.index_by{ |node| node[:id] }
     object_hash[nil] = { root: true }

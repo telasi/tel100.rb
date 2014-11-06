@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Admin::HrController < AdminController
-  include Utils
+  include TreeUtils
 
   def employees
     @title = 'თანამშრომლები'

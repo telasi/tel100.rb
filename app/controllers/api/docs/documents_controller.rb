@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Api::Docs::DocumentsController < ApiController
   before_filter :validate_login
-  include Utils
+  include TreeUtils
 
   def index
     documents = Document::Base.order('docnumber DESC')
