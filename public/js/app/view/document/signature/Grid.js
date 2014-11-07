@@ -10,8 +10,8 @@ Ext.define('Telasi.view.document.signature.Grid', {
   },
   initComponent: function() {
     var groupCol = {
-      width: 50,
-      text: '#',
+      width: 100,
+      text: 'მიმდევრობა',
       dataIndex: 'sign_group'
     };
     var personCol = {
@@ -43,7 +43,10 @@ Ext.define('Telasi.view.document.signature.Grid', {
         }
       }]
     };
-    var cols = [ groupCol, personCol, actionsCol ] ;
+    if (this.editable) {
+      groupCol.editor = { xtype: 'numberfield', allowBlank: false, minValue: 1, maxValue: 99 };
+    }
+    var cols = [ personCol, groupCol, actionsCol ] ;
     cols = cols.map(function(col) {
       col.sortable = false;
       col.menuDisabled = true;
@@ -51,25 +54,5 @@ Ext.define('Telasi.view.document.signature.Grid', {
     });
     this.columns = cols;
     this.callParent();
-  },
-  /*dockedItems: [{
-    xtype: 'toolbar',
-    dock: 'top',
-    border: false,
-    items: [{
-      xtype: 'button',
-      formBind: true,
-      bind: {
-        text: '<i class="fa fa-bars"></i> დაჯგუფება'
-      },
-      handler: 'onGroup'
-    }, {
-      xtype: 'button',
-      formBind: true,
-      bind: {
-        text: '<i class="fa fa-remove"></i> ჯგუფის დაშლა'
-      },
-      handler: 'onUngroup'
-    }]
-  }]*/
+  }
 });
