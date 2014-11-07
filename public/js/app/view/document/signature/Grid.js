@@ -5,7 +5,15 @@ Ext.define('Telasi.view.document.signature.Grid', {
     new Ext.grid.plugin.CellEditing({ clicksToEdit: 1 }),
   ],
   scroll: 'vertical',
+  selModel: {
+    mode: 'MULTI'
+  },
   initComponent: function() {
+    var groupCol = {
+      width: 50,
+      text: '#',
+      dataIndex: 'sign_group'
+    };
     var personCol = {
       flex: 1,
       text: 'ვიზატორი',
@@ -21,11 +29,16 @@ Ext.define('Telasi.view.document.signature.Grid', {
         tooltip: 'ვიზატორის წაშლა',
         scope: this,
         handler: function(grid, rowIndex) {
-          grid.getStore().removeAt(rowIndex);
+          var store = grid.getStore();
+          // for(var i = rowIndex, l = store.data.length; i < l; i++) {
+          //   var record = store.getAt(i);
+          //   record.set('sign_group', record.get('sign_group') - 1);
+          // }
+          store.removeAt(rowIndex);
         }
       }]
     };
-    var cols = [ personCol, actionsCol ] ;
+    var cols = [ groupCol, personCol, actionsCol ] ;
     cols = cols.map(function(col) {
       col.sortable = false;
       col.menuDisabled = true;

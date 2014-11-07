@@ -20,13 +20,18 @@ Ext.define('Telasi.view.document.signature.EditorDialogController', {
         });
 
         if (existingIdx === -1) {
+          var lastIndex = 0;
+          if (store.data.length > 0) {
+            lastIndex = store.getAt(store.data.length - 1).get('sign_group');
+          }
           store.add({
             signature_id: data.id,
             signature_type: data.type,
             organization: data.organization,
             image: data.image,
             name: data.name,
-            is_manager: data.is_manager
+            is_manager: data.is_manager,
+            sign_group: lastIndex + 1
           });
         }
       }
