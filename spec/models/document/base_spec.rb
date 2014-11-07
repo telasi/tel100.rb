@@ -100,6 +100,6 @@ RSpec.describe Document::Base do
     expect(author1.author).to eq(shalva.employee)
     expect(author1.author_user).to eq(shalva)
     expect(author1.note).to eq('შალვა არის ავტორი')
-    expect(author1.sign_status).to eq(Document::Signature::NO_SIGNATURE)
+    expect(author1.sign_status).to eq(Document::Sign::NO_SIGNATURE)
   end
 end

@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-module Document::Signature
+module Document::Sign
   NO_SIGNATURE = 'none'
   SIGNED = 'signed'
   REJECTED = 'rejected'
