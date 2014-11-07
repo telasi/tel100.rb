@@ -30,10 +30,15 @@ Ext.define('Telasi.view.document.signature.Grid', {
         scope: this,
         handler: function(grid, rowIndex) {
           var store = grid.getStore();
-          // for(var i = rowIndex, l = store.data.length; i < l; i++) {
-          //   var record = store.getAt(i);
-          //   record.set('sign_group', record.get('sign_group') - 1);
-          // }
+          var curr = store.getAt(rowIndex);
+          var curr_group = curr.get('sign_group');
+          for(var i = 0, l = store.data.length; i < l; i++) {
+            var record = store.getAt(i);
+            var sign_group = record.get('sign_group');
+            if (sign_group > curr_group) {
+              record.set('sign_group', sign_group - 1);
+            }
+          }
           store.removeAt(rowIndex);
         }
       }]
@@ -47,4 +52,24 @@ Ext.define('Telasi.view.document.signature.Grid', {
     this.columns = cols;
     this.callParent();
   },
+  /*dockedItems: [{
+    xtype: 'toolbar',
+    dock: 'top',
+    border: false,
+    items: [{
+      xtype: 'button',
+      formBind: true,
+      bind: {
+        text: '<i class="fa fa-bars"></i> დაჯგუფება'
+      },
+      handler: 'onGroup'
+    }, {
+      xtype: 'button',
+      formBind: true,
+      bind: {
+        text: '<i class="fa fa-remove"></i> ჯგუფის დაშლა'
+      },
+      handler: 'onUngroup'
+    }]
+  }]*/
 });

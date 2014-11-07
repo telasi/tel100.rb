@@ -15,7 +15,7 @@ Ext.define('Telasi.view.document.signature.Editor', {
     editable: false,
     shortColumns: true,
     store: {
-      fields: [ 'signature_id', 'signature_type', 'name', 'organization', 'image', 'sign_group' ]
+      fields: [ 'signature_id', 'signature_type', 'name', 'organization', 'image', 'sign_group' ],
     },
     border: false,
   }],
