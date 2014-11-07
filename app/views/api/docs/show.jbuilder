@@ -5,10 +5,6 @@ json.(@document,
 
 json.body @document.body
 
-if @document.author_user
-	json.author_user(@document.author_user, :id, :full_name)
-end
-
 if @document.sender_user
 	json.sender_user(@document.sender_user, :id, :full_name)
 end
