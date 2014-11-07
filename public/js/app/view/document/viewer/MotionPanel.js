@@ -26,6 +26,7 @@ Ext.define('Telasi.view.document.viewer.MotionPanel', {
               labelAlign: 'right',
               labelWidth: 100,
               msgTarget: 'side',
+              fieldCls: 'text-strong x-form-display-field'
             },
 
             items: [

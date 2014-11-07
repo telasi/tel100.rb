@@ -5,14 +5,14 @@ json.(@document,
 
 json.body @document.body
 
-if @document.author_user
-	json.author_user(@document.author_user, :id, :full_name)
-end
-
 if @document.sender_user
 	json.sender_user(@document.sender_user, :id, :full_name)
 end
 
 if @document.owner_user
 	json.owner_user(@document.owner_user, :id, :full_name)
+end
+
+json.authors @document.authors do |auth|
+  json.full_name auth.author.full_name
 end
