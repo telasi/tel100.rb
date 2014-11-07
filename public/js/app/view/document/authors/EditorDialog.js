@@ -6,7 +6,7 @@ Ext.define('Telasi.view.document.authors.EditorDialog', {
   bodyBorder: false,
   border: false,
   modal: true,
-  title: '<i class="fa fa-edit"></i> ავტორების დამატება',
+  title: '<i class="fa fa-copyright"></i> ვიზატორების დამატება',
   requires: [
     'Telasi.view.common.hr.HRtree',
     'Telasi.view.document.authors.Grid',

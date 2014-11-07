@@ -7,7 +7,6 @@ class Document::Author < ActiveRecord::Base
   belongs_to :document, class_name: 'Document::Base'
   personalize 'author'
   before_create :on_before_create
-  self.set_integer_columns :is_signed
 
   private
 

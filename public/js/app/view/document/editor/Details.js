@@ -4,9 +4,10 @@ Ext.define('Telasi.view.document.editor.Details', {
   layout: 'accordion',
   bodyPadding: 0,
   requires: [
-    'Telasi.view.document.motions.Editor',
     'Telasi.view.document.editor.General',
+    'Telasi.view.document.motions.Editor',
     'Telasi.view.document.authors.Editor',
+    'Telasi.view.document.signature.Editor'
   ],
   defaults: {
     bodyPadding: 5,
@@ -23,7 +24,7 @@ Ext.define('Telasi.view.document.editor.Details', {
     padding: 0,
     bodyPadding: 0
   }, {
-    xtype: 'panel',
+    xtype: 'document-signature-editor',
     title: '<i class="fa fa-edit"></i> ვიზირებები',
     padding: 0,
     bodyPadding: 0
