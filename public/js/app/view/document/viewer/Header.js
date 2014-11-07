@@ -1,5 +1,5 @@
 Ext.define('Telasi.view.document.viewer.Header', {
-  extend: 'Ext.panel.Panel',
+  extend: 'Ext.form.Panel',
   xtype: 'document-viewer-header',
   layout: 'border',
 
@@ -9,12 +9,12 @@ Ext.define('Telasi.view.document.viewer.Header', {
     labelAlign: 'right',
     labelWidth: 100,
     msgTarget: 'side',
-    cls: 'text-muted',
+    fieldCls: 'text-strong x-form-display-field'
   },
 
   items:[
-    { xtype: 'displayfield', fieldLabel: 'თემა', bind: '{doc.subject}', cls: 'text-muted',},
-    // { xtype: 'displayfield', fieldLabel: 'ავტორები', bind: '{doc.author_user.full_name}'},
+    { xtype: 'displayfield', fieldLabel: 'თემა', bind: '{doc.subject}', fieldCls: 'text-success text-strong x-form-display-field' },
+    { xtype: 'displayfield', fieldLabel: 'ავტორები', bind: '{doc.authors}', renderer: window.Telasi.documentUtils.getAuthorList },
     { xtype: 'displayfield', fieldLabel: 'გამგზავნი', bind: '{doc.sender_user.full_name}'},
     { xtype: 'displayfield', fieldLabel: 'მფლობელი', bind: '{doc.owner_user.full_name}'},
   ],

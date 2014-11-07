@@ -12,3 +12,7 @@ end
 if @document.owner_user
 	json.owner_user(@document.owner_user, :id, :full_name)
 end
+
+json.authors @document.authors do |auth|
+  json.full_name auth.author.full_name
+end

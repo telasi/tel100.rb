@@ -25,4 +25,25 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
     width: 400,
     split: true,
   }],
+
+  dockedItems: [{
+    xtype: 'toolbar',
+    dock: 'top',
+    border: false,
+    items: [{
+      xtype: 'button',
+      formBind: true,
+      bind: {
+        text: '<i class="fa fa-print"></i> ბეჭდვა'
+      },
+      handler: 'onPrintDocument'
+    }, {
+      xtype: 'button',
+      formBind: true,
+      bind: {
+        text: '<i class="fa fa-list-alt"></i> ბარათი'
+      },
+      handler: 'onPrintCard',
+    }]
+  }]
 });
