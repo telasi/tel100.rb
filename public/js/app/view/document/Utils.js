@@ -61,10 +61,7 @@ Ext.define('Telasi.view.document.Utils', {
 // authors list
 
   getAuthorList: function(value, metaInfo){
-    // if(value){ return value.map(function(item){return item.name}).join('; ') };
-    if(value){ return value.map(function(item){
-      return window.Telasi.hrUtils.renderStructure( Ext.create('Ext.data.Model', item) ) 
-    }).join('; ') };
+    if(value){ return value.map(function(item){ return window.Telasi.hrUtils.getPerson( item); }).join('; ') };
   },
 
 // doc grid renderings

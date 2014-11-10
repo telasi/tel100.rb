@@ -10,7 +10,12 @@ Ext.define('Telasi.view.hr.Utils', {
     if (org) { text += ' <span class="text-muted">' + org + '</span>'; }
     if (manager === 1) { return '<strong class="text-info">' + text + '</strong>'; }
     else { return text; }
-  }
+  },
+  
+  getPerson: function(value){
+    return window.Telasi.hrUtils.renderStructure( Ext.create('Ext.data.Model', value) );
+  },
+
 }, function() {
   window.Telasi.hrUtils = new Telasi.view.hr.Utils();
 });

@@ -30,7 +30,11 @@ Ext.define('Telasi.view.document.viewer.MotionPanel', {
             },
 
             items: [
-              { xtype: 'displayfield', fieldLabel: 'ადრესატი',  name: 'receiver_full_name'},
+              { xtype: 'displayfield', fieldLabel: 'ადრესატი', name: 'name', 
+                  // renderer: function(value, metaInfo) {
+                  //   return window.Telasi.hrUtils.getPerson( metaInfo.record );
+                  // }
+              },
               { xtype: 'displayfield', fieldLabel: 'სტატუსი',   name: 'status', renderer: window.Telasi.documentUtils.getStatusText },
               { xtype: 'displayfield', fieldLabel: 'რეზოლუცია', name: 'motion_text'},
               { xtype: 'displayfield', fieldLabel: 'შედეგი',    name: 'response_text'},
