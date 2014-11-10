@@ -5,7 +5,9 @@ Ext.define('Telasi.view.document.TabController', {
   openTab: function(component) {
     if (component){
       var tabcontrol = this.getView();
-      tabcontrol.add(component);
+      if (!tabcontrol.contains(component)){
+        tabcontrol.add(component);  
+      };
       tabcontrol.setActiveTab(component);
     }
   },
