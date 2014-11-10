@@ -10,8 +10,8 @@ Ext.define('Telasi.view.document.signature.Grid', {
   },
   initComponent: function() {
     var groupCol = {
-      width: 100,
-      text: 'მიმდევრობა',
+      width: 50,
+      text: '#',
       dataIndex: 'sign_group'
     };
     var personCol = {

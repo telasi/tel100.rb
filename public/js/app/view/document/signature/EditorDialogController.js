@@ -14,25 +14,27 @@ Ext.define('Telasi.view.document.signature.EditorDialogController', {
         var store = grid.getStore();
         var data = record.getData();
 
-        var existingIdx = store.findBy(function( record, id ) {
-          return data.id === record.get('signature_id')
-              && data.type === record.get('signature_type');
-        });
-
-        if (existingIdx === -1) {
-          var lastIndex = 0;
-          if (store.data.length > 0) {
-            lastIndex = store.getAt(store.data.length - 1).get('sign_group');
-          }
-          store.add({
-            signature_id: data.id,
-            signature_type: data.type,
-            organization: data.organization,
-            image: data.image,
-            name: data.name,
-            is_manager: data.is_manager,
-            sign_group: lastIndex + 1
+        if (data.type === 'HR::Employee') {
+          var existingIdx = store.findBy(function( record, id ) {
+            return data.id === record.get('signature_id')
+                && data.type === record.get('signature_type');
           });
+
+          if (existingIdx === -1) {
+            var lastIndex = 0;
+            if (store.data.length > 0) {
+              lastIndex = store.getAt(store.data.length - 1).get('sign_group');
+            }
+            store.add({
+              signature_id: data.id,
+              signature_type: data.type,
+              organization: data.organization,
+              image: data.image,
+              name: data.name,
+              is_manager: data.is_manager,
+              sign_group: lastIndex + 1
+            });
+          }
         }
       }
     },
