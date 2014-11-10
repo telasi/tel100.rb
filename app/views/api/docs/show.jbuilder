@@ -5,14 +5,27 @@ json.(@document,
 
 json.body @document.body
 
-if @document.sender_user
-	json.sender_user(@document.sender_user, :id, :full_name)
+if @document.sender
+	json.sender_user do
+		json.name 			@document.sender.full_name
+		json.is_manager 	@document.sender.organization.is_manager
+  		json.organization 	@document.sender.organization.name
+  		json.image 			@document.sender.icon
+	end
 end
 
-if @document.owner_user
-	json.owner_user(@document.owner_user, :id, :full_name)
+if @document.owner
+	json.owner_user do
+		json.name 			@document.owner.full_name
+		json.is_manager 	@document.owner.organization.is_manager
+  		json.organization 	@document.owner.organization.name
+  		json.image 			@document.owner.icon
+	end
 end
 
 json.authors @document.authors do |auth|
-  json.full_name auth.author.full_name
+  json.name 			auth.author.full_name
+  json.is_manager 		auth.author.organization.is_manager
+  json.organization 	auth.author.organization.name
+  json.image 			auth.author.icon
 end

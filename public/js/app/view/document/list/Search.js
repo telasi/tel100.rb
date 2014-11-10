@@ -76,45 +76,44 @@ Ext.define('Telasi.view.document.list.Search', {
                           bind: '{doc.typeId}'
                       }]
                 },{
-              items: [{
-                          xtype: 'textfield',
-                          name: 'original_number',
-                          fieldLabel: Telasi.model.document.BaseTexts.text_OriginalNumberField,
-                          emptyText: Telasi.model.document.BaseTexts.text_OriginalNumberField,
-                      },{
-                        xtype: 'textfield',
-                        name: 'subject',
-                        fieldLabel: Telasi.model.document.BaseTexts.text_SubjectField,
-                        emptyText: Telasi.model.document.BaseTexts.text_SubjectField,
-                      }, {
-                        xtype: 'fieldcontainer',
-                        fieldLabel: Telasi.model.document.BaseTexts.text_DeadlineField,
-                        layout: 'hbox',
-                        defauts: {
-                          flex: 1
-                        },
-                        items: [{
-                                  xtype: 'datefield',
-                                  name: 'from_dueDate',
-                                }, {
-                                  xtype: 'datefield',
-                                  name: 'to_dueDate',
-                                }],
-                      }]
-                },
+                    items: [{
+                                xtype: 'textfield',
+                                name: 'original_number',
+                                fieldLabel: Telasi.model.document.BaseTexts.text_OriginalNumberField,
+                                emptyText: Telasi.model.document.BaseTexts.text_OriginalNumberField,
+                            },{
+                              xtype: 'textfield',
+                              name: 'subject',
+                              fieldLabel: Telasi.model.document.BaseTexts.text_SubjectField,
+                              emptyText: Telasi.model.document.BaseTexts.text_SubjectField,
+                            }, {
+                              xtype: 'fieldcontainer',
+                              fieldLabel: Telasi.model.document.BaseTexts.text_DeadlineField,
+                              layout: 'hbox',
+                              defauts: {
+                                flex: 1
+                              },
+                              items: [{
+                                        xtype: 'datefield',
+                                        name: 'from_dueDate',
+                                      }, {
+                                        xtype: 'datefield',
+                                        name: 'to_dueDate',
+                                      }],
+                            }]
+                  },
             ],
-
-          buttons: [{
-            xtype: 'splitbutton',
-            text: this.text_FilterButton,
-            handler: "onDocumentGridFilter",
-            width: '100%',
-            menu:[{
-              text: 'ფილტრის მოხსნა',
-              handler: "onDocumentResetFilter",
-            }]
-          }]
-
+              dockedItems: [{
+                      dock: 'right',
+                      xtype: 'button',
+                      text: this.text_FilterButton,
+                      handler: "onDocumentGridFilter",
+                      width: '10%',
+                      menu:[{
+                        text: 'ფილტრის მოხსნა',
+                        handler: "onDocumentResetFilter",
+                      }]
+                    }]
         }],
       }],
     });

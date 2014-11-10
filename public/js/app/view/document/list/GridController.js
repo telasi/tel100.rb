@@ -15,13 +15,13 @@ Ext.define('Telasi.view.document.list.GridController', {
   createViewerComponent: function(record) {
     return new Ext.create('Telasi.view.document.viewer.Viewer',{
       closable: true,
-      viewModel: Ext.create('Ext.app.ViewModel',{
-        links: {
+      viewModel: Ext.create('Telasi.view.document.editor.ViewModel',{ 
+        links: { 
           doc: {
             reference: 'Telasi.model.document.Base',
             id: record.id
           }
-        }
+        } 
       })
     }) 
   },
@@ -48,7 +48,7 @@ Ext.define('Telasi.view.document.list.GridController', {
         componentToOpen = this.createViewerComponent(record);
       }
     };
-    
+
     var docTab = this.getView().up('documentTab');
     docTab.controller.openTab( componentToOpen );
   },
