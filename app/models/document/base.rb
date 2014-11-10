@@ -11,9 +11,10 @@ class Document::Base < ActiveRecord::Base
   personalize 'sender'
   personalize 'owner'
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
+  has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_many :authors, class_name: 'Document::Author', foreign_key: 'document_id'
-  has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
+  has_many :signatures, class_name: 'Document::Signature', foreign_key: 'document_id'
 
   validates :type, presence: { message: 'აარჩიეთ სახეობა' }
   validates :direction, presence: { message: 'აარჩიეთ მიმართულება' }
@@ -64,6 +65,7 @@ class Document::Base < ActiveRecord::Base
     }
     motionparams = opts[:motions_attributes] || opts[:motions] || []
     authorparams = opts[:authors_attributes] || opts[:authors] || []
+    signatureparams = opts[:signature_attributes] || opts[:signatures] || []
     raise 'document cannot be sent with empty motions' if (status == Document::Status::SENT and motionparams.select{|x| not x[:_deleted]}.blank?)
 
     Document::Base.transaction do
@@ -116,6 +118,26 @@ class Document::Base < ActiveRecord::Base
         end
       end
 
+      # signatures
+      previous_group = 0 ; index = 0
+      signatureparams.sort{|x,y| x[:sign_group] <=> y[:sign_group]}.each do |sign_opts|
+        id = sign_opts[:id]
+        if sign_opts[:_deleted]
+          Document::Signature.find(id).destroy
+        else
+          sign_user, sign = who_eval(:signature, sign_opts)
+          sign_group = sign_opts[:sign_group] || 1
+          if previous_group != sign_group
+            index += 1
+            previous_group = sign_group
+          end
+          params = { document: doc, signature_user: sign_user, signature: sign, sign_group: index }
+          if id then Document::Signature.find(id).update_attributes!(params)
+          else Document::Signature.create!(params) end
+        end
+      end
+
+      # saving document
       doc.body = body
       doc.text.save!
       doc.save!

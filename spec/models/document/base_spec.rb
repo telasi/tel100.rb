@@ -46,6 +46,10 @@ RSpec.describe Document::Base do
       ],
       authors: [
         { author_id: shalva.employee.id, author_type: 'HR::Employee', note: 'შალვა არის ავტორი' }
+      ],
+      signatures: [
+        { signature_id: nino.employee.id, signature_type: 'HR::Employee', sign_group: 5 },
+        { signature_id: shalva.employee.id, signature_type: 'HR::Employee', sign_group: 2 },
       ]
     }).reload
 
@@ -101,5 +105,22 @@ RSpec.describe Document::Base do
     expect(author1.author_user).to eq(shalva)
     expect(author1.note).to eq('შალვა არის ავტორი')
     expect(author1.sign_status).to eq(Document::Sign::NO_SIGNATURE)
+
+    # check signatures
+    # { signature_id: nino.employee.id, signature_type: 'HR::Employee', sign_group: 5 }
+    expect(doc.signatures.size).to eq(2)
+    sign1 = doc.signatures[0]
+    sign2 = doc.signatures[1]
+
+    expect(sign1.signature).to eq(shalva.employee)
+    expect(sign1.signature_user).to eq(shalva)
+    expect(sign1.sign_status).to eq(Document::Sign::NO_SIGNATURE)
+    expect(sign1.sign_group).to eq(1)
+
+    expect(sign2.signature).to eq(nino.employee)
+    expect(sign2.signature_user).to eq(nino)
+    expect(sign2.sign_status).to eq(Document::Sign::NO_SIGNATURE)
+    expect(sign2.sign_group).to eq(2)
+
   end
 end
