@@ -6,6 +6,9 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     var doc = this.getViewModel().getData().doc;
     var self = this;
     if ( typeof doc.getId() === 'number' ) {
+
+      // TODO: get document as a whole
+
       Ext.Ajax.request({
         url: '/api/docs/motions',
         method: 'GET',
@@ -22,6 +25,15 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         success: function(data) {
           var authorsStore = self.getAuthorsStore();
           authorsStore.add(JSON.parse(data.responseText));
+        }
+      });
+      Ext.Ajax.request({
+        url: '/api/docs/signatures',
+        method: 'GET',
+        params: { id: doc.getId() },
+        success: function(data) {
+          var signaturesStore = self.getSignaturesStore();
+          signaturesStore.add(JSON.parse(data.responseText));
         }
       });
     }
