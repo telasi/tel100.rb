@@ -120,7 +120,7 @@ class Document::Base < ActiveRecord::Base
 
       # signatures
       previous_group = 0 ; index = 0
-      signatureparams.sort{|x,y| x[:sign_group] <=> y[:sign_group]}.each do |sign_opts|
+      signatureparams.sort{|x,y| x[:sign_group].to_i <=> y[:sign_group].to_i}.each do |sign_opts|
         id = sign_opts[:id]
         if sign_opts[:_deleted]
           Document::Signature.find(id).destroy
