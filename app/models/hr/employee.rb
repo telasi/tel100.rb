@@ -17,6 +17,7 @@ class HR::Employee < ActiveRecord::Base
   def full_name; "#{first_name} #{last_name}" end
   def active?; self.is_active == 1 end
   def employee_status; I18n.t("models.hr_employee.employee_status_id.val#{self.employee_status_id}") end
+  def is_manager; self.organization.is_manager end
 
   def icon
     case self.gender
