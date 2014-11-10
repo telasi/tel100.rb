@@ -23,7 +23,7 @@ Ext.define('Telasi.view.document.list.GridController', {
           }
         }
       })
-    });
+    }) 
   },
 
   createEditorComponent: function(record) {
@@ -40,17 +40,38 @@ Ext.define('Telasi.view.document.list.GridController', {
   },
 
   openDocument: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts) {
-    var componentToOpen;
-    if (record.get('status') === 'draft') {
-      componentToOpen = this.createEditorComponent(record);
-    } else {
-      componentToOpen = this.createViewerComponent(record);
-    }
+    var componentToOpen = this.findComponentById(record);
+    if (!componentToOpen){
+      if (record.get('status') === 'draft') {
+        componentToOpen = this.createEditorComponent(record);
+      } else {
+        componentToOpen = this.createViewerComponent(record);
+      }
+    };
+    
     var docTab = this.getView().up('documentTab');
     docTab.controller.openTab( componentToOpen );
   },
 
   init: function() {
     this.lookupReference('pagingtoolbar').setStore(this.getStore('documents'));
-  }
+  },
+
+  findComponentById: function(record){
+    var docTab = this.getView().up('documentTab');
+
+    for(var i = 0; i < docTab.items.getCount(); i++){
+      var curTab = docTab.items.get(i);
+      var viewModel = curTab.getViewModel();
+      if (viewModel){
+        var doc =  viewModel.get('doc');
+          if( doc.id === record.id ){
+            return curTab;
+          }
+        }
+    }
+
+    return null;
+  },
+
 });
