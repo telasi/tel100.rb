@@ -31,6 +31,8 @@ Ext.define('Telasi.view.document.editor.EditorController', {
   getMotionsStore: function() { return this.getMotionsGrid().getStore(); },
   getAuthorsGrid:  function() { return this.getView().down('document-authors-grid'); },
   getAuthorsStore: function() { return this.getAuthorsGrid().getStore(); },
+  getSignaturesGrid: function() { return this.getView().down('document-signatures-grid'); },
+  getSignaturesStore: function() { return this.getSignaturesGrid().getStore(); },
 
   sendDocument: function(btn, status) {
     var editor = btn.up('document-editor');
@@ -75,6 +77,26 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       authors.push({ id: data.id, _deleted: true });
     }
 
+    // signature data
+
+    var signaturesStore = this.getSignaturesStore();
+    var signatures = [];
+    for (var i = 0, l = signaturesStore.data.length; i < l; i++) {
+      var signatureData = signaturesStore.getAt(i).data;
+      var id = signatureData.id;
+      signatures.push({
+        id: typeof id === 'number' ? id : undefined,
+        signature_id: signatureData.signature_id,
+        signature_type: signatureData.signature_type,
+        sign_group: signatureData.sign_group
+      });
+    }
+
+    for (var i = 0, l = signaturesStore.removed.length; i < l; i++) {
+      var data = signaturesStore.removed[i].data;
+      signatures.push({ id: data.id, _deleted: true });
+    }
+
     // main model
 
     var viewModel = this.getViewModel();
@@ -95,6 +117,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     };
     doc.motions = motions;
     doc.authors = authors;
+    doc.signatures = signatures;
 
     // sending data to server
 
