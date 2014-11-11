@@ -47,16 +47,9 @@ Ext.define('Telasi.view.document.list.Search', {
                         xtype: 'fieldcontainer',
                         fieldLabel: Telasi.model.document.BaseTexts.text_DocDateField,
                         layout: 'hbox',
-                        defauts: {
-                          flex: 1
-                        },
-                        items: [{
-                                  xtype: 'datefield',
-                                  name: 'from_docdate',
-                                }, {
-                                  xtype: 'datefield',
-                                  name: 'to_docdate',
-                                }],
+                        defauts: { flex: 1 },
+                        items: [{ xtype: 'datefield', name: 'from_docdate'}, 
+                                { xtype: 'datefield', name: 'to_docdate' }],
                       }, {
                           xtype: 'combo',
                           name: 'typeId',
@@ -90,30 +83,19 @@ Ext.define('Telasi.view.document.list.Search', {
                               xtype: 'fieldcontainer',
                               fieldLabel: Telasi.model.document.BaseTexts.text_DeadlineField,
                               layout: 'hbox',
-                              defauts: {
-                                flex: 1
-                              },
-                              items: [{
-                                        xtype: 'datefield',
-                                        name: 'from_dueDate',
-                                      }, {
-                                        xtype: 'datefield',
-                                        name: 'to_dueDate',
-                                      }],
+                              defauts: { flex: 1 },
+                              items: [{ xtype: 'datefield', name: 'from_dueDate' }, 
+                                      { xtype: 'datefield', name: 'to_dueDate' }],
                             }]
                   },
             ],
-              dockedItems: [{
-                      dock: 'right',
-                      xtype: 'button',
-                      text: this.text_FilterButton,
-                      handler: "onDocumentGridFilter",
-                      width: '10%',
-                      menu:[{
-                        text: 'ფილტრის მოხსნა',
-                        handler: "onDocumentResetFilter",
-                      }]
-                    }]
+            dockedItems: [{
+              dock: 'right',
+              xtype: 'segmentedbutton',
+              allowToggle: false,
+              items: [{ glyph: 'xf0b0@FontAwesome', width: 200, text: this.text_FilterButton, handler: "onDocumentGridFilter" },
+                      { glyph: 'xf00d@FontAwesome', handler: "onDocumentResetFilter" }],
+            }]
         }],
       }],
     });
