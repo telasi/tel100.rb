@@ -32,7 +32,8 @@ Ext.define('Telasi.view.document.signature.EditorDialogController', {
               image: data.image,
               name: data.name,
               is_manager: data.is_manager,
-              sign_group: lastIndex + 1
+              sign_group: lastIndex + 1,
+              sign_role: 'signee'
             });
           }
         }

@@ -6,7 +6,6 @@ Ext.define('Telasi.view.document.editor.Details', {
   requires: [
     'Telasi.view.document.editor.General',
     'Telasi.view.document.motions.Editor',
-    'Telasi.view.document.authors.Editor',
     'Telasi.view.document.signature.Editor'
   ],
   defaults: {
@@ -19,13 +18,8 @@ Ext.define('Telasi.view.document.editor.Details', {
     title: '<i class="fa fa-bookmark-o"></i> ძირითადი',
     autoScroll: true
   }, {
-    xtype: 'document-authors-editor',
-    title: '<i class="fa fa-copyright"></i> ავტორები',
-    padding: 0,
-    bodyPadding: 0
-  }, {
     xtype: 'document-signature-editor',
-    title: '<i class="fa fa-edit"></i> ვიზირებები',
+    title: '<i class="fa fa-edit"></i> ხელმომწერები',
     padding: 0,
     bodyPadding: 0
   }, {

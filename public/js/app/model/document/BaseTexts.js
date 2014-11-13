@@ -18,7 +18,6 @@ Ext.define('Telasi.model.document.BaseTexts',{
 
     text_attachmentField:       '',
     text_actionField:           'მოქმედება',
-    text_AuthorsField:          'ავტორები',
     text_AnswersField:          'პასუხები',
     text_RecieversField:        'ადრესატები',
 });

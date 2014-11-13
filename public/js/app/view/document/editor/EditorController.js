@@ -19,15 +19,6 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         }
       });
       Ext.Ajax.request({
-        url: '/api/docs/authors',
-        method: 'GET',
-        params: { id: doc.getId() },
-        success: function(data) {
-          var authorsStore = self.getAuthorsStore();
-          authorsStore.add(JSON.parse(data.responseText));
-        }
-      });
-      Ext.Ajax.request({
         url: '/api/docs/signatures',
         method: 'GET',
         params: { id: doc.getId() },
@@ -41,8 +32,6 @@ Ext.define('Telasi.view.document.editor.EditorController', {
 
   getMotionsGrid:  function() { return this.getView().down('document-motions-grid'); },
   getMotionsStore: function() { return this.getMotionsGrid().getStore(); },
-  getAuthorsGrid:  function() { return this.getView().down('document-authors-grid'); },
-  getAuthorsStore: function() { return this.getAuthorsGrid().getStore(); },
   getSignaturesGrid: function() { return this.getView().down('document-signatures-grid'); },
   getSignaturesStore: function() { return this.getSignaturesGrid().getStore(); },
 
@@ -70,25 +59,6 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       motions.push({ id: data.id, _deleted: true });
     }
 
-    // authors data
-
-    var authorsStore = this.getAuthorsStore();
-    var authors = [];
-    for (var i = 0, l = authorsStore.data.length; i < l; i++) {
-      var authorData = authorsStore.getAt(i).data;
-      var id = authorData.id;
-      authors.push({
-        id: typeof id === 'number' ? id : undefined,
-        author_id: authorData.author_id,
-        author_type: authorData.author_type
-      });
-    }
-
-    for(var i = 0, l = authorsStore.removed.length; i < l; i++) {
-      var data = authorsStore.removed[i].data;
-      authors.push({ id: data.id, _deleted: true });
-    }
-
     // signature data
 
     var signaturesStore = this.getSignaturesStore();
@@ -100,7 +70,8 @@ Ext.define('Telasi.view.document.editor.EditorController', {
         id: typeof id === 'number' ? id : undefined,
         signature_id: signatureData.signature_id,
         signature_type: signatureData.signature_type,
-        sign_group: signatureData.sign_group
+        sign_group: signatureData.sign_group,
+        sign_role: signatureData.sign_role
       });
     }
 
@@ -128,7 +99,6 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       original_date: model.get('original_date'),
     };
     doc.motions = motions;
-    doc.authors = authors;
     doc.signatures = signatures;
 
     // sending data to server

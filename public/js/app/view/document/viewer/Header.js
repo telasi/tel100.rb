@@ -14,7 +14,7 @@ Ext.define('Telasi.view.document.viewer.Header', {
 
   items:[
     { xtype: 'displayfield', fieldLabel: 'თემა', bind: '{doc.subject}', fieldCls: 'text-success text-strong x-form-display-field' },
-    { xtype: 'displayfield', fieldLabel: 'ავტორები', bind: '{doc.authors}', renderer: window.Telasi.documentUtils.getAuthorList },
+    // { xtype: 'displayfield', fieldLabel: 'ავტორები', bind: '{doc.authors}', renderer: window.Telasi.documentUtils.getAuthorList },
     { xtype: 'displayfield', fieldLabel: 'გამგზავნი', bind: '{doc.sender_user}', 
         renderer: function(value, metaInfo) { if (value){ return window.Telasi.hrUtils.getPerson( value ); } }
     },

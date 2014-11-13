@@ -58,10 +58,11 @@ Ext.define('Telasi.view.document.Utils', {
     return Ext.Date.format(Ext.Date.parse(value,'c'), Ext.Date.defaultFormat);
   },
 
-// authors list
+// 
 
-  getAuthorList: function(value, metaInfo){
-    if(value){ return value.map(function(item){ return window.Telasi.hrUtils.getPerson( item); }).join('; ') };
+  getSignatureRole: function(id) {
+    var store = Ext.data.StoreManager.lookup('document-signature-roles');
+    return store.getById(id);
   },
 
 // doc grid renderings
