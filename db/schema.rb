@@ -13,19 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141113103651) do
 
-  create_table "document_author", force: true do |t|
-    t.integer   "document_id",    limit: 10,  precision: 10, scale: 0,                  null: false
-    t.integer   "author_user_id", limit: 10,  precision: 10, scale: 0
-    t.integer   "author_id",      limit: 10,  precision: 10, scale: 0
-    t.string    "author_type",    limit: 50
-    t.string    "note",           limit: 500
-    t.string    "sign_status",    limit: 10,                           default: "none", null: false
-    t.timestamp "created_at",     limit: 6,                                             null: false
-    t.timestamp "updated_at",     limit: 6,                                             null: false
-  end
-
-  add_index "document_author", ["document_id"], name: "docauthor_base_idx"
-
   create_table "document_base", force: true do |t|
     t.string    "language",        limit: 2,                             default: "KA",    null: false
     t.integer   "parent_id",       limit: 10,   precision: 10, scale: 0
@@ -75,15 +62,16 @@ ActiveRecord::Schema.define(version: 20141113103651) do
   add_index "document_motion", ["parent_id"], name: "docmotions_prnt_idx"
 
   create_table "document_signature", force: true do |t|
-    t.integer   "document_id",       limit: 10,  precision: 10, scale: 0,                  null: false
+    t.integer   "document_id",       limit: 10,  precision: 10, scale: 0,                    null: false
     t.integer   "signature_user_id", limit: 10,  precision: 10, scale: 0
     t.integer   "signature_id",      limit: 10,  precision: 10, scale: 0
     t.string    "signature_type",    limit: 50
     t.string    "note",              limit: 500
-    t.string    "sign_status",       limit: 10,                           default: "none", null: false
-    t.integer   "sign_group",        limit: 5,   precision: 5,  scale: 0, default: 0,      null: false
-    t.timestamp "created_at",        limit: 6,                                             null: false
-    t.timestamp "updated_at",        limit: 6,                                             null: false
+    t.string    "sign_role",         limit: 10,                           default: "signee", null: false
+    t.string    "sign_status",       limit: 10,                           default: "none",   null: false
+    t.integer   "sign_group",        limit: 5,   precision: 5,  scale: 0, default: 0,        null: false
+    t.timestamp "created_at",        limit: 6,                                               null: false
+    t.timestamp "updated_at",        limit: 6,                                               null: false
   end
 
   add_index "document_signature", ["document_id"], name: "docsigns_base_idx"

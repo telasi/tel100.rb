@@ -9,7 +9,8 @@ class AddDocumentSignature < ActiveRecord::Migration
         SIGNATURE_ID      number(10, 0),
         SIGNATURE_TYPE    varchar2(50 CHAR),
         NOTE              varchar2(500 CHAR),
-        SIGN_STATUS       varchar(10) default 'none' not null,
+        SIGN_ROLE         varchar2(10 CHAR) default 'signee' not null,
+        SIGN_STATUS       varchar2(10 CHAR) default 'none' not null,
         SIGN_GROUP        number(5) default 0 not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
