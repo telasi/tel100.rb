@@ -1,7 +1,12 @@
 # -*- encoding : utf-8 -*-
 class Document::Signature < ActiveRecord::Base
+  NO_SIGNATURE = 'none'
+  SIGNED = 'signed'
+  REJECTED = 'rejected'
+  SIGNEE = 'signee'
+  AUTHOR = 'author'
+
   include Document::Personalize
-  include Document::Sign
   self.table_name  = 'document_signature'
   self.sequence_name = 'docsigns_seq'
   belongs_to :document, class_name: 'Document::Base'

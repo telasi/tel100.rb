@@ -108,7 +108,7 @@ class Document::Base < ActiveRecord::Base
         else
           sign_user, sign = who_eval(:signature, sign_opts)
           sign_group = sign_opts[:sign_group] || 1
-          sign_role  = sign_opts[:sign_role] || 1
+          sign_role  = sign_opts[:sign_role] || Document::Signature::SIGNEE
           if previous_group != sign_group
             index += 1
             previous_group = sign_group

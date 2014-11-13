@@ -44,9 +44,6 @@ RSpec.describe Document::Base do
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში', due_date: date + 3.days },
         { receiver_id: "P#{nino.employee.id}", motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში', due_date: date + 5.days },
       ],
-      authors: [
-        { author_id: shalva.employee.id, author_type: 'HR::Employee', note: 'შალვა არის ავტორი' }
-      ],
       signatures: [
         { signature_id: nino.employee.id, signature_type: 'HR::Employee', sign_group: 5 },
         { signature_id: shalva.employee.id, signature_type: 'HR::Employee', sign_group: 2 },
@@ -84,11 +81,6 @@ RSpec.describe Document::Base do
     expect(motion2.receiver).to eq(nino.employee)
     expect(motion2.receiver_user).to eq(nino)
 
-    expect(motion1.sender_read?).to eq(true)
-    expect(motion1.receiver_read?).to eq(false)
-    expect(motion2.sender_read?).to eq(true)
-    expect(motion2.receiver_read?).to eq(false)
-
     expect(motion1.motion_text).to eq('შალვა, გთხოვთ გამიშვით შვებულებაში')
     expect(motion1.response_text).to be_blank
     expect(motion2.motion_text).to eq('ნინო, გთხოვთ გამიშვით შვებულებაში')
@@ -97,30 +89,21 @@ RSpec.describe Document::Base do
     expect(motion1.due_date).to eq(date + 3.days)
     expect(motion2.due_date).to eq(date + 5.days)
 
-    # check authors
-    expect(doc.authors.size).to eq(1)
-    author1 = doc.authors.first
-
-    expect(author1.author).to eq(shalva.employee)
-    expect(author1.author_user).to eq(shalva)
-    expect(author1.note).to eq('შალვა არის ავტორი')
-    expect(author1.sign_status).to eq(Document::Sign::NO_SIGNATURE)
-
     # check signatures
-    # { signature_id: nino.employee.id, signature_type: 'HR::Employee', sign_group: 5 }
     expect(doc.signatures.size).to eq(2)
     sign1 = doc.signatures[0]
     sign2 = doc.signatures[1]
 
     expect(sign1.signature).to eq(shalva.employee)
     expect(sign1.signature_user).to eq(shalva)
-    expect(sign1.sign_status).to eq(Document::Sign::NO_SIGNATURE)
+    expect(sign1.sign_status).to eq(Document::Signature::NO_SIGNATURE)
+    expect(sign1.sign_role).to eq(Document::Signature::SIGNEE)
     expect(sign1.sign_group).to eq(1)
 
     expect(sign2.signature).to eq(nino.employee)
     expect(sign2.signature_user).to eq(nino)
-    expect(sign2.sign_status).to eq(Document::Sign::NO_SIGNATURE)
+    expect(sign2.sign_status).to eq(Document::Signature::NO_SIGNATURE)
+    expect(sign2.sign_role).to eq(Document::Signature::SIGNEE)
     expect(sign2.sign_group).to eq(2)
-
   end
 end
