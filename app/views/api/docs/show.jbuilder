@@ -22,10 +22,3 @@ if @document.owner
   		json.image 			@document.owner.icon
 	end
 end
-
-json.authors @document.authors do |auth|
-  json.name 			auth.author.full_name
-  json.is_manager 		auth.author.organization.is_manager
-  json.organization 	auth.author.organization.name
-  json.image 			auth.author.icon
-end

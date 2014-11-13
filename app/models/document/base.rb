@@ -13,7 +13,6 @@ class Document::Base < ActiveRecord::Base
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
   has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
-  has_many :authors, class_name: 'Document::Author', foreign_key: 'document_id'
   has_many :signatures, class_name: 'Document::Signature', foreign_key: 'document_id'
 
   validates :type, presence: { message: 'აარჩიეთ სახეობა' }
@@ -64,7 +63,6 @@ class Document::Base < ActiveRecord::Base
       due_date: nil, alarm_date: nil
     }
     motionparams = opts[:motions_attributes] || opts[:motions] || []
-    authorparams = opts[:authors_attributes] || opts[:authors] || []
     signatureparams = opts[:signature_attributes] || opts[:signatures] || []
     raise 'document cannot be sent with empty motions' if (status == Document::Status::SENT and motionparams.select{|x| not x[:_deleted]}.blank?)
 
@@ -101,23 +99,6 @@ class Document::Base < ActiveRecord::Base
         end
       end
 
-      # authors
-      authorparams.each do |author_opts|
-        id = author_opts[:id]
-        if author_opts[:_deleted]
-          Document::Author.find(id).destroy
-        else
-          author_user, author = who_eval(:author, author_opts)
-          note = author_opts[:note]
-          params = { document: doc, author_user: author_user, author: author, note: note }
-          if id
-            Document::Author.find(id).update_attributes!(params)
-          else
-            Document::Author.create!(params)
-          end
-        end
-      end
-
       # signatures
       previous_group = 0 ; index = 0
       signatureparams.sort{|x,y| x[:sign_group].to_i <=> y[:sign_group].to_i}.each do |sign_opts|
@@ -127,6 +108,7 @@ class Document::Base < ActiveRecord::Base
         else
           sign_user, sign = who_eval(:signature, sign_opts)
           sign_group = sign_opts[:sign_group] || 1
+          sing_role  = sign_opts[:sign_role] || 1
           if previous_group != sign_group
             index += 1
             previous_group = sign_group

@@ -59,28 +59,13 @@ class Api::DocsController < ApiController
     end
   end
 
-  def authors
-    render json: (Document::Author.where(document_id: params[:id]).order(:id).map do |x|
-      resp = {
-        id: x.id, author_id: x.author.id, author_type: x.author.class.name,
-        name: x.author_ext_name, image: x.author_ext_icon,
-        note: x.note, sign_status: x.sign_status
-      }
-      if x.author.is_a?(HR::Employee)
-        resp[:is_manager] = x.author.is_manager
-        resp[:organization] = x.author.organization.name
-      end
-      resp
-    end)
-  end
-
   def signatures
     render json: (Document::Signature.where(document_id: params[:id]).order(:sign_group, :id).map do |x|
       {
         id: x.id, signature_id: x.signature.id, signature_type: x.signature.class.name,
         name: x.signature_ext_name, image: x.signature_ext_icon,
         is_manager: x.signature.is_manager, organization: x.signature.organization.name,
-        sign_group: x.sign_group, sign_status: x.sign_status
+        sign_group: x.sign_group, sign_status: x.sign_status, sing_role: x.sing_role
       }
     end)
   end
