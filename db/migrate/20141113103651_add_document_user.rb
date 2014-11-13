@@ -4,6 +4,7 @@ class AddDocumentUser < ActiveRecord::Migration
       create table DOCUMENT_USER (
         DOCUMENT_ID  number(10, 0) not null,
         USER_ID      number(10, 0) not null,
+        IS_READ      number(1, 0) default 0 not null,
         IS_SIGNATURE number(1, 0) default 0 not null,
         IS_RECEIVER  number(1, 0) default 0 not null,
         constraint DOCUSER_PRIMARYKEY primary key ( DOCUMENT_ID, USER_ID ) enable

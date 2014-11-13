@@ -88,8 +88,8 @@ class Document::Base < ActiveRecord::Base
             doc.alarm_date = due_date if (doc.alarm_date.blank? or doc.alarm_date > due_date)
           end
           params = { document: doc, status: status,
-            sender_user: sender_user, sender: sender, sender_is_read: 1,
-            receiver_user: receiver_user, receiver: receiver, receiver_is_read: 0,
+            sender_user: sender_user, sender: sender,
+            receiver_user: receiver_user, receiver: receiver,
             motion_text: motion_text, due_date: due_date }
           if id
             Document::Motion.find(id).update_attributes!(params)

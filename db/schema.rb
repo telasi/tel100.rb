@@ -49,11 +49,9 @@ ActiveRecord::Schema.define(version: 20141113103651) do
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",      limit: 50
-    t.boolean   "sender_is_read",                precision: 1,  scale: 0, default: false,  null: false
     t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
     t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
     t.string    "receiver_type",    limit: 50
-    t.boolean   "receiver_is_read",              precision: 1,  scale: 0, default: false,  null: false
     t.timestamp "created_at",       limit: 6,                                              null: false
     t.timestamp "updated_at",       limit: 6,                                              null: false
   end
@@ -90,11 +88,11 @@ ActiveRecord::Schema.define(version: 20141113103651) do
   end
 
   create_table "document_user", id: false, force: true do |t|
-    t.integer "document_id", limit: 10, precision: 10, scale: 0,                 null: false
-    t.integer "user_id",     limit: 10, precision: 10, scale: 0,                 null: false
-    t.boolean "is_author",              precision: 1,  scale: 0, default: false, null: false
-    t.boolean "is_signee",              precision: 1,  scale: 0, default: false, null: false
-    t.boolean "is_receiver",            precision: 1,  scale: 0, default: false, null: false
+    t.integer "document_id",  limit: 10, precision: 10, scale: 0,                 null: false
+    t.integer "user_id",      limit: 10, precision: 10, scale: 0,                 null: false
+    t.boolean "is_read",                 precision: 1,  scale: 0, default: false, null: false
+    t.boolean "is_signature",            precision: 1,  scale: 0, default: false, null: false
+    t.boolean "is_receiver",             precision: 1,  scale: 0, default: false, null: false
   end
 
   create_table "hr_employees", force: true do |t|

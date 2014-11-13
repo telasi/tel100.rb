@@ -49,8 +49,8 @@ class Api::DocsController < ApiController
       end)
     else
       motions_array = Document::Motion.where(document_id: params[:id]).map do |m|
-        { id: m.id, parent_id: m.parent_id, status: m.status, due_date: m.due_date, motion_text: m.motion_text, 
-          response_text: m.response_text, sender_is_read: m.sender_is_read, receiver_is_read: m.receiver_is_read,
+        { id: m.id, parent_id: m.parent_id, status: m.status, due_date: m.due_date,
+          response_text: m.response_text, motion_text: m.motion_text,
           sender_full_name: m.sender_ext_name, name: m.receiver_ext_name, organization: m.receiver.organization.name,
           is_manager: m.receiver.organization.is_manager, image: m.receiver.icon
         }

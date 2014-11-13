@@ -14,12 +14,10 @@ class AddDocumentMotionTable < ActiveRecord::Migration
         SENDER_USER_ID number(10, 0),
         SENDER_ID      number(10, 0),
         SENDER_TYPE    varchar2(50 CHAR),
-        SENDER_IS_READ number(1,0) default 0 not null,
         ---------
         RECEIVER_USER_ID number(10, 0),
         RECEIVER_ID      number(10, 0),
         RECEIVER_TYPE    varchar2(50 CHAR),
-        RECEIVER_IS_READ number(1,0) default 0 not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
