@@ -65,7 +65,7 @@ class Api::DocsController < ApiController
         id: x.id, signature_id: x.signature.id, signature_type: x.signature.class.name,
         name: x.signature_ext_name, image: x.signature_ext_icon,
         is_manager: x.signature.is_manager, organization: x.signature.organization.name,
-        sign_group: x.sign_group, sign_status: x.sign_status, sing_role: x.sing_role
+        sign_group: x.sign_group, sign_status: x.sign_status, sign_role: x.sign_role
       }
     end)
   end

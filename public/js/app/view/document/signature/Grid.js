@@ -10,11 +10,6 @@ Ext.define('Telasi.view.document.signature.Grid', {
     mode: 'MULTI'
   },
   initComponent: function() {
-    var groupCol = {
-      width: 50,
-      text: '#',
-      dataIndex: 'sign_group'
-    };
     var roleCol = {
       width: 75,
       text: 'როლი',
@@ -23,6 +18,7 @@ Ext.define('Telasi.view.document.signature.Grid', {
         return window.Telasi.documentUtils.getSignatureRole(value).get('name');
       },
     };
+
     var personCol = {
       flex: 1,
       text: 'ხელმომწერი',
@@ -30,6 +26,13 @@ Ext.define('Telasi.view.document.signature.Grid', {
         return window.Telasi.hrUtils.renderStructure(record);
       }
     };
+
+    var groupCol = {
+      width: 50,
+      text: '#',
+      dataIndex: 'sign_group'
+    };
+
     var actionsCol = {
       xtype: 'actioncolumn',
       width: 30,
@@ -52,6 +55,7 @@ Ext.define('Telasi.view.document.signature.Grid', {
         }
       }]
     };
+
     if (this.editable) {
       groupCol.editor = { xtype: 'numberfield', allowBlank: false, minValue: 1, maxValue: 99 };
       roleCol.editor = {
@@ -61,12 +65,15 @@ Ext.define('Telasi.view.document.signature.Grid', {
         valueField: 'id',
       };
     }
+
     var cols = [ roleCol, personCol, groupCol, actionsCol ] ;
+
     cols = cols.map(function(col) {
       col.sortable = false;
       col.menuDisabled = true;
       return col;
     });
+
     this.columns = cols;
     this.callParent();
   }

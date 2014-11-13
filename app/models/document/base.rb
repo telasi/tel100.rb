@@ -108,12 +108,12 @@ class Document::Base < ActiveRecord::Base
         else
           sign_user, sign = who_eval(:signature, sign_opts)
           sign_group = sign_opts[:sign_group] || 1
-          sing_role  = sign_opts[:sign_role] || 1
+          sign_role  = sign_opts[:sign_role] || 1
           if previous_group != sign_group
             index += 1
             previous_group = sign_group
           end
-          params = { document: doc, signature_user: sign_user, signature: sign, sign_group: index }
+          params = { document: doc, signature_user: sign_user, signature: sign, sign_group: index, sign_role: sign_role }
           if id then Document::Signature.find(id).update_attributes!(params)
           else Document::Signature.create!(params) end
         end
