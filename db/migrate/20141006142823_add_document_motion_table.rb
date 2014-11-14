@@ -7,17 +7,21 @@ class AddDocumentMotionTable < ActiveRecord::Migration
         PARENT_ID number(12, 0),
         DOCUMENT_ID number(10, 0) not null,
         STATUS    varchar2(20 CHAR) default 'open' not null,
-        MOTION_TEXT varchar2(1000 CHAR),
-        RESPONSE_TEXT varchar2(1000 CHAR),
         DUE_DATE date,
         ---------
+        SIGN_STATUS      varchar2(10 CHAR) default 'signed' not null,
+        SIGN_GROUP       number(5) default 0 not null,
+        ---------
+        MOTION_TEXT    varchar2(1000 CHAR),
         SENDER_USER_ID number(10, 0),
         SENDER_ID      number(10, 0),
         SENDER_TYPE    varchar2(50 CHAR),
         ---------
+        RESPONSE_TEXT varchar2(1000 CHAR),
         RECEIVER_USER_ID number(10, 0),
         RECEIVER_ID      number(10, 0),
         RECEIVER_TYPE    varchar2(50 CHAR),
+        RECEIVER_ROLE    varchar2(10 CHAR) default 'assignee' not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
