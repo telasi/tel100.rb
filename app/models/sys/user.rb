@@ -7,14 +7,16 @@ class Sys::User < ActiveRecord::Base
   self.set_integer_columns :is_active, :is_admin
   self.localized_fields('first_name', 'last_name')
   belongs_to :employee, class_name: 'HR::Employee'
-  before_create :on_before_create
-  before_save :on_before_save
+  has_many :documents, class_name: 'Document::User', foreign_key: 'user_id'
 
   validates :username, uniqueness: { message: 'ეს მომხმარებელის სახელი დაკავებულია' }
   validates :username, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
   validates :mobile, mobile: { message: 'არასწორი მობილურის ნომერი' }
   validates :email, email: { message: 'არასწორი ელ.ფოსტა' }
   validates :username, username: { message: 'არასწორი მომხმარებლის სახელი' }
+
+  before_create :on_before_create
+  before_save :on_before_save
 
   def full_name; "#{self.first_name} #{self.last_name}" end
   def active?; self.is_active == 1 end

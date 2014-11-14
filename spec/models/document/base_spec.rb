@@ -140,6 +140,8 @@ RSpec.describe Document::Base do
     m1 = doc.motions.first
     m2 = doc.motions.last
 
+    # motions
+
     expect(m1.receiver_role).to eq(Document::Motion::ROLE_SIGNEE)
     expect(m1.ordering).to eq(1)
     expect(m1.status).to eq(Document::Status::PROCESS)
@@ -147,5 +149,17 @@ RSpec.describe Document::Base do
     expect(m2.receiver_role).to eq(Document::Motion::ROLE_SIGNEE)
     expect(m2.ordering).to eq(2)
     expect(m2.status).to eq(Document::Status::NONE)
+
+    # document_users
+
+    expect(dimitri.documents.size).to eq(1)
+    expect(dimitri.documents.first.is_read).to eq(1)
+    expect(dimitri.documents.first.status).to eq(Document::Status::SENT)
+
+    expect(shalva.documents.size).to eq(1)
+    expect(shalva.documents.first.is_read).to eq(0)
+    expect(shalva.documents.first.status).to eq(Document::Status::SENT)
+
+    expect(nino.documents.size).to eq(0)
   end
 end

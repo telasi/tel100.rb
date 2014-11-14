@@ -103,11 +103,12 @@ class Document::Base < ActiveRecord::Base
       if opts[:id]
         doc = Document::Base.find(opts[:id])
         doc.update_attributes!(docparams)
-        Document::User.upsert!(doc, owner_user,  { is_read: 0 })
-        Document::User.upsert!(doc, sender_user, { is_read: 1 })
       else
         doc = Document::Base.create!(docparams)
       end
+ 
+      Document::User.upsert!(doc, owner_user,  { is_read: 0 })
+      Document::User.upsert!(doc, sender_user, { is_read: 1 })
 
       # generate motions
       motionparams.each do |motion_opts|
