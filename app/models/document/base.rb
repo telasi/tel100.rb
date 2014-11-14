@@ -37,7 +37,7 @@ class Document::Base < ActiveRecord::Base
         end
         if prev_all_complete and motion.status == DRAFT
           motion.update_attributes!(status: SENT)
-          # TODO: add document_user record here
+          Document::User.upsert!(self, motion.receiver_user, { status: SENT, is_read: 0 })
           curr_all_complete = false
         elsif motion.status != COMPLETED
           curr_all_complete = false
@@ -103,6 +103,8 @@ class Document::Base < ActiveRecord::Base
       if opts[:id]
         doc = Document::Base.find(opts[:id])
         doc.update_attributes!(docparams)
+        Document::User.upsert!(doc, owner_user,  { is_read: 0 })
+        Document::User.upsert!(doc, sender_user, { is_read: 1 })
       else
         doc = Document::Base.create!(docparams)
       end

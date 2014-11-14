@@ -10,11 +10,11 @@ class Document::User < ActiveRecord::Base
     if user.present?
       params = { document_id: doc.id, user_id: user.id }
       docuser = ( Document::User.where(params).first || Document::User.create!(params) )
-      docuser.status = opts[:status] || doc.status
-      docuser.is_read = opts[:is_read] || 0
-      docuser.updated_at = Date.new
-      docuser.save!
-      docuser
+      docuser.update_attributes!({
+        status: opts[:status] || doc.status,
+        is_read: opts[:is_read] || 0,
+        updated_at: Date.new
+      })
     end
   end
 end
