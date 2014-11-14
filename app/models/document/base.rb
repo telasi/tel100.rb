@@ -18,7 +18,7 @@ class Document::Base < ActiveRecord::Base
   validates :type, presence: { message: 'აარჩიეთ სახეობა' }
   validates :direction, presence: { message: 'აარჩიეთ მიმართულება' }
   validates :subject, presence: { message: 'ჩაწერეთ სათაური' }
-  validates :status, presence: { message: 'მიუთითეთ სტატუსი' }
+  validates :status, numericality: { message: 'მიუთითეთ სტატუსი' }
 
   def body; self.text.body if self.text.present? end
 
