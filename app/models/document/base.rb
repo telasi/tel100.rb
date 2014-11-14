@@ -28,7 +28,7 @@ class Document::Base < ActiveRecord::Base
   end
 
   def self.docnumber_eval(type, status, date)
-    if status == Document::Status::SENT
+    if status == SENT
       last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('id DESC').first
       last_number = '1'
       last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
@@ -40,7 +40,7 @@ class Document::Base < ActiveRecord::Base
     raise 'sender not defined' if sender_user.blank?
     sender = whose_user(sender_user)
     status = status_eval(opts)
-    raise 'not supported status' unless Document::Status::OPEN_STATUSES.include?(status)
+    raise 'not supported status' unless OPEN_STATUSES.include?(status)
     owner_user, owner = who_eval(:owner, opts)
     ( owner_user = sender_user ; owner = sender ) if owner_user.blank?
 
@@ -55,16 +55,30 @@ class Document::Base < ActiveRecord::Base
       original_date = Date.eval(opts[:original_date])
     end
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0
-
-    docparams = { type: type, direction: direction, docnumber: numb, docdate: date, docyear: date.year,
-      subject: subject, status: status, sender_user: sender_user, sender: sender, owner_user: owner_user, owner: owner,
-      page_count: page_count, additions_count: additions_count,
-      original_number: original_number, original_date: original_date,
-      due_date: nil, alarm_date: nil
+    docparams = {
+      language: 'KA',
+      parent: nil,
+      type: type,
+      direction: direction,
+      subject: subject,
+      original_number: original_number,
+      original_date: original_date,
+      docnumber: numb,
+      docdate: date,
+      docyear: date.year,
+      page_count: page_count,
+      additions_count: additions_count,
+      # due_date: nil,
+      # alarm_date: nil,
+      status: status,
+      sender_user: sender_user,
+      sender: sender,
+      owner_user: owner_user,
+      owner: owner
     }
     motionparams = opts[:motions_attributes] || opts[:motions] || []
     signatureparams = opts[:signature_attributes] || opts[:signatures] || []
-    raise 'document cannot be sent with empty motions' if (status == Document::Status::SENT and motionparams.select{|x| not x[:_deleted]}.blank?)
+    raise 'document cannot be sent with empty receivers list' if (status == SENT and motionparams.select{|x| not x[:_deleted]}.blank?)
 
     Document::Base.transaction do
       if opts[:id]
@@ -83,14 +97,26 @@ class Document::Base < ActiveRecord::Base
           receiver_user, receiver = who_eval(:receiver, motion_opts)
           motion_text = motion_opts[:motion_text]
           due_date = Date.eval(motion_opts[:due_date])
+          ordering = motion_opts[:ordering] || Document::Motion::MAX
+          receiver_role = motion_opts[:receiver_role] || Document::Motion::ROLE_ASSIGNEE
           if due_date
             doc.due_date = due_date if (doc.due_date.blank? or doc.due_date < due_date)
             doc.alarm_date = due_date if (doc.alarm_date.blank? or doc.alarm_date > due_date)
           end
-          params = { document: doc, status: status,
-            sender_user: sender_user, sender: sender,
-            receiver_user: receiver_user, receiver: receiver,
-            motion_text: motion_text, due_date: due_date }
+          params = {
+            parent: nil,
+            document: doc,
+            status: status,
+            due_date: due_date,
+            ordering: ordering,
+            motion_text: motion_text, 
+            sender_user: sender_user,
+            sender: sender,
+            response_text: nil,
+            receiver_user: receiver_user,
+            receiver: receiver,
+            receiver_role: receiver_role
+          }
           if id
             Document::Motion.find(id).update_attributes!(params)
           else
@@ -98,27 +124,6 @@ class Document::Base < ActiveRecord::Base
           end
         end
       end
-
-      # signatures
-      previous_group = 0 ; index = 0
-      signatureparams.sort{|x,y| x[:sign_group].to_i <=> y[:sign_group].to_i}.each do |sign_opts|
-        id = sign_opts[:id]
-        if sign_opts[:_deleted]
-          Document::Signature.find(id).destroy
-        else
-          sign_user, sign = who_eval(:signature, sign_opts)
-          sign_group = sign_opts[:sign_group] || 1
-          sign_role  = sign_opts[:sign_role] || Document::Signature::SIGNEE
-          if previous_group != sign_group
-            index += 1
-            previous_group = sign_group
-          end
-          params = { document: doc, signature_user: sign_user, signature: sign, sign_group: index, sign_role: sign_role }
-          if id then Document::Signature.find(id).update_attributes!(params)
-          else Document::Signature.create!(params) end
-        end
-      end
-
       # saving document
       doc.body = body
       doc.text.save!
