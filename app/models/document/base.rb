@@ -14,7 +14,6 @@ class Document::Base < ActiveRecord::Base
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
   has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
-  has_many :signatures, class_name: 'Document::Signature', foreign_key: 'document_id'
 
   validates :type, presence: { message: 'აარჩიეთ სახეობა' }
   validates :direction, presence: { message: 'აარჩიეთ მიმართულება' }
