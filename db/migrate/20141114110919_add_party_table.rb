@@ -1,7 +1,7 @@
 class AddPartyTable < ActiveRecord::Migration
   def up
-  	execute <<-SQL
-  	  create table PARTY (
+    execute <<-SQL
+      create table PARTY (
         ID          number(10, 0) not null,
         ORG_ID		number(15, 0),
         ORG_NAME	varchar2(200 CHAR),
@@ -34,6 +34,7 @@ class AddPartyTable < ActiveRecord::Migration
   end
 
   def down
+    execute "drop sequence PARTY_SEQ"
   	execute "drop table PARTY"
   end
 end

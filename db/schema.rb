@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114110919) do
+ActiveRecord::Schema.define(version: 20141113103651) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",        limit: 2,                             default: "KA",    null: false
@@ -115,17 +115,6 @@ ActiveRecord::Schema.define(version: 20141114110919) do
     t.string    "priority",     limit: 2
     t.timestamp "created_at",   limit: 6,                                            null: false
     t.timestamp "updated_at",   limit: 6,                                            null: false
-  end
-
-  create_table "party", force: true do |t|
-    t.integer   "org_id",      limit: 15,   precision: 15, scale: 0
-    t.string    "org_name",    limit: 200
-    t.integer   "person_id",   limit: 15,   precision: 15, scale: 0
-    t.string    "person_name", limit: 200
-    t.string    "address",     limit: 500
-    t.string    "phones",      limit: 1000
-    t.timestamp "created_at",  limit: 6,                             null: false
-    t.timestamp "updated_at",  limit: 6,                             null: false
   end
 
   create_table "users", force: true do |t|
