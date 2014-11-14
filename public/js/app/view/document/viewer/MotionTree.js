@@ -5,6 +5,7 @@ Ext.define('Telasi.view.document.viewer.MotionTree', {
   rootVisible: true,
   loadMask: true,
   hideHeaders: true,
+  bodyCls: 'x-tree-noicon',
   columns: [{
       xtype: 'treecolumn',
       text: 'Name',
