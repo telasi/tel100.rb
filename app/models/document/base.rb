@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Document::Base < ActiveRecord::Base
+  include Document::Personalize
   include Document::Status
   include Document::Who
-  include Document::Personalize
 
   self.table_name  = 'document_base'
   self.sequence_name = 'docbase_seq'
@@ -22,9 +22,28 @@ class Document::Base < ActiveRecord::Base
 
   def body; self.text.body if self.text.present? end
 
-  def body=(text)
-    self.text = Document::Text.new if self.text.blank?
-    self.text.body = text
+  def revisit_motions!
+    if self.status == DRAFT
+      self.motions.update_all!(status: DRAFT)
+    else
+      prev_ordering = -1
+      prev_all_complete = true
+      curr_all_complete = true
+      self.motions.each do |motion|
+        if prev_ordering != motion.ordering
+          prev_ordering = motion.ordering
+          prev_all_complete = curr_all_complete
+          curr_all_complete = true
+        end
+        if prev_all_complete and motion.status == DRAFT
+          motion.update_attributes!(status: SENT)
+          # TODO: add document_user record here
+          curr_all_complete = false
+        elsif motion.status != COMPLETED
+          curr_all_complete = false
+        end
+      end
+    end
   end
 
   def self.docnumber_eval(type, status, date)
@@ -88,7 +107,7 @@ class Document::Base < ActiveRecord::Base
         doc = Document::Base.create!(docparams)
       end
 
-      # motions
+      # generate motions
       motionparams.each do |motion_opts|
         id = motion_opts[:id]
         if motion_opts[:_deleted]
@@ -106,7 +125,7 @@ class Document::Base < ActiveRecord::Base
           params = {
             parent: nil,
             document: doc,
-            status: status,
+            status: DRAFT,
             due_date: due_date,
             ordering: ordering,
             motion_text: motion_text, 
@@ -124,11 +143,19 @@ class Document::Base < ActiveRecord::Base
           end
         end
       end
-      # saving document
-      doc.body = body
-      doc.text.save!
+
+      # update body
+      text = doc.text || Document::Text.new(document: doc) #if self.text.blank?
+      text.body = body
+      text.save!
+
+      # check motions
+      doc.revisit_motions!
+
+      # save
       doc.save!
-      doc
+
+      return doc
     end
   end
 end

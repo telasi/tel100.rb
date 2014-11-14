@@ -1,9 +1,10 @@
 # -*- encoding : utf-8 -*-
 module Document::Status
-  NONE = DRAFT = 0
-  PROCESS = SENT = 1
-  REJECTED = CANCELED = -1
-  SIGNED = COMPLETED = 2
+  # signature / motion statuses
+  NONE     = DRAFT     =  0
+  PROCESS  = SENT      =  1
+  REJECTED = CANCELED  = -1
+  SIGNED   = COMPLETED =  2
 
   ALL_STATUSES = [ DRAFT, SENT, CANCELED, COMPLETED ]
   OPEN_STATUSES = ALL_STATUSES[0..1]

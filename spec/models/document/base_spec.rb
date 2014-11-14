@@ -10,11 +10,12 @@ RSpec.describe Document::Base do
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')
     date    = Date.new(2014, 10, 5)
+    type    = Document::Type.first
 
     doc1 = Document::Base.sending_document(dimitri, {
       subject: 'test1',
       body: 'test body 1',
-      type_id: 1,
+      type_id: type.id,
       docdate: date,
       status: Document::Status::SENT,
       motions: [
@@ -24,7 +25,7 @@ RSpec.describe Document::Base do
     doc2 = Document::Base.sending_document(dimitri, {
       subject: 'test2',
       body: 'test body 2',
-      type_id: 1,
+      type_id: type.id,
       docdate: date,
       status: Document::Status::SENT,
       motions: [
@@ -34,7 +35,7 @@ RSpec.describe Document::Base do
     doc3 = Document::Base.sending_document(dimitri, {
       subject: 'test3',
       body: 'test body 3',
-      type_id: 1,
+      type_id: type.id,
       docdate: date,
       status: Document::Status::SENT,
       motions: [
@@ -52,11 +53,12 @@ RSpec.describe Document::Base do
     shalva  = Sys::User.find_by_username('shalva')
     nino    = Sys::User.find_by_username('nino')
     date    = Date.new(2014, 10, 1)
+    type    = Document::Type.first
 
     doc = Document::Base.sending_document(dimitri, {
       subject: 'სატესტო დოკუმენტი',
       body: 'სატესტო დოკუმენტის აღწერილობა',
-      type_id: 1,
+      type_id: type.id,
       docdate: date,
       page_count: 10,
       additions_count: 5,
@@ -76,7 +78,7 @@ RSpec.describe Document::Base do
     expect(doc.sender).to eq(dimitri.employee)
     expect(doc.owner_user).to eq(dimitri)
     expect(doc.owner).to eq(dimitri.employee)
-    expect(doc.type.id).to eq(1)
+    expect(doc.type.id).to eq(type.id)
     expect(doc.type.name).to eq('წერილი')
     expect(doc.page_count).to eq(10)
     expect(doc.additions_count).to eq(5)
@@ -108,5 +110,42 @@ RSpec.describe Document::Base do
     expect(motion2.due_date).to eq(date + 5.days)
     expect(motion2.status).to eq(Document::Status::SENT)
     expect(motion2.ordering).to eq(Document::Motion::MAX)
+  end
+
+  it 'signing document' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    shalva  = Sys::User.find_by_username('shalva')
+    nino    = Sys::User.find_by_username('nino')
+    date    = Date.new(2014, 10, 1)
+    role    = Document::Motion::ROLE_SIGNEE
+    type    = Document::Type.first
+
+    doc = Document::Base.sending_document(dimitri, {
+      subject: 'subject',
+      body: 'body text',
+      type_id: type.id,
+      docdate: date,
+      page_count: 10,
+      additions_count: 5,
+      status: Document::Status::SENT,
+      motions: [
+        { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', receiver_role: role, ordering: 1, motion_text: 'text 1', due_date: date + 3.days },
+        { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', receiver_role: role, ordering: 2, motion_text: 'text 2', due_date: date + 5.days },
+      ]
+    }).reload
+
+    expect(doc.status).to eq(Document::Status::SENT)
+    motions = doc.motions
+    expect(doc.motions.size).to eq(2)
+    m1 = doc.motions.first
+    m2 = doc.motions.last
+
+    expect(m1.receiver_role).to eq(Document::Motion::ROLE_SIGNEE)
+    expect(m1.ordering).to eq(1)
+    expect(m1.status).to eq(Document::Status::PROCESS)
+
+    expect(m2.receiver_role).to eq(Document::Motion::ROLE_SIGNEE)
+    expect(m2.ordering).to eq(2)
+    expect(m2.status).to eq(Document::Status::NONE)
   end
 end
