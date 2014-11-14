@@ -15,4 +15,8 @@ class Api::HrController < ApiController
     end.select{ |x| x.present? }
     render json: array_to_tree(structureArray)
   end
+
+  def party
+    render json: HR::Party.all
+  end
 end

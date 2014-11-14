@@ -1,20 +1,23 @@
 Ext.define('Telasi.view.document.viewer.Header', {
-  extend: 'Ext.form.Panel',
+  extend: 'Ext.panel.Panel',
   xtype: 'document-viewer-header',
-  layout: 'border',
+  // layout: 'form',
 
-  layout: 'form',
+  bodyPadding: 0,
+  padding: 0,
 
   fieldDefaults: {
     labelAlign: 'right',
     labelWidth: 100,
     msgTarget: 'side',
-    fieldCls: 'text-strong x-form-display-field',
+    margin: 0,
+    // labelStyle: 'padding: 0 0 0 0;',
   },
 
   items:[
     { xtype: 'displayfield', fieldLabel: 'თემა', bind: '{doc.subject}', fieldCls: 'text-success text-strong x-form-display-field' },
-    // { xtype: 'displayfield', fieldLabel: 'ავტორები', bind: '{doc.authors}', renderer: window.Telasi.documentUtils.getAuthorList },
+    { xtype: 'fieldset', collapsed: true }, 
+    { xtype: 'displayfield', fieldLabel: 'ავტორები', bind: '{doc.authors}', renderer: window.Telasi.documentUtils.getAuthorList },
     { xtype: 'displayfield', fieldLabel: 'გამგზავნი', bind: '{doc.sender_user}', 
         renderer: function(value, metaInfo) { if (value){ return window.Telasi.hrUtils.getPerson( value ); } }
     },
