@@ -6,6 +6,7 @@ class Document::Base < ActiveRecord::Base
 
   self.table_name  = 'document_base'
   self.sequence_name = 'docbase_seq'
+  self.set_integer_columns :status
 
   belongs_to :parent, class_name: 'Document::Base', foreign_key: 'parent_id'
   personalize 'sender'
