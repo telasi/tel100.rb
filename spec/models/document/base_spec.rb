@@ -97,6 +97,7 @@ RSpec.describe Document::Base do
     expect(motion1.response_text).to be_blank
     expect(motion1.due_date).to eq(date + 3.days)
     expect(motion1.status).to eq(Document::Status::SENT)
+    expect(motion1.ordering).to eq(Document::Motion::MAX)
 
     expect(motion2.sender).to eq(dimitri.employee)
     expect(motion2.sender_user).to eq(dimitri)
@@ -106,5 +107,6 @@ RSpec.describe Document::Base do
     expect(motion2.response_text).to be_blank
     expect(motion2.due_date).to eq(date + 5.days)
     expect(motion2.status).to eq(Document::Status::SENT)
+    expect(motion2.ordering).to eq(Document::Motion::MAX)
   end
 end
