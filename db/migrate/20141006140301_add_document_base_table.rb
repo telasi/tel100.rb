@@ -18,7 +18,7 @@ class AddDocumentBaseTable < ActiveRecord::Migration
         ADDITIONS_COUNT number(6, 0),
         DUE_DATE    date,
         ALARM_DATE  date,
-        STATUS      varchar2(20 CHAR) default 'open' not null,
+        STATUS      number(1, 0) default 0 not null,
         -----
         SENDER_USER_ID number(10,0),
         SENDER_ID      number(10,0),

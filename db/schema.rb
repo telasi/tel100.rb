@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006140301) do
+ActiveRecord::Schema.define(version: 20141113103651) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",        limit: 2,                             default: "KA",    null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20141006140301) do
     t.integer   "additions_count", limit: 6,    precision: 6,  scale: 0
     t.datetime  "due_date"
     t.datetime  "alarm_date"
-    t.string    "status",          limit: 20,                            default: "open",  null: false
+    t.boolean   "status",                       precision: 1,  scale: 0, default: false,   null: false
     t.integer   "sender_user_id",  limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",       limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",     limit: 50
@@ -37,6 +37,49 @@ ActiveRecord::Schema.define(version: 20141006140301) do
     t.string    "owner_type",      limit: 50
     t.timestamp "created_at",      limit: 6,                                               null: false
     t.timestamp "updated_at",      limit: 6,                                               null: false
+  end
+
+  create_table "document_motion", force: true do |t|
+    t.integer   "parent_id",        limit: 12,   precision: 12, scale: 0
+    t.integer   "document_id",      limit: 10,   precision: 10, scale: 0,                      null: false
+    t.boolean   "status",                        precision: 1,  scale: 0, default: false,      null: false
+    t.datetime  "due_date"
+    t.integer   "ordering",         limit: 3,    precision: 3,  scale: 0, default: 999,        null: false
+    t.string    "motion_text",      limit: 1000
+    t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
+    t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
+    t.string    "sender_type",      limit: 50
+    t.string    "response_text",    limit: 1000
+    t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
+    t.string    "receiver_type",    limit: 50
+    t.string    "receiver_role",    limit: 10,                            default: "assignee", null: false
+    t.timestamp "created_at",       limit: 6,                                                  null: false
+    t.timestamp "updated_at",       limit: 6,                                                  null: false
+  end
+
+  add_index "document_motion", ["document_id"], name: "docmotions_base_idx"
+  add_index "document_motion", ["parent_id"], name: "docmotions_prnt_idx"
+
+  create_table "document_text", primary_key: "document_id", force: true do |t|
+    t.text "body"
+  end
+
+  create_table "document_type", force: true do |t|
+    t.string    "name_ka",    limit: 50,                                     null: false
+    t.string    "name_ru",    limit: 50
+    t.string    "name_en",    limit: 50
+    t.integer   "order_by",   limit: 5,  precision: 5, scale: 0, default: 0, null: false
+    t.timestamp "created_at", limit: 6,                                      null: false
+    t.timestamp "updated_at", limit: 6,                                      null: false
+  end
+
+  create_table "document_user", id: false, force: true do |t|
+    t.integer   "document_id", limit: 10, precision: 10, scale: 0,                 null: false
+    t.integer   "user_id",     limit: 10, precision: 10, scale: 0,                 null: false
+    t.boolean   "status",                 precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_read",                precision: 1,  scale: 0, default: false, null: false
+    t.timestamp "updated_at",  limit: 6,                                           null: false
   end
 
   create_table "hr_employees", force: true do |t|

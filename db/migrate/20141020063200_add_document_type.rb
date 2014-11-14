@@ -3,11 +3,11 @@ class AddDocumentType < ActiveRecord::Migration
   def up
     execute <<-SQL
       create table DOCUMENT_TYPE (
-        ID number(5, 0) not null,
-        NAME_KA VARCHAR2(50) not null,
-        NAME_RU VARCHAR2(50),
-        NAME_EN VARCHAR2(50),
-        ORDER_BY NUMBER(5, 0) default 0 not null,
+        ID       number(5, 0) not null,
+        NAME_KA  varchar2(50) not null,
+        NAME_RU  varchar2(50),
+        NAME_EN  varchar2(50),
+        ORDER_BY number(5, 0) default 0 not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,

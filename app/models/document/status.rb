@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 module Document::Status
-  DRAFT = 'draft'
-  SENT  = 'sent'
-  CANCELED = 'canceled'
-  COMPLETED = 'completed'
+  NONE = DRAFT = 0
+  PROCESS = SENT = 1
+  REJECTED = CANCELED = -1
+  SIGNED = COMPLETED = 2
 
   ALL_STATUSES = [ DRAFT, SENT, CANCELED, COMPLETED ]
   OPEN_STATUSES = ALL_STATUSES[0..1]
@@ -22,7 +22,7 @@ module Document::Status
 
   module ClassMethods
     def status_eval(opts)
-      status = opts[:status] || SENT
+      status = opts[:status] || NONE
       raise "Illegal status: #{status}" unless ALL_STATUSES.include?(status)
       status
     end
