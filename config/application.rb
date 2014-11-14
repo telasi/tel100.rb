@@ -1,4 +1,6 @@
 # -*- encoding : utf-8 -*-
+ENV['NLS_LANG'] = '.UTF8'
+
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -6,8 +8,6 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
-ENV['NLS_LANG'] = '.UTF8'
 
 module Tel100Rb
   class Application < Rails::Application
