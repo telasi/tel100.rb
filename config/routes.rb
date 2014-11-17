@@ -42,7 +42,6 @@ Rails.application.routes.draw do
       get '/types', action: 'types'
       get '/show/:id', action: 'show'
       get '/motions', action: 'motions'
-      get '/signatures', action: 'signatures'
       post '/create', action: 'create'
     end
   end
