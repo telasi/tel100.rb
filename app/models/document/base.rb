@@ -154,11 +154,11 @@ class Document::Base < ActiveRecord::Base
       text.body = body
       text.save!
 
-      # check motions
-      doc.revisit_motions!
-
       # save
       doc.save!
+
+      # check motions
+      doc.revisit_motions!
 
       return doc
     end
