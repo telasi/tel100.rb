@@ -24,7 +24,9 @@ class Document::Base < ActiveRecord::Base
 
   def revisit_motions!
     if self.status == DRAFT
-      self.motions.update_all!(status: DRAFT)
+      self.motions.each do |motion|
+        motion.update_attributes!(status: DRAFT)
+      end
     else
       prev_ordering = -1
       prev_all_complete = true
@@ -75,7 +77,7 @@ class Document::Base < ActiveRecord::Base
     end
     page_count = opts[:page_count] || 0 ; additions_count = opts[:additions_count] || 0
     docparams = {
-      language: 'KA',
+      language: opts[:language] || 'KA',
       parent: nil,
       type: type,
       direction: direction,
@@ -148,7 +150,7 @@ class Document::Base < ActiveRecord::Base
       end
 
       # update body
-      text = doc.text || Document::Text.new(document: doc) #if self.text.blank?
+      text = doc.text || Document::Text.new(document: doc)
       text.body = body
       text.save!
 
