@@ -5,6 +5,19 @@ Ext.define('Telasi.view.document.motions.Grid', {
     new Ext.grid.plugin.CellEditing({ clicksToEdit: 1 }),
   ],
   scroll: 'vertical',
+  store: {
+    fields: [
+      'receiver_id',
+      'receiver_type',
+      'receiver_role',
+      'ordering',
+      { name: 'due_date', type: 'date' },
+      'name',
+      'organization',
+      'image',
+      'is_manager'
+    ],
+  },
   initComponent: function() {
     var personCol = {
       flex: 1,
@@ -24,6 +37,11 @@ Ext.define('Telasi.view.document.motions.Grid', {
       dataIndex: 'due_date',
       xtype: 'datecolumn'
     };
+    var orderingCol = {
+      width: 50,
+      text: 'ეტაპი',
+      dataIndex: 'ordering'
+    };
     var actionsCol = {
       xtype: 'actioncolumn',
       width: 30,
@@ -36,9 +54,10 @@ Ext.define('Telasi.view.document.motions.Grid', {
         }
       }]
     };
-    var cols = this.shortColumns ? [ personCol, actionsCol ] : [ personCol, resolutionCol, duedateCol, actionsCol ];
+    var cols = this.shortColumns ? [ orderingCol, personCol, actionsCol ] : [ orderingCol, personCol, resolutionCol, duedateCol, actionsCol ];
     if (this.editable) {
       duedateCol.editor = { xtype: 'datefield', allowBlank: true, format: Ext.Date.defaultFormat };
+      orderingCol.editor = { xtype: 'numberfield', allowBlank: false, minValue: 1, maxValue: 999 };
       resolutionCol.editor = { allowBlank: true };
     }
     cols = cols.map(function(col) {

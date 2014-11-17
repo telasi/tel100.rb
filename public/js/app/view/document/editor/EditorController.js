@@ -47,10 +47,12 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       var id = motionData.id;
       motions.push({
         id: typeof id === 'number' ? id : undefined,
+        due_date: motionData.due_date,
+        ordering: motionData.ordering,
+        motion_text: motionData.motion_text,
         receiver_id: motionData.receiver_id,
         receiver_type: motionData.receiver_type,
-        motion_text: motionData.motion_text,
-        due_date: motionData.due_date
+        receiver_role: motionData.receiver_role
       });
     }
 
@@ -59,26 +61,25 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       motions.push({ id: data.id, _deleted: true });
     }
 
-    // signature data
+    // XXX: signature data
 
-    var signaturesStore = this.getSignaturesStore();
-    var signatures = [];
-    for (var i = 0, l = signaturesStore.data.length; i < l; i++) {
-      var signatureData = signaturesStore.getAt(i).data;
-      var id = signatureData.id;
-      signatures.push({
-        id: typeof id === 'number' ? id : undefined,
-        signature_id: signatureData.signature_id,
-        signature_type: signatureData.signature_type,
-        sign_group: signatureData.sign_group,
-        sign_role: signatureData.sign_role
-      });
-    }
+    // var signaturesStore = this.getSignaturesStore();
+    // for (var i = 0, l = signaturesStore.data.length; i < l; i++) {
+    //   var signatureData = signaturesStore.getAt(i).data;
+    //   var id = signatureData.id;
+    //   signatures.push({
+    //     id: typeof id === 'number' ? id : undefined,
+    //     receiver_id: signatureData.signature_id,
+    //     receiver_type: signatureData.signature_type,
+    //     receiver_role: signatureData.sign_role,
+    //     ordering: signatureData.sign_group
+    //   });
+    // }
 
-    for (var i = 0, l = signaturesStore.removed.length; i < l; i++) {
-      var data = signaturesStore.removed[i].data;
-      signatures.push({ id: data.id, _deleted: true });
-    }
+    // for (var i = 0, l = signaturesStore.removed.length; i < l; i++) {
+    //   var data = signaturesStore.removed[i].data;
+    //   signatures.push({ id: data.id, _deleted: true });
+    // }
 
     // main model
 
@@ -99,7 +100,8 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       original_date: model.get('original_date'),
     };
     doc.motions = motions;
-    doc.signatures = signatures;
+    // doc.signatures = signatures;
+    doc.signatures = [];
 
     // sending data to server
 
@@ -124,10 +126,10 @@ Ext.define('Telasi.view.document.editor.EditorController', {
   },
 
   onSendDocument: function(btn, evt) {
-    this.sendDocument( btn, 'sent' );
+    this.sendDocument( btn, Telasi.statuses.sent );
   },
 
   onSaveDocument: function(btn, evt) {
-    this.sendDocument( btn, 'draft' );
+    this.sendDocument( btn, Telasi.statuses.draft );
   },
 });

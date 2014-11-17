@@ -9,6 +9,12 @@ Ext.define('Telasi.view.document.signature.Grid', {
   selModel: {
     mode: 'MULTI'
   },
+  store: {
+    fields: [
+      'receiver_id', 'receiver_type', 'receiver_role', 'ordering',
+      'name', 'organization', 'image', 
+    ],
+  },
   initComponent: function() {
     var roleCol = {
       width: 75,

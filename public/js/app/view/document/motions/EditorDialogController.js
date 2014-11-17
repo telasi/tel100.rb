@@ -23,9 +23,11 @@ Ext.define('Telasi.view.document.motions.EditorDialogController', {
           store.add({
             receiver_id: data.id,
             receiver_type: data.type,
+            receiver_role: 'assignee',
+            ordering: 999,
+            name: data.name,
             organization: data.organization,
             image: data.image,
-            name: data.name,
             is_manager: data.is_manager,
             motion_text: ''
           });

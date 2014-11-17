@@ -14,11 +14,6 @@ Ext.define('Telasi.view.document.signature.Editor', {
     xtype: 'document-signatures-grid',
     editable: false,
     shortColumns: true,
-    store: {
-      fields: [
-        'signature_id', 'signature_type', 'name', 'organization', 'image', 'sign_group', 'sign_role'
-      ],
-    },
     border: false,
   }],
   tools: [{
