@@ -42,7 +42,7 @@ Ext.define('Telasi.view.document.list.GridController', {
   openDocument: function(table, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     var componentToOpen = this.findComponentById(record);
     if (!componentToOpen){
-      if (record.get('status') === 'draft') {
+      if ( record.get('status') === Telasi.statuses.draft ) {
         componentToOpen = this.createEditorComponent(record);
       } else {
         componentToOpen = this.createViewerComponent(record);

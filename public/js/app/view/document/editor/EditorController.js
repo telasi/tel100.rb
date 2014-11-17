@@ -6,25 +6,18 @@ Ext.define('Telasi.view.document.editor.EditorController', {
     var doc = this.getViewModel().getData().doc;
     var self = this;
     if ( typeof doc.getId() === 'number' ) {
-
-      // TODO: get document as a whole
-
       Ext.Ajax.request({
         url: '/api/docs/motions',
         method: 'GET',
         params: { flat: 'true', id: doc.getId() },
         success: function(data) {
-          var motionsStore = self.getMotionsStore();
-          motionsStore.add(JSON.parse(data.responseText));
-        }
-      });
-      Ext.Ajax.request({
-        url: '/api/docs/signatures',
-        method: 'GET',
-        params: { id: doc.getId() },
-        success: function(data) {
           var signaturesStore = self.getSignaturesStore();
-          signaturesStore.add(JSON.parse(data.responseText));
+          var motionsStore = self.getMotionsStore();
+          var motions = JSON.parse(data.responseText);
+          var signatures = motions.filter(function(val){ return val.receiver_role !== 'assignee'; });
+          var assignees  = motions.filter(function(val){ return val.receiver_role === 'assignee'; });
+          signaturesStore.add( signatures );
+          motionsStore.add( assignees );
         }
       });
     }
@@ -63,23 +56,23 @@ Ext.define('Telasi.view.document.editor.EditorController', {
 
     // XXX: signature data
 
-    // var signaturesStore = this.getSignaturesStore();
-    // for (var i = 0, l = signaturesStore.data.length; i < l; i++) {
-    //   var signatureData = signaturesStore.getAt(i).data;
-    //   var id = signatureData.id;
-    //   signatures.push({
-    //     id: typeof id === 'number' ? id : undefined,
-    //     receiver_id: signatureData.signature_id,
-    //     receiver_type: signatureData.signature_type,
-    //     receiver_role: signatureData.sign_role,
-    //     ordering: signatureData.sign_group
-    //   });
-    // }
+    var signaturesStore = this.getSignaturesStore();
+    for (var i = 0, l = signaturesStore.data.length; i < l; i++) {
+      var signatureData = signaturesStore.getAt(i).data;
+      var id = signatureData.id;
+      motions.push({
+        id: typeof id === 'number' ? id : undefined,
+        receiver_id: signatureData.receiver_id,
+        receiver_type: signatureData.receiver_type,
+        receiver_role: signatureData.receiver_role,
+        ordering: signatureData.ordering
+      });
+    }
 
-    // for (var i = 0, l = signaturesStore.removed.length; i < l; i++) {
-    //   var data = signaturesStore.removed[i].data;
-    //   signatures.push({ id: data.id, _deleted: true });
-    // }
+    for (var i = 0, l = signaturesStore.removed.length; i < l; i++) {
+      var data = signaturesStore.removed[i].data;
+      motions.push({ id: data.id, _deleted: true });
+    }
 
     // main model
 
@@ -100,8 +93,6 @@ Ext.define('Telasi.view.document.editor.EditorController', {
       original_date: model.get('original_date'),
     };
     doc.motions = motions;
-    // doc.signatures = signatures;
-    doc.signatures = [];
 
     // sending data to server
 

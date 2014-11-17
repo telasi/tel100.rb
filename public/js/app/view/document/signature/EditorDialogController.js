@@ -16,24 +16,24 @@ Ext.define('Telasi.view.document.signature.EditorDialogController', {
 
         if (data.type === 'HR::Employee') {
           var existingIdx = store.findBy(function( record, id ) {
-            return data.id === record.get('signature_id')
-                && data.type === record.get('signature_type');
+            return data.id === record.get('receiver_id')
+                && data.type === record.get('receiver_type');
           });
 
           if (existingIdx === -1) {
             var lastIndex = 0;
             if (store.data.length > 0) {
-              lastIndex = store.getAt(store.data.length - 1).get('sign_group');
+              lastIndex = store.getAt(store.data.length - 1).get('ordering');
             }
             store.add({
-              signature_id: data.id,
-              signature_type: data.type,
+              receiver_id: data.id,
+              receiver_type: data.type,
+              receiver_role: 'signee',
+              ordering: lastIndex + 1,
               organization: data.organization,
               image: data.image,
               name: data.name,
-              is_manager: data.is_manager,
-              sign_group: lastIndex + 1,
-              sign_role: 'signee'
+              is_manager: data.is_manager
             });
           }
         }

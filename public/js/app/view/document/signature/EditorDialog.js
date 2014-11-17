@@ -6,7 +6,7 @@ Ext.define('Telasi.view.document.signature.EditorDialog', {
   bodyBorder: false,
   border: false,
   modal: true,
-  title: '<i class="fa fa-edit"></i> ადრესატების დამატება',
+  title: '<i class="fa fa-edit"></i> ხელმოწერების დამატება',
   requires: [
     'Telasi.view.common.hr.HRtree',
     'Telasi.view.document.signature.Grid',

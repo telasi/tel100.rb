@@ -11,15 +11,20 @@ Ext.define('Telasi.view.document.signature.Grid', {
   },
   store: {
     fields: [
-      'receiver_id', 'receiver_type', 'receiver_role', 'ordering',
-      'name', 'organization', 'image', 
+      'receiver_id',
+      'receiver_type',
+      'receiver_role',
+      { name: 'ordering', type: 'number' },
+      'name',
+      'organization',
+      'image'
     ],
   },
   initComponent: function() {
     var roleCol = {
       width: 75,
       text: 'როლი',
-      dataIndex: 'sign_role',
+      dataIndex: 'receiver_role',
       renderer: function(value, metaData, record) {
         return window.Telasi.documentUtils.getSignatureRole(value).get('name');
       },
@@ -33,10 +38,10 @@ Ext.define('Telasi.view.document.signature.Grid', {
       }
     };
 
-    var groupCol = {
+    var orderCol = {
       width: 50,
-      text: '#',
-      dataIndex: 'sign_group'
+      text: 'ეტაპი',
+      dataIndex: 'ordering'
     };
 
     var actionsCol = {
@@ -63,7 +68,7 @@ Ext.define('Telasi.view.document.signature.Grid', {
     };
 
     if (this.editable) {
-      groupCol.editor = { xtype: 'numberfield', allowBlank: false, minValue: 1, maxValue: 99 };
+      orderCol.editor = { xtype: 'numberfield', allowBlank: false, minValue: 1, maxValue: 99 };
       roleCol.editor = {
         xtype: 'combo',
         store: 'document-signature-roles',
@@ -72,7 +77,7 @@ Ext.define('Telasi.view.document.signature.Grid', {
       };
     }
 
-    var cols = [ roleCol, personCol, groupCol, actionsCol ] ;
+    var cols = this.shortColumns ? [ orderCol, personCol, actionsCol ] : [ orderCol, roleCol, personCol, actionsCol ] ;
 
     cols = cols.map(function(col) {
       col.sortable = false;
