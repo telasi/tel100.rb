@@ -1,6 +1,13 @@
 // declare global object
 
-window.Telasi = {};
+window.Telasi = {
+  statuses: {
+    draft: 0,
+    sent: 1,
+    canceled: -1,
+    completed: 2
+  }
+};
 
 // setting default format
 
