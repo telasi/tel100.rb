@@ -112,7 +112,7 @@ RSpec.describe Document::Base do
     expect(motion2.ordering).to eq(Document::Motion::MAX)
   end
 
-  it 'signing document' do
+  it 'responding to document' do
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')
     nino    = Sys::User.find_by_username('nino')
