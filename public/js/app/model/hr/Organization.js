@@ -10,6 +10,7 @@ Ext.define('Telasi.model.hr.Organization', {
     { name: 'name_ka', type: 'string' },
     { name: 'name_ru', type: 'string' },
     { name: 'name_en', type: 'string' },
+    { name: 'has_user', type: 'boolean' },
     {
       name: 'name',
       type: 'string',

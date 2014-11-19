@@ -14,6 +14,15 @@ Ext.define('Telasi.view.document.motions.EditorDialogController', {
         var store = grid.getStore();
         var data = record.getData();
 
+        if (data.has_user === false)  {
+          Ext.MessageBox.show({
+            title: 'ინფორმაცია',
+            msg: 'თანამშრომელს არ აქვს მომხმარებელი: ის ვერ მიიღებს ამ დოკუმენტს.',
+            buttons: Ext.MessageBox.OK,
+            icon: Ext.window.MessageBox.INFO
+          });
+        }
+
         var existingIdx = store.findBy(function( record, id ) {
           return data.id === record.get('receiver_id')
               && data.type === record.get('receiver_type');
