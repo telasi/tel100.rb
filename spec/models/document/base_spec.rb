@@ -112,7 +112,7 @@ RSpec.describe Document::Base do
     expect(motion2.ordering).to eq(Document::Motion::MAX)
   end
 
-  it 'sending document to an employee without registered used' do
+  it 'sending document to an employee without registered user' do
     dimitri = Sys::User.find_by_username('dimitri')
     empl1 = HR::Employee.where(person_id: 5555).first
     type = Document::Type.first
@@ -137,13 +137,14 @@ RSpec.describe Document::Base do
     expect(m1.status).to eq(Document::Status::NOT_SENT)
   end
 
-  it 'responding to document' do
+  it 'sending and responding to document' do
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')
     nino    = Sys::User.find_by_username('nino')
     date    = Date.new(2014, 10, 1)
-    role    = Document::Motion::ROLE_SIGNEE
     type    = Document::Type.first
+
+    # Step 1: sending document
 
     doc = Document::Base.sending_document(dimitri, {
       subject: 'subject',
@@ -154,8 +155,8 @@ RSpec.describe Document::Base do
       additions_count: 5,
       status: Document::Status::SENT,
       motions: [
-        { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', receiver_role: role, ordering: 1, motion_text: 'text 1', due_date: date + 3.days },
-        { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', receiver_role: role, ordering: 2, motion_text: 'text 2', due_date: date + 5.days },
+        { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', receiver_role: Document::Motion::ROLE_SIGNEE, ordering: 1, motion_text: 'text 1', due_date: date + 3.days },
+        { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', receiver_role: Document::Motion::ROLE_ASSIGNEE, ordering: 2, motion_text: 'text 2', due_date: date + 5.days },
       ]
     }).reload
 
@@ -171,7 +172,7 @@ RSpec.describe Document::Base do
     expect(m1.ordering).to eq(1)
     expect(m1.status).to eq(Document::Status::PROCESS)
 
-    expect(m2.receiver_role).to eq(Document::Motion::ROLE_SIGNEE)
+    expect(m2.receiver_role).to eq(Document::Motion::ROLE_ASSIGNEE)
     expect(m2.ordering).to eq(2)
     expect(m2.status).to eq(Document::Status::NONE)
 
@@ -186,5 +187,35 @@ RSpec.describe Document::Base do
     expect(shalva.documents.first.status).to eq(Document::Status::SENT)
 
     expect(nino.documents.size).to eq(0)
+
+    # Step 2: shalva signs document
+
+    doc.respond(shalva, { status: Document::Status::COMPLETED, response_text: 'resp-1' })
+
+    # motions
+    m1.reload ; m2.reload
+    shalva.reload ; nino.reload
+
+    expect(m1.status).to eq(Document::Status::SIGNED)
+    expect(m1.response_text).to eq('resp-1')
+    expect(shalva.documents.size).to eq(1)
+    expect(shalva.documents.first.is_read).to eq(1)
+    expect(shalva.documents.first.status).to eq(Document::Status::COMPLETED)
+
+    expect(m2.status).to eq(Document::Status::SENT)
+    expect(nino.documents.size).to eq(1)
+    expect(nino.documents.first.is_read).to eq(0)
+    expect(nino.documents.first.status).to eq(Document::Status::SENT)
+
+    # Step 3: nino completes the task
+
+    doc.respond(nino, { status: Document::Status::COMPLETED, respond: 'resp-2' })
+    m1.reload ; m2.reload
+    shalva.reload ; nino.reload
+
+    expect(m2.status).to eq(Document::Status::COMPLETED)
+    expect(nino.documents.size).to eq(1)
+    expect(nino.documents.first.is_read).to eq(1)
+    expect(nino.documents.first.status).to eq(Document::Status::COMPLETED)
   end
 end

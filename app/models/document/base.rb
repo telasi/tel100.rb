@@ -179,11 +179,18 @@ class Document::Base < ActiveRecord::Base
   def respond(by_user, opts = {})
     user_motions = self.motions.where(receiver_user: by_user)
     if user_motions.count > 0
-      status = status_eval(opts.merge(default_status: COMPLETED))
-      user_motions.update_attributes!({
-        status: status,
-        response_text: opts[:response_text]
-      })
+      status = Document::Base.status_eval(opts.merge(default_status: COMPLETED))
+      user_motions.each do |motion|
+        motion.update_attributes!({
+          status: status,
+          response_text: opts[:response_text]
+        })
+        Document::User.where(user: by_user, document: self).first.update_attributes!({
+          status: status,
+          is_read: 1
+        })
+      end
+      revisit_motions!
     end
   end
 end
