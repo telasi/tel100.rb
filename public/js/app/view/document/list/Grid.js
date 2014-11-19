@@ -42,6 +42,11 @@ Ext.define('Telasi.view.document.list.Grid', {
         renderer: window.Telasi.documentUtils.gridStatusRenderer,
         locked: true
       }, {
+        width: 120,
+        dataIndex: 'my_status',
+        text: 'ჩემი სტატუსი',
+        renderer: window.Telasi.documentUtils.gridStatusRenderer,
+      }, {
         xtype: 'datecolumn',
         dataIndex: 'docdate',
         text: Telasi.model.document.BaseTexts.text_DocDateField2,
