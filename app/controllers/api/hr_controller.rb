@@ -8,7 +8,7 @@ class Api::HrController < ApiController
     structureArray = HR::Organization.active.order(saporg_type: :desc).order(is_manager: :desc, priority: :asc).map do |org|
       if org.saporg_type == 'S'
         empl = employees[org.id]
-        { id: empl.id, parent_id: org.parent_id, type: 'HR::Employee', name: empl.full_name, image: empl.icon, organization: org.name, is_manager: org.is_manager } if empl
+        { id: empl.id, parent_id: org.parent_id, type: 'HR::Employee', name: empl.full_name, image: empl.icon, organization: org.name, is_manager: org.is_manager, has_user: empl.user_id.present? } if empl
       else
         { id: org.id, parent_id: org.parent_id, type: 'HR::Organization', name: org.name, image: org.icon }
       end
