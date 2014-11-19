@@ -35,6 +35,28 @@ class Sys::User < ActiveRecord::Base
     self.password_hash = @password
   end
 
+  def create_user
+    Sys::User.transaction do
+      self.save!
+      empl = self.employee
+      empl.update_attributes!(user_id: self.id) if empl
+      return true
+    end
+  rescue
+    return false
+  end
+
+  def update_user(user_params)
+    Sys::User.transaction do
+      self.update_attributes!(user_params)
+      empl = self.employee
+      empl.update_attributes!(user_id: self.id) if empl
+      return true
+    end
+  rescue
+    return false
+  end
+
   def self.active; Sys::User.where(is_active: 1) end
 
   def self.authenticate(userID, password)
@@ -56,13 +78,13 @@ class Sys::User < ActiveRecord::Base
     self.email = self.email.downcase.strip if self.email.present?
 
     if self.employee
-      self.person_id = self.employee.person_id
+      self.person_id     = self.employee.person_id
       self.first_name_ka = self.employee.first_name_ka
       self.first_name_ru = self.employee.first_name_ru
       self.first_name_en = self.employee.first_name_en
-      self.last_name_ka = self.employee.last_name_ka
-      self.last_name_ru = self.employee.last_name_ru
-      self.last_name_en = self.employee.last_name_en
+      self.last_name_ka  = self.employee.last_name_ka
+      self.last_name_ru  = self.employee.last_name_ru
+      self.last_name_en  = self.employee.last_name_en
     end
   end
 end

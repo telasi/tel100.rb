@@ -10,25 +10,21 @@ class Admin::UsersController < AdminController
     @title = @user.full_name
   end
 
-  def edit
-    @title = 'მომხმარებლის შეცვლა'
-    @user = Sys::User.find(params[:id])
-    if request.post?
-      if @user.update_attributes(user_params)
-        redirect_to admin_user_url(id: @user.id)
-      end
-    end
-  end
-
   def new
     @title = 'ახალი მომხმარებელი'
     if request.post?
       @user = Sys::User.new(user_params)
-      if @user.save
-        redirect_to admin_user_url(id: @user.id)
-      end
+      redirect_to admin_user_url(id: @user.id) if @user.create_user
     else
       @user = Sys::User.new
+    end
+  end
+
+  def edit
+    @title = 'მომხმარებლის შეცვლა'
+    @user = Sys::User.find(params[:id])
+    if request.post?
+      redirect_to admin_user_url(id: @user.id) if @user.update_user(user_params)
     end
   end
 
