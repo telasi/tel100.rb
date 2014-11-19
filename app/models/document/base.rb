@@ -28,22 +28,34 @@ class Document::Base < ActiveRecord::Base
         motion.update_attributes!(status: DRAFT)
       end
     else
-      prev_ordering = -1
-      prev_all_complete = true
-      curr_all_complete = true
-      self.motions.each do |motion|
-        if prev_ordering != motion.ordering
-          prev_ordering = motion.ordering
-          prev_all_complete = curr_all_complete
-          curr_all_complete = true
+      if self.status != DRAFT
+        self.motions.where(receiver_user_id: nil).each do |motion|
+          motion.update_attributes!(status: NOT_SENT) 
         end
-        if prev_all_complete and motion.status == DRAFT
-          motion.update_attributes!(status: SENT)
-          Document::User.upsert!(self, motion.receiver_user, { status: SENT, is_read: 0 })
-          curr_all_complete = false
-        elsif motion.status != COMPLETED
-          curr_all_complete = false
+      end
+
+      sent_motions = self.motions.where('status != ?', NOT_SENT)
+
+      if sent_motions.any?
+        prev_ordering = -1
+        prev_all_complete = true
+        curr_all_complete = true
+        sent_motions.each do |motion|
+          if prev_ordering != motion.ordering
+            prev_ordering = motion.ordering
+            prev_all_complete = curr_all_complete
+            curr_all_complete = true
+          end
+          if prev_all_complete and motion.status == DRAFT
+            motion.update_attributes!(status: SENT)
+            Document::User.upsert!(self, motion.receiver_user, { status: SENT, is_read: 0 })
+            curr_all_complete = false
+          elsif motion.status != COMPLETED
+            curr_all_complete = false
+          end
         end
+      else
+        self.update_attributes!(status: NOT_SENT)
       end
     end
   end

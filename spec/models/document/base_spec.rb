@@ -112,6 +112,31 @@ RSpec.describe Document::Base do
     expect(motion2.ordering).to eq(Document::Motion::MAX)
   end
 
+  it 'sending document to an employee without registered used' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    empl1 = HR::Employee.where(person_id: 5555).first
+    type = Document::Type.first
+    date = Date.today
+    doc = Document::Base.sending_document(dimitri, {
+      subject: 'სატესტო დოკუმენტი',
+      body: 'სატესტო დოკუმენტის აღწერილობა',
+      type_id: type.id,
+      docdate: date,
+      page_count: 10,
+      additions_count: 5,
+      status: Document::Status::SENT,
+      motions: [
+        { receiver_id: empl1.id, receiver_type: 'HR::Employee', motion_text: 'text 1', due_date: date + 10.days },
+      ]
+    }).reload
+
+    expect(doc.subject).to eq('სატესტო დოკუმენტი')
+    expect(doc.status).to eq(Document::Status::NOT_SENT)
+    expect(doc.motions.size).to eq(1)
+    m1 = doc.motions.first
+    expect(m1.status).to eq(Document::Status::NOT_SENT)
+  end
+
   it 'responding to document' do
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')

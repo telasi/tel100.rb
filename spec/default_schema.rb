@@ -21,6 +21,9 @@ module DefaultSchema
 
     @adminteam = create_organization('მონაცემთა ბაზების განყოფილება', @it.id)
     @ilia_s = create_organization('ბაზის ადმინისტრატორი', @adminteam.id, 'S', true)
+
+    @e1_s = create_organization('structure 1', @telasi.id, 'S', true)
+    @e2_s = create_organization('structure 2', @telasi.id, 'S')
   end
 
   def create_employee(personId, firstName, lastName, organization)
@@ -34,10 +37,12 @@ module DefaultSchema
 
   def create_employees
     @dimitri_e = create_employee(3015, 'დიმიტრი', 'ყურაშვილი', @dimitri_s)
-    @nino_e = create_employee(69, 'ნინო', 'გვაზავა', @nino_s)
-    @temo_e = create_employee(69, 'თემო', 'ჩუთლაშვილი', @temo_s)
-    @ilia_e = create_employee(69, 'ილია', 'ლომსაძე', @ilia_s)
-    @shalva_e = create_employee(69, 'შალვა', 'ესაკია', @shalva_s)
+    @nino_e    = create_employee(1111, 'ნინო', 'გვაზავა', @nino_s)
+    @temo_e    = create_employee(2222, 'თემო', 'ჩუთლაშვილი', @temo_s)
+    @ilia_e    = create_employee(3333, 'ილია', 'ლომსაძე', @ilia_s)
+    @shalva_e  = create_employee(4444, 'შალვა', 'ესაკია', @shalva_s)
+    @empl1     = create_employee(5555, 'user', '1', @e1_s)
+    @empl2     = create_employee(6666, 'user', '2', @e2_s)
   end
 
   def create_user(username, password, employee)
