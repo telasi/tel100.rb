@@ -11,32 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114110919) do
+ActiveRecord::Schema.define(version: 20141117105610) do
 
   create_table "document_base", force: true do |t|
-    t.string    "language",        limit: 2,                             default: "KA",    null: false
-    t.integer   "parent_id",       limit: 10,   precision: 10, scale: 0
-    t.integer   "type_id",         limit: 5,    precision: 5,  scale: 0,                   null: false
-    t.string    "direction",       limit: 20,                            default: "inner", null: false
-    t.string    "subject",         limit: 1000
-    t.string    "original_number", limit: 50
+    t.string    "language",          limit: 2,                             default: "KA",    null: false
+    t.integer   "parent_id",         limit: 10,   precision: 10, scale: 0
+    t.integer   "type_id",           limit: 5,    precision: 5,  scale: 0,                   null: false
+    t.string    "direction",         limit: 20,                            default: "inner", null: false
+    t.string    "subject",           limit: 1000
+    t.string    "original_number",   limit: 50
     t.datetime  "original_date"
-    t.string    "docnumber",       limit: 20
-    t.datetime  "docdate",                                                                 null: false
-    t.integer   "docyear",         limit: 4,    precision: 4,  scale: 0,                   null: false
-    t.integer   "page_count",      limit: 6,    precision: 6,  scale: 0
-    t.integer   "additions_count", limit: 6,    precision: 6,  scale: 0
+    t.string    "docnumber",         limit: 20
+    t.datetime  "docdate",                                                                   null: false
+    t.integer   "docyear",           limit: 4,    precision: 4,  scale: 0,                   null: false
+    t.integer   "page_count",        limit: 6,    precision: 6,  scale: 0
+    t.integer   "additions_count",   limit: 6,    precision: 6,  scale: 0
     t.datetime  "due_date"
     t.datetime  "alarm_date"
-    t.boolean   "status",                       precision: 1,  scale: 0, default: false,   null: false
-    t.integer   "sender_user_id",  limit: 10,   precision: 10, scale: 0
-    t.integer   "sender_id",       limit: 10,   precision: 10, scale: 0
-    t.string    "sender_type",     limit: 50
-    t.integer   "owner_user_id",   limit: 10,   precision: 10, scale: 0
-    t.integer   "owner_id",        limit: 10,   precision: 10, scale: 0
-    t.string    "owner_type",      limit: 50
-    t.timestamp "created_at",      limit: 6,                                               null: false
-    t.timestamp "updated_at",      limit: 6,                                               null: false
+    t.boolean   "status",                         precision: 1,  scale: 0, default: false,   null: false
+    t.integer   "sender_user_id",    limit: 10,   precision: 10, scale: 0
+    t.integer   "sender_id",         limit: 10,   precision: 10, scale: 0
+    t.string    "sender_type",       limit: 50
+    t.integer   "owner_user_id",     limit: 10,   precision: 10, scale: 0
+    t.integer   "owner_id",          limit: 10,   precision: 10, scale: 0
+    t.string    "owner_type",        limit: 50
+    t.boolean   "motions_total",                  precision: 1,  scale: 0, default: false,   null: false
+    t.boolean   "motions_completed",              precision: 1,  scale: 0, default: false,   null: false
+    t.boolean   "motions_canceled",               precision: 1,  scale: 0, default: false,   null: false
+    t.timestamp "created_at",        limit: 6,                                               null: false
+    t.timestamp "updated_at",        limit: 6,                                               null: false
   end
 
   create_table "document_motion", force: true do |t|
@@ -117,15 +120,35 @@ ActiveRecord::Schema.define(version: 20141114110919) do
     t.timestamp "updated_at",   limit: 6,                                            null: false
   end
 
-  create_table "party", force: true do |t|
-    t.integer   "org_id",      limit: 15,   precision: 15, scale: 0
-    t.string    "org_name",    limit: 200
-    t.integer   "person_id",   limit: 15,   precision: 15, scale: 0
-    t.string    "person_name", limit: 200
-    t.string    "address",     limit: 500
-    t.string    "phones",      limit: 1000
-    t.timestamp "created_at",  limit: 6,                             null: false
-    t.timestamp "updated_at",  limit: 6,                             null: false
+  create_table "party_base", force: true do |t|
+    t.string    "type",       limit: 20,  null: false
+    t.string    "identity",   limit: 30
+    t.string    "name_ka",    limit: 200
+    t.string    "name_ru",    limit: 200
+    t.string    "name_en",    limit: 200
+    t.string    "address_ka", limit: 500
+    t.string    "address_ru", limit: 500
+    t.string    "address_en", limit: 500
+    t.string    "phones",     limit: 100
+    t.string    "email",      limit: 50
+    t.string    "account",    limit: 50
+    t.timestamp "created_at", limit: 6,   null: false
+    t.timestamp "updated_at", limit: 6,   null: false
+  end
+
+  create_table "party_contacts", force: true do |t|
+    t.integer   "parent_id",     limit: 10, precision: 10, scale: 0
+    t.string    "first_name_ka", limit: 50,                          null: false
+    t.string    "first_name_ru", limit: 50
+    t.string    "first_name_en", limit: 50
+    t.string    "last_name_ka",  limit: 50,                          null: false
+    t.string    "last_name_ru",  limit: 50
+    t.string    "last_name_en",  limit: 50
+    t.string    "phones",        limit: 20
+    t.string    "email",         limit: 50
+    t.string    "account",       limit: 50
+    t.timestamp "created_at",    limit: 6,                           null: false
+    t.timestamp "updated_at",    limit: 6,                           null: false
   end
 
   create_table "users", force: true do |t|
