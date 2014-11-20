@@ -3,6 +3,7 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
   xtype: 'document-viewer-viewer',
   controller: 'viewerController',
   layout: 'border',
+  border: false,
 
   requires: [
     'Telasi.view.document.viewer.Main',
@@ -26,7 +27,7 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
   }, {
     xtype: 'document-comments',
     region: 'south',
-    flex: 2,
+    height: 400,
     split: true,
     collapsible: true,
     title: '<i class="fa fa-comments"></i> კომენტარები',

@@ -2,7 +2,6 @@ Ext.define('Telasi.view.document.viewer.Main', {
   extend: 'Ext.panel.Panel',
   xtype: 'document-viewer-main',
   layout: 'border',
-  border: false,
 
   requires: [
     'Telasi.view.document.viewer.Header'
@@ -19,6 +18,7 @@ Ext.define('Telasi.view.document.viewer.Main', {
     xtype: 'panel',
     region: 'center',
     autoScroll: true,
+    border: false,
     bind: {
       html: '{doc.body}',
     }

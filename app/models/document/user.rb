@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Document::User < ActiveRecord::Base
+  include Document::Role
   self.table_name  = 'document_user'
   self.primary_keys = :user_id, :document_id
   self.set_integer_columns :is_read, :status

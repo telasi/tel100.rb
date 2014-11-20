@@ -2,6 +2,7 @@ Ext.define('Telasi.view.document.viewer.Header', {
   extend: 'Ext.panel.Panel',
   xtype: 'document-viewer-header',
   // layout: 'form',
+  border: false,
 
   bodyPadding: 0,
   padding: 0,
@@ -11,7 +12,6 @@ Ext.define('Telasi.view.document.viewer.Header', {
     labelWidth: 100,
     msgTarget: 'side',
     margin: 0,
-    // labelStyle: 'padding: 0 0 0 0;',
   },
 
   items:[
