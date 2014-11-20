@@ -33,6 +33,8 @@ Ext.define('Telasi.model.document.Base', {
     { name: 'ownerType' },
     { name: 'created_at', type: 'date' },
     { name: 'updated_at', type: 'date' },
+    // XXX: experimental
+    'statuses'
   ],
 
   proxy: {

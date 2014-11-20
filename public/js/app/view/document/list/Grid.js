@@ -2,10 +2,10 @@ Ext.define('Telasi.view.document.list.Grid', {
   extend: 'Ext.grid.Panel',
   xtype: 'docgrid',
   controller: 'documentgrid',
-  requires:[
+  requires: [
+    'Telasi.model.document.BaseTexts',
     'Telasi.view.document.list.ViewModel',
     'Telasi.view.document.list.GridController',
-    'Telasi.model.document.BaseTexts',
     'Telasi.view.document.Utils'
   ],
   viewModel: { type: 'list-document-view-model' },
@@ -30,6 +30,11 @@ Ext.define('Telasi.view.document.list.Grid', {
   initComponent: function() {
     Ext.apply(this, {
       columns: [{
+        text: 'შესრულება',
+        width: 100,
+        dataIndex: 'statuses_html',
+        locked: true
+      }, {
         dataIndex: 'docnumber',
         text: Telasi.model.document.BaseTexts.text_DocNumberField,
         width: 75,
@@ -37,21 +42,21 @@ Ext.define('Telasi.view.document.list.Grid', {
         renderer: window.Telasi.documentUtils.gridTextRenderer
       }, {
         width: 120,
-        dataIndex: 'status',
-        text: Telasi.model.document.BaseTexts.text_StatusField,
-        renderer: window.Telasi.documentUtils.gridStatusRenderer,
-        locked: true
-      }, {
-        width: 120,
         dataIndex: 'my_status',
         text: 'ჩემი სტატუსი',
         renderer: window.Telasi.documentUtils.gridStatusRenderer,
+        locked: true
       }, {
         xtype: 'datecolumn',
         dataIndex: 'docdate',
         text: Telasi.model.document.BaseTexts.text_DocDateField2,
         width: 100, xtype: 'datecolumn',
         renderer: window.Telasi.documentUtils.gridDateRenderer,
+      }, {
+        width: 120,
+        dataIndex: 'status',
+        text: Telasi.model.document.BaseTexts.text_StatusField,
+        renderer: window.Telasi.documentUtils.gridStatusRenderer,
       }, {
         width: 100,
         dataIndex: 'type_id',
