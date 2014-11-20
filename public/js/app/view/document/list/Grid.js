@@ -71,7 +71,7 @@ Ext.define('Telasi.view.document.list.Grid', {
         dataIndex: 'subject',
         text: Telasi.model.document.BaseTexts.text_SubjectField,
         renderer: window.Telasi.documentUtils.gridTextRenderer,
-        width: 400,
+        width: 200,
       },  {
         xtype: 'datecolumn',
         dataIndex: 'due_date',

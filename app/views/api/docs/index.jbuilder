@@ -27,11 +27,11 @@ json.array! @my_docs do |my_doc|
   json.owner_type  doc.owner_type
   json.created_at  doc.created_at
   json.updated_at  doc.updated_at
-  ## XXX: experimental [completed, canceled, other]
-  json.statuses [5, 2, 10]
-  json.statuses_html [
-    '<span class="text-success text-success-b"><i class="fa fa-check"></i> 5</span>',
-    '<span class="text-danger text-danger-b"><i class="fa fa-times"></i> 2</span>',
-    '<span class="text-muted text-muted-b"><i class="fa fa-clock-o"></i> 10</span>',
-  ].join(' ')
+  json.statuses [
+    doc.motions_completed,
+    doc.motions_canceled,
+    doc.motions_waiting,
+    doc.motions_total
+  ]
+  json.statuses_html document_statuses_html(doc)
 end
