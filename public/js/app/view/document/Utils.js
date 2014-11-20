@@ -91,6 +91,14 @@ Ext.define('Telasi.view.document.Utils', {
     return Telasi.documentUtils.statusRender(status);
   },
 
+  gridSubjectRenderer: function(value, metaInfo, record) {
+    Telasi.documentUtils.statusify(value, metaInfo, record);
+    var unread = record.get('is_read') === 0;
+    var text = value;
+    if (unread) { text = '<span class="label-danger">ახალი</span> ' + text; }
+    return text;
+  },
+
   gridTextRenderer: function(value, metaInfo, record) {
     Telasi.documentUtils.statusify(value, metaInfo, record);
     return value;
