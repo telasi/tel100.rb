@@ -5,25 +5,22 @@ Ext.define('Telasi.view.document.viewer.Main', {
   border: false,
 
   requires: [
-    'Telasi.view.document.viewer.Header',
+    'Telasi.view.document.viewer.Header'
   ],
-
-  layout: 'border',
 
   defaults: {
     bodyPadding: 5,
   },
 
-  items:[
-  {
+  items: [{
     xtype: 'document-viewer-header',
     region: 'north'
-  },{
+  }, {
     xtype: 'panel',
+    region: 'center',
     autoScroll: true,
     bind: {
       html: '{doc.body}',
-    },
-    region: 'center'
-  }],
+    }
+  }]
 });

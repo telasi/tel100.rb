@@ -1,16 +1,15 @@
 Ext.define('Telasi.view.document.viewer.Viewer', {
   extend: 'Ext.panel.Panel',
   xtype: 'document-viewer-viewer',
+  controller: 'viewerController',
+  layout: 'border',
 
   requires: [
     'Telasi.view.document.viewer.Main',
     'Telasi.view.document.viewer.Detail',
-    'Telasi.view.document.viewer.ViewerController'
+    'Telasi.view.document.viewer.ViewerController',
+    'Telasi.view.document.viewer.Comments'
   ],
-
-  controller: 'viewerController',
-
-  layout: 'border',
 
   bind: {
     title: '{doc.docnumber}'
@@ -19,11 +18,18 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
   items: [{
     xtype: 'document-viewer-main',
     region: 'center',
-  },{
+  }, {
     xtype: 'document-viewer-detail',
     region: 'east',
     width: 400,
     split: true,
+  }, {
+    xtype: 'document-comments',
+    region: 'south',
+    flex: 2,
+    split: true,
+    collapsible: true,
+    title: '<i class="fa fa-comments"></i> კომენტარები',
   }],
 
   dockedItems: [{
