@@ -6,7 +6,7 @@ class Document::Base < ActiveRecord::Base
 
   self.table_name  = 'document_base'
   self.sequence_name = 'docbase_seq'
-  self.set_integer_columns :status, :motions_total, :motions_completed, :motions_canceled
+  self.set_integer_columns :status
 
   belongs_to :parent, class_name: 'Document::Base', foreign_key: 'parent_id'
   personalize 'sender'
@@ -21,6 +21,7 @@ class Document::Base < ActiveRecord::Base
   validates :status, numericality: { message: 'მიუთითეთ სტატუსი' }
 
   def body; self.text.body if self.text.present? end
+  def motions_waiting; self.motions_total - self.motions_completed - self.motions_canceled end
 
   def revisit_motions!
     if self.status == DRAFT
@@ -57,6 +58,12 @@ class Document::Base < ActiveRecord::Base
       else
         self.update_attributes!(status: NOT_SENT)
       end
+
+      # statistics
+      self.motions_completed = self.motions.where('status IN ?', [ COMPLETED ]).count
+      self.motions_canceled = self.motions.where('status IN ?', [ CANCELED ]).count
+      self.motions_total = sent_motions.count
+      self.save!
     end
   end
 

@@ -27,9 +27,9 @@ class AddDocumentBaseTable < ActiveRecord::Migration
         OWNER_ID       number(10,0),
         OWNER_TYPE     varchar2(50 CHAR),
         -----
-        MOTIONS_TOTAL number(1, 0) default 0 not null,
-        MOTIONS_COMPLETED number(1, 0) default 0 not null,
-        MOTIONS_CANCELED number(1, 0) default 0 not null,
+        MOTIONS_TOTAL number(6, 0) default 0 not null,
+        MOTIONS_COMPLETED number(6, 0) default 0 not null,
+        MOTIONS_CANCELED number(6, 0) default 0 not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,

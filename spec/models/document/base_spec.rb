@@ -161,6 +161,10 @@ RSpec.describe Document::Base do
     }).reload
 
     expect(doc.status).to eq(Document::Status::SENT)
+    expect(doc.motions_total).to eq(2)
+    expect(doc.motions_completed).to eq(0)
+    expect(doc.motions_canceled).to eq(0)
+    expect(doc.motions_waiting).to eq(2)
     motions = doc.motions
     expect(doc.motions.size).to eq(2)
     m1 = doc.motions.first
@@ -191,6 +195,12 @@ RSpec.describe Document::Base do
     # Step 2: shalva signs document
 
     doc.respond(shalva, { status: Document::Status::COMPLETED, response_text: 'resp-1' })
+    doc.reload
+
+    expect(doc.motions_total).to eq(2)
+    expect(doc.motions_completed).to eq(1)
+    expect(doc.motions_canceled).to eq(0)
+    expect(doc.motions_waiting).to eq(1)
 
     # motions
     m1.reload ; m2.reload
@@ -210,6 +220,13 @@ RSpec.describe Document::Base do
     # Step 3: nino completes the task
 
     doc.respond(nino, { status: Document::Status::COMPLETED, respond: 'resp-2' })
+    doc.reload
+
+    expect(doc.motions_total).to eq(2)
+    expect(doc.motions_completed).to eq(2)
+    expect(doc.motions_canceled).to eq(0)
+    expect(doc.motions_waiting).to eq(0)
+
     m1.reload ; m2.reload
     shalva.reload ; nino.reload
 

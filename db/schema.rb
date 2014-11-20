@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20141117105610) do
     t.integer   "owner_user_id",     limit: 10,   precision: 10, scale: 0
     t.integer   "owner_id",          limit: 10,   precision: 10, scale: 0
     t.string    "owner_type",        limit: 50
-    t.boolean   "motions_total",                  precision: 1,  scale: 0, default: false,   null: false
-    t.boolean   "motions_completed",              precision: 1,  scale: 0, default: false,   null: false
-    t.boolean   "motions_canceled",               precision: 1,  scale: 0, default: false,   null: false
+    t.integer   "motions_total",     limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
+    t.integer   "motions_completed", limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
+    t.integer   "motions_canceled",  limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
     t.timestamp "created_at",        limit: 6,                                               null: false
     t.timestamp "updated_at",        limit: 6,                                               null: false
   end
