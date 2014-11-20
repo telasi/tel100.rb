@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117105610) do
+ActiveRecord::Schema.define(version: 20141120094044) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20141117105610) do
     t.integer   "motions_canceled",  limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
     t.timestamp "created_at",        limit: 6,                                               null: false
     t.timestamp "updated_at",        limit: 6,                                               null: false
+  end
+
+  create_table "document_comment", force: true do |t|
+    t.integer   "document_id", limit: 10,   precision: 10, scale: 0,                      null: false
+    t.integer   "user_id",     limit: 10,   precision: 10, scale: 0,                      null: false
+    t.string    "user_role",   limit: 10,                            default: "assignee", null: false
+    t.boolean   "old_status",               precision: 1,  scale: 0, default: false,      null: false
+    t.boolean   "status",                   precision: 1,  scale: 0, default: false,      null: false
+    t.string    "text",        limit: 1000
+    t.timestamp "created_at",  limit: 6,                                                  null: false
+    t.timestamp "updated_at",  limit: 6,                                                  null: false
   end
 
   create_table "document_motion", force: true do |t|

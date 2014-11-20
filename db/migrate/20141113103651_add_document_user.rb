@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddDocumentUser < ActiveRecord::Migration
   def up
     execute <<-SQL
