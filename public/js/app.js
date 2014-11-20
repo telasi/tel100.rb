@@ -2,9 +2,10 @@
 
 window.Telasi = {
   statuses: {
+    canceled: -2,
+    not_sent: -1,
     draft: 0,
     sent: 1,
-    canceled: -1,
     completed: 2
   }
 };

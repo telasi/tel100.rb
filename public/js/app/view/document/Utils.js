@@ -70,7 +70,9 @@ Ext.define('Telasi.view.document.Utils', {
   statusify: function(value, metaInfo, record, opts) {
     var statusId = ( opts && opts.status_id ) || record.get('status');
     var status = Telasi.documentUtils.getStatus(statusId);
-    metaInfo.tdCls = status.get('class');
+    metaInfo.tdCls += ' ' + status.get('class');
+    var unread = record.get('is_read') === 0;
+    if (unread) { metaInfo.tdCls += ' text-new'; }
     return status;
   },
 
