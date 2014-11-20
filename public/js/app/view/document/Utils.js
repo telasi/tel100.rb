@@ -67,39 +67,50 @@ Ext.define('Telasi.view.document.Utils', {
 
 // doc grid renderings
 
-  statusify: function(value, metaInfo, record) {
-    var status = window.Telasi.documentUtils.getStatus(record.get('status'));
+  statusify: function(value, metaInfo, record, opts) {
+    var statusId = ( opts && opts.status_id ) || record.get('status');
+    var status = Telasi.documentUtils.getStatus(statusId);
     metaInfo.tdCls = status.get('class');
     return status;
   },
 
-  gridStatusRenderer: function(value, metaInfo, record) {
-    var status = window.Telasi.documentUtils.statusify(value, metaInfo, record);
+  statusRender: function(status) {
     return [ '<i class="fa ', status.get('icon'), '"></i> ', status.get('name') ].join('');
   },
 
+  gridStatusRenderer: function(value, metaInfo, record) {
+    var status = Telasi.documentUtils.statusify(value, metaInfo, record);
+    return Telasi.documentUtils.statusRender(status);
+  },
+
+  gridMyStatusRenderer: function(value, metaInfo, record) {
+    var myStatus = record.get('my_status');
+    var status = Telasi.documentUtils.statusify(value, metaInfo, record, { status_id: myStatus });
+    return Telasi.documentUtils.statusRender(status);
+  },
+
   gridTextRenderer: function(value, metaInfo, record) {
-    window.Telasi.documentUtils.statusify(value, metaInfo, record);
+    Telasi.documentUtils.statusify(value, metaInfo, record);
     return value;
   },
 
   gridDateRenderer: function(value, metaInfo, record) {
-    window.Telasi.documentUtils.statusify(value, metaInfo, record);
+    Telasi.documentUtils.statusify(value, metaInfo, record);
     return Ext.Date.format(value, Ext.Date.defaultFormat);
   },
 
   gridDirectionRenderer: function(value, metaInfo, record) {
-    window.Telasi.documentUtils.statusify(value, metaInfo, record);
+    Telasi.documentUtils.statusify(value, metaInfo, record);
     var direction = window.Telasi.documentUtils.getDirection(value);
     return direction.get('name');
   },
 
   gridTypeRenderer: function(value, metaInfo, record) {
-    window.Telasi.documentUtils.statusify(value, metaInfo, record);
+    Telasi.documentUtils.statusify(value, metaInfo, record);
     return window.Telasi.documentUtils.getTypeName(value);
 
   },
 
 }, function() {
-  window.Telasi.documentUtils = new Telasi.view.document.Utils();
+  Telasi.documentUtils = new Telasi.view.document.Utils();
 });
