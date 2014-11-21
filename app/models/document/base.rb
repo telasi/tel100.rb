@@ -2,6 +2,7 @@
 class Document::Base < ActiveRecord::Base
   include Document::Personalize
   include Document::Status
+  include Document::Role
   include Document::Who
 
   self.table_name  = 'document_base'

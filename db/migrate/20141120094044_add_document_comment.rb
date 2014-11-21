@@ -6,7 +6,6 @@ class AddDocumentComment < ActiveRecord::Migration
         ID           number(12, 0) not null,
         DOCUMENT_ID  number(10, 0) not null,
         USER_ID      number(10, 0) not null,
-        USER_ROLE    varchar2(10 CHAR) default 'assignee' not null,
         OLD_STATUS   number(1, 0) default 0 not null,
         STATUS       number(1, 0) default 0 not null,
         TEXT         varchar2(1000 CHAR),
