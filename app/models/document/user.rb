@@ -9,8 +9,8 @@ class Document::User < ActiveRecord::Base
 
   def self.upsert!(doc, user, role, opts={})
     if user.present?
-      params = { document_id: doc.id, user_id: user.id, role: role }
-      docuser = ( Document::User.where(params).first || Document::User.create!(params) )
+      params = { document_id: doc.id, user_id: user.id }
+      docuser = ( Document::User.where(params).first || Document::User.create!(params.merge(role: role)) )
       new_role = docuser.role
       new_role = role if Document::Role.compare(new_role, role) < 0
       docuser.update_attributes!({
