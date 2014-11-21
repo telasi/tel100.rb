@@ -58,7 +58,7 @@ Ext.define('Telasi.view.document.Utils', {
     return Ext.Date.format(Ext.Date.parse(value,'c'), Ext.Date.defaultFormat);
   },
 
-// 
+// signature role
 
   getSignatureRole: function(id) {
     var store = Ext.data.StoreManager.lookup('document-signature-roles');
@@ -88,14 +88,9 @@ Ext.define('Telasi.view.document.Utils', {
   gridMyStatusRenderer: function(value, metaInfo, record) {
     var myStatus = record.get('my_status');
     var status = Telasi.documentUtils.statusify(value, metaInfo, record, { status_id: myStatus });
-    return Telasi.documentUtils.statusRender(status);
-  },
-
-  gridSubjectRenderer: function(value, metaInfo, record) {
-    Telasi.documentUtils.statusify(value, metaInfo, record);
+    var text = Telasi.documentUtils.statusRender(status);
     var unread = record.get('is_read') === 0;
-    var text = value;
-    if (unread) { text = '<span class="label-danger">ახალი</span> ' + text; }
+    if (unread) { text += ' <span class="label label-danger">new</span>'; }
     return text;
   },
 

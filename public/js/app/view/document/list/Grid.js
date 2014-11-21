@@ -70,7 +70,7 @@ Ext.define('Telasi.view.document.list.Grid', {
       }, {
         dataIndex: 'subject',
         text: Telasi.model.document.BaseTexts.text_SubjectField,
-        renderer: Telasi.documentUtils.gridSubjectRenderer,
+        renderer: Telasi.documentUtils.gridTextRenderer,
         width: 200,
       },  {
         xtype: 'datecolumn',
