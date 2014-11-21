@@ -7,6 +7,7 @@ class AddDocumentComment < ActiveRecord::Migration
         DOCUMENT_ID  number(10, 0) not null,
         USER_ID      number(10, 0) not null,
         STATUS       number(1, 0) default 0 not null,
+        OPERATION    varchar2(30 CHAR) not null,
         TEXT         varchar2(1000 CHAR),
         CREATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,

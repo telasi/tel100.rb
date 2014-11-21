@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20141120094044) do
     t.integer   "document_id", limit: 10,   precision: 10, scale: 0,                 null: false
     t.integer   "user_id",     limit: 10,   precision: 10, scale: 0,                 null: false
     t.boolean   "status",                   precision: 1,  scale: 0, default: false, null: false
+    t.string    "operation",   limit: 30,                                            null: false
     t.string    "text",        limit: 1000
     t.timestamp "created_at",  limit: 6,                                             null: false
     t.timestamp "updated_at",  limit: 6,                                             null: false
