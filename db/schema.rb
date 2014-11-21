@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20141120094044) do
   create_table "document_user", id: false, force: true do |t|
     t.integer   "document_id", limit: 10, precision: 10, scale: 0,                 null: false
     t.integer   "user_id",     limit: 10, precision: 10, scale: 0,                 null: false
+    t.string    "role",        limit: 10,                                          null: false
     t.boolean   "status",                 precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_read",                precision: 1,  scale: 0, default: false, null: false
     t.timestamp "updated_at",  limit: 6,                                           null: false
