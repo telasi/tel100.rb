@@ -1,27 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Document::Comment < ActiveRecord::Base
-  OPER_COMMENT  = 'comment'
-
-  # signee operations
-  OPER_SIGN     = 'sign'
-  OPER_UNSIGN   = 'unsign'
-  OPER_REJECT   = 'reject'
-  OPER_UNREJECT = 'unreject'
-
-  # assignee operations
-  OPER_COMPLETE   = 'complete'
-  OPER_UNCOMPLETE = 'uncomplete'
-  OPER_CANCEL     = 'cancel'
-  OPER_UNCANCEL   = 'uncancel'
-
-  # owner operations
-  OPER_DOC_COMPLETE   = 'doc-complete'
-  OPER_DOC_UNCOMPLETE = 'doc-uncomplete'
-  OPER_DOC_CANCEL     = 'doc-cancel'
-  OPER_DOC_UNCANCEL   = 'doc-uncancel'
-
   include Document::Role
   include Document::Status
+  include Document::Operation
 
   self.table_name  = 'document_comment'
   self.sequence_name = 'doccomment_seq'
@@ -44,5 +25,6 @@ class Document::Comment < ActiveRecord::Base
       elsif old_status == COMPLETED then 1      # uncomplete
       elsif old_status == CANCELED then 3       # uncancel
     end )
+    operations[index]
   end
 end
