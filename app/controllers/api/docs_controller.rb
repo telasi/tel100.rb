@@ -25,7 +25,13 @@ class Api::DocsController < ApiController
     @my_docs = Document::User.where(user: current_user).order('UPDATED_AT DESC')
   end
 
-  def show; @document = Document::Base.where(id: params[:id]).first end
+  def show
+    @document = Document::Base.where(id: params[:id]).first
+    docuser = Document::User.where(user: current_user, document: @document).first
+    raise "You cannot view this document!" if docuser.blank?
+    docuser.is_read = 1
+    docuser.save
+  end
 
   def create
     doc = Document::Base.sending_document(current_user, params)
