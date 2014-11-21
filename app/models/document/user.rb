@@ -7,11 +7,14 @@ class Document::User < ActiveRecord::Base
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
 
-  def self.upsert!(doc, user, opts={})
+  def self.upsert!(doc, user, role, opts={})
     if user.present?
-      params = { document_id: doc.id, user_id: user.id }
+      params = { document_id: doc.id, user_id: user.id, role: role }
       docuser = ( Document::User.where(params).first || Document::User.create!(params) )
+      new_role = docuser.role
+      new_role = role if Document::Role.compare(new_role, role) < 0
       docuser.update_attributes!({
+        role: new_role,
         status: opts[:status] || doc.status,
         is_read: opts[:is_read] || 0,
         updated_at: Date.new
