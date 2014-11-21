@@ -9,7 +9,7 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
     'Telasi.view.document.viewer.Main',
     'Telasi.view.document.viewer.Detail',
     'Telasi.view.document.viewer.ViewerController',
-    'Telasi.view.document.viewer.Comments'
+    'Telasi.view.document.comment.Grid'
   ],
 
   bind: {
@@ -25,7 +25,7 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
     width: 400,
     split: true,
   }, {
-    xtype: 'document-comments',
+    xtype: 'document-comments-grid',
     region: 'south',
     height: 400,
     split: true,

@@ -1,6 +1,6 @@
-Ext.define('Telasi.view.document.viewer.Comments', {
+Ext.define('Telasi.view.document.comment.Grid', {
   extend: 'Ext.panel.Panel',
-  xtype: 'document-comments',
+  xtype: 'document-comments-grid',
   layout: 'border',
   border: false,
 
