@@ -7,8 +7,8 @@ class Document::Comment < ActiveRecord::Base
   self.table_name  = 'document_comment'
   self.sequence_name = 'doccomment_seq'
   self.set_integer_columns :status, :old_status
-  belongs_to :document, class_name: 'Document::Base'
-  belongs_to :user, class_name: 'Sys::Base'
+  belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
+  belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
 
   SIGNEE_OPERATIONS = [ OPER_SIGN, OPER_UNSIGN, OPER_REJECT, OPER_UNREJECT ]
   ASSIGNEE_OPERATIONS = [ OPER_COMPLETE, OPER_UNCOMPLETE, OPER_CANCEL, OPER_UNCANCEL ]

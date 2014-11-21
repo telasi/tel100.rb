@@ -15,6 +15,7 @@ class Document::Base < ActiveRecord::Base
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
   has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
+  has_many :comments, class_name: 'Document::Comment', foreign_key: 'document_id'
 
   validates :type, presence: { message: 'აარჩიეთ სახეობა' }
   validates :direction, presence: { message: 'აარჩიეთ მიმართულება' }
@@ -185,13 +186,30 @@ class Document::Base < ActiveRecord::Base
   end
 
   def respond(by_user, opts = {})
+    # get Document::User
+    docuser = Document::User.where(document: self, user: by_user).first
+    raise "action not allowed" if docuser.blank?
+
+    # send comment
+    old_status = docuser.status
+    status = Document::Base.status_eval(opts.merge(default_status: COMPLETED))
+    text = opts[:response_text]
+    operation = Document::Comment.eval_operation(docuser.role, old_status, status)
+    Document::Comment.create!({
+      document: self,
+      user: by_user,
+      status: status,
+      operation: operation,
+      text: text
+    })
+
+    # update related motions
     user_motions = self.motions.where(receiver_user: by_user)
     if user_motions.count > 0
-      status = Document::Base.status_eval(opts.merge(default_status: COMPLETED))
       user_motions.each do |motion|
         motion.update_attributes!({
           status: status,
-          response_text: opts[:response_text]
+          response_text: text
         })
         Document::User.where(user: by_user, document: self).first.update_attributes!({
           status: status,

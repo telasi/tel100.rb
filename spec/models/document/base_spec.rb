@@ -217,9 +217,18 @@ RSpec.describe Document::Base do
     expect(nino.documents.first.is_read).to eq(0)
     expect(nino.documents.first.status).to eq(Document::Status::SENT)
 
+    # comments
+    expect(doc.comments.size).to eq(1)
+    c1 = doc.comments[0]
+    expect(c1.user).to eq(shalva)
+    expect(c1.document).to eq(doc)
+    expect(c1.status).to eq(Document::Status::SIGNED)
+    expect(c1.operation).to eq(Document::Operation::OPER_SIGN)
+    expect(c1.text).to eq('resp-1')
+
     # Step 3: nino completes the task
 
-    doc.respond(nino, { status: Document::Status::COMPLETED, respond: 'resp-2' })
+    doc.respond(nino, { status: Document::Status::COMPLETED, response_text: 'resp-2' })
     doc.reload
 
     expect(doc.motions_total).to eq(2)
@@ -234,5 +243,13 @@ RSpec.describe Document::Base do
     expect(nino.documents.size).to eq(1)
     expect(nino.documents.first.is_read).to eq(1)
     expect(nino.documents.first.status).to eq(Document::Status::COMPLETED)
+
+    expect(doc.comments.size).to eq(2)
+    c2 = doc.comments[1]
+    expect(c2.user).to eq(nino)
+    expect(c2.document).to eq(doc)
+    expect(c2.status).to eq(Document::Status::COMPLETED)
+    expect(c2.operation).to eq(Document::Operation::OPER_COMPLETE)
+    expect(c2.text).to eq('resp-2')
   end
 end
