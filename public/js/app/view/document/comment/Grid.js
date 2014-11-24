@@ -3,7 +3,6 @@ Ext.define('Telasi.view.document.comment.Grid', {
   xtype: 'document-comments-grid',
   layout: 'border',
   border: false,
-  loading
 
   items: [{
     xtype: 'label',
