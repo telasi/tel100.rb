@@ -33,6 +33,13 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
       xtype: 'button',
       formBind: true,
       bind: {
+        text: '<i class="fa fa-comments"></i> შედეგი/კომენტარი'
+      },
+      handler: 'onAddComment',
+    }, {
+      xtype: 'button',
+      formBind: true,
+      bind: {
         text: '<i class="fa fa-print"></i> ბეჭდვა'
       },
       handler: 'onPrintDocument'
