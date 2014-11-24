@@ -83,6 +83,20 @@ class Api::DocsController < ApiController
     end
   end
 
+  def comments
+    render json: (Document::Comment.where(document_id: params[:id]).order(:id).map do |x|
+      { id: x.id,
+        user: {
+          full_name: x.user.full_name
+        },
+        status: x.status,
+        operation: x.operation,
+        text: x.text,
+        created_at: x.created_at
+      }
+    end)
+  end
+
   def add_comment
     doc = Document::Base.find(params[:id])
     doc.respond(current_user, params)
