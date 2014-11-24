@@ -85,10 +85,9 @@ class Api::DocsController < ApiController
 
   def comments
     render json: (Document::Comment.where(document_id: params[:id]).order(:id).map do |x|
-      { id: x.id,
-        user: {
-          full_name: x.user.full_name
-        },
+      {
+        id: x.id,
+        user_id: x.user_id,
         status: x.status,
         operation: x.operation,
         text: x.text,
