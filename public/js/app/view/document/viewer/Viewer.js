@@ -8,8 +8,7 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
   requires: [
     'Telasi.view.document.viewer.Main',
     'Telasi.view.document.viewer.Detail',
-    'Telasi.view.document.viewer.ViewerController',
-    'Telasi.view.document.comment.Grid'
+    'Telasi.view.document.viewer.ViewerController'
   ],
 
   bind: {
@@ -24,13 +23,6 @@ Ext.define('Telasi.view.document.viewer.Viewer', {
     region: 'east',
     width: 400,
     split: true,
-  }, {
-    xtype: 'document-comments-grid',
-    region: 'south',
-    height: 400,
-    split: true,
-    collapsible: true,
-    title: '<i class="fa fa-comments"></i> კომენტარები',
   }],
 
   dockedItems: [{
