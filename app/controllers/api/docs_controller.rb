@@ -83,6 +83,12 @@ class Api::DocsController < ApiController
     end
   end
 
+  def add_comment
+    doc = Document::Base.find(params[:id])
+    doc.respond(current_user, params)
+    render json: { success: true  }
+  end
+
   def types
     render json: { success: true, types: Document::Type.order('order_by ASC') }
   end

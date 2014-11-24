@@ -14,28 +14,32 @@ Ext.define('Telasi.view.document.viewer.ViewerController', {
   },
   onAddComment: function(button, event) {
     var dialog = Ext.create('Telasi.view.document.comment.CommentDialog');
-    dialog.on('document-comment-send', function(status, comment) {
+    var doc = this.getViewModel().get('doc');
+    dialog.on('document-comment-send', function(status, response_text) {
       dialog.setLoading(true);
       Ext.Ajax.request({
         url: '/api/docs/add_comment',
         method: 'POST',
-        jsonData: {  },
+        jsonData: {
+          id: doc.id,
+          status: status,
+          response_text: response_text
+        },
         success: function(response, opts) {
           var data = JSON.parse(response.responseText);
-          console.log(data);
+          if (data.success) {
 
-          // TODO: refresh comments list
+            // TODO: fire refresh event
 
-          // if (data.success) {
-          //   editor.fireEvent( 'document-sent', data.document );
-          // } else {
-          //   Ext.MessageBox.show({
-          //     title: 'შეცდომა',
-          //     msg: data.error,
-          //     buttons: Ext.MessageBox.OK,
-          //     icon: Ext.window.MessageBox.ERROR
-          //   });
-          // }
+            dialog.setLoading(false);
+          } else {
+            Ext.MessageBox.show({
+              title: 'შეცდომა',
+              msg: data.error,
+              buttons: Ext.MessageBox.OK,
+              icon: Ext.window.MessageBox.ERROR
+            });
+          }
         },
         failure: function() {
           Ext.MessageBox.show({
