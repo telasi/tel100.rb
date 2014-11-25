@@ -22,6 +22,7 @@ Ext.define('Telasi.view.document.viewer.ViewerController', {
     dialog.on('document-comment-added', function() {
       var grid = view.down('document-comments-grid');
       grid.controller.refresh();
+      grid.scrollByDeltaY(100000, true);
     });
     dialog.show();
   },
