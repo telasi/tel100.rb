@@ -203,6 +203,9 @@ class Document::Base < ActiveRecord::Base
       text: text
     })
 
+    # if user is the owner, than update doc status too
+    self.update_attributes!(status: status) if docuser.role == ROLE_OWNER
+
     # update related motions
     user_motions = self.motions.where(receiver_user: by_user)
     if user_motions.count > 0

@@ -182,6 +182,8 @@ RSpec.describe Document::Base do
 
     # document_users
 
+    expect(Document::User.where(document: doc).count)
+
     expect(dimitri.documents.size).to eq(1)
     expect(dimitri.documents.first.is_read).to eq(1)
     expect(dimitri.documents.first.status).to eq(Document::Status::SENT)
@@ -194,7 +196,7 @@ RSpec.describe Document::Base do
 
     # Step 2: shalva signs document
 
-    doc.respond(shalva, { status: Document::Status::COMPLETED, response_text: 'resp-1' })
+    doc.respond(shalva, { status: Document::Status::COMPLETED, response_text: 'resp-shalva' })
     doc.reload
 
     expect(doc.motions_total).to eq(2)
@@ -207,7 +209,7 @@ RSpec.describe Document::Base do
     shalva.reload ; nino.reload
 
     expect(m1.status).to eq(Document::Status::SIGNED)
-    expect(m1.response_text).to eq('resp-1')
+    expect(m1.response_text).to eq('resp-shalva')
     expect(shalva.documents.size).to eq(1)
     expect(shalva.documents.first.is_read).to eq(1)
     expect(shalva.documents.first.status).to eq(Document::Status::COMPLETED)
@@ -224,11 +226,11 @@ RSpec.describe Document::Base do
     expect(c1.document).to eq(doc)
     expect(c1.status).to eq(Document::Status::SIGNED)
     expect(c1.operation).to eq(Document::Operation::OPER_SIGN)
-    expect(c1.text).to eq('resp-1')
+    expect(c1.text).to eq('resp-shalva')
 
     # Step 3: nino completes the task
 
-    doc.respond(nino, { status: Document::Status::COMPLETED, response_text: 'resp-2' })
+    doc.respond(nino, { status: Document::Status::COMPLETED, response_text: 'resp-nino' })
     doc.reload
 
     expect(doc.motions_total).to eq(2)
@@ -250,6 +252,21 @@ RSpec.describe Document::Base do
     expect(c2.document).to eq(doc)
     expect(c2.status).to eq(Document::Status::COMPLETED)
     expect(c2.operation).to eq(Document::Operation::OPER_COMPLETE)
-    expect(c2.text).to eq('resp-2')
+    expect(c2.text).to eq('resp-nino')
+
+    # Step 4: dimitri completes the task
+
+    doc.respond(dimitri, { status: Document::Status::COMPLETED, response_text: 'resp-dimitri' })
+    doc.reload
+
+    expect(doc.comments.size).to eq(3)
+    c3 = doc.comments[2]
+    expect(c3.user).to eq(dimitri)
+    expect(c3.document).to eq(doc)
+    expect(c3.status).to eq(Document::Status::COMPLETED)
+    expect(c3.operation).to eq(Document::Operation::OPER_DOC_COMPLETE)
+    expect(c3.text).to eq('resp-dimitri')
+
+    expect(doc.status).to eq(Document::Status::COMPLETED)
   end
 end
