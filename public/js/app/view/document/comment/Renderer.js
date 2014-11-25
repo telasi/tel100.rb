@@ -28,7 +28,7 @@ Ext.define('Telasi.view.document.comment.Renderer', {
     if (Telasi.commentRenderer.isUndo(operation)) { return 'fa-undo'; }
     else if (Telasi.commentRenderer.isOk(operation)) { return 'fa-check'; }
     else if (Telasi.commentRenderer.isCancel(operation)) { return 'fa-times'; }
-    else { return 'fa-comments'; }
+    else { return 'fa-comment-o'; }
   },
 
   fullNameRenderer: function(value, metaInfo, record) {

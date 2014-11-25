@@ -4,6 +4,7 @@ Ext.define('Telasi.view.document.comment.Grid', {
   controller: 'document-comments-controller',
   layout: 'border',
   border: false,
+  scroll: 'vertical',
   listeners: {
     afterrender: 'refresh',
   },

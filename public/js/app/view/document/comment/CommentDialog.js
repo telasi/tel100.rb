@@ -5,9 +5,22 @@ Ext.define('Telasi.view.document.comment.CommentDialog', {
   height: 300,
   width: 450,
   border: false,
-  // bodyPadding: 5,
   title: '<i class="fa fa-comments"></i> შედეგი/კომენტარი',
   layout: 'border',
+  controller: 'document-comment-dialog-controller',
+
+  requires: [
+    'Telasi.view.document.comment.CommentDialogController'
+  ],
+
+  initComponent: function() {
+    console.log();
+
+    // Ext.apply(this, {
+    //   items: XXXX,
+    // });
+    this.callParent();
+  },
 
   items:[{
     xtype: 'segmentedbutton',
@@ -15,7 +28,7 @@ Ext.define('Telasi.view.document.comment.CommentDialog', {
     region: 'north',
     padding: 5,
     items: [{
-      text: '<i class="fa fa-comments text-info"></i> კომენტარი',
+      text: '<i class="fa fa-comment-o text-info"></i> კომენტარი',
       statusId: Telasi.statuses.sent,
       pressed: true
     }, {
@@ -38,13 +51,7 @@ Ext.define('Telasi.view.document.comment.CommentDialog', {
       xtype: 'button',
       text: 'გაგზავნა',
       width: '100%',
-      handler: function(button, evt) {
-        var dialog = this.up('document-comment-dialog');
-        var segment = dialog.down('segmentedbutton');
-        var status = segment.items.filterBy(function(x){ return x.pressed; }).getAt(0).statusId;
-        var comment = dialog.down('textarea').getRawValue();
-        dialog.fireEvent('document-comment-send', status, comment);
-      },
+      handler: 'onSendComment'
     }]
   }]
 });
