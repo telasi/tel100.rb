@@ -113,9 +113,7 @@ Ext.define('Telasi.view.document.Utils', {
   gridTypeRenderer: function(value, metaInfo, record) {
     Telasi.documentUtils.statusify(value, metaInfo, record);
     return window.Telasi.documentUtils.getTypeName(value);
-
-  },
-
+  }
 }, function() {
   Telasi.documentUtils = new Telasi.view.document.Utils();
 });

@@ -1,9 +1,11 @@
 Ext.define('Telasi.view.document.viewer.ViewerController', {
   extend : 'Ext.app.ViewController',
   alias: 'controller.viewerController',
+
   requires: [
     'Telasi.view.document.comment.CommentDialog'
   ],
+
   control: {
     'document-viewer-motiontree': {
       itemclick: function(tree, record, item, index, e, eOpts) {
@@ -12,6 +14,8 @@ Ext.define('Telasi.view.document.viewer.ViewerController', {
       }
     },
   },
+
+  // TODO: move this code to comments controller!
   onAddComment: function(button, event) {
     var dialog = Ext.create('Telasi.view.document.comment.CommentDialog');
     var doc = this.getViewModel().get('doc');

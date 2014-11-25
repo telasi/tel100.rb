@@ -26,9 +26,10 @@ Ext.define('Telasi.view.document.viewer.Main', {
   }, {
     xtype: 'document-comments-grid',
     region: 'south',
-    height: 400,
+    height: 200,
     split: true,
     collapsible: true,
     title: '<i class="fa fa-comments"></i> კომენტარები',
+    bodyPadding: 0
   }]
 });
