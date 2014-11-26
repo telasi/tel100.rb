@@ -29,7 +29,8 @@ json.statuses [
   doc.motions_completed,
   doc.motions_canceled,
   doc.motions_waiting,
-  doc.motions_total
+  doc.motions_total,
+  doc.comments_total
 ]
 # რამდენი შესრულდა / არ შესრულდა HTML-ის სახით
 json.statuses_html document_statuses_html(doc)

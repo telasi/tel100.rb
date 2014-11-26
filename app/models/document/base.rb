@@ -225,7 +225,5 @@ class Document::Base < ActiveRecord::Base
       end
       revisit_motions!
     end
-
-
   end
 end

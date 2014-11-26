@@ -10,7 +10,10 @@ module DocumentsHelper
     end
     if doc.motions_waiting > 0
       texts << "<span class=\"text-muted text-muted-b\"><i class=\"fa fa-clock-o\"></i> #{doc.motions_waiting}</span>"
-    end    
+    end
+    if doc.comments_total > 0
+      texts << "<i class=\"fa fa-comment-o\"></i> #{doc.comments_total}"
+    end
     texts.any? ? texts.join(' ') : '--'
   end
 end
