@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20141120094044) do
     t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
     t.string    "receiver_type",    limit: 50
     t.string    "receiver_role",    limit: 10,                            default: "assignee", null: false
+    t.boolean   "for_sign",                      precision: 1,  scale: 0, default: false,      null: false
     t.timestamp "created_at",       limit: 6,                                                  null: false
     t.timestamp "updated_at",       limit: 6,                                                  null: false
   end
