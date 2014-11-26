@@ -277,7 +277,7 @@ RSpec.describe Document::Base do
     date    = Date.new(2014, 10, 1)
     type    = Document::Type.first
 
-    # Step 1: sending document to two receivers
+    # document with not-ordered motions
 
     doc = Document::Base.sending_document(dimitri, {
       subject: 'სამსახურეობრივი წერილი',
