@@ -37,7 +37,7 @@ class Document::Base < ActiveRecord::Base
         end
       end
 
-      sent_motions = self.motions.where('status != ?', NOT_SENT)
+      sent_motions = self.motions.where('status != ?', NOT_SENT).order('ordering')
 
       if sent_motions.any?
         prev_ordering = -1
@@ -119,7 +119,6 @@ class Document::Base < ActiveRecord::Base
       owner: owner
     }
     motionparams = opts[:motions_attributes] || opts[:motions] || []
-    signatureparams = opts[:signature_attributes] || opts[:signatures] || []
     raise 'document cannot be sent with empty receivers list' if (status == SENT and motionparams.select{|x| not x[:_deleted]}.blank?)
 
     Document::Base.transaction do

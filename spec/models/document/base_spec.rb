@@ -270,7 +270,7 @@ RSpec.describe Document::Base do
     expect(doc.status).to eq(Document::Status::COMPLETED)
   end
 
-  it 'two assignees on the same level' do
+  it 'one signee and one assignee' do
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')
     nino    = Sys::User.find_by_username('nino')
@@ -288,15 +288,15 @@ RSpec.describe Document::Base do
       additions_count: 1,
       status: Document::Status::SENT,
       motions: [
-        { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', receiver_role: Document::Motion::ROLE_ASSIGNEE, ordering: 999, motion_text: 'რეზოლუცია 1', due_date: date + 10.days },
         { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', receiver_role: Document::Motion::ROLE_ASSIGNEE, ordering: 999, motion_text: 'რეზოლუცია 2', due_date: date + 10.days },
+        { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', receiver_role: Document::Motion::ROLE_SIGNEE, ordering: 1, motion_text: 'რეზოლუცია 1', due_date: date + 10.days }
       ]
     }).reload
 
     userdocs = Document::User.where(document: doc)
-    expect(userdocs.count).to eq(3)
+    expect(userdocs.count).to eq(2)
     expect(userdocs.where(user: dimitri).count).to eq(1)
     expect(userdocs.where(user: shalva).count).to eq(1)
-    expect(userdocs.where(user: nino).count).to eq(1)
+    expect(userdocs.where(user: nino).count).to eq(0)
   end
 end
