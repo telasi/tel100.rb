@@ -14,7 +14,12 @@ Ext.define('Telasi.view.document.comment.CommentDialog', {
   ],
 
   initComponent: function() {
-    var currStatus = this.doc.get('my_status');
+    var currStatus = this.doc.get('my_status')
+      , currRole   = this.doc.get('my_role')
+      , forSign = currRole === 'author' || currRole == 'signee'
+      , name
+      ;
+
     var statusItems = [{
       text: '<i class="fa fa-comment-o text-info"></i> კომენტარი',
       statusId: currStatus,
@@ -23,18 +28,18 @@ Ext.define('Telasi.view.document.comment.CommentDialog', {
 
     if (currStatus === Telasi.statuses.current) {
       statusItems.push({
-        text: '<i class="fa fa-check text-success"></i> შესრულება',
+        text: '<i class="fa fa-check text-success"></i> ' + (forSign ? 'ხელმოწერა' : 'შესრულება'),
         statusId: Telasi.statuses.completed
       });
       statusItems.push({
-        text: '<i class="fa fa-times text-danger"></i> გაუქმება',
+        text: '<i class="fa fa-times text-danger"></i> ' + (forSign ? 'უარი ხელმოწერაზე' : 'გაუქმება'),
         statusId: Telasi.statuses.canceled
       });
     } else {
-      statusItems.push({
-        text: '<i class="fa fa-undo text-danger"></i> მიმდინარეში დაბრუნება',
-        statusId: Telasi.statuses.current
-      });
+      // statusItems.push({
+      //   text: '<i class="fa fa-undo text-danger"></i> ' + (forSign ? 'ხელმოწერის მოხსნა' : 'მიმდინარეში დაბრუნება'),
+      //   statusId: Telasi.statuses.current
+      // });
     }
 
     Ext.apply(this, {
