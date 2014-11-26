@@ -21,7 +21,6 @@ class AddDocumentMotionTable < ActiveRecord::Migration
         RECEIVER_ID      number(10, 0),
         RECEIVER_TYPE    varchar2(50 CHAR),
         RECEIVER_ROLE    varchar2(10 CHAR) default 'assignee' not null,
-        FOR_SIGN         number(1, 0) default 0 not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
