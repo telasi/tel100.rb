@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20141120094044) do
     t.integer   "motions_total",     limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
     t.integer   "motions_completed", limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
     t.integer   "motions_canceled",  limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
+    t.integer   "comments_total",    limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
     t.timestamp "created_at",        limit: 6,                                               null: false
     t.timestamp "updated_at",        limit: 6,                                               null: false
   end

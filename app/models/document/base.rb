@@ -201,6 +201,7 @@ class Document::Base < ActiveRecord::Base
       operation: operation,
       text: text
     })
+    self.update_attributes!(comments_total: Document::Comment.where(document: self).count)
 
     # if user is the owner, than update doc status too
     self.update_attributes!(status: status) if docuser.role == ROLE_OWNER

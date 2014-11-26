@@ -165,6 +165,7 @@ RSpec.describe Document::Base do
     expect(doc.motions_completed).to eq(0)
     expect(doc.motions_canceled).to eq(0)
     expect(doc.motions_waiting).to eq(2)
+    expect(doc.comments_total).to eq(0)
     motions = doc.motions
     expect(doc.motions.size).to eq(2)
     m1 = doc.motions.first
@@ -222,6 +223,7 @@ RSpec.describe Document::Base do
     expect(dimitri.documents.first.is_read).to eq(0) # dimitri hasn't yet seen shalva's comment
 
     # comments
+    expect(doc.comments_total).to eq(1)
     expect(doc.comments.size).to eq(1)
     c1 = doc.comments[0]
     expect(c1.user).to eq(shalva)
