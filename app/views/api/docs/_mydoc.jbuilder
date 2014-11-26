@@ -1,4 +1,5 @@
 json.my_status mydoc.status
+json.my_role   mydoc.role
 json.is_read mydoc.is_read
 doc = mydoc.document
 json.id          doc.id
