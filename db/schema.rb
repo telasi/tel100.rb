@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20141120094044) do
     t.string    "role",        limit: 10,                                          null: false
     t.boolean   "status",                 precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_read",                precision: 1,  scale: 0, default: false, null: false
+    t.timestamp "created_at",  limit: 6,                                           null: false
     t.timestamp "updated_at",  limit: 6,                                           null: false
   end
 

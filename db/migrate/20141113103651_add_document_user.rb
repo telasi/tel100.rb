@@ -8,7 +8,9 @@ class AddDocumentUser < ActiveRecord::Migration
         ROLE         varchar2(10 CHAR) not null,
         STATUS       number(1, 0) default 0 not null,
         IS_READ      number(1, 0) default 0 not null,
-        UPDATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
+        -----
+        CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
+        UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint DOCUSER_PRIMARYKEY primary key ( DOCUMENT_ID, USER_ID ) enable
       )
     SQL
