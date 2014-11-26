@@ -1,16 +1,14 @@
 # -*- encoding : utf-8 -*-
 module Document::Status
-  DRAFT         =  0
-  CURRENT       =  1
-  CURRENT_SIGN  =  2
-  COMPLETED     =  3
-  SIGNED        =  4
-  NOT_SENT      = -1
-  NOT_SENT_SIGN = -2
-  CANCELED      = -3
-  REJECTED      = -4
+  DRAFT     =  0
+  CURRENT   =  1
+  COMPLETED =  2
+  NOT_SENT  = -1
+  CANCELED  = -2
 
-  ALL_STATUSES  = [ DRAFT, CURRENT, CURRENT_SIGN, COMPLETED, SIGNED, NOT_SENT, NOT_SENT_SIGN, CANCELED, REJECTED ]
+  ALL_STATUSES    = [ DRAFT, CURRENT, COMPLETED, NOT_SENT, CANCELED ]
+  OPEN_STATUSES   = [ DRAFT, CURRENT ]
+  CLOSED_STATUSES = ALL_STATUSES - OPEN_STATUSES
 
   def self.included(base)
     base.extend(ClassMethods)
