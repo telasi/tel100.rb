@@ -117,7 +117,7 @@ Ext.define('Telasi.view.document.editor.EditorController', {
   },
 
   onSendDocument: function(btn, evt) {
-    this.sendDocument( btn, Telasi.statuses.sent );
+    this.sendDocument( btn, Telasi.statuses.current );
   },
 
   onSaveDocument: function(btn, evt) {

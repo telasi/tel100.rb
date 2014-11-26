@@ -21,7 +21,7 @@ Ext.define('Telasi.view.document.comment.CommentDialog', {
       pressed: true
     }];
 
-    if (currStatus === Telasi.statuses.sent) {
+    if (currStatus === Telasi.statuses.current) {
       statusItems.push({
         text: '<i class="fa fa-check text-success"></i> შესრულება',
         statusId: Telasi.statuses.completed
@@ -33,7 +33,7 @@ Ext.define('Telasi.view.document.comment.CommentDialog', {
     } else {
       statusItems.push({
         text: '<i class="fa fa-undo text-danger"></i> მიმდინარეში დაბრუნება',
-        statusId: Telasi.statuses.sent
+        statusId: Telasi.statuses.current
       });
     }
 

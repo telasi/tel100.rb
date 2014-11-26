@@ -5,7 +5,7 @@ window.Telasi = {
     canceled: -2,
     not_sent: -1,
     draft: 0,
-    sent: 1,
+    current: 1,
     completed: 2
   }
 };
