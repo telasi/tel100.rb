@@ -17,7 +17,7 @@ RSpec.describe Document::Base do
       body: 'test body 1',
       type_id: type.id,
       docdate: date,
-      status: Document::Status::SENT,
+      status: Document::Status::CURRENT,
       motions: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 1' }
       ]
@@ -27,7 +27,7 @@ RSpec.describe Document::Base do
       body: 'test body 2',
       type_id: type.id,
       docdate: date,
-      status: Document::Status::SENT,
+      status: Document::Status::CURRENT,
       motions: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 2' }
       ]
@@ -37,7 +37,7 @@ RSpec.describe Document::Base do
       body: 'test body 3',
       type_id: type.id,
       docdate: date,
-      status: Document::Status::SENT,
+      status: Document::Status::CURRENT,
       motions: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'test text 3' },
       ]
@@ -62,7 +62,7 @@ RSpec.describe Document::Base do
       docdate: date,
       page_count: 10,
       additions_count: 5,
-      status: Document::Status::SENT,
+      status: Document::Status::CURRENT,
       motions: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', motion_text: 'შალვა, გთხოვთ გამიშვით შვებულებაში', due_date: date + 3.days },
         { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', motion_text: 'ნინო, გთხოვთ გამიშვით შვებულებაში', due_date: date + 5.days },
@@ -84,7 +84,7 @@ RSpec.describe Document::Base do
     expect(doc.additions_count).to eq(5)
     expect(doc.due_date).to eq(date + 5.days)
     expect(doc.alarm_date).to eq(date + 3.days)
-    expect(doc.status).to eq(Document::Status::SENT)
+    expect(doc.status).to eq(Document::Status::CURRENT)
 
     # check motions
     expect(doc.motions.size).to eq(2)
@@ -98,7 +98,7 @@ RSpec.describe Document::Base do
     expect(motion1.motion_text).to eq('შალვა, გთხოვთ გამიშვით შვებულებაში')
     expect(motion1.response_text).to be_blank
     expect(motion1.due_date).to eq(date + 3.days)
-    expect(motion1.status).to eq(Document::Status::SENT)
+    expect(motion1.status).to eq(Document::Status::CURRENT)
     expect(motion1.ordering).to eq(Document::Motion::MAX)
 
     expect(motion2.sender).to eq(dimitri.employee)
@@ -108,7 +108,7 @@ RSpec.describe Document::Base do
     expect(motion2.motion_text).to eq('ნინო, გთხოვთ გამიშვით შვებულებაში')
     expect(motion2.response_text).to be_blank
     expect(motion2.due_date).to eq(date + 5.days)
-    expect(motion2.status).to eq(Document::Status::SENT)
+    expect(motion2.status).to eq(Document::Status::CURRENT)
     expect(motion2.ordering).to eq(Document::Motion::MAX)
   end
 
@@ -124,7 +124,7 @@ RSpec.describe Document::Base do
       docdate: date,
       page_count: 10,
       additions_count: 5,
-      status: Document::Status::SENT,
+      status: Document::Status::CURRENT,
       motions: [
         { receiver_id: empl1.id, receiver_type: 'HR::Employee', motion_text: 'text 1', due_date: date + 10.days },
       ]
@@ -153,14 +153,14 @@ RSpec.describe Document::Base do
       docdate: date,
       page_count: 10,
       additions_count: 5,
-      status: Document::Status::SENT,
+      status: Document::Status::CURRENT,
       motions: [
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', receiver_role: Document::Motion::ROLE_SIGNEE, ordering: 1, motion_text: 'text 1', due_date: date + 3.days },
         { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', receiver_role: Document::Motion::ROLE_ASSIGNEE, ordering: 2, motion_text: 'text 2', due_date: date + 5.days },
       ]
     }).reload
 
-    expect(doc.status).to eq(Document::Status::SENT)
+    expect(doc.status).to eq(Document::Status::CURRENT)
     expect(doc.motions_total).to eq(2)
     expect(doc.motions_completed).to eq(0)
     expect(doc.motions_canceled).to eq(0)
@@ -175,11 +175,11 @@ RSpec.describe Document::Base do
 
     expect(m1.receiver_role).to eq(Document::Motion::ROLE_SIGNEE)
     expect(m1.ordering).to eq(1)
-    expect(m1.status).to eq(Document::Status::PROCESS)
+    expect(m1.status).to eq(Document::Status::CURRENT)
 
     expect(m2.receiver_role).to eq(Document::Motion::ROLE_ASSIGNEE)
     expect(m2.ordering).to eq(2)
-    expect(m2.status).to eq(Document::Status::NONE)
+    expect(m2.status).to eq(Document::Status::DRAFT)
 
     # document_users
 
@@ -187,11 +187,11 @@ RSpec.describe Document::Base do
 
     expect(dimitri.documents.size).to eq(1)
     expect(dimitri.documents.first.is_read).to eq(1)
-    expect(dimitri.documents.first.status).to eq(Document::Status::SENT)
+    expect(dimitri.documents.first.status).to eq(Document::Status::CURRENT)
 
     expect(shalva.documents.size).to eq(1)
     expect(shalva.documents.first.is_read).to eq(0)
-    expect(shalva.documents.first.status).to eq(Document::Status::SENT)
+    expect(shalva.documents.first.status).to eq(Document::Status::CURRENT)
 
     expect(nino.documents.size).to eq(0)
 
@@ -209,16 +209,16 @@ RSpec.describe Document::Base do
     m1.reload ; m2.reload
     shalva.reload ; nino.reload
 
-    expect(m1.status).to eq(Document::Status::SIGNED)
+    expect(m1.status).to eq(Document::Status::COMPLETED)
     expect(m1.response_text).to eq('resp-shalva')
     expect(shalva.documents.size).to eq(1)
     expect(shalva.documents.first.is_read).to eq(1)
     expect(shalva.documents.first.status).to eq(Document::Status::COMPLETED)
 
-    expect(m2.status).to eq(Document::Status::SENT)
+    expect(m2.status).to eq(Document::Status::CURRENT)
     expect(nino.documents.size).to eq(1)
     expect(nino.documents.first.is_read).to eq(0)
-    expect(nino.documents.first.status).to eq(Document::Status::SENT)
+    expect(nino.documents.first.status).to eq(Document::Status::CURRENT)
 
     expect(dimitri.documents.first.is_read).to eq(0) # dimitri hasn't yet seen shalva's comment
 
@@ -228,7 +228,7 @@ RSpec.describe Document::Base do
     c1 = doc.comments[0]
     expect(c1.user).to eq(shalva)
     expect(c1.document).to eq(doc)
-    expect(c1.status).to eq(Document::Status::SIGNED)
+    expect(c1.status).to eq(Document::Status::COMPLETED)
     expect(c1.operation).to eq(Document::Operation::OPER_SIGN)
     expect(c1.text).to eq('resp-shalva')
 
@@ -294,7 +294,7 @@ RSpec.describe Document::Base do
       docdate: date,
       page_count: 3,
       additions_count: 1,
-      status: Document::Status::SENT,
+      status: Document::Status::CURRENT,
       motions: [
         { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', receiver_role: Document::Motion::ROLE_ASSIGNEE, ordering: 999, motion_text: 'რეზოლუცია 2', due_date: date + 10.days },
         { receiver_id: shalva.employee.id, receiver_type: 'HR::Employee', receiver_role: Document::Motion::ROLE_SIGNEE, ordering: 1, motion_text: 'რეზოლუცია 1', due_date: date + 10.days }

@@ -50,8 +50,8 @@ class Document::Base < ActiveRecord::Base
             curr_all_complete = true
           end
           if prev_all_complete and motion.status == DRAFT
-            motion.update_attributes!(status: SENT)
-            Document::User.upsert!(self, motion.receiver_user, motion.receiver_role, { status: SENT, is_read: 0 })
+            motion.update_attributes!(status: CURRENT)
+            Document::User.upsert!(self, motion.receiver_user, motion.receiver_role, { status: CURRENT, is_read: 0 })
             curr_all_complete = false
           elsif motion.status != COMPLETED
             curr_all_complete = false
@@ -70,7 +70,7 @@ class Document::Base < ActiveRecord::Base
   end
 
   def self.docnumber_eval(type, status, date)
-    if status == SENT
+    if status == CURRENT
       last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('id DESC').first
       last_number = '1'
       last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
@@ -119,7 +119,7 @@ class Document::Base < ActiveRecord::Base
       owner: owner
     }
     motionparams = opts[:motions_attributes] || opts[:motions] || []
-    raise 'document cannot be sent with empty receivers list' if (status == SENT and motionparams.select{|x| not x[:_deleted]}.blank?)
+    raise 'document cannot be sent with empty receivers list' if (status == CURRENT and motionparams.select{|x| not x[:_deleted]}.blank?)
 
     Document::Base.transaction do
       if opts[:id]
