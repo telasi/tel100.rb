@@ -219,6 +219,8 @@ RSpec.describe Document::Base do
     expect(nino.documents.first.is_read).to eq(0)
     expect(nino.documents.first.status).to eq(Document::Status::SENT)
 
+    expect(dimitri.documents.first.is_read).to eq(0) # dimitri hasn't yet seen shalva's comment
+
     # comments
     expect(doc.comments.size).to eq(1)
     c1 = doc.comments[0]
@@ -253,6 +255,10 @@ RSpec.describe Document::Base do
     expect(c2.status).to eq(Document::Status::COMPLETED)
     expect(c2.operation).to eq(Document::Operation::OPER_COMPLETE)
     expect(c2.text).to eq('resp-nino')
+
+    expect(dimitri.documents.first.is_read).to eq(0) # dimitri hasn't yet seen nino's comment
+    expect(shalva.documents.first.is_read).to eq(0) # shalva hasn't yet seen nino's comment
+
 
     # Step 4: dimitri completes the task
 

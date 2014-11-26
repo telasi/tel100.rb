@@ -205,6 +205,14 @@ class Document::Base < ActiveRecord::Base
     # if user is the owner, than update doc status too
     self.update_attributes!(status: status) if docuser.role == ROLE_OWNER
 
+    Document::User.where(document: self).each do |docuser|
+      if docuser.user == by_user
+        docuser.update_attributes!({ status: status, is_read: 1 })
+      else
+        docuser.update_attributes!({ is_read: 0 })
+      end
+    end
+
     # update related motions
     user_motions = self.motions.where(receiver_user: by_user)
     if user_motions.count > 0
@@ -213,12 +221,10 @@ class Document::Base < ActiveRecord::Base
           status: status,
           response_text: text
         })
-        Document::User.where(user: by_user, document: self).first.update_attributes!({
-          status: status,
-          is_read: 1
-        })
       end
       revisit_motions!
     end
+
+
   end
 end
