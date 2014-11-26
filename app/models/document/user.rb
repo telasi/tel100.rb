@@ -16,8 +16,7 @@ class Document::User < ActiveRecord::Base
       docuser.update_attributes!({
         role: new_role,
         status: opts[:status] || doc.status,
-        is_read: opts[:is_read] || 0,
-        updated_at: Date.new
+        is_read: opts[:is_read] || 0
       })
     end
   end
