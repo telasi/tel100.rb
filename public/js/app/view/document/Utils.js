@@ -76,8 +76,13 @@ Ext.define('Telasi.view.document.Utils', {
     return status;
   },
 
-  statusRender: function(status) {
-    return [ '<i class="fa ', status.get('icon'), '"></i> ', status.get('name') ].join('');
+  statusRender: function(status, record) {
+    var role = record && record.get('my_role');
+    var name = status.get('name');
+    if (role === 'signee' || role === 'author') {
+      name = status.get('name_sign');
+    }
+    return [ '<i class="fa ', status.get('icon'), '"></i> ', name ].join('');
   },
 
   gridStatusRenderer: function(value, metaInfo, record) {
@@ -88,7 +93,7 @@ Ext.define('Telasi.view.document.Utils', {
   gridMyStatusRenderer: function(value, metaInfo, record) {
     var myStatus = record.get('my_status');
     var status = Telasi.documentUtils.statusify(value, metaInfo, record, { status_id: myStatus });
-    var text = Telasi.documentUtils.statusRender(status);
+    var text = Telasi.documentUtils.statusRender(status, record);
     var unread = record.get('is_read') === 0;
     if (unread) { text += ' <span class="label label-danger">new</span>'; }
     return text;
