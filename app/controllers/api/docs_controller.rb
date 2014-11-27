@@ -37,47 +37,9 @@ class Api::DocsController < ApiController
   end
 
   def motions
-    if params[:flat]
-      render json: (Document::Motion.where(document_id: params[:id]).order(:ordering, :id).map do |x|
-        resp = {
-          id: x.id,
-          due_date: x.due_date,
-          ordering: x.ordering,
-          motion_text: x.motion_text,
-          receiver_id: x.receiver.id,
-          receiver_type: x.receiver.class.name,
-          receiver_role: x.receiver_role,
-          name: x.receiver_ext_name,
-          image: x.receiver_ext_icon
-        }
-        if x.receiver.is_a?(HR::Employee)
-          resp[:is_manager] = x.receiver.organization.is_manager
-          resp[:organization] = x.receiver.organization.name
-        end
-        resp
-      end)
-    else
-      motions_array = Document::Motion.where(document_id: params[:id]).order(:ordering, :id).map do |m|
-        resp = {
-          id: m.id,
-          parent_id: m.parent_id,
-          status: m.status,
-          due_date: m.due_date,
-          motion_text: m.motion_text, 
-          response_text: m.response_text,
-          sender_is_read: m.sender_is_read,
-          receiver_is_read: m.receiver_is_read,
-          sender_full_name: m.sender_ext_name,
-          name: m.receiver_ext_name,
-          image: m.receiver.icon
-        }
-        if m.receiver.is_a?(HR::Employee)
-          resp[:is_manager] = m.receiver.organization.is_manager
-          resp[:organization] = m.receiver.organization.name
-        end
-        resp
-      end
-      render json: array_to_tree(motions_array)
+    json = motions_hash Document::Motion.where(document_id: params[:id]).order(:ordering, :id)
+    if params[:flat] then render json: json
+    else render json: array_to_tree(json)
     end
   end
 
@@ -93,5 +55,37 @@ class Api::DocsController < ApiController
 
   def types
     render json: { success: true, types: Document::Type.order('order_by ASC') }
+  end
+
+  private
+
+  def motions_hash(motions)
+    motions.map do |m|
+      has_extra = m.receiver.is_a?(HR::Employee)
+      {
+        id: m.id,
+        parent_id: m.parent_id,
+        status: m.status,
+        due_date: m.due_date,
+        ordering: m.ordering,
+        # sender info
+        motion_text: m.motion_text,
+        sender_name: m.sender_ext_name,
+        sender_icon: m.sender_ext_icon,
+        # receiver info
+        response_text: m.response_text,
+        receiver_user_id: m.receiver_user_id,
+        receiver_id: m.receiver_id,
+        receiver_type: m.receiver_type,
+        receiver_role: m.receiver_role,
+        name: m.receiver_ext_name,
+        image: m.receiver_ext_icon,
+        is_manager: (m.receiver.organization.is_manager if has_extra),
+        organization: (m.receiver.organization.name if has_extra),
+        # other information
+        created_at: m.created_at,
+        updated_at: m.updated_at
+      }
+    end
   end
 end
