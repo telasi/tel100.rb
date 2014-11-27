@@ -33,7 +33,7 @@ Ext.define('Telasi.view.document.motions.Tree', {
     width: 120,
     renderer: function(value, metaInfo, record) {
       var status = Telasi.documentUtils.statusify(value, metaInfo, record, { status: value });
-      return Telasi.documentUtils.statusRender(value, record.get('receiver_role'));
+      return Telasi.documentUtils.statusRender(value, record.get('receiver_role'), { asMotion: true });
     }
   }],
   tools: [{

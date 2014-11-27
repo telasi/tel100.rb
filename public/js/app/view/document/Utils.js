@@ -76,10 +76,23 @@ Ext.define('Telasi.view.document.Utils', {
     return status;
   },
 
-  statusRender: function(status, role) {
-    if (typeof status === 'number') { status = Telasi.documentUtils.getStatus(status); }
-    var name = status.get('name');
-    if (role === 'signee' || role === 'author') { name = status.get('name_sign'); }
+  statusRender: function(status, role, opts) {
+    // getting status
+    if (typeof status === 'number') {
+      status = Telasi.documentUtils.getStatus(status);
+    }
+
+    // status name
+    var asMotion = opts && opts.asMotion;
+    var asSignee = role === 'signee' || role === 'author';
+    var name;
+    if (asSignee) {
+      name = asMotion ? status.get('name_motion_sign') : status.get('name_sign');
+    } else {
+      name = asMotion ? status.get('name_motion') : status.get('name');
+    }
+
+    // status rendering    
     return [ '<i class="fa ', status.get('icon'), '"></i> ', name ].join('');
   },
 
