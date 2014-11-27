@@ -1,7 +1,6 @@
 Ext.define('Telasi.view.document.viewer.Detail', {
-  // extend: 'Ext.panel.Panel',
-  extend: 'Ext.tab.Panel',
-  // layout: 'accordion',
+  extend: 'Ext.panel.Panel',
+  layout: 'accordion',
   xtype: 'document-viewer-detail',
   bodyPadding: 0,
 
@@ -25,8 +24,7 @@ Ext.define('Telasi.view.document.viewer.Detail', {
     }}
   },{
     xtype: 'document-viewer-motionpanel',
-    // title: '<i class="fa fa-random"></i> დოკუმენტის მოძრაობა',
-    title: '<i class="fa fa-random"></i> მოძრაობა',
+    title: '<i class="fa fa-random"></i> დოკუმენტის მოძრაობა',
     bodyPadding: 0,
   }],
 });
