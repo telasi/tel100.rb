@@ -5,13 +5,17 @@
 @warning-color: #8a6d3b;
 @info-color: #31708f;
 
+.text-strong { font-weight: bold; }
 .text-muted { color: @muted-color; }
-.text-danger { color: @danger-color  }
+.text-danger { color: @danger-color; }
 .text-primary { color: @primary-color; }
 .text-success { color: @success-color; }
 .text-warning { color: @warning-color; }
 .text-info { color: @info-color; }
-.text-strong { font-weight: bold; }
+
+.text-danger, .text-primary, .text-success, .text-warning, .text-info {
+  & .text-muted { color: inherit; }
+}
 
 .text-danger-b, .text-success-b, .text-muted-b { padding: 1px 2px; border-radius: 3px; }
 .text-danger-b { background-color: lighten(@danger-color, 45%); }
