@@ -77,7 +77,7 @@ class Api::DocsController < ApiController
         receiver_user_id: m.receiver_user_id,
         receiver_id: m.receiver_id,
         receiver_type: m.receiver_type,
-        role: m.receiver_role,
+        receiver_role: m.receiver_role,
         name: m.receiver_ext_name,
         image: m.receiver_ext_icon,
         is_manager: (m.receiver.organization.is_manager if has_extra),

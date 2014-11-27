@@ -31,7 +31,10 @@ Ext.define('Telasi.view.document.motions.Tree', {
     text: 'სტატუსი',
     dataIndex: 'status',
     width: 120,
-    renderer: Telasi.documentUtils.gridStatusRenderer
+    renderer: function(value, metaInfo, record) {
+      var status = Telasi.documentUtils.statusify(value, metaInfo, record, { status: value });
+      return Telasi.documentUtils.statusRender(value, record.get('receiver_role'));
+    }
   }],
   tools: [{
     type: 'refresh',
