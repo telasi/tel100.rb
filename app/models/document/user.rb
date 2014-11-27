@@ -6,6 +6,7 @@ class Document::User < ActiveRecord::Base
   self.set_integer_columns :is_read, :status
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
+  before_save :update_document_motions
 
   def self.upsert!(doc, user, role, opts={})
     if user.present?
@@ -18,6 +19,14 @@ class Document::User < ActiveRecord::Base
         status: opts[:status] || doc.status,
         is_read: opts[:is_read] || 0
       })
+    end
+  end
+
+  private
+
+  def update_document_motions
+    Document::Motion.where(document: self.document, receiver_user: self.user).each do |motion|
+      motion.update_attributes!({ is_read: self.is_read })
     end
   end
 end

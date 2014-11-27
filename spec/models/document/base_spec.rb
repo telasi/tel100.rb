@@ -176,10 +176,12 @@ RSpec.describe Document::Base do
     expect(m1.receiver_role).to eq(Document::Motion::ROLE_SIGNEE)
     expect(m1.ordering).to eq(1)
     expect(m1.status).to eq(Document::Status::CURRENT)
+    expect(m1.is_read).to eq(0)
 
     expect(m2.receiver_role).to eq(Document::Motion::ROLE_ASSIGNEE)
     expect(m2.ordering).to eq(2)
     expect(m2.status).to eq(Document::Status::DRAFT)
+    expect(m2.is_read).to eq(0)
 
     # document_users
 
@@ -194,6 +196,11 @@ RSpec.describe Document::Base do
     expect(shalva.documents.first.status).to eq(Document::Status::CURRENT)
 
     expect(nino.documents.size).to eq(0)
+
+    m1.reload ; m2.reload
+
+    expect(m1.is_read).to eq(0)
+    expect(m2.is_read).to eq(0)
 
     # Step 2: shalva signs document
 
@@ -213,11 +220,13 @@ RSpec.describe Document::Base do
     expect(m1.response_text).to eq('resp-shalva')
     expect(shalva.documents.size).to eq(1)
     expect(shalva.documents.first.is_read).to eq(1)
+    expect(m1.is_read).to eq(1)
     expect(shalva.documents.first.status).to eq(Document::Status::COMPLETED)
 
     expect(m2.status).to eq(Document::Status::CURRENT)
     expect(nino.documents.size).to eq(1)
     expect(nino.documents.first.is_read).to eq(0)
+    expect(m2.is_read).to eq(0)
     expect(nino.documents.first.status).to eq(Document::Status::CURRENT)
 
     expect(dimitri.documents.first.is_read).to eq(0) # dimitri hasn't yet seen shalva's comment
@@ -246,6 +255,8 @@ RSpec.describe Document::Base do
     shalva.reload ; nino.reload
 
     expect(m2.status).to eq(Document::Status::COMPLETED)
+    expect(m2.is_read).to eq(1)
+    expect(m1.is_read).to eq(0) # shalva hasn't yet seen
     expect(nino.documents.size).to eq(1)
     expect(nino.documents.first.is_read).to eq(1)
     expect(nino.documents.first.status).to eq(Document::Status::COMPLETED)
@@ -260,7 +271,6 @@ RSpec.describe Document::Base do
 
     expect(dimitri.documents.first.is_read).to eq(0) # dimitri hasn't yet seen nino's comment
     expect(shalva.documents.first.is_read).to eq(0) # shalva hasn't yet seen nino's comment
-
 
     # Step 4: dimitri completes the task
 
