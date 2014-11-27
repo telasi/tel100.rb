@@ -28,7 +28,7 @@ class Api::DocsController < ApiController
   def show
     @mydoc = Document::User.where(user: current_user, document_id: params[:id]).first
     raise "You cannot view this document!" if @mydoc.blank?
-    @mydoc.update_attributes(is_read: 1)
+    @mydoc.read!
   end
 
   def create

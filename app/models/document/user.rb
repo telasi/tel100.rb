@@ -22,7 +22,17 @@ class Document::User < ActiveRecord::Base
     end
   end
 
-  private
+  def read!; self.update_is_read_attribute(1) end
+  def unread!; self.update_is_read_attribute(0) end
+
+  protected
+
+  def update_is_read_attribute(new_is_read)
+    Document::User.transaction do
+      self.update_columns(is_read: new_is_read)
+      update_document_motions
+    end
+  end
 
   def update_document_motions
     Document::Motion.where(document: self.document, receiver_user: self.user).each do |motion|
