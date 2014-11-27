@@ -8,7 +8,7 @@ Ext.define('Telasi.view.hr.Utils', {
       , has_user = record.get('has_user')
       ;
     text += ' ' + name;
-    if (org) { text += ' <span class="text-muted">' + org + '</span>'; }
+    if (org) { text += ' &mdash; <span class="text-muted">' + org + '</span>'; }
     if (manager === 1) { text = '<strong>' + text + '</strong>'; }
     if (has_user === false) { text = '<strike>' + text + '</strike>'; }
     return text;
