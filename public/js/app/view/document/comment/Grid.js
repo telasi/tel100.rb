@@ -35,6 +35,13 @@ Ext.define('Telasi.view.document.comment.Grid', {
         dataIndex: 'text',
         renderer: Telasi.commentRenderer.textRenderer
       }],
+      tools: [{
+        type: 'refresh',
+        tooltip: 'ახალი დოკუმენტი',
+        callback: function (grid) {
+          grid.controller.refresh();
+        }
+      }],
     });
     this.callParent();
   }
