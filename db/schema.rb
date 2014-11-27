@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20141120094044) do
     t.integer   "parent_id",        limit: 12,   precision: 12, scale: 0
     t.integer   "document_id",      limit: 10,   precision: 10, scale: 0,                      null: false
     t.boolean   "status",                        precision: 1,  scale: 0, default: false,      null: false
+    t.boolean   "is_read",                       precision: 1,  scale: 0, default: false,      null: false
     t.datetime  "due_date"
     t.integer   "ordering",         limit: 3,    precision: 3,  scale: 0, default: 999,        null: false
     t.string    "motion_text",      limit: 1000
