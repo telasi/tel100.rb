@@ -37,7 +37,7 @@ Ext.define('Telasi.view.document.comment.Grid', {
       }],
       tools: [{
         type: 'refresh',
-        tooltip: 'ახალი დოკუმენტი',
+        tooltip: 'კომენტარების განახლება',
         callback: function (grid) {
           grid.controller.refresh();
         }

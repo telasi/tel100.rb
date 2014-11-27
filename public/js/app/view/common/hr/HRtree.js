@@ -92,7 +92,7 @@ Ext.define('Telasi.view.common.hr.HRtree', {
     xtype: 'button',
     itemId: 'collapse-button',
     handler: function(button) {
-        this.up('treepanel').collapseAll();
+      this.up('treepanel').collapseAll();
     }
   }],
 });
