@@ -208,9 +208,10 @@ class Document::Base < ActiveRecord::Base
 
     Document::User.where(document: self).each do |docuser|
       if docuser.user == by_user
-        docuser.update_attributes!({ status: status, is_read: 1 })
+        docuser.update_attributes!({ status: status })
+        docuser.read!
       else
-        docuser.update_attributes!({ is_read: 0 })
+        docuser.unread!
       end
     end
 

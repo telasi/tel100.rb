@@ -36,7 +36,7 @@ class Document::User < ActiveRecord::Base
 
   def update_document_motions
     Document::Motion.where(document: self.document, receiver_user: self.user).each do |motion|
-      motion.update_attributes!({ is_read: self.is_read })
+      motion.update_columns(is_read: self.is_read)
     end
   end
 end
