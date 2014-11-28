@@ -7,7 +7,7 @@ class AddDocumentMotionTable < ActiveRecord::Migration
         PARENT_ID   number(12, 0),
         DOCUMENT_ID number(10, 0) not null,
         STATUS      number( 1, 0) default 0 not null,
-        IS_READ     number( 1, 0) default 0 not null,
+        IS_NEW      number( 1, 0) default 1 not null,
         DUE_DATE    date,
         ---------
         ORDERING    number(3) default 999 not null,
