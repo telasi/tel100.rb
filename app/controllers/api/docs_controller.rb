@@ -73,6 +73,7 @@ class Api::DocsController < ApiController
         sender_name: m.sender_ext_name,
         sender_icon: m.sender_ext_icon,
         # receiver info
+        is_new: m.is_new,
         response_text: m.response_text,
         receiver_user_id: m.receiver_user_id,
         receiver_id: m.receiver_id,
