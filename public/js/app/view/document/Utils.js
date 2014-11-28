@@ -113,11 +113,15 @@ Ext.define('Telasi.view.document.Utils', {
     var myStatus = record.get('my_status');
     var role = record.get('my_role');
     var status = Telasi.documentUtils.statusify(value, metaInfo, record, { status: myStatus });
-    var text = Telasi.documentUtils.statusRender(status, role);
+    var params = Telasi.documentUtils.statusParams(status, role);
+    var icon = params[0]
+      , name = params[1]
+      , text;
     if (record.get('is_read') === 0) {
-      text = '<span class="text-warning"><i class="fa fa-circle"></i></span> ' + text;
+      return ['<span class="text-danger"><i class="fa fa-circle"></i></span> ', name].join('');
+    } else {
+      return ['<i class="fa ', icon, '"></i> ', name].join('');
     }
-    return text;
   },
 
   gridTextRenderer: function(value, metaInfo, record) {
