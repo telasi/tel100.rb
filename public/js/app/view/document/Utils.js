@@ -109,11 +109,11 @@ Ext.define('Telasi.view.document.Utils', {
     return Telasi.documentUtils.statusRender(status);
   },
 
-  gridMyStatusRenderer: function(value, metaInfo, record) {
+  gridMyStatusRenderer: function(value, metaInfo, record, opts) {
     var myStatus = record.get('my_status');
     var role = record.get('my_role');
     var status = Telasi.documentUtils.statusify(value, metaInfo, record, { status: myStatus });
-    var params = Telasi.documentUtils.statusParams(status, role);
+    var params = Telasi.documentUtils.statusParams(status, role, opts);
     var icon = params[0]
       , name = params[1]
       , text;
