@@ -51,7 +51,7 @@ class Document::Base < ActiveRecord::Base
           end
           if prev_all_complete and motion.status == DRAFT
             motion.update_attributes!(status: CURRENT)
-            Document::User.upsert!(self, motion.receiver_user, motion.receiver_role, { status: CURRENT, is_read: 0 })
+            Document::User.upsert!(self, motion.receiver_user, motion.receiver_role, { status: CURRENT, is_new: 1 })
             curr_all_complete = false
           elsif motion.status != COMPLETED
             curr_all_complete = false
@@ -129,8 +129,8 @@ class Document::Base < ActiveRecord::Base
         doc = Document::Base.create!(docparams)
       end
 
-      Document::User.upsert!(doc, owner_user,  ROLE_OWNER,   { is_read: 0 })
-      Document::User.upsert!(doc, sender_user, ROLE_CREATOR, { is_read: 1 })
+      Document::User.upsert!(doc, owner_user,  ROLE_OWNER,   { is_new: 1 })
+      Document::User.upsert!(doc, sender_user, ROLE_CREATOR, { is_new: 0 })
 
       # generate motions
       motionparams.each do |motion_opts|
@@ -209,10 +209,14 @@ class Document::Base < ActiveRecord::Base
     Document::User.where(document: self).each do |docuser|
       if docuser.user == by_user
         docuser.update_attributes!({ status: status })
-        docuser.read!
+        # docuser.read!
+        docuser.changed = false
+        docuser.new = false
       else
-        docuser.unread!
+        # docuser.unread!
+        docuser.changed = true
       end
+      docuser.save!
     end
 
     # update related motions

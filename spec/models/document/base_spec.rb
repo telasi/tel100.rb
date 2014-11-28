@@ -176,31 +176,28 @@ RSpec.describe Document::Base do
     expect(m1.receiver_role).to eq(Document::Motion::ROLE_SIGNEE)
     expect(m1.ordering).to eq(1)
     expect(m1.status).to eq(Document::Status::CURRENT)
-    expect(m1.is_read).to eq(0)
+    expect(m1.new?).to eq(true)
 
     expect(m2.receiver_role).to eq(Document::Motion::ROLE_ASSIGNEE)
     expect(m2.ordering).to eq(2)
     expect(m2.status).to eq(Document::Status::DRAFT)
-    expect(m2.is_read).to eq(0)
+    expect(m2.new?).to eq(true)
 
     # document_users
 
     expect(Document::User.where(document: doc).count)
 
     expect(dimitri.documents.size).to eq(1)
-    expect(dimitri.documents.first.is_read).to eq(1)
+    expect(dimitri.documents.first.new?).to eq(false)
+    expect(dimitri.documents.first.changed?).to eq(false)
     expect(dimitri.documents.first.status).to eq(Document::Status::CURRENT)
 
     expect(shalva.documents.size).to eq(1)
-    expect(shalva.documents.first.is_read).to eq(0)
+    expect(shalva.documents.first.new?).to eq(true)
+    expect(shalva.documents.first.changed?).to eq(true)
     expect(shalva.documents.first.status).to eq(Document::Status::CURRENT)
 
     expect(nino.documents.size).to eq(0)
-
-    m1.reload ; m2.reload
-
-    expect(m1.is_read).to eq(0)
-    expect(m2.is_read).to eq(0)
 
     # Step 2: shalva signs document
 
@@ -213,23 +210,27 @@ RSpec.describe Document::Base do
     expect(doc.motions_waiting).to eq(1)
 
     # motions
+
     m1.reload ; m2.reload
     shalva.reload ; nino.reload
 
     expect(m1.status).to eq(Document::Status::COMPLETED)
     expect(m1.response_text).to eq('resp-shalva')
+    expect(m1.new?).to eq(false)
     expect(shalva.documents.size).to eq(1)
-    expect(shalva.documents.first.is_read).to eq(1)
-    expect(m1.is_read).to eq(1)
+    expect(shalva.documents.first.new?).to eq(false)
+    expect(shalva.documents.first.changed?).to eq(false)
     expect(shalva.documents.first.status).to eq(Document::Status::COMPLETED)
 
     expect(m2.status).to eq(Document::Status::CURRENT)
+    expect(m2.new?).to eq(true)
     expect(nino.documents.size).to eq(1)
-    expect(nino.documents.first.is_read).to eq(0)
-    expect(m2.is_read).to eq(0)
+    expect(nino.documents.first.new?).to eq(true)
+    expect(nino.documents.first.changed?).to eq(true)
     expect(nino.documents.first.status).to eq(Document::Status::CURRENT)
 
-    expect(dimitri.documents.first.is_read).to eq(0) # dimitri hasn't yet seen shalva's comment
+    expect(dimitri.documents.first.new?).to eq(false)
+    expect(dimitri.documents.first.changed?).to eq(true) # dimitri hasn't yet seen shalva's comment
 
     # comments
     expect(doc.comments_total).to eq(1)
@@ -255,11 +256,19 @@ RSpec.describe Document::Base do
     shalva.reload ; nino.reload
 
     expect(m2.status).to eq(Document::Status::COMPLETED)
-    expect(m2.is_read).to eq(1)
-    expect(m1.is_read).to eq(0) # shalva hasn't yet seen
+    expect(m2.new?).to eq(false)
     expect(nino.documents.size).to eq(1)
-    expect(nino.documents.first.is_read).to eq(1)
+    expect(nino.documents.first.new?).to eq(false)
+    expect(nino.documents.first.changed?).to eq(false)
     expect(nino.documents.first.status).to eq(Document::Status::COMPLETED)
+
+    expect(m1.new?).to eq(false)
+    expect(m1.changed?).to eq(false)
+    expect(shalva.documents.first.new?).to eq(false)
+    expect(shalva.documents.first.changed?).to eq(true)
+
+    expect(dimitri.documents.first.new?).to eq(false)
+    expect(dimitri.documents.first.changed?).to eq(true)
 
     expect(doc.comments.size).to eq(2)
     c2 = doc.comments[1]
@@ -269,14 +278,12 @@ RSpec.describe Document::Base do
     expect(c2.operation).to eq(Document::Operation::OPER_COMPLETE)
     expect(c2.text).to eq('resp-nino')
 
-    expect(dimitri.documents.first.is_read).to eq(0) # dimitri hasn't yet seen nino's comment
-    expect(shalva.documents.first.is_read).to eq(0) # shalva hasn't yet seen nino's comment
-
     # Step 4: dimitri completes the task
 
     doc.respond(dimitri, { status: Document::Status::COMPLETED, response_text: 'resp-dimitri' })
     doc.reload
 
+    expect(doc.status).to eq(Document::Status::COMPLETED)
     expect(doc.comments.size).to eq(3)
     c3 = doc.comments[2]
     expect(c3.user).to eq(dimitri)
@@ -284,8 +291,6 @@ RSpec.describe Document::Base do
     expect(c3.status).to eq(Document::Status::COMPLETED)
     expect(c3.operation).to eq(Document::Operation::OPER_DOC_COMPLETE)
     expect(c3.text).to eq('resp-dimitri')
-
-    expect(doc.status).to eq(Document::Status::COMPLETED)
   end
 
   it 'one signee and one assignee' do
