@@ -76,24 +76,32 @@ Ext.define('Telasi.view.document.Utils', {
     return status;
   },
 
-  statusRender: function(status, role, opts) {
+  statusParams: function(status, role, opts) {
     // getting status
     if (typeof status === 'number') {
       status = Telasi.documentUtils.getStatus(status);
     }
 
+    var name
+      , icon = status.get('icon');
+
     // status name
     var asMotion = opts && opts.asMotion;
     var asSignee = role === 'signee' || role === 'author';
-    var name;
     if (asSignee) {
       name = asMotion ? status.get('name_motion_sign') : status.get('name_sign');
     } else {
       name = asMotion ? status.get('name_motion') : status.get('name');
     }
 
-    // status rendering    
-    return [ '<i class="fa ', status.get('icon'), '"></i> ', name ].join('');
+    return [ icon, name, status ];
+  },
+
+  statusRender: function(status, role, opts) {
+    var params = Telasi.documentUtils.statusParams(status, role, opts);
+    var icon   = params[0]
+      , name   = params[1];
+    return [ '<i class="fa ', icon, '"></i> ', name ].join('');
   },
 
   gridStatusRenderer: function(value, metaInfo, record) {
@@ -106,7 +114,9 @@ Ext.define('Telasi.view.document.Utils', {
     var role = record.get('my_role');
     var status = Telasi.documentUtils.statusify(value, metaInfo, record, { status: myStatus });
     var text = Telasi.documentUtils.statusRender(status, role);
-    if (record.get('is_read') === 0) { text += ' <span class="label label-danger">new</span>'; }
+    if (record.get('is_read') === 0) {
+      text = '<span class="text-warning"><i class="fa fa-circle"></i></span> ' + text;
+    }
     return text;
   },
 
