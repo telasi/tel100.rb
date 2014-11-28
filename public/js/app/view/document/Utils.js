@@ -71,7 +71,7 @@ Ext.define('Telasi.view.document.Utils', {
     var statusId = ( opts && opts.status ) || record.get('status');
     var status = Telasi.documentUtils.getStatus(statusId);
     metaInfo.tdCls += ' ' + status.get('class');
-    var unread = record.get('is_read') === 0;
+    var unread = record.get('is_new') === 1 || record.get('is_changed') === 1;
     if (unread) { metaInfo.tdCls += ' text-new'; }
     return status;
   },
@@ -117,8 +117,10 @@ Ext.define('Telasi.view.document.Utils', {
     var icon = params[0]
       , name = params[1]
       , text;
-    if (record.get('is_read') === 0) {
+    if (record.get('is_new') === 1) {
       return ['<span class="text-danger"><i class="fa fa-circle"></i></span> ', name].join('');
+    } else if (record.get('is_changed') === 1) {
+      return ['<span class="text-success"><i class="fa fa-circle"></i></span> ', name].join('');
     } else {
       return ['<i class="fa ', icon, '"></i> ', name].join('');
     }

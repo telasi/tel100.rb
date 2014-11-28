@@ -7,7 +7,8 @@ Ext.define('Telasi.model.document.Base', {
 
   fields: [
     { name: 'my_status', type: 'int' },
-    { name: 'is_read', type: 'int' },
+    { name: 'is_new', type: 'int' },
+    { name: 'is_changed', type: 'int' },
     { name: 'id', type: 'int' },
     { name: 'language' },
     { name: 'parent_id', type: 'int' },
