@@ -31,7 +31,14 @@ class Document::User < ActiveRecord::Base
   def new=(val); self.is_new = val ? 1 : 0 end
   def new?; self.is_new == 1 end
 
+  def read!
+    Document::User.transaction do
+      self.update_columns(is_new: 0, is_changed: 0)
+      self.update_document_motions
+    end
+  end
+
   protected
 
-  def update_document_motions; motions.each { |motion| motion.update_attributes(is_new: self.is_new) } end
+  def update_document_motions; motions.each { |motion| motion.update_attributes!(is_new: self.is_new) } end
 end
