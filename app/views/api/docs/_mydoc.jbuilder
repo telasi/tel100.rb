@@ -1,6 +1,10 @@
-json.my_status mydoc.status
-json.my_role   mydoc.role
-json.is_read mydoc.is_read
+# document::user properties
+json.my_status   mydoc.status
+json.my_role     mydoc.role
+json.is_new      mydoc.is_new
+json.is_changed  mydoc.is_changed
+
+# document::base properties
 doc = mydoc.document
 json.id          doc.id
 json.language    doc.language
@@ -33,5 +37,6 @@ json.statuses [
   doc.motions_total,
   doc.comments_total
 ]
+
 # რამდენი შესრულდა / არ შესრულდა HTML-ის სახით
 json.statuses_html document_statuses_html(doc)
