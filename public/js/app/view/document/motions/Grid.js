@@ -54,7 +54,19 @@ Ext.define('Telasi.view.document.motions.Grid', {
         }
       }]
     };
+    var statusCol = {
+      text: 'სტატუსი',
+      dataIndex: 'status',
+      width: 120,
+      renderer: function(value, metaInfo, record) {
+        var opts = { asMotion: true, role: record.get('receiver_role') };
+        return Telasi.documentUtils.gridMyStatusRenderer(value, metaInfo, record, opts);
+      }
+    };
     var cols = this.shortColumns ? [ orderingCol, personCol ] : [ orderingCol, personCol, resolutionCol, duedateCol ];
+    if (this.shortColumns) {
+      cols.push(statusCol);
+    }
     if (this.editable) {
       cols.push(actionsCol);
       duedateCol.editor = { xtype: 'datefield', allowBlank: true, format: Ext.Date.defaultFormat };
