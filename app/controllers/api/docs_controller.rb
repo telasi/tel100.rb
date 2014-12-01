@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Api::DocsController < ApiController
   include TreeUtils
+  include Document::Role
   before_filter :validate_login, except: 'types'
 
   def index
@@ -44,8 +45,14 @@ class Api::DocsController < ApiController
   end
 
   def sender_motions
-    json = motions_hash Document::Motion.where(document_id: params[:id], sender_user: current_user.id).order(:ordering, :id)
-    render json: json
+    motions = Document::Motion.where(document_id: params[:id], sender_user: current_user.id)
+    if params[:role] == 'signee'
+      motions = motions.where('receiver_role IN ?', [ROLE_SIGNEE, ROLE_AUTHOR])
+    else
+      motions = motions.where('receiver_role IN ?', [ROLE_ASSIGNEE])
+    end
+    motions = motions.order(:ordering, :id)
+    render json: motions_hash(motions)
   end
 
   def comments

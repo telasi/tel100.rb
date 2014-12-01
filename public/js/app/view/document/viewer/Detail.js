@@ -7,6 +7,7 @@ Ext.define('Telasi.view.document.viewer.Detail', {
   requires: [
      'Telasi.view.document.editor.General',
      'Telasi.view.document.motions.Tree',
+     'Telasi.view.document.motions.ViewerEditor'
   ],
 
   defaults: {
@@ -28,7 +29,7 @@ Ext.define('Telasi.view.document.viewer.Detail', {
     padding: 0,
     bodyPadding: 0
   }, {
-    xtype: 'panel',
+    xtype: 'document-motions-viewer-editor',
     title: '<i class="fa fa-send-o"></i> ადრესატები',
     bodyPadding: 0
   }, {
