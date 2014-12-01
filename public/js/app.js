@@ -7,6 +7,15 @@ window.Telasi = {
     draft: 0,
     current: 1,
     completed: 2
+  },
+
+  errorDialog: function(err) {
+    Ext.MessageBox.show({
+      title: 'შეცდომა',
+      msg: err,
+      buttons: Ext.MessageBox.OK,
+      icon: Ext.window.MessageBox.ERROR
+    });
   }
 };
 
