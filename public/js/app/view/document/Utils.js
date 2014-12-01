@@ -110,16 +110,16 @@ Ext.define('Telasi.view.document.Utils', {
   },
 
   gridMyStatusRenderer: function(value, metaInfo, record, opts) {
-    var myStatus = record.get('my_status');
-    var role = record.get('my_role');
+    var myStatus = (opts && opts.status) || record.get('my_status');
+    var role = (opts && opts.role) || record.get('my_role');
     var status = Telasi.documentUtils.statusify(value, metaInfo, record, { status: myStatus });
     var params = Telasi.documentUtils.statusParams(status, role, opts);
     var icon = params[0]
       , name = params[1]
       , text;
-    if (record.get('is_new') === 1) {
+    if (record.get('is_new') === 1 && status.id !== 0) {
       return ['<span class="text-danger"><i class="fa fa-circle"></i></span> ', name].join('');
-    } else if (record.get('is_changed') === 1) {
+    } else if (record.get('is_changed') === 1 && status.id !== 0) {
       return ['<span class="text-success"><i class="fa fa-circle"></i></span> ', name].join('');
     } else {
       return ['<i class="fa ', icon, '"></i> ', name].join('');
