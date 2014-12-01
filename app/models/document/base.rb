@@ -37,7 +37,7 @@ class Document::Base < ActiveRecord::Base
         end
       end
 
-      sent_motions = self.motions.where('status != ?', NOT_SENT).order('ordering')
+      sent_motions = self.motions.where('status NOT IN ?', [ NOT_SENT ]).order('ordering')
 
       if sent_motions.any?
         prev_ordering = -1
@@ -62,9 +62,9 @@ class Document::Base < ActiveRecord::Base
       end
 
       # statistics
-      self.motions_completed = self.motions.where('status IN ?', [ COMPLETED ]).count
-      self.motions_canceled = self.motions.where('status IN ?', [ CANCELED ]).count
-      self.motions_total = sent_motions.count
+      self.motions_completed = self.motions.where('status IN ? and parent_id IS NULL', [ COMPLETED ]).count
+      self.motions_canceled = self.motions.where('status IN ? and parent_id IS NULL', [ CANCELED ]).count
+      self.motions_total = self.motions.where('parent_id IS NULL').count
       self.save!
     end
   end
@@ -234,9 +234,10 @@ class Document::Base < ActiveRecord::Base
 
   def resend(sender_user, opts = {})
     raise 'sender not defined' if sender_user.blank?
-    sender = whose_user(sender_user)
+    sender = Document::Base.whose_user(sender_user)
     parent = Document::Motion.find(opts[:parent_id]) if opts[:parent_id].present?
     raise 'only owner can operate on top level' if (parent.blank? and sender_user != self.owner_user)
+    raise 'not user\'s motion' if (parent.present? and parent.receiver_user != sender_user)
     motionparams = opts[:motions_attributes] || opts[:motions] || []
     Document::Base.transaction do
       motionparams.each do |motion_opts|
@@ -245,7 +246,7 @@ class Document::Base < ActiveRecord::Base
           motion = Document::Motion.find(id)
           motion.destroy if motion.can_destroy?
         else
-          receiver_user, receiver = who_eval(:receiver, motion_opts)
+          receiver_user, receiver = Document::Base.who_eval(:receiver, motion_opts)
           motion_text = motion_opts[:motion_text]
           due_date = Date.eval(motion_opts[:due_date])
           ordering = motion_opts[:ordering] || Document::Motion::MAX
@@ -255,7 +256,7 @@ class Document::Base < ActiveRecord::Base
           #   doc.alarm_date = due_date if (doc.alarm_date.blank? or doc.alarm_date > due_date)
           # end
           params = {
-            parent: (parent and parent.id),
+            parent: parent,
             document: self,
             status: DRAFT,
             due_date: due_date,
@@ -275,9 +276,9 @@ class Document::Base < ActiveRecord::Base
           end
         end
       end
-      doc.save!
-      doc.revisit_motions!
-      return doc
+      self.save!
+      self.revisit_motions!
+      return self
     end
   end
 end
