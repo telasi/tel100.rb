@@ -77,7 +77,11 @@ Ext.define('Telasi.view.document.signature.Grid', {
       };
     }
 
-    var cols = this.shortColumns ? [ orderCol, personCol, actionsCol ] : [ orderCol, roleCol, personCol, actionsCol ] ;
+    var cols = this.shortColumns ? [ orderCol, personCol ] : [ orderCol, roleCol, personCol ] ;
+
+    if (this.editable) {
+      cols.push(actionsCol);
+    }
 
     cols = cols.map(function(col) {
       col.sortable = false;

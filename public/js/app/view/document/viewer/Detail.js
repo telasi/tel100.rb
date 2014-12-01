@@ -7,7 +7,8 @@ Ext.define('Telasi.view.document.viewer.Detail', {
   requires: [
      'Telasi.view.document.editor.General',
      'Telasi.view.document.motions.Tree',
-     'Telasi.view.document.motions.ViewerEditor'
+     'Telasi.view.document.motions.ViewerEditor',
+     'Telasi.view.document.signature.ViewerEditor',
   ],
 
   defaults: {
@@ -24,9 +25,8 @@ Ext.define('Telasi.view.document.viewer.Detail', {
       this.getForm().getFields().each(function(field){ field.setReadOnly(true) })
     }}
   }, {
-    xtype: 'panel',
+    xtype: 'document-signature-viewer-editor',
     title: '<i class="fa fa-edit"></i> ხელმომწერები',
-    padding: 0,
     bodyPadding: 0
   }, {
     xtype: 'document-motions-viewer-editor',
