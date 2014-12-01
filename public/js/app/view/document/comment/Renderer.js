@@ -42,7 +42,7 @@ Ext.define('Telasi.view.document.comment.Renderer', {
   textRenderer: function(value, metaInfo, record) {
     var operation = record.get('operation');
     var clazz = Telasi.commentRenderer.operationClass(operation);
-    return '<span class="' + clazz + '">' + value + '</span>';
+    return '<span class="' + clazz + '">' + (value || '(empty)') + '</span>';
   },
 
   dateRenderer: function(value, metaInfo, record) {
