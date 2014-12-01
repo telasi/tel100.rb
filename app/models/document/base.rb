@@ -231,4 +231,53 @@ class Document::Base < ActiveRecord::Base
       revisit_motions!
     end
   end
+
+  def resend(sender_user, opts = {})
+    raise 'sender not defined' if sender_user.blank?
+    sender = whose_user(sender_user)
+    parent = Document::Motion.find(opts[:parent_id]) if opts[:parent_id].present?
+    raise 'only owner can operate on top level' if (parent.blank? and sender_user != self.owner_user)
+    motionparams = opts[:motions_attributes] || opts[:motions] || []
+    Document::Base.transaction do
+      motionparams.each do |motion_opts|
+        id = motion_opts[:id]
+        if motion_opts[:_deleted]
+          motion = Document::Motion.find(id)
+          motion.destroy if motion.can_destroy?
+        else
+          receiver_user, receiver = who_eval(:receiver, motion_opts)
+          motion_text = motion_opts[:motion_text]
+          due_date = Date.eval(motion_opts[:due_date])
+          ordering = motion_opts[:ordering] || Document::Motion::MAX
+          receiver_role = motion_opts[:receiver_role] || Document::Motion::ROLE_ASSIGNEE
+          # if due_date
+          #   doc.due_date = due_date if (doc.due_date.blank? or doc.due_date < due_date)
+          #   doc.alarm_date = due_date if (doc.alarm_date.blank? or doc.alarm_date > due_date)
+          # end
+          params = {
+            parent: (parent and parent.id),
+            document: self,
+            status: DRAFT,
+            due_date: due_date,
+            ordering: ordering,
+            motion_text: motion_text, 
+            sender_user: sender_user,
+            sender: sender,
+            response_text: nil,
+            receiver_user: receiver_user,
+            receiver: receiver,
+            receiver_role: receiver_role
+          }
+          if id
+            Document::Motion.find(id).update_attributes!(params)
+          else
+            Document::Motion.create!(params)
+          end
+        end
+      end
+      doc.save!
+      doc.revisit_motions!
+      return doc
+    end
+  end
 end

@@ -16,4 +16,5 @@ class Document::Motion < ActiveRecord::Base
 
   def new=(val); self.is_new = val ? 1 : 0 end
   def new?; self.is_new == 1 end
+  def can_destroy?; self.new? end
 end
