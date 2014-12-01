@@ -322,4 +322,64 @@ RSpec.describe Document::Base do
     expect(userdocs.where(user: shalva).count).to eq(1)
     expect(userdocs.where(user: nino).count).to eq(0)
   end
+
+  it 'resending document' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    shalva  = Sys::User.find_by_username('shalva')
+    nino    = Sys::User.find_by_username('nino')
+    date    = Date.new(2014, 10, 1)
+    type    = Document::Type.first
+
+    # shalva -> nino
+
+    doc = Document::Base.sending_document(shalva, {
+      subject: 'resending',
+      body: 'lets test resending operation',
+      type_id: type.id,
+      docdate: date,
+      page_count: 100,
+      additions_count: 3,
+      status: Document::Status::CURRENT,
+      motions: [
+        { receiver_id: nino.employee.id,   receiver_type: 'HR::Employee', motion_text: 'motion1' },
+      ]
+    }).reload
+
+    expect(doc.motions.size).to eq(1)
+    expect(shalva.documents.size).to eq(1)
+    expect(nino.documents.size).to eq(1)
+    expect(dimitri.documents.size).to eq(0)
+
+    # nino -> dimitri
+    m1 = doc.motions.last
+    expect(m1.receiver_user).to eq(nino)
+    expect(m1.new?).to eq(true)
+    expect(m1.can_destroy?).to eq(true)
+    nino.documents.first.read! ; m1.reload
+    expect(m1.new?).to eq(false)
+    expect(m1.can_destroy?).to eq(false)
+
+    doc = doc.resend(nino, {
+      parent_id: m1.id,
+      motions: [
+        { receiver_id: dimitri.employee.id, receiver_type: 'HR::Employee', motion_text: 'motion2' }
+      ]
+    }).reload
+
+    shalva.reload ; nino.reload ; dimitri.reload
+
+    expect(doc.motions.size).to eq(2)
+    expect(shalva.documents.size).to eq(1)
+    expect(nino.documents.size).to eq(1)
+    expect(dimitri.documents.size).to eq(1)
+
+    m2 = doc.motions.last
+    expect(m2.sender_user).to eq(nino)
+    expect(m2.receiver_user).to eq(dimitri)
+    expect(m2.parent_id).to eq(m1.id)
+    expect(m2.motion_text).to eq('motion2')
+    expect(m2.status).to eq(Document::Status::CURRENT)
+    expect(m2.new?).to eq(true)
+    expect(m2.can_destroy?).to eq(true)
+  end
 end
