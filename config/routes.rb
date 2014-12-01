@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       get '/types', action: 'types'
       get '/show/:id', action: 'show'
       get '/motions', action: 'motions'
+      get '/sender_motions', action: 'sender_motions'
       get '/comments', action: 'comments'
       post '/create', action: 'create'
       post '/add_comment', action: 'add_comment'

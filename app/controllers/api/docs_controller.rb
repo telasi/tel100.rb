@@ -43,6 +43,11 @@ class Api::DocsController < ApiController
     end
   end
 
+  def sender_motions
+    json = motions_hash Document::Motion.where(document_id: params[:id], sender_user: current_user.id).order(:ordering, :id)
+    render json: json
+  end
+
   def comments
     @comments = Document::Comment.where(document_id: params[:id]).order(:id)
   end
