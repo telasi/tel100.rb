@@ -63,7 +63,7 @@ Ext.define('Telasi.view.document.motions.Grid', {
         return Telasi.documentUtils.gridMyStatusRenderer(value, metaInfo, record, opts);
       }
     };
-    var cols = this.shortColumns ? [ orderingCol, personCol ] : [ orderingCol, personCol, resolutionCol, duedateCol ];
+    var cols = this.shortColumns ? [ /*orderingCol,*/ personCol ] : [ /*orderingCol,*/ personCol, resolutionCol, duedateCol ];
     if (this.shortColumns) {
       cols.push(statusCol);
     }
