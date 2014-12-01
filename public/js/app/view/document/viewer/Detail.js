@@ -7,7 +7,6 @@ Ext.define('Telasi.view.document.viewer.Detail', {
   requires: [
      'Telasi.view.document.editor.General',
      'Telasi.view.document.motions.Tree',
-     // 'Telasi.view.document.viewer.MotionPanel',
   ],
 
   defaults: {
@@ -24,7 +23,6 @@ Ext.define('Telasi.view.document.viewer.Detail', {
       this.getForm().getFields().each(function(field){ field.setReadOnly(true) })
     }}
   },{
-    // xtype: 'document-viewer-motionpanel',
     xtype: 'document-motiontree',
     title: '<i class="fa fa-random"></i> დოკუმენტის მოძრაობა',
     bodyPadding: 0,

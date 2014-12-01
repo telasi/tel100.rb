@@ -12,7 +12,7 @@ Ext.define('Telasi.view.document.viewer.Main', {
     bodyPadding: 5,
   },
 
-  items: [{}, {
+  items: [{
     xtype: 'document-viewer-header',
     region: 'north'
   }, {
