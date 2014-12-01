@@ -117,9 +117,9 @@ Ext.define('Telasi.view.document.Utils', {
     var icon = params[0]
       , name = params[1]
       , text;
-    if (record.get('is_new') === 1 && status.id !== 0) {
+    if (record.get('is_new') === 1 && status.id !== Telasi.statuses.draft) {
       return ['<span class="text-danger"><i class="fa fa-circle"></i></span> ', name].join('');
-    } else if (record.get('is_changed') === 1 && status.id !== 0) {
+    } else if (record.get('is_changed') === 1 && status.id !== Telasi.statuses.draft) {
       return ['<span class="text-success"><i class="fa fa-circle"></i></span> ', name].join('');
     } else {
       return ['<i class="fa ', icon, '"></i> ', name].join('');
