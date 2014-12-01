@@ -17,6 +17,7 @@ Ext.define('Telasi.view.document.signature.ViewerEditor', {
     xtype: 'document-signatures-grid',
     editable: false,
     shortColumns: true,
+    showStatus: true,
     border: false,
   }],
   tools: [{

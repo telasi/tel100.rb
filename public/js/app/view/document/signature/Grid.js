@@ -44,6 +44,16 @@ Ext.define('Telasi.view.document.signature.Grid', {
       dataIndex: 'ordering'
     };
 
+    var statusCol = {
+      text: 'სტატუსი',
+      dataIndex: 'status',
+      width: 120,
+      renderer: function(value, metaInfo, record) {
+        var opts = { asMotion: true, role: record.get('receiver_role') };
+        return Telasi.documentUtils.gridMyStatusRenderer(value, metaInfo, record, opts);
+      }
+    };
+
     var actionsCol = {
       xtype: 'actioncolumn',
       width: 30,
@@ -79,9 +89,8 @@ Ext.define('Telasi.view.document.signature.Grid', {
 
     var cols = this.shortColumns ? [ orderCol, personCol ] : [ orderCol, roleCol, personCol ] ;
 
-    if (this.editable) {
-      cols.push(actionsCol);
-    }
+    if (this.showStatus) { cols.push(statusCol); }
+    if (this.editable) { cols.push(actionsCol); }
 
     cols = cols.map(function(col) {
       col.sortable = false;
