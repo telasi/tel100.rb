@@ -24,5 +24,27 @@ Ext.define('Telasi.view.document.signature.EditorDialog', {
     xtype: 'document-signatures-grid',
     editable: true,
     region: 'center'
+  }],
+  dockedItems: [{
+    xtype: 'toolbar',
+    dock: 'bottom',
+    border: false,
+    padding: 5,
+    items: [{
+      xtype: 'tbspacer',
+      flex: 1
+    }, {
+      xtype: 'button',
+      formBind: true,
+      text: 'OK',
+      scale: 'medium',
+      width: 200,
+      handler: function() {
+        this.up('doc-signature-editor-dialog').close();
+      }
+    }, {
+      xtype: 'tbspacer',
+      flex: 1
+    }]
   }]
 });
