@@ -21,27 +21,9 @@ Ext.define('Telasi.view.document.motions.EditorDialog', {
     split: true,
     selectionModel: 'SINGLE',
   }, {
-    xtype: 'panel',
-    layout: 'border',
-    region: 'center',
-    border: false,
-    items: [{
-      xtype: 'document-motions-grid',
-      editable: true,
-      region: 'center'
-    }, {
-      xtype: 'panel',
-      region: 'south',
-      text: 'top control',
-      split: true,
-      title: '<i class="fa fa-exchange"></i> დაკავშირებული მოძრაობა',
-      height: 200,
-      // hidden: true,
-      items: [{
-        xtype: 'label',
-        text: 'ok'
-      }]
-    }]
+    xtype: 'document-motions-grid',
+    editable: true,
+    region: 'center'
   }],
   dockedItems: [{
     xtype: 'toolbar',
@@ -54,13 +36,12 @@ Ext.define('Telasi.view.document.motions.EditorDialog', {
     }, {
       xtype: 'button',
       formBind: true,
-      text: '<strong><span class="text-success"><i class="fa fa-save"></i> მონაცემების შენახვა</span></stong>',
-      scale: 'medium'
-    }, {
-      xtype: 'button',
-      formBind: true,
-      text: '<span class="text-danger"><i class="fa fa-times"></i> გაუქმება</span>',
-      scale: 'medium' 
+      text: 'OK',
+      scale: 'medium',
+      width: 200,
+      handler: function() {
+        this.up('documentEditorDialog').close();
+      }
     }, {
       xtype: 'tbspacer',
       flex: 1
