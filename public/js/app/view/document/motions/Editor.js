@@ -14,6 +14,7 @@ Ext.define('Telasi.view.document.motions.Editor', {
     xtype: 'document-motions-grid',
     editable: false,
     shortColumns: true,
+    showStatus: false,
     border: false,
   }],
   tools: [{

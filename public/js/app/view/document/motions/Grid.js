@@ -64,7 +64,7 @@ Ext.define('Telasi.view.document.motions.Grid', {
       }
     };
     var cols = this.shortColumns ? [ /*orderingCol,*/ personCol ] : [ /*orderingCol,*/ personCol, resolutionCol, duedateCol ];
-    if (this.shortColumns) {
+    if (this.shortColumns && this.showStatus) {
       cols.push(statusCol);
     }
     if (this.editable) {
