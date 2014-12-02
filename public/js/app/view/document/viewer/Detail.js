@@ -34,7 +34,7 @@ Ext.define('Telasi.view.document.viewer.Detail', {
     bodyPadding: 0
   }, {
     xtype: 'document-motiontree',
-    title: '<i class="fa fa-car"></i> დოკუმენტის მოძრაობა',
+    title: '<i class="fa fa-exchange"></i> დოკუმენტის მოძრაობა',
     bodyPadding: 0
   }],
 });
