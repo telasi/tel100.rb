@@ -1,0 +1,57 @@
+{
+    "name": "tel100",
+    "settings": {
+        "cmd": {
+            "license": "gpl",
+            "cmdVersion": "5.0.2.270",
+            "frameworkVersion": "5.0.1.1255"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        },
+        "urlPrefix": "http://localhost:1841",
+        "exportPath": "",
+        "spacesToIndent": 2,
+        "sdkPath": "",
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "projectHasEnabledWebServer": true,
+        "lockUrlPrefix": true,
+        "installStatus": "Not Installed"
+    },
+    "xdsVersion": "3.1.0",
+    "xdsBuild": 1943,
+    "schemaVersion": 1,
+    "upgradeVersion": 300000000007,
+    "framework": "ext50",
+    "viewOrderMap": {
+        "view": [
+            "82141980-59a3-42da-ab8f-e5ea261e8aad",
+            "fb7e180b-ae8c-430c-80f4-20173f5381d1",
+            "11ebd5ac-fb76-4a03-9272-67ac7b9dcd9d"
+        ],
+        "store": [],
+        "controller": [],
+        "model": [
+            "1e680ed7-d4f0-4feb-bc97-d1bf05596e55"
+        ],
+        "resource": [
+            "d90c35f3-3fd2-4570-aaf8-5d9c0995e1a9",
+            "ff362d59-f925-424d-b9cd-49a4562ef927",
+            "6312b2b6-de98-4d79-bb4f-2bb0025b1590",
+            "910e5498-8ce4-4742-9c6e-d864ab81492e",
+            "76da1f48-5b2f-4b93-a1a4-bf05b7e5e658"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

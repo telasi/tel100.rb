@@ -1,0 +1,19 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "User"
+        ],
+        "name": "Tel100",
+        "views": [
+            "Viewport"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application"
+}

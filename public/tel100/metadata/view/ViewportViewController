@@ -1,0 +1,17 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "viewport",
+        "designer|userClassName": "ViewportViewController",
+        "requires": [
+            "Tel100.model.User",
+            "Tel100.view.viewports.Main"
+        ]
+    },
+    "designerId": "11ebd5ac-fb76-4a03-9272-67ac7b9dcd9d"
+}

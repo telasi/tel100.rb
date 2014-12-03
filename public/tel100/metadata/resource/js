@@ -1,0 +1,16 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js",
+        "id": "helper",
+        "includeInBundle": true,
+        "url": "helper.js"
+    },
+    "name": "js",
+    "designerId": "ff362d59-f925-424d-b9cd-49a4562ef927"
+}
