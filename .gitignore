@@ -16,3 +16,6 @@
 /tmp
 
 client/node_modules
+public/tel100/build
+public/tel100/ext
+public/tel100/packages
