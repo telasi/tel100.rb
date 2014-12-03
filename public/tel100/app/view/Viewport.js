@@ -29,66 +29,75 @@ Ext.define('Tel100.view.Viewport', {
   viewModel: {
     type: 'viewport'
   },
+  layout: 'card',
 
-  layout: {
-    type: 'vbox',
-    align: 'center',
-    pack: 'center'
+  listeners: {
+    afterrender: 'onAfterRender'
   },
   items: [
     {
-      xtype: 'form',
-      frame: true,
-      height: '',
-      width: 400,
-      bodyPadding: 10,
-      title: 'Login',
+      xtype: 'container',
+      layout: {
+        type: 'vbox',
+        align: 'center',
+        pack: 'center'
+      },
       items: [
         {
-          xtype: 'textfield',
-          anchor: '100%',
-          itemId: 'username',
-          fieldLabel: 'Username',
-          allowBlank: false,
-          bind: {
-            value: '{username}'
-          }
-        },
-        {
-          xtype: 'textfield',
-          anchor: '100%',
-          itemId: 'password',
-          fieldLabel: 'Password',
-          inputType: 'password',
-          allowBlank: false,
-          bind: {
-            value: '{password}'
-          }
-        },
-        {
-          xtype: 'container',
-          layout: {
-            type: 'hbox',
-            align: 'middle',
-            pack: 'end'
-          },
+          xtype: 'form',
+          frame: true,
+          height: '',
+          width: 400,
+          bodyPadding: 10,
+          title: '<i class="fa fa-user"></i> Login',
           items: [
             {
-              xtype: 'button',
-              formBind: true,
-              padding: 5,
-              text: 'Login &rarr;',
-              listeners: {
-                click: 'onLogin'
+              xtype: 'textfield',
+              anchor: '100%',
+              itemId: 'username',
+              fieldLabel: 'Username',
+              allowBlank: false,
+              bind: {
+                value: '{username}'
               }
+            },
+            {
+              xtype: 'textfield',
+              anchor: '100%',
+              itemId: 'password',
+              fieldLabel: 'Password',
+              inputType: 'password',
+              allowBlank: false,
+              bind: {
+                value: '{password}'
+              }
+            },
+            {
+              xtype: 'container',
+              layout: {
+                type: 'hbox',
+                align: 'middle',
+                pack: 'end'
+              },
+              items: [
+                {
+                  xtype: 'button',
+                  formBind: true,
+                  padding: 5,
+                  text: 'Login &rarr;',
+                  listeners: {
+                    click: 'onLogin'
+                  }
+                }
+              ]
             }
           ]
         }
       ]
+    },
+    {
+      xtype: 'container'
     }
-  ],
-  listeners: {
-    afterrender: 'onAfterRender'
-  }
+  ]
 
 });

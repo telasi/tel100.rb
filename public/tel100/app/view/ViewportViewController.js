@@ -18,9 +18,13 @@ Ext.define('Tel100.view.ViewportViewController', {
   alias: 'controller.viewport',
 
   requires: [
-    'Tel100.model.User',
-    'Tel100.view.viewports.Main'
+    'Tel100.model.User'
   ],
+
+  onAfterRender: function(component, eOpts) {
+    var usernameField = component.down('#username');
+    usernameField.focus();
+  },
 
   onLogin: function(button, e, eOpts) {
     var view = this.getView();
@@ -41,11 +45,6 @@ Ext.define('Tel100.view.ViewportViewController', {
       }
     });
 
-  },
-
-  onAfterRender: function(component, eOpts) {
-    var usernameField = component.down('#username');
-    usernameField.focus();
   }
 
 });

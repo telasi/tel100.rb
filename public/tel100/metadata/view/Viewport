@@ -6,155 +6,16 @@
     },
     "codeClass": null,
     "userConfig": {
-        "container|align": "center",
-        "container|pack": "center",
         "designer|initialView": true,
         "designer|userAlias": "viewport",
         "designer|userClassName": "Viewport",
-        "layout": "vbox"
+        "layout": "card"
     },
     "name": "MyViewport",
     "designerId": "82141980-59a3-42da-ab8f-e5ea261e8aad",
     "viewControllerInstanceId": "11ebd5ac-fb76-4a03-9272-67ac7b9dcd9d",
     "viewModelInstanceId": "fb7e180b-ae8c-430c-80f4-20173f5381d1",
     "cn": [
-        {
-            "type": "Ext.form.Panel",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "bodyPadding": 10,
-                "designer|displayName": "Login",
-                "designer|uiInterfaceName": "default-framed",
-                "frame": true,
-                "height": "",
-                "title": "Login",
-                "waitTitle": null,
-                "width": 400
-            },
-            "name": "MyForm",
-            "designerId": "8e9505dc-cec1-4c92-8e85-5846f88db9be",
-            "cn": [
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "fieldLabel": "Username",
-                        "itemId": "username",
-                        "layout|anchor": "100%",
-                        "name": null,
-                        "value": [
-                            "{username}"
-                        ]
-                    },
-                    "name": "MyTextField",
-                    "configAlternates": {
-                        "value": "binding"
-                    },
-                    "designerId": "0273030a-b236-4c08-9b72-06ed52cdec1b"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowBlank": false,
-                        "fieldLabel": "Password",
-                        "inputType": "password",
-                        "itemId": "password",
-                        "layout|anchor": "100%",
-                        "value": [
-                            "{password}"
-                        ]
-                    },
-                    "name": "MyTextField1",
-                    "configAlternates": {
-                        "value": "binding"
-                    },
-                    "designerId": "52256482-1f47-4c28-a595-087ba20c6122"
-                },
-                {
-                    "type": "Ext.container.Container",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "container|align": "middle",
-                        "container|pack": "end",
-                        "layout": "hbox"
-                    },
-                    "name": "MyContainer",
-                    "designerId": "d0af2c09-a25c-4991-9b5e-e137f50804ab",
-                    "cn": [
-                        {
-                            "type": "Ext.button.Button",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "formBind": true,
-                                "padding": 5,
-                                "text": "Login &rarr;"
-                            },
-                            "name": "MyButton",
-                            "designerId": "c303b322-05b4-4056-a19e-3b332dc61236",
-                            "cn": [
-                                {
-                                    "type": "viewcontrollereventbinding",
-                                    "reference": {
-                                        "name": "listeners",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "fn": "onLogin",
-                                        "implHandler": [
-                                            "var view = this.getView();",
-                                            "view.setLoading(true);",
-                                            "var model = this.getViewModel();",
-                                            "",
-                                            "Helpers.ajaxRequest({",
-                                            "  url: '/api/user/login',",
-                                            "  method: 'POST',",
-                                            "  view: view,",
-                                            "  params: {",
-                                            "    userID: model.get('username'),",
-                                            "    password: model.get('password')",
-                                            "  },",
-                                            "  success: function(data) {",
-                                            "    // var user = new Tel100.model.User(data);",
-                                            "    console.log(data);",
-                                            "  }",
-                                            "});",
-                                            ""
-                                        ],
-                                        "name": "click",
-                                        "scope": "me"
-                                    },
-                                    "name": "onLogin",
-                                    "designerId": "44e1ddb1-2f8f-45c2-8f46-a404a8b8bfec"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
         {
             "type": "viewcontrollereventbinding",
             "reference": {
@@ -173,6 +34,174 @@
             },
             "name": "onAfterRender",
             "designerId": "74da56f7-5fbc-4a3a-af64-7c715fa6e9df"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "center",
+                "container|pack": "center",
+                "designer|displayName": "login-page",
+                "layout": "vbox"
+            },
+            "name": "MyContainer1",
+            "designerId": "2fca3dff-1a15-4caa-aee2-1ae85c595b16",
+            "cn": [
+                {
+                    "type": "Ext.form.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "bodyPadding": 10,
+                        "designer|displayName": "Login",
+                        "designer|uiInterfaceName": "default-framed",
+                        "frame": true,
+                        "height": "",
+                        "title": "<i class=\"fa fa-user\"></i> Login",
+                        "waitTitle": null,
+                        "width": 400
+                    },
+                    "name": "MyForm",
+                    "designerId": "8e9505dc-cec1-4c92-8e85-5846f88db9be",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "fieldLabel": "Username",
+                                "itemId": "username",
+                                "layout|anchor": "100%",
+                                "name": null,
+                                "value": [
+                                    "{username}"
+                                ]
+                            },
+                            "name": "MyTextField",
+                            "configAlternates": {
+                                "value": "binding"
+                            },
+                            "designerId": "0273030a-b236-4c08-9b72-06ed52cdec1b"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "fieldLabel": "Password",
+                                "inputType": "password",
+                                "itemId": "password",
+                                "layout|anchor": "100%",
+                                "value": [
+                                    "{password}"
+                                ]
+                            },
+                            "name": "MyTextField1",
+                            "configAlternates": {
+                                "value": "binding"
+                            },
+                            "designerId": "52256482-1f47-4c28-a595-087ba20c6122"
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "middle",
+                                "container|pack": "end",
+                                "layout": "hbox"
+                            },
+                            "name": "MyContainer",
+                            "designerId": "d0af2c09-a25c-4991-9b5e-e137f50804ab",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "formBind": true,
+                                        "padding": 5,
+                                        "text": "Login &rarr;"
+                                    },
+                                    "name": "MyButton",
+                                    "designerId": "c303b322-05b4-4056-a19e-3b332dc61236",
+                                    "cn": [
+                                        {
+                                            "type": "viewcontrollereventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onLogin",
+                                                "implHandler": [
+                                                    "var view = this.getView();",
+                                                    "view.setLoading(true);",
+                                                    "var model = this.getViewModel();",
+                                                    "",
+                                                    "Helpers.ajaxRequest({",
+                                                    "  url: '/api/user/login',",
+                                                    "  method: 'POST',",
+                                                    "  view: view,",
+                                                    "  params: {",
+                                                    "    userID: model.get('username'),",
+                                                    "    password: model.get('password')",
+                                                    "  },",
+                                                    "  success: function(data) {",
+                                                    "    // var user = new Tel100.model.User(data);",
+                                                    "    console.log(data);",
+                                                    "  }",
+                                                    "});",
+                                                    ""
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "name": "onLogin",
+                                            "designerId": "44e1ddb1-2f8f-45c2-8f46-a404a8b8bfec"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "docs-page"
+            },
+            "name": "MyContainer2",
+            "designerId": "1ff49520-dd20-4e55-aebf-977d07ce5134"
         }
     ]
 }
