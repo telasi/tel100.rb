@@ -19,7 +19,8 @@ Ext.define('Tel100.model.User', {
   requires: [
     'Ext.data.field.Integer',
     'Ext.data.field.String',
-    'Ext.data.field.Boolean'
+    'Ext.data.field.Boolean',
+    'Ext.data.field.Date'
   ],
 
   fields: [
@@ -60,12 +61,28 @@ Ext.define('Tel100.model.User', {
       name: 'is_admin'
     },
     {
+      type: 'int',
+      name: 'employee_id'
+    },
+    {
+      type: 'int',
+      name: 'person_id'
+    },
+    {
       type: 'string',
       name: 'first_name'
     },
     {
       type: 'string',
       name: 'last_name'
+    },
+    {
+      type: 'date',
+      name: 'created_at'
+    },
+    {
+      type: 'date',
+      name: 'updated_at'
     }
   ]
 });

@@ -129,6 +129,32 @@
             "designerId": "bbd56796-850a-4cae-988e-cbee4437947c"
         },
         {
+            "type": "Ext.data.field.Integer",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "employee_id"
+            },
+            "name": "MyInteger1",
+            "designerId": "25ec0c5c-7ce8-49dd-9436-b01c6eb561ff"
+        },
+        {
+            "type": "Ext.data.field.Integer",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "person_id"
+            },
+            "name": "MyInteger2",
+            "designerId": "15ccca83-924a-4e20-86dd-6e46807a0936"
+        },
+        {
             "type": "Ext.data.field.String",
             "reference": {
                 "name": "fields",
@@ -153,6 +179,32 @@
             },
             "name": "MyString5",
             "designerId": "a9563444-14f3-46dd-adfc-b27dc550bfb3"
+        },
+        {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "created_at"
+            },
+            "name": "MyDate",
+            "designerId": "bc2c880c-6d71-4e53-bb43-4026e4294cea"
+        },
+        {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "updated_at"
+            },
+            "name": "MyDate1",
+            "designerId": "dc030e62-975f-46c6-a5ba-5d895f6d1ecb"
         }
     ]
 }
