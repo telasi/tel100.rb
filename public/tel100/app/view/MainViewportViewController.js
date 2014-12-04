@@ -22,12 +22,9 @@ Ext.define('Tel100.view.MainViewportViewController', {
   ],
 
   openWorkingArea: function() {
-    var workingAreaIndex = 1;
     var view = this.getView();
     var layout = view.getLayout();
-    //var workingArea = layout.getLayoutItems()[workingAreaIndex];
-    //workingArea.setViewModel();
-    layout.setActiveItem(workingAreaIndex);
+    layout.setActiveItem('workarea');
   },
 
   onAfterRender: function(component, eOpts) {
@@ -74,6 +71,10 @@ Ext.define('Tel100.view.MainViewportViewController', {
         self.openWorkingArea();
       }
     });
+  },
+
+  onLabelAfterRender: function(component, eOpts) {
+    console.log('rendered!');
   }
 
 });

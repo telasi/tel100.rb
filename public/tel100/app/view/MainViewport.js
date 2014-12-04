@@ -30,14 +30,18 @@ Ext.define('Tel100.view.MainViewport', {
   viewModel: {
     type: 'mainviewport'
   },
-  layout: 'card',
 
+  layout: {
+    type: 'card',
+    deferredRender: true
+  },
   listeners: {
     afterrender: 'onAfterRender'
   },
   items: [
     {
       xtype: 'container',
+      itemId: 'autharea',
       layout: {
         type: 'vbox',
         align: 'center',
@@ -109,10 +113,15 @@ Ext.define('Tel100.view.MainViewport', {
     },
     {
       xtype: 'container',
+      itemId: 'workarea',
+      layout: 'fit',
       items: [
         {
           xtype: 'label',
-          text: 'My Label'
+          text: 'TEST LABEL',
+          listeners: {
+            afterrender: 'onLabelAfterRender'
+          }
         }
       ]
     }

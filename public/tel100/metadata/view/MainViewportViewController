@@ -24,12 +24,9 @@
             "userConfig": {
                 "fn": "openWorkingArea",
                 "implHandler": [
-                    "var workingAreaIndex = 1;",
                     "var view = this.getView();",
                     "var layout = view.getLayout();",
-                    "//var workingArea = layout.getLayoutItems()[workingAreaIndex];",
-                    "//workingArea.setViewModel();",
-                    "layout.setActiveItem(workingAreaIndex);"
+                    "layout.setActiveItem('workarea');"
                 ]
             },
             "name": "openWorkingArea",

@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "container|deferredRender": true,
         "designer|initialView": true,
         "designer|userAlias": "mainviewport",
         "designer|userClassName": "MainViewport",
@@ -54,7 +55,8 @@
             "userConfig": {
                 "container|align": "center",
                 "container|pack": "center",
-                "designer|displayName": "authentication-area",
+                "designer|displayName": "autharea",
+                "itemId": "autharea",
                 "layout": "vbox"
             },
             "name": "MyContainer1",
@@ -239,7 +241,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "working-area"
+                "designer|displayName": "workarea",
+                "itemId": "workarea",
+                "layout": "fit"
             },
             "name": "MyContainer2",
             "designerId": "1ff49520-dd20-4e55-aebf-977d07ce5134",
@@ -252,10 +256,31 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "text": "My Label"
+                        "designer|displayName": "test-label",
+                        "text": "TEST LABEL"
                     },
                     "name": "MyLabel",
-                    "designerId": "6f85ce40-3e68-43ba-8945-3fe2d11d3c52"
+                    "designerId": "6f85ce40-3e68-43ba-8945-3fe2d11d3c52",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onLabelAfterRender",
+                                "implHandler": [
+                                    "console.log('rendered!');"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "name": "onLabelAfterRender",
+                            "designerId": "1bdd36a7-20ef-485e-b8ce-2dd5e0c25f84"
+                        }
+                    ]
                 }
             ]
         }
