@@ -23,7 +23,7 @@ Ext.define('Tel100.view.MainViewport', {
     'Tel100.view.component.LocaleSelector',
     'Tel100.view.workarea.Main',
     'Ext.form.Panel',
-    'Ext.form.field.ComboBox',
+    'Ext.form.field.Text',
     'Ext.button.Button',
     'Ext.button.Segmented'
   ],
@@ -82,22 +82,6 @@ Ext.define('Tel100.view.MainViewport', {
               }
             },
             {
-              xtype: 'combobox',
-              anchor: '100%',
-              itemId: 'language',
-              allowBlank: false,
-              editable: false,
-              displayField: 'name',
-              store: 'LocaleStore',
-              valueField: 'code',
-              bind: {
-                fieldLabel: '{i18n.user.language}'
-              },
-              listeners: {
-                change: 'onLanguageChange'
-              }
-            },
-            {
               xtype: 'container',
               layout: {
                 type: 'hbox',
@@ -122,8 +106,8 @@ Ext.define('Tel100.view.MainViewport', {
         },
         {
           xtype: 'componentlocaleselector',
-          margins: '',
-          margin: 10
+          margin: 10,
+          margins: ''
         }
       ]
     },

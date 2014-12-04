@@ -30,15 +30,13 @@
                 "implHandler": [
                     "var txtUsername = component.down('#username');",
                     "var txtPassword = component.down('#password');",
-                    "var cmbLanguage = component.down('#language');",
                     "var username = Helpers.getPreferenceValue('username');",
                     "if (username) {",
                     "  txtUsername.setValue(username);",
                     "  txtPassword.focus();",
                     "} else {",
                     "  txtUsername.focus();",
-                    "}",
-                    "cmbLanguage.setValue(Helpers.getCurrentLocale());"
+                    "}"
                 ],
                 "name": "afterrender",
                 "scope": "me"
@@ -135,52 +133,6 @@
                             "designerId": "52256482-1f47-4c28-a595-087ba20c6122"
                         },
                         {
-                            "type": "Ext.form.field.ComboBox",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "allowBlank": false,
-                                "displayField": "name",
-                                "editable": false,
-                                "fieldLabel": [
-                                    "{i18n.user.language}"
-                                ],
-                                "itemId": "language",
-                                "layout|anchor": "100%",
-                                "store": "LocaleStore",
-                                "value": null,
-                                "valueField": "code"
-                            },
-                            "name": "MyComboBox",
-                            "configAlternates": {
-                                "fieldLabel": "binding"
-                            },
-                            "designerId": "d32a96d9-c85e-46df-a0f3-e1bb9bdb3e30",
-                            "cn": [
-                                {
-                                    "type": "viewcontrollereventbinding",
-                                    "reference": {
-                                        "name": "listeners",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "fn": "onLanguageChange",
-                                        "implHandler": [
-                                            "this.getViewModel().set('i18n', i18n[newValue]);"
-                                        ],
-                                        "name": "change",
-                                        "scope": "me"
-                                    },
-                                    "name": "onLanguageChange",
-                                    "designerId": "e3342b32-ba64-4974-81c2-0d4a9d2830b0"
-                                }
-                            ]
-                        },
-                        {
                             "type": "Ext.container.Container",
                             "reference": {
                                 "name": "items",
@@ -231,11 +183,10 @@
                                                     "",
                                                     "var txtUsername = view.down('#username');",
                                                     "var txtPassword = view.down('#password');",
-                                                    "var cmbLanguage = view.down('#language');",
                                                     "",
                                                     "var username = txtUsername.value;",
                                                     "var password = txtPassword.value;",
-                                                    "var language = cmbLanguage.value;",
+                                                    "var language = Helpers.getCurrentLocale();",
                                                     "",
                                                     "Helpers.setCurrentLocale(language);",
                                                     "Helpers.ajaxRequest({",
@@ -279,7 +230,7 @@
                         "layout|margins": "",
                         "margin": 10
                     },
-                    "name": "component.localeselector",
+                    "name": "component.localeselector1",
                     "designerId": "4b6d441b-643b-433e-9aca-d027a8535528",
                     "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
                 }
@@ -310,7 +261,7 @@
                     "userConfig": {
                         "itemId": "workarea-main"
                     },
-                    "name": "workarea.main2",
+                    "name": "workarea.main4",
                     "designerId": "534b4012-67c5-46d7-aebc-714a1f339da9",
                     "masterInstanceId": "cb5e8370-3c8e-4d93-81e3-d5a1f16eaffa"
                 }

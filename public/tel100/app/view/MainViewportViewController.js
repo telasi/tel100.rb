@@ -30,7 +30,6 @@ Ext.define('Tel100.view.MainViewportViewController', {
   onAfterRender: function(component, eOpts) {
     var txtUsername = component.down('#username');
     var txtPassword = component.down('#password');
-    var cmbLanguage = component.down('#language');
     var username = Helpers.getPreferenceValue('username');
     if (username) {
       txtUsername.setValue(username);
@@ -38,11 +37,6 @@ Ext.define('Tel100.view.MainViewportViewController', {
     } else {
       txtUsername.focus();
     }
-    cmbLanguage.setValue(Helpers.getCurrentLocale());
-  },
-
-  onLanguageChange: function(field, newValue, oldValue, eOpts) {
-    this.getViewModel().set('i18n', i18n[newValue]);
   },
 
   onLogin: function(button, e, eOpts) {
@@ -52,11 +46,10 @@ Ext.define('Tel100.view.MainViewportViewController', {
 
     var txtUsername = view.down('#username');
     var txtPassword = view.down('#password');
-    var cmbLanguage = view.down('#language');
 
     var username = txtUsername.value;
     var password = txtPassword.value;
-    var language = cmbLanguage.value;
+    var language = Helpers.getCurrentLocale();
 
     Helpers.setCurrentLocale(language);
     Helpers.ajaxRequest({
