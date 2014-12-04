@@ -24,12 +24,12 @@ Ext.application({
     'User'
   ],
   views: [
-    'Viewport'
+    'MainViewport'
   ],
   name: 'Tel100',
 
   launch: function() {
-    Ext.create('Tel100.view.Viewport');
+    Ext.create('Tel100.view.MainViewport');
   }
 
 });

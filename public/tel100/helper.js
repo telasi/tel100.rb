@@ -1,5 +1,27 @@
 window.Helpers = (function() {
 
+  var currentUser;
+
+  var setCurrentUser = function(user, password) {
+    if (user && password) {
+      currentUser = user;
+      Ext.Ajax.setExtraParams({
+        api_username: user.get('username'),
+        api_password: password
+      });
+    } else {
+      currentUser = null;
+      Ext.Ajax.setExtraParams({
+        api_username: null,
+        api_password: null
+      });
+    }
+  };
+
+  var getCurrentUser = function() {
+    return currentUser;
+  };
+
   var ajaxRequest = function(opts) {
     var method = (opts && opts.method) || 'GET';
     var url    = opts && opts.url;
@@ -35,7 +57,9 @@ window.Helpers = (function() {
   };
 
   return {
-    ajaxRequest: ajaxRequest
+    ajaxRequest: ajaxRequest,
+    setCurrentUser: setCurrentUser,
+    getCurrentUser: getCurrentUser
   };
 
 })();

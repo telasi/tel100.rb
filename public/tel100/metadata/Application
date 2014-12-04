@@ -11,7 +11,7 @@
         ],
         "name": "Tel100",
         "views": [
-            "Viewport"
+            "MainViewport"
         ]
     },
     "name": "Application",
