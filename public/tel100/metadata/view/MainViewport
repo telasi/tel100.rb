@@ -118,6 +118,28 @@
                             "designerId": "52256482-1f47-4c28-a595-087ba20c6122"
                         },
                         {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "displayField": "name",
+                                "editable": false,
+                                "fieldLabel": "Language",
+                                "layout|anchor": "100%",
+                                "store": "LocaleStore",
+                                "value": [
+                                    "'ka'"
+                                ],
+                                "valueField": "code"
+                            },
+                            "name": "MyComboBox",
+                            "designerId": "d32a96d9-c85e-46df-a0f3-e1bb9bdb3e30"
+                        },
+                        {
                             "type": "Ext.container.Container",
                             "reference": {
                                 "name": "items",

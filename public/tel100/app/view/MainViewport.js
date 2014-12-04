@@ -21,7 +21,7 @@ Ext.define('Tel100.view.MainViewport', {
     'Tel100.view.MainViewportViewModel',
     'Tel100.view.MainViewportViewController',
     'Ext.form.Panel',
-    'Ext.form.field.Text',
+    'Ext.form.field.ComboBox',
     'Ext.button.Button'
   ],
 
@@ -71,6 +71,17 @@ Ext.define('Tel100.view.MainViewport', {
               bind: {
                 value: '{password}'
               }
+            },
+            {
+              xtype: 'combobox',
+              anchor: '100%',
+              fieldLabel: 'Language',
+              value: 'ka',
+              allowBlank: false,
+              editable: false,
+              displayField: 'name',
+              store: 'LocaleStore',
+              valueField: 'code'
             },
             {
               xtype: 'container',
