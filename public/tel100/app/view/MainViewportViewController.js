@@ -41,6 +41,10 @@ Ext.define('Tel100.view.MainViewportViewController', {
     cmbLanguage.setValue(Helpers.getCurrentLocale());
   },
 
+  onLanguageChange: function(field, newValue, oldValue, eOpts) {
+    this.getViewModel().set('i18n', i18n[newValue]);
+  },
+
   onLogin: function(button, e, eOpts) {
     var self = this;
     var view = self.getView();

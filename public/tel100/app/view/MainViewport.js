@@ -89,6 +89,9 @@ Ext.define('Tel100.view.MainViewport', {
               valueField: 'code',
               bind: {
                 fieldLabel: '{i18n.user.language}'
+              },
+              listeners: {
+                change: 'onLanguageChange'
               }
             },
             {

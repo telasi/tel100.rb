@@ -157,7 +157,27 @@
                             "configAlternates": {
                                 "fieldLabel": "binding"
                             },
-                            "designerId": "d32a96d9-c85e-46df-a0f3-e1bb9bdb3e30"
+                            "designerId": "d32a96d9-c85e-46df-a0f3-e1bb9bdb3e30",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onLanguageChange",
+                                        "implHandler": [
+                                            "this.getViewModel().set('i18n', i18n[newValue]);"
+                                        ],
+                                        "name": "change",
+                                        "scope": "me"
+                                    },
+                                    "name": "onLanguageChange",
+                                    "designerId": "e3342b32-ba64-4974-81c2-0d4a9d2830b0"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.container.Container",
