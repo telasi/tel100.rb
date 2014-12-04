@@ -65,7 +65,16 @@ window.Helpers = (function() {
     return currentLocale || getPreferenceValue('locale', 'ka');
   };
 
+  var i18n_ = function() {
+    return i18n[getCurrentLocale()];
+  };
+  
   // Common interface for AJAX calls.
+
+  var errorMessage = function(error, title) {
+    var titleText = title || '<i class="fa fa-times-circle"></i> ' + i18n_().errors.title;
+    Ext.Msg.alert(titleText, error);
+  };
 
   var ajaxRequest = function(opts) {
     var method = (opts && opts.method) || 'GET';
@@ -85,9 +94,11 @@ window.Helpers = (function() {
       params: params,
       success: function(response) {
         view.setLoading(false);
-        if (success) {
-          var data = JSON.parse(response.responseText);
+        var data = JSON.parse(response.responseText);
+        if (success && data.success) {
           success(data);
+        } else if (!data.success) {
+          errorMessage(data.message);
         }
       },
       failure: function(response) {
@@ -95,13 +106,14 @@ window.Helpers = (function() {
         if (failure) {
           failure(response);
         } else {
-          Ext.Msg.alert('<i class="fa fa-times-circle"></i> Error', "Can't connect to server.\nCheck network connection.");
+          errorMessage(i18n_().errors.connection_error);
         }
       },
     }); 
   };
 
   return {
+    i18n: i18n_,
     ajaxRequest: ajaxRequest,
     getPreferenceValue: getPreferenceValue,
     setPreferenceValue: setPreferenceValue,

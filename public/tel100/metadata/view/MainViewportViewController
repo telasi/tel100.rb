@@ -25,6 +25,11 @@
             "userConfig": {
                 "fn": "openWorkingArea",
                 "implHandler": [
+                    "// set current user",
+                    "var user = Helpers.getCurrentUser();",
+                    "this.getViewModel().set('currentUser', user);",
+                    "",
+                    "// open UI",
                     "var view = this.getView();",
                     "var layout = view.getLayout();",
                     "layout.setActiveItem('workarea');"

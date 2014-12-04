@@ -79,6 +79,9 @@ Ext.define('Tel100.view.MainViewport', {
               allowBlank: false,
               bind: {
                 fieldLabel: '{i18n.user.password}'
+              },
+              listeners: {
+                specialkey: 'onPasswordSpecialkey'
               }
             },
             {

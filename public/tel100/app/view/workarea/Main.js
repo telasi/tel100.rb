@@ -37,7 +37,7 @@ Ext.define('Tel100.view.workarea.Main', {
     {
       xtype: 'label',
       bind: {
-        text: '{user.full_name}'
+        text: '{currentUser.full_name}'
       }
     }
   ],

@@ -130,7 +130,29 @@
                             "configAlternates": {
                                 "fieldLabel": "binding"
                             },
-                            "designerId": "52256482-1f47-4c28-a595-087ba20c6122"
+                            "designerId": "52256482-1f47-4c28-a595-087ba20c6122",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onPasswordSpecialkey",
+                                        "implHandler": [
+                                            "if (e.getKey() === Ext.EventObject.ENTER) {",
+                                            "  this.onLogin();",
+                                            "}"
+                                        ],
+                                        "name": "specialkey",
+                                        "scope": "me"
+                                    },
+                                    "name": "onPasswordSpecialkey",
+                                    "designerId": "5c4a93a3-c64a-40a8-b265-e5ca643fcada"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.container.Container",
@@ -181,32 +203,31 @@
                                                 "implHandler": [
                                                     "var self = this;",
                                                     "var view = self.getView();",
-                                                    "view.setLoading(true);",
                                                     "",
                                                     "var txtUsername = view.down('#username');",
                                                     "var txtPassword = view.down('#password');",
                                                     "",
                                                     "var username = txtUsername.value;",
                                                     "var password = txtPassword.value;",
-                                                    "var language = Helpers.getCurrentLocale();",
                                                     "",
-                                                    "Helpers.setCurrentLocale(language);",
-                                                    "Helpers.ajaxRequest({",
-                                                    "  url: '/api/user/login',",
-                                                    "  method: 'POST',",
-                                                    "  view: view,",
-                                                    "  params: {",
-                                                    "    userID: username,",
-                                                    "    password: password,",
-                                                    "    api_locale: language",
-                                                    "  },",
-                                                    "  success: function(data) {",
-                                                    "    var user = new Tel100.model.User(data.user);",
-                                                    "    Helpers.setCurrentUser(user, password);",
-                                                    "    Helpers.setPreferenceValue('username', username);",
-                                                    "    self.openWorkingArea();",
-                                                    "  }",
-                                                    "});"
+                                                    "if (username && password) {",
+                                                    "  Helpers.ajaxRequest({",
+                                                    "    url: '/api/user/login',",
+                                                    "    method: 'POST',",
+                                                    "    view: view,",
+                                                    "    params: {",
+                                                    "      userID: username,",
+                                                    "      password: password,",
+                                                    "      api_locale: Helpers.getCurrentLocale()",
+                                                    "    },",
+                                                    "    success: function(data) {",
+                                                    "      var user = new Tel100.model.User(data.user);",
+                                                    "      Helpers.setCurrentUser(user, password);",
+                                                    "      Helpers.setPreferenceValue('username', username);",
+                                                    "      self.openWorkingArea();",
+                                                    "    }",
+                                                    "  });",
+                                                    "}"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
@@ -232,7 +253,7 @@
                         "layout|margins": "",
                         "margin": 10
                     },
-                    "name": "component.localeselector5",
+                    "name": "component.localeselector7",
                     "designerId": "4b6d441b-643b-433e-9aca-d027a8535528",
                     "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
                 }
@@ -263,7 +284,7 @@
                     "userConfig": {
                         "itemId": "workarea-main"
                     },
-                    "name": "workarea.main6",
+                    "name": "workarea.main8",
                     "designerId": "534b4012-67c5-46d7-aebc-714a1f339da9",
                     "masterInstanceId": "cb5e8370-3c8e-4d93-81e3-d5a1f16eaffa"
                 }

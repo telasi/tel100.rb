@@ -22,6 +22,11 @@ Ext.define('Tel100.view.MainViewportViewController', {
   ],
 
   openWorkingArea: function() {
+    // set current user
+    var user = Helpers.getCurrentUser();
+    this.getViewModel().set('currentUser', user);
+
+    // open UI
     var view = this.getView();
     var layout = view.getLayout();
     layout.setActiveItem('workarea');
@@ -39,35 +44,40 @@ Ext.define('Tel100.view.MainViewportViewController', {
     }
   },
 
+  onPasswordSpecialkey: function(field, e, eOpts) {
+    if (e.getKey() === Ext.EventObject.ENTER) {
+      this.onLogin();
+    }
+  },
+
   onLogin: function(button, e, eOpts) {
     var self = this;
     var view = self.getView();
-    view.setLoading(true);
 
     var txtUsername = view.down('#username');
     var txtPassword = view.down('#password');
 
     var username = txtUsername.value;
     var password = txtPassword.value;
-    var language = Helpers.getCurrentLocale();
 
-    Helpers.setCurrentLocale(language);
-    Helpers.ajaxRequest({
-      url: '/api/user/login',
-      method: 'POST',
-      view: view,
-      params: {
-        userID: username,
-        password: password,
-        api_locale: language
-      },
-      success: function(data) {
-        var user = new Tel100.model.User(data.user);
-        Helpers.setCurrentUser(user, password);
-        Helpers.setPreferenceValue('username', username);
-        self.openWorkingArea();
-      }
-    });
+    if (username && password) {
+      Helpers.ajaxRequest({
+        url: '/api/user/login',
+        method: 'POST',
+        view: view,
+        params: {
+          userID: username,
+          password: password,
+          api_locale: Helpers.getCurrentLocale()
+        },
+        success: function(data) {
+          var user = new Tel100.model.User(data.user);
+          Helpers.setCurrentUser(user, password);
+          Helpers.setPreferenceValue('username', username);
+          self.openWorkingArea();
+        }
+      });
+    }
   },
 
   onBeforeRender: function(component, eOpts) {
