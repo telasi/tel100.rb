@@ -1,0 +1,5 @@
+ka:
+  controllers:
+    user:
+      errors:
+        illegal_username_and_password: არასწორი მომხმარებლის სახელი ან პაროლი.

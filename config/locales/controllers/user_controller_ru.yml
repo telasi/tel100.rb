@@ -1,0 +1,5 @@
+ru:
+  controllers:
+    user:
+      errors:
+        illegal_username_and_password: Неправильные данные авторизации.
