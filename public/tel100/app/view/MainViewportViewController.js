@@ -22,8 +22,17 @@ Ext.define('Tel100.view.MainViewportViewController', {
   ],
 
   onAfterRender: function(component, eOpts) {
-    var usernameField = component.down('#username');
-    usernameField.focus();
+    var txtUsername = component.down('#username');
+    var txtPassword = component.down('#password');
+    var cmbLanguage = component.down('#language');
+    var username = Helpers.getPreferenceValue('username');
+    if (username) {
+      txtUsername.setValue(username);
+      txtPassword.focus();
+    } else {
+      txtUsername.focus();
+    }
+    cmbLanguage.setValue(Helpers.getCurrentLocale());
   },
 
   onLogin: function(button, e, eOpts) {
@@ -51,6 +60,7 @@ Ext.define('Tel100.view.MainViewportViewController', {
       success: function(data) {
         var user = new Tel100.model.User(data.user);
         Helpers.setCurrentUser(user, password);
+        Helpers.setPreferenceValue('username', username);
         // TODO: open working area
       }
     });

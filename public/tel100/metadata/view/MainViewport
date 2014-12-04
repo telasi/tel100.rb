@@ -26,8 +26,17 @@
             "userConfig": {
                 "fn": "onAfterRender",
                 "implHandler": [
-                    "var usernameField = component.down('#username');",
-                    "usernameField.focus();"
+                    "var txtUsername = component.down('#username');",
+                    "var txtPassword = component.down('#password');",
+                    "var cmbLanguage = component.down('#language');",
+                    "var username = Helpers.getPreferenceValue('username');",
+                    "if (username) {",
+                    "  txtUsername.setValue(username);",
+                    "  txtPassword.focus();",
+                    "} else {",
+                    "  txtUsername.focus();",
+                    "}",
+                    "cmbLanguage.setValue(Helpers.getCurrentLocale());"
                 ],
                 "name": "afterrender",
                 "scope": "me"
@@ -132,9 +141,7 @@
                                 "itemId": "language",
                                 "layout|anchor": "100%",
                                 "store": "LocaleStore",
-                                "value": [
-                                    "'ka'"
-                                ],
+                                "value": null,
                                 "valueField": "code"
                             },
                             "name": "MyComboBox",
@@ -204,6 +211,7 @@
                                                     "  success: function(data) {",
                                                     "    var user = new Tel100.model.User(data.user);",
                                                     "    Helpers.setCurrentUser(user, password);",
+                                                    "    Helpers.setPreferenceValue('username', username);",
                                                     "    // TODO: open working area",
                                                     "  }",
                                                     "});"

@@ -77,7 +77,6 @@ Ext.define('Tel100.view.MainViewport', {
               anchor: '100%',
               itemId: 'language',
               fieldLabel: 'Language',
-              value: 'ka',
               allowBlank: false,
               editable: false,
               displayField: 'name',
