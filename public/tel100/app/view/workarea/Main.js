@@ -20,6 +20,8 @@ Ext.define('Tel100.view.workarea.Main', {
   requires: [
     'Tel100.view.workarea.MainViewModel',
     'Tel100.view.workarea.MainViewController',
+    'Tel100.view.component.LocaleSelector',
+    'Ext.button.Segmented',
     'Ext.form.Label'
   ],
 
@@ -30,13 +32,12 @@ Ext.define('Tel100.view.workarea.Main', {
 
   items: [
     {
-      xtype: 'label',
-      text: 'My Label'
+      xtype: 'componentlocaleselector'
     },
     {
       xtype: 'label',
       bind: {
-        text: '{user.username}'
+        text: '{user.full_name}'
       }
     }
   ],

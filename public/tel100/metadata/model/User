@@ -177,8 +177,8 @@
             "userConfig": {
                 "name": "last_name"
             },
-            "name": "MyString5",
-            "designerId": "a9563444-14f3-46dd-adfc-b27dc550bfb3"
+            "name": "MyString7",
+            "designerId": "dbf4eba2-0a5d-461c-839a-c5f480700a06"
         },
         {
             "type": "Ext.data.field.Date",
@@ -205,6 +205,40 @@
             },
             "name": "MyDate1",
             "designerId": "dc030e62-975f-46c6-a5ba-5d895f6d1ecb"
+        },
+        {
+            "type": "Ext.data.field.String",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "full_name"
+            },
+            "name": "MyString5",
+            "designerId": "c38cc9bb-c0de-42ce-9f10-49645d632b48",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "return data.first_name + ' ' + data.last_name;"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "59e3deae-b8ca-43fc-866c-81561c7fe362"
+                }
+            ]
         }
     ]
 }

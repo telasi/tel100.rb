@@ -7,7 +7,8 @@ i18n.ka.user = {
   login_btn: 'შესვლა',
   username:  'მომხ. სახელი',
   password:  'პაროლი',
-  language:  'სამუშაო ენა'
+  language:  'სამუშაო ენა',
+  full_name: 'სახელი, გვარი'
 };
 
 i18n.ru.user = {
@@ -15,5 +16,6 @@ i18n.ru.user = {
   login_btn: 'Вход',
   username:  'Пользователь',
   password:  'Пароль',
-  language:  'Рабочий язык'
+  language:  'Рабочий язык',
+  full_name: 'Имя, Фамилия'
 };

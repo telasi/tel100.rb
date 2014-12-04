@@ -17,17 +17,15 @@
     "viewModelInstanceId": "1b3cb2ba-45f8-4810-bb9b-9d4e8a450d89",
     "cn": [
         {
-            "type": "Ext.form.Label",
+            "type": "linkedinstance",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
-            "userConfig": {
-                "text": "My Label"
-            },
-            "name": "MyLabel",
-            "designerId": "f6601e67-cc2c-4fff-bbde-ab70906db8a6"
+            "name": "component.localeselector3",
+            "designerId": "251059c3-bdfc-42ad-8753-6df9aa5ef300",
+            "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
         },
         {
             "type": "Ext.form.Label",
@@ -38,7 +36,7 @@
             "codeClass": null,
             "userConfig": {
                 "text": [
-                    "{user.username}"
+                    "{user.full_name}"
                 ]
             },
             "name": "MyLabel1",
