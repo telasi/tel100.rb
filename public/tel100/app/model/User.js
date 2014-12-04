@@ -89,6 +89,10 @@ Ext.define('Tel100.model.User', {
       calculate: function(data) {
         return data.first_name + ' ' + data.last_name;
       },
+      depends: [
+        'first_name',
+        'last_name'
+      ],
       name: 'full_name'
     }
   ]
