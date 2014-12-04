@@ -61,10 +61,7 @@ Ext.define('Tel100.view.MainViewport', {
               anchor: '100%',
               itemId: 'username',
               fieldLabel: 'Username',
-              allowBlank: false,
-              bind: {
-                value: '{username}'
-              }
+              allowBlank: false
             },
             {
               xtype: 'textfield',
@@ -72,10 +69,7 @@ Ext.define('Tel100.view.MainViewport', {
               itemId: 'password',
               fieldLabel: 'Password',
               inputType: 'password',
-              allowBlank: false,
-              bind: {
-                value: '{password}'
-              }
+              allowBlank: false
             },
             {
               xtype: 'combobox',
@@ -117,7 +111,8 @@ Ext.define('Tel100.view.MainViewport', {
       layout: 'fit',
       items: [
         {
-          xtype: 'workareamain'
+          xtype: 'workareamain',
+          itemId: 'workarea-main'
         }
       ]
     }
