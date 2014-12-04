@@ -29,17 +29,24 @@ Ext.define('Tel100.view.MainViewportViewController', {
   onLogin: function(button, e, eOpts) {
     var view = this.getView();
     view.setLoading(true);
-    var model = this.getViewModel();
-    var username = model.get('username');
-    var password = model.get('password');
 
+    var txtUsername = view.down('#username');
+    var txtPassword = view.down('#password');
+    var cmbLanguage = view.down('#language');
+
+    var username = txtUsername.value;
+    var password = txtPassword.value;
+    var language = cmbLanguage.value;
+
+    Helpers.setCurrentLocale(language);
     Helpers.ajaxRequest({
       url: '/api/user/login',
       method: 'POST',
       view: view,
       params: {
         userID: username,
-        password: password
+        password: password,
+        api_locale: language
       },
       success: function(data) {
         var user = new Tel100.model.User(data.user);

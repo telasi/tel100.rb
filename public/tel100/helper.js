@@ -1,13 +1,15 @@
 window.Helpers = (function() {
 
   var currentUser;
+  var currentLocale;
 
   var setCurrentUser = function(user, password) {
     if (user && password) {
       currentUser = user;
       Ext.Ajax.setExtraParams({
         api_username: user.get('username'),
-        api_password: password
+        api_password: password,
+        api_locale:   getCurrentLocale()
       });
     } else {
       currentUser = null;
@@ -20,6 +22,17 @@ window.Helpers = (function() {
 
   var getCurrentUser = function() {
     return currentUser;
+  };
+
+  var setCurrentLocale = function(locale) {
+    currentLocale = locale;
+    Ext.Ajax.setExtraParams({
+      api_locale:   getCurrentLocale()
+    });
+  };
+
+  var getCurrentLocale = function() {
+    return currentLocale || 'ka';
   };
 
   var ajaxRequest = function(opts) {
@@ -59,7 +72,9 @@ window.Helpers = (function() {
   return {
     ajaxRequest: ajaxRequest,
     setCurrentUser: setCurrentUser,
-    getCurrentUser: getCurrentUser
+    getCurrentUser: getCurrentUser,
+    setCurrentLocale: setCurrentLocale,
+    getCurrentLocale: getCurrentLocale
   };
 
 })();
