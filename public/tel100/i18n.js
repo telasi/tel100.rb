@@ -4,16 +4,16 @@ i18n.ru  = {};
 
 i18n.ka.user = {
   login:     'სისტემაში შესვლა',
-  login_btn: 'შესვლა &rarr;',
+  login_btn: 'შესვლა',
   username:  'მომხ. სახელი',
   password:  'პაროლი',
-  language:  'ინტერფეისის ენა'
+  language:  'სამუშაო ენა'
 };
 
 i18n.ru.user = {
   login:     'Вход в систему',
-  login_btn: 'Вход &rarr;',
+  login_btn: 'Вход',
   username:  'Пользователь',
   password:  'Пароль',
-  language:  'Язык интерфейса'
+  language:  'Рабочий язык'
 };

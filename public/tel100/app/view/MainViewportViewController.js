@@ -71,6 +71,10 @@ Ext.define('Tel100.view.MainViewportViewController', {
         self.openWorkingArea();
       }
     });
+  },
+
+  onBeforeRender: function(component, eOpts) {
+    this.getViewModel().set('i18n', i18n[Helpers.getCurrentLocale()]);
   }
 
 });

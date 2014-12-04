@@ -36,7 +36,8 @@ Ext.define('Tel100.view.MainViewport', {
     deferredRender: true
   },
   listeners: {
-    afterrender: 'onAfterRender'
+    afterrender: 'onAfterRender',
+    beforerender: 'onBeforeRender'
   },
   items: [
     {
@@ -54,33 +55,41 @@ Ext.define('Tel100.view.MainViewport', {
           height: '',
           width: 400,
           bodyPadding: 10,
-          title: '<i class="fa fa-user"></i> Login',
+          bind: {
+            title: '<i class="fa fa-user"></i> {i18n.user.login}'
+          },
           items: [
             {
               xtype: 'textfield',
               anchor: '100%',
               itemId: 'username',
-              fieldLabel: 'Username',
-              allowBlank: false
+              allowBlank: false,
+              bind: {
+                fieldLabel: '{i18n.user.username}'
+              }
             },
             {
               xtype: 'textfield',
               anchor: '100%',
               itemId: 'password',
-              fieldLabel: 'Password',
               inputType: 'password',
-              allowBlank: false
+              allowBlank: false,
+              bind: {
+                fieldLabel: '{i18n.user.password}'
+              }
             },
             {
               xtype: 'combobox',
               anchor: '100%',
               itemId: 'language',
-              fieldLabel: 'Language',
               allowBlank: false,
               editable: false,
               displayField: 'name',
               store: 'LocaleStore',
-              valueField: 'code'
+              valueField: 'code',
+              bind: {
+                fieldLabel: '{i18n.user.language}'
+              }
             },
             {
               xtype: 'container',
@@ -94,7 +103,9 @@ Ext.define('Tel100.view.MainViewport', {
                   xtype: 'button',
                   formBind: true,
                   padding: 5,
-                  text: 'Login &rarr;',
+                  bind: {
+                    text: '{i18n.user.login_btn} &rarr;'
+                  },
                   listeners: {
                     click: 'onLogin'
                   }
