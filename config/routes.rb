@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     scope 'user', controller: 'user' do
-      get '/login', action: 'login'
+      post '/login', action: 'login'
     end
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
