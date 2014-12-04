@@ -77,14 +77,6 @@ Ext.define('Tel100.model.User', {
       name: 'last_name'
     },
     {
-      type: 'date',
-      name: 'created_at'
-    },
-    {
-      type: 'date',
-      name: 'updated_at'
-    },
-    {
       type: 'string',
       calculate: function(data) {
         return data.first_name + ' ' + data.last_name;
@@ -94,6 +86,14 @@ Ext.define('Tel100.model.User', {
         'last_name'
       ],
       name: 'full_name'
+    },
+    {
+      type: 'date',
+      name: 'created_at'
+    },
+    {
+      type: 'date',
+      name: 'updated_at'
     }
   ]
 });

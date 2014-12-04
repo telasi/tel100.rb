@@ -155,7 +155,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "designer|displayName": "login-button",
                                         "formBind": true,
+                                        "itemId": "login-button",
                                         "padding": 5,
                                         "text": [
                                             "{i18n.user.login_btn} &rarr;"
@@ -230,7 +232,7 @@
                         "layout|margins": "",
                         "margin": 10
                     },
-                    "name": "component.localeselector1",
+                    "name": "component.localeselector5",
                     "designerId": "4b6d441b-643b-433e-9aca-d027a8535528",
                     "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
                 }
@@ -261,7 +263,7 @@
                     "userConfig": {
                         "itemId": "workarea-main"
                     },
-                    "name": "workarea.main4",
+                    "name": "workarea.main6",
                     "designerId": "534b4012-67c5-46d7-aebc-714a1f339da9",
                     "masterInstanceId": "cb5e8370-3c8e-4d93-81e3-d5a1f16eaffa"
                 }

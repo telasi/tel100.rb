@@ -92,6 +92,7 @@ Ext.define('Tel100.view.MainViewport', {
                 {
                   xtype: 'button',
                   formBind: true,
+                  itemId: 'login-button',
                   padding: 5,
                   bind: {
                     text: '{i18n.user.login_btn} &rarr;'

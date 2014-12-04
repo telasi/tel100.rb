@@ -8,6 +8,7 @@
     "userConfig": {
         "designer|userAlias": "mainviewport",
         "designer|userClassName": "MainViewportViewController",
+        "listen": null,
         "requires": [
             "Tel100.model.User"
         ]
