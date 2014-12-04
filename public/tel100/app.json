@@ -15,6 +15,10 @@
          "path": "${ext.dir}/build/ext-all-rtl-debug.js"
       },
       {
+         "path": "i18n.js",
+         "includeInBundle": true
+      },
+      {
          "path": "helper.js",
          "includeInBundle": true
       },
