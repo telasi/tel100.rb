@@ -1,5 +1,34 @@
 window.Helpers = (function() {
 
+  // Preference management: based on Ext.util.LocalStorage
+
+  var preferenceStore;
+
+  var getPreferenceStore = function() {
+    if (!preferenceStore) {
+      preferenceStore = new Ext.util.LocalStorage({
+        id: 'preferences'
+      });
+    }
+    return preferenceStore;
+  };
+
+  var getPreferenceValue = function(key, defValue) {
+    var store = getPreferenceStore();
+    var value = store.getItem(key);
+    if (!value && typeof defValue !== 'undefined') {
+      value = defValue;
+    }
+    return value;
+  };
+
+  var setPreferenceValue = function(key, value) {
+    var store = getPreferenceStore();
+    store.setItem(key, value);
+  };
+
+  // Current user & locale management.
+
   var currentUser;
   var currentLocale;
 
@@ -26,14 +55,17 @@ window.Helpers = (function() {
 
   var setCurrentLocale = function(locale) {
     currentLocale = locale;
+    setPreferenceValue('locale', locale);
     Ext.Ajax.setExtraParams({
       api_locale:   getCurrentLocale()
     });
   };
 
   var getCurrentLocale = function() {
-    return currentLocale || 'ka';
+    return currentLocale || getPreferenceValue('locale', 'ka');
   };
+
+  // Common interface for AJAX calls.
 
   var ajaxRequest = function(opts) {
     var method = (opts && opts.method) || 'GET';
@@ -71,6 +103,8 @@ window.Helpers = (function() {
 
   return {
     ajaxRequest: ajaxRequest,
+    getPreferenceValue: getPreferenceValue,
+    setPreferenceValue: setPreferenceValue,
     setCurrentUser: setCurrentUser,
     getCurrentUser: getCurrentUser,
     setCurrentLocale: setCurrentLocale,
