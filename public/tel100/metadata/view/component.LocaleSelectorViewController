@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "componentlocaleselector",
+        "designer|userClassName": "component.LocaleSelectorViewController"
+    },
+    "designerId": "dae81cd2-2c11-4fe7-ba04-2cd83ecd419f"
+}

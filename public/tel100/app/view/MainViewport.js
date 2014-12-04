@@ -20,16 +20,19 @@ Ext.define('Tel100.view.MainViewport', {
   requires: [
     'Tel100.view.MainViewportViewModel',
     'Tel100.view.MainViewportViewController',
+    'Tel100.view.component.LocaleSelector',
     'Tel100.view.workarea.Main',
     'Ext.form.Panel',
     'Ext.form.field.ComboBox',
-    'Ext.button.Button'
+    'Ext.button.Button',
+    'Ext.button.Segmented'
   ],
 
   controller: 'mainviewport',
   viewModel: {
     type: 'mainviewport'
   },
+  itemId: 'main-viewport',
 
   layout: {
     type: 'card',
@@ -116,6 +119,11 @@ Ext.define('Tel100.view.MainViewport', {
               ]
             }
           ]
+        },
+        {
+          xtype: 'componentlocaleselector',
+          margins: '',
+          margin: 10
         }
       ]
     },

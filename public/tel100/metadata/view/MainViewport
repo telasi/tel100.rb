@@ -10,6 +10,7 @@
         "designer|initialView": true,
         "designer|userAlias": "mainviewport",
         "designer|userClassName": "MainViewport",
+        "itemId": "main-viewport",
         "layout": "card"
     },
     "name": "MyViewport",
@@ -265,6 +266,22 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "layout|margins": "",
+                        "margin": 10
+                    },
+                    "name": "component.localeselector",
+                    "designerId": "4b6d441b-643b-433e-9aca-d027a8535528",
+                    "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
                 }
             ]
         },
@@ -293,7 +310,7 @@
                     "userConfig": {
                         "itemId": "workarea-main"
                     },
-                    "name": "workarea.main1",
+                    "name": "workarea.main2",
                     "designerId": "534b4012-67c5-46d7-aebc-714a1f339da9",
                     "masterInstanceId": "cb5e8370-3c8e-4d93-81e3-d5a1f16eaffa"
                 }
