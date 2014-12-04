@@ -1,0 +1,87 @@
+{
+    "type": "Ext.button.Split",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "workareausermenu",
+        "designer|userClassName": "workarea.UserMenu",
+        "text": [
+            "{currentUser.full_name}"
+        ]
+    },
+    "name": "MySplitButton",
+    "configAlternates": {
+        "text": "binding"
+    },
+    "designerId": "4341e0bd-e420-482c-9c3c-b901b131b5e1",
+    "viewControllerInstanceId": "23d238e3-2046-46f4-a616-798347e3bf0c",
+    "viewModelInstanceId": "91245490-c6c1-445e-b5d9-070b89059f86",
+    "cn": [
+        {
+            "type": "Ext.menu.Menu",
+            "reference": {
+                "name": "menu",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "width": ""
+            },
+            "name": "MyMenu",
+            "designerId": "f83fa3cb-ffe0-4f8f-ab00-1e8a2f5fbda0",
+            "cn": [
+                {
+                    "type": "Ext.menu.Item",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "edit profile",
+                        "text": [
+                            "{i18n.user.profile}"
+                        ]
+                    },
+                    "name": "MyMenuItem",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "0eb8c4ff-ac6b-44a0-a4b5-d494612b0ce2"
+                },
+                {
+                    "type": "Ext.menu.Separator",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "name": "MySeparator",
+                    "designerId": "49a81912-07ea-405d-b0a5-7fb70c2e33ff"
+                },
+                {
+                    "type": "Ext.menu.Item",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "logout",
+                        "text": [
+                            "{i18n.user.logout}"
+                        ]
+                    },
+                    "name": "MyMenuItem1",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "6d4d1e11-094a-4bc3-bd04-d787af8a3e17"
+                }
+            ]
+        }
+    ]
+}

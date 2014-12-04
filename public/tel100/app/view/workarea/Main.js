@@ -19,36 +19,38 @@ Ext.define('Tel100.view.workarea.Main', {
 
   requires: [
     'Tel100.view.workarea.MainViewModel',
-    'Tel100.view.component.LocaleSelector',
-    'Ext.button.Segmented',
-    'Ext.form.Label'
+    'Tel100.view.workarea.UserMenu',
+    'Ext.container.Container',
+    'Ext.toolbar.Spacer',
+    'Ext.button.Split'
   ],
 
   viewModel: {
     type: 'workareamain'
   },
+  layout: 'border',
 
   items: [
     {
-      xtype: 'componentlocaleselector'
-    },
-    {
-      xtype: 'label',
-      bind: {
-        text: '{currentUser.full_name}'
-      }
-    },
-    {
-      xtype: 'label',
-      bind: {
-        text: ' Mobile: {currentUser.formatted_mobile}'
-      }
-    },
-    {
-      xtype: 'label',
-      bind: {
-        text: ' Phone: {currentUser.formatted_phone}'
-      }
+      xtype: 'container',
+      region: 'north',
+      padding: 5,
+      layout: {
+        type: 'hbox',
+        align: 'stretch'
+      },
+      items: [
+        {
+          xtype: 'tbspacer',
+          flex: 1
+        },
+        {
+          xtype: 'workareausermenu',
+          bind: {
+            text: '<i class="fa fa-user"></i> {currentUser.full_name}'
+          }
+        }
+      ]
     }
   ]
 

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "workareausermenu",
+        "designer|userClassName": "workarea.UserMenuViewModel"
+    },
+    "designerId": "91245490-c6c1-445e-b5d9-070b89059f86"
+}

@@ -16,7 +16,8 @@
         "views": [
             "MainViewport",
             "workarea.Main",
-            "component.LocaleSelector"
+            "component.LocaleSelector",
+            "workarea.UserMenu"
         ]
     },
     "name": "Application",

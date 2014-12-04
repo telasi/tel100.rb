@@ -9,6 +9,7 @@
         "designer|userAlias": "workareamain",
         "designer|userClassName": "workarea.Main",
         "height": null,
+        "layout": "border",
         "width": null
     },
     "name": "MyContainer3",
@@ -17,69 +18,58 @@
     "viewModelInstanceId": "1b3cb2ba-45f8-4810-bb9b-9d4e8a450d89",
     "cn": [
         {
-            "type": "linkedinstance",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "name": "component.localeselector8",
-            "designerId": "251059c3-bdfc-42ad-8753-6df9aa5ef300",
-            "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
-        },
-        {
-            "type": "Ext.form.Label",
+            "type": "Ext.container.Container",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "text": [
-                    "{currentUser.full_name}"
-                ]
+                "container|align": "stretch",
+                "designer|displayName": "top-menu",
+                "height": null,
+                "layout": "hbox",
+                "layout|flex": null,
+                "layout|region": "north",
+                "padding": 5
             },
-            "name": "MyLabel1",
-            "configAlternates": {
-                "text": "binding"
-            },
-            "designerId": "aecab09e-6a2a-4a6d-b33e-4439999c3527"
-        },
-        {
-            "type": "Ext.form.Label",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "text": [
-                    " Mobile: {currentUser.formatted_mobile}"
-                ]
-            },
-            "name": "MyLabel",
-            "configAlternates": {
-                "text": "binding"
-            },
-            "designerId": "847e7174-28cc-4e0f-8681-4ca805704fc7"
-        },
-        {
-            "type": "Ext.form.Label",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "text": [
-                    " Phone: {currentUser.formatted_phone}"
-                ]
-            },
-            "name": "MyLabel2",
-            "configAlternates": {
-                "text": "binding"
-            },
-            "designerId": "ca9e69ce-d5d0-4411-b331-c5e9a8c6cf59"
+            "name": "MyContainer3",
+            "designerId": "4778beba-7bf1-416b-bb2f-b816840285b5",
+            "cn": [
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 1
+                    },
+                    "name": "MySpacer",
+                    "designerId": "9b8ed914-e888-4f2c-81c4-4ce2b951674d"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "user-menu",
+                        "text": [
+                            "<i class=\"fa fa-user\"></i> {currentUser.full_name}"
+                        ]
+                    },
+                    "name": "workarea.usermenu1",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "cfa1e1a9-1e3a-4ec0-b8c5-498103e1adce",
+                    "masterInstanceId": "4341e0bd-e420-482c-9c3c-b901b131b5e1"
+                }
+            ]
         }
     ]
 }

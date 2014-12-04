@@ -22,7 +22,9 @@ i18n.ka.user = {
   username:  'მომხ. სახელი',
   password:  'პაროლი',
   language:  'სამუშაო ენა',
-  full_name: 'სახელი, გვარი'
+  full_name: 'სახელი, გვარი',
+  profile:   'პროფილის მართვა',
+  logout:    'სისტემიდან გასვლა'
 };
 
 i18n.ru.user = {
@@ -31,5 +33,7 @@ i18n.ru.user = {
   username:  'Пользователь',
   password:  'Пароль',
   language:  'Рабочий язык',
-  full_name: 'Имя, Фамилия'
+  full_name: 'Имя, Фамилия',
+  profile: 'Управление профилем',
+  logout:    'Выход из системы'
 };
