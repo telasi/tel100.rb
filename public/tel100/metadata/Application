@@ -14,7 +14,8 @@
             "LocaleStore"
         ],
         "views": [
-            "MainViewport"
+            "MainViewport",
+            "workarea.Main"
         ]
     },
     "name": "Application",

@@ -249,38 +249,15 @@
             "designerId": "1ff49520-dd20-4e55-aebf-977d07ce5134",
             "cn": [
                 {
-                    "type": "Ext.form.Label",
+                    "type": "linkedinstance",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "test-label",
-                        "text": "TEST LABEL"
-                    },
-                    "name": "MyLabel",
-                    "designerId": "6f85ce40-3e68-43ba-8945-3fe2d11d3c52",
-                    "cn": [
-                        {
-                            "type": "viewcontrollereventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onLabelAfterRender",
-                                "implHandler": [
-                                    "console.log('rendered!');"
-                                ],
-                                "name": "afterrender",
-                                "scope": "me"
-                            },
-                            "name": "onLabelAfterRender",
-                            "designerId": "1bdd36a7-20ef-485e-b8ce-2dd5e0c25f84"
-                        }
-                    ]
+                    "name": "workarea.main",
+                    "designerId": "534b4012-67c5-46d7-aebc-714a1f339da9",
+                    "masterInstanceId": "cb5e8370-3c8e-4d93-81e3-d5a1f16eaffa"
                 }
             ]
         }

@@ -20,10 +20,10 @@ Ext.define('Tel100.view.MainViewport', {
   requires: [
     'Tel100.view.MainViewportViewModel',
     'Tel100.view.MainViewportViewController',
+    'Tel100.view.workarea.Main',
     'Ext.form.Panel',
     'Ext.form.field.ComboBox',
-    'Ext.button.Button',
-    'Ext.form.Label'
+    'Ext.button.Button'
   ],
 
   controller: 'mainviewport',
@@ -117,11 +117,7 @@ Ext.define('Tel100.view.MainViewport', {
       layout: 'fit',
       items: [
         {
-          xtype: 'label',
-          text: 'TEST LABEL',
-          listeners: {
-            afterrender: 'onLabelAfterRender'
-          }
+          xtype: 'workareamain'
         }
       ]
     }

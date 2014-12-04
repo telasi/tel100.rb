@@ -1,0 +1,33 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "workareamain",
+        "designer|userClassName": "workarea.Main",
+        "height": 250,
+        "width": 400
+    },
+    "name": "MyContainer3",
+    "designerId": "cb5e8370-3c8e-4d93-81e3-d5a1f16eaffa",
+    "viewControllerInstanceId": "8bfb2106-07d2-4e48-a921-0cb4cfb76225",
+    "viewModelInstanceId": "1b3cb2ba-45f8-4810-bb9b-9d4e8a450d89",
+    "cn": [
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "text": "My Label"
+            },
+            "name": "MyLabel",
+            "designerId": "f6601e67-cc2c-4fff-bbde-ab70906db8a6"
+        }
+    ]
+}

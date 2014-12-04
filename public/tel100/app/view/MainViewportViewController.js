@@ -71,10 +71,6 @@ Ext.define('Tel100.view.MainViewportViewController', {
         self.openWorkingArea();
       }
     });
-  },
-
-  onLabelAfterRender: function(component, eOpts) {
-    console.log('rendered!');
   }
 
 });
