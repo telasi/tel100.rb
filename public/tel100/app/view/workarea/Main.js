@@ -41,7 +41,13 @@ Ext.define('Tel100.view.workarea.Main', {
     {
       xtype: 'label',
       bind: {
-        text: '{currentUser.formatted_mobile}'
+        text: ' Mobile: {currentUser.formatted_mobile}'
+      }
+    },
+    {
+      xtype: 'label',
+      bind: {
+        text: ' Phone: {currentUser.formatted_phone}'
       }
     }
   ]

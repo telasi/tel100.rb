@@ -54,7 +54,7 @@
             "codeClass": null,
             "userConfig": {
                 "text": [
-                    "{currentUser.formatted_mobile}"
+                    " Mobile: {currentUser.formatted_mobile}"
                 ]
             },
             "name": "MyLabel",
@@ -62,6 +62,24 @@
                 "text": "binding"
             },
             "designerId": "847e7174-28cc-4e0f-8681-4ca805704fc7"
+        },
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "text": [
+                    " Phone: {currentUser.formatted_phone}"
+                ]
+            },
+            "name": "MyLabel2",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "ca9e69ce-d5d0-4411-b331-c5e9a8c6cf59"
         }
     ]
 }

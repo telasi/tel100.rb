@@ -70,6 +70,20 @@ Ext.define('Tel100.model.User', {
     },
     {
       type: 'string',
+      calculate: function(data) {
+        var phone = data.phone;
+        if (phone && phone.length === 4) {
+          return phone.substr(0, 1) + '-' + phone.substr(1);
+        } else if (phone && phone.length === 3) {
+          return '7-' + phone;
+        }
+        return phone;
+      },
+      depends: 'phone',
+      name: 'formatted_phone'
+    },
+    {
+      type: 'string',
       name: 'username'
     },
     {
