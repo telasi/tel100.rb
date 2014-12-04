@@ -19,20 +19,29 @@ Ext.define('Tel100.view.workarea.Main', {
 
   requires: [
     'Tel100.view.workarea.MainViewModel',
+    'Tel100.view.workarea.MainViewController',
     'Ext.form.Label'
   ],
 
+  controller: 'workareamain',
   viewModel: {
     type: 'workareamain'
   },
-  height: 250,
-  width: 400,
 
   items: [
     {
       xtype: 'label',
       text: 'My Label'
+    },
+    {
+      xtype: 'label',
+      bind: {
+        text: '{user.username}'
+      }
     }
-  ]
+  ],
+  listeners: {
+    beforerender: 'onContainerBeforeRender'
+  }
 
 });

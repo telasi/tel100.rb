@@ -8,8 +8,8 @@
     "userConfig": {
         "designer|userAlias": "workareamain",
         "designer|userClassName": "workarea.Main",
-        "height": 250,
-        "width": 400
+        "height": null,
+        "width": null
     },
     "name": "MyContainer3",
     "designerId": "cb5e8370-3c8e-4d93-81e3-d5a1f16eaffa",
@@ -28,6 +28,44 @@
             },
             "name": "MyLabel",
             "designerId": "f6601e67-cc2c-4fff-bbde-ab70906db8a6"
+        },
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "text": [
+                    "{user.username}"
+                ]
+            },
+            "name": "MyLabel1",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "aecab09e-6a2a-4a6d-b33e-4439999c3527"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onContainerBeforeRender",
+                "implHandler": [
+                    "var user = Helpers.getCurrentUser();",
+                    "this.getViewModel().set('user', user);",
+                    "//console.log( this.getViewModel().data );"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onContainerBeforeRender",
+            "designerId": "fbffbd12-f4c9-4ab0-baba-6b60407069e4"
         }
     ]
 }

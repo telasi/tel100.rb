@@ -15,5 +15,12 @@
 
 Ext.define('Tel100.view.workarea.MainViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.workareamain'
+  alias: 'controller.workareamain',
+
+  onContainerBeforeRender: function(component, eOpts) {
+    var user = Helpers.getCurrentUser();
+    this.getViewModel().set('user', user);
+    //console.log( this.getViewModel().data );
+  }
+
 });

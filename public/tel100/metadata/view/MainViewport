@@ -95,14 +95,9 @@
                                 "itemId": "username",
                                 "layout|anchor": "100%",
                                 "name": null,
-                                "value": [
-                                    "{username}"
-                                ]
+                                "value": null
                             },
                             "name": "MyTextField",
-                            "configAlternates": {
-                                "value": "binding"
-                            },
                             "designerId": "0273030a-b236-4c08-9b72-06ed52cdec1b"
                         },
                         {
@@ -118,14 +113,9 @@
                                 "inputType": "password",
                                 "itemId": "password",
                                 "layout|anchor": "100%",
-                                "value": [
-                                    "{password}"
-                                ]
+                                "value": null
                             },
                             "name": "MyTextField1",
-                            "configAlternates": {
-                                "value": "binding"
-                            },
                             "designerId": "52256482-1f47-4c28-a595-087ba20c6122"
                         },
                         {
@@ -255,7 +245,10 @@
                         "type": "array"
                     },
                     "codeClass": null,
-                    "name": "workarea.main",
+                    "userConfig": {
+                        "itemId": "workarea-main"
+                    },
+                    "name": "workarea.main1",
                     "designerId": "534b4012-67c5-46d7-aebc-714a1f339da9",
                     "masterInstanceId": "cb5e8370-3c8e-4d93-81e3-d5a1f16eaffa"
                 }
