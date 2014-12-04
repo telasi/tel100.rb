@@ -21,6 +21,15 @@ Ext.define('Tel100.view.MainViewportViewController', {
     'Tel100.model.User'
   ],
 
+  openWorkingArea: function() {
+    var workingAreaIndex = 1;
+    var view = this.getView();
+    var layout = view.getLayout();
+    //var workingArea = layout.getLayoutItems()[workingAreaIndex];
+    //workingArea.setViewModel();
+    layout.setActiveItem(workingAreaIndex);
+  },
+
   onAfterRender: function(component, eOpts) {
     var txtUsername = component.down('#username');
     var txtPassword = component.down('#password');
@@ -36,7 +45,8 @@ Ext.define('Tel100.view.MainViewportViewController', {
   },
 
   onLogin: function(button, e, eOpts) {
-    var view = this.getView();
+    var self = this;
+    var view = self.getView();
     view.setLoading(true);
 
     var txtUsername = view.down('#username');
@@ -61,7 +71,7 @@ Ext.define('Tel100.view.MainViewportViewController', {
         var user = new Tel100.model.User(data.user);
         Helpers.setCurrentUser(user, password);
         Helpers.setPreferenceValue('username', username);
-        // TODO: open working area
+        self.openWorkingArea();
       }
     });
   }

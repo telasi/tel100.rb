@@ -12,5 +12,28 @@
             "Tel100.model.User"
         ]
     },
-    "designerId": "11ebd5ac-fb76-4a03-9272-67ac7b9dcd9d"
+    "designerId": "11ebd5ac-fb76-4a03-9272-67ac7b9dcd9d",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "openWorkingArea",
+                "implHandler": [
+                    "var workingAreaIndex = 1;",
+                    "var view = this.getView();",
+                    "var layout = view.getLayout();",
+                    "//var workingArea = layout.getLayoutItems()[workingAreaIndex];",
+                    "//workingArea.setViewModel();",
+                    "layout.setActiveItem(workingAreaIndex);"
+                ]
+            },
+            "name": "openWorkingArea",
+            "designerId": "4cfc5de6-c004-4733-a400-7b5825f4b498"
+        }
+    ]
 }

@@ -22,7 +22,8 @@ Ext.define('Tel100.view.MainViewport', {
     'Tel100.view.MainViewportViewController',
     'Ext.form.Panel',
     'Ext.form.field.ComboBox',
-    'Ext.button.Button'
+    'Ext.button.Button',
+    'Ext.form.Label'
   ],
 
   controller: 'mainviewport',
@@ -107,7 +108,13 @@ Ext.define('Tel100.view.MainViewport', {
       ]
     },
     {
-      xtype: 'container'
+      xtype: 'container',
+      items: [
+        {
+          xtype: 'label',
+          text: 'My Label'
+        }
+      ]
     }
   ]
 

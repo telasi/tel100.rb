@@ -54,7 +54,7 @@
             "userConfig": {
                 "container|align": "center",
                 "container|pack": "center",
-                "designer|displayName": "login-page",
+                "designer|displayName": "authentication-area",
                 "layout": "vbox"
             },
             "name": "MyContainer1",
@@ -187,7 +187,8 @@
                                             "userConfig": {
                                                 "fn": "onLogin",
                                                 "implHandler": [
-                                                    "var view = this.getView();",
+                                                    "var self = this;",
+                                                    "var view = self.getView();",
                                                     "view.setLoading(true);",
                                                     "",
                                                     "var txtUsername = view.down('#username');",
@@ -212,7 +213,7 @@
                                                     "    var user = new Tel100.model.User(data.user);",
                                                     "    Helpers.setCurrentUser(user, password);",
                                                     "    Helpers.setPreferenceValue('username', username);",
-                                                    "    // TODO: open working area",
+                                                    "    self.openWorkingArea();",
                                                     "  }",
                                                     "});"
                                                 ],
@@ -238,10 +239,25 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "docs-page"
+                "designer|displayName": "working-area"
             },
             "name": "MyContainer2",
-            "designerId": "1ff49520-dd20-4e55-aebf-977d07ce5134"
+            "designerId": "1ff49520-dd20-4e55-aebf-977d07ce5134",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "text": "My Label"
+                    },
+                    "name": "MyLabel",
+                    "designerId": "6f85ce40-3e68-43ba-8945-3fe2d11d3c52"
+                }
+            ]
         }
     ]
 }
