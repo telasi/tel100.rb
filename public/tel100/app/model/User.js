@@ -18,8 +18,8 @@ Ext.define('Tel100.model.User', {
 
   requires: [
     'Ext.data.field.Integer',
-    'Ext.data.field.String',
     'Ext.data.field.Boolean',
+    'Ext.data.field.String',
     'Ext.data.field.Date'
   ],
 
@@ -29,12 +29,40 @@ Ext.define('Tel100.model.User', {
       name: 'id'
     },
     {
+      type: 'boolean',
+      name: 'is_active'
+    },
+    {
+      type: 'boolean',
+      name: 'is_admin'
+    },
+    {
       type: 'string',
       name: 'email'
     },
     {
+      type: 'boolean',
+      name: 'email_confirmed'
+    },
+    {
       type: 'string',
       name: 'mobile'
+    },
+    {
+      type: 'string',
+      calculate: function(data) {
+        var mobile = data.mobile;
+        if (mobile && mobile.length === 9) {
+          return '(' + mobile.substr(0,3) + ')' + mobile.substr(3,3) + '-' + mobile.substr(6,3);
+        }
+        return mobile;
+      },
+      depends: 'mobile',
+      name: 'formatted_mobile'
+    },
+    {
+      type: 'boolean',
+      name: 'mobile_confirmed'
     },
     {
       type: 'string',
@@ -43,22 +71,6 @@ Ext.define('Tel100.model.User', {
     {
       type: 'string',
       name: 'username'
-    },
-    {
-      type: 'boolean',
-      name: 'email_confirmed'
-    },
-    {
-      type: 'boolean',
-      name: 'mobile_confirmed'
-    },
-    {
-      type: 'boolean',
-      name: 'is_active'
-    },
-    {
-      type: 'boolean',
-      name: 'is_admin'
     },
     {
       type: 'int',

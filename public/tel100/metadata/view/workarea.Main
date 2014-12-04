@@ -23,7 +23,7 @@
                 "type": "array"
             },
             "codeClass": null,
-            "name": "component.localeselector3",
+            "name": "component.localeselector8",
             "designerId": "251059c3-bdfc-42ad-8753-6df9aa5ef300",
             "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
         },
@@ -46,24 +46,22 @@
             "designerId": "aecab09e-6a2a-4a6d-b33e-4439999c3527"
         },
         {
-            "type": "viewcontrollereventbinding",
+            "type": "Ext.form.Label",
             "reference": {
-                "name": "listeners",
+                "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onContainerBeforeRender",
-                "implHandler": [
-                    "var user = Helpers.getCurrentUser();",
-                    "this.getViewModel().set('user', user);",
-                    "//console.log( this.getViewModel().data );"
-                ],
-                "name": "beforerender",
-                "scope": "me"
+                "text": [
+                    "{currentUser.formatted_mobile}"
+                ]
             },
-            "name": "onContainerBeforeRender",
-            "designerId": "fbffbd12-f4c9-4ab0-baba-6b60407069e4"
+            "name": "MyLabel",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "847e7174-28cc-4e0f-8681-4ca805704fc7"
         }
     ]
 }

@@ -19,13 +19,11 @@ Ext.define('Tel100.view.workarea.Main', {
 
   requires: [
     'Tel100.view.workarea.MainViewModel',
-    'Tel100.view.workarea.MainViewController',
     'Tel100.view.component.LocaleSelector',
     'Ext.button.Segmented',
     'Ext.form.Label'
   ],
 
-  controller: 'workareamain',
   viewModel: {
     type: 'workareamain'
   },
@@ -39,10 +37,13 @@ Ext.define('Tel100.view.workarea.Main', {
       bind: {
         text: '{currentUser.full_name}'
       }
+    },
+    {
+      xtype: 'label',
+      bind: {
+        text: '{currentUser.formatted_mobile}'
+      }
     }
-  ],
-  listeners: {
-    beforerender: 'onContainerBeforeRender'
-  }
+  ]
 
 });
