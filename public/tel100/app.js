@@ -23,6 +23,9 @@ Ext.application({
   models: [
     'User'
   ],
+  stores: [
+    'LocaleStore'
+  ],
   views: [
     'MainViewport'
   ],

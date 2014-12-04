@@ -9,7 +9,6 @@
                 },
                 {
                     "id": "2fca3dff-1a15-4caa-aee2-1ae85c595b16",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "8e9505dc-cec1-4c92-8e85-5846f88db9be",
@@ -48,9 +47,22 @@
             "expanded": false
         },
         "11ebd5ac-fb76-4a03-9272-67ac7b9dcd9d": {
-            "id": "11ebd5ac-fb76-4a03-9272-67ac7b9dcd9d"
+            "id": "11ebd5ac-fb76-4a03-9272-67ac7b9dcd9d",
+            "expanded": false
         },
-        "store": true,
+        "store": false,
+        "a102f027-c05d-4091-9554-d5d0b9858d15": {
+            "id": "a102f027-c05d-4091-9554-d5d0b9858d15",
+            "expanded": false,
+            "cn": [
+                {
+                    "id": "4f8755f1-171b-43ed-b6e9-86c617a2a7ee"
+                },
+                {
+                    "id": "84cfb183-63e3-4566-9954-07d8498e0f79"
+                }
+            ]
+        },
         "model": true,
         "1e680ed7-d4f0-4feb-bc97-d1bf05596e55": {
             "id": "1e680ed7-d4f0-4feb-bc97-d1bf05596e55",
@@ -91,7 +103,7 @@
             ]
         },
         "controller": true,
-        "resource": true,
+        "resource": false,
         "d90c35f3-3fd2-4570-aaf8-5d9c0995e1a9": {
             "id": "d90c35f3-3fd2-4570-aaf8-5d9c0995e1a9"
         },
@@ -110,16 +122,15 @@
     },
     "tabState": {
         "openTabs": [
-            "82141980-59a3-42da-ab8f-e5ea261e8aad",
-            "ff362d59-f925-424d-b9cd-49a4562ef927"
+            "a102f027-c05d-4091-9554-d5d0b9858d15"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "82141980-59a3-42da-ab8f-e5ea261e8aad",
-        "selectedInstance": "44e1ddb1-2f8f-45c2-8f46-a404a8b8bfec"
+        "topInstance": "1e680ed7-d4f0-4feb-bc97-d1bf05596e55",
+        "selectedInstance": "1e680ed7-d4f0-4feb-bc97-d1bf05596e55"
     },
     "editMode": "code",
     "userSettings": {

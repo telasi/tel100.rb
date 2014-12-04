@@ -25,7 +25,11 @@
         "generateArchitectVersion": true,
         "projectHasEnabledWebServer": true,
         "lockUrlPrefix": true,
-        "installStatus": "Not Installed"
+        "installStatus": "Not Installed",
+        "lastBuildSelection": {
+            "value": "webBuild",
+            "display": "Build web app"
+        }
     },
     "xdsVersion": "3.1.0",
     "xdsBuild": 1943,
@@ -38,7 +42,9 @@
             "fb7e180b-ae8c-430c-80f4-20173f5381d1",
             "11ebd5ac-fb76-4a03-9272-67ac7b9dcd9d"
         ],
-        "store": [],
+        "store": [
+            "a102f027-c05d-4091-9554-d5d0b9858d15"
+        ],
         "controller": [],
         "model": [
             "1e680ed7-d4f0-4feb-bc97-d1bf05596e55"
