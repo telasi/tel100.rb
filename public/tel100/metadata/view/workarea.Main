@@ -62,12 +62,28 @@
                             "<i class=\"fa fa-user\"></i> {currentUser.full_name}"
                         ]
                     },
-                    "name": "workarea.usermenu1",
+                    "name": "workarea.usermenu",
                     "configAlternates": {
                         "text": "binding"
                     },
                     "designerId": "cfa1e1a9-1e3a-4ec0-b8c5-498103e1adce",
                     "masterInstanceId": "4341e0bd-e420-482c-9c3c-b901b131b5e1"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 0,
+                        "margin": "0 0 0 10",
+                        "width": ""
+                    },
+                    "name": "component.localeselector",
+                    "designerId": "d87cbc40-16fe-45ee-b8ac-7b75dbda21bf",
+                    "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
                 }
             ]
         }

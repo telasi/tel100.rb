@@ -20,9 +20,10 @@ Ext.define('Tel100.view.workarea.Main', {
   requires: [
     'Tel100.view.workarea.MainViewModel',
     'Tel100.view.workarea.UserMenu',
-    'Ext.container.Container',
+    'Tel100.view.component.LocaleSelector',
     'Ext.toolbar.Spacer',
-    'Ext.button.Split'
+    'Ext.button.Split',
+    'Ext.button.Segmented'
   ],
 
   viewModel: {
@@ -49,6 +50,12 @@ Ext.define('Tel100.view.workarea.Main', {
           bind: {
             text: '<i class="fa fa-user"></i> {currentUser.full_name}'
           }
+        },
+        {
+          xtype: 'componentlocaleselector',
+          flex: 0,
+          margin: '0 0 0 10',
+          width: ''
         }
       ]
     }
