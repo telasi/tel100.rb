@@ -25,6 +25,7 @@ Ext.define('Tel100.view.workarea.Main', {
     'Tel100.view.workarea.Applications',
     'Ext.button.Segmented',
     'Ext.toolbar.Spacer',
+    'Ext.form.Label',
     'Ext.button.Split'
   ],
 
@@ -48,6 +49,16 @@ Ext.define('Tel100.view.workarea.Main', {
           xtype: 'workareaapplicationmenu',
           itemId: 'application-menu',
           flex: 0
+        },
+        {
+          xtype: 'tbspacer',
+          flex: 1
+        },
+        {
+          xtype: 'label',
+          cls: 'application-title',
+          html: '<i class="fa fa-send-o"></i> tel100',
+          text: ''
         },
         {
           xtype: 'tbspacer',

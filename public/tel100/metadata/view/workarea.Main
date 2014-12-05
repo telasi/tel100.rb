@@ -48,7 +48,7 @@
                         "itemId": "application-menu",
                         "layout|flex": 0
                     },
-                    "name": "workarea.applicationmenu",
+                    "name": "workarea.applicationmenu1",
                     "designerId": "59b95f24-6ebe-4493-a247-6b2b5e17ecc1",
                     "customConfigs": [
                         {
@@ -71,6 +71,35 @@
                     },
                     "name": "MySpacer",
                     "designerId": "9b8ed914-e888-4f2c-81c4-4ce2b951674d"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "application-title",
+                        "html": "<i class=\"fa fa-send-o\"></i> tel100",
+                        "layout|flex": null,
+                        "text": ""
+                    },
+                    "name": "MyLabel2",
+                    "designerId": "782fcf9b-969e-495f-b9a5-d3af825bc9f2"
+                },
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 1
+                    },
+                    "name": "MySpacer1",
+                    "designerId": "041c9f13-8c19-4b4e-9107-081ed6664812"
                 },
                 {
                     "type": "linkedinstance",
@@ -104,7 +133,7 @@
                         "layout|flex": 0,
                         "margin": "0 0 0 10"
                     },
-                    "name": "workarea.localeselector1",
+                    "name": "workarea.localeselector2",
                     "designerId": "d87cbc40-16fe-45ee-b8ac-7b75dbda21bf",
                     "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
                 }
@@ -122,7 +151,7 @@
                 "itemId": "modules-container",
                 "layout|region": "center"
             },
-            "name": "workarea.applications",
+            "name": "workarea.applications1",
             "designerId": "5b842500-1a0d-43c3-b0cd-3252ddf3ebee",
             "masterInstanceId": "4e8e1ac4-6d28-4dc8-8957-cebf5f79a2c9"
         }
