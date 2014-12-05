@@ -71,6 +71,43 @@
             },
             "name": "MyButton5",
             "designerId": "490774ba-b429-481f-99f6-2af9ca895122"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "var currApplication = this.getCurrentApplication();",
+                    "this.setCurrentApplication(currApplication, { toggleButton: true, switchApplication: true });"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "bbd641e0-1491-49de-a98c-292c48437ccc"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onToggle",
+                "implHandler": [
+                    "this.setCurrentApplication(button.itemId, { switchApplication: true });"
+                ],
+                "name": "toggle",
+                "scope": "me"
+            },
+            "name": "onToggle",
+            "designerId": "023eae6a-8126-41e7-98e5-5cd75ed4738e"
         }
     ]
 }

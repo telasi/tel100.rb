@@ -15,5 +15,32 @@
 
 Ext.define('Tel100.view.workarea.ApplicationMenuViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.workareaapplicationmenu'
+  alias: 'controller.workareaapplicationmenu',
+
+  getCurrentApplication: function() {
+    return Helpers.getPreferenceValue('current-application', 'docs');
+  },
+
+  setCurrentApplication: function(name, opts) {
+    var mainWorkarea = this.getView().up('mainWorkarea');
+    if (opts && opts.toggleButton) {
+      var applicationButton = this.getView().down('#' + name);
+      applicationButton.toggle();
+    }
+    if (opts && opts.switchApplication) {
+      var modulesContainer = mainWorkarea.down('#modules-container');
+      modulesContainer.getLayout().setActiveItem('module-'+name);
+    }
+    Helpers.setPreferenceValue('current-application', name);
+  },
+
+  onBeforeRender: function(component, eOpts) {
+    var currApplication = this.getCurrentApplication();
+    this.setCurrentApplication(currApplication, { toggleButton: true, switchApplication: true });
+  },
+
+  onToggle: function(segmentedbutton, button, isPressed, eOpts) {
+    this.setCurrentApplication(button.itemId, { switchApplication: true });
+  }
+
 });

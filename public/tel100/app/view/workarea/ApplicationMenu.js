@@ -19,9 +19,11 @@ Ext.define('Tel100.view.workarea.ApplicationMenu', {
 
   requires: [
     'Tel100.view.workarea.ApplicationMenuViewModel',
+    'Tel100.view.workarea.ApplicationMenuViewController',
     'Ext.button.Button'
   ],
 
+  controller: 'workareaapplicationmenu',
   viewModel: {
     type: 'workareaapplicationmenu'
   },
@@ -45,6 +47,10 @@ Ext.define('Tel100.view.workarea.ApplicationMenu', {
       itemId: 'admin',
       text: 'admin'
     }
-  ]
+  ],
+  listeners: {
+    beforerender: 'onBeforeRender',
+    toggle: 'onToggle'
+  }
 
 });

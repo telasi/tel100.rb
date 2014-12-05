@@ -6,9 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "workareamain",
+        "designer|userAlias": "mainWorkarea",
         "designer|userClassName": "workarea.Main",
         "height": null,
+        "itemId": "main-workarea",
         "layout": "border",
         "width": null
     },
@@ -49,6 +50,13 @@
                     },
                     "name": "workarea.applicationmenu",
                     "designerId": "59b95f24-6ebe-4493-a247-6b2b5e17ecc1",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "moduleContainer",
+                            "type": false
+                        }
+                    ],
                     "masterInstanceId": "ce619035-9a0f-4ce7-b27e-92d85e5331a1"
                 },
                 {
@@ -110,6 +118,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|createAlias": null,
                 "itemId": "modules-container",
                 "layout|region": "center"
             },

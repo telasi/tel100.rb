@@ -9,5 +9,52 @@
         "designer|userAlias": "workareaapplicationmenu",
         "designer|userClassName": "workarea.ApplicationMenuViewController"
     },
-    "designerId": "773ef472-46c1-4c0a-9027-5f6012476550"
+    "designerId": "773ef472-46c1-4c0a-9027-5f6012476550",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getCurrentApplication",
+                "implHandler": [
+                    "return Helpers.getPreferenceValue('current-application', 'docs');"
+                ]
+            },
+            "name": "getCurrentApplication",
+            "designerId": "446f1a8e-86d4-48cd-a13a-9aa132caecfa"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "name",
+                    "opts"
+                ],
+                "fn": "setCurrentApplication",
+                "implHandler": [
+                    "var mainWorkarea = this.getView().up('mainWorkarea');",
+                    "if (opts && opts.toggleButton) {",
+                    "  var applicationButton = this.getView().down('#' + name);",
+                    "  applicationButton.toggle();",
+                    "}",
+                    "if (opts && opts.switchApplication) {",
+                    "  var modulesContainer = mainWorkarea.down('#modules-container');",
+                    "  modulesContainer.getLayout().setActiveItem('module-'+name);",
+                    "}",
+                    "Helpers.setPreferenceValue('current-application', name);"
+                ]
+            },
+            "name": "setCurrentApplication",
+            "designerId": "35c1e989-f951-498e-b802-aceb77d2ee34"
+        }
+    ]
 }

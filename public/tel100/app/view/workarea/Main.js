@@ -15,7 +15,7 @@
 
 Ext.define('Tel100.view.workarea.Main', {
   extend: 'Ext.container.Container',
-  alias: 'widget.workareamain',
+  alias: 'widget.mainWorkarea',
 
   requires: [
     'Tel100.view.workarea.MainViewModel',
@@ -31,6 +31,7 @@ Ext.define('Tel100.view.workarea.Main', {
   viewModel: {
     type: 'workareamain'
   },
+  itemId: 'main-workarea',
   layout: 'border',
 
   items: [
@@ -45,8 +46,8 @@ Ext.define('Tel100.view.workarea.Main', {
       items: [
         {
           xtype: 'workareaapplicationmenu',
-          flex: 0,
-          itemId: 'application-menu'
+          itemId: 'application-menu',
+          flex: 0
         },
         {
           xtype: 'tbspacer',
@@ -68,8 +69,8 @@ Ext.define('Tel100.view.workarea.Main', {
     },
     {
       xtype: 'workareaapplications',
-      region: 'center',
-      itemId: 'modules-container'
+      itemId: 'modules-container',
+      region: 'center'
     }
   ]
 

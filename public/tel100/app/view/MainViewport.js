@@ -121,7 +121,7 @@ Ext.define('Tel100.view.MainViewport', {
       layout: 'fit',
       items: [
         {
-          xtype: 'workareamain',
+          xtype: 'mainWorkarea',
           itemId: 'workarea-main'
         }
       ]
