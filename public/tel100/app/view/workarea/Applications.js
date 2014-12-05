@@ -29,8 +29,6 @@ Ext.define('Tel100.view.workarea.Applications', {
   viewModel: {
     type: 'workareaapplications'
   },
-  height: 250,
-  width: 400,
 
   layout: {
     type: 'card',

@@ -9,9 +9,9 @@
         "container|deferredRender": true,
         "designer|userAlias": "workareaapplications",
         "designer|userClassName": "workarea.Applications",
-        "height": 250,
+        "height": null,
         "layout": "card",
-        "width": 400
+        "width": null
     },
     "name": "MyContainer4",
     "designerId": "4e8e1ac4-6d28-4dc8-8957-cebf5f79a2c9",
@@ -28,7 +28,7 @@
             "userConfig": {
                 "itemId": "module-docs"
             },
-            "name": "module.docs",
+            "name": "module.docs3",
             "designerId": "92fa0a76-7203-45da-928c-e84f0d71014e",
             "masterInstanceId": "4d6a853b-d00f-43aa-8874-4ba811cd57de"
         },
@@ -42,7 +42,7 @@
             "userConfig": {
                 "itemId": "module-tasks"
             },
-            "name": "module.tasks",
+            "name": "module.tasks3",
             "designerId": "bf7c5d74-d065-4e6e-b5c5-3db6b52f5faf",
             "masterInstanceId": "71110b2d-f97e-4d1c-a0dc-b81355b9666e"
         },
@@ -56,7 +56,7 @@
             "userConfig": {
                 "itemId": "module-hr"
             },
-            "name": "module.hr",
+            "name": "module.hr3",
             "designerId": "767ed7c8-d905-4357-b603-fb942b598e1c",
             "masterInstanceId": "91fa23ee-6174-458d-b7d1-2884163f49e7"
         },
@@ -70,7 +70,7 @@
             "userConfig": {
                 "itemId": "module-admin"
             },
-            "name": "module.admin1",
+            "name": "module.admin4",
             "designerId": "3140aad3-e966-492f-aef5-30fb1b2f9b79",
             "masterInstanceId": "ccd2d2bc-75bf-486a-8974-0cce128d04da"
         }
