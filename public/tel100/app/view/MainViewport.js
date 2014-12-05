@@ -20,7 +20,7 @@ Ext.define('Tel100.view.MainViewport', {
   requires: [
     'Tel100.view.MainViewportViewModel',
     'Tel100.view.MainViewportViewController',
-    'Tel100.view.component.LocaleSelector',
+    'Tel100.view.workarea.LocaleSelector',
     'Tel100.view.workarea.Main',
     'Ext.form.Panel',
     'Ext.form.field.Text',
@@ -109,7 +109,7 @@ Ext.define('Tel100.view.MainViewport', {
           ]
         },
         {
-          xtype: 'componentlocaleselector',
+          xtype: 'workarealocaleselector',
           margin: 10,
           margins: ''
         }

@@ -29,7 +29,7 @@ Ext.application({
   views: [
     'MainViewport',
     'workarea.Main',
-    'component.LocaleSelector',
+    'workarea.LocaleSelector',
     'workarea.UserMenu',
     'workarea.ApplicationMenu'
   ],

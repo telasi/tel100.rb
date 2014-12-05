@@ -92,10 +92,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "layout|flex": 0,
-                        "margin": "0 0 0 10",
-                        "width": ""
+                        "margin": "0 0 0 10"
                     },
-                    "name": "component.localeselector",
+                    "name": "workarea.localeselector1",
                     "designerId": "d87cbc40-16fe-45ee-b8ac-7b75dbda21bf",
                     "masterInstanceId": "cbf4d988-4940-475a-acad-1c842f8621a4"
                 }

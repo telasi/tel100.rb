@@ -6,10 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "componentlocaleselector",
-        "designer|userClassName": "component.LocaleSelector",
+        "designer|userAlias": "workarealocaleselector",
+        "designer|userClassName": "workarea.LocaleSelector",
         "height": null,
-        "width": 150
+        "width": ""
     },
     "name": "MySegmentedButton1",
     "designerId": "cbf4d988-4940-475a-acad-1c842f8621a4",

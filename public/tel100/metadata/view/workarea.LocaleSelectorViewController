@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "componentlocaleselector",
-        "designer|userClassName": "component.LocaleSelectorViewController"
+        "designer|userAlias": "workarealocaleselector",
+        "designer|userClassName": "workarea.LocaleSelectorViewController"
     },
     "designerId": "dae81cd2-2c11-4fe7-ba04-2cd83ecd419f"
 }
