@@ -1,0 +1,33 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "moduledocs",
+        "designer|userClassName": "module.Docs",
+        "height": 250,
+        "width": 400
+    },
+    "name": "MyContainer4",
+    "designerId": "4d6a853b-d00f-43aa-8874-4ba811cd57de",
+    "viewControllerInstanceId": "45e4ed33-fc57-4679-94bc-d981eb5ddaaa",
+    "viewModelInstanceId": "bd2388f1-cb8f-4abf-968d-c3d7f1ec96ba",
+    "cn": [
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "text": "This is DOCS module"
+            },
+            "name": "MyLabel1",
+            "designerId": "34b02619-aecc-4212-bbe1-bba584868391"
+        }
+    ]
+}

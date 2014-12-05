@@ -20,7 +20,8 @@
             "workarea.UserMenu",
             "workarea.ApplicationMenu",
             "module.HR",
-            "module.Tasks"
+            "module.Tasks",
+            "module.Docs"
         ]
     },
     "name": "Application",
