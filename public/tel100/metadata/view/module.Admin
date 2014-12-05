@@ -1,0 +1,33 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "moduleadmin",
+        "designer|userClassName": "module.Admin",
+        "height": 250,
+        "width": 400
+    },
+    "name": "MyContainer4",
+    "designerId": "ccd2d2bc-75bf-486a-8974-0cce128d04da",
+    "viewControllerInstanceId": "c344b1f9-109c-4477-a582-354f0a907234",
+    "viewModelInstanceId": "8cc32694-3026-42bb-a628-36db15e26dcf",
+    "cn": [
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "text": "This is ADMIN module"
+            },
+            "name": "MyLabel1",
+            "designerId": "343de74c-e439-42c3-8d8d-a594b2a03f77"
+        }
+    ]
+}

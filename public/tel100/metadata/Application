@@ -21,7 +21,8 @@
             "workarea.ApplicationMenu",
             "module.HR",
             "module.Tasks",
-            "module.Docs"
+            "module.Docs",
+            "module.Admin"
         ]
     },
     "name": "Application",
