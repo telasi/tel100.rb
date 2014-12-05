@@ -35,7 +35,8 @@ Ext.application({
     'module.HR',
     'module.Tasks',
     'module.Docs',
-    'module.Admin'
+    'module.Admin',
+    'workarea.Applications'
   ],
   name: 'Tel100',
 
