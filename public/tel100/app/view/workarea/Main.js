@@ -19,11 +19,12 @@ Ext.define('Tel100.view.workarea.Main', {
 
   requires: [
     'Tel100.view.workarea.MainViewModel',
+    'Tel100.view.workarea.ApplicationMenu',
     'Tel100.view.workarea.UserMenu',
     'Tel100.view.component.LocaleSelector',
+    'Ext.button.Segmented',
     'Ext.toolbar.Spacer',
-    'Ext.button.Split',
-    'Ext.button.Segmented'
+    'Ext.button.Split'
   ],
 
   viewModel: {
@@ -42,6 +43,10 @@ Ext.define('Tel100.view.workarea.Main', {
       },
       items: [
         {
+          xtype: 'workareaapplicationmenu',
+          flex: 0
+        },
+        {
           xtype: 'tbspacer',
           flex: 1
         },
@@ -53,9 +58,9 @@ Ext.define('Tel100.view.workarea.Main', {
         },
         {
           xtype: 'componentlocaleselector',
-          flex: 0,
           margin: '0 0 0 10',
-          width: ''
+          width: '',
+          flex: 0
         }
       ]
     }

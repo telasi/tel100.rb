@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "workareaapplicationmenu",
+        "designer|userClassName": "workarea.ApplicationMenuViewController"
+    },
+    "designerId": "773ef472-46c1-4c0a-9027-5f6012476550"
+}

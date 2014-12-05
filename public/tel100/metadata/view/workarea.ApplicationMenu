@@ -1,0 +1,76 @@
+{
+    "type": "Ext.button.Segmented",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "workareaapplicationmenu",
+        "designer|userClassName": "workarea.ApplicationMenu",
+        "height": "",
+        "width": ""
+    },
+    "name": "MySegmentedButton",
+    "designerId": "ce619035-9a0f-4ce7-b27e-92d85e5331a1",
+    "viewControllerInstanceId": "773ef472-46c1-4c0a-9027-5f6012476550",
+    "viewModelInstanceId": "ea2c6a0a-b4c1-437e-8c7b-66146128962b",
+    "cn": [
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "docs",
+                "text": "docs"
+            },
+            "name": "MyButton",
+            "designerId": "57493ec6-c507-487c-a814-afbdbe442b5d"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "tasks",
+                "text": "tasks"
+            },
+            "name": "MyButton1",
+            "designerId": "3e44c85a-2317-4c07-9147-9ad27c17e3ac"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "hr",
+                "text": "hr"
+            },
+            "name": "MyButton2",
+            "designerId": "8459e02b-d0fd-41d9-a6b2-9a99594dbd71"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "admin",
+                "text": "admin"
+            },
+            "name": "MyButton5",
+            "designerId": "490774ba-b429-481f-99f6-2af9ca895122"
+        }
+    ]
+}

@@ -37,6 +37,20 @@
             "designerId": "4778beba-7bf1-416b-bb2f-b816840285b5",
             "cn": [
                 {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 0
+                    },
+                    "name": "workarea.applicationmenu",
+                    "designerId": "59b95f24-6ebe-4493-a247-6b2b5e17ecc1",
+                    "masterInstanceId": "ce619035-9a0f-4ce7-b27e-92d85e5331a1"
+                },
+                {
                     "type": "Ext.toolbar.Spacer",
                     "reference": {
                         "name": "items",
@@ -62,7 +76,7 @@
                             "<i class=\"fa fa-user\"></i> {currentUser.full_name}"
                         ]
                     },
-                    "name": "workarea.usermenu",
+                    "name": "workarea.usermenu1",
                     "configAlternates": {
                         "text": "binding"
                     },
