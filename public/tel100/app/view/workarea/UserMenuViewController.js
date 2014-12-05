@@ -15,5 +15,10 @@
 
 Ext.define('Tel100.view.workarea.UserMenuViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.workareausermenu'
+  alias: 'controller.workareausermenu',
+
+  onLogoutClicked: function(item, e, eOpts) {
+    window.location.reload();
+  }
+
 });

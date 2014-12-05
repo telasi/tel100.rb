@@ -19,10 +19,12 @@ Ext.define('Tel100.view.workarea.UserMenu', {
 
   requires: [
     'Tel100.view.workarea.UserMenuViewModel',
+    'Tel100.view.workarea.UserMenuViewController',
     'Ext.menu.Menu',
     'Ext.menu.Separator'
   ],
 
+  controller: 'workareausermenu',
   viewModel: {
     type: 'workareausermenu'
   },
@@ -47,6 +49,9 @@ Ext.define('Tel100.view.workarea.UserMenu', {
         xtype: 'menuitem',
         bind: {
           text: '{i18n.user.logout}'
+        },
+        listeners: {
+          click: 'onLogoutClicked'
         }
       }
     ]
