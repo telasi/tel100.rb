@@ -18,7 +18,8 @@
             "workarea.Main",
             "workarea.LocaleSelector",
             "workarea.UserMenu",
-            "workarea.ApplicationMenu"
+            "workarea.ApplicationMenu",
+            "module.HR"
         ]
     },
     "name": "Application",

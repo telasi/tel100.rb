@@ -1,0 +1,33 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "modulehr",
+        "designer|userClassName": "module.HR",
+        "height": 250,
+        "width": 400
+    },
+    "name": "MyContainer4",
+    "designerId": "91fa23ee-6174-458d-b7d1-2884163f49e7",
+    "viewControllerInstanceId": "7ced9be4-26cd-44fc-8be9-a653d1dcff17",
+    "viewModelInstanceId": "71f0636f-b018-48ef-b8d6-0972a9917aaf",
+    "cn": [
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "text": "this is HR module"
+            },
+            "name": "MyLabel",
+            "designerId": "6102f727-9711-4997-814b-a9dfb0c79f15"
+        }
+    ]
+}
