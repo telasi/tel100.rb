@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "hrtree",
+        "designer|userClassName": "hr.TreeViewController"
+    },
+    "designerId": "f370294e-4b46-4cba-b278-e7311aeec504"
+}

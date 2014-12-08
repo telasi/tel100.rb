@@ -24,7 +24,8 @@ Ext.application({
     'User'
   ],
   stores: [
-    'LocaleStore'
+    'LocaleStore',
+    'hr.Tree'
   ],
   views: [
     'MainViewport',
@@ -36,7 +37,8 @@ Ext.application({
     'module.Tasks',
     'module.Docs',
     'module.Admin',
-    'workarea.Applications'
+    'workarea.Applications',
+    'hr.Tree'
   ],
   name: 'Tel100',
 

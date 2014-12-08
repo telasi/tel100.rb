@@ -1,0 +1,92 @@
+{
+    "type": "Ext.tree.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyCls": [
+            "x-tree-noicon"
+        ],
+        "designer|userAlias": "hrTree",
+        "designer|userClassName": "hr.Tree",
+        "displayField": null,
+        "height": null,
+        "hideHeaders": true,
+        "root": null,
+        "store": "hr.Tree",
+        "title": "My Tree Panel",
+        "width": null
+    },
+    "name": "MyTreePanel",
+    "designerId": "7b81b19c-f37f-48e7-9a78-97c98c52673f",
+    "viewControllerInstanceId": "f370294e-4b46-4cba-b278-e7311aeec504",
+    "viewModelInstanceId": "1f5d506c-5dd3-4233-aa29-340b976d8c5e",
+    "cn": [
+        {
+            "type": "Ext.tree.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyTreeView",
+            "designerId": "683dda7b-9033-4170-8382-7e26c42ef681"
+        },
+        {
+            "type": "Ext.tree.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "name",
+                "flex": 1,
+                "text": null
+            },
+            "name": "MyTreeColumn",
+            "designerId": "aadda743-c900-426b-8086-3618d9a657a4",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "var isManager = record.get('manager') === 1;",
+                            "var icon = '<i class=\"fa fa-' + record.get('image') + '\"></i>';",
+                            "var name = value;",
+                            "var type = record.get('type');",
+                            "if (type === 'HR::Employee') {",
+                            "  var hasUser = record.get('has_user');",
+                            "  var organization = record.get('organization');",
+                            "  var isManager = record.get('is_manager') === 1;",
+                            "  if (!hasUser) { icon = '<span class=\"text-danger\"><i class=\"fa fa-circle\"></i></span>'; }",
+                            "  if (isManager) { name += ' <strong class=\"label label-success\">' + Helpers.i18n().employee.is_manager + '</strong>'; }",
+                            "  name += ' <span class=\"text-muted\">' + organization + '</span>';",
+                            "}",
+                            "return [icon,name].join(' ');"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "862ac201-7a96-44ec-9a59-c173093bbaff"
+                }
+            ]
+        }
+    ]
+}

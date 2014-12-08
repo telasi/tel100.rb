@@ -37,3 +37,14 @@ i18n.ru.user = {
   profile: 'Управление профилем',
   logout:    'Выход из системы'
 };
+
+// employee
+
+i18n.ka.employee = {
+  is_manager: 'ხელ.'
+};
+
+i18n.ru.employee = {
+  is_manager: 'Рук.'
+};
+
