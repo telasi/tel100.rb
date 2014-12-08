@@ -28,7 +28,6 @@ Ext.define('Tel100.store.hr.Tree', {
     cfg = cfg || {};
     me.callParent([Ext.apply({
       storeId: 'hr.Tree',
-      autoLoad: false,
       proxy: {
         type: 'ajax',
         url: '/api/hr/structure',

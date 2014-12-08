@@ -87,6 +87,25 @@
                     "designerId": "862ac201-7a96-44ec-9a59-c173093bbaff"
                 }
             ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "var root = component.getRootNode();",
+                    "root.expand();"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "d04bb159-d755-4686-9b23-16d68d5621d4"
         }
     ]
 }

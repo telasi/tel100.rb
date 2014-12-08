@@ -19,10 +19,12 @@ Ext.define('Tel100.view.hr.Tree', {
 
   requires: [
     'Tel100.view.hr.TreeViewModel',
+    'Tel100.view.hr.TreeViewController',
     'Ext.tree.View',
     'Ext.tree.Column'
   ],
 
+  controller: 'hrtree',
   viewModel: {
     type: 'hrtree'
   },
@@ -55,6 +57,9 @@ Ext.define('Tel100.view.hr.Tree', {
       dataIndex: 'name',
       flex: 1
     }
-  ]
+  ],
+  listeners: {
+    beforerender: 'onBeforeRender'
+  }
 
 });

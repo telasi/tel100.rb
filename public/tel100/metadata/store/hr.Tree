@@ -6,9 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "autoLoad": false,
+        "autoLoad": null,
         "designer|userAlias": "hrTree",
         "designer|userClassName": "hr.Tree",
+        "root": null,
         "storeId": "hr.Tree"
     },
     "name": "MyTreeStore",
