@@ -22,7 +22,8 @@ Ext.Loader.setConfig({
 Ext.application({
   models: [
     'User',
-    'hr.Employee'
+    'hr.Employee',
+    'hr.Organization'
   ],
   stores: [
     'LocaleStore',

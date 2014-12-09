@@ -8,7 +8,8 @@
     "userConfig": {
         "models": [
             "User",
-            "hr.Employee"
+            "hr.Employee",
+            "hr.Organization"
         ],
         "name": "Tel100",
         "stores": [
