@@ -12,5 +12,16 @@ class HR::Organization < ActiveRecord::Base
   def manager?; self.is_manager == 1 end
   def active?; self.is_active == 1 end
 
-  def icon; 'bank' end
+  def to_hash
+    {
+      id: self.id,
+      is_active: self.active?,
+      name: self.name.strip,
+      created_at: self.created_at,
+      updated_at: self.updated_at,
+      # for hr.Tree
+      parent_id: self.parent_id,
+      ext_type: 'hr.Organization'
+    }
+  end
 end
