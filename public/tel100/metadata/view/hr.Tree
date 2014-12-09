@@ -98,8 +98,8 @@
             "userConfig": {
                 "fn": "onBeforeRender",
                 "implHandler": [
-                    "var root = component.getRootNode();",
-                    "root.expand();"
+                    "// var root = component.getRootNode();",
+                    "// root.expand();"
                 ],
                 "name": "beforerender",
                 "scope": "me"
