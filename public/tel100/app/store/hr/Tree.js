@@ -20,8 +20,14 @@ Ext.define('Tel100.store.hr.Tree', {
   requires: [
     'Ext.data.proxy.Ajax',
     'Ext.data.reader.Json',
-    'Ext.data.field.String'
+    'Ext.data.field.String',
+    'Tel100.model.hr.Organization',
+    'Tel100.model.hr.Employee'
   ],
+
+  config: {
+    lazyFill: false
+  },
 
   constructor: function(cfg) {
     var me = this;
@@ -32,7 +38,8 @@ Ext.define('Tel100.store.hr.Tree', {
         type: 'ajax',
         url: '/api/hr/structure',
         reader: {
-          type: 'json'
+          type: 'json',
+          typeProperty: 'ext_type'
         }
       },
       fields: [

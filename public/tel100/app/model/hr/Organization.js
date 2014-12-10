@@ -14,7 +14,7 @@
  */
 
 Ext.define('Tel100.model.hr.Organization', {
-  extend: 'Ext.data.Model',
+  extend: 'Ext.data.TreeModel',
 
   requires: [
     'Ext.data.field.String',
@@ -39,5 +39,11 @@ Ext.define('Tel100.model.hr.Organization', {
       type: 'date',
       name: 'updated_at'
     }
-  ]
+  ],
+  entityName: 'hr.Organization',
+
+  toHRTreeHtml: function() {
+    return this.get('name');
+  }
+
 });

@@ -9,11 +9,23 @@
         "autoLoad": null,
         "designer|userAlias": "hrTree",
         "designer|userClassName": "hr.Tree",
+        "lazyFill": false,
+        "requires": [
+            "Tel100.model.hr.Organization",
+            "Tel100.model.hr.Employee"
+        ],
         "root": null,
         "storeId": "hr.Tree"
     },
     "name": "MyTreeStore",
     "designerId": "106c9b9c-0a43-4578-a643-c785a4d6494b",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "lazyFill",
+            "type": "boolean"
+        }
+    ],
     "cn": [
         {
             "type": "Ext.data.proxy.Ajax",
@@ -35,6 +47,9 @@
                         "type": "object"
                     },
                     "codeClass": null,
+                    "userConfig": {
+                        "typeProperty": "ext_type"
+                    },
                     "name": "MyJsonReader",
                     "designerId": "86b8f756-60b1-4dd3-89e9-7ad7641585e9"
                 }

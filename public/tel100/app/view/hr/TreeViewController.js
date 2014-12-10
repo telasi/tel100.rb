@@ -18,8 +18,8 @@ Ext.define('Tel100.view.hr.TreeViewController', {
   alias: 'controller.hrtree',
 
   onBeforeRender: function(component, eOpts) {
-    // var root = component.getRootNode();
-    // root.expand();
+    var root = component.getRootNode();
+    root.expand();
   }
 
 });

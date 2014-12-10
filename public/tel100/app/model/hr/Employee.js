@@ -14,7 +14,7 @@
  */
 
 Ext.define('Tel100.model.hr.Employee', {
-  extend: 'Ext.data.Model',
+  extend: 'Ext.data.TreeModel',
 
   requires: [
     'Ext.data.field.Integer',
@@ -23,6 +23,7 @@ Ext.define('Tel100.model.hr.Employee', {
     'Ext.data.field.Date'
   ],
 
+  entityName: 'hr.Employee',
   fields: [
     {
       type: 'int',
@@ -95,5 +96,10 @@ Ext.define('Tel100.model.hr.Employee', {
       type: 'date',
       name: 'updated_at'
     }
-  ]
+  ],
+
+  toHRTreeHtml: function() {
+    return this.get('full_name');
+  }
+
 });
