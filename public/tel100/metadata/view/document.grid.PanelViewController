@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentgridpanel",
+        "designer|userClassName": "document.grid.PanelViewController"
+    },
+    "designerId": "0a8366c9-3a12-4384-b761-ddb3953ce8a4"
+}

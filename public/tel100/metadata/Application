@@ -13,7 +13,8 @@
         "name": "Tel100",
         "stores": [
             "LocaleStore",
-            "hr.Tree"
+            "hr.Tree",
+            "document.Base"
         ],
         "views": [
             "MainViewport",
@@ -26,7 +27,8 @@
             "module.Docs",
             "module.Admin",
             "workarea.Applications",
-            "hr.Tree"
+            "hr.Tree",
+            "document.grid.Panel"
         ]
     },
     "name": "Application",

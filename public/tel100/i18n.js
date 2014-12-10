@@ -48,13 +48,46 @@ i18n.ru.user = {
   logout:    'Выход из системы'
 };
 
-// employee
+// document
 
-i18n.ka.employee = {
-  is_manager: 'ხელ.'
+i18n.ka.document = {
+  base: {
+    type: 'სახეობა',
+    direction: 'მიმართულება',
+    subject: 'სათაური',
+    original_number: 'დედანის #',
+    original_date: 'დედანის თარიღი',
+    docnumber: 'ნომერი',
+    docdate: 'თარიღი',
+    page_count: 'გვერდები',
+    additions_count: 'დანართები',
+    due_date: 'ვადა',
+    status: 'სტატუსი',
+    sender: 'ინიციატორი',
+    owner: 'მფლობელი',
+    grid: {
+      title: 'დოკუმენტები'
+    }
+  }
 };
 
-i18n.ru.employee = {
-  is_manager: 'Рук.'
+i18n.ru.document = {
+  base: {
+    type: 'Тип',
+    direction: 'Направление',
+    subject: 'Тема',
+    original_number: '# Оригинала',
+    original_date: 'Дата Оригинала',
+    docnumber: 'Номер',
+    docdate: 'Дата',
+    page_count: 'Страницы',
+    additions_count: 'Приложения',
+    due_date: 'Срок',
+    status: 'Статус',
+    sender: 'Инициатор',
+    owner: 'Владелец',
+    grid: {
+      title: 'Документы'
+    }
+  }
 };
-

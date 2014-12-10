@@ -26,7 +26,8 @@ Ext.application({
   ],
   stores: [
     'LocaleStore',
-    'hr.Tree'
+    'hr.Tree',
+    'document.Base'
   ],
   views: [
     'MainViewport',
@@ -39,7 +40,8 @@ Ext.application({
     'module.Docs',
     'module.Admin',
     'workarea.Applications',
-    'hr.Tree'
+    'hr.Tree',
+    'document.grid.Panel'
   ],
   name: 'Tel100',
 
