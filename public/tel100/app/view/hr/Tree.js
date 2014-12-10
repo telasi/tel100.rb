@@ -56,8 +56,7 @@ Ext.define('Tel100.view.hr.Tree', {
         if (record.toHRTreeHtml) {
           return record.toHRTreeHtml();
         } else {
-          //   debugger;
-          return 'JSC Telasi';
+          return '<i class="fa fa-bolt"></i> ' + Helpers.i18n().app.telasi;
         }
       },
       dataIndex: 'name',
