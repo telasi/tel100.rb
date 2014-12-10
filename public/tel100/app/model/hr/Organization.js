@@ -43,7 +43,7 @@ Ext.define('Tel100.model.hr.Organization', {
   entityName: 'hr.Organization',
 
   toHRTreeHtml: function() {
-    return this.get('name');
+    return ['<i class="fa fa-bank"></i>', this.get('name')].join(' ');
   }
 
 });

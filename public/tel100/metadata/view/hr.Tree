@@ -16,10 +16,15 @@
         "hideHeaders": true,
         "root": null,
         "store": "hr.Tree",
-        "title": "My Tree Panel",
+        "title": [
+            "<i class=\"fa fa-bolt\"></i> {i18n.app.telasi}"
+        ],
         "width": null
     },
     "name": "MyTreePanel",
+    "configAlternates": {
+        "title": "binding"
+    },
     "designerId": "7b81b19c-f37f-48e7-9a78-97c98c52673f",
     "viewControllerInstanceId": "f370294e-4b46-4cba-b278-e7311aeec504",
     "viewModelInstanceId": "1f5d506c-5dd3-4233-aa29-340b976d8c5e",
@@ -68,19 +73,6 @@
                         ],
                         "fn": "renderer",
                         "implHandler": [
-                            "// var isManager = record.get('manager') === 1;",
-                            "// var icon = '<i class=\"fa fa-' + record.get('image') + '\"></i>';",
-                            "// var name = value;",
-                            "// var type = record.get('type');",
-                            "// if (type === 'HR::Employee') {",
-                            "//   var hasUser = record.get('has_user');",
-                            "//   var organization = record.get('organization');",
-                            "//   var isManager = record.get('is_manager') === 1;",
-                            "//   if (!hasUser) { icon = '<span class=\"text-danger\"><i class=\"fa fa-circle\"></i></span>'; }",
-                            "//   if (isManager) { name += ' <strong class=\"label label-success\">' + Helpers.i18n().employee.is_manager + '</strong>'; }",
-                            "//   name += ' <span class=\"text-muted\">' + organization + '</span>';",
-                            "// }",
-                            "// return [icon,name].join(' ');",
                             "if (record.toHRTreeHtml) {",
                             "  return record.toHRTreeHtml();",
                             "} else {",

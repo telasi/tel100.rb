@@ -29,10 +29,12 @@ Ext.define('Tel100.view.hr.Tree', {
     type: 'hrtree'
   },
   bodyCls: 'x-tree-noicon',
-  title: 'My Tree Panel',
   hideHeaders: true,
   store: 'hr.Tree',
 
+  bind: {
+    title: '<i class="fa fa-bolt"></i> {i18n.app.telasi}'
+  },
   viewConfig: {
 
   },
@@ -40,19 +42,6 @@ Ext.define('Tel100.view.hr.Tree', {
     {
       xtype: 'treecolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        // var isManager = record.get('manager') === 1;
-        // var icon = '<i class="fa fa-' + record.get('image') + '"></i>';
-        // var name = value;
-        // var type = record.get('type');
-        // if (type === 'HR::Employee') {
-        //   var hasUser = record.get('has_user');
-        //   var organization = record.get('organization');
-        //   var isManager = record.get('is_manager') === 1;
-        //   if (!hasUser) { icon = '<span class="text-danger"><i class="fa fa-circle"></i></span>'; }
-        //   if (isManager) { name += ' <strong class="label label-success">' + Helpers.i18n().employee.is_manager + '</strong>'; }
-        //   name += ' <span class="text-muted">' + organization + '</span>';
-        // }
-        // return [icon,name].join(' ');
         if (record.toHRTreeHtml) {
           return record.toHRTreeHtml();
         } else {
