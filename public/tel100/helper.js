@@ -32,20 +32,22 @@ window.Helpers = (function() {
   var currentUser;
   var currentLocale;
 
+  var setAjaxExtraParams = function(key, value) {
+    var params = Ext.Ajax.getExtraParams() || {};
+    params[key] = value;
+    Ext.Ajax.setExtraParams(params);
+  };
+  
   var setCurrentUser = function(user, password) {
     if (user && password) {
       currentUser = user;
-      Ext.Ajax.setExtraParams({
-        api_username: user.get('username'),
-        api_password: password,
-        api_locale:   getCurrentLocale()
-      });
+      setAjaxExtraParams('api_username', user.get('username'));
+      setAjaxExtraParams('api_password', password);
+      setAjaxExtraParams('api_locale', getCurrentLocale());
     } else {
       currentUser = null;
-      Ext.Ajax.setExtraParams({
-        api_username: null,
-        api_password: null
-      });
+      setAjaxExtraParams('api_username', null);
+      setAjaxExtraParams('api_password', null);
     }
   };
 
@@ -56,9 +58,7 @@ window.Helpers = (function() {
   var setCurrentLocale = function(locale) {
     currentLocale = locale;
     setPreferenceValue('locale', locale);
-    Ext.Ajax.setExtraParams({
-      api_locale:   getCurrentLocale()
-    });
+    setAjaxExtraParams('api_locale', locale);
   };
 
   var getCurrentLocale = function() {
