@@ -352,6 +352,58 @@
             },
             "name": "MyColumn26",
             "designerId": "88ae4ea3-95e1-4111-8e0c-c52f96240e22"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "this.refresh();"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "e5f74acf-1fed-407e-be73-28b2aef7c9af"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh-button",
+                "type": "refresh"
+            },
+            "name": "MyTool1",
+            "designerId": "c7c02115-f09a-479c-b8bb-deb6710bdb71",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefresh",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefresh",
+                    "designerId": "2b7563ea-7216-4ebb-90f5-ac2294213514"
+                }
+            ]
         }
     ]
 }

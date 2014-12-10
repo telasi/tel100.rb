@@ -19,10 +19,13 @@ Ext.define('Tel100.view.document.grid.Panel', {
 
   requires: [
     'Tel100.view.document.grid.PanelViewModel',
+    'Tel100.view.document.grid.PanelViewController',
     'Ext.grid.View',
-    'Ext.grid.column.Column'
+    'Ext.grid.column.Column',
+    'Ext.panel.Tool'
   ],
 
+  controller: 'documentgridpanel',
   viewModel: {
     type: 'documentgridpanel'
   },
@@ -148,6 +151,18 @@ Ext.define('Tel100.view.document.grid.Panel', {
       xtype: 'gridcolumn',
       dataIndex: 'updated_at',
       text: 'Updated_at'
+    }
+  ],
+  listeners: {
+    beforerender: 'onBeforeRender'
+  },
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'refresh',
+      listeners: {
+        click: 'onRefresh'
+      }
     }
   ]
 

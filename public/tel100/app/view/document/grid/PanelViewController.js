@@ -15,5 +15,18 @@
 
 Ext.define('Tel100.view.document.grid.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentgridpanel'
+  alias: 'controller.documentgridpanel',
+
+  refresh: function() {
+    this.getView().getStore().load();
+  },
+
+  onBeforeRender: function(component, eOpts) {
+    this.refresh();
+  },
+
+  onRefresh: function(tool, e, owner, eOpts) {
+    this.refresh();
+  }
+
 });
