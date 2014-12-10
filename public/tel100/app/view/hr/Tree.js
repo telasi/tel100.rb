@@ -21,7 +21,8 @@ Ext.define('Tel100.view.hr.Tree', {
     'Tel100.view.hr.TreeViewModel',
     'Tel100.view.hr.TreeViewController',
     'Ext.tree.View',
-    'Ext.tree.Column'
+    'Ext.tree.Column',
+    'Ext.panel.Tool'
   ],
 
   controller: 'hrtree',
@@ -54,6 +55,15 @@ Ext.define('Tel100.view.hr.Tree', {
   ],
   listeners: {
     beforerender: 'onBeforeRender'
-  }
+  },
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'refresh',
+      listeners: {
+        click: 'onRefresh'
+      }
+    }
+  ]
 
 });

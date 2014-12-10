@@ -103,6 +103,41 @@
             },
             "name": "onBeforeRender",
             "designerId": "d04bb159-d755-4686-9b23-16d68d5621d4"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool",
+            "designerId": "15daf240-303a-412e-9463-5f2c1472a120",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefresh",
+                        "implHandler": [
+                            "var store = owner.getStore();",
+                            "store.load();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefresh",
+                    "designerId": "70aa5e3f-6dbf-49e0-aa77-d40226264aec"
+                }
+            ]
         }
     ]
 }

@@ -1,6 +1,6 @@
 {
     "expandedState": {
-        "view": true,
+        "view": false,
         "82141980-59a3-42da-ab8f-e5ea261e8aad": {
             "id": "82141980-59a3-42da-ab8f-e5ea261e8aad",
             "cn": [
@@ -304,6 +304,14 @@
                 },
                 {
                     "id": "d04bb159-d755-4686-9b23-16d68d5621d4"
+                },
+                {
+                    "id": "15daf240-303a-412e-9463-5f2c1472a120",
+                    "cn": [
+                        {
+                            "id": "70aa5e3f-6dbf-49e0-aa77-d40226264aec"
+                        }
+                    ]
                 }
             ]
         },
@@ -424,22 +432,6 @@
                 }
             ]
         },
-        "16208ec9-6882-4867-a814-e269da433659": {
-            "id": "16208ec9-6882-4867-a814-e269da433659",
-            "cn": [
-                {
-                    "id": "4834975b-9a22-4271-9842-081776348183"
-                }
-            ]
-        },
-        "abc7ec5b-e330-4301-b630-3455f204f039": {
-            "id": "abc7ec5b-e330-4301-b630-3455f204f039",
-            "cn": [
-                {
-                    "id": "4a8f74ad-1c40-402c-b5df-281a0023c31e"
-                }
-            ]
-        },
         "controller": true,
         "resource": true,
         "56242cf3-fbcd-47d6-8d0d-76bf2ab96c16": {
@@ -470,19 +462,15 @@
     "tabState": {
         "openTabs": [
             "7b81b19c-f37f-48e7-9a78-97c98c52673f",
-            "16208ec9-6882-4867-a814-e269da433659",
-            "abc7ec5b-e330-4301-b630-3455f204f039",
-            "106c9b9c-0a43-4578-a643-c785a4d6494b",
-            "b5fb8fcf-50db-49ac-9277-ac4e29632275",
-            "deeb6dd6-3a14-4580-8c5d-c41056bd17ac"
+            "ff362d59-f925-424d-b9cd-49a4562ef927"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "16208ec9-6882-4867-a814-e269da433659",
-        "selectedInstance": "16208ec9-6882-4867-a814-e269da433659"
+        "topInstance": "ff362d59-f925-424d-b9cd-49a4562ef927",
+        "selectedInstance": "ff362d59-f925-424d-b9cd-49a4562ef927"
     },
     "editMode": "code",
     "userSettings": {

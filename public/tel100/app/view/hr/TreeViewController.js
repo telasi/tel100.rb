@@ -20,6 +20,11 @@ Ext.define('Tel100.view.hr.TreeViewController', {
   onBeforeRender: function(component, eOpts) {
     var root = component.getRootNode();
     root.expand();
+  },
+
+  onRefresh: function(tool, e, owner, eOpts) {
+    var store = owner.getStore();
+    store.load();
   }
 
 });
