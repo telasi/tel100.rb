@@ -125,12 +125,19 @@ window.Helpers = (function() {
   var ROLE_AUTHOR = 'author';
   var ROLE_SIGNEE = 'signee';
   var ROLE_ASSIGNEE = 'assignee';
-  
-  var statusDecoration = function(status, role, isMotion) {
-    var textId, iconId, styleId;
+
+  var statusDecoration = function(status, role, opts) {
+    var textId, iconId, styleId, iconStyleId;
+    var isMotion = opts && opts.isMotion;
+    var isNew = opts && opts.isNew;
+    var isChanged = opts && opts.isChanged;
     role = role || ROLE_OWNER;
+
     var isSignee = (role === ROLE_AUTHOR || role === ROLE_SIGNEE);
     if (typeof isMotion === 'undefined') { isMotion = false; }
+    if (typeof isNew === 'undefined') { isNew = false; }
+    if (typeof isChanged === 'undefined') { isChanged = false; }
+
     if (status === STATUS_CANCELED) {
       textId = isSignee ? 'canceled' : 'not_signed';
       iconId = 'fa-times';
@@ -156,15 +163,36 @@ window.Helpers = (function() {
       iconId = 'fa-check';
       styleId = 'text-success';
     }
-    return [ textId, iconId, styleId ];
+    iconStyleId = styleId;
+
+    if (isNew) {
+      iconId = 'fa-circle';
+      iconStyleId = 'text-danger';
+    } else if (isChanged) {
+      iconId = 'fa-circle';
+    }
+
+    return {
+      text: textId,
+      style: styleId,
+      icon: iconId,
+      iconStyle: iconStyleId
+    };
   };
 
-  var statusFormatted = function(status, role, isMotion) {
-    var dec = statusDecoration(status, role, isMotion);
-    if (dec[0]) {
-      var statusName = i18n_().document.base.statuses[dec[0]];
-      var icon = '<i class="fa ' + dec[1] + '"></i>';
-      return '<span class="' + dec[2] + '">' + icon + ' ' + statusName + '</span>';
+  var statusFormatted = function(status, role, opts) {
+    var decor = statusDecoration(status, role, opts);
+    if (decor.text) {
+      var icon = [
+        '<span class="', decor.iconStyle, '">',
+        '<i class="fa ', decor.icon, '"></i>',
+        '</span>'
+      ].join('');
+      return [
+        '<span class="', decor.style, '">',
+        icon, ' ', i18n_().document.base.statuses[decor.text],
+        '</span>'
+      ].join('');
     } else {
       return '???';
     }

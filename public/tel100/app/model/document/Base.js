@@ -35,7 +35,11 @@ Ext.define('Tel100.model.document.Base', {
     {
       type: 'string',
       calculate: function(data) {
-        return Helpers.statusFormatted(data.my_status, data.my_role, false);
+        return Helpers.statusFormatted(data.my_status, data.my_role, {
+          isMotion: false,
+          isNew: data.is_new,
+          isChanged: data.is_changed
+        });
       },
       name: 'myStatusName'
     },

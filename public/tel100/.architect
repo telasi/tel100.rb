@@ -643,7 +643,7 @@
             ]
         },
         "controller": true,
-        "resource": true,
+        "resource": false,
         "56242cf3-fbcd-47d6-8d0d-76bf2ab96c16": {
             "id": "56242cf3-fbcd-47d6-8d0d-76bf2ab96c16"
         },
@@ -673,7 +673,6 @@
         "openTabs": [
             "4cd89105-3608-4ca0-9fc3-af905d9b9e80",
             "548c1eb0-8e51-4ca4-a5d8-7f29916b4664",
-            "deeb6dd6-3a14-4580-8c5d-c41056bd17ac",
             "ff362d59-f925-424d-b9cd-49a4562ef927"
         ]
     },
