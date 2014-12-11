@@ -1,8 +1,8 @@
 # document::user properties
 json.my_status   mydoc.status
 json.my_role     mydoc.role
-json.is_new      mydoc.is_new
-json.is_changed  mydoc.is_changed
+json.is_new      mydoc.new?
+json.is_changed  mydoc.changed?
 
 # document::base properties
 doc = mydoc.document
