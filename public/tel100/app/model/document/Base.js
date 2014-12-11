@@ -69,6 +69,13 @@ Ext.define('Tel100.model.document.Base', {
     },
     {
       type: 'string',
+      calculate: function(data) {
+        return Helpers.i18n().document.base.directions[data.direction];
+      },
+      name: 'directionName'
+    },
+    {
+      type: 'string',
       name: 'subject'
     },
     {

@@ -64,7 +64,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
-      dataIndex: 'direction',
+      dataIndex: 'directionName',
       bind: {
         text: '{i18n.document.base.direction}'
       }

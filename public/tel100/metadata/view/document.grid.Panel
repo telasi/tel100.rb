@@ -106,7 +106,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "direction",
+                "dataIndex": "directionName",
                 "designer|displayName": "direction",
                 "text": [
                     "{i18n.document.base.direction}"

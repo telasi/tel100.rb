@@ -77,6 +77,11 @@ i18n.ka.document = {
       signed: 'ხელმოწერილი',
       current: 'მიმდინარე'
     },
+    directions: {
+      in: 'შემოსული',
+      inner: 'შიდა',
+      out: 'გასული'
+    },
     grid: {
       title: 'დოკუმენტები'
     }
@@ -109,6 +114,11 @@ i18n.ru.document = {
       completed: 'Выполнено',
       signed: 'Подписано',
       current: 'Текущий'
+    },
+    directions: {
+      in: 'Входящий',
+      inner: 'Внутрений',
+      out: 'Исходящий'
     },
     grid: {
       title: 'Документы'

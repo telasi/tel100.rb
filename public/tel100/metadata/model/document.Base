@@ -161,6 +161,40 @@
             },
             "codeClass": null,
             "userConfig": {
+                "name": "directionName"
+            },
+            "name": "MyString6",
+            "designerId": "c1694b95-ab11-41f7-b121-86f0d168aa0c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "return Helpers.i18n().document.base.directions[data.direction];"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "7d313908-7dbd-4b18-b466-36b12b9da01b"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.String",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "name": "subject"
             },
             "name": "MyString3",
