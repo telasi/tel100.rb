@@ -9,7 +9,10 @@ doc = mydoc.document
 json.id          doc.id
 json.language    doc.language
 json.parent_id   doc.parent_id
-json.type_id     doc.type_id
+json.type do
+  json.id   doc.type_id
+  json.name doc.type.name
+end
 json.direction   doc.direction
 json.subject     doc.subject
 json.original_number doc.original_number
