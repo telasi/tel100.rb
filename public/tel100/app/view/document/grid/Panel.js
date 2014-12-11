@@ -47,6 +47,16 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
+      width: 130,
+      dataIndex: 'myStatusName',
+      lockable: true,
+      locked: true,
+      bind: {
+        text: '{i18n.document.base.my_status}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
       dataIndex: 'type_id',
       bind: {
         text: '{i18n.document.base.type}'

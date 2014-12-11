@@ -62,6 +62,30 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dataIndex": "myStatusName",
+                "defaultWidth": null,
+                "designer|displayName": "my_status",
+                "lockable": true,
+                "locked": true,
+                "text": [
+                    "{i18n.document.base.my_status}"
+                ],
+                "width": 130
+            },
+            "name": "MyColumn",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "33922b5d-d1c4-4287-b8da-c0cae8f9e01a"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "dataIndex": "type_id",
                 "designer|displayName": "type_id",
                 "text": [
