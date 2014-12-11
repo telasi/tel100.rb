@@ -66,7 +66,8 @@ class Api::DocsController < ApiController
   end
 
   def types
-    render json: { success: true, types: Document::Type.order('order_by ASC') }
+    @types = Document::Type.order('order_by ASC')
+    render formats: ['json']
   end
 
   private
