@@ -109,18 +109,86 @@ window.Helpers = (function() {
           errorMessage(i18n_().errors.connection_error);
         }
       },
-    }); 
+    });
   };
 
+  // Status decoration
+
+  var STATUS_CANCELED = -2;
+  var STATUS_NOT_SENT = -1;
+  var STATUS_DRAFT = 0;
+  var STATUS_CURRENT = 1;
+  var STATUS_COMPLETED = 2;
+
+  var ROLE_OWNER = 'owner';
+  var ROLE_CREATOR = 'creator';
+  var ROLE_AUTHOR = 'author';
+  var ROLE_SIGNEE = 'signee';
+  var ROLE_ASSIGNEE = 'assignee';
+  
+  var statusDecoration = function(status, role, isMotion) {
+    var textId, iconId, styleId;
+    role = role || ROLE_OWNER;
+    var isSignee = (role === ROLE_AUTHOR || role === ROLE_SIGNEE);
+    if (typeof isMotion === 'undefined') { isMotion = false; }
+    if (status === STATUS_CANCELED) {
+      textId = isSignee ? 'canceled' : 'not_signed';
+      iconId = 'fa-times';
+      styleId = 'text-danger';
+    } else if (status === STATUS_NOT_SENT) {
+      textId = 'not_sent';
+      iconId = 'fa-ban';
+      styleId = 'text-muted';
+    } else if (status === STATUS_DRAFT) {
+      if (isMotion) {
+        textId = isSignee ? 'to_be_signed' : 'to_be_sent';
+      } else {
+        textId = 'draft';
+      }
+      iconId = 'fa-circle-o';
+      styleId = 'text-muted';
+    } else if (status === STATUS_CURRENT) {
+      textId = isSignee ? 'to_be_signed' : 'current';
+      iconId = 'fa-clock-o';
+      styleId = 'text-info';
+    } else if (status === STATUS_COMPLETED) {
+      textId = isSignee ? 'signed' : 'completed';
+      iconId = 'fa-check';
+      styleId = 'text-success';
+    }
+    return [ textId, iconId, styleId ];
+  };
+
+  var statusFormatted = function(status, role, isMotion) {
+    var dec = statusDecoration(status, role, isMotion);
+    if (dec[0]) {
+      var statusName = i18n_().document.base.statuses[dec[0]];
+      var icon = '<i class="fa ' + dec[1] + '"></i>';
+      return '<span class="' + dec[2] + '">' + icon + ' ' + statusName + '</span>';
+    } else {
+      return '???';
+    }
+  };
+  
+  // Helpers objects
+
   return {
+    // i18n
     i18n: i18n_,
+    // ajax
     ajaxRequest: ajaxRequest,
+    // preferences
     getPreferenceValue: getPreferenceValue,
     setPreferenceValue: setPreferenceValue,
+    // user
     setCurrentUser: setCurrentUser,
     getCurrentUser: getCurrentUser,
+    // locale
     setCurrentLocale: setCurrentLocale,
-    getCurrentLocale: getCurrentLocale
+    getCurrentLocale: getCurrentLocale,
+    // status
+    statusDecoration: statusDecoration,
+    statusFormatted: statusFormatted
   };
 
 })();

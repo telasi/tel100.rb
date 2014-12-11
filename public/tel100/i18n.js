@@ -62,9 +62,21 @@ i18n.ka.document = {
     page_count: 'გვერდები',
     additions_count: 'დანართები',
     due_date: 'ვადა',
-    status: 'სტატუსი',
     sender: 'ინიციატორი',
     owner: 'მფლობელი',
+    status: 'სტატუსი',
+    my_status: 'ჩემი სტატუსი',
+    statuses: {
+      draft: 'დრაფტი',
+      to_be_sent: 'გასაგზავნი',
+      to_be_signed: 'ხელმოსაწერი',
+      canceled: 'გაუქმებული',
+      not_signed: 'ხელმოუწერელი',
+      not_sent: 'გაუგზავნელი',
+      completed: 'შესრულებული',
+      signed: 'ხელმოწერილი',
+      current: 'მიმდინარე'
+    },
     grid: {
       title: 'დოკუმენტები'
     }
@@ -83,9 +95,21 @@ i18n.ru.document = {
     page_count: 'Страницы',
     additions_count: 'Приложения',
     due_date: 'Срок',
-    status: 'Статус',
     sender: 'Инициатор',
     owner: 'Владелец',
+    status: 'Статус',
+    my_status: 'Мой Статус',
+    statuses: {
+      draft: 'Черновик',
+      to_be_sent: 'На отправку',
+      to_be_signed: 'На подписку',
+      canceled: 'Отменен',
+      not_signed: 'Не подписан',
+      not_sent: 'Не послан',
+      completed: 'Выполнено',
+      signed: 'Подписано',
+      current: 'Текущий'
+    },
     grid: {
       title: 'Документы'
     }
