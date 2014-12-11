@@ -19,6 +19,7 @@ Ext.define('Tel100.model.document.Base', {
   requires: [
     'Ext.data.field.Integer',
     'Ext.data.field.String',
+    'Ext.data.field.Boolean',
     'Ext.data.field.Date'
   ],
 
@@ -26,6 +27,29 @@ Ext.define('Tel100.model.document.Base', {
     {
       type: 'int',
       name: 'id'
+    },
+    {
+      type: 'int',
+      name: 'my_status'
+    },
+    {
+      type: 'string',
+      calculate: function(data) {
+        return Helpers.statusFormatted(data.my_status, data.my_role, false);
+      },
+      name: 'myStatusName'
+    },
+    {
+      type: 'string',
+      name: 'my_role'
+    },
+    {
+      type: 'boolean',
+      name: 'is_new'
+    },
+    {
+      type: 'boolean',
+      name: 'is_changed'
     },
     {
       type: 'int',
