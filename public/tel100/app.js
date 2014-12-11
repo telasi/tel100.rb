@@ -22,12 +22,14 @@ Ext.Loader.setConfig({
 Ext.application({
   models: [
     'User',
-    'document.Base'
+    'document.Base',
+    'document.Type'
   ],
   stores: [
     'LocaleStore',
     'hr.Tree',
-    'document.Base'
+    'document.Base',
+    'document.Type'
   ],
   views: [
     'MainViewport',

@@ -8,13 +8,15 @@
     "userConfig": {
         "models": [
             "User",
-            "document.Base"
+            "document.Base",
+            "document.Type"
         ],
         "name": "Tel100",
         "stores": [
             "LocaleStore",
             "hr.Tree",
-            "document.Base"
+            "document.Base",
+            "document.Type"
         ],
         "views": [
             "MainViewport",
