@@ -64,7 +64,7 @@
             "userConfig": {
                 "dataIndex": "myStatusName",
                 "defaultWidth": null,
-                "designer|displayName": "my_status",
+                "designer|displayName": "myStatusName",
                 "lockable": true,
                 "locked": true,
                 "text": [
@@ -77,6 +77,27 @@
                 "text": "binding"
             },
             "designerId": "33922b5d-d1c4-4287-b8da-c0cae8f9e01a"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "docdate",
+                "designer|displayName": "docdate",
+                "formatter": "date(\"d/m/Y\")",
+                "text": [
+                    "{i18n.document.base.docdate}"
+                ]
+            },
+            "name": "MyColumn9",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "f2c29579-a7aa-4b0a-bb00-842a13e0a709"
         },
         {
             "type": "Ext.grid.column.Column",
@@ -107,7 +128,7 @@
             "codeClass": null,
             "userConfig": {
                 "dataIndex": "directionName",
-                "designer|displayName": "direction",
+                "designer|displayName": "directionName",
                 "text": [
                     "{i18n.document.base.direction}"
                 ]
@@ -138,20 +159,6 @@
                 "text": "binding"
             },
             "designerId": "e752a096-77e0-4c26-aa81-28c46ed3a435"
-        },
-        {
-            "type": "Ext.grid.column.Column",
-            "reference": {
-                "name": "columns",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "dataIndex": "docdate",
-                "text": "Docdate"
-            },
-            "name": "MyColumn9",
-            "designerId": "f2c29579-a7aa-4b0a-bb00-842a13e0a709"
         },
         {
             "type": "Ext.grid.column.Column",
