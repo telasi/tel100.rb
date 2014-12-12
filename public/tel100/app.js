@@ -43,7 +43,8 @@ Ext.application({
     'module.Admin',
     'workarea.Applications',
     'hr.Tree',
-    'document.grid.Panel'
+    'document.grid.Panel',
+    'document.Tabs'
   ],
   name: 'Tel100',
 

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documenttabs",
+        "designer|userClassName": "document.TabsViewController"
+    },
+    "designerId": "c57f83f7-5733-4afd-a5b6-3d642e7009cb"
+}

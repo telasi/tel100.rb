@@ -24,9 +24,9 @@
                 "type": "array"
             },
             "codeClass": null,
-            "name": "document.grid.panel",
-            "designerId": "ff0bbc9a-c9ad-4c90-87cc-b9f56a2d176c",
-            "masterInstanceId": "4cd89105-3608-4ca0-9fc3-af905d9b9e80"
+            "name": "document.tabs",
+            "designerId": "b793fdab-18f4-4f14-96aa-5649ee17e24a",
+            "masterInstanceId": "3b79ce44-c414-4132-98a1-9b75a756d641"
         }
     ]
 }

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documenttabs",
+        "designer|userClassName": "document.TabsViewModel"
+    },
+    "designerId": "04001c12-5e38-4121-af10-4db734b1f90a"
+}
