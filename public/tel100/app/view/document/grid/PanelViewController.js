@@ -27,6 +27,10 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
 
   onRefresh: function(tool, e, owner, eOpts) {
     this.refresh();
+  },
+
+  onDoubleClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    this.getView().fireEvent('opendocument', record);
   }
 
 });

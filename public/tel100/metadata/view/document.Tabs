@@ -25,10 +25,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "documents",
+                "designer|displayName": "Documents Tab",
                 "layout": "fit",
                 "title": [
-                    "<i class=\"fa fa-file-text-o\"></i> {i18n.document.base.grid.title}"
+                    "{i18n.document.base.ui.doctabstitle}"
                 ]
             },
             "name": "MyPanel",
@@ -54,6 +54,9 @@
                         "type": "array"
                     },
                     "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "Documents Panel"
+                    },
                     "name": "document.grid.panel1",
                     "designerId": "33c6feb8-4f21-4d4f-b264-aff09ce52e1f",
                     "masterInstanceId": "4cd89105-3608-4ca0-9fc3-af905d9b9e80"

@@ -82,8 +82,9 @@ i18n.ka.document = {
       inner: 'შიდა',
       out: 'გასული'
     },
-    grid: {
-      title: 'დოკუმენტები'
+    ui: {
+      gridtitle: '<i class="fa fa-file-text-o"></i> დოკუმენტები',
+      doctabstitle: '<i class="fa fa-file-text-o"></i> ჩემი დოკუმენტები'
     }
   }
 };
@@ -120,8 +121,9 @@ i18n.ru.document = {
       inner: 'Внутрений',
       out: 'Исходящий'
     },
-    grid: {
-      title: 'Документы'
+    ui: {
+      gridtitle: '<i class="fa fa-file-text-o"></i> Документы',
+      doctabstitle: '<i class="fa fa-file-text-o"></i> Мои документы'
     }
   }
 };

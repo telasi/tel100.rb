@@ -11,7 +11,7 @@
         "height": null,
         "store": "document.Base",
         "title": [
-            "<i class=\"fa fa-file-text-o\"></i> {i18n.document.base.grid.title}"
+            "{i18n.document.base.ui.gridtitle}"
         ],
         "width": null
     },
@@ -469,6 +469,24 @@
                     "designerId": "2b7563ea-7216-4ebb-90f5-ac2294213514"
                 }
             ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onDoubleClick",
+                "implHandler": [
+                    "this.getView().fireEvent('opendocument', record);"
+                ],
+                "name": "celldblclick",
+                "scope": "me"
+            },
+            "name": "onDoubleClick",
+            "designerId": "73e1d76b-ab31-49ac-bffe-24dfaf3413ef"
         }
     ]
 }

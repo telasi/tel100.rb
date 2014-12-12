@@ -34,7 +34,7 @@ Ext.define('Tel100.view.document.Tabs', {
       xtype: 'panel',
       layout: 'fit',
       bind: {
-        title: '<i class="fa fa-file-text-o"></i> {i18n.document.base.grid.title}'
+        title: '{i18n.document.base.ui.doctabstitle}'
       },
       items: [
         {

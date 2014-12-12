@@ -32,7 +32,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
   store: 'document.Base',
 
   bind: {
-    title: '<i class="fa fa-file-text-o"></i> {i18n.document.base.grid.title}'
+    title: '{i18n.document.base.ui.gridtitle}'
   },
   columns: [
     {
@@ -171,7 +171,8 @@ Ext.define('Tel100.view.document.grid.Panel', {
     }
   ],
   listeners: {
-    beforerender: 'onBeforeRender'
+    beforerender: 'onBeforeRender',
+    celldblclick: 'onDoubleClick'
   },
   tools: [
     {
