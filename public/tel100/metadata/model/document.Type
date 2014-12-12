@@ -6,7 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "document.Type"
+        "designer|userClassName": "document.Type",
+        "requires": [
+            "Tel100.model.Tel100"
+        ],
+        "schema": "tel100schema"
     },
     "name": "MyModel",
     "designerId": "6ce64da9-5af3-4629-b6f1-412e9fb441d0",

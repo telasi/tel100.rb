@@ -20,7 +20,8 @@ Ext.define('Tel100.model.hr.Employee', {
     'Ext.data.field.Integer',
     'Ext.data.field.Boolean',
     'Ext.data.field.String',
-    'Ext.data.field.Date'
+    'Ext.data.field.Date',
+    'Tel100.model.Tel100'
   ],
 
   entityName: 'hr.Employee',
@@ -97,6 +98,7 @@ Ext.define('Tel100.model.hr.Employee', {
       name: 'updated_at'
     }
   ],
+  schema: 'tel100schema',
 
   toHRTreeHtml: function() {
     var icon;

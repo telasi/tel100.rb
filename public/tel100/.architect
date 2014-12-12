@@ -110,6 +110,7 @@
         },
         "cbf4d988-4940-475a-acad-1c842f8621a4": {
             "id": "cbf4d988-4940-475a-acad-1c842f8621a4",
+            "expanded": false,
             "cn": [
                 {
                     "id": "e3c2e176-ed73-4f94-9c05-695af4d3a105"
@@ -166,6 +167,7 @@
         },
         "ce619035-9a0f-4ce7-b27e-92d85e5331a1": {
             "id": "ce619035-9a0f-4ce7-b27e-92d85e5331a1",
+            "expanded": false,
             "cn": [
                 {
                     "id": "57493ec6-c507-487c-a814-afbdbe442b5d"
@@ -336,9 +338,6 @@
                     "id": "f2c29579-a7aa-4b0a-bb00-842a13e0a709"
                 },
                 {
-                    "id": "1d578cda-cfa4-4b29-9823-93056095cb70"
-                },
-                {
                     "id": "d1da0634-3d5d-4c3a-8600-0425f4e6855a"
                 },
                 {
@@ -411,13 +410,14 @@
         },
         "0a8366c9-3a12-4384-b761-ddb3953ce8a4": {
             "id": "0a8366c9-3a12-4384-b761-ddb3953ce8a4",
+            "expanded": false,
             "cn": [
                 {
                     "id": "f88478e8-81b1-4d9e-9927-e591f3c9a614"
                 }
             ]
         },
-        "store": true,
+        "store": false,
         "a102f027-c05d-4091-9554-d5d0b9858d15": {
             "id": "a102f027-c05d-4091-9554-d5d0b9858d15",
             "cn": [
@@ -474,9 +474,10 @@
                 }
             ]
         },
-        "model": false,
+        "model": true,
         "1e680ed7-d4f0-4feb-bc97-d1bf05596e55": {
             "id": "1e680ed7-d4f0-4feb-bc97-d1bf05596e55",
+            "expanded": false,
             "cn": [
                 {
                     "id": "f8d41e4f-b7d4-4813-940e-b8aca6fa972e"
@@ -552,6 +553,22 @@
                 }
             ]
         },
+        "16208ec9-6882-4867-a814-e269da433659": {
+            "id": "16208ec9-6882-4867-a814-e269da433659",
+            "cn": [
+                {
+                    "id": "4834975b-9a22-4271-9842-081776348183"
+                }
+            ]
+        },
+        "abc7ec5b-e330-4301-b630-3455f204f039": {
+            "id": "abc7ec5b-e330-4301-b630-3455f204f039",
+            "cn": [
+                {
+                    "id": "4a8f74ad-1c40-402c-b5df-281a0023c31e"
+                }
+            ]
+        },
         "548c1eb0-8e51-4ca4-a5d8-7f29916b4664": {
             "id": "548c1eb0-8e51-4ca4-a5d8-7f29916b4664",
             "cn": [
@@ -590,6 +607,7 @@
                 },
                 {
                     "id": "c1694b95-ab11-41f7-b121-86f0d168aa0c",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "7d313908-7dbd-4b18-b466-36b12b9da01b"
@@ -684,6 +702,9 @@
                 }
             ]
         },
+        "a0a6bc1b-c6e6-4487-8b9c-6169db2b3956": {
+            "id": "a0a6bc1b-c6e6-4487-8b9c-6169db2b3956"
+        },
         "controller": true,
         "resource": false,
         "56242cf3-fbcd-47d6-8d0d-76bf2ab96c16": {
@@ -713,17 +734,21 @@
     },
     "tabState": {
         "openTabs": [
-            "ce217af5-471e-454e-a924-4bc251b71334",
-            "6ce64da9-5af3-4629-b6f1-412e9fb441d0",
-            "875391da-d394-478e-b10e-eb58bd874b6f"
+            "4cd89105-3608-4ca0-9fc3-af905d9b9e80",
+            "548c1eb0-8e51-4ca4-a5d8-7f29916b4664",
+            "1e680ed7-d4f0-4feb-bc97-d1bf05596e55",
+            "a0a6bc1b-c6e6-4487-8b9c-6169db2b3956",
+            "16208ec9-6882-4867-a814-e269da433659",
+            "abc7ec5b-e330-4301-b630-3455f204f039",
+            "6ce64da9-5af3-4629-b6f1-412e9fb441d0"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "ce217af5-471e-454e-a924-4bc251b71334",
-        "selectedInstance": "efc4c9a3-cf63-46c6-a1ee-32e724775d0c"
+        "topInstance": "548c1eb0-8e51-4ca4-a5d8-7f29916b4664",
+        "selectedInstance": "548c1eb0-8e51-4ca4-a5d8-7f29916b4664"
     },
     "editMode": "code",
     "userSettings": {

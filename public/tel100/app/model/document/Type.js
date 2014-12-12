@@ -17,10 +17,13 @@ Ext.define('Tel100.model.document.Type', {
   extend: 'Ext.data.Model',
 
   requires: [
+    'Tel100.model.Tel100',
     'Ext.data.field.Integer',
     'Ext.data.field.String',
     'Ext.data.field.Date'
   ],
+
+  schema: 'tel100schema',
 
   fields: [
     {

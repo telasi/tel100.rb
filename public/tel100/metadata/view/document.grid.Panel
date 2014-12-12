@@ -107,26 +107,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "type_id",
-                "designer|displayName": "type_id",
-                "text": [
-                    "{i18n.document.base.type}"
-                ]
-            },
-            "name": "MyColumn3",
-            "configAlternates": {
-                "text": "binding"
-            },
-            "designerId": "1d578cda-cfa4-4b29-9823-93056095cb70"
-        },
-        {
-            "type": "Ext.grid.column.Column",
-            "reference": {
-                "name": "columns",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "dataIndex": "directionName",
                 "designer|displayName": "directionName",
                 "text": [

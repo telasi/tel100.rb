@@ -19,7 +19,8 @@ Ext.define('Tel100.model.hr.Organization', {
   requires: [
     'Ext.data.field.String',
     'Ext.data.field.Boolean',
-    'Ext.data.field.Date'
+    'Ext.data.field.Date',
+    'Tel100.model.Tel100'
   ],
 
   fields: [
@@ -41,6 +42,7 @@ Ext.define('Tel100.model.hr.Organization', {
     }
   ],
   entityName: 'hr.Organization',
+  schema: 'tel100schema',
 
   toHRTreeHtml: function() {
     return ['<i class="fa fa-bank"></i>', this.get('name')].join(' ');

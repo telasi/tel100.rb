@@ -6,7 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "document.Base"
+        "designer|userClassName": "document.Base",
+        "requires": [
+            "Tel100.model.Tel100"
+        ],
+        "schema": "tel100schema"
     },
     "name": "MyModel",
     "designerId": "548c1eb0-8e51-4ca4-a5d8-7f29916b4664",
@@ -128,16 +132,17 @@
             "designerId": "5f363973-a9e5-4eab-999d-ca39ceecf143"
         },
         {
-            "type": "Ext.data.field.Integer",
+            "type": "Ext.data.field.Field",
             "reference": {
                 "name": "fields",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "name": "type_id"
+                "name": "type",
+                "reference": "document.Type"
             },
-            "name": "MyInteger2",
+            "name": "MyField",
             "designerId": "b589fdad-8fe5-4dfd-9526-80ac611ac898"
         },
         {

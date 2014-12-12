@@ -27,6 +27,7 @@ Ext.define('Tel100.store.document.Type', {
     cfg = cfg || {};
     me.callParent([Ext.apply({
       storeId: 'document.Type',
+      autoLoad: false,
       model: 'Tel100.model.document.Type',
       proxy: {
         type: 'ajax',

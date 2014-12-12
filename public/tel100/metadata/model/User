@@ -6,7 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "User"
+        "designer|userClassName": "User",
+        "schema": "tel100schema"
     },
     "name": "MyModel",
     "designerId": "1e680ed7-d4f0-4feb-bc97-d1bf05596e55",

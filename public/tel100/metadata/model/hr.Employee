@@ -72,8 +72,10 @@
             "Ext.data.field.Integer",
             "Ext.data.field.Boolean",
             "Ext.data.field.String",
-            "Ext.data.field.Date"
-        ]
+            "Ext.data.field.Date",
+            "Tel100.model.Tel100"
+        ],
+        "schema": "tel100schema"
     },
     "name": "MyClass",
     "configAlternates": {
@@ -89,6 +91,11 @@
         {
             "group": "(Custom Properties)",
             "name": "fields",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "schema",
             "type": "string"
         }
     ],
