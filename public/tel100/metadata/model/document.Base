@@ -323,6 +323,40 @@
             "designerId": "0404a406-d078-42b2-ac16-aea0f64e5a03"
         },
         {
+            "type": "Ext.data.field.String",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "statusName"
+            },
+            "name": "MyString12",
+            "designerId": "ee9ca100-2043-47b9-9bbd-0c946496db15",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "return Helpers.statusFormatted(data.status);"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "f3b92473-6e09-4f35-8a24-9d59c83df29e"
+                }
+            ]
+        },
+        {
             "type": "Ext.data.field.Integer",
             "reference": {
                 "name": "fields",

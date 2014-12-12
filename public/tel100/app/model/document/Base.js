@@ -121,6 +121,13 @@ Ext.define('Tel100.model.document.Base', {
       name: 'status'
     },
     {
+      type: 'string',
+      calculate: function(data) {
+        return Helpers.statusFormatted(data.status);
+      },
+      name: 'statusName'
+    },
+    {
       type: 'int',
       name: 'sender_user_id'
     },

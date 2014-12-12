@@ -55,6 +55,14 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
+      width: 130,
+      dataIndex: 'statusName',
+      bind: {
+        text: '{i18n.document.base.status}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
       dataIndex: 'docdate',
       formatter: 'date("d/m/Y")',
       bind: {
@@ -100,11 +108,6 @@ Ext.define('Tel100.view.document.grid.Panel', {
       xtype: 'gridcolumn',
       dataIndex: 'due_date',
       text: 'Due_date'
-    },
-    {
-      xtype: 'gridcolumn',
-      dataIndex: 'status',
-      text: 'Status'
     },
     {
       xtype: 'gridcolumn',

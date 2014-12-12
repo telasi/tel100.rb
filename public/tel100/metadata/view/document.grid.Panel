@@ -86,6 +86,27 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dataIndex": "statusName",
+                "designer|displayName": "status",
+                "text": [
+                    "{i18n.document.base.status}"
+                ],
+                "width": 130
+            },
+            "name": "MyColumn14",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "6fad9710-c911-4480-9403-0b85b3f9ad76"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "dataIndex": "docdate",
                 "designer|displayName": "docdate",
                 "formatter": "date(\"d/m/Y\")",
@@ -228,20 +249,6 @@
             },
             "name": "MyColumn13",
             "designerId": "d911274e-ffad-443a-8989-d7e18d8ac17d"
-        },
-        {
-            "type": "Ext.grid.column.Column",
-            "reference": {
-                "name": "columns",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "dataIndex": "status",
-                "text": "Status"
-            },
-            "name": "MyColumn14",
-            "designerId": "6fad9710-c911-4480-9403-0b85b3f9ad76"
         },
         {
             "type": "Ext.grid.column.Column",
