@@ -98,7 +98,6 @@ Ext.define('Tel100.model.hr.Employee', {
       name: 'updated_at'
     }
   ],
-  schema: 'tel100schema',
 
   toHRTreeHtml: function() {
     var icon;

@@ -30,7 +30,7 @@
             "Ext.data.field.Date",
             "Tel100.model.Tel100"
         ],
-        "schema": "tel100schema"
+        "schema": null
     },
     "name": "MyClass",
     "configAlternates": {
