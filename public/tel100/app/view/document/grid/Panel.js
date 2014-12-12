@@ -29,8 +29,6 @@ Ext.define('Tel100.view.document.grid.Panel', {
   viewModel: {
     type: 'documentgridpanel'
   },
-  height: 250,
-  width: 400,
   store: 'document.Base',
 
   bind: {
@@ -61,6 +59,16 @@ Ext.define('Tel100.view.document.grid.Panel', {
       formatter: 'date("d/m/Y")',
       bind: {
         text: '{i18n.document.base.docdate}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return record.getType().get('name');
+      },
+      dataIndex: 'type',
+      bind: {
+        text: '{i18n.document.base.type}'
       }
     },
     {

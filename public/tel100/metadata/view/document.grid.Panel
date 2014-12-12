@@ -8,12 +8,12 @@
     "userConfig": {
         "designer|userAlias": "documentgridpanel",
         "designer|userClassName": "document.grid.Panel",
-        "height": 250,
+        "height": null,
         "store": "document.Base",
         "title": [
             "<i class=\"fa fa-file-text-o\"></i> {i18n.document.base.grid.title}"
         ],
-        "width": 400
+        "width": null
     },
     "name": "MyGridPanel",
     "configAlternates": {
@@ -98,6 +98,53 @@
                 "text": "binding"
             },
             "designerId": "f2c29579-a7aa-4b0a-bb00-842a13e0a709"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "type",
+                "designer|displayName": "type",
+                "text": [
+                    "{i18n.document.base.type}"
+                ]
+            },
+            "name": "MyColumn1",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "d623977d-54f2-409a-8d8e-424110382105",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return record.getType().get('name');"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "f67e52c0-44f1-48a9-8c3d-6d1d23d59cc1"
+                }
+            ]
         },
         {
             "type": "Ext.grid.column.Column",
