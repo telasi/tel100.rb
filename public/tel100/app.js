@@ -44,7 +44,8 @@ Ext.application({
     'workarea.Applications',
     'hr.Tree',
     'document.grid.Panel',
-    'document.Tabs'
+    'document.Tabs',
+    'document.viewer.Panel'
   ],
   name: 'Tel100',
 

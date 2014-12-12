@@ -480,7 +480,7 @@
             "userConfig": {
                 "fn": "onDoubleClick",
                 "implHandler": [
-                    "this.getView().fireEvent('opendocument', record);"
+                    "this.getView().fireEvent('opendocument', tableview, record);"
                 ],
                 "name": "celldblclick",
                 "scope": "me"

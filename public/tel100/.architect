@@ -434,13 +434,17 @@
             "cn": [
                 {
                     "id": "3462065c-31d4-424a-9fc0-82c2e4d042f7",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "ea40cf42-3a5d-4a35-b515-40f311aa2ebc"
                         },
                         {
-                            "id": "33c6feb8-4f21-4d4f-b264-aff09ce52e1f"
+                            "id": "33c6feb8-4f21-4d4f-b264-aff09ce52e1f",
+                            "cn": [
+                                {
+                                    "id": "a6478bb2-94fd-4532-8df3-3a861a990ef8"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -452,6 +456,16 @@
         },
         "c57f83f7-5733-4afd-a5b6-3d642e7009cb": {
             "id": "c57f83f7-5733-4afd-a5b6-3d642e7009cb"
+        },
+        "7cb89b3d-9a42-4e8b-aa78-ea8350e67876": {
+            "id": "7cb89b3d-9a42-4e8b-aa78-ea8350e67876"
+        },
+        "6413787f-5e3c-47a4-826b-1be8cb5fe7fe": {
+            "id": "6413787f-5e3c-47a4-826b-1be8cb5fe7fe",
+            "expanded": false
+        },
+        "cf1cd31d-5083-4f58-84f5-959d6c20b8c4": {
+            "id": "cf1cd31d-5083-4f58-84f5-959d6c20b8c4"
         },
         "store": false,
         "a102f027-c05d-4091-9554-d5d0b9858d15": {
@@ -762,15 +776,17 @@
     },
     "tabState": {
         "openTabs": [
-            "4cd89105-3608-4ca0-9fc3-af905d9b9e80"
+            "3b79ce44-c414-4132-98a1-9b75a756d641",
+            "7cb89b3d-9a42-4e8b-aa78-ea8350e67876",
+            "c57f83f7-5733-4afd-a5b6-3d642e7009cb"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "0a8366c9-3a12-4384-b761-ddb3953ce8a4",
-        "selectedInstance": "0a8366c9-3a12-4384-b761-ddb3953ce8a4"
+        "topInstance": "3b79ce44-c414-4132-98a1-9b75a756d641",
+        "selectedInstance": "a6478bb2-94fd-4532-8df3-3a861a990ef8"
     },
     "editMode": "code",
     "userSettings": {

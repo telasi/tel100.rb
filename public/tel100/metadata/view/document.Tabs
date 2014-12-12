@@ -59,7 +59,48 @@
                     },
                     "name": "document.grid.panel1",
                     "designerId": "33c6feb8-4f21-4d4f-b264-aff09ce52e1f",
-                    "masterInstanceId": "4cd89105-3608-4ca0-9fc3-af905d9b9e80"
+                    "masterInstanceId": "4cd89105-3608-4ca0-9fc3-af905d9b9e80",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "grid",
+                                    "document"
+                                ],
+                                "fn": "onOpen",
+                                "implHandler": [
+                                    "var tabPanel = this.getView();",
+                                    "var tabs = tabPanel.items;",
+                                    "var panel;",
+                                    "tabs.each(function(tab) {",
+                                    "  var viewModel = tab.viewModel;",
+                                    "  var tabdoc = viewModel && viewModel.get('document');",
+                                    "  if (tabdoc && tabdoc.id === document.id) {",
+                                    "    panel = tab;",
+                                    "    return tab;",
+                                    "  }",
+                                    "});",
+                                    "",
+                                    "if (!panel) {",
+                                    "  panel = Tel100.view.document.viewer.Panel.create();",
+                                    "  tabPanel.add(panel);",
+                                    "}",
+                                    "panel.getViewModel().set('document', document);",
+                                    "tabPanel.setActiveTab(panel);"
+                                ],
+                                "name": "opendocument",
+                                "scope": "me"
+                            },
+                            "name": "onOpen",
+                            "designerId": "a6478bb2-94fd-4532-8df3-3a861a990ef8"
+                        }
+                    ]
                 }
             ]
         }

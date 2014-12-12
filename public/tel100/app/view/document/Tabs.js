@@ -19,11 +19,13 @@ Ext.define('Tel100.view.document.Tabs', {
 
   requires: [
     'Tel100.view.document.TabsViewModel',
+    'Tel100.view.document.TabsViewController',
     'Tel100.view.document.grid.Panel',
     'Ext.tab.Tab',
     'Ext.grid.Panel'
   ],
 
+  controller: 'documenttabs',
   viewModel: {
     type: 'documenttabs'
   },
@@ -38,7 +40,10 @@ Ext.define('Tel100.view.document.Tabs', {
       },
       items: [
         {
-          xtype: 'documentgridpanel'
+          xtype: 'documentgridpanel',
+          listeners: {
+            opendocument: 'onOpen'
+          }
         }
       ]
     }

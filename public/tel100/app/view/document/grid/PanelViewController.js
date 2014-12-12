@@ -30,7 +30,7 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
   },
 
   onDoubleClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
-    this.getView().fireEvent('opendocument', record);
+    this.getView().fireEvent('opendocument', tableview, record);
   }
 
 });

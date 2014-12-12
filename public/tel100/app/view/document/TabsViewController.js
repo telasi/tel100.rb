@@ -15,5 +15,31 @@
 
 Ext.define('Tel100.view.document.TabsViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documenttabs'
+  alias: 'controller.documenttabs',
+
+  requires: [
+    'Tel100.view.document.viewer.Panel'
+  ],
+
+  onOpen: function(grid, document) {
+    var tabPanel = this.getView();
+    var tabs = tabPanel.items;
+    var panel;
+    tabs.each(function(tab) {
+      var viewModel = tab.viewModel;
+      var tabdoc = viewModel && viewModel.get('document');
+      if (tabdoc && tabdoc.id === document.id) {
+        panel = tab;
+        return tab;
+      }
+    });
+
+    if (!panel) {
+      panel = Tel100.view.document.viewer.Panel.create();
+      tabPanel.add(panel);
+    }
+    panel.getViewModel().set('document', document);
+    tabPanel.setActiveTab(panel);
+  }
+
 });

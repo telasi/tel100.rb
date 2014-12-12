@@ -7,7 +7,10 @@
     "codeClass": null,
     "userConfig": {
         "designer|userAlias": "documenttabs",
-        "designer|userClassName": "document.TabsViewController"
+        "designer|userClassName": "document.TabsViewController",
+        "requires": [
+            "Tel100.view.document.viewer.Panel"
+        ]
     },
     "designerId": "c57f83f7-5733-4afd-a5b6-3d642e7009cb"
 }
