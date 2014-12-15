@@ -8,18 +8,15 @@
     "userConfig": {
         "designer|userAlias": "documenttypegridpanel",
         "designer|userClassName": "document.type.grid.Panel",
-        "height": 250,
+        "height": null,
         "store": [
             "{types}"
         ],
-        "title": [
-            "{i18n.admin.documents.groupName} &gt; {i18n.admin.documents.types}"
-        ],
-        "width": 400
+        "title": null,
+        "width": null
     },
     "name": "MyGridPanel",
     "configAlternates": {
-        "title": "binding",
         "store": "binding"
     },
     "designerId": "71848cce-dc19-4437-9e9c-7d50370f74ae",

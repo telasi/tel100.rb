@@ -26,11 +26,8 @@ Ext.define('Tel100.view.document.type.grid.Panel', {
   viewModel: {
     type: 'documenttypegridpanel'
   },
-  height: 250,
-  width: 400,
 
   bind: {
-    title: '{i18n.admin.documents.groupName} &gt; {i18n.admin.documents.types}',
     store: '{types}'
   },
   columns: [

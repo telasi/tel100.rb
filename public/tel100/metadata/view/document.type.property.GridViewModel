@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documenttypepropertygrid",
+        "designer|userClassName": "document.type.property.GridViewModel"
+    },
+    "designerId": "93fe1d28-5b0b-46f6-8366-445b5430e20a"
+}

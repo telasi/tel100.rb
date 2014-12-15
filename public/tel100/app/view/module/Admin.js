@@ -19,7 +19,7 @@ Ext.define('Tel100.view.module.Admin', {
 
   requires: [
     'Tel100.view.module.AdminViewModel',
-    'Tel100.view.document.type.grid.Panel',
+    'Tel100.view.document.type.AdminPanel',
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
@@ -79,7 +79,8 @@ Ext.define('Tel100.view.module.Admin', {
       layout: 'card',
       items: [
         {
-          xtype: 'documenttypegridpanel'
+          xtype: 'documenttypeadminpanel',
+          itemId: 'document.types'
         }
       ]
     }

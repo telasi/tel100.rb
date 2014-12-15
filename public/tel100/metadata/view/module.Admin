@@ -174,9 +174,13 @@
                         "type": "array"
                     },
                     "codeClass": null,
-                    "name": "document.type.grid.panel",
-                    "designerId": "c9f02688-b09f-474b-9152-7a407ee94b0d",
-                    "masterInstanceId": "71848cce-dc19-4437-9e9c-7d50370f74ae"
+                    "userConfig": {
+                        "designer|displayName": "Types Editor",
+                        "itemId": "document.types"
+                    },
+                    "name": "document.type.adminpanel",
+                    "designerId": "98d0a8cd-12ea-438b-94fd-75e78a6e22e2",
+                    "masterInstanceId": "349dc94c-9bff-429d-a1ac-a7ae1f00b577"
                 }
             ]
         }

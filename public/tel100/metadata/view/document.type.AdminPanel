@@ -1,0 +1,43 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documenttypeadminpanel",
+        "designer|userClassName": "document.type.AdminPanel",
+        "height": null,
+        "layout": "border",
+        "title": [
+            "{i18n.admin.documents.groupName} &gt; {i18n.admin.documents.types}"
+        ],
+        "width": null
+    },
+    "name": "MyPanel1",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "349dc94c-9bff-429d-a1ac-a7ae1f00b577",
+    "viewControllerInstanceId": "cbb495ca-db3f-48b2-bdad-4fd0fa4e7c2a",
+    "viewModelInstanceId": "ba938e7d-d25d-4b4c-9f79-b2a2015cefd2",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "west",
+                "layout|split": true,
+                "width": 300
+            },
+            "name": "document.type.grid.panel1",
+            "designerId": "1829897a-bbe9-405e-bb6e-f28d5aaa9aeb",
+            "masterInstanceId": "71848cce-dc19-4437-9e9c-7d50370f74ae"
+        }
+    ]
+}
