@@ -25,8 +25,6 @@ Ext.define('Tel100.view.module.Tasks', {
   viewModel: {
     type: 'moduletasks'
   },
-  height: 250,
-  width: 400,
 
   items: [
     {

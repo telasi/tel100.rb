@@ -26,8 +26,6 @@ Ext.define('Tel100.view.module.HR', {
   viewModel: {
     type: 'modulehr'
   },
-  height: 250,
-  width: 400,
   layout: 'fit',
 
   items: [

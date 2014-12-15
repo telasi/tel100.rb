@@ -8,8 +8,8 @@
     "userConfig": {
         "designer|userAlias": "moduletasks",
         "designer|userClassName": "module.Tasks",
-        "height": 250,
-        "width": 400
+        "height": null,
+        "width": null
     },
     "name": "MyContainer4",
     "designerId": "71110b2d-f97e-4d1c-a0dc-b81355b9666e",

@@ -8,9 +8,9 @@
     "userConfig": {
         "designer|userAlias": "moduledocs",
         "designer|userClassName": "module.Docs",
-        "height": 250,
+        "height": null,
         "layout": "fit",
-        "width": 400
+        "width": null
     },
     "name": "MyContainer4",
     "designerId": "4d6a853b-d00f-43aa-8874-4ba811cd57de",

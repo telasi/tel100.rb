@@ -8,9 +8,9 @@
     "userConfig": {
         "designer|userAlias": "modulehr",
         "designer|userClassName": "module.HR",
-        "height": 250,
+        "height": null,
         "layout": "fit",
-        "width": 400
+        "width": null
     },
     "name": "MyContainer4",
     "designerId": "91fa23ee-6174-458d-b7d1-2884163f49e7",

@@ -26,8 +26,6 @@ Ext.define('Tel100.view.module.Docs', {
   viewModel: {
     type: 'moduledocs'
   },
-  height: 250,
-  width: 400,
   layout: 'fit',
 
   items: [

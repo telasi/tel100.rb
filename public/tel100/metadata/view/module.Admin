@@ -8,8 +8,8 @@
     "userConfig": {
         "designer|userAlias": "moduleadmin",
         "designer|userClassName": "module.Admin",
-        "height": 250,
-        "width": 400
+        "height": null,
+        "width": null
     },
     "name": "MyContainer4",
     "designerId": "ccd2d2bc-75bf-486a-8974-0cce128d04da",

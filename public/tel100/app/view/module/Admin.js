@@ -25,8 +25,6 @@ Ext.define('Tel100.view.module.Admin', {
   viewModel: {
     type: 'moduleadmin'
   },
-  height: 250,
-  width: 400,
 
   items: [
     {
