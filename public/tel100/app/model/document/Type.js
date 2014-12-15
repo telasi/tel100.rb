@@ -20,7 +20,8 @@ Ext.define('Tel100.model.document.Type', {
     'Tel100.model.Tel100',
     'Ext.data.field.Integer',
     'Ext.data.field.String',
-    'Ext.data.field.Date'
+    'Ext.data.field.Date',
+    'Ext.data.proxy.Rest'
   ],
 
   schema: 'tel100schema',
@@ -46,5 +47,10 @@ Ext.define('Tel100.model.document.Type', {
       type: 'date',
       name: 'updated_at'
     }
-  ]
+  ],
+
+  proxy: {
+    type: 'rest',
+    url: '/api/documents/types'
+  }
 });

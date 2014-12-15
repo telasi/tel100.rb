@@ -79,6 +79,20 @@
             },
             "name": "MyDate6",
             "designerId": "4408d612-4ca6-4463-9931-2bbdf772f807"
+        },
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "TypeProxy",
+                "url": "/api/documents/types"
+            },
+            "name": "MyRestProxy",
+            "designerId": "00c1c513-2bb4-417b-811e-9a869158b02f"
         }
     ]
 }
