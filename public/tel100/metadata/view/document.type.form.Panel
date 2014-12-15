@@ -38,18 +38,112 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fieldLabel": "Name",
+                "designer|displayName": "Name KA",
+                "fieldLabel": "Name, KA",
+                "itemId": null,
                 "layout|anchor": "100%",
-                "readOnly": true,
+                "name": null,
                 "value": [
-                    "{doctype.name}"
+                    "{doctype.name_ka}"
                 ]
             },
-            "name": "MyTextField2",
+            "name": "MyTextField3",
             "configAlternates": {
                 "value": "binding"
             },
-            "designerId": "d02da968-0437-4a3f-95c0-7583fbbee0e2"
+            "designerId": "972446f0-a2ef-4d9d-82f4-4a037cae6413"
+        },
+        {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "Name RU",
+                "fieldLabel": "Name, RU",
+                "layout|anchor": "100%",
+                "value": [
+                    "{doctype.name_ru}"
+                ]
+            },
+            "name": "MyTextField4",
+            "configAlternates": {
+                "value": "binding"
+            },
+            "designerId": "939a5dd3-3793-4cbd-b6ea-32678a3558e4"
+        },
+        {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "Name EN",
+                "fieldLabel": "Name, EN",
+                "layout|anchor": "100%",
+                "value": [
+                    "{doctype.name_en}"
+                ]
+            },
+            "name": "MyTextField5",
+            "configAlternates": {
+                "value": "binding"
+            },
+            "designerId": "7817213d-9209-4870-997f-4ca98199fd4e"
+        },
+        {
+            "type": "Ext.form.field.Number",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": "Order By",
+                "layout|anchor": "100%",
+                "maxValue": 999,
+                "minValue": 0,
+                "value": [
+                    "{doctype.order_by}"
+                ]
+            },
+            "name": "MyNumberField",
+            "configAlternates": {
+                "value": "binding"
+            },
+            "designerId": "6bd832ea-dbcd-4696-a2d0-619372fcab9d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "doctype"
+                ],
+                "fn": "loadDoctype",
+                "implHandler": [
+                    "var self = this;",
+                    "self.setLoading(true);",
+                    "doctype.load({",
+                    "  success: function() {",
+                    "    self.setLoading(false);",
+                    "    self.getViewModel().set('doctype', doctype);",
+                    "  },",
+                    "  failure: function() {",
+                    "  }",
+                    "});"
+                ]
+            },
+            "name": "loadDoctype",
+            "designerId": "9358c4c4-6adf-4962-8b37-23d6763e6687"
         }
     ]
 }

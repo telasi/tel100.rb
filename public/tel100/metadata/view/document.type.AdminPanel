@@ -67,7 +67,8 @@
                         "fn": "onTypeChanged",
                         "implHandler": [
                             "var form = this.getReferences('doctypeForm').doctypeForm;",
-                            "form.getViewModel().set('doctype', selected[0]);"
+                            "var doctype = selected[0];",
+                            "form.loadDoctype(doctype);"
                         ],
                         "name": "selectionchange",
                         "scope": "me"
