@@ -131,15 +131,8 @@
                 "fn": "loadDoctype",
                 "implHandler": [
                     "var self = this;",
-                    "self.setLoading(true);",
-                    "doctype.load({",
-                    "  success: function() {",
-                    "    self.setLoading(false);",
-                    "    self.getViewModel().set('doctype', doctype);",
-                    "  },",
-                    "  failure: function() {",
-                    "  }",
-                    "});"
+                    "self.getViewModel().set('doctype', doctype);",
+                    "doctype.load();"
                 ]
             },
             "name": "loadDoctype",

@@ -66,15 +66,8 @@ Ext.define('Tel100.view.document.type.form.Panel', {
 
   loadDoctype: function(doctype) {
     var self = this;
-    self.setLoading(true);
-    doctype.load({
-      success: function() {
-        self.setLoading(false);
-        self.getViewModel().set('doctype', doctype);
-      },
-      failure: function() {
-      }
-    });
+    self.getViewModel().set('doctype', doctype);
+    doctype.load();
   }
 
 });
