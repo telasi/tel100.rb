@@ -25,10 +25,12 @@
             },
             "codeClass": null,
             "userConfig": {
+                "collapsible": false,
                 "designer|displayName": "Actions",
                 "hideHeaders": true,
                 "layout|flex": 0,
                 "layout|region": "west",
+                "layout|split": true,
                 "store": "admin.Actions",
                 "title": [
                     "{i18n.admin.actions}"
@@ -163,7 +165,20 @@
                 "layout|region": "center"
             },
             "name": "MyContainer",
-            "designerId": "0b1c791b-f137-416a-8bba-0207a8c536d4"
+            "designerId": "0b1c791b-f137-416a-8bba-0207a8c536d4",
+            "cn": [
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "name": "document.type.grid.panel",
+                    "designerId": "c9f02688-b09f-474b-9152-7a407ee94b0d",
+                    "masterInstanceId": "71848cce-dc19-4437-9e9c-7d50370f74ae"
+                }
+            ]
         }
     ]
 }

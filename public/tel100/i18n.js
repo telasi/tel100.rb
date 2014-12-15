@@ -104,6 +104,10 @@ i18n.ka.document = {
       gridtitle: '<i class="fa fa-file-text-o"></i> დოკუმენტები',
       doctabstitle: '<i class="fa fa-file-text-o"></i> ჩემი დოკუმენტები'
     }
+  },
+  type: {
+    order_by: '#',
+    name: 'დასახელება'
   }
 };
 
@@ -143,5 +147,9 @@ i18n.ru.document = {
       gridtitle: '<i class="fa fa-file-text-o"></i> Документы',
       doctabstitle: '<i class="fa fa-file-text-o"></i> Мои документы'
     }
+  },
+  type: {
+    order_by: '#',
+    name: 'Наименование'
   }
 };

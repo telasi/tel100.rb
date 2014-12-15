@@ -1,0 +1,80 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documenttypegridpanel",
+        "designer|userClassName": "document.type.grid.Panel",
+        "height": 250,
+        "store": [
+            "{types}"
+        ],
+        "title": [
+            "{i18n.admin.documents.groupName} &gt; {i18n.admin.documents.types}"
+        ],
+        "width": 400
+    },
+    "name": "MyGridPanel",
+    "configAlternates": {
+        "title": "binding",
+        "store": "binding"
+    },
+    "designerId": "71848cce-dc19-4437-9e9c-7d50370f74ae",
+    "viewControllerInstanceId": "9f66f5a4-0239-4327-b273-a814a1251313",
+    "viewModelInstanceId": "64883764-e8e6-4202-a301-cbb0861f68f7",
+    "cn": [
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView1",
+            "designerId": "7d5629f8-62ee-4d2b-b109-a73259ba3bc0"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "order_by",
+                "text": [
+                    "{i18n.document.type.order_by}"
+                ],
+                "width": 50
+            },
+            "name": "MyColumn7",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "b8946642-0fbf-4223-84bb-643428104fc1"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "name",
+                "flex": 1,
+                "text": [
+                    "{i18n.document.type.name}"
+                ]
+            },
+            "name": "MyColumn6",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "200ed9cb-aaa4-405a-926c-c51ddbff078f"
+        }
+    ]
+}

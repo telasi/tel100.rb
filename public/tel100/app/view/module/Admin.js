@@ -19,6 +19,7 @@ Ext.define('Tel100.view.module.Admin', {
 
   requires: [
     'Tel100.view.module.AdminViewModel',
+    'Tel100.view.document.type.grid.Panel',
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
@@ -36,7 +37,9 @@ Ext.define('Tel100.view.module.Admin', {
       xtype: 'gridpanel',
       flex: 0,
       region: 'west',
+      split: true,
       width: 200,
+      collapsible: false,
       hideHeaders: true,
       store: 'admin.Actions',
       bind: {
@@ -73,7 +76,12 @@ Ext.define('Tel100.view.module.Admin', {
       xtype: 'container',
       flex: 1,
       region: 'center',
-      layout: 'card'
+      layout: 'card',
+      items: [
+        {
+          xtype: 'documenttypegridpanel'
+        }
+      ]
     }
   ]
 
