@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       end
       scope 'types', controller: 'types' do
         get '/', action: 'index'
+        get '/:id', action: 'show'
       end
     end
   end
