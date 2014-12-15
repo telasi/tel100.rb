@@ -48,8 +48,8 @@ Ext.application({
     'document.Tabs',
     'document.viewer.Panel',
     'document.type.grid.Panel',
-    'document.type.property.Grid',
-    'document.type.AdminPanel'
+    'document.type.AdminPanel',
+    'document.type.form.Panel'
   ],
   name: 'Tel100',
 

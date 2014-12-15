@@ -34,14 +34,18 @@ Ext.define('Tel100.view.document.type.grid.Panel', {
     {
       xtype: 'gridcolumn',
       width: 50,
+      sortable: false,
       dataIndex: 'order_by',
+      menuDisabled: true,
       bind: {
         text: '{i18n.document.type.order_by}'
       }
     },
     {
       xtype: 'gridcolumn',
+      sortable: false,
       dataIndex: 'name',
+      menuDisabled: true,
       flex: 1,
       bind: {
         text: '{i18n.document.type.name}'

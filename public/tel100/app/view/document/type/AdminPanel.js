@@ -19,10 +19,14 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
 
   requires: [
     'Tel100.view.document.type.AdminPanelViewModel',
+    'Tel100.view.document.type.AdminPanelViewController',
     'Tel100.view.document.type.grid.Panel',
-    'Ext.grid.Panel'
+    'Tel100.view.document.type.form.Panel',
+    'Ext.grid.Panel',
+    'Ext.form.Panel'
   ],
 
+  controller: 'documenttypeadminpanel',
   viewModel: {
     type: 'documenttypeadminpanel'
   },
@@ -36,7 +40,18 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
       xtype: 'documenttypegridpanel',
       width: 300,
       region: 'west',
-      split: true
+      split: true,
+      bind: {
+        selection: '{selected}'
+      },
+      listeners: {
+        selectionchange: 'onTypeChanged'
+      }
+    },
+    {
+      xtype: 'documenttypeformpanel',
+      reference: 'doctypeForm',
+      region: 'center'
     }
   ]
 

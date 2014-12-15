@@ -15,6 +15,10 @@
 
 Ext.define('Tel100.view.document.type.AdminPanelViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documenttypeadminpanel'
+  alias: 'viewmodel.documenttypeadminpanel',
+
+  data: {
+    selected: null
+  }
 
 });

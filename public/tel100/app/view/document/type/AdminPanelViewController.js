@@ -15,5 +15,11 @@
 
 Ext.define('Tel100.view.document.type.AdminPanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documenttypeadminpanel'
+  alias: 'controller.documenttypeadminpanel',
+
+  onTypeChanged: function(model, selected, eOpts) {
+    var form = this.getReferences('doctypeForm').doctypeForm;
+    form.getViewModel().set('doctype', selected[0]);
+  }
+
 });

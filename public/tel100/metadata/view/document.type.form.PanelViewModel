@@ -1,0 +1,30 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{",
+            "  doctype: null",
+            "}"
+        ],
+        "designer|userAlias": "documenttypeformpanel",
+        "designer|userClassName": "document.type.form.PanelViewModel",
+        "type": null
+    },
+    "configAlternates": {
+        "type": "object",
+        "doctype": "object"
+    },
+    "designerId": "1d815ebe-bd75-4658-90a0-2ac95e6183cc",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "type",
+            "type": "string"
+        }
+    ]
+}

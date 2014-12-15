@@ -31,13 +31,71 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "Types Grid",
                 "layout|region": "west",
                 "layout|split": true,
+                "reference": null,
+                "selection": [
+                    "{selected}"
+                ],
+                "title": null,
                 "width": 300
             },
-            "name": "document.type.grid.panel1",
+            "name": "document.type.grid.panel2",
+            "configAlternates": {
+                "selection": "binding",
+                "title": "binding"
+            },
             "designerId": "1829897a-bbe9-405e-bb6e-f28d5aaa9aeb",
-            "masterInstanceId": "71848cce-dc19-4437-9e9c-7d50370f74ae"
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
+                    "type": "string"
+                }
+            ],
+            "masterInstanceId": "71848cce-dc19-4437-9e9c-7d50370f74ae",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTypeChanged",
+                        "implHandler": [
+                            "var form = this.getReferences('doctypeForm').doctypeForm;",
+                            "form.getViewModel().set('doctype', selected[0]);"
+                        ],
+                        "name": "selectionchange",
+                        "scope": "me"
+                    },
+                    "name": "onTypeChanged",
+                    "designerId": "6b9db44a-97cf-4619-8724-94d7cd723a94"
+                }
+            ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "Type Form",
+                "layout|region": "center",
+                "reference": "doctypeForm"
+            },
+            "name": "document.type.form.panel",
+            "configAlternates": {
+                "type": "binding",
+                "doctype": "binding"
+            },
+            "designerId": "50c1a4bd-3c30-4a93-9901-b2907269acf7",
+            "masterInstanceId": "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2"
         }
     ]
 }

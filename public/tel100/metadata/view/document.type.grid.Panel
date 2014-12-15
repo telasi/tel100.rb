@@ -17,7 +17,9 @@
     },
     "name": "MyGridPanel",
     "configAlternates": {
-        "store": "binding"
+        "store": "binding",
+        "selection": "binding",
+        "type": "binding"
     },
     "designerId": "71848cce-dc19-4437-9e9c-7d50370f74ae",
     "viewControllerInstanceId": "9f66f5a4-0239-4327-b273-a814a1251313",
@@ -42,6 +44,9 @@
             "codeClass": null,
             "userConfig": {
                 "dataIndex": "order_by",
+                "designer|displayName": "Order By",
+                "menuDisabled": true,
+                "sortable": false,
                 "text": [
                     "{i18n.document.type.order_by}"
                 ],
@@ -62,7 +67,10 @@
             "codeClass": null,
             "userConfig": {
                 "dataIndex": "name",
+                "designer|displayName": "Name",
                 "flex": 1,
+                "menuDisabled": true,
+                "sortable": false,
                 "text": [
                     "{i18n.document.type.name}"
                 ]

@@ -6,6 +6,12 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  selected: null",
+            "}",
+            ""
+        ],
         "designer|userAlias": "documenttypeadminpanel",
         "designer|userClassName": "document.type.AdminPanelViewModel"
     },
