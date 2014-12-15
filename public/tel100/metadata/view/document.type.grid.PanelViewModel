@@ -21,7 +21,8 @@
             "userConfig": {
                 "autoLoad": true,
                 "model": "document.Type",
-                "name": "types"
+                "name": "types",
+                "pageSize": 0
             },
             "name": "MyStore",
             "designerId": "bb2003f3-2ffd-4793-9409-cb367de3ac3c"

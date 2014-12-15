@@ -23,6 +23,7 @@ Ext.define('Tel100.view.document.type.grid.PanelViewModel', {
 
   stores: {
     types: {
+      pageSize: 0,
       autoLoad: true,
       model: 'Tel100.model.document.Type'
     }
