@@ -19,17 +19,61 @@ Ext.define('Tel100.view.module.Admin', {
 
   requires: [
     'Tel100.view.module.AdminViewModel',
-    'Ext.form.Label'
+    'Ext.grid.Panel',
+    'Ext.grid.View',
+    'Ext.grid.column.Column',
+    'Ext.grid.feature.Grouping',
+    'Ext.XTemplate'
   ],
 
   viewModel: {
     type: 'moduleadmin'
   },
+  layout: 'border',
 
   items: [
     {
-      xtype: 'label',
-      text: 'This is ADMIN module'
+      xtype: 'gridpanel',
+      flex: 0,
+      region: 'west',
+      width: 200,
+      hideHeaders: true,
+      store: 'admin.Actions',
+      bind: {
+        title: '{i18n.admin.actions}'
+      },
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            var category = record.get('category');
+            var name = record.get('name');
+            return Helpers.i18n().admin[category][name];
+          },
+          dataIndex: 'name',
+          text: 'action',
+          flex: 1
+        }
+      ],
+      features: [
+        {
+          ftype: 'grouping',
+          groupHeaderTpl: Ext.create('Ext.XTemplate', 
+            '{name:this.categoryName}',
+            {
+              categoryName: function(name) {
+                return Helpers.i18n().admin[name].groupName;
+              }
+            }
+          )
+        }
+      ]
+    },
+    {
+      xtype: 'container',
+      flex: 1,
+      region: 'center',
+      layout: 'card'
     }
   ]
 

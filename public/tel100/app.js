@@ -29,7 +29,8 @@ Ext.application({
     'LocaleStore',
     'hr.Tree',
     'document.Base',
-    'document.Type'
+    'document.Type',
+    'admin.Actions'
   ],
   views: [
     'MainViewport',

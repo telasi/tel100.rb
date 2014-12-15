@@ -24,6 +24,24 @@ i18n.ru.app = {
   telasi: 'АО Теласи'
 };
 
+// admin menu
+
+i18n.ka.admin = {
+  actions: '<i class="fa fa-cog"></i> აარჩიეთ მოქმედება',
+  documents: {
+    groupName: 'დოკუმენტები',
+    types: 'სახეობები'
+  }
+};
+
+i18n.ru.admin = {
+  actions: '<i class="fa fa-cog"></i> Выберите действие',
+  documents: {
+    groupName: 'Документы',
+    types: 'Типы'
+  }
+};
+
 // user
 
 i18n.ka.user = {
