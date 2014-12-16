@@ -14,6 +14,15 @@ class Api::Documents::TypesController < ApiController
     render formats: ['json']
   end
 
+  def create
+    @type = Document::Type.new(type_params)
+    if @type.save
+      render action: 'show', formats: ['json']
+    else
+      render_api_error @type.errors.full_messages
+    end
+  end
+
   def update
     @type = Document::Type.find(params[:id])
     if @type.update_attributes(type_params)
