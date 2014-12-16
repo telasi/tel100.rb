@@ -13,4 +13,19 @@ class Api::Documents::TypesController < ApiController
     @type = Document::Type.find(params[:id])
     render formats: ['json']
   end
+
+  def update
+    @type = Document::Type.find(params[:id])
+    if @type.update_attributes(type_params)
+      render action: 'show', formats: ['json']
+    else
+      render_api_error @type.errors.full_messages
+    end
+  end
+
+  private
+
+  def type_params
+    params.require(:type).permit(:name_ka, :name_ru, :name_en, :order_by)
+  end
 end

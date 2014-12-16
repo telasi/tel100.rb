@@ -8,7 +8,11 @@ class ApiController < ActionController::Base
   end
 
   def render_api_error(error)
-    render json: { success: false, error: error.to_s }
+    if error.is_a?(Array)
+      render json: { success: false, error: error }
+    else
+      render json: { success: false, error: error.to_s }
+    end
   end
 
   def current_locale; params[:api_locale] || 'ka' end

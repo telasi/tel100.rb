@@ -51,8 +51,9 @@ Rails.application.routes.draw do
         # TODO:
       end
       scope 'types', controller: 'types' do
-        get '/', action: 'index'
+        get '/',    action: 'index'
         get '/:id', action: 'show'
+        put '/:id', action: 'update'
       end
     end
   end
