@@ -48,7 +48,10 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
     {
       xtype: 'documenttypeformpanel',
       reference: 'doctypeForm',
-      region: 'center'
+      region: 'center',
+      listeners: {
+        typecreated: 'onFormTypecreated'
+      }
     }
   ]
 

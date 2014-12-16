@@ -32,14 +32,16 @@ i18n.ka.actions = {
   save: 'შენახვა',
   refresh: 'განახლება',
   addnew: 'ახლის დამატება',
-  delete: 'წაშლა'
+  delete: 'წაშლა',
+  confirm_delete: 'დარწმუნებული ხართ?'
 };
 
 i18n.ru.actions = {
   save: 'Сохранить',
   refresh: 'Обновить',
   addnew: 'Новый',
-  delete: 'Удалить'
+  delete: 'Удалить',
+  confirm_delete: 'Вы уверены?'
 };
 
 // admin menu

@@ -37,7 +37,7 @@
                 "title": null,
                 "width": 300
             },
-            "name": "document.type.grid.panel",
+            "name": "document.type.grid.panel1",
             "configAlternates": {
                 "selection": "binding",
                 "title": "binding"
@@ -86,13 +86,36 @@
                 "layout|region": "center",
                 "reference": "doctypeForm"
             },
-            "name": "document.type.form.panel",
+            "name": "document.type.form.panel1",
             "configAlternates": {
                 "type": "binding",
                 "doctype": "binding"
             },
             "designerId": "50c1a4bd-3c30-4a93-9901-b2907269acf7",
-            "masterInstanceId": "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2"
+            "masterInstanceId": "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "form"
+                        ],
+                        "fn": "onFormTypecreated",
+                        "implHandler": [
+                            "console.log('created!!!');"
+                        ],
+                        "name": "typecreated",
+                        "scope": "me"
+                    },
+                    "name": "onFormTypecreated",
+                    "designerId": "df8cc88f-d6b7-4911-891f-248f7f2995bd"
+                }
+            ]
         }
     ]
 }

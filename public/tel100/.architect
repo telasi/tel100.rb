@@ -507,6 +507,7 @@
         },
         "71848cce-dc19-4437-9e9c-7d50370f74ae": {
             "id": "71848cce-dc19-4437-9e9c-7d50370f74ae",
+            "expanded": false,
             "cn": [
                 {
                     "id": "7d5629f8-62ee-4d2b-b109-a73259ba3bc0"
@@ -538,7 +539,8 @@
             ]
         },
         "9f66f5a4-0239-4327-b273-a814a1251313": {
-            "id": "9f66f5a4-0239-4327-b273-a814a1251313"
+            "id": "9f66f5a4-0239-4327-b273-a814a1251313",
+            "expanded": false
         },
         "349dc94c-9bff-429d-a1ac-a7ae1f00b577": {
             "id": "349dc94c-9bff-429d-a1ac-a7ae1f00b577",
@@ -553,7 +555,12 @@
                     ]
                 },
                 {
-                    "id": "50c1a4bd-3c30-4a93-9901-b2907269acf7"
+                    "id": "50c1a4bd-3c30-4a93-9901-b2907269acf7",
+                    "cn": [
+                        {
+                            "id": "df8cc88f-d6b7-4911-891f-248f7f2995bd"
+                        }
+                    ]
                 }
             ]
         },
@@ -562,11 +569,11 @@
             "expanded": false
         },
         "cbb495ca-db3f-48b2-bdad-4fd0fa4e7c2a": {
-            "id": "cbb495ca-db3f-48b2-bdad-4fd0fa4e7c2a",
-            "expanded": false
+            "id": "cbb495ca-db3f-48b2-bdad-4fd0fa4e7c2a"
         },
         "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2": {
             "id": "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2",
+            "expanded": false,
             "cn": [
                 {
                     "id": "972446f0-a2ef-4d9d-82f4-4a037cae6413"
@@ -584,28 +591,11 @@
                     "id": "9358c4c4-6adf-4962-8b37-23d6763e6687"
                 },
                 {
-                    "id": "6b5c8c20-e318-4b1b-8dcc-20f3efb342ef",
-                    "expanded": false,
-                    "cn": [
-                        {
-                            "id": "42ada73c-9b59-4b09-8c47-c4246041cee3"
-                        }
-                    ]
-                },
-                {
                     "id": "993fb93a-9bc4-4f24-8817-ab9d8eaa4a07",
                     "expanded": false,
                     "cn": [
                         {
                             "id": "339048af-bf70-42de-b2f2-3762838c39a0"
-                        }
-                    ]
-                },
-                {
-                    "id": "e815af8a-256d-436c-a4fc-75f30c827eb4",
-                    "cn": [
-                        {
-                            "id": "0c25f0db-5ef4-4e39-ba38-ed89bb73409a"
                         }
                     ]
                 }
@@ -631,6 +621,12 @@
             "cn": [
                 {
                     "id": "97ae5a81-c732-4b09-b1e9-b38b57316fc8"
+                },
+                {
+                    "id": "facdfc36-3b71-486b-b4be-ff06f4c9b162"
+                },
+                {
+                    "id": "01d0f4a0-ab3b-4494-9b82-b85f34740793"
                 }
             ]
         },
@@ -702,7 +698,7 @@
                 }
             ]
         },
-        "model": true,
+        "model": false,
         "1e680ed7-d4f0-4feb-bc97-d1bf05596e55": {
             "id": "1e680ed7-d4f0-4feb-bc97-d1bf05596e55",
             "expanded": false,
@@ -957,19 +953,17 @@
     },
     "tabState": {
         "openTabs": [
+            "349dc94c-9bff-429d-a1ac-a7ae1f00b577",
             "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2",
-            "e1042426-bc31-4a83-b7f1-903ff654b2dc",
-            "ff362d59-f925-424d-b9cd-49a4562ef927",
-            "deeb6dd6-3a14-4580-8c5d-c41056bd17ac",
-            "71848cce-dc19-4437-9e9c-7d50370f74ae"
+            "e1042426-bc31-4a83-b7f1-903ff654b2dc"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2",
-        "selectedInstance": "0c25f0db-5ef4-4e39-ba38-ed89bb73409a"
+        "topInstance": "e1042426-bc31-4a83-b7f1-903ff654b2dc",
+        "selectedInstance": "e1042426-bc31-4a83-b7f1-903ff654b2dc"
     },
     "editMode": "code",
     "userSettings": {

@@ -21,6 +21,10 @@ Ext.define('Tel100.view.document.type.AdminPanelViewController', {
     var form = this.getReferences('doctypeForm').doctypeForm;
     var doctype = selected[0];
     form.loadDoctype(doctype);
+  },
+
+  onFormTypecreated: function(form) {
+    console.log('created!!!');
   }
 
 });

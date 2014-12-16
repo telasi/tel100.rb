@@ -7,6 +7,19 @@
     "codeClass": null,
     "userConfig": {
         "bodyPadding": 10,
+        "buttons": [
+            "[{",
+            "  bind: {",
+            "    text: '<i class=\"fa fa-save\"></i> {i18n.actions.save}',",
+            "    handler: 'onSave'",
+            "  }",
+            "}, '->', {",
+            "  bind: {",
+            "    text: '<i class=\"fa fa-trash\"></i> {i18n.actions.delete}',",
+            "    handler: 'onDelete'",
+            "  }",
+            "}]"
+        ],
         "designer|userAlias": "documenttypeformpanel",
         "designer|userClassName": "document.type.form.Panel",
         "height": null,
@@ -20,13 +33,19 @@
     "configAlternates": {
         "type": "binding",
         "buttons": "array",
-        "title": "binding"
+        "title": "binding",
+        "dockedItems": "array"
     },
     "designerId": "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2",
     "customConfigs": [
         {
             "group": "(Custom Properties)",
             "name": "type",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "buttons",
             "type": "string"
         }
     ],
@@ -150,55 +169,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "save",
-                "tooltip": [
-                    "{i18n.actions.save}"
-                ],
-                "type": "save"
-            },
-            "name": "MyTool1",
-            "configAlternates": {
-                "tooltip": "binding"
-            },
-            "designerId": "6b5c8c20-e318-4b1b-8dcc-20f3efb342ef",
-            "cn": [
-                {
-                    "type": "viewcontrollereventbinding",
-                    "reference": {
-                        "name": "listeners",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fn": "onSave",
-                        "implHandler": [
-                            "var type = this.getViewModel().get('doctype');",
-                            "if (type) {",
-                            "  var view = this.getView();",
-                            "  view.setLoading(true);",
-                            "  type.save({",
-                            "    callback: function(records, operation) {",
-                            "      view.setLoading(false);",
-                            "    }",
-                            "  });",
-                            "}"
-                        ],
-                        "name": "click",
-                        "scope": "me"
-                    },
-                    "name": "onSave",
-                    "designerId": "42ada73c-9b59-4b09-8c47-c4246041cee3"
-                }
-            ]
-        },
-        {
-            "type": "Ext.panel.Tool",
-            "reference": {
-                "name": "tools",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "designer|displayName": "new",
                 "tooltip": [
                     "{i18n.actions.addnew}"
@@ -228,56 +198,6 @@
                     },
                     "name": "onNew",
                     "designerId": "339048af-bf70-42de-b2f2-3762838c39a0"
-                }
-            ]
-        },
-        {
-            "type": "Ext.panel.Tool",
-            "reference": {
-                "name": "tools",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|displayName": "delete",
-                "tooltip": [
-                    "{i18n.actions.delete}"
-                ],
-                "type": "close"
-            },
-            "name": "MyTool3",
-            "configAlternates": {
-                "tooltip": "binding"
-            },
-            "designerId": "e815af8a-256d-436c-a4fc-75f30c827eb4",
-            "cn": [
-                {
-                    "type": "viewcontrollereventbinding",
-                    "reference": {
-                        "name": "listeners",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fn": "onDelete",
-                        "implHandler": [
-                            "var self = this;",
-                            "var type = self.getViewModel().get('doctype');",
-                            "if (type && !type.phantom) {",
-                            "  var view = self.getView();",
-                            "  view.setLoading(true);",
-                            "  type.erase({",
-                            "    callback: function(records, operation, success) {",
-                            "      view.setLoading(false);",
-                            "    }",
-                            "  });",
-                            "}"
-                        ],
-                        "name": "click",
-                        "scope": "me"
-                    },
-                    "name": "onDelete",
-                    "designerId": "0c25f0db-5ef4-4e39-ba38-ed89bb73409a"
                 }
             ]
         }

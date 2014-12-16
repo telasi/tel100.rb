@@ -24,6 +24,24 @@ Ext.define('Tel100.view.document.type.form.Panel', {
     'Ext.panel.Tool'
   ],
 
+  config: {
+    buttons: [
+      {
+        bind: {
+          text: '<i class="fa fa-save"></i> {i18n.actions.save}',
+          handler: 'onSave'
+        }
+      },
+      '->',
+      {
+        bind: {
+          text: '<i class="fa fa-trash"></i> {i18n.actions.delete}',
+          handler: 'onDelete'
+        }
+      }
+    ]
+  },
+
   controller: 'documenttypeformpanel',
   viewModel: {
     type: 'documenttypeformpanel'
@@ -72,32 +90,12 @@ Ext.define('Tel100.view.document.type.form.Panel', {
   tools: [
     {
       xtype: 'tool',
-      type: 'save',
-      bind: {
-        tooltip: '{i18n.actions.save}'
-      },
-      listeners: {
-        click: 'onSave'
-      }
-    },
-    {
-      xtype: 'tool',
       type: 'plus',
       bind: {
         tooltip: '{i18n.actions.addnew}'
       },
       listeners: {
         click: 'onNew'
-      }
-    },
-    {
-      xtype: 'tool',
-      type: 'close',
-      bind: {
-        tooltip: '{i18n.actions.delete}'
-      },
-      listeners: {
-        click: 'onDelete'
       }
     }
   ],

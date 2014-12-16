@@ -31,35 +31,46 @@ Ext.define('Tel100.view.document.type.form.PanelViewController', {
     }
   },
 
-  onSave: function(tool, e, owner, eOpts) {
-    var type = this.getViewModel().get('doctype');
+  onSave: function() {
+    var self = this;
+    var type = self.getViewModel().get('doctype');
     if (type) {
-      var view = this.getView();
+      var newMode = type.phantom;
+      var view = self.getView();
       view.setLoading(true);
       type.save({
-        callback: function(records, operation) {
+        callback: function(records, operation, success) {
           view.setLoading(false);
+          if (success) {
+            self.fireEvent(newMode ? 'typecreated' : 'typeupdated', records[0]);
+          }
         }
       });
+    }
+  },
+
+  onDelete: function() {
+    var self = this;
+    var type = self.getViewModel().get('doctype');
+    if (type && !type.phantom) {
+      if (confirm(Helpers.i18n().actions.confirm_delete)) {
+        var view = self.getView();
+        view.setLoading(true);
+        type.erase({
+          callback: function(records, operation, success) {
+            view.setLoading(false);
+            if (success) {
+              self.fireEvent('type-deleted', type);
+              self.onNew();
+            }
+          }
+        });
+      }
     }
   },
 
   onNew: function(tool, e, owner, eOpts) {
     this.loadDoctype(Ext.create('Tel100.model.document.Type'));
-  },
-
-  onDelete: function(tool, e, owner, eOpts) {
-    var self = this;
-    var type = self.getViewModel().get('doctype');
-    if (type && !type.phantom) {
-      var view = self.getView();
-      view.setLoading(true);
-      type.erase({
-        callback: function(records, operation, success) {
-          view.setLoading(false);
-        }
-      });
-    }
   }
 
 });

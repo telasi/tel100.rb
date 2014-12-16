@@ -38,6 +38,68 @@
             },
             "name": "loadDoctype",
             "designerId": "97ae5a81-c732-4b09-b1e9-b38b57316fc8"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onSave",
+                "implHandler": [
+                    "var self = this;",
+                    "var type = self.getViewModel().get('doctype');",
+                    "if (type) {",
+                    "  var newMode = type.phantom;",
+                    "  var view = self.getView();",
+                    "  view.setLoading(true);",
+                    "  type.save({",
+                    "    callback: function(records, operation, success) {",
+                    "      view.setLoading(false);",
+                    "      if (success) {",
+                    "        self.fireEvent(newMode ? 'typecreated' : 'typeupdated', records[0]);",
+                    "      }",
+                    "    }",
+                    "  });",
+                    "}"
+                ]
+            },
+            "name": "onSave",
+            "designerId": "facdfc36-3b71-486b-b4be-ff06f4c9b162"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onDelete",
+                "implHandler": [
+                    "var self = this;",
+                    "var type = self.getViewModel().get('doctype');",
+                    "if (type && !type.phantom) {",
+                    "  if (confirm(Helpers.i18n().actions.confirm_delete)) {",
+                    "    var view = self.getView();",
+                    "    view.setLoading(true);",
+                    "    type.erase({",
+                    "      callback: function(records, operation, success) {",
+                    "        view.setLoading(false);",
+                    "        if (success) {",
+                    "          self.fireEvent('type-deleted', type);",
+                    "          self.onNew();",
+                    "        }",
+                    "      }",
+                    "    });",
+                    "  }",
+                    "}"
+                ]
+            },
+            "name": "onDelete",
+            "designerId": "01d0f4a0-ab3b-4494-9b82-b85f34740793"
         }
     ]
 }
