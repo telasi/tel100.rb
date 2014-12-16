@@ -64,9 +64,13 @@ Ext.define('Tel100.view.document.type.grid.Panel', {
         tooltip: '{i18n.actions.refresh}'
       },
       listeners: {
-        click: 'onRefersh'
+        click: 'onRefresh'
       }
     }
-  ]
+  ],
+
+  refresh: function() {
+    this.getController().onRefresh();
+  }
 
 });

@@ -112,17 +112,33 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "fn": "onRefersh",
+                        "fn": "onRefresh",
                         "implHandler": [
                             "this.getViewModel().getStore('types').load();"
                         ],
                         "name": "click",
                         "scope": "me"
                     },
-                    "name": "onRefersh",
+                    "name": "onRefresh",
                     "designerId": "4de57416-8a49-43a2-bc07-5ec0ddf76805"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "this.getController().onRefresh();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "f39340e1-b317-42c3-be0c-0ff9e0a60b29"
         }
     ]
 }

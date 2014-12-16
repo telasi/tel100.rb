@@ -27,10 +27,11 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|createAlias": null,
                 "designer|displayName": "Types Grid",
                 "layout|region": "west",
                 "layout|split": true,
-                "reference": null,
+                "reference": "grid",
                 "selection": [
                     "{selected}"
                 ],
@@ -62,7 +63,7 @@
                     "userConfig": {
                         "fn": "onTypeChanged",
                         "implHandler": [
-                            "var form = this.getReferences('doctypeForm').doctypeForm;",
+                            "var form = this.getReferences().form;",
                             "var doctype = selected[0];",
                             "form.loadDoctype(doctype);"
                         ],
@@ -82,9 +83,10 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|createAlias": null,
                 "designer|displayName": "Type Form",
                 "layout|region": "center",
-                "reference": "doctypeForm"
+                "reference": "form"
             },
             "name": "document.type.form.panel1",
             "configAlternates": {
@@ -103,16 +105,18 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|params": [
-                            "form"
+                            "doctype"
                         ],
-                        "fn": "onFormTypecreated",
+                        "fn": "onTypeCreated",
                         "implHandler": [
-                            "console.log('created!!!');"
+                            "var grid = this.getReferences().grid;",
+                            "grid.refresh();",
+                            "grid.setSelection(doctype);"
                         ],
                         "name": "typecreated",
                         "scope": "me"
                     },
-                    "name": "onFormTypecreated",
+                    "name": "onTypeCreated",
                     "designerId": "df8cc88f-d6b7-4911-891f-248f7f2995bd"
                 }
             ]

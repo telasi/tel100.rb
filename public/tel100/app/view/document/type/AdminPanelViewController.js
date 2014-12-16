@@ -18,13 +18,15 @@ Ext.define('Tel100.view.document.type.AdminPanelViewController', {
   alias: 'controller.documenttypeadminpanel',
 
   onTypeChanged: function(model, selected, eOpts) {
-    var form = this.getReferences('doctypeForm').doctypeForm;
+    var form = this.getReferences().form;
     var doctype = selected[0];
     form.loadDoctype(doctype);
   },
 
-  onFormTypecreated: function(form) {
-    console.log('created!!!');
+  onTypeCreated: function(doctype) {
+    var grid = this.getReferences().grid;
+    grid.refresh();
+    grid.setSelection(doctype);
   }
 
 });

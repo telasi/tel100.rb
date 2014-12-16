@@ -35,6 +35,7 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
   items: [
     {
       xtype: 'documenttypegridpanel',
+      reference: 'grid',
       width: 300,
       region: 'west',
       split: true,
@@ -47,10 +48,10 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
     },
     {
       xtype: 'documenttypeformpanel',
-      reference: 'doctypeForm',
+      reference: 'form',
       region: 'center',
       listeners: {
-        typecreated: 'onFormTypecreated'
+        typecreated: 'onTypeCreated'
       }
     }
   ]

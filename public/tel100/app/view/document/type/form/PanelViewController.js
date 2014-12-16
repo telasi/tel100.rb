@@ -42,7 +42,7 @@ Ext.define('Tel100.view.document.type.form.PanelViewController', {
         callback: function(records, operation, success) {
           view.setLoading(false);
           if (success) {
-            self.fireEvent(newMode ? 'typecreated' : 'typeupdated', records[0]);
+            view.fireEvent(newMode ? 'typecreated' : 'typeupdated', records);
           }
         }
       });
