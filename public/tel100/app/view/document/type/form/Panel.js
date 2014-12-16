@@ -19,9 +19,11 @@ Ext.define('Tel100.view.document.type.form.Panel', {
 
   requires: [
     'Tel100.view.document.type.form.PanelViewModel',
+    'Tel100.view.document.type.form.PanelViewController',
     'Ext.form.field.Number'
   ],
 
+  controller: 'documenttypeformpanel',
   viewModel: {
     type: 'documenttypeformpanel'
   },
@@ -31,7 +33,7 @@ Ext.define('Tel100.view.document.type.form.Panel', {
     {
       xtype: 'textfield',
       anchor: '100%',
-      fieldLabel: 'Name, KA',
+      fieldLabel: 'დასახელება',
       bind: {
         value: '{doctype.name_ka}'
       }
@@ -39,7 +41,7 @@ Ext.define('Tel100.view.document.type.form.Panel', {
     {
       xtype: 'textfield',
       anchor: '100%',
-      fieldLabel: 'Name, RU',
+      fieldLabel: 'Наименование',
       bind: {
         value: '{doctype.name_ru}'
       }
@@ -47,7 +49,7 @@ Ext.define('Tel100.view.document.type.form.Panel', {
     {
       xtype: 'textfield',
       anchor: '100%',
-      fieldLabel: 'Name, EN',
+      fieldLabel: 'Name',
       bind: {
         value: '{doctype.name_en}'
       }
@@ -55,19 +57,17 @@ Ext.define('Tel100.view.document.type.form.Panel', {
     {
       xtype: 'numberfield',
       anchor: '100%',
-      fieldLabel: 'Order By',
       maxValue: 999,
       minValue: 0,
       bind: {
+        fieldLabel: '{i18n.document.type.order_by}',
         value: '{doctype.order_by}'
       }
     }
   ],
 
   loadDoctype: function(doctype) {
-    var self = this;
-    self.getViewModel().set('doctype', doctype);
-    doctype.load();
+    this.getController().loadDoctype(doctype);
   }
 
 });

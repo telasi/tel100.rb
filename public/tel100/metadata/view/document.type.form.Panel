@@ -17,7 +17,8 @@
     "name": "MyForm1",
     "configAlternates": {
         "title": "binding",
-        "type": "binding"
+        "type": "binding",
+        "buttons": "array"
     },
     "designerId": "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2",
     "customConfigs": [
@@ -39,7 +40,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "Name KA",
-                "fieldLabel": "Name, KA",
+                "fieldLabel": "დასახელება",
                 "itemId": null,
                 "layout|anchor": "100%",
                 "name": null,
@@ -62,7 +63,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "Name RU",
-                "fieldLabel": "Name, RU",
+                "fieldLabel": "Наименование",
                 "layout|anchor": "100%",
                 "value": [
                     "{doctype.name_ru}"
@@ -83,7 +84,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "Name EN",
-                "fieldLabel": "Name, EN",
+                "fieldLabel": "Name",
                 "layout|anchor": "100%",
                 "value": [
                     "{doctype.name_en}"
@@ -103,7 +104,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fieldLabel": "Order By",
+                "fieldLabel": [
+                    "{i18n.document.type.order_by}"
+                ],
                 "layout|anchor": "100%",
                 "maxValue": 999,
                 "minValue": 0,
@@ -113,7 +116,8 @@
             },
             "name": "MyNumberField",
             "configAlternates": {
-                "value": "binding"
+                "value": "binding",
+                "fieldLabel": "binding"
             },
             "designerId": "6bd832ea-dbcd-4696-a2d0-619372fcab9d"
         },
@@ -130,9 +134,7 @@
                 ],
                 "fn": "loadDoctype",
                 "implHandler": [
-                    "var self = this;",
-                    "self.getViewModel().set('doctype', doctype);",
-                    "doctype.load();"
+                    "this.getController().loadDoctype(doctype);"
                 ]
             },
             "name": "loadDoctype",

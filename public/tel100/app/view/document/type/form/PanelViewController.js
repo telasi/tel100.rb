@@ -15,5 +15,21 @@
 
 Ext.define('Tel100.view.document.type.form.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documenttypeformpanel'
+  alias: 'controller.documenttypeformpanel',
+
+  onSave: function() {
+    var type = this.getViewModel().get('doctype');
+    if (type) {
+      type.save();
+      console.log('saving');
+    }
+  },
+
+  loadDoctype: function(doctype) {
+    if (doctype) {
+      this.getViewModel().set('doctype', doctype);
+      doctype.load();
+    }
+  }
+
 });

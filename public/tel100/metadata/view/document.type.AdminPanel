@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "bodyPadding": null,
         "designer|userAlias": "documenttypeadminpanel",
         "designer|userClassName": "document.type.AdminPanel",
         "height": null,
@@ -41,7 +42,7 @@
                 "title": null,
                 "width": 300
             },
-            "name": "document.type.grid.panel2",
+            "name": "document.type.grid.panel",
             "configAlternates": {
                 "selection": "binding",
                 "title": "binding"
