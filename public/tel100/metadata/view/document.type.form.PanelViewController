@@ -7,7 +7,10 @@
     "codeClass": null,
     "userConfig": {
         "designer|userAlias": "documenttypeformpanel",
-        "designer|userClassName": "document.type.form.PanelViewController"
+        "designer|userClassName": "document.type.form.PanelViewController",
+        "requires": [
+            "Tel100.model.document.Type"
+        ]
     },
     "designerId": "e1042426-bc31-4a83-b7f1-903ff654b2dc",
     "cn": [
@@ -27,16 +30,8 @@
                     "if (doctype) {",
                     "  if (!doctype.phantom) {",
                     "    Helpers.loadModel('doctype', doctype, this.getViewModel());",
-                    "//     self.getView().setLoading(true);",
-                    "//     doctype.load({",
-                    "//       success: function() {",
-                    "//         self.getView().setLoading(false);",
-                    "//         self.getViewModel().set('doctype', doctype);",
-                    "//       },",
-                    "//       failure: function(error) {",
-                    "//         debugger;",
-                    "//       },",
-                    "//     });",
+                    "  } else {",
+                    "    this.getViewModel().set('doctype', doctype);",
                     "  }",
                     "}"
                 ]

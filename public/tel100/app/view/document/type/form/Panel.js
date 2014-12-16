@@ -79,6 +79,16 @@ Ext.define('Tel100.view.document.type.form.Panel', {
       listeners: {
         click: 'onSave'
       }
+    },
+    {
+      xtype: 'tool',
+      type: 'plus',
+      bind: {
+        tooltip: '{i18n.actions.addnew}'
+      },
+      listeners: {
+        click: 'onNew'
+      }
     }
   ],
 
