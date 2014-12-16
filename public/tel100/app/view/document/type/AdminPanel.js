@@ -32,9 +32,6 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
   },
   layout: 'border',
 
-  bind: {
-    title: '{i18n.admin.documents.groupName} &gt; {i18n.admin.documents.types}'
-  },
   items: [
     {
       xtype: 'documenttypegridpanel',

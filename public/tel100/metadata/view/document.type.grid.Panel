@@ -12,14 +12,17 @@
         "store": [
             "{types}"
         ],
-        "title": null,
+        "title": [
+            "{i18n.admin.documents.types}"
+        ],
         "width": null
     },
     "name": "MyGridPanel",
     "configAlternates": {
         "store": "binding",
         "selection": "binding",
-        "type": "binding"
+        "type": "binding",
+        "title": "binding"
     },
     "designerId": "71848cce-dc19-4437-9e9c-7d50370f74ae",
     "viewControllerInstanceId": "9f66f5a4-0239-4327-b273-a814a1251313",
@@ -80,6 +83,46 @@
                 "text": "binding"
             },
             "designerId": "200ed9cb-aaa4-405a-926c-c51ddbff078f"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "tooltip": [
+                    "{i18n.actions.refresh}"
+                ],
+                "type": "refresh"
+            },
+            "name": "MyTool",
+            "configAlternates": {
+                "tooltip": "binding"
+            },
+            "designerId": "4924657e-2a02-450f-a24e-ad72b2a7f098",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefersh",
+                        "implHandler": [
+                            "this.getViewModel().getStore('types').load();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefersh",
+                    "designerId": "4de57416-8a49-43a2-bc07-5ec0ddf76805"
+                }
+            ]
         }
     ]
 }

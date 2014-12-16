@@ -112,6 +112,21 @@ window.Helpers = (function() {
     });
   };
 
+  var loadModel = function(name, model, viewModel) {
+    var view = viewModel.getView();
+    view.setLoading(true);
+    model.load({
+      success: function(model, operation) {
+        view.setLoading(false);
+        viewModel.set(name, model);
+      },
+      failure: function(model, operation) {
+        view.setLoading(false);
+        errorMessage(operation.error.statusText || i18n_().errors.model_loading_error);
+      },
+    });
+  };
+  
   // Status decoration
 
   var STATUS_CANCELED = -2;
@@ -205,6 +220,7 @@ window.Helpers = (function() {
     i18n: i18n_,
     // ajax
     ajaxRequest: ajaxRequest,
+    loadModel: loadModel,
     // preferences
     getPreferenceValue: getPreferenceValue,
     setPreferenceValue: setPreferenceValue,

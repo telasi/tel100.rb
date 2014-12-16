@@ -19,34 +19,25 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onSave",
-                "implHandler": [
-                    "var type = this.getViewModel().get('doctype');",
-                    "if (type) {",
-                    "  type.save();",
-                    "  console.log('saving');",
-                    "}"
-                ]
-            },
-            "name": "onSave",
-            "designerId": "cf58bcd0-092e-405a-99fe-df565416d457"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "designer|params": [
                     "doctype"
                 ],
                 "fn": "loadDoctype",
                 "implHandler": [
                     "if (doctype) {",
-                    "  this.getViewModel().set('doctype', doctype);",
-                    "  doctype.load();",
+                    "  if (!doctype.phantom) {",
+                    "    Helpers.loadModel('doctype', doctype, this.getViewModel());",
+                    "//     self.getView().setLoading(true);",
+                    "//     doctype.load({",
+                    "//       success: function() {",
+                    "//         self.getView().setLoading(false);",
+                    "//         self.getViewModel().set('doctype', doctype);",
+                    "//       },",
+                    "//       failure: function(error) {",
+                    "//         debugger;",
+                    "//       },",
+                    "//     });",
+                    "  }",
                     "}"
                 ]
             },

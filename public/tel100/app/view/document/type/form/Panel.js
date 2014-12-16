@@ -20,7 +20,8 @@ Ext.define('Tel100.view.document.type.form.Panel', {
   requires: [
     'Tel100.view.document.type.form.PanelViewModel',
     'Tel100.view.document.type.form.PanelViewController',
-    'Ext.form.field.Number'
+    'Ext.form.field.Number',
+    'Ext.panel.Tool'
   ],
 
   controller: 'documenttypeformpanel',
@@ -29,6 +30,9 @@ Ext.define('Tel100.view.document.type.form.Panel', {
   },
   bodyPadding: 10,
 
+  bind: {
+    title: '{title}'
+  },
   items: [
     {
       xtype: 'textfield',
@@ -62,6 +66,18 @@ Ext.define('Tel100.view.document.type.form.Panel', {
       bind: {
         fieldLabel: '{i18n.document.type.order_by}',
         value: '{doctype.order_by}'
+      }
+    }
+  ],
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'save',
+      bind: {
+        tooltip: '{i18n.actions.save}'
+      },
+      listeners: {
+        click: 'onSave'
       }
     }
   ],

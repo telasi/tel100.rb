@@ -11,15 +11,10 @@
         "designer|userClassName": "document.type.AdminPanel",
         "height": null,
         "layout": "border",
-        "title": [
-            "{i18n.admin.documents.groupName} &gt; {i18n.admin.documents.types}"
-        ],
+        "title": null,
         "width": null
     },
     "name": "MyPanel1",
-    "configAlternates": {
-        "title": "binding"
-    },
     "designerId": "349dc94c-9bff-429d-a1ac-a7ae1f00b577",
     "viewControllerInstanceId": "cbb495ca-db3f-48b2-bdad-4fd0fa4e7c2a",
     "viewModelInstanceId": "ba938e7d-d25d-4b4c-9f79-b2a2015cefd2",

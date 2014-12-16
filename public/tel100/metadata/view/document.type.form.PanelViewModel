@@ -26,5 +26,46 @@
             "name": "type",
             "type": "string"
         }
+    ],
+    "cn": [
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bind": "{doctype}",
+                "name": "title"
+            },
+            "name": "MyFormula",
+            "designerId": "85878795-c9cc-403a-a255-ddb54500e6c2",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "if (data && !data.phantom) {",
+                            "  return data.get('name');",
+                            "} else {",
+                            "  return Helpers.i18n().document.type.new_type;",
+                            "}"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "97d8991e-d7cd-4cd3-9ca6-f150ff48af6c"
+                }
+            ]
+        }
     ]
 }

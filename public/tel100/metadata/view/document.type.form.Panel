@@ -10,15 +10,17 @@
         "designer|userAlias": "documenttypeformpanel",
         "designer|userClassName": "document.type.form.Panel",
         "height": null,
-        "title": null,
+        "title": [
+            "{title}"
+        ],
         "type": null,
         "width": null
     },
     "name": "MyForm1",
     "configAlternates": {
-        "title": "binding",
         "type": "binding",
-        "buttons": "array"
+        "buttons": "array",
+        "title": "binding"
     },
     "designerId": "c37b13de-ceb5-48c4-a0f8-865c4e78c6e2",
     "customConfigs": [
@@ -139,6 +141,50 @@
             },
             "name": "loadDoctype",
             "designerId": "9358c4c4-6adf-4962-8b37-23d6763e6687"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "save",
+                "tooltip": [
+                    "{i18n.actions.save}"
+                ],
+                "type": "save"
+            },
+            "name": "MyTool1",
+            "configAlternates": {
+                "tooltip": "binding"
+            },
+            "designerId": "6b5c8c20-e318-4b1b-8dcc-20f3efb342ef",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onSave",
+                        "implHandler": [
+                            "var type = this.getViewModel().get('doctype');",
+                            "if (type) {",
+                            "  type.save();",
+                            "  console.log('saving....');",
+                            "}"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onSave",
+                    "designerId": "42ada73c-9b59-4b09-8c47-c4246041cee3"
+                }
+            ]
         }
     ]
 }

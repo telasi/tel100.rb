@@ -17,18 +17,29 @@ Ext.define('Tel100.view.document.type.form.PanelViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenttypeformpanel',
 
-  onSave: function() {
-    var type = this.getViewModel().get('doctype');
-    if (type) {
-      type.save();
-      console.log('saving');
+  loadDoctype: function(doctype) {
+    if (doctype) {
+      if (!doctype.phantom) {
+        Helpers.loadModel('doctype', doctype, this.getViewModel());
+    //     self.getView().setLoading(true);
+    //     doctype.load({
+    //       success: function() {
+    //         self.getView().setLoading(false);
+    //         self.getViewModel().set('doctype', doctype);
+    //       },
+    //       failure: function(error) {
+    //         debugger;
+    //       },
+    //     });
+      }
     }
   },
 
-  loadDoctype: function(doctype) {
-    if (doctype) {
-      this.getViewModel().set('doctype', doctype);
-      doctype.load();
+  onSave: function(tool, e, owner, eOpts) {
+    var type = this.getViewModel().get('doctype');
+    if (type) {
+      type.save();
+      console.log('saving....');
     }
   }
 

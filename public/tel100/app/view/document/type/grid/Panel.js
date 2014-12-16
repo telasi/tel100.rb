@@ -19,15 +19,19 @@ Ext.define('Tel100.view.document.type.grid.Panel', {
 
   requires: [
     'Tel100.view.document.type.grid.PanelViewModel',
+    'Tel100.view.document.type.grid.PanelViewController',
     'Ext.grid.View',
-    'Ext.grid.column.Column'
+    'Ext.grid.column.Column',
+    'Ext.panel.Tool'
   ],
 
+  controller: 'documenttypegridpanel',
   viewModel: {
     type: 'documenttypegridpanel'
   },
 
   bind: {
+    title: '{i18n.admin.documents.types}',
     store: '{types}'
   },
   columns: [
@@ -49,6 +53,18 @@ Ext.define('Tel100.view.document.type.grid.Panel', {
       flex: 1,
       bind: {
         text: '{i18n.document.type.name}'
+      }
+    }
+  ],
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'refresh',
+      bind: {
+        tooltip: '{i18n.actions.refresh}'
+      },
+      listeners: {
+        click: 'onRefersh'
       }
     }
   ]
