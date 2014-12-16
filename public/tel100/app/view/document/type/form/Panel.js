@@ -89,6 +89,16 @@ Ext.define('Tel100.view.document.type.form.Panel', {
       listeners: {
         click: 'onNew'
       }
+    },
+    {
+      xtype: 'tool',
+      type: 'close',
+      bind: {
+        tooltip: '{i18n.actions.delete}'
+      },
+      listeners: {
+        click: 'onDelete'
+      }
     }
   ],
 

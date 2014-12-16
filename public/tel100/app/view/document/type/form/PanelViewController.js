@@ -34,13 +34,32 @@ Ext.define('Tel100.view.document.type.form.PanelViewController', {
   onSave: function(tool, e, owner, eOpts) {
     var type = this.getViewModel().get('doctype');
     if (type) {
-      type.save();
-      console.log('saving....');
+      var view = this.getView();
+      view.setLoading(true);
+      type.save({
+        callback: function(records, operation) {
+          view.setLoading(false);
+        }
+      });
     }
   },
 
   onNew: function(tool, e, owner, eOpts) {
     this.loadDoctype(Ext.create('Tel100.model.document.Type'));
+  },
+
+  onDelete: function(tool, e, owner, eOpts) {
+    var self = this;
+    var type = self.getViewModel().get('doctype');
+    if (type && !type.phantom) {
+      var view = self.getView();
+      view.setLoading(true);
+      type.erase({
+        callback: function(records, operation, success) {
+          view.setLoading(false);
+        }
+      });
+    }
   }
 
 });

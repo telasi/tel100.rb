@@ -31,13 +31,15 @@ i18n.ru.app = {
 i18n.ka.actions = {
   save: 'შენახვა',
   refresh: 'განახლება',
-  addnew: 'ახლის დამატება'
+  addnew: 'ახლის დამატება',
+  delete: 'წაშლა'
 };
 
 i18n.ru.actions = {
   save: 'Сохранить',
   refresh: 'Обновить',
-  addnew: 'Новый'
+  addnew: 'Новый',
+  delete: 'Удалить'
 };
 
 // admin menu
