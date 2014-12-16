@@ -55,6 +55,7 @@ Rails.application.routes.draw do
         get '/:id', action: 'show'
         post '/',   action: 'create'
         put '/:id', action: 'update'
+        delete '/:id', action: 'destroy'
       end
     end
   end

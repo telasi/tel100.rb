@@ -32,6 +32,11 @@ class Api::Documents::TypesController < ApiController
     end
   end
 
+  def destroy
+    Document::Type.find(params[:id]).destroy
+    render json: { success: true }
+  end
+
   private
 
   def type_params
