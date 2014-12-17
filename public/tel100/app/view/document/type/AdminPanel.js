@@ -43,7 +43,7 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
         selection: '{selected}'
       },
       listeners: {
-        selectionchange: 'onTypeChanged'
+        selectionchange: 'onTypeSelected'
       }
     },
     {
@@ -51,7 +51,8 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
       reference: 'form',
       region: 'center',
       listeners: {
-        typecreated: 'onTypeCreated'
+        typecreated: 'onTypeCreated',
+        typeupdated: 'onTypeUpdated'
       }
     }
   ]

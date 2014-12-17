@@ -89,7 +89,7 @@
                     "      callback: function(records, operation, success) {",
                     "        view.setLoading(false);",
                     "        if (success) {",
-                    "          self.fireEvent('type-deleted', type);",
+                    "          self.fireEvent('typedeleted', type);",
                     "          self.onNew();",
                     "        }",
                     "      }",

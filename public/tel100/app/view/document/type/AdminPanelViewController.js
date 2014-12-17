@@ -17,7 +17,7 @@ Ext.define('Tel100.view.document.type.AdminPanelViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenttypeadminpanel',
 
-  onTypeChanged: function(model, selected, eOpts) {
+  onTypeSelected: function(model, selected, eOpts) {
     var form = this.getReferences().form;
     var doctype = selected[0];
     form.loadDoctype(doctype);
@@ -27,6 +27,12 @@ Ext.define('Tel100.view.document.type.AdminPanelViewController', {
     var grid = this.getReferences().grid;
     grid.refresh();
     grid.setSelection(doctype);
+  },
+
+  onTypeUpdated: function(doctype) {
+    var grid = this.getReferences().grid;
+    var store = grid.getStore();
+    store.getAt(store.indexOf(doctype)).load();
   }
 
 });

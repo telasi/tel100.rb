@@ -38,7 +38,7 @@
                 "title": null,
                 "width": 300
             },
-            "name": "document.type.grid.panel1",
+            "name": "document.type.grid.panel",
             "configAlternates": {
                 "selection": "binding",
                 "title": "binding"
@@ -61,7 +61,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "fn": "onTypeChanged",
+                        "fn": "onTypeSelected",
                         "implHandler": [
                             "var form = this.getReferences().form;",
                             "var doctype = selected[0];",
@@ -70,7 +70,7 @@
                         "name": "selectionchange",
                         "scope": "me"
                     },
-                    "name": "onTypeChanged",
+                    "name": "onTypeSelected",
                     "designerId": "6b9db44a-97cf-4619-8724-94d7cd723a94"
                 }
             ]
@@ -88,7 +88,7 @@
                 "layout|region": "center",
                 "reference": "form"
             },
-            "name": "document.type.form.panel1",
+            "name": "document.type.form.panel",
             "configAlternates": {
                 "type": "binding",
                 "doctype": "binding"
@@ -118,6 +118,29 @@
                     },
                     "name": "onTypeCreated",
                     "designerId": "df8cc88f-d6b7-4911-891f-248f7f2995bd"
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "doctype"
+                        ],
+                        "fn": "onTypeUpdated",
+                        "implHandler": [
+                            "var grid = this.getReferences().grid;",
+                            "var store = grid.getStore();",
+                            "store.getAt(store.indexOf(doctype)).load();"
+                        ],
+                        "name": "typeupdated",
+                        "scope": "me"
+                    },
+                    "name": "onTypeUpdated",
+                    "designerId": "a66601a2-a3b4-409c-8220-47309ea75676"
                 }
             ]
         }
