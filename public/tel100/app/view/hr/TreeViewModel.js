@@ -15,6 +15,33 @@
 
 Ext.define('Tel100.view.hr.TreeViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.hrtree'
+  alias: 'viewmodel.hrtree',
+
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.proxy.Ajax',
+    'Ext.data.reader.Json',
+    'Ext.data.field.Field'
+  ],
+
+  stores: {
+    structures: {
+      type: 'tree',
+      autoLoad: true,
+      proxy: {
+        type: 'ajax',
+        url: '/api/hr/structure',
+        reader: {
+          type: 'json',
+          typeProperty: 'ext_type'
+        }
+      },
+      fields: [
+        {
+          name: 'name'
+        }
+      ]
+    }
+  }
 
 });

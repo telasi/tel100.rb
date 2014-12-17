@@ -31,10 +31,13 @@ Ext.define('Tel100.view.hr.Tree', {
   },
   bodyCls: 'x-tree-noicon',
   hideHeaders: true,
-  store: 'hr.Tree',
+  lines: false,
+  rootVisible: false,
+  useArrows: true,
 
   bind: {
-    title: '<i class="fa fa-bolt"></i> {i18n.app.telasi}'
+    title: '<i class="fa fa-bolt"></i> {i18n.app.telasi}',
+    store: '{structures}'
   },
   viewConfig: {
 
@@ -53,9 +56,6 @@ Ext.define('Tel100.view.hr.Tree', {
       flex: 1
     }
   ],
-  listeners: {
-    beforerender: 'onBeforeRender'
-  },
   tools: [
     {
       xtype: 'tool',

@@ -14,11 +14,14 @@
         "displayField": null,
         "height": null,
         "hideHeaders": true,
+        "lines": false,
         "root": null,
-        "store": "hr.Tree",
+        "rootVisible": false,
+        "store": "{structures}",
         "title": [
             "<i class=\"fa fa-bolt\"></i> {i18n.app.telasi}"
         ],
+        "useArrows": true,
         "width": null
     },
     "name": "MyTreePanel",
@@ -86,25 +89,6 @@
             ]
         },
         {
-            "type": "viewcontrollereventbinding",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onBeforeRender",
-                "implHandler": [
-                    "var root = component.getRootNode();",
-                    "root.expand();"
-                ],
-                "name": "beforerender",
-                "scope": "me"
-            },
-            "name": "onBeforeRender",
-            "designerId": "d04bb159-d755-4686-9b23-16d68d5621d4"
-        },
-        {
             "type": "Ext.panel.Tool",
             "reference": {
                 "name": "tools",
@@ -128,8 +112,8 @@
                     "userConfig": {
                         "fn": "onRefresh",
                         "implHandler": [
-                            "var store = owner.getStore();",
-                            "store.load();"
+                            "// var store = owner.getStore();",
+                            "// store.load();"
                         ],
                         "name": "click",
                         "scope": "me"
