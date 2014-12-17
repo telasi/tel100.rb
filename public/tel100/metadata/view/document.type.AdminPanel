@@ -38,7 +38,7 @@
                 "title": null,
                 "width": 300
             },
-            "name": "document.type.grid.panel",
+            "name": "document.type.grid.panel1",
             "configAlternates": {
                 "selection": "binding",
                 "title": "binding"
@@ -88,7 +88,7 @@
                 "layout|region": "center",
                 "reference": "form"
             },
-            "name": "document.type.form.panel",
+            "name": "document.type.form.panel1",
             "configAlternates": {
                 "type": "binding",
                 "doctype": "binding"
@@ -134,13 +134,42 @@
                         "implHandler": [
                             "var grid = this.getReferences().grid;",
                             "var store = grid.getStore();",
-                            "store.getAt(store.indexOf(doctype)).load();"
+                            "var idx = store.indexOf(doctype);",
+                            "if (idx !== -1) {",
+                            "  store.getAt(idx).load();",
+                            "}"
                         ],
                         "name": "typeupdated",
                         "scope": "me"
                     },
                     "name": "onTypeUpdated",
                     "designerId": "a66601a2-a3b4-409c-8220-47309ea75676"
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "doctype"
+                        ],
+                        "fn": "onTypeDeleted",
+                        "implHandler": [
+                            "var grid = this.getReferences().grid;",
+                            "var store = grid.getStore();",
+                            "var idx = store.indexOf(doctype);",
+                            "if (idx !== -1) {",
+                            "  store.removeAt();",
+                            "}"
+                        ],
+                        "name": "typedeleted",
+                        "scope": "me"
+                    },
+                    "name": "onTypeDeleted",
+                    "designerId": "85fa5a23-99f3-487c-9e0a-f36ed3789fad"
                 }
             ]
         }

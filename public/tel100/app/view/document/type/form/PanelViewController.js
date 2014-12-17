@@ -34,7 +34,7 @@ Ext.define('Tel100.view.document.type.form.PanelViewController', {
   onSave: function() {
     var self = this;
     var type = self.getViewModel().get('doctype');
-    if (type) {
+    if (type && type.save) {
       var newMode = type.phantom;
       var view = self.getView();
       view.setLoading(true);
@@ -60,7 +60,7 @@ Ext.define('Tel100.view.document.type.form.PanelViewController', {
           callback: function(records, operation, success) {
             view.setLoading(false);
             if (success) {
-              self.fireEvent('typedeleted', type);
+              view.fireEvent('typedeleted', type);
               self.onNew();
             }
           }

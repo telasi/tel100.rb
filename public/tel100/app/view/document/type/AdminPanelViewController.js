@@ -32,7 +32,19 @@ Ext.define('Tel100.view.document.type.AdminPanelViewController', {
   onTypeUpdated: function(doctype) {
     var grid = this.getReferences().grid;
     var store = grid.getStore();
-    store.getAt(store.indexOf(doctype)).load();
+    var idx = store.indexOf(doctype);
+    if (idx !== -1) {
+      store.getAt(idx).load();
+    }
+  },
+
+  onTypeDeleted: function(doctype) {
+    var grid = this.getReferences().grid;
+    var store = grid.getStore();
+    var idx = store.indexOf(doctype);
+    if (idx !== -1) {
+      store.removeAt();
+    }
   }
 
 });

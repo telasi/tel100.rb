@@ -51,7 +51,7 @@
                 "implHandler": [
                     "var self = this;",
                     "var type = self.getViewModel().get('doctype');",
-                    "if (type) {",
+                    "if (type && type.save) {",
                     "  var newMode = type.phantom;",
                     "  var view = self.getView();",
                     "  view.setLoading(true);",
@@ -89,7 +89,7 @@
                     "      callback: function(records, operation, success) {",
                     "        view.setLoading(false);",
                     "        if (success) {",
-                    "          self.fireEvent('typedeleted', type);",
+                    "          view.fireEvent('typedeleted', type);",
                     "          self.onNew();",
                     "        }",
                     "      }",

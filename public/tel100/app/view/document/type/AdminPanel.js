@@ -52,7 +52,8 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
       region: 'center',
       listeners: {
         typecreated: 'onTypeCreated',
-        typeupdated: 'onTypeUpdated'
+        typeupdated: 'onTypeUpdated',
+        typedeleted: 'onTypeDeleted'
       }
     }
   ]
