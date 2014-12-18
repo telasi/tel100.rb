@@ -20,6 +20,7 @@ Ext.define('Tel100.view.module.Admin', {
   requires: [
     'Tel100.view.module.AdminViewModel',
     'Tel100.view.document.type.AdminPanel',
+    'Tel100.view.sys.user.grid.Panel',
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
@@ -95,9 +96,8 @@ Ext.define('Tel100.view.module.Admin', {
         xtype: 'documenttypeadminpanel',
         itemId: 'documents-types'
       }, {
-        xtype: 'panel',
+        xtype: 'sysusergridpanel',
         itemId: 'sys-users',
-        title: 'Users'
       }]
     }
   ]
