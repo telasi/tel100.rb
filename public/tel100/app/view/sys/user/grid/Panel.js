@@ -36,9 +36,7 @@ Ext.define('Tel100.view.sys.user.grid.Panel', {
   tools: [{
     xtype: 'tool',
     type: 'refresh',
-    // listeners: {
-    //   click: 'onRefresh'
-    // }
+    handler: 'onRefresh'
   }]
 
   // listeners: {
