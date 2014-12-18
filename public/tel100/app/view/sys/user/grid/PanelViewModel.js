@@ -9,7 +9,8 @@ Ext.define('Tel100.view.sys.user.grid.PanelViewModel', {
   stores: {
     users: {
       autoLoad: true,
-      model: 'Tel100.model.User'
+      model: 'Tel100.model.User',
+      pageSize: 0
     }
   }
 
