@@ -30,7 +30,7 @@ Ext.define('Tel100.view.module.HR', {
 
   items: [
     {
-      xtype: 'hrTree'
+      xtype: 'hrtree'
     }
   ]
 
