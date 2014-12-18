@@ -78,7 +78,10 @@ Ext.define('Tel100.view.module.Admin', {
       xtype: 'container',
       flex: 1,
       region: 'center',
-      layout: 'card',
+      layout: {
+        type: 'card',
+        deferredRender: true
+      },
       bind: {
         activeItem: '{action.category}-{action.name}'
       },
