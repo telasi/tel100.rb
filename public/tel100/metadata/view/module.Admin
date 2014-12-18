@@ -31,17 +31,28 @@
                 "layout|flex": 0,
                 "layout|region": "west",
                 "layout|split": true,
+                "selection": [
+                    "{action}"
+                ],
                 "store": "admin.Actions",
                 "title": [
-                    "{i18n.admin.actions}"
+                    "{action.category}-{action.name}"
                 ],
                 "width": 200
             },
             "name": "MyGridPanel",
             "configAlternates": {
+                "selection": "binding",
                 "title": "binding"
             },
             "designerId": "3cb842f9-bce4-4780-9ba4-90c08f4dac76",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "Ext.grid.View",
@@ -176,7 +187,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "Types Editor",
-                        "itemId": "documents.types"
+                        "itemId": "documents-types"
                     },
                     "name": "document.type.adminpanel",
                     "designerId": "98d0a8cd-12ea-438b-94fd-75e78a6e22e2",

@@ -35,13 +35,14 @@
                 "selection": [
                     "{selected}"
                 ],
-                "title": null,
+                "title": [
+                    "{i18n.admin.documents.types2}"
+                ],
                 "width": 300
             },
-            "name": "document.type.grid.panel1",
+            "name": "document.type.grid.panel",
             "configAlternates": {
-                "selection": "binding",
-                "title": "binding"
+                "selection": "binding"
             },
             "designerId": "1829897a-bbe9-405e-bb6e-f28d5aaa9aeb",
             "customConfigs": [
@@ -88,7 +89,7 @@
                 "layout|region": "center",
                 "reference": "form"
             },
-            "name": "document.type.form.panel1",
+            "name": "document.type.form.panel",
             "configAlternates": {
                 "type": "binding",
                 "doctype": "binding"

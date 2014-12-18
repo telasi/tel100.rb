@@ -39,10 +39,11 @@ Ext.define('Tel100.view.module.Admin', {
       region: 'west',
       split: true,
       width: 200,
-      collapsible: false,
+      collapsible: true,
       hideHeaders: true,
       store: 'admin.Actions',
       bind: {
+        selection: '{action}',
         title: '{i18n.admin.actions}'
       },
       columns: [
@@ -77,12 +78,27 @@ Ext.define('Tel100.view.module.Admin', {
       flex: 1,
       region: 'center',
       layout: 'card',
-      items: [
-        {
-          xtype: 'documenttypeadminpanel',
-          itemId: 'documents.types'
-        }
-      ]
+      bind: {
+        activeItem: '{action.category}-{action.name}'
+      },
+      items: [{
+        xtype: 'panel',
+        title: null,
+        layout: 'center',
+        items: [{
+          xtype: 'label',
+          bind: {
+            text: '{i18n.admin.noaction}'
+          }
+        }]
+      }, {
+        xtype: 'documenttypeadminpanel',
+        itemId: 'documents-types'
+      }, {
+        xtype: 'panel',
+        itemId: 'sys-users',
+        title: 'Users'
+      }]
     }
   ]
 

@@ -40,7 +40,8 @@ Ext.define('Tel100.view.document.type.AdminPanel', {
       region: 'west',
       split: true,
       bind: {
-        selection: '{selected}'
+        selection: '{selected}',
+        title: '{i18n.admin.documents.types}'
       },
       listeners: {
         selectionchange: 'onTypeSelected'

@@ -48,6 +48,7 @@ i18n.ru.actions = {
 
 i18n.ka.admin = {
   actions: '<i class="fa fa-cog"></i> აარჩიეთ მოქმედება',
+  noaction: 'აარჩიეთ მოქმედება მარცხენა მენიუდან',
   documents: {
     groupName: 'დოკუმენტები',
     types: 'სახეობები'
@@ -60,6 +61,7 @@ i18n.ka.admin = {
 
 i18n.ru.admin = {
   actions: '<i class="fa fa-cog"></i> Выберите действие',
+  noaction: 'Выберите действие из левого списка',
   documents: {
     groupName: 'Документы',
     types: 'Типы'
