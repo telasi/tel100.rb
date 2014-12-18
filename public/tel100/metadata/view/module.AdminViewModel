@@ -6,6 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  action: null",
+            "}"
+        ],
         "designer|userAlias": "moduleadmin",
         "designer|userClassName": "module.AdminViewModel"
     },

@@ -30,6 +30,10 @@ Ext.define('Tel100.store.admin.Actions', {
         {
           category: 'documents',
           name: 'types'
+        },
+        {
+          category: 'sys',
+          name: 'users'
         }
       ],
       fields: [

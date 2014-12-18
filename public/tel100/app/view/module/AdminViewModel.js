@@ -15,6 +15,10 @@
 
 Ext.define('Tel100.view.module.AdminViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.moduleadmin'
+  alias: 'viewmodel.moduleadmin',
+
+  data: {
+    action: null
+  }
 
 });

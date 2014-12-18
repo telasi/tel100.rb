@@ -8,8 +8,11 @@
     "userConfig": {
         "data": [
             "[{",
-            "  category:'documents',",
-            "  name: 'types'",
+            "category:'documents',",
+            "name: 'types'",
+            "}, {",
+            "category: 'sys',",
+            "name: 'users'",
             "}]"
         ],
         "designer|userClassName": "admin.Actions",

@@ -51,6 +51,10 @@ i18n.ka.admin = {
   documents: {
     groupName: 'დოკუმენტები',
     types: 'სახეობები'
+  },
+  sys: {
+    groupName: 'სისტემური',
+    users: 'მომხმარებლები'
   }
 };
 
@@ -59,6 +63,10 @@ i18n.ru.admin = {
   documents: {
     groupName: 'Документы',
     types: 'Типы'
+  },
+  sys: {
+    groupName: 'Система',
+    users: 'Пользователи'
   }
 };
 

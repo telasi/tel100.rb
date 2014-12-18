@@ -80,7 +80,7 @@ Ext.define('Tel100.view.module.Admin', {
       items: [
         {
           xtype: 'documenttypeadminpanel',
-          itemId: 'document-types'
+          itemId: 'documents.types'
         }
       ]
     }

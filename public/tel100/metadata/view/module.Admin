@@ -176,7 +176,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "Types Editor",
-                        "itemId": "document-types"
+                        "itemId": "documents.types"
                     },
                     "name": "document.type.adminpanel",
                     "designerId": "98d0a8cd-12ea-438b-94fd-75e78a6e22e2",
