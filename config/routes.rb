@@ -37,15 +37,21 @@ Rails.application.routes.draw do
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
     end
-    # scope 'docs', controller: 'docs' do
-    #   get '/', action: 'index'
-    #   get '/show/:id', action: 'show'
-    #   get '/motions', action: 'motions'
-    #   get '/sender_motions', action: 'sender_motions'
-    #   get '/comments', action: 'comments'
-    #   post '/create', action: 'create'
-    #   post '/add_comment', action: 'add_comment'
-    # end
+
+################################################# XXX
+
+    scope 'docs', controller: 'docs' do
+      get '/', action: 'index'
+      get '/show/:id', action: 'show'
+      get '/motions', action: 'motions'
+      get '/sender_motions', action: 'sender_motions'
+      get '/comments', action: 'comments'
+      post '/create', action: 'create'
+      post '/add_comment', action: 'add_comment'
+    end
+
+#################################################
+
     namespace 'documents' do
       scope 'base', controller: 'base' do
         # TODO:

@@ -3,7 +3,7 @@ Ext.define('Telasi.store.document.Type', {
   model: 'Telasi.model.document.Type',
   proxy: {
     type: 'ajax',
-    url: '/api/docs/types',
+    url: '/api/documents/types',
     reader: {
       type: 'json',
       rootProperty: 'types'
