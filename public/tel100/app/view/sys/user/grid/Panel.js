@@ -20,7 +20,6 @@ Ext.define('Tel100.view.sys.user.grid.Panel', {
     xtype: 'gridcolumn',
     dataIndex: 'username',
     width: 150,
-    // sortable: false,
     bind: {
       text: '{i18n.user.username}'
     }
@@ -28,7 +27,6 @@ Ext.define('Tel100.view.sys.user.grid.Panel', {
     xtype: 'gridcolumn',
     dataIndex: 'full_name',
     flex: 1,
-    // sortable: false,
     bind: {
       text: '{i18n.user.full_name}'
     }
