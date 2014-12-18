@@ -6,7 +6,7 @@ Ext.define('Tel100.view.sys.user.AdminPanel', {
     // 'Tel100.view.sys.user.AdminPanelViewModel',
     // 'Tel100.view.sys.user.AdminPanelViewController',
     'Tel100.view.sys.user.grid.Panel',
-    // 'Tel100.view.sys.user.form.Panel',
+    'Tel100.view.sys.user.form.Panel',
     'Ext.grid.Panel',
     'Ext.form.Panel'
   ],
@@ -30,14 +30,14 @@ Ext.define('Tel100.view.sys.user.AdminPanel', {
     listeners: {
       // selectionchange: 'onTypeSelected'
     }
-  }, /*{
-    xtype: 'documenttypeformpanel',
+  }, {
+    xtype: 'sysuserformpanel',
     reference: 'form',
     region: 'center',
-    listeners: {
-      typecreated: 'onTypeCreated',
-      typeupdated: 'onTypeUpdated',
-      typedeleted: 'onTypeDeleted'
-    }
-  }*/]
+    // listeners: {
+    //   typecreated: 'onTypeCreated',
+    //   typeupdated: 'onTypeUpdated',
+    //   typedeleted: 'onTypeDeleted'
+    // }
+  }]
 });

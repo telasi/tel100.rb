@@ -82,7 +82,9 @@ i18n.ka.user = {
   language:  'სამუშაო ენა',
   full_name: 'სახელი, გვარი',
   profile:   'პროფილის მართვა',
-  logout:    'სისტემიდან გასვლა'
+  logout:    'სისტემიდან გასვლა',
+  first_name: 'სახელი',
+  last_name: 'გვარი',
 };
 
 i18n.ru.user = {
@@ -93,7 +95,9 @@ i18n.ru.user = {
   language:  'Рабочий язык',
   full_name: 'Имя, Фамилия',
   profile: 'Управление профилем',
-  logout:    'Выход из системы'
+  logout:    'Выход из системы',
+  first_name: 'Имя',
+  last_name: 'Фамилия',
 };
 
 // document
