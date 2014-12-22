@@ -4,7 +4,7 @@
    "classpath": "${app.dir}/app",
    "overrides": "${app.dir}/overrides",
    "framework": "ext",
-   "theme": "ext-theme-neptune-76da1f48-5b2f-4b93-a1a4-bf05b7e5e658",
+   "theme": "ext-theme-crisp-cbe82290-9a98-4fef-804c-db253112889f",
    "requires": [],
    "sass": {
       "namespace": "Tel100"
@@ -15,14 +15,6 @@
          "path": "${ext.dir}/build/ext-all-rtl-debug.js"
       },
       {
-         "path": "i18n.js",
-         "includeInBundle": true
-      },
-      {
-         "path": "helper.js",
-         "includeInBundle": true
-      },
-      {
          "path": "app.js",
          "bundle": true
       }
@@ -31,15 +23,6 @@
       {
          "path": "bootstrap.css",
          "bootstrap": true
-      },
-      {
-         "path": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-      },
-      {
-         "path": "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-      },
-      {
-         "path": "styles.css"
       }
    ],
    "production": {},
@@ -63,9 +46,7 @@
       ],
       "fallback": []
    },
-   "resources": [
-      "styles.css"
-   ],
+   "resources": [],
    "ignore": [
       "(^|/)CVS(/?$|/.*?$)"
    ],
@@ -78,5 +59,5 @@
          }
       ]
    },
-   "id": "39a505a2-b8e5-4865-a41f-052a2efe3494"
+   "id": "3d15ea41-8daa-4204-baa7-3d2d2f8da788"
 }

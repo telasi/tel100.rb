@@ -20,41 +20,13 @@ Ext.Loader.setConfig({
 
 
 Ext.application({
-  models: [
-    'User',
-    'document.Base',
-    'document.Type'
-  ],
-  stores: [
-    'LocaleStore',
-    'hr.Tree',
-    'document.Base',
-    'document.Type',
-    'admin.Actions'
-  ],
-  views: [
-    'MainViewport',
-    'workarea.Main',
-    'workarea.LocaleSelector',
-    'workarea.UserMenu',
-    'workarea.ApplicationMenu',
-    'module.HR',
-    'module.Tasks',
-    'module.Docs',
-    'module.Admin',
-    'workarea.Applications',
-    'hr.Tree',
-    'document.grid.Panel',
-    'document.Tabs',
-    'document.viewer.Panel',
-    'document.type.grid.Panel',
-    'document.type.AdminPanel',
-    'document.type.form.Panel'
-  ],
-  name: 'Tel100',
+    views: [
+        'Main'
+    ],
+    name: 'Tel100',
 
-  launch: function() {
-    Ext.create('Tel100.view.MainViewport');
-  }
+    launch: function() {
+        Ext.create('Tel100.view.Main');
+    }
 
 });
