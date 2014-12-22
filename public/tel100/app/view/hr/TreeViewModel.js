@@ -18,49 +18,23 @@ Ext.define('Tel100.view.hr.TreeViewModel', {
   alias: 'viewmodel.hrtree',
 
   requires: [
-    'Ext.data.Store',
+    'Ext.data.TreeStore',
     'Ext.data.proxy.Ajax',
-    'Ext.data.reader.Json',
-    'Ext.data.field.Field'
+    'Ext.data.reader.Json'
   ],
 
   stores: {
-    hr: {
+    structure: {
       type: 'tree',
-      root: {
-        expanded: true,
-        text: 'JSC Telasi',
-        children: [
-          {
-            text: 'Child 1',
-            leaf: true
-          },
-          {
-            text: 'Child 2',
-            expanded: true,
-            children: [
-              {
-                text: 'GrandChild',
-                leaf: true
-              }
-            ]
-          }
-        ]
-      },
       autoLoad: true,
       proxy: {
         type: 'ajax',
-        url: '/api/hr/structure?api_username=dimakura&api_password=dima123',
+        url: '/api/hr/structure',
         reader: {
           type: 'json',
           typeProperty: 'ext_type'
         }
-      },
-      fields: [
-        {
-          name: 'name'
-        }
-      ]
+      }
     }
   }
 

@@ -12,7 +12,7 @@
     "designerId": "1f5d506c-5dd3-4233-aa29-340b976d8c5e",
     "cn": [
         {
-            "type": "Ext.data.Store",
+            "type": "Ext.data.TreeStore",
             "reference": {
                 "name": "stores",
                 "type": "array"
@@ -20,39 +20,10 @@
             "codeClass": null,
             "userConfig": {
                 "autoLoad": true,
-                "designer|displayName": "hr",
-                "name": "hr",
-                "root": [
-                    "{",
-                    "expanded: true,",
-                    "text: 'JSC Telasi',",
-                    "children: [",
-                    "{ text: \"Child 1\", leaf: true },",
-                    "{ text: \"Child 2\", expanded: true, children: [",
-                    "{ text: \"GrandChild\", leaf: true }",
-                    "] }",
-                    "]",
-                    "}"
-                ],
-                "type": "tree"
+                "name": "structure"
             },
-            "name": "MyStore1",
-            "configAlternates": {
-                "root": "object"
-            },
-            "designerId": "8238af24-be5a-4e08-928b-6d8da27526f6",
-            "customConfigs": [
-                {
-                    "group": "(Custom Properties)",
-                    "name": "type",
-                    "type": "string"
-                },
-                {
-                    "group": "(Custom Properties)",
-                    "name": "root",
-                    "type": "string"
-                }
-            ],
+            "name": "MyTreeStore",
+            "designerId": "31e4b15f-a9c6-4522-8250-3d4deffa80f5",
             "cn": [
                 {
                     "type": "Ext.data.proxy.Ajax",
@@ -62,11 +33,10 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": "structure proxy",
-                        "url": "/api/hr/structure?api_username=dimakura&api_password=dima123"
+                        "url": "/api/hr/structure"
                     },
-                    "name": "MyAjaxProxy",
-                    "designerId": "ff5331a1-d610-4a10-b4c4-b27920b28f5a",
+                    "name": "MyAjaxProxy2",
+                    "designerId": "85aa436e-750e-4571-9bc2-0f5ff38d6732",
                     "cn": [
                         {
                             "type": "Ext.data.reader.Json",
@@ -76,26 +46,12 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "designer|displayName": "structure reader",
                                 "typeProperty": "ext_type"
                             },
-                            "name": "MyJsonReader3",
-                            "designerId": "8fa457d4-fc6f-48a9-ba75-00b3209dc68f"
+                            "name": "MyJsonReader",
+                            "designerId": "f8bb2cb9-b64c-4556-b89e-b9b7c558b3fd"
                         }
                     ]
-                },
-                {
-                    "type": "Ext.data.field.Field",
-                    "reference": {
-                        "name": "fields",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "name": "name"
-                    },
-                    "name": "MyField3",
-                    "designerId": "324099f4-d31a-4612-93a1-15daa266c395"
                 }
             ]
         }

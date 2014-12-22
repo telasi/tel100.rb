@@ -17,7 +17,9 @@
         "lines": false,
         "root": null,
         "rootVisible": false,
-        "store": null,
+        "store": [
+            "{structure}"
+        ],
         "title": [
             "<i class=\"fa fa-bolt\"></i> {i18n.app.telasi}"
         ],

@@ -36,7 +36,7 @@
                 ],
                 "store": "admin.Actions",
                 "title": [
-                    "{action.category}-{action.name}"
+                    "{i18n.admin.actions}"
                 ],
                 "width": 200
             },
