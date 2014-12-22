@@ -51,9 +51,10 @@ Rails.application.routes.draw do
         get '/', action: 'index'
       end
     end
+
     namespace 'documents' do
       scope 'base', controller: 'base' do
-        # TODO:
+        get '/', action: 'index'
       end
       scope 'types', controller: 'types' do
         get '/',    action: 'index'
