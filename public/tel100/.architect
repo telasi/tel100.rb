@@ -50,6 +50,17 @@
                 }
             ]
         },
+        "8e1ea4f4-f8a7-41f2-8ab5-d3b3017bb281": {
+            "id": "8e1ea4f4-f8a7-41f2-8ab5-d3b3017bb281"
+        },
+        "5adf3616-9660-46bd-91e3-645c3e72322a": {
+            "id": "5adf3616-9660-46bd-91e3-645c3e72322a",
+            "cn": [
+                {
+                    "id": "dab0e5ff-7792-4226-b2ad-ad6d74b2a2ab"
+                }
+            ]
+        },
         "controller": true,
         "resource": false,
         "7035d869-c80b-4b47-ad7d-5a2420d6994e": {
@@ -61,15 +72,17 @@
     },
     "tabState": {
         "openTabs": [
-            "b5fb3de7-1056-41ad-99c7-8e38a4aba07d"
+            "b5fb3de7-1056-41ad-99c7-8e38a4aba07d",
+            "8e1ea4f4-f8a7-41f2-8ab5-d3b3017bb281",
+            "5adf3616-9660-46bd-91e3-645c3e72322a"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "b5fb3de7-1056-41ad-99c7-8e38a4aba07d",
-        "selectedInstance": "b7c050ab-1f20-4ff2-a529-230b338b25a6"
+        "topInstance": "5adf3616-9660-46bd-91e3-645c3e72322a",
+        "selectedInstance": "5adf3616-9660-46bd-91e3-645c3e72322a"
     },
     "editMode": "code",
     "userSettings": {

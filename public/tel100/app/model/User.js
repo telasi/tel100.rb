@@ -17,6 +17,7 @@ Ext.define('Tel100.model.User', {
     extend: 'Ext.data.Model',
 
     requires: [
+        'Tel100.model.Tel100',
         'Ext.data.field.Field',
         'Ext.data.proxy.Rest'
     ],

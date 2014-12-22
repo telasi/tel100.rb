@@ -1,0 +1,14 @@
+{
+    "type": "Ext.data.schema.Schema",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "tel100",
+        "designer|userClassName": "Tel100"
+    },
+    "name": "MySchema",
+    "designerId": "8e1ea4f4-f8a7-41f2-8ab5-d3b3017bb281"
+}

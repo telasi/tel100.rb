@@ -41,7 +41,9 @@
         "store": [],
         "controller": [],
         "model": [
-            "b5fb3de7-1056-41ad-99c7-8e38a4aba07d"
+            "b5fb3de7-1056-41ad-99c7-8e38a4aba07d",
+            "8e1ea4f4-f8a7-41f2-8ab5-d3b3017bb281",
+            "5adf3616-9660-46bd-91e3-645c3e72322a"
         ],
         "resource": [
             "7035d869-c80b-4b47-ad7d-5a2420d6994e",

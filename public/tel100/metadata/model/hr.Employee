@@ -1,0 +1,73 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "hr.Employee",
+        "entityName": "hr.Employee",
+        "extend": "Ext.data.TreeModel",
+        "fields": [
+            "[{",
+            "    name: 'user_id'",
+            "}, {",
+            "    name: 'first_name'",
+            "}, {",
+            "    name: 'last_name'",
+            "}, {",
+            "    calculate: function(data) {",
+            "        return !!data.user_id;",
+            "    },",
+            "    name: 'has_user'",
+            "}, {",
+            "    calculate: function(data) {",
+            "        return data.first_name + ' ' + data.last_name;",
+            "    },",
+            "    name: 'full_name'",
+            "}]"
+        ]
+    },
+    "name": "MyClass",
+    "configAlternates": {
+        "fields": "array"
+    },
+    "designerId": "5adf3616-9660-46bd-91e3-645c3e72322a",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "entityName",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "fields",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "toTreeHtml",
+                "implHandler": [
+                    "var icon;",
+                    "if (this.get('has_user')) {",
+                    "    icon = '<span class=\"text-success\"><i class=\"fa fa-user\"></i></span>';",
+                    "} else {",
+                    "    icon = '<span class=\"text-danger\"><i class=\"fa fa-circle\"></i></span>';",
+                    "}",
+                    "return [icon, this.get('full_name')].join(' ');"
+                ]
+            },
+            "name": "toTreeHtml",
+            "designerId": "dab0e5ff-7792-4226-b2ad-ad6d74b2a2ab"
+        }
+    ]
+}
