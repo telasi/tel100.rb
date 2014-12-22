@@ -20,13 +20,18 @@ Ext.define('Tel100.view.hr.TreeViewModel', {
   requires: [
     'Ext.data.TreeStore',
     'Ext.data.proxy.Ajax',
-    'Ext.data.reader.Json'
+    'Ext.data.reader.Json',
+    'Ext.data.field.Field'
   ],
 
   stores: {
     structure: {
       type: 'tree',
       autoLoad: true,
+      root: {
+        name: 'JSC Telasi',
+        expanded: true
+      },
       proxy: {
         type: 'ajax',
         url: '/api/hr/structure',
@@ -34,7 +39,12 @@ Ext.define('Tel100.view.hr.TreeViewModel', {
           type: 'json',
           typeProperty: 'ext_type'
         }
-      }
+      },
+      fields: [
+        {
+          name: 'name'
+        }
+      ]
     }
   }
 

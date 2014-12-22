@@ -20,7 +20,13 @@
             "codeClass": null,
             "userConfig": {
                 "autoLoad": true,
-                "name": "structure"
+                "name": "structure",
+                "root": [
+                    "{",
+                    "  name: 'JSC Telasi',",
+                    "  expanded: true",
+                    "}"
+                ]
             },
             "name": "MyTreeStore",
             "designerId": "31e4b15f-a9c6-4522-8250-3d4deffa80f5",
@@ -52,6 +58,19 @@
                             "designerId": "f8bb2cb9-b64c-4556-b89e-b9b7c558b3fd"
                         }
                     ]
+                },
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "name"
+                    },
+                    "name": "MyField3",
+                    "designerId": "4b3bbcc9-3f16-41e7-9793-f38d3cf2982d"
                 }
             ]
         }
