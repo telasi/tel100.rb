@@ -18,8 +18,8 @@ Ext.define('Tel100.view.hr.TreeViewController', {
   alias: 'controller.hrtree',
 
   onRefresh: function(tool, e, owner, eOpts) {
-    // var store = owner.getStore();
-    // store.load();
+    var store = owner.getStore();
+    store.load();
   }
 
 });

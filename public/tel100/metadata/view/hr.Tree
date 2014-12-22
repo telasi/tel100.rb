@@ -115,8 +115,8 @@
                     "userConfig": {
                         "fn": "onRefresh",
                         "implHandler": [
-                            "// var store = owner.getStore();",
-                            "// store.load();"
+                            "var store = owner.getStore();",
+                            "store.load();"
                         ],
                         "name": "click",
                         "scope": "me"
