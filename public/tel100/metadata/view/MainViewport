@@ -73,7 +73,7 @@
                         "designer|displayName": "Login",
                         "designer|uiInterfaceName": "default-framed",
                         "frame": true,
-                        "height": "",
+                        "height": null,
                         "title": [
                             "<i class=\"fa fa-user\"></i> {i18n.user.login}"
                         ],

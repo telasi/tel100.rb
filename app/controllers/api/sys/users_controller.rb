@@ -4,6 +4,5 @@ class Api::Sys::UsersController < ApiController
 
   def index
     @users = Sys::User.order('username ASC')
-    render formats: ['json']
   end
 end

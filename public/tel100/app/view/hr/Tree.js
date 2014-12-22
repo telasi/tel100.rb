@@ -36,8 +36,7 @@ Ext.define('Tel100.view.hr.Tree', {
   useArrows: true,
 
   bind: {
-    title: '<i class="fa fa-bolt"></i> {i18n.app.telasi}',
-    store: '{hr}'
+    title: '<i class="fa fa-bolt"></i> {i18n.app.telasi}'
   },
   viewConfig: {
 

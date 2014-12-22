@@ -20,7 +20,6 @@ Ext.define('Tel100.view.module.Admin', {
   requires: [
     'Tel100.view.module.AdminViewModel',
     'Tel100.view.document.type.AdminPanel',
-    'Tel100.view.sys.user.AdminPanel',
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
@@ -40,12 +39,12 @@ Ext.define('Tel100.view.module.Admin', {
       region: 'west',
       split: true,
       width: 200,
-      collapsible: true,
+      collapsible: false,
       hideHeaders: true,
       store: 'admin.Actions',
       bind: {
         selection: '{action}',
-        title: '{i18n.admin.actions}'
+        title: '{action.category}-{action.name}'
       },
       columns: [
         {
@@ -78,30 +77,13 @@ Ext.define('Tel100.view.module.Admin', {
       xtype: 'container',
       flex: 1,
       region: 'center',
-      layout: {
-        type: 'card',
-        deferredRender: true
-      },
-      bind: {
-        activeItem: '{action.category}-{action.name}'
-      },
-      items: [{
-        xtype: 'panel',
-        title: null,
-        layout: 'center',
-        items: [{
-          xtype: 'label',
-          bind: {
-            text: '{i18n.admin.noaction}'
-          }
-        }]
-      }, {
-        xtype: 'documenttypeadminpanel',
-        itemId: 'documents-types'
-      }, {
-        xtype: 'sysuseradminpanel',
-        itemId: 'sys-users',
-      }]
+      layout: 'card',
+      items: [
+        {
+          xtype: 'documenttypeadminpanel',
+          itemId: 'documents-types'
+        }
+      ]
     }
   ]
 

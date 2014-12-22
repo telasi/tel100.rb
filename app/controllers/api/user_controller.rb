@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+require 'sys/user'
 class Api::UserController < ApiController
   def login
     @user = Sys::User.authenticate(params[:userID], params[:password])

@@ -55,7 +55,6 @@ Ext.define('Tel100.view.MainViewport', {
         {
           xtype: 'form',
           frame: true,
-          height: '',
           width: 400,
           bodyPadding: 10,
           bind: {
