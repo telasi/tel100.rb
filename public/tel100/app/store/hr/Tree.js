@@ -36,7 +36,7 @@ Ext.define('Tel100.store.hr.Tree', {
       storeId: 'hr.Tree',
       proxy: {
         type: 'ajax',
-        url: '/api/hr/structure',
+        url: '/api/hr/structure?api_username=dimakura&api_password=dima123',
         reader: {
           type: 'json',
           typeProperty: 'ext_type'

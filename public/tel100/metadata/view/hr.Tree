@@ -9,7 +9,7 @@
         "bodyCls": [
             "x-tree-noicon"
         ],
-        "designer|userAlias": "hrTree",
+        "designer|userAlias": "hrtree",
         "designer|userClassName": "hr.Tree",
         "displayField": null,
         "height": null,
@@ -17,7 +17,7 @@
         "lines": false,
         "root": null,
         "rootVisible": false,
-        "store": "{structures}",
+        "store": null,
         "title": [
             "<i class=\"fa fa-bolt\"></i> {i18n.app.telasi}"
         ],
@@ -26,7 +26,8 @@
     },
     "name": "MyTreePanel",
     "configAlternates": {
-        "title": "binding"
+        "title": "binding",
+        "store": "binding"
     },
     "designerId": "7b81b19c-f37f-48e7-9a78-97c98c52673f",
     "viewControllerInstanceId": "f370294e-4b46-4cba-b278-e7311aeec504",

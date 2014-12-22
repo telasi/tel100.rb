@@ -20,9 +20,20 @@
             "codeClass": null,
             "userConfig": {
                 "autoLoad": true,
-                "designer|displayName": "structures",
-                "name": "structures",
-                "root": null,
+                "designer|displayName": "hr",
+                "name": "hr",
+                "root": [
+                    "{",
+                    "expanded: true,",
+                    "text: 'JSC Telasi',",
+                    "children: [",
+                    "{ text: \"Child 1\", leaf: true },",
+                    "{ text: \"Child 2\", expanded: true, children: [",
+                    "{ text: \"GrandChild\", leaf: true }",
+                    "] }",
+                    "]",
+                    "}"
+                ],
                 "type": "tree"
             },
             "name": "MyStore1",
@@ -52,9 +63,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "structure proxy",
-                        "url": "/api/hr/structure"
+                        "url": "/api/hr/structure?api_username=dimakura&api_password=dima123"
                     },
-                    "name": "MyAjaxProxy3",
+                    "name": "MyAjaxProxy",
                     "designerId": "ff5331a1-d610-4a10-b4c4-b27920b28f5a",
                     "cn": [
                         {

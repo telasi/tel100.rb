@@ -14,7 +14,7 @@
                 "width": null
             }
         },
-        "urlPrefix": "http://localhost:1841",
+        "urlPrefix": "http://localhost:3000",
         "exportPath": "",
         "spacesToIndent": 2,
         "sdkPath": "",
@@ -23,8 +23,8 @@
         "cacheBust": false,
         "buildShouldOverwriteIndex": true,
         "generateArchitectVersion": true,
-        "projectHasEnabledWebServer": true,
-        "lockUrlPrefix": true,
+        "projectHasEnabledWebServer": false,
+        "lockUrlPrefix": false,
         "installStatus": "Not Installed",
         "lastBuildSelection": {
             "value": "webBuild",

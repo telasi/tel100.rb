@@ -4,18 +4,16 @@ class Api::Documents::TypesController < ApiController
 
   def index
     @types = Document::Type.order('order_by ASC')
-    render formats: ['json']
   end
 
   def show
     @type = Document::Type.find(params[:id])
-    render formats: ['json']
   end
 
   def create
     @type = Document::Type.new(type_params)
     if @type.save
-      render action: 'show', formats: ['json']
+      render action: 'show'
     else
       render_api_error @type.errors.full_messages
     end
@@ -24,7 +22,7 @@ class Api::Documents::TypesController < ApiController
   def update
     @type = Document::Type.find(params[:id])
     if @type.update_attributes(type_params)
-      render action: 'show', formats: ['json']
+      render action: 'show'
     else
       render_api_error @type.errors.full_messages
     end

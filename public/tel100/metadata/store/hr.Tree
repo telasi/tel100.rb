@@ -35,7 +35,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "url": "/api/hr/structure"
+                "url": "/api/hr/structure?api_username=dimakura&api_password=dima123"
             },
             "name": "MyAjaxProxy",
             "designerId": "40e7c2fe-cf8d-4a2f-ac96-6997eecac3d2",
