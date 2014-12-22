@@ -1,0 +1,44 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "document.Base",
+        "schema": "tel100"
+    },
+    "name": "MyModel",
+    "designerId": "c5509724-1f25-4db1-b2da-fcb84c8fdd78",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "type",
+                "reference": "document.Type"
+            },
+            "name": "MyField7",
+            "designerId": "9035c90a-6125-4213-a95b-7ad333a50ac6"
+        },
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "proxy",
+                "url": "/api/documents/base"
+            },
+            "name": "MyRestProxy2",
+            "designerId": "f6cabb06-3bbe-4b94-a1d4-c8282afeb695"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "hr.Organization",
+        "entityName": "hr.Organization",
+        "extend": "Ext.data.TreeModel"
+    },
+    "name": "MyClass",
+    "configAlternates": {
+        "fields": "array"
+    },
+    "designerId": "630bfd3f-2bb9-4872-adb4-14e196195724",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "entityName",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "fields",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "toTreeHtml",
+                "implHandler": [
+                    "return ['<i class=\"fa fa-bank\"></i>', this.get('name')].join(' ');"
+                ]
+            },
+            "name": "toTreeHtml",
+            "designerId": "b618a70f-42f2-4818-ba29-2e3a866c8d7d"
+        }
+    ]
+}

@@ -184,6 +184,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "proxy",
                 "url": "/api/sys/users"
             },
             "name": "MyRestProxy",
