@@ -6,6 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
+        "models": [
+            "User"
+        ],
         "name": "Tel100",
         "views": [
             "Main"

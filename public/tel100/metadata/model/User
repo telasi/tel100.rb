@@ -1,0 +1,193 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "User",
+        "schema": "tel100"
+    },
+    "name": "MyModel",
+    "designerId": "b5fb3de7-1056-41ad-99c7-8e38a4aba07d",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "mobile"
+            },
+            "name": "MyField",
+            "designerId": "e317499a-c61a-4c30-b88f-a3179c97e847"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "phone"
+            },
+            "name": "MyField2",
+            "designerId": "79c2eb27-e53e-4110-b804-26685356e35f"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "first_name"
+            },
+            "name": "MyField4",
+            "designerId": "2e71412f-82b2-42e3-910b-56b30628527b"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "last_name"
+            },
+            "name": "MyField5",
+            "designerId": "60a4e7a8-3c7f-4705-bbde-feaddebeca30"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "formatted_mobile"
+            },
+            "name": "MyField1",
+            "designerId": "55bbd16e-9a6a-4282-86a0-675782139683",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "var mobile = data.mobile;",
+                            "if (mobile && mobile.length === 9) {",
+                            "    return '(' + mobile.substr(0,3) + ')' + mobile.substr(3,3) + '-' + mobile.substr(6,3);",
+                            "}",
+                            "return mobile;"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "fff2102d-6f92-49aa-b7bb-e3ca7b1e0c0c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "formatted_phone"
+            },
+            "name": "MyField3",
+            "designerId": "470eea8e-5945-4594-bde4-9c9cedde4ebc",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "var phone = data.phone;",
+                            "if (phone && phone.length === 4) {",
+                            "    return phone.substr(0, 1) + '-' + phone.substr(1);",
+                            "} else if (phone && phone.length === 3) {",
+                            "    return '7-' + phone;",
+                            "}",
+                            "return phone;"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "48425b7a-f2f6-4df3-aac8-1e86ec6d3431"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "full_name"
+            },
+            "name": "MyField6",
+            "designerId": "d095f000-0222-4604-8968-4ec26723a8fe",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "return data.first_name + ' ' + data.last_name;"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "30173424-2337-4ea8-8c6f-eb68814ea180"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "/api/sys/users"
+            },
+            "name": "MyRestProxy",
+            "designerId": "b7c050ab-1f20-4ff2-a529-230b338b25a6"
+        }
+    ]
+}

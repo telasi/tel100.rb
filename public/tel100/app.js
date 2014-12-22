@@ -20,6 +20,9 @@ Ext.Loader.setConfig({
 
 
 Ext.application({
+    models: [
+        'User'
+    ],
     views: [
         'Main'
     ],

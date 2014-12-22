@@ -3,8 +3,55 @@
         "view": true,
         "store": true,
         "model": true,
+        "b5fb3de7-1056-41ad-99c7-8e38a4aba07d": {
+            "id": "b5fb3de7-1056-41ad-99c7-8e38a4aba07d",
+            "cn": [
+                {
+                    "id": "e317499a-c61a-4c30-b88f-a3179c97e847"
+                },
+                {
+                    "id": "79c2eb27-e53e-4110-b804-26685356e35f"
+                },
+                {
+                    "id": "2e71412f-82b2-42e3-910b-56b30628527b"
+                },
+                {
+                    "id": "60a4e7a8-3c7f-4705-bbde-feaddebeca30"
+                },
+                {
+                    "id": "55bbd16e-9a6a-4282-86a0-675782139683",
+                    "expanded": false,
+                    "cn": [
+                        {
+                            "id": "fff2102d-6f92-49aa-b7bb-e3ca7b1e0c0c"
+                        }
+                    ]
+                },
+                {
+                    "id": "470eea8e-5945-4594-bde4-9c9cedde4ebc",
+                    "expanded": false,
+                    "cn": [
+                        {
+                            "id": "48425b7a-f2f6-4df3-aac8-1e86ec6d3431"
+                        }
+                    ]
+                },
+                {
+                    "id": "d095f000-0222-4604-8968-4ec26723a8fe",
+                    "expanded": false,
+                    "cn": [
+                        {
+                            "id": "30173424-2337-4ea8-8c6f-eb68814ea180"
+                        }
+                    ]
+                },
+                {
+                    "id": "b7c050ab-1f20-4ff2-a529-230b338b25a6"
+                }
+            ]
+        },
         "controller": true,
-        "resource": true,
+        "resource": false,
         "7035d869-c80b-4b47-ad7d-5a2420d6994e": {
             "id": "7035d869-c80b-4b47-ad7d-5a2420d6994e"
         },
@@ -13,16 +60,18 @@
         }
     },
     "tabState": {
-        "openTabs": []
+        "openTabs": [
+            "b5fb3de7-1056-41ad-99c7-8e38a4aba07d"
+        ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": null,
-        "selectedInstance": null
+        "topInstance": "b5fb3de7-1056-41ad-99c7-8e38a4aba07d",
+        "selectedInstance": "b7c050ab-1f20-4ff2-a529-230b338b25a6"
     },
-    "editMode": "design",
+    "editMode": "code",
     "userSettings": {
         "no-cmd": false
     }
