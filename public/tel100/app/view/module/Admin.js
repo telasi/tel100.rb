@@ -44,7 +44,7 @@ Ext.define('Tel100.view.module.Admin', {
       store: 'admin.Actions',
       bind: {
         selection: '{action}',
-        title: '{action.category}-{action.name}'
+        title: '{i18n.admin.actions}'
       },
       columns: [
         {
