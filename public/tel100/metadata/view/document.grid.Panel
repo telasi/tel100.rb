@@ -9,7 +9,9 @@
         "designer|userAlias": "documentgridpanel",
         "designer|userClassName": "document.grid.Panel",
         "height": null,
-        "store": "document.Base",
+        "store": [
+            "{documents}"
+        ],
         "title": [
             "{i18n.document.base.ui.gridtitle}"
         ],
@@ -17,7 +19,8 @@
     },
     "name": "MyGridPanel",
     "configAlternates": {
-        "title": "binding"
+        "title": "binding",
+        "store": "binding"
     },
     "designerId": "4cd89105-3608-4ca0-9fc3-af905d9b9e80",
     "viewControllerInstanceId": "0a8366c9-3a12-4384-b761-ddb3953ce8a4",
@@ -428,7 +431,7 @@
             "userConfig": {
                 "fn": "onBeforeRender",
                 "implHandler": [
-                    "this.refresh();"
+                    "// this.refresh();"
                 ],
                 "name": "beforerender",
                 "scope": "me"

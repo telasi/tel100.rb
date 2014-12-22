@@ -22,7 +22,7 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
   },
 
   onBeforeRender: function(component, eOpts) {
-    this.refresh();
+    // this.refresh();
   },
 
   onRefresh: function(tool, e, owner, eOpts) {

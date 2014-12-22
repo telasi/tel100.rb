@@ -9,5 +9,49 @@
         "designer|userAlias": "documentgridpanel",
         "designer|userClassName": "document.grid.PanelViewModel"
     },
-    "designerId": "4d52b5e3-82f8-4f09-8a67-c1b1d26b34a8"
+    "designerId": "4d52b5e3-82f8-4f09-8a67-c1b1d26b34a8",
+    "cn": [
+        {
+            "type": "jsonstore",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Base",
+                "name": "documents"
+            },
+            "name": "MyJsonStore",
+            "designerId": "b1f561bc-2c8b-404e-82a1-53c7e4014016",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "url": "/api/documents/base"
+                    },
+                    "name": "MyAjaxProxy",
+                    "designerId": "cde052df-aa3e-45bf-9ccf-1c40dbe99f93",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader1",
+                            "designerId": "80447af7-ff7d-44ff-bee1-dc4a6283bf20"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

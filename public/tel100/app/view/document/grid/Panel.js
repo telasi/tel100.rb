@@ -29,10 +29,10 @@ Ext.define('Tel100.view.document.grid.Panel', {
   viewModel: {
     type: 'documentgridpanel'
   },
-  store: 'document.Base',
 
   bind: {
-    title: '{i18n.document.base.ui.gridtitle}'
+    title: '{i18n.document.base.ui.gridtitle}',
+    store: '{documents}'
   },
   columns: [
     {
