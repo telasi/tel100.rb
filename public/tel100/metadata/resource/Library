@@ -8,7 +8,7 @@
     "userConfig": {
         "basePath": "ext/",
         "designer|userClassName": "Library",
-        "theme": "MyCrispTheme"
+        "theme": "MyNeptuneTheme"
     },
     "name": "Library",
     "designerId": "7035d869-c80b-4b47-ad7d-5a2420d6994e"

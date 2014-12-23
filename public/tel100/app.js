@@ -26,7 +26,8 @@ Ext.application({
         'document.Base'
     ],
     views: [
-        'Main'
+        'Main',
+        'user.login.Panel'
     ],
     name: 'Tel100',
 

@@ -13,7 +13,8 @@
         ],
         "name": "Tel100",
         "views": [
-            "Main"
+            "Main",
+            "user.login.Panel"
         ]
     },
     "name": "Application",

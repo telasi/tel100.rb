@@ -1,10 +1,10 @@
 {
    "name": "Tel100",
    "indexHtmlPath": "index.html",
-   "classpath": "${app.dir}/app",
+   "classpath": "${app.dir}/app,${app.dir}//i18n/",
    "overrides": "${app.dir}/overrides",
    "framework": "ext",
-   "theme": "ext-theme-crisp-cbe82290-9a98-4fef-804c-db253112889f",
+   "theme": "ext-theme-neptune-c2778a78-bfd4-4779-b8a0-7dd25679b344",
    "requires": [],
    "sass": {
       "namespace": "Tel100"
@@ -13,6 +13,11 @@
    "js": [
       {
          "path": "${ext.dir}/build/ext-all-rtl-debug.js"
+      },
+      {
+         "path": "/i18n/i18n.js",
+         "remote": true,
+         "includeInBundle": true
       },
       {
          "path": "app.js",

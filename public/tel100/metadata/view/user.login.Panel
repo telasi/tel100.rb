@@ -1,0 +1,73 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|align": "middle",
+        "container|pack": "center",
+        "designer|userAlias": "userloginpanel",
+        "designer|userClassName": "user.login.Panel",
+        "height": null,
+        "layout": "hbox",
+        "width": null
+    },
+    "name": "MyContainer",
+    "designerId": "03cd4760-d7dc-43e4-aa67-42897fda1600",
+    "viewControllerInstanceId": "e74e262d-d1d7-495c-9cbc-111232c86e2b",
+    "viewModelInstanceId": "cb43308a-961a-4a46-bc95-dc6c34b53dd9",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyBorder": true,
+                "bodyPadding": 10,
+                "designer|uiInterfaceName": "default-framed",
+                "frame": true,
+                "layout|flex": 0,
+                "title": "Login",
+                "width": 300
+            },
+            "name": "MyForm",
+            "designerId": "5ab9803f-8c53-472a-8781-e16f1dec45d2",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Username",
+                        "layout|anchor": "100%"
+                    },
+                    "name": "MyTextField",
+                    "designerId": "abb2cd38-73ab-422f-9b15-b6f081cfdc79"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Password",
+                        "inputType": "password",
+                        "layout|anchor": "100%"
+                    },
+                    "name": "MyTextField1",
+                    "designerId": "9fea25f9-2d15-4ce5-a8bc-b9575e15e446"
+                }
+            ]
+        }
+    ]
+}
