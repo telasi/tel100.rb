@@ -1,3 +1,3 @@
 window.helpers = {
-  // TODO: load libraries
+  preferences: require('./preferences')
 };
