@@ -1,10 +1,12 @@
 var currentUser
   , ajax = require('./ajax')
+  , preferences = require('./preferences')
   ;
 
 var setCurrentUser = function(user, password) {
   if (user && password) {
     currentUser = user;
+    preferences.setValue('username', user.get('username'));
     ajax.setExtraParams('api_username', user.get('username'));
     ajax.setExtraParams('api_password', password);
   } else {

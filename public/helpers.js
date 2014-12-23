@@ -129,11 +129,13 @@ module.exports = {
 },{}],5:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
+  , preferences = require('./preferences')
   ;
 
 var setCurrentUser = function(user, password) {
   if (user && password) {
     currentUser = user;
+    preferences.setValue('username', user.get('username'));
     ajax.setExtraParams('api_username', user.get('username'));
     ajax.setExtraParams('api_password', password);
   } else {
@@ -152,4 +154,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":1}]},{},[3]);
+},{"./ajax":1,"./preferences":4}]},{},[3]);

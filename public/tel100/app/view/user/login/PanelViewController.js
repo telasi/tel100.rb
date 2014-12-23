@@ -40,7 +40,6 @@ Ext.define('Tel100.view.user.login.PanelViewController', {
         success: function(data) {
           var user = new Tel100.model.User(data.user);
           helpers.user.setCurrentUser(user, password);
-          helpers.user.setPreferenceValue('username', username);
           self.openWorkingArea();
         }
       });
