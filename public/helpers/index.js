@@ -1,3 +1,4 @@
 window.helpers = {
-  preferences: require('./preferences')
+  preferences: require('./preferences'),
+  i18n: require('./i18n')
 };

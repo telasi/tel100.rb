@@ -19,10 +19,12 @@ Ext.define('Tel100.view.Main', {
 
     requires: [
         'Tel100.view.MainViewModel',
+        'Tel100.view.MainViewController',
         'Tel100.view.user.login.Panel',
         'Ext.container.Container'
     ],
 
+    controller: 'main',
     viewModel: {
         type: 'main'
     },
@@ -32,6 +34,9 @@ Ext.define('Tel100.view.Main', {
         {
             xtype: 'userloginpanel'
         }
-    ]
+    ],
+    listeners: {
+        beforerender: 'onBeforeRender'
+    }
 
 });

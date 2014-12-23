@@ -26,6 +26,28 @@
             "name": "user.login.panel1",
             "designerId": "b56e0aff-35ba-45b9-b38a-2f551b242bf3",
             "masterInstanceId": "03cd4760-d7dc-43e4-aa67-42897fda1600"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "var locale = helpers.i18n.getCurrentLocale();",
+                    "var i18n = window[locale];",
+                    "window.i18n = i18n;",
+                    "var viewModel = this.getViewModel();",
+                    "viewModel.set('i18n', i18n);"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "6433e2fb-c11d-4cdf-8691-2aa166b37295"
         }
     ]
 }
