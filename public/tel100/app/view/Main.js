@@ -18,12 +18,20 @@ Ext.define('Tel100.view.Main', {
     alias: 'widget.main',
 
     requires: [
-        'Tel100.view.MainViewModel'
+        'Tel100.view.MainViewModel',
+        'Tel100.view.user.login.Panel',
+        'Ext.container.Container'
     ],
 
     viewModel: {
         type: 'main'
     },
-    layout: 'card'
+    layout: 'card',
+
+    items: [
+        {
+            xtype: 'userloginpanel'
+        }
+    ]
 
 });

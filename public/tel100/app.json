@@ -1,7 +1,7 @@
 {
    "name": "Tel100",
    "indexHtmlPath": "index.html",
-   "classpath": "${app.dir}/app,${app.dir}//i18n/",
+   "classpath": "${app.dir}/app,${app.dir}//",
    "overrides": "${app.dir}/overrides",
    "framework": "ext",
    "theme": "ext-theme-neptune-c2778a78-bfd4-4779-b8a0-7dd25679b344",
@@ -15,7 +15,7 @@
          "path": "${ext.dir}/build/ext-all-rtl-debug.js"
       },
       {
-         "path": "/i18n/i18n.js",
+         "path": "/i18n.js",
          "remote": true,
          "includeInBundle": true
       },

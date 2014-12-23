@@ -14,5 +14,18 @@
     "name": "MyViewport",
     "designerId": "3b3e6a36-63b9-49a2-acd9-921ae36e718d",
     "viewControllerInstanceId": "e8a0032c-7a81-4be4-afec-604b31ffd23c",
-    "viewModelInstanceId": "f2dd7093-81f6-4fba-89ab-40ce536b968b"
+    "viewModelInstanceId": "f2dd7093-81f6-4fba-89ab-40ce536b968b",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "name": "user.login.panel1",
+            "designerId": "b56e0aff-35ba-45b9-b38a-2f551b242bf3",
+            "masterInstanceId": "03cd4760-d7dc-43e4-aa67-42897fda1600"
+        }
+    ]
 }
