@@ -10,14 +10,18 @@ module.exports = {
 var ka = {}
   , ru = {}
   , data = {
-    application: require('./application')
+    application: require('./application'),
+    user: require('./user')
   };
 
 var addProperties = function(ka, ru, data) {
   for(prop in data) {
     // console.log(prop, data[prop]);
     var value = data[prop];
-    if (value.ka || value.ru) {
+    if (typeof value === 'string') {
+      ka[prop] = value;
+      ru[prop] = value;
+    } else if (value.ka || value.ru) {
       var value_ka = value.ka || value.ru;
       var value_ru = value.ru || value.ka;
       ka[prop] = value_ka;
@@ -34,4 +38,14 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./application":1}]},{},[2]);
+},{"./application":1,"./user":3}],3:[function(require,module,exports){
+module.exports = {
+  username: 'მომხმარებელი',
+  password: 'პაროლი',
+  ui: {
+    login_title: '<i class="fa fa-user"></i> სისტემაში შესვლა',
+    login: 'შესვლა &rarr;'
+  }
+};
+
+},{}]},{},[2]);

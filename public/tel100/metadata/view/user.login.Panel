@@ -32,10 +32,15 @@
                 "designer|uiInterfaceName": "default-framed",
                 "frame": true,
                 "layout|flex": 0,
-                "title": "Login",
+                "title": [
+                    "{i18n.user.ui.login_title}"
+                ],
                 "width": 300
             },
             "name": "MyForm",
+            "configAlternates": {
+                "title": "binding"
+            },
             "designerId": "5ab9803f-8c53-472a-8781-e16f1dec45d2",
             "cn": [
                 {
@@ -46,10 +51,15 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "fieldLabel": "Username",
+                        "fieldLabel": [
+                            "{i18n.user.username}"
+                        ],
                         "layout|anchor": "100%"
                     },
                     "name": "MyTextField",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
                     "designerId": "abb2cd38-73ab-422f-9b15-b6f081cfdc79"
                 },
                 {
@@ -60,11 +70,16 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "fieldLabel": "Password",
+                        "fieldLabel": [
+                            "{i18n.user.password}"
+                        ],
                         "inputType": "password",
                         "layout|anchor": "100%"
                     },
                     "name": "MyTextField1",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
                     "designerId": "9fea25f9-2d15-4ce5-a8bc-b9575e15e446"
                 }
             ]

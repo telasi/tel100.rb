@@ -40,18 +40,24 @@ Ext.define('Tel100.view.user.login.Panel', {
             width: 300,
             bodyBorder: true,
             bodyPadding: 10,
-            title: 'Login',
+            bind: {
+                title: '{i18n.user.ui.login_title}'
+            },
             items: [
                 {
                     xtype: 'textfield',
                     anchor: '100%',
-                    fieldLabel: 'Username'
+                    bind: {
+                        fieldLabel: '{i18n.user.username}'
+                    }
                 },
                 {
                     xtype: 'textfield',
                     anchor: '100%',
-                    fieldLabel: 'Password',
-                    inputType: 'password'
+                    inputType: 'password',
+                    bind: {
+                        fieldLabel: '{i18n.user.password}'
+                    }
                 }
             ]
         }

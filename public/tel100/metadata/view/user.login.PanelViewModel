@@ -6,6 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "i18n: window.ka",
+            "}"
+        ],
         "designer|userAlias": "userloginpanel",
         "designer|userClassName": "user.login.PanelViewModel"
     },
