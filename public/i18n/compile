@@ -1,3 +1,0 @@
-#!/bin/sh
-cd ./i18n
-browserify index.js -o ../i18n.js

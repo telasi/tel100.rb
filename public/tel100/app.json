@@ -20,6 +20,11 @@
          "includeInBundle": true
       },
       {
+         "path": "/helpers.js",
+         "remote": true,
+         "includeInBundle": true
+      },
+      {
          "path": "app.js",
          "bundle": true
       }
