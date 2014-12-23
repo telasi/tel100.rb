@@ -20,19 +20,19 @@ Ext.Loader.setConfig({
 
 
 Ext.application({
-    models: [
-        'User',
-        'document.Type',
-        'document.Base'
-    ],
-    views: [
-        'Main',
-        'user.login.Panel'
-    ],
-    name: 'Tel100',
+  models: [
+    'User',
+    'document.Type',
+    'document.Base'
+  ],
+  views: [
+    'Main',
+    'user.login.Panel'
+  ],
+  name: 'Tel100',
 
-    launch: function() {
-        Ext.create('Tel100.view.Main');
-    }
+  launch: function() {
+    Ext.create('Tel100.view.Main');
+  }
 
 });

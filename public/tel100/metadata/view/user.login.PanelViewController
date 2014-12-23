@@ -9,5 +9,49 @@
         "designer|userAlias": "userloginpanel",
         "designer|userClassName": "user.login.PanelViewController"
     },
-    "designerId": "e74e262d-d1d7-495c-9cbc-111232c86e2b"
+    "designerId": "e74e262d-d1d7-495c-9cbc-111232c86e2b",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onLogin",
+                "implHandler": [
+                    "var self = this;",
+                    "var view = self.getView();",
+                    "",
+                    "var txtUsername = view.down('#username');",
+                    "var txtPassword = view.down('#password');",
+                    "",
+                    "var username = txtUsername.value;",
+                    "var password = txtPassword.value;",
+                    "",
+                    "if (username && password) {",
+                    "  Helpers.ajaxRequest({",
+                    "    url: '/api/user/login',",
+                    "    method: 'POST',",
+                    "    view: view,",
+                    "    params: {",
+                    "      userID: username,",
+                    "      password: password,",
+                    "      api_locale: Helpers.getCurrentLocale()",
+                    "    },",
+                    "    success: function(data) {",
+                    "      var user = new Tel100.model.User(data.user);",
+                    "      Helpers.setCurrentUser(user, password);",
+                    "      Helpers.setPreferenceValue('username', username);",
+                    "      self.openWorkingArea();",
+                    "    }",
+                    "  });",
+                    "}"
+                ]
+            },
+            "name": "onLogin",
+            "designerId": "7ac45a42-287a-4260-a74e-a96a53ac3f6a"
+        }
+    ]
 }

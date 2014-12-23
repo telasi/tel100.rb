@@ -35,7 +35,7 @@
                 "title": [
                     "{i18n.user.ui.login_title}"
                 ],
-                "width": 300
+                "width": 400
             },
             "name": "MyForm",
             "configAlternates": {
@@ -51,9 +51,11 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "allowBlank": false,
                         "fieldLabel": [
                             "{i18n.user.username}"
                         ],
+                        "itemId": "username",
                         "layout|anchor": "100%"
                     },
                     "name": "MyTextField",
@@ -70,10 +72,12 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "allowBlank": false,
                         "fieldLabel": [
                             "{i18n.user.password}"
                         ],
                         "inputType": "password",
+                        "itemId": "password",
                         "layout|anchor": "100%"
                     },
                     "name": "MyTextField1",
@@ -81,8 +85,90 @@
                         "fieldLabel": "binding"
                     },
                     "designerId": "9fea25f9-2d15-4ce5-a8bc-b9575e15e446"
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "container|pack": "end",
+                        "layout": "hbox"
+                    },
+                    "name": "MyContainer",
+                    "designerId": "4442acf2-c261-4e7c-b2c9-74bad7584393",
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "formBind": true,
+                                "text": [
+                                    "{i18n.user.ui.login}"
+                                ]
+                            },
+                            "name": "MyButton",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "6dcaba6c-68c6-4eec-b6ce-292ce0905668",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onLoginClick",
+                                        "implHandler": [
+                                            "this.onLogin();"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onLoginClick",
+                                    "designerId": "b1f04f38-b30d-490b-8e2e-ade96eeb02f5"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onAfterRender",
+                "implHandler": [
+                    "var txtUsername = component.down('#username');",
+                    "var txtPassword = component.down('#password');",
+                    "var username = helpers.preferences.getValue('username');",
+                    "if (username) {",
+                    "  txtUsername.setValue(username);",
+                    "  txtPassword.focus();",
+                    "} else {",
+                    "  txtUsername.focus();",
+                    "}"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onAfterRender",
+            "designerId": "b486f07c-ea5c-426d-9f7f-067a393bf8fe"
         }
     ]
 }
