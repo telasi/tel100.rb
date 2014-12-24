@@ -17,7 +17,10 @@
             "user.login.Panel",
             "workarea.Panel",
             "workarea.LocaleSelector",
-            "user.box.Button"
+            "user.box.Button",
+            "modules.Documents",
+            "modules.HR",
+            "modules.Admin"
         ]
     },
     "name": "Application",

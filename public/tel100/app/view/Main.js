@@ -32,8 +32,11 @@ Ext.define('Tel100.view.Main', {
     type: 'main'
   },
   itemId: 'main-viewport',
-  layout: 'card',
 
+  layout: {
+    type: 'card',
+    deferredRender: true
+  },
   items: [
     {
       xtype: 'container',

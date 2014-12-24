@@ -87,6 +87,24 @@
                             },
                             "name": "MyButton5",
                             "designerId": "2fd6bb53-25c9-440e-b788-20d732a3bfe2"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onToggle",
+                                "implHandler": [
+                                    "this.setCurrentApplication(button.itemId, { switchApplication: true });"
+                                ],
+                                "name": "toggle",
+                                "scope": "me"
+                            },
+                            "name": "onToggle",
+                            "designerId": "4040fa58-2dc0-46a6-ba65-b6bc67596e7b"
                         }
                     ]
                 },
@@ -127,12 +145,77 @@
             },
             "codeClass": null,
             "userConfig": {
+                "container|deferredRender": true,
                 "designer|displayName": "body",
+                "itemId": "body-layout",
                 "layout": "card",
                 "layout|region": "center"
             },
             "name": "MyContainer3",
-            "designerId": "fedec4d7-d79e-4e27-937b-23e7d9444a84"
+            "designerId": "fedec4d7-d79e-4e27-937b-23e7d9444a84",
+            "cn": [
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "docs"
+                    },
+                    "name": "modules.documents",
+                    "designerId": "ef080391-82a6-4495-977e-29a670d30431",
+                    "masterInstanceId": "bc2817b2-d854-425c-8794-51b08be7c589"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "hr"
+                    },
+                    "name": "modules.hr",
+                    "designerId": "3ddeca19-58d0-43bf-9aaf-39715236350f",
+                    "masterInstanceId": "c9fda42a-86ea-4f33-b9db-79a4c188827f"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "admin"
+                    },
+                    "name": "modules.admin",
+                    "designerId": "81b31db9-6578-44e3-94dd-70b0b50b3be8",
+                    "masterInstanceId": "1532b9ff-b03c-4ee7-a714-ff71977f94f5"
+                }
+            ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "var currApplication = helpers.preferences.getValue('current-application', 'docs');",
+                    "this.setCurrentApplication(currApplication, { toggleButton: true, switchApplication: true });"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "8e2c6868-90cb-4aa8-9d35-b0eb6277ffc5"
         }
     ]
 }

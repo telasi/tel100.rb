@@ -19,12 +19,17 @@ Ext.define('Tel100.view.workarea.Panel', {
 
   requires: [
     'Tel100.view.workarea.PanelViewModel',
+    'Tel100.view.workarea.PanelViewController',
     'Tel100.view.user.box.Button',
+    'Tel100.view.modules.Documents',
+    'Tel100.view.modules.HR',
+    'Tel100.view.modules.Admin',
     'Ext.button.Segmented',
     'Ext.button.Button',
     'Ext.toolbar.Spacer'
   ],
 
+  controller: 'workareapanel',
   viewModel: {
     type: 'workareapanel'
   },
@@ -55,7 +60,10 @@ Ext.define('Tel100.view.workarea.Panel', {
               itemId: 'admin',
               text: 'admin'
             }
-          ]
+          ],
+          listeners: {
+            toggle: 'onToggle'
+          }
         },
         {
           xtype: 'tbspacer',
@@ -69,8 +77,29 @@ Ext.define('Tel100.view.workarea.Panel', {
     {
       xtype: 'container',
       region: 'center',
-      layout: 'card'
+      itemId: 'body-layout',
+      layout: {
+        type: 'card',
+        deferredRender: true
+      },
+      items: [
+        {
+          xtype: 'modulesdocuments',
+          itemId: 'docs'
+        },
+        {
+          xtype: 'moduleshr',
+          itemId: 'hr'
+        },
+        {
+          xtype: 'modulesadmin',
+          itemId: 'admin'
+        }
+      ]
     }
-  ]
+  ],
+  listeners: {
+    beforerender: 'onBeforeRender'
+  }
 
 });

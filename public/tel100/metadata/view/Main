@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "container|deferredRender": true,
         "designer|initialView": true,
         "designer|userAlias": "main",
         "designer|userClassName": "Main",

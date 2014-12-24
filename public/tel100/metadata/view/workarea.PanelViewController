@@ -9,5 +9,35 @@
         "designer|userAlias": "workareapanel",
         "designer|userClassName": "workarea.PanelViewController"
     },
-    "designerId": "5bfa9a7d-925c-45af-8e9b-eb771edcbdf4"
+    "designerId": "5bfa9a7d-925c-45af-8e9b-eb771edcbdf4",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "name",
+                    "opts"
+                ],
+                "fn": "setCurrentApplication",
+                "implHandler": [
+                    "if (opts && opts.toggleButton) {",
+                    "  var applicationButton = this.getView().down('#' + name);",
+                    "  applicationButton.toggle();",
+                    "}",
+                    "if (opts && opts.switchApplication) {",
+                    "  var modulesContainer = this.getView().down('#body-layout');",
+                    "  modulesContainer.setActiveItem(name);",
+                    "}",
+                    "helpers.preferences.setValue('current-application', name);"
+                ]
+            },
+            "name": "setCurrentApplication",
+            "designerId": "e5a5df96-e9c3-456a-9d36-e69cc1887b3b"
+        }
+    ]
 }

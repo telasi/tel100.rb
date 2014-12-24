@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "moduleshr",
+        "designer|userClassName": "modules.HRViewModel"
+    },
+    "designerId": "ba3d3bbb-e4e7-4af8-86ad-31d6ac18d695"
+}
