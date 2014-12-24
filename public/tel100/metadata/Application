@@ -15,7 +15,8 @@
         "views": [
             "Main",
             "user.login.Panel",
-            "workarea.Panel"
+            "workarea.Panel",
+            "workarea.LocaleSelector"
         ]
     },
     "name": "Application",

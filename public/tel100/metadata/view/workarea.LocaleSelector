@@ -1,0 +1,92 @@
+{
+    "type": "Ext.button.Segmented",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "workarealocaleselector",
+        "designer|userClassName": "workarea.LocaleSelector",
+        "height": null,
+        "width": null
+    },
+    "name": "MySegmentedButton",
+    "designerId": "78f2feb6-6129-46fd-878f-74b250ed6144",
+    "viewControllerInstanceId": "34c7a51e-cb5b-465e-af34-230db00a87e3",
+    "viewModelInstanceId": "b66d529d-2410-4afb-b372-a131f8a404b9",
+    "cn": [
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "i18nka",
+                "text": "ქართული"
+            },
+            "name": "MyButton",
+            "designerId": "b0380d52-f22e-4842-858c-f657a4d511b2"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "i18nru",
+                "text": "Русский"
+            },
+            "name": "MyButton1",
+            "designerId": "d5a58f1c-01ae-4959-82e1-3e372d10f133"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onSegmentedbuttonAfterRender",
+                "implHandler": [
+                    "var btnId = '#i18n' + helpers.i18n.getCurrentLocale();",
+                    "this.getView().down(btnId).toggle();"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onSegmentedbuttonAfterRender",
+            "designerId": "e1787b4f-db32-4ae1-8df2-d64564491ec5"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onSegmentedbuttonToggle",
+                "implHandler": [
+                    "var btnId = button.getItemId();",
+                    "var newLocale = button.getItemId().substr(4);",
+                    "var oldLocale = helpers.i18n.getCurrentLocale();",
+                    "if (newLocale != oldLocale) {",
+                    "  helpers.i18n.setCurrentLocale(newLocale);",
+                    "  debugger;",
+                    "  this.getView().up('#main-viewport').getViewModel().set('i18n', window[newLocale]);",
+                    "}"
+                ],
+                "name": "toggle",
+                "scope": "me"
+            },
+            "name": "onSegmentedbuttonToggle",
+            "designerId": "81f8148b-6a44-4295-80e0-b86f133240e5"
+        }
+    ]
+}

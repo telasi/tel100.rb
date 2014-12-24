@@ -21,7 +21,9 @@ Ext.define('Tel100.view.Main', {
     'Tel100.view.MainViewModel',
     'Tel100.view.MainViewController',
     'Tel100.view.user.login.Panel',
+    'Tel100.view.workarea.LocaleSelector',
     'Tel100.view.workarea.Panel',
+    'Ext.button.Segmented',
     'Ext.panel.Panel'
   ],
 
@@ -29,15 +31,30 @@ Ext.define('Tel100.view.Main', {
   viewModel: {
     type: 'main'
   },
+  itemId: 'main-viewport',
   layout: 'card',
 
   items: [
     {
-      xtype: 'userloginpanel',
-      itemId: 'login',
-      listeners: {
-        loggedin: 'onLoggedin'
-      }
+      xtype: 'container',
+      layout: {
+        type: 'vbox',
+        align: 'center',
+        pack: 'center'
+      },
+      items: [
+        {
+          xtype: 'userloginpanel',
+          itemId: 'login',
+          listeners: {
+            loggedin: 'onLoggedin'
+          }
+        },
+        {
+          xtype: 'workarealocaleselector',
+          margin: 8
+        }
+      ]
     },
     {
       xtype: 'workareapanel',

@@ -40,11 +40,23 @@ window.ru = ru;
 
 },{"./application":1,"./user":3}],3:[function(require,module,exports){
 module.exports = {
-  username: 'მომხმარებელი',
-  password: 'პაროლი',
+  username: {
+    ka: 'მომხმარებელი',
+    ru: 'Пользователь'
+  },
+  password: {
+    ka: 'პაროლი',
+    ru: 'Пароль'
+  },
   ui: {
-    login_title: '<i class="fa fa-user"></i> სისტემაში შესვლა',
-    login: 'შესვლა &rarr;'
+    login_title: {
+      ka: '<i class="fa fa-user"></i> სისტემაში შესვლა',
+      ru: '<i class="fa fa-user"></i> Вход в систему',
+    },
+    login: {
+      ka: 'შესვლა &rarr;',
+      ru: 'Вход &rarr;'
+    }
   }
 };
 
