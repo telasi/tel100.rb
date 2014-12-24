@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "workareapanel",
+        "designer|userClassName": "workarea.PanelViewController"
+    },
+    "designerId": "5bfa9a7d-925c-45af-8e9b-eb771edcbdf4"
+}

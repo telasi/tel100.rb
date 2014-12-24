@@ -1,0 +1,19 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "workareapanel",
+        "designer|userClassName": "workarea.Panel",
+        "height": null,
+        "title": "My Panel",
+        "width": null
+    },
+    "name": "MyPanel",
+    "designerId": "fd6e4e1e-6a42-4835-914a-754234022494",
+    "viewControllerInstanceId": "5bfa9a7d-925c-45af-8e9b-eb771edcbdf4",
+    "viewModelInstanceId": "f1a3f082-8221-4b4e-ad74-44d4c13b6573"
+}

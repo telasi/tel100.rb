@@ -14,7 +14,8 @@
         "name": "Tel100",
         "views": [
             "Main",
-            "user.login.Panel"
+            "user.login.Panel",
+            "workarea.Panel"
         ]
     },
     "name": "Application",

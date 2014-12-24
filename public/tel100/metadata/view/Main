@@ -23,9 +23,56 @@
                 "type": "array"
             },
             "codeClass": null,
+            "userConfig": {
+                "itemId": "login"
+            },
             "name": "user.login.panel1",
             "designerId": "b56e0aff-35ba-45b9-b38a-2f551b242bf3",
-            "masterInstanceId": "03cd4760-d7dc-43e4-aa67-42897fda1600"
+            "masterInstanceId": "03cd4760-d7dc-43e4-aa67-42897fda1600",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "user"
+                        ],
+                        "fn": "onLoggedin",
+                        "implHandler": [
+                            "// set current user",
+                            "var user = helpers.user.getCurrentUser();",
+                            "this.getViewModel().set('currentUser', user);",
+                            "",
+                            "// open UI",
+                            "var view = this.getView();",
+                            "var layout = view.getLayout();",
+                            "layout.setActiveItem('workarea');"
+                        ],
+                        "name": "loggedin",
+                        "scope": "me"
+                    },
+                    "name": "onLoggedin",
+                    "designerId": "33ad896a-6a8b-46b6-8416-7de9c6ca453c"
+                }
+            ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "workarea"
+            },
+            "name": "workarea.panel",
+            "designerId": "0f56d711-270d-431c-8d3a-75f20b6ef2af",
+            "masterInstanceId": "fd6e4e1e-6a42-4835-914a-754234022494"
         },
         {
             "type": "viewcontrollereventbinding",

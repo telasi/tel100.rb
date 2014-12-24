@@ -14,29 +14,38 @@
  */
 
 Ext.define('Tel100.view.Main', {
-    extend: 'Ext.container.Viewport',
-    alias: 'widget.main',
+  extend: 'Ext.container.Viewport',
+  alias: 'widget.main',
 
-    requires: [
-        'Tel100.view.MainViewModel',
-        'Tel100.view.MainViewController',
-        'Tel100.view.user.login.Panel',
-        'Ext.container.Container'
-    ],
+  requires: [
+    'Tel100.view.MainViewModel',
+    'Tel100.view.MainViewController',
+    'Tel100.view.user.login.Panel',
+    'Tel100.view.workarea.Panel',
+    'Ext.panel.Panel'
+  ],
 
-    controller: 'main',
-    viewModel: {
-        type: 'main'
+  controller: 'main',
+  viewModel: {
+    type: 'main'
+  },
+  layout: 'card',
+
+  items: [
+    {
+      xtype: 'userloginpanel',
+      itemId: 'login',
+      listeners: {
+        loggedin: 'onLoggedin'
+      }
     },
-    layout: 'card',
-
-    items: [
-        {
-            xtype: 'userloginpanel'
-        }
-    ],
-    listeners: {
-        beforerender: 'onBeforeRender'
+    {
+      xtype: 'workareapanel',
+      itemId: 'workarea'
     }
+  ],
+  listeners: {
+    beforerender: 'onBeforeRender'
+  }
 
 });
