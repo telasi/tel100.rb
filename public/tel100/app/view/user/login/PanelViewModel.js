@@ -15,10 +15,6 @@
 
 Ext.define('Tel100.view.user.login.PanelViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.userloginpanel',
-
-  data: {
-    i18n: window.ka
-  }
+  alias: 'viewmodel.userloginpanel'
 
 });

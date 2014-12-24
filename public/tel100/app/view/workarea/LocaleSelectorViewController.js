@@ -28,7 +28,6 @@ Ext.define('Tel100.view.workarea.LocaleSelectorViewController', {
     var oldLocale = helpers.i18n.getCurrentLocale();
     if (newLocale != oldLocale) {
       helpers.i18n.setCurrentLocale(newLocale);
-      debugger;
       this.getView().up('#main-viewport').getViewModel().set('i18n', window[newLocale]);
     }
   }
