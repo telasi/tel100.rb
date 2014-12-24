@@ -20,7 +20,8 @@
             "user.box.Button",
             "modules.Documents",
             "modules.HR",
-            "modules.Admin"
+            "modules.Admin",
+            "hr.tree.Panel"
         ]
     },
     "name": "Application",

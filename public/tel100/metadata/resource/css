@@ -1,0 +1,15 @@
+{
+    "type": "cssresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "css",
+        "remote": true,
+        "url": "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    },
+    "name": "css",
+    "designerId": "9a3a4935-f74d-42ef-8c2c-e0115522e600"
+}
