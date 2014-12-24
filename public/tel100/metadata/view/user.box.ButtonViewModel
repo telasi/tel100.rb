@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "userboxbutton",
+        "designer|userClassName": "user.box.ButtonViewModel"
+    },
+    "designerId": "4012f57a-d0d6-437d-94e1-a8a535e844b1"
+}

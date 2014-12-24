@@ -15,6 +15,8 @@ module.exports = {
     login: {
       ka: 'შესვლა &rarr;',
       ru: 'Вход &rarr;'
-    }
+    },
+    profile: 'მომხმარებლის პროფილი',
+    logout: 'სისტემიდან გასვლა'
   }
 };

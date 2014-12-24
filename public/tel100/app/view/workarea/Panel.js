@@ -18,12 +18,59 @@ Ext.define('Tel100.view.workarea.Panel', {
   alias: 'widget.workareapanel',
 
   requires: [
-    'Tel100.view.workarea.PanelViewModel'
+    'Tel100.view.workarea.PanelViewModel',
+    'Tel100.view.user.box.Button',
+    'Ext.button.Segmented',
+    'Ext.button.Button',
+    'Ext.toolbar.Spacer'
   ],
 
   viewModel: {
     type: 'workareapanel'
   },
-  title: 'My Panel'
+  layout: 'border',
+
+  items: [
+    {
+      xtype: 'container',
+      region: 'north',
+      padding: 4,
+      layout: {
+        type: 'hbox',
+        align: 'stretch'
+      },
+      items: [
+        {
+          xtype: 'segmentedbutton',
+          items: [
+            {
+              itemId: 'docs',
+              text: 'docs'
+            },
+            {
+              itemId: 'hr',
+              text: 'hr'
+            },
+            {
+              itemId: 'admin',
+              text: 'admin'
+            }
+          ]
+        },
+        {
+          xtype: 'tbspacer',
+          flex: 1
+        },
+        {
+          xtype: 'userboxbutton'
+        }
+      ]
+    },
+    {
+      xtype: 'container',
+      region: 'center',
+      layout: 'card'
+    }
+  ]
 
 });

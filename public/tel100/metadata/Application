@@ -16,7 +16,8 @@
             "Main",
             "user.login.Panel",
             "workarea.Panel",
-            "workarea.LocaleSelector"
+            "workarea.LocaleSelector",
+            "user.box.Button"
         ]
     },
     "name": "Application",

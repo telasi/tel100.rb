@@ -37,7 +37,7 @@ var addProperties = function(ka, ru, data) {
 addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
-window.i18n = ru;
+
 },{"./application":1,"./user":3}],3:[function(require,module,exports){
 module.exports = {
   username: {
@@ -56,7 +56,9 @@ module.exports = {
     login: {
       ka: 'შესვლა &rarr;',
       ru: 'Вход &rarr;'
-    }
+    },
+    profile: 'მომხმარებლის პროფილი',
+    logout: 'სისტემიდან გასვლა'
   }
 };
 
