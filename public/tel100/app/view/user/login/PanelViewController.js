@@ -46,6 +46,12 @@ Ext.define('Tel100.view.user.login.PanelViewController', {
     }
   },
 
+  onPasswordSpecialkey: function(field, e, eOpts) {
+    if (e.getKey() === Ext.EventObject.ENTER) {
+      this.onLogin();
+    }
+  },
+
   onLoginClick: function(button, e, eOpts) {
     this.onLogin();
   },

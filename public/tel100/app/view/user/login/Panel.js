@@ -64,6 +64,9 @@ Ext.define('Tel100.view.user.login.Panel', {
           allowBlank: false,
           bind: {
             fieldLabel: '{i18n.user.password}'
+          },
+          listeners: {
+            specialkey: 'onPasswordSpecialkey'
           }
         },
         {

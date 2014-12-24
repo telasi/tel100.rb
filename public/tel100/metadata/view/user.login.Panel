@@ -84,7 +84,29 @@
                     "configAlternates": {
                         "fieldLabel": "binding"
                     },
-                    "designerId": "9fea25f9-2d15-4ce5-a8bc-b9575e15e446"
+                    "designerId": "9fea25f9-2d15-4ce5-a8bc-b9575e15e446",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onPasswordSpecialkey",
+                                "implHandler": [
+                                    "if (e.getKey() === Ext.EventObject.ENTER) {",
+                                    "  this.onLogin();",
+                                    "}"
+                                ],
+                                "name": "specialkey",
+                                "scope": "me"
+                            },
+                            "name": "onPasswordSpecialkey",
+                            "designerId": "62b83eb7-c1ae-449c-8996-bf5de6c2af55"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.container.Container",
