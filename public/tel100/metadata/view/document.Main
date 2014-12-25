@@ -1,0 +1,19 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmain",
+        "designer|userClassName": "document.Main",
+        "height": null,
+        "title": "docs",
+        "width": null
+    },
+    "name": "MyPanel",
+    "designerId": "368a0f4e-bc1c-41fd-98ea-3e2c39105b2e",
+    "viewControllerInstanceId": "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68",
+    "viewModelInstanceId": "8db27d88-0934-4e59-bebc-ea6b2d462d9b"
+}

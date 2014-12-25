@@ -9,6 +9,7 @@
         "designer|userAlias": "modulesdocuments",
         "designer|userClassName": "modules.Documents",
         "height": null,
+        "layout": "fit",
         "width": null
     },
     "name": "MyContainer4",
@@ -17,17 +18,15 @@
     "viewModelInstanceId": "f385dee0-6276-413a-b835-d65c84d3544f",
     "cn": [
         {
-            "type": "Ext.form.Label",
+            "type": "linkedinstance",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
-            "userConfig": {
-                "text": "docs"
-            },
-            "name": "MyLabel1",
-            "designerId": "6195ba9a-60ea-434b-a49b-7e6fcfe58d4f"
+            "name": "document.main",
+            "designerId": "e207c3ba-974b-4008-a398-e52b897b42a4",
+            "masterInstanceId": "368a0f4e-bc1c-41fd-98ea-3e2c39105b2e"
         }
     ]
 }
