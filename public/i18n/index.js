@@ -2,6 +2,7 @@ var ka = {}
   , ru = {}
   , data = {
     application: require('./application'),
+    errors: require('./errors'),
     user: require('./user'),
     hr: require('./hr')
   };
