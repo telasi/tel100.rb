@@ -19,11 +19,15 @@ Ext.define('Tel100.view.admin.Panel', {
 
   requires: [
     'Tel100.view.admin.PanelViewModel',
+    'Tel100.view.admin.PanelViewController',
     'Tel100.view.admin.actions.Panel',
+    'Tel100.view.admin.types.AdminPanel',
+    'Tel100.view.admin.users.AdminPanel',
     'Ext.grid.Panel',
     'Ext.form.Label'
   ],
 
+  controller: 'adminpanel',
   viewModel: {
     type: 'adminpanel'
   },
@@ -34,12 +38,19 @@ Ext.define('Tel100.view.admin.Panel', {
       xtype: 'adminactionspanel',
       region: 'west',
       split: true,
-      collapsible: true
+      collapsible: true,
+      listeners: {
+        actionselected: 'onActionSelected'
+      }
     },
     {
       xtype: 'container',
       region: 'center',
-      layout: 'fit',
+      itemId: 'center-panel',
+      layout: {
+        type: 'card',
+        deferredRender: true
+      },
       items: [
         {
           xtype: 'container',
@@ -56,6 +67,14 @@ Ext.define('Tel100.view.admin.Panel', {
               }
             }
           ]
+        },
+        {
+          xtype: 'admintypesadminpanel',
+          itemId: 'documents-types'
+        },
+        {
+          xtype: 'adminusersadminpanel',
+          itemId: 'sys-users'
         }
       ]
     }

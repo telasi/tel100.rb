@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "adminusersadminpanel",
+        "designer|userClassName": "admin.users.AdminPanelViewController"
+    },
+    "designerId": "38097f67-6966-475a-8649-25e6a86d98a6"
+}

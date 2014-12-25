@@ -29,11 +29,44 @@
                 "collapsible": true,
                 "designer|displayName": "actions",
                 "layout|region": "west",
-                "layout|split": true
+                "layout|split": true,
+                "selection": null
             },
             "name": "admin.actions.panel",
             "designerId": "d8f7df9a-d661-445e-a680-99e5187e2c4b",
-            "masterInstanceId": "08342b68-a4be-49a2-94bb-1bae94454cdc"
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
+                    "type": "string"
+                }
+            ],
+            "masterInstanceId": "08342b68-a4be-49a2-94bb-1bae94454cdc",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "category",
+                            "name"
+                        ],
+                        "fn": "onActionSelected",
+                        "implHandler": [
+                            "var centerPanel = this.getView().down('#center-panel');",
+                            "centerPanel.setActiveItem(category + '-' + name);"
+                        ],
+                        "name": "actionselected",
+                        "scope": "me"
+                    },
+                    "name": "onActionSelected",
+                    "designerId": "82c6cc00-91b6-4f61-93a7-e60b1c3fbf0e"
+                }
+            ]
         },
         {
             "type": "Ext.container.Container",
@@ -43,8 +76,11 @@
             },
             "codeClass": null,
             "userConfig": {
+                "activeItem": null,
+                "container|deferredRender": true,
                 "designer|displayName": "center",
-                "layout": "fit",
+                "itemId": "center-panel",
+                "layout": "card",
                 "layout|region": "center"
             },
             "name": "MyContainer1",
@@ -85,6 +121,34 @@
                             "designerId": "ebc32884-030d-4fb5-a16b-dc69a6468d9f"
                         }
                     ]
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "documents-types"
+                    },
+                    "name": "admin.types.adminpanel",
+                    "designerId": "aac52393-f216-4b1c-8d9f-d4fbf4e01eba",
+                    "masterInstanceId": "3075ddef-9dc5-4122-bf5b-2770ab6ebf2b"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "sys-users"
+                    },
+                    "name": "admin.users.adminpanel",
+                    "designerId": "b1ce093d-4452-45a5-82fe-364c624571a6",
+                    "masterInstanceId": "32e399cf-b3c8-4d7c-9ddd-cc46b785e2fe"
                 }
             ]
         }

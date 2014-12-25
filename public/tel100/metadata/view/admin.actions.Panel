@@ -119,6 +119,27 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onActionChange",
+                "implHandler": [
+                    "var selection = selected[0];",
+                    "var category = selection.get('category');",
+                    "var name = selection.get('name');",
+                    "this.getView().fireEvent('actionselected', category, name);"
+                ],
+                "name": "selectionchange",
+                "scope": "me"
+            },
+            "name": "onActionChange",
+            "designerId": "856c8533-4913-43e8-ad79-7667ff78ae5e"
         }
     ]
 }

@@ -309,18 +309,30 @@
             "id": "2f167264-a8fa-4299-be37-05619a9d9547",
             "cn": [
                 {
-                    "id": "d8f7df9a-d661-445e-a680-99e5187e2c4b"
+                    "id": "d8f7df9a-d661-445e-a680-99e5187e2c4b",
+                    "cn": [
+                        {
+                            "id": "82c6cc00-91b6-4f61-93a7-e60b1c3fbf0e"
+                        }
+                    ]
                 },
                 {
                     "id": "b38c2c38-df18-4bfd-a103-60af16cd260b",
                     "cn": [
                         {
                             "id": "578e7294-c02d-4043-b8c6-04aad1ce8ab3",
+                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "ebc32884-030d-4fb5-a16b-dc69a6468d9f"
                                 }
                             ]
+                        },
+                        {
+                            "id": "aac52393-f216-4b1c-8d9f-d4fbf4e01eba"
+                        },
+                        {
+                            "id": "b1ce093d-4452-45a5-82fe-364c624571a6"
                         }
                     ]
                 }
@@ -335,7 +347,6 @@
         },
         "08342b68-a4be-49a2-94bb-1bae94454cdc": {
             "id": "08342b68-a4be-49a2-94bb-1bae94454cdc",
-            "expanded": false,
             "cn": [
                 {
                     "id": "0c0b60e1-10a9-4395-a9ad-79158548bf2e",
@@ -348,6 +359,7 @@
                 },
                 {
                     "id": "b3681b9f-b040-4212-b5db-ee252700185b",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "ef0a1134-d743-481e-bc1f-ac25f2f996fd",
@@ -358,11 +370,15 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "id": "856c8533-4913-43e8-ad79-7667ff78ae5e"
                 }
             ]
         },
         "618472bf-f784-420a-9577-6b9a380c1592": {
             "id": "618472bf-f784-420a-9577-6b9a380c1592",
+            "expanded": false,
             "cn": [
                 {
                     "id": "e8fa0c79-82dd-4599-bdf1-1e5bd412270a",
@@ -379,6 +395,24 @@
         },
         "ed842b21-f4fd-4ecf-a36b-46b887a93a4a": {
             "id": "ed842b21-f4fd-4ecf-a36b-46b887a93a4a"
+        },
+        "3075ddef-9dc5-4122-bf5b-2770ab6ebf2b": {
+            "id": "3075ddef-9dc5-4122-bf5b-2770ab6ebf2b"
+        },
+        "7cfba3ea-5fa8-44a5-8617-4c715d11dec0": {
+            "id": "7cfba3ea-5fa8-44a5-8617-4c715d11dec0"
+        },
+        "432cef3f-7c06-41c1-8566-2ba768e27a4b": {
+            "id": "432cef3f-7c06-41c1-8566-2ba768e27a4b"
+        },
+        "32e399cf-b3c8-4d7c-9ddd-cc46b785e2fe": {
+            "id": "32e399cf-b3c8-4d7c-9ddd-cc46b785e2fe"
+        },
+        "d75c86cb-b38a-4e84-ba60-3feacd9e145e": {
+            "id": "d75c86cb-b38a-4e84-ba60-3feacd9e145e"
+        },
+        "38097f67-6966-475a-8649-25e6a86d98a6": {
+            "id": "38097f67-6966-475a-8649-25e6a86d98a6"
         },
         "store": true,
         "model": false,
@@ -419,19 +453,17 @@
     "tabState": {
         "openTabs": [
             "2f167264-a8fa-4299-be37-05619a9d9547",
-            "08342b68-a4be-49a2-94bb-1bae94454cdc",
-            "3e6b33a3-c39f-4570-9ca9-e0026de40f30",
-            "618472bf-f784-420a-9577-6b9a380c1592"
+            "08342b68-a4be-49a2-94bb-1bae94454cdc"
         ]
     },
     "canvasState": {
-        "topInstance": "2f167264-a8fa-4299-be37-05619a9d9547"
+        "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "2f167264-a8fa-4299-be37-05619a9d9547",
-        "selectedInstance": "b38c2c38-df18-4bfd-a103-60af16cd260b"
+        "topInstance": "e5d71dfd-798c-49da-984d-5a5c9acef7b6",
+        "selectedInstance": "e5d71dfd-798c-49da-984d-5a5c9acef7b6"
     },
-    "editMode": "design",
+    "editMode": "code",
     "userSettings": {
         "no-cmd": false
     }

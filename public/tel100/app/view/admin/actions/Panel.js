@@ -19,11 +19,13 @@ Ext.define('Tel100.view.admin.actions.Panel', {
 
   requires: [
     'Tel100.view.admin.actions.PanelViewModel',
+    'Tel100.view.admin.actions.PanelViewController',
     'Ext.grid.column.Column',
     'Ext.grid.feature.Grouping',
     'Ext.XTemplate'
   ],
 
+  controller: 'adminactionspanel',
   viewModel: {
     type: 'adminactionspanel'
   },
@@ -59,6 +61,9 @@ Ext.define('Tel100.view.admin.actions.Panel', {
         }
       )
     }
-  ]
+  ],
+  listeners: {
+    selectionchange: 'onActionChange'
+  }
 
 });

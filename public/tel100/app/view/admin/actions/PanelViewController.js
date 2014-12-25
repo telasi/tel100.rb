@@ -15,5 +15,13 @@
 
 Ext.define('Tel100.view.admin.actions.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.adminactionspanel'
+  alias: 'controller.adminactionspanel',
+
+  onActionChange: function(model, selected, eOpts) {
+    var selection = selected[0];
+    var category = selection.get('category');
+    var name = selection.get('name');
+    this.getView().fireEvent('actionselected', category, name);
+  }
+
 });
