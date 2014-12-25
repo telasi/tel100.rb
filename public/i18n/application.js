@@ -1,5 +1,5 @@
 module.exports = {
-  title: {
+  telasi: {
     ka: 'სს თელასი',
     ru: 'AO Теласи'
   }

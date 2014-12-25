@@ -14,41 +14,41 @@
  */
 
 Ext.define('Tel100.model.hr.Employee', {
-    extend: 'Ext.data.TreeModel',
+  extend: 'Ext.data.TreeModel',
 
-    entityName: 'hr.Employee',
-    fields: [
-        {
-            name: 'user_id'
+  entityName: 'hr.Employee',
+  fields: [
+    {
+      name: 'user_id'
+    },
+    {
+      name: 'first_name'
+    },
+    {
+      name: 'last_name'
+    },
+    {
+      calculate: function(data) {
+            return !!data.user_id;
         },
-        {
-            name: 'first_name'
+      name: 'has_user'
+    },
+    {
+      calculate: function(data) {
+            return data.first_name + ' ' + data.last_name;
         },
-        {
-            name: 'last_name'
-        },
-        {
-            calculate: function(data) {
-                return !!data.user_id;
-            },
-            name: 'has_user'
-        },
-        {
-            calculate: function(data) {
-                return data.first_name + ' ' + data.last_name;
-            },
-            name: 'full_name'
-        }
-    ],
-
-    toTreeHtml: function() {
-        var icon;
-        if (this.get('has_user')) {
-            icon = '<span class="text-success"><i class="fa fa-user"></i></span>';
-        } else {
-            icon = '<span class="text-danger"><i class="fa fa-circle"></i></span>';
-        }
-        return [icon, this.get('full_name')].join(' ');
+      name: 'full_name'
     }
+  ],
+
+  toTreeHtml: function() {
+    var icon;
+    if (this.get('has_user')) {
+        icon = '<span class="text-success"><i class="fa fa-user"></i></span>';
+    } else {
+        icon = '<span class="text-danger"><i class="fa fa-circle"></i></span>';
+    }
+    return [icon, this.get('full_name')].join(' ');
+  }
 
 });

@@ -7,6 +7,9 @@
     "codeClass": null,
     "userConfig": {
         "autoLoad": true,
+        "bodyCls": [
+            "x-tree-noicon"
+        ],
         "designer|userAlias": "hrtreepanel",
         "designer|userClassName": "hr.tree.Panel",
         "enableColumnHide": false,
@@ -14,6 +17,10 @@
         "hideHeaders": true,
         "hideMode": null,
         "lines": false,
+        "requires": [
+            "Tel100.model.hr.Employee",
+            "Tel100.model.hr.Organization"
+        ],
         "rootVisible": false,
         "rowLines": true,
         "store": [
@@ -51,10 +58,41 @@
             "userConfig": {
                 "dataIndex": "name",
                 "flex": 1,
-                "text": "MyTreeColumn"
+                "text": null
             },
             "name": "MyTreeColumn",
-            "designerId": "bdbf8021-2941-4afa-b814-57e5e4d5c8ad"
+            "designerId": "bdbf8021-2941-4afa-b814-57e5e4d5c8ad",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "if (record.toTreeHtml) {",
+                            "  return record.toTreeHtml();",
+                            "} else {",
+                            "  return '<i class=\"fa fa-bolt\"></i> ' + i18n.application.telasi;",
+                            "}"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "ea8e2e4c-4d27-4466-bf4b-5ba83f5569b9"
+                }
+            ]
         },
         {
             "type": "viewcontrollereventbinding",

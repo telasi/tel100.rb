@@ -21,13 +21,16 @@ Ext.define('Tel100.view.hr.tree.Panel', {
     'Tel100.view.hr.tree.PanelViewModel',
     'Tel100.view.hr.tree.PanelViewController',
     'Ext.tree.View',
-    'Ext.tree.Column'
+    'Ext.tree.Column',
+    'Tel100.model.hr.Employee',
+    'Tel100.model.hr.Organization'
   ],
 
   controller: 'hrtreepanel',
   viewModel: {
     type: 'hrtreepanel'
   },
+  bodyCls: 'x-tree-noicon',
   title: 'My Tree Panel',
   autoLoad: true,
   enableColumnHide: false,
@@ -46,8 +49,14 @@ Ext.define('Tel100.view.hr.tree.Panel', {
   columns: [
     {
       xtype: 'treecolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        if (record.toTreeHtml) {
+          return record.toTreeHtml();
+        } else {
+          return '<i class="fa fa-bolt"></i> ' + i18n.application.telasi;
+        }
+      },
       dataIndex: 'name',
-      text: 'MyTreeColumn',
       flex: 1
     }
   ],

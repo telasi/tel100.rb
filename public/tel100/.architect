@@ -1,6 +1,6 @@
 {
     "expandedState": {
-        "view": true,
+        "view": false,
         "3b3e6a36-63b9-49a2-acd9-921ae36e718d": {
             "id": "3b3e6a36-63b9-49a2-acd9-921ae36e718d",
             "expanded": false,
@@ -258,7 +258,13 @@
                     "id": "5e7eaed4-2b84-4764-a8a0-5e937153b992"
                 },
                 {
-                    "id": "bdbf8021-2941-4afa-b814-57e5e4d5c8ad"
+                    "id": "bdbf8021-2941-4afa-b814-57e5e4d5c8ad",
+                    "expanded": false,
+                    "cn": [
+                        {
+                            "id": "ea8e2e4c-4d27-4466-bf4b-5ba83f5569b9"
+                        }
+                    ]
                 },
                 {
                     "id": "1cda0bdc-d249-4330-b306-aa0d4d1b4458"
@@ -270,6 +276,7 @@
         },
         "42928d51-d6d1-4dc4-bc6d-b56c6a347833": {
             "id": "42928d51-d6d1-4dc4-bc6d-b56c6a347833",
+            "expanded": false,
             "cn": [
                 {
                     "id": "f58ba649-5f41-4b30-b41c-5529aa824dad",
@@ -290,12 +297,21 @@
             ]
         },
         "8d3a725b-c823-4fb4-b51a-3ba952c74364": {
-            "id": "8d3a725b-c823-4fb4-b51a-3ba952c74364"
+            "id": "8d3a725b-c823-4fb4-b51a-3ba952c74364",
+            "expanded": false
         },
         "store": true,
         "model": false,
         "8e1ea4f4-f8a7-41f2-8ab5-d3b3017bb281": {
             "id": "8e1ea4f4-f8a7-41f2-8ab5-d3b3017bb281"
+        },
+        "5adf3616-9660-46bd-91e3-645c3e72322a": {
+            "id": "5adf3616-9660-46bd-91e3-645c3e72322a",
+            "cn": [
+                {
+                    "id": "dab0e5ff-7792-4226-b2ad-ad6d74b2a2ab"
+                }
+            ]
         },
         "c258a828-3751-48f4-8690-f08c5d4ad042": {
             "id": "c258a828-3751-48f4-8690-f08c5d4ad042",
@@ -306,7 +322,7 @@
             ]
         },
         "controller": true,
-        "resource": false,
+        "resource": true,
         "07083251-dd31-41ec-b832-49c43b90f87a": {
             "id": "07083251-dd31-41ec-b832-49c43b90f87a"
         },
@@ -336,8 +352,8 @@
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "9ddd38b1-6ef9-4475-87d7-6ce8e4c6298c",
-        "selectedInstance": "76a95136-d63b-4edd-be5e-bf3954c09239"
+        "topInstance": "c1861725-6e19-46fc-8c1a-3730845755b1",
+        "selectedInstance": "c1861725-6e19-46fc-8c1a-3730845755b1"
     },
     "editMode": "code",
     "userSettings": {
