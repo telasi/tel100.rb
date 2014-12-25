@@ -131,9 +131,11 @@
                 "fn": "onActionChange",
                 "implHandler": [
                     "var selection = selected[0];",
-                    "var category = selection.get('category');",
-                    "var name = selection.get('name');",
-                    "this.getView().fireEvent('actionselected', category, name);"
+                    "if (selection) {",
+                    "  var category = selection.get('category');",
+                    "  var name = selection.get('name');",
+                    "  this.getView().fireEvent('actionselected', category, name);",
+                    "}"
                 ],
                 "name": "selectionchange",
                 "scope": "me"

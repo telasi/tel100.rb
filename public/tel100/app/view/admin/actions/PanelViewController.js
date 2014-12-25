@@ -19,9 +19,11 @@ Ext.define('Tel100.view.admin.actions.PanelViewController', {
 
   onActionChange: function(model, selected, eOpts) {
     var selection = selected[0];
-    var category = selection.get('category');
-    var name = selection.get('name');
-    this.getView().fireEvent('actionselected', category, name);
+    if (selection) {
+      var category = selection.get('category');
+      var name = selection.get('name');
+      this.getView().fireEvent('actionselected', category, name);
+    }
   }
 
 });
