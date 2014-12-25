@@ -19,7 +19,9 @@ Ext.define('Tel100.view.admin.actions.Panel', {
 
   requires: [
     'Tel100.view.admin.actions.PanelViewModel',
-    'Ext.grid.column.Column'
+    'Ext.grid.column.Column',
+    'Ext.grid.feature.Grouping',
+    'Ext.XTemplate'
   ],
 
   viewModel: {
@@ -29,12 +31,33 @@ Ext.define('Tel100.view.admin.actions.Panel', {
   title: 'Actions',
   hideHeaders: true,
 
+  bind: {
+    store: '{actions}'
+  },
   columns: [
     {
       xtype: 'gridcolumn',
-      dataIndex: 'string',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        var category = record.get('category');
+        var name = record.get('name');
+        return i18n.admin[category][name];
+      },
+      dataIndex: 'name',
       text: 'String',
       flex: 1
+    }
+  ],
+  features: [
+    {
+      ftype: 'grouping',
+      groupHeaderTpl: Ext.create('Ext.XTemplate', 
+        '{name:this.categoryName}',
+        {
+          categoryName: function(name) {
+            return i18n.admin[name].title;
+          }
+        }
+      )
     }
   ]
 

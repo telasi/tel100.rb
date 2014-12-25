@@ -10,10 +10,16 @@
         "designer|userClassName": "admin.actions.Panel",
         "height": null,
         "hideHeaders": true,
+        "store": [
+            "{actions}"
+        ],
         "title": "Actions",
         "width": 200
     },
     "name": "MyGridPanel",
+    "configAlternates": {
+        "store": "binding"
+    },
     "designerId": "08342b68-a4be-49a2-94bb-1bae94454cdc",
     "viewControllerInstanceId": "ed842b21-f4fd-4ecf-a36b-46b887a93a4a",
     "viewModelInstanceId": "618472bf-f784-420a-9577-6b9a380c1592",
@@ -26,12 +32,90 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "string",
+                "dataIndex": "name",
                 "flex": 1,
                 "text": "String"
             },
             "name": "MyColumn",
-            "designerId": "0c0b60e1-10a9-4395-a9ad-79158548bf2e"
+            "designerId": "0c0b60e1-10a9-4395-a9ad-79158548bf2e",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "var category = record.get('category');",
+                            "var name = record.get('name');",
+                            "return i18n.admin[category][name];"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "d7ef379c-6979-4a55-9711-0df3972963e9"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.feature.Grouping",
+            "reference": {
+                "name": "features",
+                "type": "array"
+            },
+            "codeClass": null,
+            "name": "MyGroupingFeature",
+            "designerId": "b3681b9f-b040-4212-b5db-ee252700185b",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "groupHeaderTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "groupHeaderTpl",
+                        "implHandler": [
+                            "{name:this.categoryName}"
+                        ]
+                    },
+                    "name": "groupHeaderTpl",
+                    "designerId": "ef0a1134-d743-481e-bc1f-ac25f2f996fd",
+                    "cn": [
+                        {
+                            "type": "templatefunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "name"
+                                ],
+                                "fn": "categoryName",
+                                "implHandler": [
+                                    "return i18n.admin[name].title;"
+                                ]
+                            },
+                            "name": "categoryName",
+                            "designerId": "8122e6df-d96f-4e78-b0dc-920766522635"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

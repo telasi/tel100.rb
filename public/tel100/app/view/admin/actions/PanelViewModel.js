@@ -15,6 +15,35 @@
 
 Ext.define('Tel100.view.admin.actions.PanelViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.adminactionspanel'
+  alias: 'viewmodel.adminactionspanel',
+
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.field.Field'
+  ],
+
+  stores: {
+    actions: {
+      groupField: 'category',
+      data: [
+        {
+          category: 'documents',
+          name: 'types'
+        },
+        {
+          category: 'sys',
+          name: 'users'
+        }
+      ],
+      fields: [
+        {
+          name: 'name'
+        },
+        {
+          name: 'category'
+        }
+      ]
+    }
+  }
 
 });

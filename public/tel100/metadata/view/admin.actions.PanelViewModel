@@ -9,5 +9,61 @@
         "designer|userAlias": "adminactionspanel",
         "designer|userClassName": "admin.actions.PanelViewModel"
     },
-    "designerId": "618472bf-f784-420a-9577-6b9a380c1592"
+    "designerId": "618472bf-f784-420a-9577-6b9a380c1592",
+    "cn": [
+        {
+            "type": "directstore",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "data": [
+                    "[",
+                    "        {",
+                    "          category: 'documents',",
+                    "          name: 'types'",
+                    "        },",
+                    "        {",
+                    "          category: 'sys',",
+                    "          name: 'users'",
+                    "        }",
+                    "      ]"
+                ],
+                "groupField": "category",
+                "name": "actions"
+            },
+            "name": "MyDirectStore",
+            "designerId": "e8fa0c79-82dd-4599-bdf1-1e5bd412270a",
+            "cn": [
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "name"
+                    },
+                    "name": "MyField1",
+                    "designerId": "01c3828e-9bd1-4246-8654-7b85fa09dc8f"
+                },
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "category"
+                    },
+                    "name": "MyField2",
+                    "designerId": "137a2c71-be93-4f02-b6e5-be2dc2f7fc96"
+                }
+            ]
+        }
+    ]
 }

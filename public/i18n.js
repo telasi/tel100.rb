@@ -1,19 +1,30 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
+  documents: {
+    title: 'დოკუმენტები',
+    types: 'სახეობები'
+  },
+  sys: {
+    title: 'სისტემური',
+    users: 'მომხმარებლები'
+  }
+};
+},{}],2:[function(require,module,exports){
+module.exports = {
   telasi: {
     ka: 'სს თელასი',
     ru: 'AO Теласи'
   }
 };
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 module.exports = {
   title: {
     ka: 'შეცდომა',
     ru: 'Ошибка'
   }
 };
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 module.exports = {
   tree: {
     title: {
@@ -23,11 +34,12 @@ module.exports = {
   }
 };
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
     application: require('./application'),
+    admin: require('./admin'),
     errors: require('./errors'),
     user: require('./user'),
     hr: require('./hr')
@@ -57,7 +69,7 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./application":1,"./errors":2,"./hr":3,"./user":5}],5:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./errors":3,"./hr":4,"./user":6}],6:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -81,4 +93,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[4]);
+},{}]},{},[5]);
