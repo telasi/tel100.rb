@@ -9,6 +9,7 @@
         "designer|userAlias": "modulesadmin",
         "designer|userClassName": "modules.Admin",
         "height": null,
+        "layout": "fit",
         "width": null
     },
     "name": "MyContainer4",

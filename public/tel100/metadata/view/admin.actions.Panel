@@ -1,0 +1,19 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "adminactionspanel",
+        "designer|userClassName": "admin.actions.Panel",
+        "height": null,
+        "title": "Actions",
+        "width": 200
+    },
+    "name": "MyPanel",
+    "designerId": "d866fc7a-7a47-4c15-ac72-90daf43f6674",
+    "viewControllerInstanceId": "9f784c6a-0aef-4b19-82a3-e7d997be67da",
+    "viewModelInstanceId": "9fbd0e6f-ef42-4ef9-9123-aec372d20192"
+}

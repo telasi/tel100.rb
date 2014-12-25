@@ -8,6 +8,13 @@ module.exports = {
 
 },{}],2:[function(require,module,exports){
 module.exports = {
+  title: {
+    ka: 'შეცდომა',
+    ru: 'Ошибка'
+  }
+};
+},{}],3:[function(require,module,exports){
+module.exports = {
   tree: {
     title: {
       ka: '<i class="fa fa-bolt"></i> სს თელასის სტრუქტურა',
@@ -16,11 +23,12 @@ module.exports = {
   }
 };
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
     application: require('./application'),
+    errors: require('./errors'),
     user: require('./user'),
     hr: require('./hr')
   };
@@ -49,7 +57,7 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./application":1,"./hr":2,"./user":4}],4:[function(require,module,exports){
+},{"./application":1,"./errors":2,"./hr":3,"./user":5}],5:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -73,4 +81,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[3]);
+},{}]},{},[4]);
