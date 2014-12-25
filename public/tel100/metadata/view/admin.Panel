@@ -28,12 +28,11 @@
             "userConfig": {
                 "collapsible": true,
                 "layout|region": "west",
-                "layout|split": true,
-                "width": null
+                "layout|split": true
             },
             "name": "admin.actions.panel",
-            "designerId": "6631951f-4e77-4518-acba-2d245a979122",
-            "masterInstanceId": "d866fc7a-7a47-4c15-ac72-90daf43f6674"
+            "designerId": "d8f7df9a-d661-445e-a680-99e5187e2c4b",
+            "masterInstanceId": "08342b68-a4be-49a2-94bb-1bae94454cdc"
         }
     ]
 }

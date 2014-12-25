@@ -20,7 +20,7 @@ Ext.define('Tel100.view.admin.Panel', {
   requires: [
     'Tel100.view.admin.PanelViewModel',
     'Tel100.view.admin.actions.Panel',
-    'Ext.panel.Panel'
+    'Ext.grid.Panel'
   ],
 
   viewModel: {

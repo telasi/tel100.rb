@@ -1,5 +1,5 @@
 {
-    "type": "Ext.panel.Panel",
+    "type": "Ext.grid.Panel",
     "reference": {
         "name": "items",
         "type": "array"
@@ -9,11 +9,29 @@
         "designer|userAlias": "adminactionspanel",
         "designer|userClassName": "admin.actions.Panel",
         "height": null,
+        "hideHeaders": true,
         "title": "Actions",
         "width": 200
     },
-    "name": "MyPanel",
-    "designerId": "d866fc7a-7a47-4c15-ac72-90daf43f6674",
-    "viewControllerInstanceId": "9f784c6a-0aef-4b19-82a3-e7d997be67da",
-    "viewModelInstanceId": "9fbd0e6f-ef42-4ef9-9123-aec372d20192"
+    "name": "MyGridPanel",
+    "designerId": "08342b68-a4be-49a2-94bb-1bae94454cdc",
+    "viewControllerInstanceId": "ed842b21-f4fd-4ecf-a36b-46b887a93a4a",
+    "viewModelInstanceId": "618472bf-f784-420a-9577-6b9a380c1592",
+    "cn": [
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "string",
+                "flex": 1,
+                "text": "String"
+            },
+            "name": "MyColumn",
+            "designerId": "0c0b60e1-10a9-4395-a9ad-79158548bf2e"
+        }
+    ]
 }

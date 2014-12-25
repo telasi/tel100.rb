@@ -14,17 +14,28 @@
  */
 
 Ext.define('Tel100.view.admin.actions.Panel', {
-  extend: 'Ext.panel.Panel',
+  extend: 'Ext.grid.Panel',
   alias: 'widget.adminactionspanel',
 
   requires: [
-    'Tel100.view.admin.actions.PanelViewModel'
+    'Tel100.view.admin.actions.PanelViewModel',
+    'Ext.grid.column.Column'
   ],
 
   viewModel: {
     type: 'adminactionspanel'
   },
   width: 200,
-  title: 'Actions'
+  title: 'Actions',
+  hideHeaders: true,
+
+  columns: [
+    {
+      xtype: 'gridcolumn',
+      dataIndex: 'string',
+      text: 'String',
+      flex: 1
+    }
+  ]
 
 });

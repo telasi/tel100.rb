@@ -309,7 +309,7 @@
             "id": "2f167264-a8fa-4299-be37-05619a9d9547",
             "cn": [
                 {
-                    "id": "6631951f-4e77-4518-acba-2d245a979122"
+                    "id": "d8f7df9a-d661-445e-a680-99e5187e2c4b"
                 }
             ]
         },
@@ -320,15 +320,19 @@
         "e5d71dfd-798c-49da-984d-5a5c9acef7b6": {
             "id": "e5d71dfd-798c-49da-984d-5a5c9acef7b6"
         },
-        "d866fc7a-7a47-4c15-ac72-90daf43f6674": {
-            "id": "d866fc7a-7a47-4c15-ac72-90daf43f6674"
+        "08342b68-a4be-49a2-94bb-1bae94454cdc": {
+            "id": "08342b68-a4be-49a2-94bb-1bae94454cdc",
+            "cn": [
+                {
+                    "id": "0c0b60e1-10a9-4395-a9ad-79158548bf2e"
+                }
+            ]
         },
-        "9fbd0e6f-ef42-4ef9-9123-aec372d20192": {
-            "id": "9fbd0e6f-ef42-4ef9-9123-aec372d20192",
-            "expanded": false
+        "618472bf-f784-420a-9577-6b9a380c1592": {
+            "id": "618472bf-f784-420a-9577-6b9a380c1592"
         },
-        "9f784c6a-0aef-4b19-82a3-e7d997be67da": {
-            "id": "9f784c6a-0aef-4b19-82a3-e7d997be67da"
+        "ed842b21-f4fd-4ecf-a36b-46b887a93a4a": {
+            "id": "ed842b21-f4fd-4ecf-a36b-46b887a93a4a"
         },
         "store": true,
         "model": false,
@@ -368,9 +372,8 @@
     },
     "tabState": {
         "openTabs": [
-            "d866fc7a-7a47-4c15-ac72-90daf43f6674",
             "2f167264-a8fa-4299-be37-05619a9d9547",
-            "1532b9ff-b03c-4ee7-a714-ff71977f94f5"
+            "08342b68-a4be-49a2-94bb-1bae94454cdc"
         ]
     },
     "canvasState": {
@@ -378,7 +381,7 @@
     },
     "inspectorState": {
         "topInstance": "2f167264-a8fa-4299-be37-05619a9d9547",
-        "selectedInstance": "6631951f-4e77-4518-acba-2d245a979122"
+        "selectedInstance": "d8f7df9a-d661-445e-a680-99e5187e2c4b"
     },
     "editMode": "design",
     "userSettings": {
