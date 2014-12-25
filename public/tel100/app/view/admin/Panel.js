@@ -20,7 +20,8 @@ Ext.define('Tel100.view.admin.Panel', {
   requires: [
     'Tel100.view.admin.PanelViewModel',
     'Tel100.view.admin.actions.Panel',
-    'Ext.grid.Panel'
+    'Ext.grid.Panel',
+    'Ext.form.Label'
   ],
 
   viewModel: {
@@ -34,6 +35,29 @@ Ext.define('Tel100.view.admin.Panel', {
       region: 'west',
       split: true,
       collapsible: true
+    },
+    {
+      xtype: 'container',
+      region: 'center',
+      layout: 'fit',
+      items: [
+        {
+          xtype: 'container',
+          layout: {
+            type: 'hbox',
+            align: 'middle',
+            pack: 'center'
+          },
+          items: [
+            {
+              xtype: 'label',
+              bind: {
+                text: '{i18n.admin.actions.selectAction}'
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 

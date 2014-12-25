@@ -13,12 +13,15 @@
         "store": [
             "{actions}"
         ],
-        "title": "Actions",
+        "title": [
+            "{i18n.admin.actions.title}"
+        ],
         "width": 200
     },
     "name": "MyGridPanel",
     "configAlternates": {
-        "store": "binding"
+        "store": "binding",
+        "title": "binding"
     },
     "designerId": "08342b68-a4be-49a2-94bb-1bae94454cdc",
     "viewControllerInstanceId": "ed842b21-f4fd-4ecf-a36b-46b887a93a4a",

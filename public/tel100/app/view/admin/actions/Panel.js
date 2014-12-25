@@ -28,10 +28,10 @@ Ext.define('Tel100.view.admin.actions.Panel', {
     type: 'adminactionspanel'
   },
   width: 200,
-  title: 'Actions',
   hideHeaders: true,
 
   bind: {
+    title: '{i18n.admin.actions.title}',
     store: '{actions}'
   },
   columns: [
