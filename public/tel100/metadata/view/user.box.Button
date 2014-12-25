@@ -9,7 +9,7 @@
         "designer|userAlias": "userboxbutton",
         "designer|userClassName": "user.box.Button",
         "text": [
-            "{currentUser.full_name}"
+            "<i class=\"fa fa-user\"></i> {currentUser.full_name}"
         ]
     },
     "name": "MyButton4",

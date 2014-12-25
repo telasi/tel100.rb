@@ -21,7 +21,8 @@
             "modules.Documents",
             "modules.HR",
             "modules.Admin",
-            "hr.tree.Panel"
+            "hr.tree.Panel",
+            "admin.Panel"
         ]
     },
     "name": "Application",

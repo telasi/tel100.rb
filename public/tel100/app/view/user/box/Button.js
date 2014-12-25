@@ -30,7 +30,7 @@ Ext.define('Tel100.view.user.box.Button', {
   },
 
   bind: {
-    text: '{currentUser.full_name}'
+    text: '<i class="fa fa-user"></i> {currentUser.full_name}'
   },
   menu: {
     xtype: 'menu',

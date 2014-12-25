@@ -17,17 +17,15 @@
     "viewModelInstanceId": "bb3fbb1f-1e7d-4931-8bc2-07697b649e30",
     "cn": [
         {
-            "type": "Ext.form.Label",
+            "type": "linkedinstance",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
-            "userConfig": {
-                "text": "admin"
-            },
-            "name": "MyLabel",
-            "designerId": "d83edd6c-2d1d-419a-902a-28d43382c453"
+            "name": "admin.panel",
+            "designerId": "fda3a4e7-74cd-442b-a10c-473ec6ac7aa1",
+            "masterInstanceId": "2f167264-a8fa-4299-be37-05619a9d9547"
         }
     ]
 }
