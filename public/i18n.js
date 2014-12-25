@@ -7,11 +7,19 @@ module.exports = {
 };
 
 },{}],2:[function(require,module,exports){
+module.exports = {
+  tree: {
+    title: '<i class="fa fa-bolt"></i> სს თელასის სტრუქტურა'
+  }
+};
+
+},{}],3:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
     application: require('./application'),
-    user: require('./user')
+    user: require('./user'),
+    hr: require('./hr')
   };
 
 var addProperties = function(ka, ru, data) {
@@ -38,7 +46,7 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./application":1,"./user":3}],3:[function(require,module,exports){
+},{"./application":1,"./hr":2,"./user":4}],4:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -62,4 +70,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[2]);
+},{}]},{},[3]);

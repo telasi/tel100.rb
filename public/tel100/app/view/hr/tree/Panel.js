@@ -31,7 +31,6 @@ Ext.define('Tel100.view.hr.tree.Panel', {
     type: 'hrtreepanel'
   },
   bodyCls: 'x-tree-noicon',
-  title: 'My Tree Panel',
   autoLoad: true,
   enableColumnHide: false,
   hideHeaders: true,
@@ -41,6 +40,7 @@ Ext.define('Tel100.view.hr.tree.Panel', {
   useArrows: true,
 
   bind: {
+    title: '{i18n.hr.tree.title}',
     store: '{structure}'
   },
   viewConfig: {

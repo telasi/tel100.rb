@@ -26,13 +26,16 @@
         "store": [
             "{structure}"
         ],
-        "title": "My Tree Panel",
+        "title": [
+            "{i18n.hr.tree.title}"
+        ],
         "useArrows": true,
         "width": null
     },
     "name": "MyTreePanel",
     "configAlternates": {
-        "store": "binding"
+        "store": "binding",
+        "title": "binding"
     },
     "designerId": "9ddd38b1-6ef9-4475-87d7-6ce8e4c6298c",
     "viewControllerInstanceId": "8d3a725b-c823-4fb4-b51a-3ba952c74364",

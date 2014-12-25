@@ -2,7 +2,8 @@ var ka = {}
   , ru = {}
   , data = {
     application: require('./application'),
-    user: require('./user')
+    user: require('./user'),
+    hr: require('./hr')
   };
 
 var addProperties = function(ka, ru, data) {
