@@ -28,6 +28,9 @@ Ext.define('Tel100.view.hr.tree.PanelViewModel', {
     structure: {
       type: 'tree',
       autoLoad: true,
+      root: {
+        expanded: true
+      },
       proxy: {
         type: 'ajax',
         url: '/api/hr/structure',

@@ -20,7 +20,12 @@
             "codeClass": null,
             "userConfig": {
                 "autoLoad": true,
-                "name": "structure"
+                "name": "structure",
+                "root": [
+                    "{",
+                    "  expanded: true",
+                    "}"
+                ]
             },
             "name": "MyTreeStore",
             "designerId": "f58ba649-5f41-4b30-b41c-5529aa824dad",

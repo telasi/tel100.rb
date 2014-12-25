@@ -33,14 +33,6 @@
       {
          "path": "bootstrap.css",
          "bootstrap": true
-      },
-      {
-         "path": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css",
-         "remote": true
-      },
-      {
-         "path": "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css",
-         "remote": true
       }
    ],
    "production": {},
