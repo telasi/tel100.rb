@@ -15,6 +15,39 @@
 
 Ext.define('Tel100.view.document.folder.PanelViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documentfolderpanel'
+  alias: 'viewmodel.documentfolderpanel',
+
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.field.Field'
+  ],
+
+  stores: {
+    folders: {
+      groupField: 'category',
+      data: [
+        {
+          name: 'inbox',
+          category: 'a'
+        },
+        {
+          name: 'outbox',
+          category: 'a'
+        },
+        {
+          name: 'urgent',
+          category: 'b'
+        }
+      ],
+      fields: [
+        {
+          name: 'name'
+        },
+        {
+          name: 'category'
+        }
+      ]
+    }
+  }
 
 });

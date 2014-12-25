@@ -52,6 +52,7 @@ Ext.define('Tel100.view.admin.actions.Panel', {
   features: [
     {
       ftype: 'grouping',
+      groupByText: 'category',
       groupHeaderTpl: Ext.create('Ext.XTemplate', 
         '{name:this.categoryName}',
         {

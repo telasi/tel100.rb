@@ -34,6 +34,20 @@
             "name": "document.folder.panel",
             "designerId": "a5bb3bf9-bfc0-46e4-a1ea-176101ed4d23",
             "masterInstanceId": "009b3140-7885-4b70-bcb4-7abfbdcccf21"
+        },
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "center",
+                "text": "My Label"
+            },
+            "name": "MyLabel1",
+            "designerId": "cbf9bb67-e645-4011-9792-85725dc37ce0"
         }
     ]
 }

@@ -78,6 +78,9 @@
                 "type": "array"
             },
             "codeClass": null,
+            "userConfig": {
+                "groupByText": "category"
+            },
             "name": "MyGroupingFeature",
             "designerId": "b3681b9f-b040-4212-b5db-ee252700185b",
             "cn": [

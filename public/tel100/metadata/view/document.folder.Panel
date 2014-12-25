@@ -10,6 +10,9 @@
         "designer|userClassName": "document.folder.Panel",
         "height": null,
         "hideHeaders": true,
+        "store": [
+            "{folders}"
+        ],
         "title": [
             "{i18n.document.folder.ui.folders}"
         ],
@@ -17,7 +20,8 @@
     },
     "name": "MyGridPanel",
     "configAlternates": {
-        "title": "binding"
+        "title": "binding",
+        "store": "binding"
     },
     "designerId": "009b3140-7885-4b70-bcb4-7abfbdcccf21",
     "viewControllerInstanceId": "6e6edce7-d5e1-4ac0-8610-329e1b1bb4a8",
@@ -37,6 +41,58 @@
             },
             "name": "MyColumn3",
             "designerId": "8918d16a-2b4c-4882-8e2b-bb070faf5462"
+        },
+        {
+            "type": "Ext.grid.feature.Grouping",
+            "reference": {
+                "name": "features",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "groupByText": "category"
+            },
+            "name": "MyGroupingFeature1",
+            "designerId": "c0875ba2-c03d-4ee1-8d7f-7ce1d4964805",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "groupHeaderTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "groupHeaderTpl",
+                        "implHandler": [
+                            "{name:this.categoryName}"
+                        ]
+                    },
+                    "name": "groupHeaderTpl",
+                    "designerId": "98396fad-3920-4a0f-978b-325decb138f9",
+                    "cn": [
+                        {
+                            "type": "templatefunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "name"
+                                ],
+                                "fn": "categoryName",
+                                "implHandler": [
+                                    "return i18n.document.folder.categories[name];"
+                                ]
+                            },
+                            "name": "categoryName",
+                            "designerId": "1d7a12d6-229f-456f-ab52-f3dc229a1a98"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

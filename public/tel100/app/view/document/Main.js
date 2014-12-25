@@ -20,7 +20,8 @@ Ext.define('Tel100.view.document.Main', {
   requires: [
     'Tel100.view.document.MainViewModel',
     'Tel100.view.document.folder.Panel',
-    'Ext.grid.Panel'
+    'Ext.grid.Panel',
+    'Ext.form.Label'
   ],
 
   viewModel: {
@@ -34,6 +35,11 @@ Ext.define('Tel100.view.document.Main', {
       region: 'west',
       split: true,
       collapsible: true
+    },
+    {
+      xtype: 'label',
+      region: 'center',
+      text: 'My Label'
     }
   ]
 

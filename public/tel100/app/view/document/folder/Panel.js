@@ -19,7 +19,9 @@ Ext.define('Tel100.view.document.folder.Panel', {
 
   requires: [
     'Tel100.view.document.folder.PanelViewModel',
-    'Ext.grid.column.Column'
+    'Ext.grid.column.Column',
+    'Ext.grid.feature.Grouping',
+    'Ext.XTemplate'
   ],
 
   viewModel: {
@@ -29,13 +31,28 @@ Ext.define('Tel100.view.document.folder.Panel', {
   hideHeaders: true,
 
   bind: {
-    title: '{i18n.document.folder.ui.folders}'
+    title: '{i18n.document.folder.ui.folders}',
+    store: '{folders}'
   },
   columns: [
     {
       xtype: 'gridcolumn',
       dataIndex: 'name',
       flex: 1
+    }
+  ],
+  features: [
+    {
+      ftype: 'grouping',
+      groupByText: 'category',
+      groupHeaderTpl: Ext.create('Ext.XTemplate', 
+        '{name:this.categoryName}',
+        {
+          categoryName: function(name) {
+            return i18n.document.folder.categories[name];
+          }
+        }
+      )
     }
   ]
 
