@@ -13,7 +13,13 @@ var setCurrentLocale = function(locale) {
   ajax.setExtraParams('api_locale', locale);
 };
 
+var resetCurrentLocale = function() {
+  var locale = getCurrentLocale();
+  setCurrentLocale(locale);
+};
+
 module.exports = {
   getCurrentLocale: getCurrentLocale,
-  setCurrentLocale: setCurrentLocale
+  setCurrentLocale: setCurrentLocale,
+  resetCurrentLocale: resetCurrentLocale
 };

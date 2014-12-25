@@ -1,5 +1,6 @@
 var currentUser
   , ajax = require('./ajax')
+  , i18n = require('./i18n')
   , preferences = require('./preferences')
   ;
 
@@ -9,6 +10,7 @@ var setCurrentUser = function(user, password) {
     preferences.setValue('username', user.get('username'));
     ajax.setExtraParams('api_username', user.get('username'));
     ajax.setExtraParams('api_password', password);
+    i18n.resetCurrentLocale();
   } else {
     currentUser = null;
     ajax.setExtraParams('api_username', null);

@@ -82,9 +82,15 @@ var setCurrentLocale = function(locale) {
   ajax.setExtraParams('api_locale', locale);
 };
 
+var resetCurrentLocale = function() {
+  var locale = getCurrentLocale();
+  setCurrentLocale(locale);
+};
+
 module.exports = {
   getCurrentLocale: getCurrentLocale,
-  setCurrentLocale: setCurrentLocale
+  setCurrentLocale: setCurrentLocale,
+  resetCurrentLocale: resetCurrentLocale
 };
 
 },{"./ajax":1,"./preferences":4}],3:[function(require,module,exports){
@@ -129,6 +135,7 @@ module.exports = {
 },{}],5:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
+  , i18n = require('./i18n')
   , preferences = require('./preferences')
   ;
 
@@ -138,6 +145,7 @@ var setCurrentUser = function(user, password) {
     preferences.setValue('username', user.get('username'));
     ajax.setExtraParams('api_username', user.get('username'));
     ajax.setExtraParams('api_password', password);
+    i18n.resetCurrentLocale();
   } else {
     currentUser = null;
     ajax.setExtraParams('api_username', null);
@@ -154,4 +162,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":1,"./preferences":4}]},{},[3]);
+},{"./ajax":1,"./i18n":2,"./preferences":4}]},{},[3]);
