@@ -19,12 +19,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "autoLoad": true,
+                "autoLoad": false,
                 "name": "structure",
                 "root": [
-                    "{",
-                    "  expanded: true",
-                    "}"
+                    "{}"
                 ]
             },
             "name": "MyTreeStore",
