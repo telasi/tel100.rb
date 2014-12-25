@@ -14,17 +14,17 @@
  */
 
 Ext.define('Tel100.model.document.Type', {
-    extend: 'Ext.data.Model',
+  extend: 'Ext.data.Model',
 
-    requires: [
-        'Tel100.model.Tel100',
-        'Ext.data.proxy.Rest'
-    ],
+  requires: [
+    'Tel100.model.Tel100',
+    'Ext.data.proxy.Rest'
+  ],
 
-    schema: 'tel100',
+  schema: 'tel100',
 
-    proxy: {
-        type: 'rest',
-        url: '/api/documents/types'
-    }
+  proxy: {
+    type: 'rest',
+    url: '/api/documents/types'
+  }
 });

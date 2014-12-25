@@ -23,12 +23,26 @@ module.exports = {
 
 },{}],3:[function(require,module,exports){
 module.exports = {
+  type: require('./type')
+};
+
+},{"./type":4}],4:[function(require,module,exports){
+module.exports = {
+  ui: {
+    types: 'სახეობები'
+  },
+  name: 'დასახელება',
+  order_by: '#'
+};
+
+},{}],5:[function(require,module,exports){
+module.exports = {
   title: {
     ka: 'შეცდომა',
     ru: 'Ошибка'
   }
 };
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 module.exports = {
   tree: {
     title: {
@@ -38,12 +52,13 @@ module.exports = {
   }
 };
 
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
     application: require('./application'),
     admin: require('./admin'),
+    'document': require('./document'),
     errors: require('./errors'),
     user: require('./user'),
     hr: require('./hr')
@@ -73,7 +88,7 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./admin":1,"./application":2,"./errors":3,"./hr":4,"./user":6}],6:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./document":3,"./errors":5,"./hr":6,"./user":8}],8:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -97,4 +112,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[5]);
+},{}]},{},[7]);

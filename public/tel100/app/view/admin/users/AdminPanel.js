@@ -24,8 +24,6 @@ Ext.define('Tel100.view.admin.users.AdminPanel', {
   viewModel: {
     type: 'adminusersadminpanel'
   },
-  height: 250,
-  width: 400,
   title: 'users'
 
 });

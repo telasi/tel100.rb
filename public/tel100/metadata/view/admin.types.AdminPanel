@@ -8,12 +8,30 @@
     "userConfig": {
         "designer|userAlias": "admintypesadminpanel",
         "designer|userClassName": "admin.types.AdminPanel",
-        "height": 250,
-        "title": "types",
-        "width": 400
+        "height": null,
+        "layout": "border",
+        "title": null,
+        "width": null
     },
     "name": "MyPanel",
     "designerId": "3075ddef-9dc5-4122-bf5b-2770ab6ebf2b",
     "viewControllerInstanceId": "432cef3f-7c06-41c1-8566-2ba768e27a4b",
-    "viewModelInstanceId": "7cfba3ea-5fa8-44a5-8617-4c715d11dec0"
+    "viewModelInstanceId": "7cfba3ea-5fa8-44a5-8617-4c715d11dec0",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "west",
+                "layout|split": true
+            },
+            "name": "admin.types.grid.panel",
+            "designerId": "08844aeb-e3f7-4add-9b1a-7977e4a987d1",
+            "masterInstanceId": "9daad7e2-a988-4bb0-b7e8-99091b0e545c"
+        }
+    ]
 }

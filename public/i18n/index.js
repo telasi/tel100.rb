@@ -3,6 +3,7 @@ var ka = {}
   , data = {
     application: require('./application'),
     admin: require('./admin'),
+    'document': require('./document'),
     errors: require('./errors'),
     user: require('./user'),
     hr: require('./hr')

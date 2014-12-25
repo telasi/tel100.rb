@@ -8,9 +8,9 @@
     "userConfig": {
         "designer|userAlias": "adminusersadminpanel",
         "designer|userClassName": "admin.users.AdminPanel",
-        "height": 250,
+        "height": null,
         "title": "users",
-        "width": 400
+        "width": null
     },
     "name": "MyPanel",
     "designerId": "32e399cf-b3c8-4d7c-9ddd-cc46b785e2fe",
