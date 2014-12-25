@@ -23,10 +23,21 @@ module.exports = {
 
 },{}],3:[function(require,module,exports){
 module.exports = {
-  type: require('./type')
+  ui: {
+    folders: {
+      ka: '<i class="fa fa-folder-open-o"></i> საქაღალდეები',
+      ru: '<i class="fa fa-folder-open-o"></i> Папки'
+    }
+  }
 };
 
-},{"./type":4}],4:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
+module.exports = {
+  type: require('./type'),
+  folder: require('./folder')
+};
+
+},{"./folder":3,"./type":5}],5:[function(require,module,exports){
 module.exports = {
   ui: {
     types: 'სახეობები'
@@ -35,14 +46,14 @@ module.exports = {
   order_by: '#'
 };
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 module.exports = {
   title: {
     ka: 'შეცდომა',
     ru: 'Ошибка'
   }
 };
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 module.exports = {
   tree: {
     title: {
@@ -52,7 +63,7 @@ module.exports = {
   }
 };
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
@@ -88,7 +99,7 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./admin":1,"./application":2,"./document":3,"./errors":5,"./hr":6,"./user":8}],8:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./document":4,"./errors":6,"./hr":7,"./user":9}],9:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -112,4 +123,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[7]);
+},{}]},{},[8]);

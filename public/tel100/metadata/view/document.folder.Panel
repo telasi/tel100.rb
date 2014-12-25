@@ -1,0 +1,42 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfolderpanel",
+        "designer|userClassName": "document.folder.Panel",
+        "height": null,
+        "hideHeaders": true,
+        "title": [
+            "{i18n.document.folder.ui.folders}"
+        ],
+        "width": 300
+    },
+    "name": "MyGridPanel",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "009b3140-7885-4b70-bcb4-7abfbdcccf21",
+    "viewControllerInstanceId": "6e6edce7-d5e1-4ac0-8610-329e1b1bb4a8",
+    "viewModelInstanceId": "50a5db55-1646-4ce5-987d-bdf7742061f7",
+    "cn": [
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "name",
+                "flex": 1,
+                "text": null
+            },
+            "name": "MyColumn3",
+            "designerId": "8918d16a-2b4c-4882-8e2b-bb070faf5462"
+        }
+    ]
+}

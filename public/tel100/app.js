@@ -40,7 +40,8 @@ Ext.application({
     'admin.types.AdminPanel',
     'admin.users.AdminPanel',
     'admin.types.grid.Panel',
-    'document.Main'
+    'document.Main',
+    'document.folder.Panel'
   ],
   name: 'Tel100',
 

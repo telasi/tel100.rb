@@ -1,3 +1,4 @@
 module.exports = {
-  type: require('./type')
+  type: require('./type'),
+  folder: require('./folder')
 };

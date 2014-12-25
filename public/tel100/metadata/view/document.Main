@@ -9,11 +9,31 @@
         "designer|userAlias": "documentmain",
         "designer|userClassName": "document.Main",
         "height": null,
-        "title": "docs",
+        "layout": "border",
+        "title": null,
         "width": null
     },
     "name": "MyPanel",
     "designerId": "368a0f4e-bc1c-41fd-98ea-3e2c39105b2e",
     "viewControllerInstanceId": "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68",
-    "viewModelInstanceId": "8db27d88-0934-4e59-bebc-ea6b2d462d9b"
+    "viewModelInstanceId": "8db27d88-0934-4e59-bebc-ea6b2d462d9b",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "collapsible": true,
+                "designer|displayName": "folders",
+                "layout|region": "west",
+                "layout|split": true
+            },
+            "name": "document.folder.panel",
+            "designerId": "a5bb3bf9-bfc0-46e4-a1ea-176101ed4d23",
+            "masterInstanceId": "009b3140-7885-4b70-bcb4-7abfbdcccf21"
+        }
+    ]
 }
