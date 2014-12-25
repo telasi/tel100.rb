@@ -22,6 +22,7 @@ Ext.define('Tel100.view.hr.tree.Panel', {
     'Tel100.view.hr.tree.PanelViewController',
     'Ext.tree.View',
     'Ext.tree.Column',
+    'Ext.panel.Tool',
     'Tel100.model.hr.Employee',
     'Tel100.model.hr.Organization'
   ],
@@ -63,6 +64,19 @@ Ext.define('Tel100.view.hr.tree.Panel', {
   listeners: {
     beforeload: 'onTreepanelBeforeLoad',
     load: 'onTreepanelLoad'
+  },
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'refresh',
+      listeners: {
+        click: 'onRefresh'
+      }
+    }
+  ],
+
+  refresh: function() {
+    this.getStore('structure').load();
   }
 
 });

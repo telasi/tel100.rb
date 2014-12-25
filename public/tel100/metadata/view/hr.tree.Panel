@@ -132,6 +132,56 @@
             },
             "name": "onTreepanelLoad",
             "designerId": "76a95136-d63b-4edd-be5e-bf3954c09239"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool1",
+            "designerId": "b34f0210-13a2-46f8-87fe-62fbfff30971",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefresh",
+                        "implHandler": [
+                            "this.getView().refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefresh",
+                    "designerId": "824b5a43-3848-43df-bc9a-b780f7b6c24b"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "this.getStore('structure').load();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "ac37fdc3-fee3-4875-8959-232f8c49b4c6"
         }
     ]
 }

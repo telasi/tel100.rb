@@ -23,6 +23,10 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
 
   onTreepanelLoad: function(treestore, records, successful, operation, node, eOpts) {
     this.getView().setLoading(false);
+  },
+
+  onRefresh: function(tool, e, owner, eOpts) {
+    this.getView().refresh();
   }
 
 });
