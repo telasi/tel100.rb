@@ -9,5 +9,64 @@
         "designer|userAlias": "hrtreepanel",
         "designer|userClassName": "hr.tree.PanelViewModel"
     },
-    "designerId": "42928d51-d6d1-4dc4-bc6d-b56c6a347833"
+    "designerId": "42928d51-d6d1-4dc4-bc6d-b56c6a347833",
+    "cn": [
+        {
+            "type": "Ext.data.TreeStore",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "name": "structure"
+            },
+            "name": "MyTreeStore",
+            "designerId": "f58ba649-5f41-4b30-b41c-5529aa824dad",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "url": "/api/hr/structure"
+                    },
+                    "name": "MyAjaxProxy",
+                    "designerId": "a8c3cb68-125d-448b-a5b0-9c6e3775768a",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "typeProperty": "ext_type"
+                            },
+                            "name": "MyJsonReader",
+                            "designerId": "83eaefab-0da9-42d9-a1f7-846646147bfa"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "name"
+                    },
+                    "name": "MyField",
+                    "designerId": "b6fa696c-9966-42d0-8722-10a740ba1de3"
+                }
+            ]
+        }
+    ]
 }

@@ -6,13 +6,27 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoLoad": true,
         "designer|userAlias": "hrtreepanel",
         "designer|userClassName": "hr.tree.Panel",
+        "enableColumnHide": false,
         "height": null,
+        "hideHeaders": true,
+        "hideMode": null,
+        "lines": false,
+        "rootVisible": false,
+        "rowLines": true,
+        "store": [
+            "{structure}"
+        ],
         "title": "My Tree Panel",
+        "useArrows": true,
         "width": null
     },
     "name": "MyTreePanel",
+    "configAlternates": {
+        "store": "binding"
+    },
     "designerId": "9ddd38b1-6ef9-4475-87d7-6ce8e4c6298c",
     "viewControllerInstanceId": "8d3a725b-c823-4fb4-b51a-3ba952c74364",
     "viewModelInstanceId": "42928d51-d6d1-4dc4-bc6d-b56c6a347833",
@@ -26,6 +40,57 @@
             "codeClass": null,
             "name": "MyTreeView",
             "designerId": "5e7eaed4-2b84-4764-a8a0-5e937153b992"
+        },
+        {
+            "type": "Ext.tree.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "name",
+                "flex": 1,
+                "text": "MyTreeColumn"
+            },
+            "name": "MyTreeColumn",
+            "designerId": "bdbf8021-2941-4afa-b814-57e5e4d5c8ad"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTreepanelBeforeLoad",
+                "implHandler": [
+                    "this.getView().setLoading(true);"
+                ],
+                "name": "beforeload",
+                "scope": "me"
+            },
+            "name": "onTreepanelBeforeLoad",
+            "designerId": "1cda0bdc-d249-4330-b306-aa0d4d1b4458"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTreepanelLoad",
+                "implHandler": [
+                    "this.getView().setLoading(false);"
+                ],
+                "name": "load",
+                "scope": "me"
+            },
+            "name": "onTreepanelLoad",
+            "designerId": "76a95136-d63b-4edd-be5e-bf3954c09239"
         }
     ]
 }

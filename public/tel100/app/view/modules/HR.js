@@ -19,17 +19,18 @@ Ext.define('Tel100.view.modules.HR', {
 
   requires: [
     'Tel100.view.modules.HRViewModel',
-    'Ext.form.Label'
+    'Tel100.view.hr.tree.Panel',
+    'Ext.tree.Panel'
   ],
 
   viewModel: {
     type: 'moduleshr'
   },
+  layout: 'fit',
 
   items: [
     {
-      xtype: 'label',
-      text: 'hr'
+      xtype: 'hrtreepanel'
     }
   ]
 

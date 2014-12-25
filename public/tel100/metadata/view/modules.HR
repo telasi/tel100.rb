@@ -9,6 +9,7 @@
         "designer|userAlias": "moduleshr",
         "designer|userClassName": "modules.HR",
         "height": null,
+        "layout": "fit",
         "width": null
     },
     "name": "MyContainer4",
@@ -17,17 +18,18 @@
     "viewModelInstanceId": "ba3d3bbb-e4e7-4af8-86ad-31d6ac18d695",
     "cn": [
         {
-            "type": "Ext.form.Label",
+            "type": "linkedinstance",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "text": "hr"
+                "designer|displayName": "HR structrure"
             },
-            "name": "MyLabel2",
-            "designerId": "65e4fdba-6a0a-44a9-8a67-d937703fc8c3"
+            "name": "hr.tree.panel",
+            "designerId": "d7b9a894-cc9f-48a6-b20b-9cdcfc8eb941",
+            "masterInstanceId": "9ddd38b1-6ef9-4475-87d7-6ce8e4c6298c"
         }
     ]
 }

@@ -19,16 +19,41 @@ Ext.define('Tel100.view.hr.tree.Panel', {
 
   requires: [
     'Tel100.view.hr.tree.PanelViewModel',
-    'Ext.tree.View'
+    'Tel100.view.hr.tree.PanelViewController',
+    'Ext.tree.View',
+    'Ext.tree.Column'
   ],
 
+  controller: 'hrtreepanel',
   viewModel: {
     type: 'hrtreepanel'
   },
   title: 'My Tree Panel',
+  autoLoad: true,
+  enableColumnHide: false,
+  hideHeaders: true,
+  rowLines: true,
+  lines: false,
+  rootVisible: false,
+  useArrows: true,
 
+  bind: {
+    store: '{structure}'
+  },
   viewConfig: {
 
+  },
+  columns: [
+    {
+      xtype: 'treecolumn',
+      dataIndex: 'name',
+      text: 'MyTreeColumn',
+      flex: 1
+    }
+  ],
+  listeners: {
+    beforeload: 'onTreepanelBeforeLoad',
+    load: 'onTreepanelLoad'
   }
 
 });

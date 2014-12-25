@@ -15,5 +15,14 @@
 
 Ext.define('Tel100.view.hr.tree.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.hrtreepanel'
+  alias: 'controller.hrtreepanel',
+
+  onTreepanelBeforeLoad: function(store, operation, eOpts) {
+    this.getView().setLoading(true);
+  },
+
+  onTreepanelLoad: function(treestore, records, successful, operation, node, eOpts) {
+    this.getView().setLoading(false);
+  }
+
 });
