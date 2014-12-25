@@ -3,7 +3,6 @@
         "view": true,
         "3b3e6a36-63b9-49a2-acd9-921ae36e718d": {
             "id": "3b3e6a36-63b9-49a2-acd9-921ae36e718d",
-            "expanded": false,
             "cn": [
                 {
                     "id": "031abe49-bfbf-407c-ad3a-d3b62c5512b2",
@@ -36,8 +35,7 @@
             "expanded": false
         },
         "e8a0032c-7a81-4be4-afec-604b31ffd23c": {
-            "id": "e8a0032c-7a81-4be4-afec-604b31ffd23c",
-            "expanded": false
+            "id": "e8a0032c-7a81-4be4-afec-604b31ffd23c"
         },
         "03cd4760-d7dc-43e4-aa67-42897fda1600": {
             "id": "03cd4760-d7dc-43e4-aa67-42897fda1600",
@@ -571,9 +569,7 @@
     },
     "tabState": {
         "openTabs": [
-            "50a5db55-1646-4ce5-987d-bdf7742061f7",
-            "009b3140-7885-4b70-bcb4-7abfbdcccf21",
-            "08342b68-a4be-49a2-94bb-1bae94454cdc"
+            "009b3140-7885-4b70-bcb4-7abfbdcccf21"
         ]
     },
     "canvasState": {

@@ -28,7 +28,9 @@ Ext.define('Tel100.view.workarea.LocaleSelectorViewController', {
     var oldLocale = helpers.i18n.getCurrentLocale();
     if (newLocale != oldLocale) {
       helpers.i18n.setCurrentLocale(newLocale);
-      this.getView().up('#main-viewport').getViewModel().set('i18n', window[newLocale]);
+      var i18n =  window[newLocale];
+      this.getView().up('#main-viewport').getViewModel().set('i18n', i18n);
+      window.i18n = i18n;
     }
   }
 
