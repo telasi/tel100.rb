@@ -34,6 +34,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     {
       xtype: 'gridcolumn',
       dataIndex: 'docnumber',
+      lockable: true,
       locked: true,
       bind: {
         text: '{i18n.document.base.docnumber}'
@@ -41,8 +42,54 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
+      width: 130,
       dataIndex: 'myStatusName',
-      text: 'MyColumn1'
+      lockable: true,
+      locked: true,
+      bind: {
+        text: '{i18n.document.base.my_status}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      width: 130,
+      dataIndex: 'statusName',
+      bind: {
+        text: '{i18n.document.base.status}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      dataIndex: 'docdate',
+      formatter: 'date("d/m/Y")',
+      bind: {
+        text: '{i18n.document.base.docdate}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return record.getType().get('name');
+      },
+      dataIndex: 'type',
+      bind: {
+        text: '{i18n.document.base.type}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      dataIndex: 'directionName',
+      bind: {
+        text: '{i18n.document.base.direction}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      width: 300,
+      dataIndex: 'subject',
+      bind: {
+        text: '{i18n.document.base.subject}'
+      }
     }
   ]
 

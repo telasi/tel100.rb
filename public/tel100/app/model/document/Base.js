@@ -18,14 +18,19 @@ Ext.define('Tel100.model.document.Base', {
 
   requires: [
     'Tel100.model.Tel100',
-    'Ext.data.field.Field',
-    'Ext.data.proxy.Rest'
+    'Ext.data.proxy.Rest',
+    'Ext.data.field.Field'
   ],
   uses: [
     'Tel100.model.document.Type'
   ],
 
   schema: 'tel100',
+
+  proxy: {
+    type: 'rest',
+    url: '/api/documents/base'
+  },
 
   fields: [
     {
@@ -53,11 +58,24 @@ Ext.define('Tel100.model.document.Base', {
     },
     {
       name: 'is_changed'
+    },
+    {
+      calculate: function(data) {
+        return helpers.document.status.statusFormatted(data.status);
+      },
+      name: 'statusName'
+    },
+    {
+      name: 'status'
+    },
+    {
+      name: 'direction'
+    },
+    {
+      calculate: function(data) {
+        return i18n.document.base.directions[data.direction];
+      },
+      name: 'directionName'
     }
-  ],
-
-  proxy: {
-    type: 'rest',
-    url: '/api/documents/base'
-  }
+  ]
 });
