@@ -14,28 +14,28 @@
  */
 
 Ext.define('Tel100.model.document.Base', {
-    extend: 'Ext.data.Model',
+  extend: 'Ext.data.Model',
 
-    requires: [
-        'Tel100.model.Tel100',
-        'Ext.data.field.Field',
-        'Ext.data.proxy.Rest'
-    ],
-    uses: [
-        'Tel100.model.document.Type'
-    ],
+  requires: [
+    'Tel100.model.Tel100',
+    'Ext.data.field.Field',
+    'Ext.data.proxy.Rest'
+  ],
+  uses: [
+    'Tel100.model.document.Type'
+  ],
 
-    schema: 'tel100',
+  schema: 'tel100',
 
-    fields: [
-        {
-            name: 'type',
-            reference: 'Tel100.model.document.Type'
-        }
-    ],
-
-    proxy: {
-        type: 'rest',
-        url: '/api/documents/base'
+  fields: [
+    {
+      name: 'type',
+      reference: 'Tel100.model.document.Type'
     }
+  ],
+
+  proxy: {
+    type: 'rest',
+    url: '/api/documents/base'
+  }
 });

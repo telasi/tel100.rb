@@ -15,6 +15,26 @@
 
 Ext.define('Tel100.view.document.grid.PanelViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documentgridpanel'
+  alias: 'viewmodel.documentgridpanel',
+
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.proxy.Ajax',
+    'Ext.data.reader.Json'
+  ],
+
+  stores: {
+    documents: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Base',
+      proxy: {
+        type: 'ajax',
+        url: '/api/documents/base',
+        reader: {
+          type: 'json'
+        }
+      }
+    }
+  }
 
 });

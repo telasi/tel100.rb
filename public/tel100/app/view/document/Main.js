@@ -45,6 +45,7 @@ Ext.define('Tel100.view.document.Main', {
       items: [
         {
           xtype: 'panel',
+          layout: 'fit',
           bind: {
             title: '{i18n.document.base.ui.documents}'
           },

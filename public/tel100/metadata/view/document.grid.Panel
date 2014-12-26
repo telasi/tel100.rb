@@ -1,5 +1,5 @@
 {
-    "type": "Ext.panel.Panel",
+    "type": "Ext.grid.Panel",
     "reference": {
         "name": "items",
         "type": "array"
@@ -9,11 +9,50 @@
         "designer|userAlias": "documentgridpanel",
         "designer|userClassName": "document.grid.Panel",
         "height": null,
+        "store": [
+            "{documents}"
+        ],
         "title": null,
         "width": null
     },
-    "name": "MyPanel",
-    "designerId": "fc9ee8ff-36ea-4ac2-a5e9-0507930c18d7",
-    "viewControllerInstanceId": "68612071-f985-48f9-beaa-3782ef8d84c8",
-    "viewModelInstanceId": "bd0d1272-8d9d-43f2-adf9-7b902383e8f0"
+    "name": "MyGridPanel",
+    "configAlternates": {
+        "store": "binding"
+    },
+    "designerId": "c39280dd-4a3b-4f87-8455-6779b7ed7103",
+    "viewControllerInstanceId": "2d888ec8-f4e8-4c38-809e-56c158552170",
+    "viewModelInstanceId": "c3f9892b-e1da-42f0-9fc3-7eb6e5058f6c",
+    "cn": [
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView",
+            "designerId": "62b4b19f-0718-424d-95e8-abea984bf5c4"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "docnumber",
+                "designer|displayName": "docnumber",
+                "locked": true,
+                "text": [
+                    "{i18n.document.base.docnumber}"
+                ]
+            },
+            "name": "MyColumn",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "a8664bdb-1c55-407d-90b4-f5a512cf09f7"
+        }
+    ]
 }

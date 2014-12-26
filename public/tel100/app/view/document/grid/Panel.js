@@ -14,15 +14,31 @@
  */
 
 Ext.define('Tel100.view.document.grid.Panel', {
-  extend: 'Ext.panel.Panel',
+  extend: 'Ext.grid.Panel',
   alias: 'widget.documentgridpanel',
 
   requires: [
-    'Tel100.view.document.grid.PanelViewModel'
+    'Tel100.view.document.grid.PanelViewModel',
+    'Ext.grid.View',
+    'Ext.grid.column.Column'
   ],
 
   viewModel: {
     type: 'documentgridpanel'
-  }
+  },
+
+  bind: {
+    store: '{documents}'
+  },
+  columns: [
+    {
+      xtype: 'gridcolumn',
+      dataIndex: 'docnumber',
+      locked: true,
+      bind: {
+        text: '{i18n.document.base.docnumber}'
+      }
+    }
+  ]
 
 });

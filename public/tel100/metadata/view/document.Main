@@ -58,6 +58,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "layout": "fit",
                         "title": [
                             "{i18n.document.base.ui.documents}"
                         ]
@@ -85,13 +86,9 @@
                                 "type": "array"
                             },
                             "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "grid",
-                                "title": null
-                            },
                             "name": "document.grid.panel",
-                            "designerId": "3429e9e1-9603-48dd-bd11-0a9f0a9966f2",
-                            "masterInstanceId": "fc9ee8ff-36ea-4ac2-a5e9-0507930c18d7"
+                            "designerId": "11128e3a-5b38-4166-8d33-c7537be201c5",
+                            "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103"
                         }
                     ]
                 }
