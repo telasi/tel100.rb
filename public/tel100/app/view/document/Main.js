@@ -20,8 +20,10 @@ Ext.define('Tel100.view.document.Main', {
   requires: [
     'Tel100.view.document.MainViewModel',
     'Tel100.view.document.folder.Panel',
+    'Tel100.view.document.grid.Panel',
     'Ext.grid.Panel',
-    'Ext.form.Label'
+    'Ext.tab.Panel',
+    'Ext.tab.Tab'
   ],
 
   viewModel: {
@@ -32,14 +34,27 @@ Ext.define('Tel100.view.document.Main', {
   items: [
     {
       xtype: 'documentfolderpanel',
+      collapsible: true,
       region: 'west',
-      split: true,
-      collapsible: true
+      split: true
     },
     {
-      xtype: 'label',
+      xtype: 'tabpanel',
       region: 'center',
-      text: 'My Label'
+      activeTab: 0,
+      items: [
+        {
+          xtype: 'panel',
+          bind: {
+            title: '{i18n.document.base.ui.documents}'
+          },
+          items: [
+            {
+              xtype: 'documentgridpanel'
+            }
+          ]
+        }
+      ]
     }
   ]
 

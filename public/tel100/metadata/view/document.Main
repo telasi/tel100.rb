@@ -36,18 +36,66 @@
             "masterInstanceId": "009b3140-7885-4b70-bcb4-7abfbdcccf21"
         },
         {
-            "type": "Ext.form.Label",
+            "type": "Ext.tab.Panel",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "layout|region": "center",
-                "text": "My Label"
+                "activeTab": 0,
+                "designer|displayName": "tabs",
+                "layout|region": "center"
             },
-            "name": "MyLabel1",
-            "designerId": "cbf9bb67-e645-4011-9792-85725dc37ce0"
+            "name": "MyTabPanel",
+            "designerId": "224fa7ef-3866-4420-aa14-73cad7ac4448",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "title": [
+                            "{i18n.document.base.ui.documents}"
+                        ]
+                    },
+                    "name": "MyPanel",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
+                    "designerId": "f9b45dff-1c4b-42fe-9107-fe0d3119c16b",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig",
+                            "designerId": "695da095-0804-4ecc-9ed7-284625c01f68"
+                        },
+                        {
+                            "type": "linkedinstance",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "grid",
+                                "title": null
+                            },
+                            "name": "document.grid.panel",
+                            "designerId": "3429e9e1-9603-48dd-bd11-0a9f0a9966f2",
+                            "masterInstanceId": "fc9ee8ff-36ea-4ac2-a5e9-0507930c18d7"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

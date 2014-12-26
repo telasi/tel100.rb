@@ -1,4 +1,5 @@
 module.exports = {
-  type: require('./type'),
-  folder: require('./folder')
+  base: require('./base'),
+  folder: require('./folder'),
+  type: require('./type')
 };
