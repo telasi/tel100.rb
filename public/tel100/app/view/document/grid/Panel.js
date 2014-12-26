@@ -38,6 +38,11 @@ Ext.define('Tel100.view.document.grid.Panel', {
       bind: {
         text: '{i18n.document.base.docnumber}'
       }
+    },
+    {
+      xtype: 'gridcolumn',
+      dataIndex: 'myStatusName',
+      text: 'MyColumn1'
     }
   ]
 

@@ -67,6 +67,101 @@ module.exports = {
 };
 
 },{}],2:[function(require,module,exports){
+module.exports = {
+  status: require('./status')
+};
+
+},{"./status":3}],3:[function(require,module,exports){
+var STATUS_CANCELED = -2;
+var STATUS_NOT_SENT = -1;
+var STATUS_DRAFT = 0;
+var STATUS_CURRENT = 1;
+var STATUS_COMPLETED = 2;
+
+var ROLE_OWNER = 'owner';
+var ROLE_CREATOR = 'creator';
+var ROLE_AUTHOR = 'author';
+var ROLE_SIGNEE = 'signee';
+var ROLE_ASSIGNEE = 'assignee';
+
+var statusDecoration = function(status, role, opts) {
+  var textId, iconId, styleId, iconStyleId;
+  var isMotion = opts && opts.isMotion;
+  var isNew = opts && opts.isNew;
+  var isChanged = opts && opts.isChanged;
+  role = role || ROLE_OWNER;
+
+  var isSignee = (role === ROLE_AUTHOR || role === ROLE_SIGNEE);
+  if (typeof isMotion === 'undefined') { isMotion = false; }
+  if (typeof isNew === 'undefined') { isNew = false; }
+  if (typeof isChanged === 'undefined') { isChanged = false; }
+
+  if (status === STATUS_CANCELED) {
+    textId = isSignee ? 'canceled' : 'not_signed';
+    iconId = 'fa-times';
+    styleId = 'text-danger';
+  } else if (status === STATUS_NOT_SENT) {
+    textId = 'not_sent';
+    iconId = 'fa-ban';
+    styleId = 'text-muted';
+  } else if (status === STATUS_DRAFT) {
+    if (isMotion) {
+      textId = isSignee ? 'to_be_signed' : 'to_be_sent';
+    } else {
+      textId = 'draft';
+    }
+    iconId = 'fa-circle-o';
+    styleId = 'text-muted';
+  } else if (status === STATUS_CURRENT) {
+    textId = isSignee ? 'to_be_signed' : 'current';
+    iconId = 'fa-clock-o';
+    styleId = 'text-info';
+  } else if (status === STATUS_COMPLETED) {
+    textId = isSignee ? 'signed' : 'completed';
+    iconId = 'fa-check';
+    styleId = 'text-success';
+  }
+  iconStyleId = styleId;
+
+  if (isNew) {
+    iconId = 'fa-circle';
+    iconStyleId = 'text-danger';
+  } else if (isChanged) {
+    iconId = 'fa-circle';
+  }
+
+  return {
+    text: textId,
+    style: styleId,
+    icon: iconId,
+    iconStyle: iconStyleId
+  };
+};
+
+var statusFormatted = function(status, role, opts) {
+  var decor = statusDecoration(status, role, opts);
+  if (decor.text) {
+    var icon = [
+      '<span class="', decor.iconStyle, '">',
+      '<i class="fa ', decor.icon, '"></i>',
+      '</span>'
+    ].join('');
+    return [
+      '<span class="', decor.style, '">',
+      icon, ' ', i18n.document.base.statuses[decor.text],
+      '</span>'
+    ].join('');
+  } else {
+    return '???';
+  }
+};
+
+module.exports = {
+  statusDecoration: statusDecoration,
+  statusFormatted: statusFormatted
+};
+
+},{}],4:[function(require,module,exports){
 var currentLocale
   , ajax = require('./ajax')
   , preferences = require('./preferences')
@@ -93,15 +188,16 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":1,"./preferences":4}],3:[function(require,module,exports){
+},{"./ajax":1,"./preferences":6}],5:[function(require,module,exports){
 window.helpers = {
-  preferences: require('./preferences'),
-  i18n: require('./i18n'),
   ajax: require('./ajax'),
+  'document': require('./document'),
+  i18n: require('./i18n'),
+  preferences: require('./preferences'),
   user: require('./user')
 };
 
-},{"./ajax":1,"./i18n":2,"./preferences":4,"./user":5}],4:[function(require,module,exports){
+},{"./ajax":1,"./document":2,"./i18n":4,"./preferences":6,"./user":7}],6:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -132,7 +228,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -162,4 +258,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":1,"./i18n":2,"./preferences":4}]},{},[3]);
+},{"./ajax":1,"./i18n":4,"./preferences":6}]},{},[5]);

@@ -53,6 +53,20 @@
                 "text": "binding"
             },
             "designerId": "a8664bdb-1c55-407d-90b4-f5a512cf09f7"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "myStatusName",
+                "text": "MyColumn1"
+            },
+            "name": "MyColumn1",
+            "designerId": "8b11c1b8-13e1-46f3-b0ba-9316bf2fffb4"
         }
     ]
 }

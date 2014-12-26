@@ -20,11 +20,37 @@
             },
             "codeClass": null,
             "userConfig": {
+                "name": "my_status"
+            },
+            "name": "MyField",
+            "designerId": "c6e7f5df-26ec-4efe-9ea9-f97dfb6d05d4"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "name": "type",
                 "reference": "document.Type"
             },
             "name": "MyField7",
             "designerId": "9035c90a-6125-4213-a95b-7ad333a50ac6"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "my_role"
+            },
+            "name": "MyField1",
+            "designerId": "5e6a9e11-8425-49e3-a7ad-5414a4a3e6e7"
         },
         {
             "type": "Ext.data.proxy.Rest",
@@ -39,6 +65,70 @@
             },
             "name": "MyRestProxy2",
             "designerId": "f6cabb06-3bbe-4b94-a1d4-c8282afeb695"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "myStatusName"
+            },
+            "name": "MyField2",
+            "designerId": "789eef89-176d-45fb-95e5-1594c04991ef",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "return helpers.document.status.statusFormatted(data.my_status, data.my_role, {",
+                            "  isMotion: false,",
+                            "  isNew: data.is_new,",
+                            "  isChanged: data.is_changed",
+                            "});"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "e4dc3217-9da4-45cb-8de9-c66248f7d979"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "is_new"
+            },
+            "name": "MyField5",
+            "designerId": "6f5765b2-55de-4c80-b9b0-8dac5e7e0206"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "is_changed"
+            },
+            "name": "MyField6",
+            "designerId": "37c878c0-a6e0-42f0-84af-21b803205dde"
         }
     ]
 }
