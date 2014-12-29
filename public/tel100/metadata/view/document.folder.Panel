@@ -10,9 +10,6 @@
         "designer|userClassName": "document.folder.Panel",
         "height": null,
         "hideHeaders": true,
-        "requires": [
-            "Tel100.view.document.creator.Panel"
-        ],
         "store": [
             "{folders}"
         ],

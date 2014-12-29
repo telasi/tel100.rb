@@ -62,7 +62,9 @@ Ext.define('Tel100.view.document.Main', {
 
   openNewDocument: function() {
     var tabs = this.down('#documentTabs');
-    var creator = Tel100.view.document.creator.Panel.create({title: i18n.document.base.ui.creatorTitle, closable: true});
+    var creator = Tel100.view.document.editor.Panel.create({title: i18n.document.base.ui.creatorTitle, closable: true});
+    var document = Tel100.model.document.Base.create();
+    creator.getViewModel().set('document', document);
     tabs.add(creator);
     tabs.setActiveTab(creator);
   }

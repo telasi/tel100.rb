@@ -43,7 +43,7 @@ Ext.application({
     'document.Main',
     'document.folder.Panel',
     'document.grid.Panel',
-    'document.creator.Panel'
+    'document.editor.Panel'
   ],
   name: 'Tel100',
 

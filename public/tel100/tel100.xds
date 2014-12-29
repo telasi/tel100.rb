@@ -25,7 +25,11 @@
         "generateArchitectVersion": true,
         "projectHasEnabledWebServer": false,
         "lockUrlPrefix": false,
-        "installStatus": "Not Installed"
+        "installStatus": "Not Installed",
+        "lastBuildSelection": {
+            "value": "webBuild",
+            "display": "Build web app"
+        }
     },
     "xdsVersion": "3.1.0",
     "xdsBuild": 1943,

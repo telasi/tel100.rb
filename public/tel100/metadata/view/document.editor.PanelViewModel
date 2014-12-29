@@ -6,8 +6,13 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documentcreatorpanel",
-        "designer|userClassName": "document.creator.PanelViewModel"
+        "data": [
+            "{",
+            "document: null",
+            "}"
+        ],
+        "designer|userAlias": "documenteditorpanel",
+        "designer|userClassName": "document.editor.PanelViewModel"
     },
     "designerId": "fe587c2a-b4ef-4d70-853d-8111aa0a6616"
 }

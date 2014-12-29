@@ -30,7 +30,7 @@
             "document.Main",
             "document.folder.Panel",
             "document.grid.Panel",
-            "document.creator.Panel"
+            "document.editor.Panel"
         ]
     },
     "name": "Application",

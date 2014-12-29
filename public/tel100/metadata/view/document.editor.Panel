@@ -1,0 +1,110 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documenteditorpanel",
+        "designer|userClassName": "document.editor.Panel",
+        "height": null,
+        "layout": "border",
+        "width": null
+    },
+    "designerId": "05865998-80f8-449c-af7e-5966e96edc93",
+    "viewControllerInstanceId": "c8ab8f23-6495-434a-8b4b-78f9ef9be27b",
+    "viewModelInstanceId": "fe587c2a-b4ef-4d70-853d-8111aa0a6616",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "main",
+                "layout": "border",
+                "layout|flex": 1,
+                "layout|region": "center"
+            },
+            "name": "MyContainer",
+            "designerId": "ab8db9ac-653f-41d8-956a-2aa0b96a6219",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "subject",
+                        "emptyText": "enter document status",
+                        "fieldLabel": null,
+                        "height": null,
+                        "layout|flex": null,
+                        "layout|region": "north",
+                        "margin": null,
+                        "submitEmptyText": false,
+                        "value": [
+                            "{document.subject}"
+                        ]
+                    },
+                    "name": "MyTextField",
+                    "configAlternates": {
+                        "value": "binding",
+                        "submitEmptyText": "boolean"
+                    },
+                    "designerId": "bafc9b59-5005-4231-8ddf-54504a224295",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "submitEmptyText",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.HtmlEditor",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "body",
+                        "fieldLabel": null,
+                        "layout|region": "center",
+                        "value": [
+                            "{document.body}"
+                        ]
+                    },
+                    "name": "MyHtmlEditor",
+                    "configAlternates": {
+                        "value": "binding"
+                    },
+                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "details",
+                "layout": "accordion",
+                "layout|region": "east",
+                "layout|split": true,
+                "width": 300
+            },
+            "name": "MyContainer2",
+            "designerId": "73758d87-5031-4919-ae73-76bb68a3183a"
+        }
+    ]
+}

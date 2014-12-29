@@ -23,8 +23,7 @@ Ext.define('Tel100.view.document.folder.Panel', {
     'Ext.grid.column.Column',
     'Ext.grid.feature.Grouping',
     'Ext.XTemplate',
-    'Ext.panel.Tool',
-    'Tel100.view.document.creator.Panel'
+    'Ext.panel.Tool'
   ],
 
   controller: 'documentfolderpanel',
