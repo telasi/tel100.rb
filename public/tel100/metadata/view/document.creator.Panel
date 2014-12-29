@@ -1,0 +1,18 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentcreatorpanel",
+        "designer|userClassName": "document.creator.Panel",
+        "height": null,
+        "layout": "border",
+        "width": null
+    },
+    "designerId": "05865998-80f8-449c-af7e-5966e96edc93",
+    "viewControllerInstanceId": "c8ab8f23-6495-434a-8b4b-78f9ef9be27b",
+    "viewModelInstanceId": "fe587c2a-b4ef-4d70-853d-8111aa0a6616"
+}

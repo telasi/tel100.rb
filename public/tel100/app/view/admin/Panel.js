@@ -36,9 +36,9 @@ Ext.define('Tel100.view.admin.Panel', {
   items: [
     {
       xtype: 'adminactionspanel',
+      collapsible: true,
       region: 'west',
       split: true,
-      collapsible: true,
       listeners: {
         actionselected: 'onActionSelected'
       }

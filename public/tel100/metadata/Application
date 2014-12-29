@@ -29,7 +29,8 @@
             "admin.types.grid.Panel",
             "document.Main",
             "document.folder.Panel",
-            "document.grid.Panel"
+            "document.grid.Panel",
+            "document.creator.Panel"
         ]
     },
     "name": "Application",

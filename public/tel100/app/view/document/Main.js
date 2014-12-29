@@ -41,6 +41,7 @@ Ext.define('Tel100.view.document.Main', {
     {
       xtype: 'tabpanel',
       region: 'center',
+      itemId: 'documentTabs',
       activeTab: 0,
       items: [
         {

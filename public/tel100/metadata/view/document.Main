@@ -31,7 +31,7 @@
                 "layout|region": "west",
                 "layout|split": true
             },
-            "name": "document.folder.panel",
+            "name": "document.folder.panel1",
             "designerId": "a5bb3bf9-bfc0-46e4-a1ea-176101ed4d23",
             "masterInstanceId": "009b3140-7885-4b70-bcb4-7abfbdcccf21"
         },
@@ -45,6 +45,7 @@
             "userConfig": {
                 "activeTab": 0,
                 "designer|displayName": "tabs",
+                "itemId": "documentTabs",
                 "layout|region": "center"
             },
             "name": "MyTabPanel",
@@ -86,7 +87,7 @@
                                 "type": "array"
                             },
                             "codeClass": null,
-                            "name": "document.grid.panel",
+                            "name": "document.grid.panel1",
                             "designerId": "11128e3a-5b38-4166-8d33-c7537be201c5",
                             "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103"
                         }

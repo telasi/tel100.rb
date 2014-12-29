@@ -1,6 +1,7 @@
 module.exports = {
   ui: {
-    documents: '<i class="fa fa-files-o"></i> დოკუმენტები'
+    documents: '<i class="fa fa-files-o"></i> დოკუმენტები',
+    creatorTitle: '<i class="fa fa-plus"></i> ახალი დოკუმენტი'
   },
   type: 'სახეობა',
   direction: 'მიმართულება',

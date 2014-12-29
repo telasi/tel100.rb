@@ -10,6 +10,9 @@
         "designer|userClassName": "document.folder.Panel",
         "height": null,
         "hideHeaders": true,
+        "requires": [
+            "Tel100.view.document.creator.Panel"
+        ],
         "store": [
             "{folders}"
         ],
@@ -91,6 +94,44 @@
                             "designerId": "1d7a12d6-229f-456f-ab52-f3dc229a1a98"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "new document",
+                "type": "plus"
+            },
+            "name": "MyTool1",
+            "designerId": "4a53beb4-10cb-4bfd-80ee-995685559a58",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onNewDocument",
+                        "implHandler": [
+                            "var main = this.getView().up('documentmain');",
+                            "var tabs = main.down('#documentTabs');",
+                            "var creator = Tel100.view.document.creator.Panel.create({title: i18n.document.base.ui.creatorTitle, closable: true});",
+                            "tabs.add(creator);",
+                            "tabs.setActiveTab(creator);"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onNewDocument",
+                    "designerId": "ae63267f-0b79-40fd-97ee-997b4f4e1e24"
                 }
             ]
         }
