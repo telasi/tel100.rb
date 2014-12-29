@@ -94,6 +94,25 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "openNewDocument",
+                "implHandler": [
+                    "var tabs = this.down('#documentTabs');",
+                    "var creator = Tel100.view.document.creator.Panel.create({title: i18n.document.base.ui.creatorTitle, closable: true});",
+                    "tabs.add(creator);",
+                    "tabs.setActiveTab(creator);"
+                ]
+            },
+            "name": "openNewDocument",
+            "designerId": "8cf8e69a-f290-4e7d-b8e3-7bfcf686c6ab"
         }
     ]
 }

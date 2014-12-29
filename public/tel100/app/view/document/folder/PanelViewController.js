@@ -18,11 +18,7 @@ Ext.define('Tel100.view.document.folder.PanelViewController', {
   alias: 'controller.documentfolderpanel',
 
   onNewDocument: function(tool, e, owner, eOpts) {
-    var main = this.getView().up('documentmain');
-    var tabs = main.down('#documentTabs');
-    var creator = Tel100.view.document.creator.Panel.create({title: i18n.document.base.ui.creatorTitle, closable: true});
-    tabs.add(creator);
-    tabs.setActiveTab(creator);
+    this.getView().up('documentmain').openNewDocument();
   }
 
 });
