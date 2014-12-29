@@ -53,6 +53,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "grouping",
                 "groupByText": "category"
             },
             "name": "MyGroupingFeature1",
