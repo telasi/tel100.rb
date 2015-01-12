@@ -44,6 +44,7 @@
                         "emptyText": "enter document status",
                         "fieldLabel": null,
                         "height": null,
+                        "itemId": null,
                         "layout|flex": null,
                         "layout|region": "north",
                         "margin": null,

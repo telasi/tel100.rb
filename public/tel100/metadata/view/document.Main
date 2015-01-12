@@ -31,7 +31,7 @@
                 "layout|region": "west",
                 "layout|split": true
             },
-            "name": "document.folder.panel3",
+            "name": "document.folder.panel2",
             "designerId": "a5bb3bf9-bfc0-46e4-a1ea-176101ed4d23",
             "masterInstanceId": "009b3140-7885-4b70-bcb4-7abfbdcccf21"
         },
@@ -87,7 +87,7 @@
                                 "type": "array"
                             },
                             "codeClass": null,
-                            "name": "document.grid.panel3",
+                            "name": "document.grid.panel2",
                             "designerId": "11128e3a-5b38-4166-8d33-c7537be201c5",
                             "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103"
                         }
@@ -106,14 +106,14 @@
                 "fn": "openNewDocument",
                 "implHandler": [
                     "var tabs = this.down('#documentTabs');",
-                    "var creator = Tel100.view.document.editor.Panel.create({title: i18n.document.base.ui.creatorTitle, closable: true});",
+                    "var editor = Tel100.view.document.editor.Panel.create({title: i18n.document.base.ui.creatorTitle, closable: true});",
                     "var document = Tel100.model.document.Base.create({",
-                    "  subject: 'Test subject',",
-                    "  body: 'Test body. This is test body.'",
+                    "  //subject: 'Test subject',",
+                    "  //body: 'Test body. This is test body.'",
                     "});",
-                    "creator.getViewModel().set('document', document);",
-                    "tabs.add(creator);",
-                    "tabs.setActiveTab(creator);"
+                    "editor.getViewModel().set('document', document);",
+                    "tabs.add(editor);",
+                    "tabs.setActiveTab(editor);"
                 ]
             },
             "name": "openNewDocument",

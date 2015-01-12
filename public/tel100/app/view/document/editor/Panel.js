@@ -37,8 +37,8 @@ Ext.define('Tel100.view.document.editor.Panel', {
       items: [
         {
           xtype: 'textfield',
-          region: 'north',
           submitEmptyText: false,
+          region: 'north',
           emptyText: 'enter document status',
           bind: {
             value: '{document.subject}'

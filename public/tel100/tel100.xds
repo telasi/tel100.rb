@@ -2,7 +2,7 @@
     "name": "tel100",
     "settings": {
         "cmd": {
-            "license": "commercial",
+            "license": "gpl",
             "cmdVersion": "5.0.2.270",
             "frameworkVersion": "5.0.1.1255"
         },
