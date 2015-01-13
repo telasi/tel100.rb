@@ -19,8 +19,10 @@ Ext.define('Tel100.view.document.editor.Panel', {
 
   requires: [
     'Tel100.view.document.editor.PanelViewModel',
+    'Tel100.view.document.editor.General',
     'Ext.form.field.Text',
-    'Ext.form.field.HtmlEditor'
+    'Ext.form.field.HtmlEditor',
+    'Ext.form.Panel'
   ],
 
   viewModel: {
@@ -57,8 +59,17 @@ Ext.define('Tel100.view.document.editor.Panel', {
       xtype: 'container',
       region: 'east',
       split: true,
+      padding: 0,
       width: 300,
-      layout: 'accordion'
+      layout: 'accordion',
+      items: [
+        {
+          xtype: 'documenteditorgeneral',
+          bind: {
+            title: '{i18n.document.base.general}'
+          }
+        }
+      ]
     }
   ]
 

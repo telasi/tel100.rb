@@ -17,6 +17,7 @@ module.exports = {
   owner: 'მფლობელი',
   status: 'სტატუსი',
   my_status: 'ჩემი სტატუსი',
+  general: 'ზოგადი თვისებები',
   statuses: {
     draft: 'დრაფტი',
     to_be_sent: 'გასაგზავნი',

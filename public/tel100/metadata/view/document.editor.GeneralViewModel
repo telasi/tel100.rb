@@ -1,0 +1,68 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documenteditorgeneral",
+        "designer|userClassName": "document.editor.GeneralViewModel"
+    },
+    "designerId": "78e4b3f1-6207-4071-931a-f4d7da273c9b",
+    "cn": [
+        {
+            "type": "directstore",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Type",
+                "name": "types"
+            },
+            "name": "MyDirectStore2",
+            "designerId": "6f85ba32-9b92-4657-bfd6-321f42e283ca"
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Direction",
+                "name": "directions"
+            },
+            "name": "MyStore2",
+            "designerId": "5611c7d7-9c0d-4537-bb15-94ec861a36b5",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Memory",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "data": [
+                            "[{",
+                            "  id:'inner'",
+                            "}, {",
+                            "  id: 'out'",
+                            "}, {",
+                            "  id: 'in'",
+                            "}]"
+                        ]
+                    },
+                    "name": "MyMemoryProxy",
+                    "designerId": "ac7fff8a-474e-4fc9-8e35-5dbc7c35f2a6"
+                }
+            ]
+        }
+    ]
+}

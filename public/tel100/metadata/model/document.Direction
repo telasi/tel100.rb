@@ -1,0 +1,62 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "document.Direction"
+    },
+    "name": "MyModel",
+    "designerId": "0598c345-15d4-4f6b-b1ab-5e132420bd6d",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id"
+            },
+            "name": "MyField12",
+            "designerId": "9611b378-13a7-4959-84ac-d74e22b518ee"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name"
+            },
+            "name": "MyField13",
+            "designerId": "67715207-1d32-43d5-b668-2c380afe04e4",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "return i18n.document.base.directions[data.id];"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "88ca3202-b409-4327-935d-7b29f95c0642"
+                }
+            ]
+        }
+    ]
+}

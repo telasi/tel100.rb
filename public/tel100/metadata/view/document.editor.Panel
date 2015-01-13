@@ -102,10 +102,33 @@
                 "layout": "accordion",
                 "layout|region": "east",
                 "layout|split": true,
+                "padding": 0,
                 "width": 300
             },
             "name": "MyContainer2",
-            "designerId": "73758d87-5031-4919-ae73-76bb68a3183a"
+            "designerId": "73758d87-5031-4919-ae73-76bb68a3183a",
+            "cn": [
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "general properties",
+                        "title": [
+                            "{i18n.document.base.general}"
+                        ]
+                    },
+                    "name": "document.editor.general",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
+                    "designerId": "64724350-d954-4466-9245-c5be18a57dee",
+                    "masterInstanceId": "759b5380-72a7-453f-b37c-cfc4a98ba34e"
+                }
+            ]
         }
     ]
 }

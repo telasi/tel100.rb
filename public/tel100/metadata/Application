@@ -9,7 +9,8 @@
         "models": [
             "User",
             "document.Type",
-            "document.Base"
+            "document.Base",
+            "document.Direction"
         ],
         "name": "Tel100",
         "views": [
@@ -30,7 +31,8 @@
             "document.Main",
             "document.folder.Panel",
             "document.grid.Panel",
-            "document.editor.Panel"
+            "document.editor.Panel",
+            "document.editor.General"
         ]
     },
     "name": "Application",

@@ -23,7 +23,8 @@ Ext.application({
   models: [
     'User',
     'document.Type',
-    'document.Base'
+    'document.Base',
+    'document.Direction'
   ],
   views: [
     'Main',
@@ -43,7 +44,8 @@ Ext.application({
     'document.Main',
     'document.folder.Panel',
     'document.grid.Panel',
-    'document.editor.Panel'
+    'document.editor.Panel',
+    'document.editor.General'
   ],
   name: 'Tel100',
 

@@ -1,0 +1,158 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 5,
+        "designer|userAlias": "documenteditorgeneral",
+        "designer|userClassName": "document.editor.General",
+        "height": null,
+        "title": null,
+        "width": null
+    },
+    "name": "MyForm1",
+    "designerId": "759b5380-72a7-453f-b37c-cfc4a98ba34e",
+    "viewControllerInstanceId": "4acf4a7b-d90a-4e22-a209-3d24103b9bb3",
+    "viewModelInstanceId": "78e4b3f1-6207-4071-931a-f4d7da273c9b",
+    "cn": [
+        {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "type_id",
+                "displayField": "name",
+                "editable": false,
+                "fieldLabel": [
+                    "{i18n.document.base.type}"
+                ],
+                "layout|anchor": "100%",
+                "store": [
+                    "{types}"
+                ],
+                "value": [
+                    "{document.type_id}"
+                ],
+                "valueField": "id"
+            },
+            "name": "MyComboBox",
+            "configAlternates": {
+                "value": "binding",
+                "fieldLabel": "binding",
+                "store": "binding"
+            },
+            "designerId": "75daabda-af54-40d2-a244-920a0c37c2b0"
+        },
+        {
+            "type": "Ext.form.field.Date",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "docdate",
+                "fieldLabel": [
+                    "{i18n.document.base.docdate}"
+                ],
+                "layout|anchor": "100%",
+                "value": [
+                    "{document.docdate}"
+                ]
+            },
+            "name": "MyDateField",
+            "configAlternates": {
+                "value": "binding",
+                "fieldLabel": "binding"
+            },
+            "designerId": "89cc25d6-0295-4e93-8a22-a1e3ae9c6a6d"
+        },
+        {
+            "type": "Ext.form.field.Number",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "pagecount",
+                "fieldLabel": [
+                    "{i18n.document.base.page_count}"
+                ],
+                "layout|anchor": "100%",
+                "minValue": 0,
+                "value": [
+                    "{document.page_count}"
+                ]
+            },
+            "name": "MyNumberField",
+            "configAlternates": {
+                "fieldLabel": "binding",
+                "value": "binding"
+            },
+            "designerId": "48b5d188-a87e-41cd-b28b-59d08a550c15"
+        },
+        {
+            "type": "Ext.form.field.Number",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "additions_count",
+                "fieldLabel": [
+                    "{i18n.document.base.additions_count}"
+                ],
+                "layout|anchor": "100%",
+                "minValue": 0,
+                "value": [
+                    "{document.additions_count}"
+                ]
+            },
+            "name": "MyNumberField1",
+            "configAlternates": {
+                "value": "binding",
+                "fieldLabel": "binding"
+            },
+            "designerId": "7507dc2a-0810-43ef-a107-c66c1694a15f"
+        },
+        {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "direction",
+                "displayField": "name",
+                "editable": false,
+                "fieldLabel": [
+                    "{i18n.document.base.direction}"
+                ],
+                "layout|anchor": "100%",
+                "store": [
+                    "{directions}"
+                ],
+                "value": [
+                    "{document.direction}"
+                ],
+                "valueField": "id"
+            },
+            "name": "MyComboBox1",
+            "configAlternates": {
+                "fieldLabel": "binding",
+                "store": "binding",
+                "value": "binding"
+            },
+            "designerId": "338347f7-e594-4dd2-a722-669f5fe3507c"
+        }
+    ]
+}
