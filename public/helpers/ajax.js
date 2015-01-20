@@ -25,7 +25,7 @@ var request = function(opts) {
       if (success && data.success) {
         success(data);
       } else if (!data.success) {
-        errorMessage(data.message);
+        errorMessage(data.message || data.error);
       }
     },
     failure: function(response) {
