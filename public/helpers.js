@@ -67,11 +67,13 @@ module.exports = {
 };
 
 },{}],2:[function(require,module,exports){
+module.exports = {};
+},{}],3:[function(require,module,exports){
 module.exports = {
   status: require('./status')
 };
 
-},{"./status":3}],3:[function(require,module,exports){
+},{"./status":4}],4:[function(require,module,exports){
 var STATUS_CANCELED = -2;
 var STATUS_NOT_SENT = -1;
 var STATUS_DRAFT = 0;
@@ -161,7 +163,7 @@ module.exports = {
   statusFormatted: statusFormatted
 };
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 var currentLocale
   , ajax = require('./ajax')
   , preferences = require('./preferences')
@@ -188,16 +190,17 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":1,"./preferences":6}],5:[function(require,module,exports){
+},{"./ajax":1,"./preferences":7}],6:[function(require,module,exports){
 window.helpers = {
   ajax: require('./ajax'),
   'document': require('./document'),
   i18n: require('./i18n'),
   preferences: require('./preferences'),
-  user: require('./user')
+  user: require('./user'),
+  api: require('./api')
 };
 
-},{"./ajax":1,"./document":2,"./i18n":4,"./preferences":6,"./user":7}],6:[function(require,module,exports){
+},{"./ajax":1,"./api":2,"./document":3,"./i18n":5,"./preferences":7,"./user":8}],7:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -228,7 +231,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -258,4 +261,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":1,"./i18n":4,"./preferences":6}]},{},[5]);
+},{"./ajax":1,"./i18n":5,"./preferences":7}]},{},[6]);
