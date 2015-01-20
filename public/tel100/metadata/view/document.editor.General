@@ -153,6 +153,79 @@
                 "value": "binding"
             },
             "designerId": "338347f7-e594-4dd2-a722-669f5fe3507c"
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "in-direction",
+                "hidden": [
+                    "{!isIncoming}"
+                ],
+                "title": [
+                    "{i18n.document.base.in_fields}"
+                ]
+            },
+            "name": "MyFieldSet",
+            "configAlternates": {
+                "title": "binding",
+                "hidden": "binding"
+            },
+            "designerId": "ece2df5c-da21-4395-8628-a235c918b98b",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "original_number",
+                        "fieldLabel": [
+                            "{i18n.document.base.original_number}"
+                        ],
+                        "layout|anchor": "100%",
+                        "value": [
+                            "{document.original_number}"
+                        ]
+                    },
+                    "name": "MyTextField",
+                    "configAlternates": {
+                        "value": "binding",
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "af102114-0c49-476f-9c44-fb9425b89cbb"
+                },
+                {
+                    "type": "Ext.form.field.Date",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "original_date",
+                        "fieldLabel": [
+                            "{i18n.document.base.original_date}"
+                        ],
+                        "layout|anchor": "100%",
+                        "value": [
+                            "{document.original_date}"
+                        ]
+                    },
+                    "name": "MyDateField1",
+                    "configAlternates": {
+                        "value": "binding",
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "9f19c385-9f64-4dab-a4a9-241c823f5f29"
+                }
+            ]
         }
     ]
 }

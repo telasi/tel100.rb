@@ -42,6 +42,7 @@ module.exports = {
   status: 'სტატუსი',
   my_status: 'ჩემი სტატუსი',
   general: 'ზოგადი თვისებები',
+  in_fields: 'შემოსული წერილის პარამეტრები',
   statuses: {
     draft: 'დრაფტი',
     to_be_sent: 'გასაგზავნი',

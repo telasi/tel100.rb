@@ -19,7 +19,8 @@ Ext.define('Tel100.view.document.editor.GeneralViewModel', {
 
   requires: [
     'Ext.data.Store',
-    'Ext.data.proxy.Memory'
+    'Ext.data.proxy.Memory',
+    'Ext.app.bind.Formula'
   ],
 
   stores: {
@@ -44,6 +45,11 @@ Ext.define('Tel100.view.document.editor.GeneralViewModel', {
           }
         ]
       }
+    }
+  },
+  formulas: {
+    isIncoming: function(get) {
+      return get('document.direction') === 'in';
     }
   }
 

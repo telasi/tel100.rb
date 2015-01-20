@@ -63,6 +63,40 @@
                     "designerId": "ac7fff8a-474e-4fc9-8e35-5dbc7c35f2a6"
                 }
             ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "isIncoming"
+            },
+            "name": "MyFormula",
+            "designerId": "0c4262c4-66fe-4c94-8cd1-a171698ebb44",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return get('document.direction') === 'in';"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "3f2ef756-084a-4798-9219-d93a58cdf306"
+                }
+            ]
         }
     ]
 }

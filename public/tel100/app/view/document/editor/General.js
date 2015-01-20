@@ -21,7 +21,8 @@ Ext.define('Tel100.view.document.editor.General', {
     'Tel100.view.document.editor.GeneralViewModel',
     'Ext.form.field.ComboBox',
     'Ext.form.field.Date',
-    'Ext.form.field.Number'
+    'Ext.form.field.Number',
+    'Ext.form.FieldSet'
   ],
 
   viewModel: {
@@ -79,6 +80,31 @@ Ext.define('Tel100.view.document.editor.General', {
         value: '{document.direction}',
         store: '{directions}'
       }
+    },
+    {
+      xtype: 'fieldset',
+      bind: {
+        hidden: '{!isIncoming}',
+        title: '{i18n.document.base.in_fields}'
+      },
+      items: [
+        {
+          xtype: 'textfield',
+          anchor: '100%',
+          bind: {
+            fieldLabel: '{i18n.document.base.original_number}',
+            value: '{document.original_number}'
+          }
+        },
+        {
+          xtype: 'datefield',
+          anchor: '100%',
+          bind: {
+            fieldLabel: '{i18n.document.base.original_date}',
+            value: '{document.original_date}'
+          }
+        }
+      ]
     }
   ]
 
