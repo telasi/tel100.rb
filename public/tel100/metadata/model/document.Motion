@@ -1,0 +1,13 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "document.Motion"
+    },
+    "name": "MyModel",
+    "designerId": "836b8ce7-85ef-4805-b52b-145045d03f17"
+}

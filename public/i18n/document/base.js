@@ -1,7 +1,9 @@
 module.exports = {
   ui: {
     documents: '<i class="fa fa-files-o"></i> დოკუმენტები',
-    creatorTitle: '<i class="fa fa-plus"></i> ახალი დოკუმენტი'
+    creatorTitle: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
+    creatorGeneralTab: 'ზოგადი თვისებები',
+    creatorMotionsTab: 'მიმღებები'
   },
   type: 'სახეობა',
   direction: 'მიმართულება',
@@ -17,7 +19,6 @@ module.exports = {
   owner: 'მფლობელი',
   status: 'სტატუსი',
   my_status: 'ჩემი სტატუსი',
-  general: 'ზოგადი თვისებები',
   in_fields: 'შემოსული წერილის პარამეტრები',
   statuses: {
     draft: 'დრაფტი',

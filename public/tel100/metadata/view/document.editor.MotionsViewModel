@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documenteditormotions",
+        "designer|userClassName": "document.editor.MotionsViewModel"
+    },
+    "designerId": "ffd21d10-0bfb-41e9-b435-4d3c447514c0"
+}

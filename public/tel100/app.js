@@ -24,7 +24,8 @@ Ext.application({
     'User',
     'document.Type',
     'document.Base',
-    'document.Direction'
+    'document.Direction',
+    'document.Motion'
   ],
   views: [
     'Main',
@@ -45,7 +46,8 @@ Ext.application({
     'document.folder.Panel',
     'document.grid.Panel',
     'document.editor.Panel',
-    'document.editor.General'
+    'document.editor.General',
+    'document.editor.Motions'
   ],
   name: 'Tel100',
 
