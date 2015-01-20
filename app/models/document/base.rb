@@ -17,13 +17,34 @@ class Document::Base < ActiveRecord::Base
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_many :comments, class_name: 'Document::Comment', foreign_key: 'document_id'
 
-  validates :type, presence: { message: 'აარჩიეთ სახეობა' }
-  validates :direction, presence: { message: 'აარჩიეთ მიმართულება' }
-  validates :subject, presence: { message: 'ჩაწერეთ სათაური' }
-  validates :status, numericality: { message: 'მიუთითეთ სტატუსი' }
+  # validates :type, presence: { message: 'აარჩიეთ სახეობა' }
+  # validates :direction, presence: { message: 'აარჩიეთ მიმართულება' }
+  # validates :subject, presence: { message: 'ჩაწერეთ სათაური' }
+  # validates :status, numericality: { message: 'მიუთითეთ სტატუსი' }
 
   def body; self.text.body if self.text.present? end
   def motions_waiting; self.motions_total - self.motions_completed - self.motions_canceled end
+
+
+  def self.create_draft!(sender_user)
+    raise 'sender not defined' if sender_user.blank?
+
+    sender = whose_user(sender_user)
+    docparams = {
+      sender_user: sender_user, sender: sender,
+      owner_user: sender_user, owner: sender,
+      direction: 'inner', status: DRAFT,
+      type: Document::Type.order('order_by').first
+    }
+
+    Document::Base.transaction do
+      doc = Document::Base.create!(docparams)
+      Document::User.upsert!(doc, sender_user, ROLE_OWNER, { is_new: 0 })
+      doc
+    end
+  end
+
+### old API
 
   def revisit_motions!
     if self.status == DRAFT
