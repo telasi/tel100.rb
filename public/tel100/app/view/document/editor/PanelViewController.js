@@ -15,5 +15,18 @@
 
 Ext.define('Tel100.view.document.editor.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documenteditorpanel'
+  alias: 'controller.documenteditorpanel',
+
+  onAddReceiver: function() {
+    console.log('adding receiver....');
+  },
+
+  onTextfieldChange: function(field, newValue, oldValue, eOpts) {
+    console.log('SUBJECT changed!');
+  },
+
+  onHtmleditorChange: function(field, newValue, oldValue, eOpts) {
+    console.log('TEXT changed!');
+  }
+
 });

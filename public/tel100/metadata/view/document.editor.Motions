@@ -101,13 +101,21 @@
                 "text": [
                     "{i18n.document.motion.motion_text}"
                 ],
+                "tools": null,
                 "width": 200
             },
             "name": "MyColumn11",
             "configAlternates": {
                 "text": "binding"
             },
-            "designerId": "acfd6a63-cdd8-4f71-9e45-a244062f3db5"
+            "designerId": "acfd6a63-cdd8-4f71-9e45-a244062f3db5",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "tools",
+                    "type": "string"
+                }
+            ]
         }
     ]
 }

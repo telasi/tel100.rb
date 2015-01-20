@@ -65,6 +65,26 @@
                             "name": "submitEmptyText",
                             "type": "string"
                         }
+                    ],
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onTextfieldChange",
+                                "implHandler": [
+                                    "console.log('SUBJECT changed!');"
+                                ],
+                                "name": "change",
+                                "scope": "me"
+                            },
+                            "name": "onTextfieldChange",
+                            "designerId": "cdb4de75-f220-419e-8be6-7c6f3a863cb1"
+                        }
                     ]
                 },
                 {
@@ -86,7 +106,27 @@
                     "configAlternates": {
                         "value": "binding"
                     },
-                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27"
+                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onHtmleditorChange",
+                                "implHandler": [
+                                    "console.log('TEXT changed!');"
+                                ],
+                                "name": "change",
+                                "scope": "me"
+                            },
+                            "name": "onHtmleditorChange",
+                            "designerId": "8900f555-9cc9-4e99-83e1-438278eeeaa6"
+                        }
+                    ]
                 }
             ]
         },
@@ -117,11 +157,12 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "general properties",
+                        "hideCollapseTool": true,
                         "title": [
                             "{i18n.document.base.ui.creatorGeneralTab}"
                         ]
                     },
-                    "name": "document.editor.general1",
+                    "name": "document.editor.general5",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -137,19 +178,35 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "motions editor",
+                        "hideCollapseTool": true,
                         "store": [
                             "{motions}"
                         ],
                         "title": [
                             "{i18n.document.base.ui.creatorMotionsTab}"
+                        ],
+                        "tools": [
+                            "[{",
+                            "  type: 'plus',",
+                            "  // tooltip: 'მიმღების დამატება',",
+                            "  handler: 'onAddReceiver'",
+                            "}]"
                         ]
                     },
-                    "name": "document.editor.motions",
+                    "name": "document.editor.motions4",
                     "configAlternates": {
                         "title": "binding",
-                        "store": "binding"
+                        "store": "binding",
+                        "tools": "array"
                     },
                     "designerId": "369b4c7e-5bdb-4e2f-a459-5af9a65790e6",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "tools",
+                            "type": "string"
+                        }
+                    ],
                     "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
                 }
             ]
