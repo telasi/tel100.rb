@@ -11,29 +11,27 @@ var request = function(opts) {
   var success = opts && opts.success;
   var failure = opts && opts.failure;
 
-  if (view) {
-    view.setLoading(true);
-  }
+  if (view) { view.setLoading(true); }
 
   Ext.Ajax.request({
     url: url,
     method: method,
     params: params,
     success: function(response) {
-      view.setLoading(false);
+      if (view) { view.setLoading(false); }
       var data = JSON.parse(response.responseText);
-      if (success && data.success) {
-        success(data);
-      } else if (!data.success) {
+      if (data.success === false) {
         errorMessage(data.message || data.error);
+      } else if (success) {
+        success(data);
       }
     },
     failure: function(response) {
-      view.setLoading(false);
+      if (view) { view.setLoading(false); }
       if (failure) {
         failure(response);
       } else {
-        errorMessage(i18n.errors.connection_error);
+        errorMessage('connection failure: try again latter.');
       }
     },
   });

@@ -12,29 +12,27 @@ var request = function(opts) {
   var success = opts && opts.success;
   var failure = opts && opts.failure;
 
-  if (view) {
-    view.setLoading(true);
-  }
+  if (view) { view.setLoading(true); }
 
   Ext.Ajax.request({
     url: url,
     method: method,
     params: params,
     success: function(response) {
-      view.setLoading(false);
+      if (view) { view.setLoading(false); }
       var data = JSON.parse(response.responseText);
-      if (success && data.success) {
+      if (data.success === false) {
+        errorMessage(data.message || data.error);
+      } else if (success) {
         success(data);
-      } else if (!data.success) {
-        errorMessage(data.message);
       }
     },
     failure: function(response) {
-      view.setLoading(false);
+      if (view) { view.setLoading(false); }
       if (failure) {
         failure(response);
       } else {
-        errorMessage(i18n.errors.connection_error);
+        errorMessage('connection failure: try again latter.');
       }
     },
   });
@@ -67,13 +65,35 @@ module.exports = {
 };
 
 },{}],2:[function(require,module,exports){
-module.exports = {};
-},{}],3:[function(require,module,exports){
+var ajax = require('../ajax');
+
+var createDraft = function(args) {
+  var opts = args || {};
+  opts.method = 'POST';
+  opts.url = '/api/documents/base/create_draft';
+
+  opts.success = function(data) {
+    console.log(data.id);
+  };
+
+  ajax.request(opts);
+};
+
+module.exports = {
+  createDraft: createDraft
+};
+
+},{"../ajax":1}],3:[function(require,module,exports){
+module.exports = {
+  document: require('./document')
+};
+
+},{"./document":2}],4:[function(require,module,exports){
 module.exports = {
   status: require('./status')
 };
 
-},{"./status":4}],4:[function(require,module,exports){
+},{"./status":5}],5:[function(require,module,exports){
 var STATUS_CANCELED = -2;
 var STATUS_NOT_SENT = -1;
 var STATUS_DRAFT = 0;
@@ -163,7 +183,7 @@ module.exports = {
   statusFormatted: statusFormatted
 };
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var currentLocale
   , ajax = require('./ajax')
   , preferences = require('./preferences')
@@ -190,7 +210,7 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":1,"./preferences":7}],6:[function(require,module,exports){
+},{"./ajax":1,"./preferences":8}],7:[function(require,module,exports){
 window.helpers = {
   ajax: require('./ajax'),
   'document': require('./document'),
@@ -200,7 +220,7 @@ window.helpers = {
   api: require('./api')
 };
 
-},{"./ajax":1,"./api":2,"./document":3,"./i18n":5,"./preferences":7,"./user":8}],7:[function(require,module,exports){
+},{"./ajax":1,"./api":3,"./document":4,"./i18n":6,"./preferences":8,"./user":9}],8:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -231,7 +251,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -261,4 +281,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":1,"./i18n":5,"./preferences":7}]},{},[6]);
+},{"./ajax":1,"./i18n":6,"./preferences":8}]},{},[7]);
