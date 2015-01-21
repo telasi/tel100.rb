@@ -21,14 +21,11 @@ Ext.define('Tel100.view.document.editor.PanelViewController', {
     console.log('adding receiver....');
   },
 
-  updateDocument: function() {
-
-  },
-
   onBeforeRender: function(component, eOpts) {
+    // fire documentchange
     var vm = this.getViewModel();
     var onChange = function() {
-      this.getView().fireEvent('documentchnage', vm.get('document'));
+      this.getView().fireEvent('documentchange', vm.get('document'));
     };
     var options = { deep: true };
     vm.bind('{document}', onChange, this, options);

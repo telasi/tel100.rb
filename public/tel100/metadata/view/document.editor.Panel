@@ -181,9 +181,10 @@
             "userConfig": {
                 "fn": "onBeforeRender",
                 "implHandler": [
+                    "// fire documentchange",
                     "var vm = this.getViewModel();",
                     "var onChange = function() {",
-                    "  this.getView().fireEvent('documentchnage', vm.get('document'));",
+                    "  this.getView().fireEvent('documentchange', vm.get('document'));",
                     "};",
                     "var options = { deep: true };",
                     "vm.bind('{document}', onChange, this, options);"
@@ -218,7 +219,7 @@
                     "  });",
                     "}"
                 ],
-                "name": "documentchnage",
+                "name": "documentchange",
                 "scope": "me"
             },
             "name": "onDocumentChange",

@@ -26,19 +26,6 @@
             },
             "name": "onAddReceiver",
             "designerId": "9d11d76a-e9c5-4b18-bcb6-b01ed2711555"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "updateDocument"
-            },
-            "name": "updateDocument",
-            "designerId": "acc28b97-f4a6-4166-80f9-24d64f1652e7"
         }
     ]
 }

@@ -94,7 +94,7 @@ Ext.define('Tel100.view.document.editor.Panel', {
   ],
   listeners: {
     beforerender: 'onBeforeRender',
-    documentchnage: {
+    documentchange: {
       fn: 'onDocumentChange',
       buffer: 500
     }
