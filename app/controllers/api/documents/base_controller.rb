@@ -6,6 +6,10 @@ class Api::Documents::BaseController < ApiController
     @my_docs = Document::User.where(user: current_user).order('UPDATED_AT desc')
   end
 
+  def show
+    @my_doc = Document::User.where(user: current_user, document_id: params[:id]).first
+  end
+
   def create_draft
     doc = Document::Base.create_draft!(current_user)
     render json: { id: doc.id }
@@ -13,7 +17,7 @@ class Api::Documents::BaseController < ApiController
 
   def update_draft
     doc = Document::Base.find(params[:id])
-    doc.update_draft!(params[:document])
+    doc.update_draft!(current_user, params)
     render json: { success: true }
   end
 

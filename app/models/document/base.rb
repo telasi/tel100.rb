@@ -43,16 +43,12 @@ class Document::Base < ActiveRecord::Base
     raise 'user not defined' if user.blank?
     raise 'not a draft' unless self.draft?
     Document::Base.transaction do
-      text = self.text || Document::Text.new(document: self)
-      text.body = params[:body]
-      text.save!
-      self.subject = params[:subject]
-      self.type_id = params[:type_id]
-      self.docdate = params[:docdate]
-      self.docyear = self.docdate.year if self.docdate.present?
-      self.page_count = params[:page_count]
-      self.additions_count = params[:additions_count]
-      self.direction = params[:direction]
+      if params.key?(:body)
+        text = self.text || Document::Text.new(document: self)
+        text.body = params[:body]
+        text.save!
+      end
+      self.update_attributes(params.permit(:subject,:type_id,:docdate,:page_count,:additions_count, :direction))
       self.save!
     end
   end
