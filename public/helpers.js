@@ -74,6 +74,14 @@ var createDraft = function(args) {
   ajax.request(opts);
 };
 
+var updateDraft = function(id, args) {
+  var opts = args || {};
+  opts.method = 'PUT';
+  opts.url = '/api/documents/base/update_draft';
+  opts.params.id = id;
+  ajax.request(opts);
+};
+
 var deleteDraft = function(id, args) {
   var opts = args || {};
   opts.method = 'DELETE';
@@ -85,6 +93,7 @@ var deleteDraft = function(id, args) {
 
 module.exports = {
   createDraft: createDraft,
+  updateDraft: updateDraft,
   deleteDraft: deleteDraft
 };
 
