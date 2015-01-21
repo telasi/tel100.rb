@@ -17,14 +17,9 @@ class Document::Base < ActiveRecord::Base
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_many :comments, class_name: 'Document::Comment', foreign_key: 'document_id'
 
-  # validates :type, presence: { message: 'აარჩიეთ სახეობა' }
-  # validates :direction, presence: { message: 'აარჩიეთ მიმართულება' }
-  # validates :subject, presence: { message: 'ჩაწერეთ სათაური' }
-  # validates :status, numericality: { message: 'მიუთითეთ სტატუსი' }
-
   def body; self.text.body if self.text.present? end
   def motions_waiting; self.motions_total - self.motions_completed - self.motions_canceled end
-
+  def draft?; self.status == DRAFT end
 
   def self.create_draft!(sender_user)
     raise 'sender not defined' if sender_user.blank?
@@ -44,9 +39,27 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
+  def update_draft!(user, params)
+    raise 'user not defined' if user.blank?
+    raise 'not a draft' unless self.draft?
+    Document::Base.transaction do
+      text = self.text || Document::Text.new(document: self)
+      text.body = params[:body]
+      text.save!
+      self.subject = params[:subject]
+      self.type_id = params[:type_id]
+      self.docdate = params[:docdate]
+      self.docyear = self.docdate.year if self.docdate.present?
+      self.page_count = params[:page_count]
+      self.additions_count = params[:additions_count]
+      self.direction = params[:direction]
+      self.save!
+    end
+  end
+
   def delete_draft!(user)
     raise 'user not defined' if user.blank?
-    raise 'not a draft' if self.status != DRAFT
+    raise 'not a draft' unless self.draft?
     Document::Base.transaction do
       self.motions.destroy_all
       self.comments.destroy_all
