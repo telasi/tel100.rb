@@ -15,10 +15,5 @@
 
 Ext.define('Tel100.view.document.folder.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentfolderpanel',
-
-  onNewDocument: function(tool, e, owner, eOpts) {
-    this.getView().up('documentmain').openNewDocument();
-  }
-
+  alias: 'controller.documentfolderpanel'
 });

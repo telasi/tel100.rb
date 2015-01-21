@@ -94,40 +94,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "type": "Ext.panel.Tool",
-            "reference": {
-                "name": "tools",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|displayName": "new document",
-                "type": "plus"
-            },
-            "name": "MyTool1",
-            "designerId": "4a53beb4-10cb-4bfd-80ee-995685559a58",
-            "cn": [
-                {
-                    "type": "viewcontrollereventbinding",
-                    "reference": {
-                        "name": "listeners",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fn": "onNewDocument",
-                        "implHandler": [
-                            "this.getView().up('documentmain').openNewDocument();"
-                        ],
-                        "name": "click",
-                        "scope": "me"
-                    },
-                    "name": "onNewDocument",
-                    "designerId": "ae63267f-0b79-40fd-97ee-997b4f4e1e24"
-                }
-            ]
         }
     ]
 }

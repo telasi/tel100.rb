@@ -19,14 +19,11 @@ Ext.define('Tel100.view.document.folder.Panel', {
 
   requires: [
     'Tel100.view.document.folder.PanelViewModel',
-    'Tel100.view.document.folder.PanelViewController',
     'Ext.grid.column.Column',
     'Ext.grid.feature.Grouping',
-    'Ext.XTemplate',
-    'Ext.panel.Tool'
+    'Ext.XTemplate'
   ],
 
-  controller: 'documentfolderpanel',
   viewModel: {
     type: 'documentfolderpanel'
   },
@@ -56,15 +53,6 @@ Ext.define('Tel100.view.document.folder.Panel', {
           }
         }
       )
-    }
-  ],
-  tools: [
-    {
-      xtype: 'tool',
-      type: 'plus',
-      listeners: {
-        click: 'onNewDocument'
-      }
     }
   ]
 

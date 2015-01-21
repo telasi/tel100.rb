@@ -99,14 +99,14 @@ Ext.define('Tel100.view.document.Main', {
   ],
 
   openNewDocument: function() {
-    var tabs = this.down('#documentTabs');
-    var editor = Tel100.view.document.editor.Panel.create({title: i18n.document.base.ui.creatorTitle, closable: true});
-    editor.getViewModel().set('document', Tel100.model.document.Base.create({
-      type_id: 1,
-      direction: 'inner'
-    }));
-    tabs.add(editor);
-    tabs.setActiveTab(editor);
+    // var tabs = this.down('#documentTabs');
+    // var editor = Tel100.view.document.editor.Panel.create({title: i18n.document.base.ui.creatorTitle, closable: true});
+    // editor.getViewModel().set('document', Tel100.model.document.Base.create({
+    //   type_id: 1,
+    //   direction: 'inner'
+    // }));
+    // tabs.add(editor);
+    // tabs.setActiveTab(editor);
   }
 
 });
