@@ -1,6 +1,9 @@
 module.exports = {
   ui: {
     documents: '<i class="fa fa-files-o"></i> დოკუმენტები',
+    refresh: '<i class="fa fa-refresh"></i> განახლება',
+    newDocument: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
+    deleteDraft: '<i class="fa fa-trash"></i> წაშლა',
     creatorTitle: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
     creatorGeneralTab: 'ზოგადი თვისებები',
     creatorMotionsTab: 'მიმღებები'

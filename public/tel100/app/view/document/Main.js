@@ -54,8 +54,25 @@ Ext.define('Tel100.view.document.Main', {
               dock: 'top',
               items: [
                 {
-                  text: 'refresh',
-                  handler: 'onRefresh'
+                  handler: 'onRefresh',
+                  bind: {
+                    text: '{i18n.document.base.ui.refresh}'
+                  }
+                },
+                {
+                  handler: 'onNewDocument',
+                  cls: 'success-button',
+                  bind: {
+                    text: '{i18n.document.base.ui.newDocument}'
+                  }
+                },
+                '->',
+                {
+                  handler: 'onDeleteDraft',
+                  cls: 'danger-button',
+                  bind: {
+                    text: '{i18n.document.base.ui.deleteDraft}'
+                  }
                 }
               ]
             }
