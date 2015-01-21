@@ -105,21 +105,33 @@ module.exports = {
 
 },{"./document":2}],4:[function(require,module,exports){
 module.exports = {
-  status: require('./status')
+  status: require('./status'),
+  role: require('./role')
 };
 
-},{"./status":5}],5:[function(require,module,exports){
+},{"./role":5,"./status":6}],5:[function(require,module,exports){
+module.exports = {
+  OWNER:    'owner',
+  CREATOR:  'creator',
+  AUTHOR:   'author',
+  SIGNEE:   'signee',
+  ASSIGNEE: 'assignee'
+};
+
+},{}],6:[function(require,module,exports){
+var role = require('./role');
+
 var STATUS_CANCELED = -2;
 var STATUS_NOT_SENT = -1;
 var STATUS_DRAFT = 0;
 var STATUS_CURRENT = 1;
 var STATUS_COMPLETED = 2;
 
-var ROLE_OWNER = 'owner';
-var ROLE_CREATOR = 'creator';
-var ROLE_AUTHOR = 'author';
-var ROLE_SIGNEE = 'signee';
-var ROLE_ASSIGNEE = 'assignee';
+var ROLE_OWNER = role.OWNER;
+var ROLE_CREATOR = role.CREATOR;
+var ROLE_AUTHOR = role.AUTHOR;
+var ROLE_SIGNEE = role.SIGNEE;
+var ROLE_ASSIGNEE = role.ASSIGNEE;
 
 var statusDecoration = function(status, role, opts) {
   var textId, iconId, styleId, iconStyleId;
@@ -194,11 +206,19 @@ var statusFormatted = function(status, role, opts) {
 };
 
 module.exports = {
+  // constants
+  CANCELED: STATUS_CANCELED,
+  NOT_SENT: STATUS_NOT_SENT,
+  DRAFT: STATUS_DRAFT,
+  CURRENT: STATUS_CURRENT,
+  COMPLETED: STATUS_COMPLETED,
+
+  // functions
   statusDecoration: statusDecoration,
   statusFormatted: statusFormatted
 };
 
-},{}],6:[function(require,module,exports){
+},{"./role":5}],7:[function(require,module,exports){
 var currentLocale
   , ajax = require('./ajax')
   , preferences = require('./preferences')
@@ -225,7 +245,7 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":1,"./preferences":8}],7:[function(require,module,exports){
+},{"./ajax":1,"./preferences":9}],8:[function(require,module,exports){
 window.helpers = {
   ajax: require('./ajax'),
   'document': require('./document'),
@@ -235,7 +255,7 @@ window.helpers = {
   api: require('./api')
 };
 
-},{"./ajax":1,"./api":3,"./document":4,"./i18n":6,"./preferences":8,"./user":9}],8:[function(require,module,exports){
+},{"./ajax":1,"./api":3,"./document":4,"./i18n":7,"./preferences":9,"./user":10}],9:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -266,7 +286,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -296,4 +316,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":1,"./i18n":6,"./preferences":8}]},{},[7]);
+},{"./ajax":1,"./i18n":7,"./preferences":9}]},{},[8]);

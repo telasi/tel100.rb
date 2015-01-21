@@ -1,14 +1,16 @@
+var role = require('./role');
+
 var STATUS_CANCELED = -2;
 var STATUS_NOT_SENT = -1;
 var STATUS_DRAFT = 0;
 var STATUS_CURRENT = 1;
 var STATUS_COMPLETED = 2;
 
-var ROLE_OWNER = 'owner';
-var ROLE_CREATOR = 'creator';
-var ROLE_AUTHOR = 'author';
-var ROLE_SIGNEE = 'signee';
-var ROLE_ASSIGNEE = 'assignee';
+var ROLE_OWNER = role.OWNER;
+var ROLE_CREATOR = role.CREATOR;
+var ROLE_AUTHOR = role.AUTHOR;
+var ROLE_SIGNEE = role.SIGNEE;
+var ROLE_ASSIGNEE = role.ASSIGNEE;
 
 var statusDecoration = function(status, role, opts) {
   var textId, iconId, styleId, iconStyleId;
@@ -83,6 +85,14 @@ var statusFormatted = function(status, role, opts) {
 };
 
 module.exports = {
+  // constants
+  CANCELED: STATUS_CANCELED,
+  NOT_SENT: STATUS_NOT_SENT,
+  DRAFT: STATUS_DRAFT,
+  CURRENT: STATUS_CURRENT,
+  COMPLETED: STATUS_COMPLETED,
+
+  // functions
   statusDecoration: statusDecoration,
   statusFormatted: statusFormatted
 };

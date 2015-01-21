@@ -1,3 +1,4 @@
 module.exports = {
-  status: require('./status')
+  status: require('./status'),
+  role: require('./role')
 };
