@@ -6,8 +6,55 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  selection: null",
+            "}"
+        ],
         "designer|userAlias": "documentmain",
         "designer|userClassName": "document.MainViewModel"
     },
-    "designerId": "8db27d88-0934-4e59-bebc-ea6b2d462d9b"
+    "designerId": "8db27d88-0934-4e59-bebc-ea6b2d462d9b",
+    "cn": [
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "deleteDraftButtonDisabled"
+            },
+            "name": "MyFormula",
+            "designerId": "7f196d9f-6a4f-49a7-ba3b-88bda6e3cd40",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var selection = get('selection');",
+                            "if (selection) {",
+                            "  var status = selection.get('status');",
+                            "  return status !== helpers.document.status.DRAFT;",
+                            "} else {",
+                            "  return true;",
+                            "}"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "09c36f71-230e-4b86-8388-3e5be720b492"
+                }
+            ]
+        }
+    ]
 }

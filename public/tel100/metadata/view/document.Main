@@ -80,7 +80,8 @@
                             "    handler: 'onDeleteDraft',",
                             "    cls: 'danger-button',",
                             "    bind: {",
-                            "      text: '{i18n.document.base.ui.deleteDraft}'",
+                            "      text: '{i18n.document.base.ui.deleteDraft}',",
+                            "      disabled: '{deleteDraftButtonDisabled}'",
                             "    }",
                             "  }]",
                             "}]"
@@ -121,8 +122,23 @@
                                 "type": "array"
                             },
                             "codeClass": null,
+                            "userConfig": {
+                                "selection": [
+                                    "{selection}"
+                                ]
+                            },
                             "name": "document.grid.panel",
+                            "configAlternates": {
+                                "selection": "binding"
+                            },
                             "designerId": "11128e3a-5b38-4166-8d33-c7537be201c5",
+                            "customConfigs": [
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "selection",
+                                    "type": "string"
+                                }
+                            ],
                             "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103"
                         }
                     ]

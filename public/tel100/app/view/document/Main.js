@@ -71,7 +71,8 @@ Ext.define('Tel100.view.document.Main', {
                   handler: 'onDeleteDraft',
                   cls: 'danger-button',
                   bind: {
-                    text: '{i18n.document.base.ui.deleteDraft}'
+                    text: '{i18n.document.base.ui.deleteDraft}',
+                    disabled: '{deleteDraftButtonDisabled}'
                   }
                 }
               ]
@@ -83,7 +84,10 @@ Ext.define('Tel100.view.document.Main', {
           },
           items: [
             {
-              xtype: 'documentgridpanel'
+              xtype: 'documentgridpanel',
+              bind: {
+                selection: '{selection}'
+              }
             }
           ]
         }

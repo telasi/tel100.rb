@@ -15,6 +15,26 @@
 
 Ext.define('Tel100.view.document.MainViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documentmain'
+  alias: 'viewmodel.documentmain',
+
+  requires: [
+    'Ext.app.bind.Formula'
+  ],
+
+  data: {
+    selection: null
+  },
+
+  formulas: {
+    deleteDraftButtonDisabled: function(get) {
+      var selection = get('selection');
+      if (selection) {
+        var status = selection.get('status');
+        return status !== helpers.document.status.DRAFT;
+      } else {
+        return true;
+      }
+    }
+  }
 
 });
