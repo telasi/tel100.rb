@@ -9,5 +9,24 @@
         "designer|userAlias": "documentmain",
         "designer|userClassName": "document.MainViewController"
     },
-    "designerId": "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68"
+    "designerId": "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onRefresh",
+                "implHandler": [
+                    "var grid = this.getView().down('documentgridpanel');",
+                    "grid.refresh();"
+                ]
+            },
+            "name": "onRefresh",
+            "designerId": "d6742be9-d1c6-491c-bfeb-c5274be979cd"
+        }
+    ]
 }

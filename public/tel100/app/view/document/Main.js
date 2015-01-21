@@ -19,6 +19,7 @@ Ext.define('Tel100.view.document.Main', {
 
   requires: [
     'Tel100.view.document.MainViewModel',
+    'Tel100.view.document.MainViewController',
     'Tel100.view.document.folder.Panel',
     'Tel100.view.document.grid.Panel',
     'Ext.grid.Panel',
@@ -26,6 +27,7 @@ Ext.define('Tel100.view.document.Main', {
     'Ext.tab.Tab'
   ],
 
+  controller: 'documentmain',
   viewModel: {
     type: 'documentmain'
   },
@@ -46,6 +48,18 @@ Ext.define('Tel100.view.document.Main', {
       items: [
         {
           xtype: 'panel',
+          dockedItems: [
+            {
+              xtype: 'toolbar',
+              dock: 'top',
+              items: [
+                {
+                  text: 'refresh',
+                  handler: 'onRefresh'
+                }
+              ]
+            }
+          ],
           layout: 'fit',
           bind: {
             title: '{i18n.document.base.ui.documents}'

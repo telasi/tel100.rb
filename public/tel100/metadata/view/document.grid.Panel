@@ -209,6 +209,22 @@
                 "text": "binding"
             },
             "designerId": "61fe5764-b6a7-49f4-928b-e5ce82974acd"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "this.getController().onRefresh();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "a976af00-b3ba-4140-aeac-7b882965af99"
         }
     ]
 }

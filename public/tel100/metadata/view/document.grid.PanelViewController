@@ -9,5 +9,25 @@
         "designer|userAlias": "documentgridpanel",
         "designer|userClassName": "document.grid.PanelViewController"
     },
-    "designerId": "2d888ec8-f4e8-4c38-809e-56c158552170"
+    "designerId": "2d888ec8-f4e8-4c38-809e-56c158552170",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onRefresh",
+                "implHandler": [
+                    "var grid = this.getView();",
+                    "var store = grid.getStore();",
+                    "store.reload();"
+                ]
+            },
+            "name": "onRefresh",
+            "designerId": "4de353ae-ba4b-449b-97df-96c0140dccd8"
+        }
+    ]
 }

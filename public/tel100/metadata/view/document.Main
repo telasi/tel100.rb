@@ -59,6 +59,18 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "designer|displayName": "documents",
+                        "dock": null,
+                        "dockedItems": [
+                            "[{",
+                            "  xtype: 'toolbar',",
+                            "  dock: 'top',",
+                            "  items: [{",
+                            "    text: 'refresh',",
+                            "    handler: 'onRefresh'",
+                            "  }]",
+                            "}]"
+                        ],
                         "layout": "fit",
                         "title": [
                             "{i18n.document.base.ui.documents}"
@@ -66,9 +78,17 @@
                     },
                     "name": "MyPanel",
                     "configAlternates": {
-                        "title": "binding"
+                        "title": "binding",
+                        "dockedItems": "array"
                     },
                     "designerId": "f9b45dff-1c4b-42fe-9107-fe0d3119c16b",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "dockedItems",
+                            "type": "string"
+                        }
+                    ],
                     "cn": [
                         {
                             "type": "Ext.tab.Tab",

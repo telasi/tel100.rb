@@ -19,10 +19,12 @@ Ext.define('Tel100.view.document.grid.Panel', {
 
   requires: [
     'Tel100.view.document.grid.PanelViewModel',
+    'Tel100.view.document.grid.PanelViewController',
     'Ext.grid.View',
     'Ext.grid.column.Column'
   ],
 
+  controller: 'documentgridpanel',
   viewModel: {
     type: 'documentgridpanel'
   },
@@ -91,6 +93,10 @@ Ext.define('Tel100.view.document.grid.Panel', {
         text: '{i18n.document.base.subject}'
       }
     }
-  ]
+  ],
+
+  refresh: function() {
+    this.getController().onRefresh();
+  }
 
 });
