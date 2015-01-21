@@ -62,10 +62,18 @@ Ext.define('Tel100.view.document.MainViewController', {
   },
 
   openDocument: function(doc) {
+    var tabs = this.getView().down('#documentTabs');
+    var editor;
     if (doc.get('status') === helpers.document.status.DRAFT) {
-      console.log('open draft:', doc.id);
+      var title = i18n.document.base.ui.editDraftTitle;
+      var editor = Tel100.view.document.editor.Panel.create({ title: title, closable: true });
+      editor.getViewModel().set('document', doc);
     } else {
-      console.log('opening document:', doc.id);
+      // TODO: open non-draft document
+    }
+    if (editor) {
+      tabs.add(editor);
+      tabs.setActiveTab(editor);
     }
   },
 

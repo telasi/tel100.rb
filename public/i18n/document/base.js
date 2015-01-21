@@ -4,9 +4,9 @@ module.exports = {
     refresh: '<i class="fa fa-refresh"></i> განახლება',
     newDocument: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
     deleteDraft: '<i class="fa fa-trash"></i> წაშლა',
-    creatorTitle: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
+    editDraftTitle: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
     creatorGeneralTab: 'ზოგადი თვისებები',
-    creatorMotionsTab: 'მიმღებები'
+    creatorMotionsTab: 'ადრესატები და ხელმომწერები'
   },
   type: 'სახეობა',
   direction: 'მიმართულება',
