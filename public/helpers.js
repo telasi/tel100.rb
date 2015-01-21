@@ -79,8 +79,23 @@ var createDraft = function(args) {
   ajax.request(opts);
 };
 
+var deleteDraft = function(id, args) {
+  var opts = args || {};
+  opts.method = 'DELETE';
+  opts.url = '/api/documents/base/delete_draft';
+  opts.params = { id: id };
+
+  opts.success = function(data) {
+    console.log('deleted!');
+  };
+
+  ajax.request(opts);
+};
+
+
 module.exports = {
-  createDraft: createDraft
+  createDraft: createDraft,
+  deleteDraft: deleteDraft
 };
 
 },{"../ajax":1}],3:[function(require,module,exports){
