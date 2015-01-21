@@ -63,18 +63,24 @@ Ext.define('Tel100.view.document.MainViewController', {
 
   openDocument: function(doc) {
     var tabs = this.getView().down('#documentTabs');
-    var editor;
-    if (doc.get('status') === helpers.document.status.DRAFT) {
-      var title = i18n.document.base.ui.editDraftTitle;
-      var editor = Tel100.view.document.editor.Panel.create({ title: title, closable: true });
-      editor.getViewModel().set('document', doc);
-    } else {
-      // TODO: open non-draft document
-    }
-    if (editor) {
-      tabs.add(editor);
-      tabs.setActiveTab(editor);
-    }
+    doc.load({
+      success: function(doc) {
+        var editor;
+        if (doc.get('status') === helpers.document.status.DRAFT) {
+          var title = i18n.document.base.ui.editDraftTitle;
+          editor = Tel100.view.document.editor.Panel.create({ title: title, closable: true });
+          editor.getViewModel().set('document', doc);
+        } else {
+          // TODO: open non-draft document
+        }
+        if (editor) {
+          tabs.add(editor);
+          tabs.setActiveTab(editor);
+        }
+      }
+    });
+
+
   },
 
   onGridDoubleClick: function(dataview, record, item, index, e, eOpts) {

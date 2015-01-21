@@ -122,7 +122,7 @@
                             "{i18n.document.base.ui.creatorGeneralTab}"
                         ]
                     },
-                    "name": "document.editor.general1",
+                    "name": "document.editor.general2",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -153,7 +153,7 @@
                             "}]"
                         ]
                     },
-                    "name": "document.editor.motions1",
+                    "name": "document.editor.motions2",
                     "configAlternates": {
                         "title": "binding",
                         "store": "binding",
