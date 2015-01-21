@@ -162,7 +162,7 @@
                             "{i18n.document.base.ui.creatorGeneralTab}"
                         ]
                     },
-                    "name": "document.editor.general5",
+                    "name": "document.editor.general6",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -193,7 +193,7 @@
                             "}]"
                         ]
                     },
-                    "name": "document.editor.motions4",
+                    "name": "document.editor.motions5",
                     "configAlternates": {
                         "title": "binding",
                         "store": "binding",

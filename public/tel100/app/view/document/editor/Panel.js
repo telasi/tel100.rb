@@ -82,7 +82,6 @@ Ext.define('Tel100.view.document.editor.Panel', {
         },
         {
           xtype: 'documenteditormotions',
-          hideCollapseTool: true,
           tools: [
             {
               type: 'plus',
@@ -90,6 +89,7 @@ Ext.define('Tel100.view.document.editor.Panel', {
               handler: 'onAddReceiver'
             }
           ],
+          hideCollapseTool: true,
           bind: {
             title: '{i18n.document.base.ui.creatorMotionsTab}',
             store: '{motions}'
