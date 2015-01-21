@@ -11,4 +11,8 @@ class Api::Documents::BaseController < ApiController
     render json: { id: doc.id }
   end
 
+  def delete_draft
+    doc = Document::Base.find(params[:id])
+    doc.delete_draft!(current_user)
+  end
 end

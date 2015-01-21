@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       scope 'base', controller: 'base' do
         get '/', action: 'index'
         post '/create_draft', action: 'create_draft'
+        delete '/delete_draft', action: 'delete_draft'
       end
       scope 'types', controller: 'types' do
         get '/',    action: 'index'
