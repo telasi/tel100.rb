@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     namespace 'documents' do
       scope 'base', controller: 'base' do
         get '/', action: 'index'
+        get '/:id', action: 'show'
         # draft operations
         post '/create_draft', action: 'create_draft'
         put  '/update_draft', action: 'update_draft'
