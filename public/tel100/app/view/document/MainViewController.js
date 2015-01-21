@@ -20,6 +20,19 @@ Ext.define('Tel100.view.document.MainViewController', {
   onRefresh: function() {
     var grid = this.getView().down('documentgridpanel');
     grid.refresh();
+  },
+
+  onDeleteDraft: function() {
+    var viewModel = this.getViewModel();
+    var selection = viewModel.get('selection');
+    if (selection) {
+      var status = selection.get('status');
+      if (status === helpers.document.status.DRAFT) {
+        helpers.api.document.deleteDraft(selection.id, {
+          success: this.onRefresh.bind(this)
+        });
+      }
+    }
   }
 
 });

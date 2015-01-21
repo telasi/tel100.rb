@@ -27,6 +27,31 @@
             },
             "name": "onRefresh",
             "designerId": "d6742be9-d1c6-491c-bfeb-c5274be979cd"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onDeleteDraft",
+                "implHandler": [
+                    "var viewModel = this.getViewModel();",
+                    "var selection = viewModel.get('selection');",
+                    "if (selection) {",
+                    "  var status = selection.get('status');",
+                    "  if (status === helpers.document.status.DRAFT) {",
+                    "    helpers.api.document.deleteDraft(selection.id, {",
+                    "      success: this.onRefresh.bind(this)",
+                    "    });",
+                    "  }",
+                    "}"
+                ]
+            },
+            "name": "onDeleteDraft",
+            "designerId": "3a36408d-11b7-4a33-b363-080ffbe20fde"
         }
     ]
 }
