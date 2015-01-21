@@ -19,7 +19,7 @@ Ext.define('Tel100.model.document.Base', {
   requires: [
     'Tel100.model.Tel100',
     'Ext.data.proxy.Rest',
-    'Ext.data.field.Field'
+    'Ext.data.field.Date'
   ],
   uses: [
     'Tel100.model.document.Type'
@@ -33,6 +33,10 @@ Ext.define('Tel100.model.document.Base', {
   },
 
   fields: [
+    {
+      type: 'date',
+      name: 'docdate'
+    },
     {
       name: 'my_status'
     },

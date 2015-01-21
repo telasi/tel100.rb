@@ -27,6 +27,19 @@
             "designerId": "f6cabb06-3bbe-4b94-a1d4-c8282afeb695"
         },
         {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "docdate"
+            },
+            "name": "MyDate",
+            "designerId": "eaa647a6-deb0-4342-a26b-b6d5ec230618"
+        },
+        {
             "type": "Ext.data.field.Field",
             "reference": {
                 "name": "fields",
