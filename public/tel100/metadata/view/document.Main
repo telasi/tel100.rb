@@ -123,6 +123,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "designer|displayName": "documents",
                                 "selection": [
                                     "{selection}"
                                 ]
@@ -139,7 +140,27 @@
                                     "type": "string"
                                 }
                             ],
-                            "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103"
+                            "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onGridDoubleClick",
+                                        "implHandler": [
+                                            "this.openDocument(record);"
+                                        ],
+                                        "name": "itemdblclick",
+                                        "scope": "me"
+                                    },
+                                    "name": "onGridDoubleClick",
+                                    "designerId": "f74a2f53-d3bf-4102-813c-8cb6b9d14367"
+                                }
+                            ]
                         }
                     ]
                 }

@@ -74,7 +74,9 @@
                     "  if (success) {",
                     "    var filteredRecords = records.filter(function(x){ return x.id === id; });",
                     "    if (filteredRecords.length > 0) {",
-                    "      this.getViewModel().set('selection', filteredRecords[0]);",
+                    "      var doc = filteredRecords[0];",
+                    "      this.getViewModel().set('selection', doc);",
+                    "      this.openDocument(doc);",
                     "    }",
                     "  }",
                     "};",
@@ -91,6 +93,29 @@
             },
             "name": "onNewDocument",
             "designerId": "2a020ab0-0abe-4d70-926d-3933c583b9c0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "doc"
+                ],
+                "fn": "openDocument",
+                "implHandler": [
+                    "if (doc.get('status') === helpers.document.status.DRAFT) {",
+                    "  console.log('open draft:', doc.id);",
+                    "} else {",
+                    "  console.log('opening document:', doc.id);",
+                    "}"
+                ]
+            },
+            "name": "openDocument",
+            "designerId": "e7b519c4-45b2-4532-9865-e1a23742dadc"
         }
     ]
 }

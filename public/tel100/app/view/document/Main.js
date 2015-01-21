@@ -87,6 +87,9 @@ Ext.define('Tel100.view.document.Main', {
               xtype: 'documentgridpanel',
               bind: {
                 selection: '{selection}'
+              },
+              listeners: {
+                itemdblclick: 'onGridDoubleClick'
               }
             }
           ]

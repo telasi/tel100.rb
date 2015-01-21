@@ -44,7 +44,9 @@ Ext.define('Tel100.view.document.MainViewController', {
       if (success) {
         var filteredRecords = records.filter(function(x){ return x.id === id; });
         if (filteredRecords.length > 0) {
-          this.getViewModel().set('selection', filteredRecords[0]);
+          var doc = filteredRecords[0];
+          this.getViewModel().set('selection', doc);
+          this.openDocument(doc);
         }
       }
     };
@@ -57,6 +59,18 @@ Ext.define('Tel100.view.document.MainViewController', {
         });
       }.bind(this)
     });
+  },
+
+  openDocument: function(doc) {
+    if (doc.get('status') === helpers.document.status.DRAFT) {
+      console.log('open draft:', doc.id);
+    } else {
+      console.log('opening document:', doc.id);
+    }
+  },
+
+  onGridDoubleClick: function(dataview, record, item, index, e, eOpts) {
+    this.openDocument(record);
   }
 
 });
