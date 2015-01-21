@@ -44,13 +44,13 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
-  def delete_draft(user)
+  def delete_draft!(user)
     raise 'user not defined' if user.blank?
     raise 'not a draft' if self.status != DRAFT
     Document::Base.transaction do
       self.motions.destroy_all
       self.comments.destroy_all
-      self.text.destroy
+      self.text.destroy if self.text
       Document::User.where(document_id: self.id).destroy_all
       self.destroy
     end
