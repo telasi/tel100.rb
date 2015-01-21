@@ -65,26 +65,6 @@
                             "name": "submitEmptyText",
                             "type": "string"
                         }
-                    ],
-                    "cn": [
-                        {
-                            "type": "viewcontrollereventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onTextfieldChange",
-                                "implHandler": [
-                                    "console.log('SUBJECT changed!');"
-                                ],
-                                "name": "change",
-                                "scope": "me"
-                            },
-                            "name": "onTextfieldChange",
-                            "designerId": "cdb4de75-f220-419e-8be6-7c6f3a863cb1"
-                        }
                     ]
                 },
                 {
@@ -106,27 +86,7 @@
                     "configAlternates": {
                         "value": "binding"
                     },
-                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27",
-                    "cn": [
-                        {
-                            "type": "viewcontrollereventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onHtmleditorChange",
-                                "implHandler": [
-                                    "console.log('TEXT changed!');"
-                                ],
-                                "name": "change",
-                                "scope": "me"
-                            },
-                            "name": "onHtmleditorChange",
-                            "designerId": "8900f555-9cc9-4e99-83e1-438278eeeaa6"
-                        }
-                    ]
+                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27"
                 }
             ]
         },
@@ -162,7 +122,7 @@
                             "{i18n.document.base.ui.creatorGeneralTab}"
                         ]
                     },
-                    "name": "document.editor.general6",
+                    "name": "document.editor.general1",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -193,7 +153,7 @@
                             "}]"
                         ]
                     },
-                    "name": "document.editor.motions5",
+                    "name": "document.editor.motions1",
                     "configAlternates": {
                         "title": "binding",
                         "store": "binding",
@@ -210,6 +170,59 @@
                     "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
                 }
             ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "var onChange = function() {",
+                    "  this.getView().fireEvent('documentchnage', vm.get('document'));",
+                    "};",
+                    "var options = { deep: true };",
+                    "vm.bind('{document}', onChange, this, options);"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "e5a4a44e-11b5-4df5-a3a0-d76a31553ba6"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "buffer": 500,
+                "designer|params": [
+                    "document"
+                ],
+                "fn": "onDocumentChange",
+                "implHandler": [
+                    "if (document.dirty) {",
+                    "  var changes = document.getChanges();",
+                    "  helpers.api.document.updateDraft(document.id, {",
+                    "    params: changes,",
+                    "    success: function() {",
+                    "      document.commit(true);",
+                    "    }.bind(this)",
+                    "  });",
+                    "}"
+                ],
+                "name": "documentchnage",
+                "scope": "me"
+            },
+            "name": "onDocumentChange",
+            "designerId": "c9c23952-8061-42d3-a33b-d80834d9e37a"
         }
     ]
 }

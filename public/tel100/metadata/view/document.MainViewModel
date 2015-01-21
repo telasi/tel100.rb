@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "bind": null,
         "data": [
             "{",
             "  selection: null",
@@ -14,7 +15,17 @@
         "designer|userAlias": "documentmain",
         "designer|userClassName": "document.MainViewModel"
     },
+    "configAlternates": {
+        "bind": "array"
+    },
     "designerId": "8db27d88-0934-4e59-bebc-ea6b2d462d9b",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "bind",
+            "type": "string"
+        }
+    ],
     "cn": [
         {
             "type": "Ext.app.bind.Formula",

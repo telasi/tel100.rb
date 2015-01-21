@@ -48,9 +48,6 @@ Ext.define('Tel100.view.document.editor.Panel', {
           emptyText: 'enter document status',
           bind: {
             value: '{document.subject}'
-          },
-          listeners: {
-            change: 'onTextfieldChange'
           }
         },
         {
@@ -58,9 +55,6 @@ Ext.define('Tel100.view.document.editor.Panel', {
           region: 'center',
           bind: {
             value: '{document.body}'
-          },
-          listeners: {
-            change: 'onHtmleditorChange'
           }
         }
       ]
@@ -97,6 +91,13 @@ Ext.define('Tel100.view.document.editor.Panel', {
         }
       ]
     }
-  ]
+  ],
+  listeners: {
+    beforerender: 'onBeforeRender',
+    documentchnage: {
+      fn: 'onDocumentChange',
+      buffer: 500
+    }
+  }
 
 });

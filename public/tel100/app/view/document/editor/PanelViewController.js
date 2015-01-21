@@ -21,12 +21,29 @@ Ext.define('Tel100.view.document.editor.PanelViewController', {
     console.log('adding receiver....');
   },
 
-  onTextfieldChange: function(field, newValue, oldValue, eOpts) {
-    console.log('SUBJECT changed!');
+  updateDocument: function() {
+
   },
 
-  onHtmleditorChange: function(field, newValue, oldValue, eOpts) {
-    console.log('TEXT changed!');
+  onBeforeRender: function(component, eOpts) {
+    var vm = this.getViewModel();
+    var onChange = function() {
+      this.getView().fireEvent('documentchnage', vm.get('document'));
+    };
+    var options = { deep: true };
+    vm.bind('{document}', onChange, this, options);
+  },
+
+  onDocumentChange: function(document) {
+    if (document.dirty) {
+      var changes = document.getChanges();
+      helpers.api.document.updateDraft(document.id, {
+        params: changes,
+        success: function() {
+          document.commit(true);
+        }.bind(this)
+      });
+    }
   }
 
 });
