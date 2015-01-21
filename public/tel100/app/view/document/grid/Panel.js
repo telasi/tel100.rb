@@ -19,12 +19,10 @@ Ext.define('Tel100.view.document.grid.Panel', {
 
   requires: [
     'Tel100.view.document.grid.PanelViewModel',
-    'Tel100.view.document.grid.PanelViewController',
     'Ext.grid.View',
     'Ext.grid.column.Column'
   ],
 
-  controller: 'documentgridpanel',
   viewModel: {
     type: 'documentgridpanel'
   },
@@ -95,8 +93,10 @@ Ext.define('Tel100.view.document.grid.Panel', {
     }
   ],
 
-  refresh: function() {
-    this.getController().onRefresh();
+  refresh: function(opts) {
+    var grid = this;
+    var store = grid.getStore();
+    store.load(opts);
   }
 
 });

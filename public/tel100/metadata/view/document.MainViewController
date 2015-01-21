@@ -19,10 +19,14 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|params": [
+                    "opts"
+                ],
                 "fn": "onRefresh",
                 "implHandler": [
+                    "if (opts.$className) { opts = null; }",
                     "var grid = this.getView().down('documentgridpanel');",
-                    "grid.refresh();"
+                    "grid.refresh(opts);"
                 ]
             },
             "name": "onRefresh",
@@ -52,6 +56,41 @@
             },
             "name": "onDeleteDraft",
             "designerId": "3a36408d-11b7-4a33-b363-080ffbe20fde"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onNewDocument",
+                "implHandler": [
+                    "var grid = this.getView().down('documentgridpanel');",
+                    "var id;",
+                    "",
+                    "var refreshCallback = function(records, operation, success) {",
+                    "  if (success) {",
+                    "    var filteredRecords = records.filter(function(x){ return x.id === id; });",
+                    "    if (filteredRecords.length > 0) {",
+                    "      this.getViewModel().set('selection', filteredRecords[0]);",
+                    "    }",
+                    "  }",
+                    "};",
+                    "",
+                    "helpers.api.document.createDraft({",
+                    "  success: function(data) {",
+                    "    id = data.id;",
+                    "    this.onRefresh({",
+                    "      callback: refreshCallback.bind(this)",
+                    "    });",
+                    "  }.bind(this)",
+                    "});"
+                ]
+            },
+            "name": "onNewDocument",
+            "designerId": "2a020ab0-0abe-4d70-926d-3933c583b9c0"
         }
     ]
 }

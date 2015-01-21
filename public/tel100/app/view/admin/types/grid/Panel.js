@@ -62,7 +62,7 @@ Ext.define('Tel100.view.admin.types.grid.Panel', {
     }
   ],
 
-  refresh: function() {
+  refresh: function(opts) {
     this.getStore('types').load();
   }
 

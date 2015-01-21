@@ -17,9 +17,10 @@ Ext.define('Tel100.view.document.MainViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentmain',
 
-  onRefresh: function() {
+  onRefresh: function(opts) {
+    if (opts.$className) { opts = null; }
     var grid = this.getView().down('documentgridpanel');
-    grid.refresh();
+    grid.refresh(opts);
   },
 
   onDeleteDraft: function() {
@@ -33,6 +34,29 @@ Ext.define('Tel100.view.document.MainViewController', {
         });
       }
     }
+  },
+
+  onNewDocument: function() {
+    var grid = this.getView().down('documentgridpanel');
+    var id;
+
+    var refreshCallback = function(records, operation, success) {
+      if (success) {
+        var filteredRecords = records.filter(function(x){ return x.id === id; });
+        if (filteredRecords.length > 0) {
+          this.getViewModel().set('selection', filteredRecords[0]);
+        }
+      }
+    };
+
+    helpers.api.document.createDraft({
+      success: function(data) {
+        id = data.id;
+        this.onRefresh({
+          callback: refreshCallback.bind(this)
+        });
+      }.bind(this)
+    });
   }
 
 });

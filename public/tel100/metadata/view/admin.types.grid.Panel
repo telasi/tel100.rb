@@ -110,6 +110,9 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|params": [
+                    "opts"
+                ],
                 "fn": "refresh",
                 "implHandler": [
                     "this.getStore('types').load();"

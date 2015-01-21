@@ -218,9 +218,14 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|params": [
+                    "opts"
+                ],
                 "fn": "refresh",
                 "implHandler": [
-                    "this.getController().onRefresh();"
+                    "var grid = this;",
+                    "var store = grid.getStore();",
+                    "store.load(opts);"
                 ]
             },
             "name": "refresh",

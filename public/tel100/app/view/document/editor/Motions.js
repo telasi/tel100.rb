@@ -40,9 +40,9 @@ Ext.define('Tel100.view.document.editor.Motions', {
     },
     {
       xtype: 'gridcolumn',
-      dataIndex: 'role',
       width: 100,
       sortable: false,
+      dataIndex: 'role',
       hideable: false,
       bind: {
         text: '{i18n.document.motion.role}'
