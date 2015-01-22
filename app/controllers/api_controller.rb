@@ -3,9 +3,9 @@ class ApiController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :validate_locale
 
-  # rescue_from Exception do |exception|
-  #   render_api_error exception.message
-  # end
+  rescue_from Exception do |exception|
+    render_api_error exception.message
+  end
 
   def render_api_error(error)
     if error.is_a?(Array)
