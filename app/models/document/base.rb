@@ -48,7 +48,7 @@ class Document::Base < ActiveRecord::Base
         text.body = params[:body]
         text.save!
       end
-      self.update_attributes(params.permit(:subject,:type_id,:docdate,:page_count,:additions_count, :direction))
+      self.update_attributes(params.permit(:subject,:type_id,:docdate,:page_count,:additions_count, :direction, :original_number, :original_date))
       self.save!
     end
   end
