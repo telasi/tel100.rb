@@ -40,6 +40,19 @@
             "designerId": "eaa647a6-deb0-4342-a26b-b6d5ec230618"
         },
         {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "original_date"
+            },
+            "name": "MyDate1",
+            "designerId": "b297fa30-85e8-4a42-81de-2e0cbf30d4b0"
+        },
+        {
             "type": "Ext.data.field.Field",
             "reference": {
                 "name": "fields",

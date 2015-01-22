@@ -128,7 +128,7 @@
                             "{i18n.document.base.ui.creatorGeneralTab}"
                         ]
                     },
-                    "name": "document.editor.general2",
+                    "name": "document.editor.general3",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -159,7 +159,7 @@
                             "}]"
                         ]
                     },
-                    "name": "document.editor.motions2",
+                    "name": "document.editor.motions3",
                     "configAlternates": {
                         "title": "binding",
                         "store": "binding",
@@ -229,7 +229,7 @@
                     "      vm.set('isSaving', false);",
                     "    }.bind(this),",
                     "    failure: function() {",
-                    "      console.log('failed...');",
+                    "      console.log('failed to save document');",
                     "      vm.set('isSaving', false);",
                     "    }",
                     "  });",

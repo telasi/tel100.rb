@@ -46,7 +46,7 @@ Ext.define('Tel100.view.document.editor.PanelViewController', {
           vm.set('isSaving', false);
         }.bind(this),
         failure: function() {
-          console.log('failed...');
+          console.log('failed to save document');
           vm.set('isSaving', false);
         }
       });

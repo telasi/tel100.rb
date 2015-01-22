@@ -38,6 +38,10 @@ Ext.define('Tel100.model.document.Base', {
       name: 'docdate'
     },
     {
+      type: 'date',
+      name: 'original_date'
+    },
+    {
       name: 'my_status'
     },
     {
