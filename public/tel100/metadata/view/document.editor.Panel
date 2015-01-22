@@ -122,13 +122,13 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": "general properties",
+                        "designer|displayName": "general",
                         "hideCollapseTool": true,
                         "title": [
-                            "{i18n.document.base.ui.creatorGeneralTab}"
+                            "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general3",
+                    "name": "document.editor.general",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -143,36 +143,16 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": "motions editor",
-                        "hideCollapseTool": true,
-                        "store": [
-                            "{motions}"
-                        ],
+                        "designer|displayName": "motions",
                         "title": [
-                            "{i18n.document.base.ui.creatorMotionsTab}"
-                        ],
-                        "tools": [
-                            "[{",
-                            "  type: 'plus',",
-                            "  // tooltip: 'მიმღების დამატება',",
-                            "  handler: 'onAddReceiver'",
-                            "}]"
+                            "{i18n.document.base.ui.motionsTabTitle}"
                         ]
                     },
-                    "name": "document.editor.motions3",
+                    "name": "document.motions.grid1",
                     "configAlternates": {
-                        "title": "binding",
-                        "store": "binding",
-                        "tools": "array"
+                        "title": "binding"
                     },
-                    "designerId": "369b4c7e-5bdb-4e2f-a459-5af9a65790e6",
-                    "customConfigs": [
-                        {
-                            "group": "(Custom Properties)",
-                            "name": "tools",
-                            "type": "string"
-                        }
-                    ],
+                    "designerId": "37423140-e476-45a4-b122-d6b0452b8ec3",
                     "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
                 }
             ]

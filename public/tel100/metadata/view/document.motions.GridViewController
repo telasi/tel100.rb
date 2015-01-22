@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documenteditormotions",
-        "designer|userClassName": "document.editor.MotionsViewController"
+        "designer|userAlias": "documentmotionsgrid",
+        "designer|userClassName": "document.motions.GridViewController"
     },
     "designerId": "ff949836-9bc0-42b8-87ad-24dc99fa18d1"
 }

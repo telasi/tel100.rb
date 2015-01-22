@@ -21,7 +21,7 @@ Ext.define('Tel100.view.document.editor.Panel', {
     'Tel100.view.document.editor.PanelViewModel',
     'Tel100.view.document.editor.PanelViewController',
     'Tel100.view.document.editor.General',
-    'Tel100.view.document.editor.Motions',
+    'Tel100.view.document.motions.Grid',
     'Ext.form.field.Text',
     'Ext.form.field.HtmlEditor',
     'Ext.form.Panel',
@@ -73,22 +73,13 @@ Ext.define('Tel100.view.document.editor.Panel', {
           xtype: 'documenteditorgeneral',
           hideCollapseTool: true,
           bind: {
-            title: '{i18n.document.base.ui.creatorGeneralTab}'
+            title: '{i18n.document.base.ui.generalTabTitle}'
           }
         },
         {
-          xtype: 'documenteditormotions',
-          tools: [
-            {
-              type: 'plus',
-              // tooltip: 'მიმღების დამატება',
-              handler: 'onAddReceiver'
-            }
-          ],
-          hideCollapseTool: true,
+          xtype: 'documentmotionsgrid',
           bind: {
-            title: '{i18n.document.base.ui.creatorMotionsTab}',
-            store: '{motions}'
+            title: '{i18n.document.base.ui.motionsTabTitle}'
           }
         }
       ]

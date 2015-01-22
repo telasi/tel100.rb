@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documenteditormotions",
-        "designer|userClassName": "document.editor.Motions",
+        "designer|userAlias": "documentmotionsgrid",
+        "designer|userClassName": "document.motions.Grid",
         "height": null,
         "title": "My Grid Panel",
         "width": null

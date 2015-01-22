@@ -30,8 +30,8 @@ module.exports = {
     deleteDraft: '<i class="fa fa-trash"></i> წაშლა',
     confirmDeleteDraft: 'დაადასტურეთ დოკუმენტის წაშლა',
     editDraftTitle: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
-    creatorGeneralTab: 'ზოგადი თვისებები',
-    creatorMotionsTab: 'ადრესატები და ხელმომწერები'
+    generalTabTitle: 'ზოგადი თვისებები',
+    motionsTabTitle: 'ადრესატები და ხელმომწერები'
   },
   type: 'სახეობა',
   direction: 'მიმართულება',
