@@ -144,13 +144,15 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "motions",
+                        "hideCollapseTool": true,
                         "title": [
                             "{i18n.document.base.ui.motionsTabTitle}"
                         ]
                     },
                     "name": "document.motions.grid1",
                     "configAlternates": {
-                        "title": "binding"
+                        "title": "binding",
+                        "tools": "array"
                     },
                     "designerId": "37423140-e476-45a4-b122-d6b0452b8ec3",
                     "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
