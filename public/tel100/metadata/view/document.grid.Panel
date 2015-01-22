@@ -130,7 +130,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "type",
+                "dataIndex": "typeName",
                 "designer|displayName": "type",
                 "text": [
                     "{i18n.document.base.type}"
@@ -140,34 +140,7 @@
             "configAlternates": {
                 "text": "binding"
             },
-            "designerId": "aeea72ce-0ad7-4b0b-b580-a76f0be65479",
-            "cn": [
-                {
-                    "type": "fixedfunction",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|params": [
-                            "value",
-                            "metaData",
-                            "record",
-                            "rowIndex",
-                            "colIndex",
-                            "store",
-                            "view"
-                        ],
-                        "fn": "renderer",
-                        "implHandler": [
-                            "return record.getType().get('name');"
-                        ]
-                    },
-                    "name": "renderer",
-                    "designerId": "1e8c7afc-1ddf-455f-8404-de1963c794b9"
-                }
-            ]
+            "designerId": "aeea72ce-0ad7-4b0b-b580-a76f0be65479"
         },
         {
             "type": "Ext.grid.column.Column",

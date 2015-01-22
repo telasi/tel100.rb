@@ -45,6 +45,19 @@ Ext.define('Tel100.model.document.Base', {
       reference: 'Tel100.model.document.Type'
     },
     {
+      calculate: function(data) {
+        if (data.type) {
+          var type = data.type;
+          if (type.name) {
+            return type.name;
+          } else if (type.get) {
+            return type.get('name');
+          }
+        }
+      },
+      name: 'typeName'
+    },
+    {
       name: 'my_role'
     },
     {

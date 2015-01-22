@@ -19,12 +19,14 @@ Ext.define('Tel100.view.document.editor.General', {
 
   requires: [
     'Tel100.view.document.editor.GeneralViewModel',
+    'Tel100.view.document.editor.GeneralViewController',
     'Ext.form.field.ComboBox',
     'Ext.form.field.Date',
     'Ext.form.field.Number',
     'Ext.form.FieldSet'
   ],
 
+  controller: 'documenteditorgeneral',
   viewModel: {
     type: 'documenteditorgeneral'
   },
@@ -41,6 +43,9 @@ Ext.define('Tel100.view.document.editor.General', {
         fieldLabel: '{i18n.document.base.type}',
         value: '{document.type_id}',
         store: '{types}'
+      },
+      listeners: {
+        change: 'onTypeIdChange'
       }
     },
     {

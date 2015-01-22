@@ -74,6 +74,47 @@
             },
             "codeClass": null,
             "userConfig": {
+                "name": "typeName"
+            },
+            "name": "MyField14",
+            "designerId": "09d953ac-2c6f-4576-b2be-54f91f783f8a",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "if (data.type) {",
+                            "  var type = data.type;",
+                            "  if (type.name) {",
+                            "    return type.name;",
+                            "  } else if (type.get) {",
+                            "    return type.get('name');",
+                            "  }  ",
+                            "}"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "08a53e5c-424b-48f9-b962-b02e9477e3fe"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "name": "my_role"
             },
             "name": "MyField1",

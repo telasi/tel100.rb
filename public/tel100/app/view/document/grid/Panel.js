@@ -68,10 +68,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
-      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        return record.getType().get('name');
-      },
-      dataIndex: 'type',
+      dataIndex: 'typeName',
       bind: {
         text: '{i18n.document.base.type}'
       }

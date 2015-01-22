@@ -47,7 +47,29 @@
                 "fieldLabel": "binding",
                 "store": "binding"
             },
-            "designerId": "75daabda-af54-40d2-a244-920a0c37c2b0"
+            "designerId": "75daabda-af54-40d2-a244-920a0c37c2b0",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTypeIdChange",
+                        "implHandler": [
+                            "var vm = this.getViewModel();",
+                            "var doc = vm.get('document');",
+                            "doc.set('type', field.getSelectedRecord());"
+                        ],
+                        "name": "change",
+                        "scope": "me"
+                    },
+                    "name": "onTypeIdChange",
+                    "designerId": "e9f18314-8b46-452b-ae77-288dd72f2288"
+                }
+            ]
         },
         {
             "type": "Ext.form.field.Date",

@@ -15,5 +15,12 @@
 
 Ext.define('Tel100.view.document.editor.GeneralViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documenteditorgeneral'
+  alias: 'controller.documenteditorgeneral',
+
+  onTypeIdChange: function(field, newValue, oldValue, eOpts) {
+    var vm = this.getViewModel();
+    var doc = vm.get('document');
+    doc.set('type', field.getSelectedRecord());
+  }
+
 });
