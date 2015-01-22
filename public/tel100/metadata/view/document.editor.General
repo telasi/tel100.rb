@@ -61,7 +61,9 @@
                         "implHandler": [
                             "var vm = this.getViewModel();",
                             "var doc = vm.get('document');",
-                            "doc.set('type', field.getSelectedRecord());"
+                            "if (doc.dirty) {",
+                            "  doc.set('type', field.getSelectedRecord());",
+                            "}"
                         ],
                         "name": "change",
                         "scope": "me"

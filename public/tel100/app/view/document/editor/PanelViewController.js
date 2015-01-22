@@ -25,7 +25,9 @@ Ext.define('Tel100.view.document.editor.PanelViewController', {
     // fire documentchange
     var vm = this.getViewModel();
     var onChange = function() {
-      this.getView().fireEvent('documentchange', vm.get('document'));
+      var doc = vm.get('document');
+      if (doc.dirty) { vm.set('isSaved', false); }
+      this.getView().fireEvent('documentchange', doc);
     };
     var options = { deep: true };
     vm.bind('{document}', onChange, this, options);
@@ -33,14 +35,27 @@ Ext.define('Tel100.view.document.editor.PanelViewController', {
 
   onDocumentChange: function(document) {
     if (document.dirty) {
+      var vm = this.getViewModel();
+      vm.set('isSaving', true);
       var changes = document.getChanges();
       helpers.api.document.updateDraft(document.id, {
         params: changes,
         success: function() {
           document.commit(true);
-        }.bind(this)
+          vm.set('isSaved', true);
+          vm.set('isSaving', false);
+        }.bind(this),
+        failure: function() {
+          console.log('failed...');
+          vm.set('isSaving', false);
+        }
       });
     }
+  },
+
+  onSaveClick: function(button, e, eOpts) {
+    var doc = this.getViewModel().get('document');
+    this.onDocumentChange(doc);
   }
 
 });

@@ -12,6 +12,9 @@
         "layout": "border",
         "width": null
     },
+    "configAlternates": {
+        "dockedItems": "array"
+    },
     "designerId": "05865998-80f8-449c-af7e-5966e96edc93",
     "viewControllerInstanceId": "c8ab8f23-6495-434a-8b4b-78f9ef9be27b",
     "viewModelInstanceId": "fe587c2a-b4ef-4d70-853d-8111aa0a6616",
@@ -30,6 +33,9 @@
                 "layout|region": "center"
             },
             "name": "MyContainer",
+            "configAlternates": {
+                "dockedItems": "array"
+            },
             "designerId": "ab8db9ac-653f-41d8-956a-2aa0b96a6219",
             "cn": [
                 {
@@ -184,7 +190,9 @@
                     "// fire documentchange",
                     "var vm = this.getViewModel();",
                     "var onChange = function() {",
-                    "  this.getView().fireEvent('documentchange', vm.get('document'));",
+                    "  var doc = vm.get('document');",
+                    "  if (doc.dirty) { vm.set('isSaved', false); }",
+                    "  this.getView().fireEvent('documentchange', doc);",
                     "};",
                     "var options = { deep: true };",
                     "vm.bind('{document}', onChange, this, options);"
@@ -210,12 +218,20 @@
                 "fn": "onDocumentChange",
                 "implHandler": [
                     "if (document.dirty) {",
+                    "  var vm = this.getViewModel();",
+                    "  vm.set('isSaving', true);",
                     "  var changes = document.getChanges();",
                     "  helpers.api.document.updateDraft(document.id, {",
                     "    params: changes,",
                     "    success: function() {",
                     "      document.commit(true);",
-                    "    }.bind(this)",
+                    "      vm.set('isSaved', true);",
+                    "      vm.set('isSaving', false);",
+                    "    }.bind(this),",
+                    "    failure: function() {",
+                    "      console.log('failed...');",
+                    "      vm.set('isSaving', false);",
+                    "    }",
                     "  });",
                     "}"
                 ],
@@ -224,6 +240,68 @@
             },
             "name": "onDocumentChange",
             "designerId": "c9c23952-8061-42d3-a33b-d80834d9e37a"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "layout|flex": null,
+                "layout|region": "north"
+            },
+            "name": "MyToolbar",
+            "designerId": "a5feb720-961c-40bb-83ec-e4b04ba330ce",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "save",
+                        "disabled": [
+                            "{saveButtonDisabled}"
+                        ],
+                        "layout|flex": null,
+                        "text": [
+                            "{saveButtonText}"
+                        ]
+                    },
+                    "name": "MyButton",
+                    "configAlternates": {
+                        "text": "binding",
+                        "disabled": "binding"
+                    },
+                    "designerId": "3ac5ef1b-56a3-4d36-bc21-f54993545721",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSaveClick",
+                                "implHandler": [
+                                    "var doc = this.getViewModel().get('document');",
+                                    "this.onDocumentChange(doc);"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onSaveClick",
+                            "designerId": "d9c1d152-3c37-404a-b57e-cdbb070f5afc"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

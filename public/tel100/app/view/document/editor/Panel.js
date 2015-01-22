@@ -25,7 +25,9 @@ Ext.define('Tel100.view.document.editor.Panel', {
     'Ext.form.field.Text',
     'Ext.form.field.HtmlEditor',
     'Ext.form.Panel',
-    'Ext.grid.Panel'
+    'Ext.grid.Panel',
+    'Ext.toolbar.Toolbar',
+    'Ext.button.Button'
   ],
 
   controller: 'documenteditorpanel',
@@ -87,6 +89,22 @@ Ext.define('Tel100.view.document.editor.Panel', {
           bind: {
             title: '{i18n.document.base.ui.creatorMotionsTab}',
             store: '{motions}'
+          }
+        }
+      ]
+    },
+    {
+      xtype: 'toolbar',
+      region: 'north',
+      items: [
+        {
+          xtype: 'button',
+          bind: {
+            disabled: '{saveButtonDisabled}',
+            text: '{saveButtonText}'
+          },
+          listeners: {
+            click: 'onSaveClick'
           }
         }
       ]
