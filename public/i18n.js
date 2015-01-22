@@ -28,6 +28,7 @@ module.exports = {
     refresh: '<i class="fa fa-refresh"></i> განახლება',
     newDocument: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
     deleteDraft: '<i class="fa fa-trash"></i> წაშლა',
+    confirmDeleteDraft: 'დაადასტურეთ დოკუმენტის წაშლა',
     editDraftTitle: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
     creatorGeneralTab: 'ზოგადი თვისებები',
     creatorMotionsTab: 'ადრესატები და ხელმომწერები'
@@ -98,7 +99,8 @@ module.exports = {
   ordering: 'ეტაპი',
   receiver: 'მიმღები',
   role: 'როლი',
-  motion_text: 'რეზოლუცია'
+  motion_text: 'რეზოლუცია',
+  due_date: 'ვადა'
 };
 
 },{}],7:[function(require,module,exports){
@@ -136,7 +138,8 @@ var ka = {}
     'document': require('./document'),
     errors: require('./errors'),
     user: require('./user'),
-    hr: require('./hr')
+    hr: require('./hr'),
+    ui: require('./ui')
   };
 
 var addProperties = function(ka, ru, data) {
@@ -163,7 +166,14 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./admin":1,"./application":2,"./document":5,"./errors":8,"./hr":9,"./user":11}],11:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./document":5,"./errors":8,"./hr":9,"./ui":11,"./user":12}],11:[function(require,module,exports){
+module.exports = {
+  confirmTitle: {
+    ka: 'დადასტურება',
+    ru: 'Подтверждение'
+  }
+};
+},{}],12:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',

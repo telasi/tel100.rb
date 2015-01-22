@@ -35,6 +35,7 @@ Ext.define('Tel100.view.document.editor.Motions', {
       dataIndex: 'ordering',
       hideable: false,
       bind: {
+        hidden: '{hideBaseColumns}',
         text: '{i18n.document.motion.ordering}'
       }
     },
@@ -66,6 +67,13 @@ Ext.define('Tel100.view.document.editor.Motions', {
       hideable: false,
       bind: {
         text: '{i18n.document.motion.motion_text}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      dataIndex: 'due_date',
+      bind: {
+        text: '{i18n.document.motion.due_date}'
       }
     }
   ]

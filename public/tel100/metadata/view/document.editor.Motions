@@ -27,6 +27,9 @@
             "userConfig": {
                 "dataIndex": "ordering",
                 "designer|displayName": "ordering",
+                "hidden": [
+                    "{hideBaseColumns}"
+                ],
                 "hideable": false,
                 "sortable": false,
                 "text": [
@@ -36,7 +39,8 @@
             },
             "name": "MyColumn9",
             "configAlternates": {
-                "text": "binding"
+                "text": "binding",
+                "hidden": "binding"
             },
             "designerId": "ada23e4d-c7da-4464-af68-644ed9969dbf"
         },
@@ -116,6 +120,26 @@
                     "type": "string"
                 }
             ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "due_date",
+                "designer|displayName": "due_date",
+                "text": [
+                    "{i18n.document.motion.due_date}"
+                ]
+            },
+            "name": "MyColumn12",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "12ce88e6-8ad1-4522-8724-76b7039bcbae"
         }
     ]
 }

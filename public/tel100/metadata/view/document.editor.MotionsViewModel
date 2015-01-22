@@ -6,8 +6,49 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  basemotion: true",
+            "}"
+        ],
         "designer|userAlias": "documenteditormotions",
         "designer|userClassName": "document.editor.MotionsViewModel"
     },
-    "designerId": "ffd21d10-0bfb-41e9-b435-4d3c447514c0"
+    "designerId": "ffd21d10-0bfb-41e9-b435-4d3c447514c0",
+    "cn": [
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideBaseColumns"
+            },
+            "name": "MyFormula1",
+            "designerId": "3ee3dc94-ea7c-4991-8b0d-11f58bf2278c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return !get('basemotion');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "e5182b19-391b-4eef-8367-2a22a2e3c63c"
+                }
+            ]
+        }
+    ]
 }

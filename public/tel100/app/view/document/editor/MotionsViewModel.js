@@ -15,6 +15,20 @@
 
 Ext.define('Tel100.view.document.editor.MotionsViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documenteditormotions'
+  alias: 'viewmodel.documenteditormotions',
+
+  requires: [
+    'Ext.app.bind.Formula'
+  ],
+
+  data: {
+    basemotion: true
+  },
+
+  formulas: {
+    hideBaseColumns: function(get) {
+      return !get('basemotion');
+    }
+  }
 
 });
