@@ -29,9 +29,15 @@ Ext.define('Tel100.view.document.MainViewController', {
     if (selection) {
       var status = selection.get('status');
       if (status === helpers.document.status.DRAFT) {
-        helpers.api.document.deleteDraft(selection.id, {
-          success: this.onRefresh.bind(this)
-        });
+        var msg = i18n.document.base.ui.confirmDeleteDraft;
+        var title = i18n.ui.confirmTitle;
+        Ext.Msg.confirm(title, msg, function(resp) {
+          if (resp === 'yes') {
+            helpers.api.document.deleteDraft(selection.id, {
+              success: this.onRefresh.bind(this)
+            });
+          }
+        }.bind(this));
       }
     }
   },
