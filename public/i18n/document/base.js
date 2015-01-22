@@ -4,6 +4,7 @@ module.exports = {
     refresh: '<i class="fa fa-refresh"></i> განახლება',
     newDocument: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
     deleteDraft: '<i class="fa fa-trash"></i> წაშლა',
+    confirmDeleteDraft: 'დაადასტურეთ დოკუმენტის წაშლა',
     editDraftTitle: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
     creatorGeneralTab: 'ზოგადი თვისებები',
     creatorMotionsTab: 'ადრესატები და ხელმომწერები'
