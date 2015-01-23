@@ -21,11 +21,10 @@ Ext.define('Tel100.view.document.editor.Panel', {
     'Tel100.view.document.editor.PanelViewModel',
     'Tel100.view.document.editor.PanelViewController',
     'Tel100.view.document.editor.General',
-    'Tel100.view.document.motions.Grid',
+    'Tel100.view.document.motions.OutPanel',
     'Ext.form.field.Text',
     'Ext.form.field.HtmlEditor',
     'Ext.form.Panel',
-    'Ext.grid.Panel',
     'Ext.toolbar.Toolbar',
     'Ext.button.Button'
   ],
@@ -77,10 +76,10 @@ Ext.define('Tel100.view.document.editor.Panel', {
           }
         },
         {
-          xtype: 'documentmotionsgrid',
+          xtype: 'documentmotionsoutpanel',
           hideCollapseTool: true,
           bind: {
-            title: '{i18n.document.base.ui.motionsTabTitle}'
+            title: '{i18n.document.base.ui.receiversTabTitle}'
           }
         }
       ]

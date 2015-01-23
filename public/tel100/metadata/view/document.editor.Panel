@@ -128,7 +128,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general",
+                    "name": "document.editor.general1",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -143,19 +143,17 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": "motions",
                         "hideCollapseTool": true,
                         "title": [
-                            "{i18n.document.base.ui.motionsTabTitle}"
+                            "{i18n.document.base.ui.receiversTabTitle}"
                         ]
                     },
-                    "name": "document.motions.grid1",
+                    "name": "document.motions.outpanel",
                     "configAlternates": {
-                        "title": "binding",
-                        "tools": "array"
+                        "title": "binding"
                     },
-                    "designerId": "37423140-e476-45a4-b122-d6b0452b8ec3",
-                    "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
+                    "designerId": "e445635e-38ea-44e9-949d-881be372d75f",
+                    "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                 }
             ]
         },

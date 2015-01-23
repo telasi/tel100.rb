@@ -9,7 +9,7 @@
         "designer|userAlias": "documentmotionsgrid",
         "designer|userClassName": "document.motions.Grid",
         "height": null,
-        "title": "My Grid Panel",
+        "title": null,
         "width": null
     },
     "name": "MyGridPanel",
@@ -25,10 +25,26 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "status",
+                "resizable": false,
+                "text": null,
+                "width": 32
+            },
+            "name": "MyColumn13",
+            "designerId": "8594ac90-35e8-4a68-8622-8f1c261aab51"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "dataIndex": "ordering",
                 "designer|displayName": "ordering",
                 "hidden": [
-                    "{hideBaseColumns}"
+                    "{hideOrderingColumn}"
                 ],
                 "hideable": false,
                 "sortable": false,
@@ -52,35 +68,12 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "role",
-                "designer|displayName": "role",
-                "hideable": false,
-                "sortable": false,
-                "text": [
-                    "{i18n.document.motion.role}"
-                ],
-                "width": 100
-            },
-            "name": "MyColumn8",
-            "configAlternates": {
-                "text": "binding"
-            },
-            "designerId": "e85c534e-1034-45c8-9f7b-415ede2e0577"
-        },
-        {
-            "type": "Ext.grid.column.Column",
-            "reference": {
-                "name": "columns",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "dataIndex": "receiverName",
-                "designer|displayName": "receiver",
+                "designer|displayName": "partyName",
                 "hideable": false,
                 "sortable": false,
                 "text": [
-                    "{i18n.document.motion.receiver}"
+                    "{partyColumnText}"
                 ],
                 "width": 200
             },
@@ -89,37 +82,6 @@
                 "text": "binding"
             },
             "designerId": "363b07a0-ecbf-4e81-bb96-c5902cbb6fdd"
-        },
-        {
-            "type": "Ext.grid.column.Column",
-            "reference": {
-                "name": "columns",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "dataIndex": "motion_text",
-                "designer|displayName": "motion_text",
-                "hideable": false,
-                "sortable": false,
-                "text": [
-                    "{i18n.document.motion.motion_text}"
-                ],
-                "tools": null,
-                "width": 200
-            },
-            "name": "MyColumn11",
-            "configAlternates": {
-                "text": "binding"
-            },
-            "designerId": "acfd6a63-cdd8-4f71-9e45-a244062f3db5",
-            "customConfigs": [
-                {
-                    "group": "(Custom Properties)",
-                    "name": "tools",
-                    "type": "string"
-                }
-            ]
         },
         {
             "type": "Ext.grid.column.Column",

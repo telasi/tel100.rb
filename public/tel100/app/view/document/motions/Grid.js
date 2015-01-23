@@ -25,9 +25,13 @@ Ext.define('Tel100.view.document.motions.Grid', {
   viewModel: {
     type: 'documentmotionsgrid'
   },
-  title: 'My Grid Panel',
 
   columns: [
+    {
+      xtype: 'gridcolumn',
+      resizable: false,
+      width: 32
+    },
     {
       xtype: 'gridcolumn',
       width: 50,
@@ -35,18 +39,8 @@ Ext.define('Tel100.view.document.motions.Grid', {
       dataIndex: 'ordering',
       hideable: false,
       bind: {
-        hidden: '{hideBaseColumns}',
+        hidden: '{hideOrderingColumn}',
         text: '{i18n.document.motion.ordering}'
-      }
-    },
-    {
-      xtype: 'gridcolumn',
-      width: 100,
-      sortable: false,
-      dataIndex: 'role',
-      hideable: false,
-      bind: {
-        text: '{i18n.document.motion.role}'
       }
     },
     {
@@ -56,17 +50,7 @@ Ext.define('Tel100.view.document.motions.Grid', {
       dataIndex: 'receiverName',
       hideable: false,
       bind: {
-        text: '{i18n.document.motion.receiver}'
-      }
-    },
-    {
-      xtype: 'gridcolumn',
-      width: 200,
-      sortable: false,
-      dataIndex: 'motion_text',
-      hideable: false,
-      bind: {
-        text: '{i18n.document.motion.motion_text}'
+        text: '{partyColumnText}'
       }
     },
     {

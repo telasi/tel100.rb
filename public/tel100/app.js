@@ -47,7 +47,9 @@ Ext.application({
     'document.grid.Panel',
     'document.editor.Panel',
     'document.editor.General',
-    'document.motions.Grid'
+    'document.motions.Grid',
+    'document.motions.OutPanel',
+    'document.motions.Editor'
   ],
   name: 'Tel100',
 

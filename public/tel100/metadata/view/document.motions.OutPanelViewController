@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsoutpanel",
+        "designer|userClassName": "document.motions.OutPanelViewController"
+    },
+    "designerId": "8fd1c70a-465c-4cac-b890-164824e7df59"
+}

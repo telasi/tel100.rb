@@ -1,0 +1,19 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{",
+            "  motionbase: false,",
+            "  motionout: true",
+            "}"
+        ],
+        "designer|userAlias": "documentmotionsoutpanel",
+        "designer|userClassName": "document.motions.OutPanelViewModel"
+    },
+    "designerId": "f95d1ab0-4cdd-49f6-afad-12afa284befb"
+}

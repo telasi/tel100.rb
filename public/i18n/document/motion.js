@@ -1,6 +1,7 @@
 module.exports = {
   ordering: 'ეტაპი',
-  receiver: 'მიმღები',
+  receiver: 'ადრესატი',
+  sender: 'გამგზავნი',
   role: 'როლი',
   motion_text: 'რეზოლუცია',
   due_date: 'ვადა'

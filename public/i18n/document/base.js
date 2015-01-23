@@ -7,7 +7,7 @@ module.exports = {
     confirmDeleteDraft: 'დაადასტურეთ დოკუმენტის წაშლა',
     editDraftTitle: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
     generalTabTitle: 'ზოგადი თვისებები',
-    motionsTabTitle: 'ადრესატები და ხელმომწერები'
+    receiversTabTitle: 'ადრესატები'
   },
   type: 'სახეობა',
   direction: 'მიმართულება',

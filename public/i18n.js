@@ -31,7 +31,7 @@ module.exports = {
     confirmDeleteDraft: 'დაადასტურეთ დოკუმენტის წაშლა',
     editDraftTitle: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
     generalTabTitle: 'ზოგადი თვისებები',
-    motionsTabTitle: 'ადრესატები და ხელმომწერები'
+    receiversTabTitle: 'ადრესატები'
   },
   type: 'სახეობა',
   direction: 'მიმართულება',
@@ -97,7 +97,8 @@ module.exports = {
 },{"./base":3,"./folder":4,"./motion":6,"./type":7}],6:[function(require,module,exports){
 module.exports = {
   ordering: 'ეტაპი',
-  receiver: 'მიმღები',
+  receiver: 'ადრესატი',
+  sender: 'გამგზავნი',
   role: 'როლი',
   motion_text: 'რეზოლუცია',
   due_date: 'ვადა'

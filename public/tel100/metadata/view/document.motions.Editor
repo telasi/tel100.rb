@@ -1,0 +1,34 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoScroll": true,
+        "designer|userAlias": "documentmotionseditor",
+        "designer|userClassName": "document.motions.Editor",
+        "height": null,
+        "width": null
+    },
+    "name": "MyContainer",
+    "designerId": "463ae07f-b8b5-4808-b995-965e07289448",
+    "viewControllerInstanceId": "f84a4bb1-8617-4e24-afae-8a158ca4c6e0",
+    "viewModelInstanceId": "ff817c85-730b-4b14-91f1-1ce223738081",
+    "cn": [
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "text": "TODO: editor"
+            },
+            "name": "MyLabel",
+            "designerId": "39e2cbf6-3dba-42cb-a837-2ac05bc1d15f"
+        }
+    ]
+}

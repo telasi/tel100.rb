@@ -6,11 +6,6 @@
     },
     "codeClass": null,
     "userConfig": {
-        "data": [
-            "{",
-            "  basemotion: true",
-            "}"
-        ],
         "designer|userAlias": "documentmotionsgrid",
         "designer|userClassName": "document.motions.GridViewModel"
     },
@@ -24,7 +19,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "hideBaseColumns"
+                "name": "hideOrderingColumn"
             },
             "name": "MyFormula1",
             "designerId": "3ee3dc94-ea7c-4991-8b0d-11f58bf2278c",
@@ -42,11 +37,49 @@
                         ],
                         "fn": "get",
                         "implHandler": [
-                            "return !get('basemotion');"
+                            "return !get('motionbase');"
                         ]
                     },
                     "name": "get",
                     "designerId": "e5182b19-391b-4eef-8367-2a22a2e3c63c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "partyColumnText"
+            },
+            "name": "MyFormula2",
+            "designerId": "f03bc5f3-f92c-40f4-8bba-ae6cf8b10fa1",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var out = get('motionout');",
+                            "var name;",
+                            "if (out) { name = i18n.document.motion.receiver; }",
+                            "else { name = i18n.document.motion.sender; }",
+                            "return name;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "0d837e3e-0a84-46e2-8b47-88e05b0d7c02"
                 }
             ]
         }

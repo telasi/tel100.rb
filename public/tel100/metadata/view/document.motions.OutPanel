@@ -1,0 +1,75 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsoutpanel",
+        "designer|userClassName": "document.motions.OutPanel",
+        "height": null,
+        "layout": "border",
+        "title": "out-motions",
+        "width": null
+    },
+    "name": "MyPanel1",
+    "designerId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd",
+    "viewControllerInstanceId": "8fd1c70a-465c-4cac-b890-164824e7df59",
+    "viewModelInstanceId": "f95d1ab0-4cdd-49f6-afad-12afa284befb",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "data": [
+                    "{",
+                    "  outmode: true,",
+                    "  basemotion: false",
+                    "}"
+                ],
+                "designer|displayName": "grid",
+                "layout|flex": 1,
+                "layout|region": "center"
+            },
+            "name": "document.motions.grid2",
+            "configAlternates": {
+                "basemotion": "binding",
+                "outmode": "boolean"
+            },
+            "designerId": "dc0ede8d-fb3b-4b1d-b635-f018c6523f2d",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "outmode",
+                    "type": "string"
+                }
+            ],
+            "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "editor",
+                "height": 200,
+                "layout": "card",
+                "layout|flex": null,
+                "layout|region": "south",
+                "layout|split": true,
+                "width": null
+            },
+            "name": "document.motions.editor1",
+            "designerId": "1701200c-a6e5-4f13-988a-3d34cd65034f",
+            "masterInstanceId": "463ae07f-b8b5-4808-b995-965e07289448"
+        }
+    ]
+}
