@@ -51,6 +51,7 @@ Ext.define('Tel100.view.document.editor.General', {
     {
       xtype: 'datefield',
       anchor: '100%',
+      format: 'd/m/Y',
       bind: {
         fieldLabel: '{i18n.document.base.docdate}',
         value: '{document.docdate}'
@@ -104,6 +105,7 @@ Ext.define('Tel100.view.document.editor.General', {
         {
           xtype: 'datefield',
           anchor: '100%',
+          format: 'd/m/Y',
           bind: {
             fieldLabel: '{i18n.document.base.original_date}',
             value: '{document.original_date}'

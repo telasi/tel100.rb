@@ -85,6 +85,7 @@
                 "fieldLabel": [
                     "{i18n.document.base.docdate}"
                 ],
+                "format": "d/m/Y",
                 "layout|anchor": "100%",
                 "value": [
                     "{document.docdate}"
@@ -237,6 +238,7 @@
                         "fieldLabel": [
                             "{i18n.document.base.original_date}"
                         ],
+                        "format": "d/m/Y",
                         "layout|anchor": "100%",
                         "value": [
                             "{document.original_date}"
