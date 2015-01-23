@@ -27,6 +27,17 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
 
   onRefresh: function(tool, e, owner, eOpts) {
     this.getView().refresh();
+  },
+
+  onTreepanelBeforeRender: function(component, eOpts) {
+    var grid = this.getView();
+    var store = grid.getStore();
+
+    debugger;
+
+    if (!store.isLoaded() && !store.isLoading()) {
+      grid.refresh();
+    }
   }
 
 });

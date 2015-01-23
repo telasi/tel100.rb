@@ -36,13 +36,13 @@ Ext.define('Tel100.view.hr.tree.Panel', {
   enableColumnHide: false,
   hideHeaders: true,
   rowLines: true,
+  store: 'hr.Structure',
   lines: false,
   rootVisible: false,
   useArrows: true,
 
   bind: {
-    title: '{i18n.hr.tree.title}',
-    store: '{structure}'
+    title: '{i18n.hr.tree.title}'
   },
   viewConfig: {
 
@@ -63,7 +63,8 @@ Ext.define('Tel100.view.hr.tree.Panel', {
   ],
   listeners: {
     beforeload: 'onTreepanelBeforeLoad',
-    load: 'onTreepanelLoad'
+    load: 'onTreepanelLoad',
+    beforerender: 'onTreepanelBeforeRender'
   },
   tools: [
     {

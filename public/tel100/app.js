@@ -27,6 +27,9 @@ Ext.application({
     'document.Direction',
     'document.Motion'
   ],
+  stores: [
+    'hr.Structure'
+  ],
   views: [
     'Main',
     'user.login.Panel',
@@ -49,7 +52,8 @@ Ext.application({
     'document.editor.General',
     'document.motions.Grid',
     'document.motions.OutPanel',
-    'document.motions.Editor'
+    'document.motions.Editor',
+    'party.Selector'
   ],
   name: 'Tel100',
 

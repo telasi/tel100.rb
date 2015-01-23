@@ -9,23 +9,5 @@
         "designer|userAlias": "documenteditorpanel",
         "designer|userClassName": "document.editor.PanelViewController"
     },
-    "designerId": "c8ab8f23-6495-434a-8b4b-78f9ef9be27b",
-    "cn": [
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onAddReceiver",
-                "implHandler": [
-                    "console.log('adding receiver....');"
-                ]
-            },
-            "name": "onAddReceiver",
-            "designerId": "9d11d76a-e9c5-4b18-bcb6-b01ed2711555"
-        }
-    ]
+    "designerId": "c8ab8f23-6495-434a-8b4b-78f9ef9be27b"
 }

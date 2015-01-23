@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "partyselector",
+        "designer|userClassName": "party.SelectorViewController"
+    },
+    "designerId": "5ab917bd-df16-4cd4-a1a4-253bd8a43e41"
+}

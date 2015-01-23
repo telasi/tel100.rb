@@ -23,9 +23,7 @@
         ],
         "rootVisible": false,
         "rowLines": true,
-        "store": [
-            "{structure}"
-        ],
+        "store": "hr.Structure",
         "title": [
             "{i18n.hr.tree.title}"
         ],
@@ -34,7 +32,6 @@
     },
     "name": "MyTreePanel",
     "configAlternates": {
-        "store": "binding",
         "title": "binding"
     },
     "designerId": "9ddd38b1-6ef9-4475-87d7-6ce8e4c6298c",
@@ -182,6 +179,31 @@
             },
             "name": "refresh",
             "designerId": "ac37fdc3-fee3-4875-8959-232f8c49b4c6"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTreepanelBeforeRender",
+                "implHandler": [
+                    "var grid = this.getView();",
+                    "var store = grid.getStore();",
+                    "",
+                    "debugger;",
+                    "",
+                    "if (!store.isLoaded() && !store.isLoading()) {",
+                    "  grid.refresh();",
+                    "}"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onTreepanelBeforeRender",
+            "designerId": "0b82367f-4ac2-4c2d-a4bb-a732db72d546"
         }
     ]
 }

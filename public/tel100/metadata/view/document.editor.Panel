@@ -128,7 +128,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general1",
+                    "name": "document.editor.general3",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -147,7 +147,7 @@
                         "hideCollapseTool": true,
                         "title": null
                     },
-                    "name": "document.motions.outpanel",
+                    "name": "document.motions.outpanel2",
                     "configAlternates": {
                         "title": "binding"
                     },

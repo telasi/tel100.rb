@@ -9,5 +9,6 @@ module.exports = {
   addReceiver: 'ადრესატის დამატება',
   outMotions: 'ადრესატები',
   inMotions: 'გამომგზავნები',
-  selectToEdit: 'აარჩიეთ მოძრაობა მისი თვისებების სანახავად'
+  selectToEdit: 'აარჩიეთ მოძრაობა მისი თვისებების სანახავად',
+  selectReceiver: 'ადრესატების არჩევა'
 };

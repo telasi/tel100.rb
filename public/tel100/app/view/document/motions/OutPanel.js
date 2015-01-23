@@ -19,12 +19,14 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
 
   requires: [
     'Tel100.view.document.motions.OutPanelViewModel',
+    'Tel100.view.document.motions.OutPanelViewController',
     'Tel100.view.document.motions.Grid',
     'Tel100.view.document.motions.Editor',
     'Ext.grid.Panel',
     'Ext.panel.Tool'
   ],
 
+  controller: 'documentmotionsoutpanel',
   viewModel: {
     type: 'documentmotionsoutpanel'
   },
@@ -56,6 +58,9 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
       type: 'plus',
       bind: {
         tooltip: '{i18n.document.motion.addReceiver}'
+      },
+      listeners: {
+        click: 'onAddReceiver'
       }
     }
   ]

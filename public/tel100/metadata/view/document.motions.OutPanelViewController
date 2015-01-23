@@ -7,7 +7,13 @@
     "codeClass": null,
     "userConfig": {
         "designer|userAlias": "documentmotionsoutpanel",
-        "designer|userClassName": "document.motions.OutPanelViewController"
+        "designer|userClassName": "document.motions.OutPanelViewController",
+        "requires": [
+            "Tel100.view.party.Selector"
+        ]
+    },
+    "configAlternates": {
+        "includes": "array"
     },
     "designerId": "8fd1c70a-465c-4cac-b890-164824e7df59"
 }

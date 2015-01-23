@@ -14,6 +14,9 @@
             "document.Motion"
         ],
         "name": "Tel100",
+        "stores": [
+            "hr.Structure"
+        ],
         "views": [
             "Main",
             "user.login.Panel",
@@ -36,7 +39,8 @@
             "document.editor.General",
             "document.motions.Grid",
             "document.motions.OutPanel",
-            "document.motions.Editor"
+            "document.motions.Editor",
+            "party.Selector"
         ]
     },
     "name": "Application",
