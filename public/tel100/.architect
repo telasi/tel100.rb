@@ -943,15 +943,16 @@
     "tabState": {
         "openTabs": [
             "c39280dd-4a3b-4f87-8455-6779b7ed7103",
-            "759b5380-72a7-453f-b37c-cfc4a98ba34e"
+            "759b5380-72a7-453f-b37c-cfc4a98ba34e",
+            "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "c39280dd-4a3b-4f87-8455-6779b7ed7103",
-        "selectedInstance": "f5e30d37-07ec-434a-9035-a30f7cf46646"
+        "topInstance": "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68",
+        "selectedInstance": "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68"
     },
     "editMode": "code",
     "userSettings": {

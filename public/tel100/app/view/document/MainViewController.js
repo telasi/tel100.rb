@@ -68,16 +68,33 @@ Ext.define('Tel100.view.document.MainViewController', {
   },
 
   openDocument: function(doc) {
+    // checking if the document is already open
     var tabs = this.getView().down('#documentTabs');
+    var items = tabs.items;
+    for (var i = 0; i < items.length; i++) {
+      var item = items.getAt(i);
+      var vm = item.getViewModel();
+      var tabDoc = vm && vm.get('document');
+      if (tabDoc && tabDoc.id === doc.id) {
+        tabs.setActiveTab(item);
+        return;
+      }
+    }
+
+    // loading document for edit
     doc.load({
       success: function(doc) {
+        // create editor for the document
         var editor;
+        // draft editor
         if (doc.get('status') === helpers.document.status.DRAFT) {
           var title = i18n.document.base.ui.editDraftTitle;
           editor = Tel100.view.document.editor.Panel.create({ title: title, closable: true });
           editor.getViewModel().set('document', doc);
-        } else {
-          // TODO: open non-draft document
+        }
+        // non-draft editor
+        else {
+          // TODO:
         }
         if (editor) {
           tabs.add(editor);
@@ -85,8 +102,6 @@ Ext.define('Tel100.view.document.MainViewController', {
         }
       }
     });
-
-
   },
 
   onGridDoubleClick: function(dataview, record, item, index, e, eOpts) {
