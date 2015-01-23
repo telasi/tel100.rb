@@ -27,9 +27,6 @@ Ext.application({
     'document.Direction',
     'document.Motion'
   ],
-  stores: [
-    'hr.Structure'
-  ],
   views: [
     'Main',
     'user.login.Panel',

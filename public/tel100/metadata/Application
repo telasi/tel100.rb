@@ -14,9 +14,6 @@
             "document.Motion"
         ],
         "name": "Tel100",
-        "stores": [
-            "hr.Structure"
-        ],
         "views": [
             "Main",
             "user.login.Panel",

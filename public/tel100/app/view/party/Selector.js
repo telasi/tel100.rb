@@ -38,7 +38,6 @@ Ext.define('Tel100.view.party.Selector', {
     {
       xtype: 'hrtreepanel',
       width: 300,
-      autoDestroy: true,
       region: 'west',
       split: true
     }
