@@ -7,9 +7,11 @@
     "codeClass": null,
     "userConfig": {
         "autoScroll": true,
+        "cls": "white-panel",
         "designer|userAlias": "documentmotionseditor",
         "designer|userClassName": "document.motions.Editor",
         "height": null,
+        "layout": "card",
         "width": null
     },
     "name": "MyContainer",
@@ -18,17 +20,43 @@
     "viewModelInstanceId": "ff817c85-730b-4b14-91f1-1ce223738081",
     "cn": [
         {
-            "type": "Ext.form.Label",
+            "type": "Ext.container.Container",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "text": "TODO: editor"
+                "cls": null,
+                "container|align": "center",
+                "container|pack": "center",
+                "itemId": "empty",
+                "layout": "vbox"
             },
-            "name": "MyLabel",
-            "designerId": "39e2cbf6-3dba-42cb-a837-2ac05bc1d15f"
+            "name": "MyContainer1",
+            "designerId": "a7f844f2-606c-48df-a7a9-00d3ea778661",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "text-center text-muted",
+                        "designer|displayName": "emptyMotion",
+                        "text": [
+                            "{i18n.document.motion.selectToEdit}"
+                        ]
+                    },
+                    "name": "MyLabel",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "39e2cbf6-3dba-42cb-a837-2ac05bc1d15f"
+                }
+            ]
         }
     ]
 }

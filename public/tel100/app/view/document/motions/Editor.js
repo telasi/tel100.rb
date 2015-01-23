@@ -19,6 +19,7 @@ Ext.define('Tel100.view.document.motions.Editor', {
 
   requires: [
     'Tel100.view.document.motions.EditorViewModel',
+    'Ext.container.Container',
     'Ext.form.Label'
   ],
 
@@ -26,11 +27,27 @@ Ext.define('Tel100.view.document.motions.Editor', {
     type: 'documentmotionseditor'
   },
   autoScroll: true,
+  cls: 'white-panel',
+  layout: 'card',
 
   items: [
     {
-      xtype: 'label',
-      text: 'TODO: editor'
+      xtype: 'container',
+      itemId: 'empty',
+      layout: {
+        type: 'vbox',
+        align: 'center',
+        pack: 'center'
+      },
+      items: [
+        {
+          xtype: 'label',
+          cls: 'text-center text-muted',
+          bind: {
+            text: '{i18n.document.motion.selectToEdit}'
+          }
+        }
+      ]
     }
   ]
 

@@ -21,15 +21,18 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     'Tel100.view.document.motions.OutPanelViewModel',
     'Tel100.view.document.motions.Grid',
     'Tel100.view.document.motions.Editor',
-    'Ext.grid.Panel'
+    'Ext.grid.Panel',
+    'Ext.panel.Tool'
   ],
 
   viewModel: {
     type: 'documentmotionsoutpanel'
   },
   layout: 'border',
-  title: 'out-motions',
 
+  bind: {
+    title: '{i18n.document.motion.outMotions}'
+  },
   items: [
     {
       xtype: 'documentmotionsgrid',
@@ -37,15 +40,23 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
         outmode: true,
         basemotion: false
       },
-      flex: 1,
+      flex: 2,
       region: 'center'
     },
     {
       xtype: 'documentmotionseditor',
-      height: 200,
-      layout: 'card',
+      flex: 1,
       region: 'south',
       split: true
+    }
+  ],
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'plus',
+      bind: {
+        tooltip: '{i18n.document.motion.addReceiver}'
+      }
     }
   ]
 

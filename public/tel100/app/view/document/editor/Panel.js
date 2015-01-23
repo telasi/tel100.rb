@@ -77,10 +77,7 @@ Ext.define('Tel100.view.document.editor.Panel', {
         },
         {
           xtype: 'documentmotionsoutpanel',
-          hideCollapseTool: true,
-          bind: {
-            title: '{i18n.document.base.ui.receiversTabTitle}'
-          }
+          hideCollapseTool: true
         }
       ]
     },

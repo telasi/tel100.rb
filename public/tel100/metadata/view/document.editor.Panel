@@ -143,10 +143,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "designer|displayName": "receivers",
                         "hideCollapseTool": true,
-                        "title": [
-                            "{i18n.document.base.ui.receiversTabTitle}"
-                        ]
+                        "title": null
                     },
                     "name": "document.motions.outpanel",
                     "configAlternates": {

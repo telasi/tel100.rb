@@ -10,10 +10,15 @@
         "designer|userClassName": "document.motions.OutPanel",
         "height": null,
         "layout": "border",
-        "title": "out-motions",
+        "title": [
+            "{i18n.document.motion.outMotions}"
+        ],
         "width": null
     },
     "name": "MyPanel1",
+    "configAlternates": {
+        "title": "binding"
+    },
     "designerId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd",
     "viewControllerInstanceId": "8fd1c70a-465c-4cac-b890-164824e7df59",
     "viewModelInstanceId": "f95d1ab0-4cdd-49f6-afad-12afa284befb",
@@ -33,7 +38,7 @@
                     "}"
                 ],
                 "designer|displayName": "grid",
-                "layout|flex": 1,
+                "layout|flex": 2,
                 "layout|region": "center"
             },
             "name": "document.motions.grid2",
@@ -60,9 +65,9 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "editor",
-                "height": 200,
-                "layout": "card",
-                "layout|flex": null,
+                "height": null,
+                "layout": null,
+                "layout|flex": 1,
                 "layout|region": "south",
                 "layout|split": true,
                 "width": null
@@ -70,6 +75,26 @@
             "name": "document.motions.editor1",
             "designerId": "1701200c-a6e5-4f13-988a-3d34cd65034f",
             "masterInstanceId": "463ae07f-b8b5-4808-b995-965e07289448"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "add receivers",
+                "tooltip": [
+                    "{i18n.document.motion.addReceiver}"
+                ],
+                "type": "plus"
+            },
+            "name": "MyTool",
+            "configAlternates": {
+                "tooltip": "binding"
+            },
+            "designerId": "f76101b9-a863-40a0-a7ec-18d37c1dbc57"
         }
     ]
 }
