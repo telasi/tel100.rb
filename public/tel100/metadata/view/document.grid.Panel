@@ -184,6 +184,47 @@
             "designerId": "61fe5764-b6a7-49f4-928b-e5ce82974acd"
         },
         {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "original_number",
+                "designer|displayName": "original_number",
+                "text": [
+                    "{i18n.document.base.original_number}"
+                ]
+            },
+            "name": "MyColumn8",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "cf70e5be-8f02-4e6d-a848-ec8cd5877fef"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "original_date",
+                "designer|displayName": "original_date",
+                "formatter": "date(\"d/m/Y\")",
+                "text": [
+                    "{i18n.document.base.original_date}"
+                ]
+            },
+            "name": "MyColumn3",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "f5e30d37-07ec-434a-9035-a30f7cf46646"
+        },
+        {
             "type": "basicfunction",
             "reference": {
                 "name": "items",

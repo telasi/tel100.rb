@@ -87,6 +87,21 @@ Ext.define('Tel100.view.document.grid.Panel', {
       bind: {
         text: '{i18n.document.base.subject}'
       }
+    },
+    {
+      xtype: 'gridcolumn',
+      dataIndex: 'original_number',
+      bind: {
+        text: '{i18n.document.base.original_number}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      dataIndex: 'original_date',
+      formatter: 'date("d/m/Y")',
+      bind: {
+        text: '{i18n.document.base.original_date}'
+      }
     }
   ],
 
