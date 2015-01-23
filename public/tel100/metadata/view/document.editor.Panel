@@ -147,7 +147,7 @@
                         "hideCollapseTool": true,
                         "title": null
                     },
-                    "name": "document.motions.outpanel2",
+                    "name": "document.motions.outpanel",
                     "configAlternates": {
                         "title": "binding"
                     },

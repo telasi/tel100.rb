@@ -106,13 +106,13 @@
             "f84a4bb1-8617-4e24-afae-8a158ca4c6e0",
             "25529ec3-6431-4660-a40e-47839eaa8823",
             "09c4d34e-a3bb-44df-bbfb-ebdc378427a5",
-            "5ab917bd-df16-4cd4-a1a4-253bd8a43e41"
-        ],
-        "store": [
-            "365c32a0-3e44-4672-9a60-c3ab813cc3d7",
+            "5ab917bd-df16-4cd4-a1a4-253bd8a43e41",
             "b0ff8f46-49f6-4d80-b67c-6748903bedc4",
             "7412ebcf-ba35-479a-a188-060b2412d102",
             "605118dc-a16c-4202-9040-76432286c4ba"
+        ],
+        "store": [
+            "365c32a0-3e44-4672-9a60-c3ab813cc3d7"
         ],
         "controller": [],
         "model": [
