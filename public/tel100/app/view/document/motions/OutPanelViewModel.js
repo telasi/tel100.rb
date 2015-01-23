@@ -18,7 +18,7 @@ Ext.define('Tel100.view.document.motions.OutPanelViewModel', {
   alias: 'viewmodel.documentmotionsoutpanel',
 
   data: {
-    motionbase: false,
+    motionbase: true,
     motionout: true
   }
 

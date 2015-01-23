@@ -30,10 +30,13 @@ Ext.define('Tel100.view.document.motions.Grid', {
     {
       xtype: 'gridcolumn',
       resizable: false,
-      width: 32
+      width: 32,
+      sortable: false,
+      hideable: false
     },
     {
       xtype: 'gridcolumn',
+      resizable: false,
       width: 50,
       sortable: false,
       dataIndex: 'ordering',
@@ -45,17 +48,20 @@ Ext.define('Tel100.view.document.motions.Grid', {
     },
     {
       xtype: 'gridcolumn',
-      width: 200,
       sortable: false,
-      dataIndex: 'receiverName',
+      dataIndex: 'partyName',
       hideable: false,
+      flex: 1,
       bind: {
         text: '{partyColumnText}'
       }
     },
     {
       xtype: 'gridcolumn',
+      width: 100,
+      sortable: false,
       dataIndex: 'due_date',
+      hideable: false,
       bind: {
         text: '{i18n.document.motion.due_date}'
       }

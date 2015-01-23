@@ -8,7 +8,7 @@
     "userConfig": {
         "data": [
             "{",
-            "  motionbase: false,",
+            "  motionbase: true,",
             "  motionout: true",
             "}"
         ],

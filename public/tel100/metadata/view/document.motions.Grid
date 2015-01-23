@@ -26,7 +26,9 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "status",
+                "hideable": false,
                 "resizable": false,
+                "sortable": false,
                 "text": null,
                 "width": 32
             },
@@ -47,6 +49,7 @@
                     "{hideOrderingColumn}"
                 ],
                 "hideable": false,
+                "resizable": false,
                 "sortable": false,
                 "text": [
                     "{i18n.document.motion.ordering}"
@@ -68,14 +71,15 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "receiverName",
+                "dataIndex": "partyName",
                 "designer|displayName": "partyName",
+                "flex": 1,
                 "hideable": false,
                 "sortable": false,
                 "text": [
                     "{partyColumnText}"
                 ],
-                "width": 200
+                "width": null
             },
             "name": "MyColumn10",
             "configAlternates": {
@@ -93,9 +97,12 @@
             "userConfig": {
                 "dataIndex": "due_date",
                 "designer|displayName": "due_date",
+                "hideable": false,
+                "sortable": false,
                 "text": [
                     "{i18n.document.motion.due_date}"
-                ]
+                ],
+                "width": 100
             },
             "name": "MyColumn12",
             "configAlternates": {
