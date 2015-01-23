@@ -20,7 +20,12 @@ Ext.define('Tel100.view.party.Selector', {
   requires: [
     'Tel100.view.party.SelectorViewModel',
     'Tel100.view.hr.tree.Panel',
-    'Ext.tree.Panel'
+    'Ext.tree.Panel',
+    'Ext.grid.Panel',
+    'Ext.grid.column.Number',
+    'Ext.grid.column.Date',
+    'Ext.grid.column.Boolean',
+    'Ext.grid.View'
   ],
 
   viewModel: {
@@ -40,6 +45,34 @@ Ext.define('Tel100.view.party.Selector', {
       width: 300,
       region: 'west',
       split: true
+    },
+    {
+      xtype: 'gridpanel',
+      region: 'center',
+      itemId: 'selectedParties',
+      title: 'Selected Parties',
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          dataIndex: 'string',
+          text: 'String'
+        },
+        {
+          xtype: 'numbercolumn',
+          dataIndex: 'number',
+          text: 'Number'
+        },
+        {
+          xtype: 'datecolumn',
+          dataIndex: 'date',
+          text: 'Date'
+        },
+        {
+          xtype: 'booleancolumn',
+          dataIndex: 'bool',
+          text: 'Boolean'
+        }
+      ]
     }
   ]
 
