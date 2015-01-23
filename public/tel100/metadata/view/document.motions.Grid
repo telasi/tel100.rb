@@ -30,7 +30,7 @@
                 "resizable": false,
                 "sortable": false,
                 "text": null,
-                "width": 32
+                "width": 24
             },
             "name": "MyColumn13",
             "designerId": "8594ac90-35e8-4a68-8622-8f1c261aab51"
@@ -52,9 +52,9 @@
                 "resizable": false,
                 "sortable": false,
                 "text": [
-                    "{i18n.document.motion.ordering}"
+                    "{i18n.document.motion.orderingShort}"
                 ],
-                "width": 50
+                "width": 48
             },
             "name": "MyColumn9",
             "configAlternates": {

@@ -97,6 +97,7 @@ module.exports = {
 },{"./base":3,"./folder":4,"./motion":6,"./type":7}],6:[function(require,module,exports){
 module.exports = {
   ordering: 'ეტაპი',
+  orderingShort: '#',
   receiver: 'ადრესატი',
   sender: 'გამგზავნი',
   role: 'როლი',

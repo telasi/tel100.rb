@@ -1,5 +1,6 @@
 module.exports = {
   ordering: 'ეტაპი',
+  orderingShort: '#',
   receiver: 'ადრესატი',
   sender: 'გამგზავნი',
   role: 'როლი',

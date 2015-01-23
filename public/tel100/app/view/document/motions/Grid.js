@@ -30,20 +30,20 @@ Ext.define('Tel100.view.document.motions.Grid', {
     {
       xtype: 'gridcolumn',
       resizable: false,
-      width: 32,
+      width: 24,
       sortable: false,
       hideable: false
     },
     {
       xtype: 'gridcolumn',
       resizable: false,
-      width: 50,
+      width: 48,
       sortable: false,
       dataIndex: 'ordering',
       hideable: false,
       bind: {
         hidden: '{hideOrderingColumn}',
-        text: '{i18n.document.motion.ordering}'
+        text: '{i18n.document.motion.orderingShort}'
       }
     },
     {
