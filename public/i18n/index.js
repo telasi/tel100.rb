@@ -7,7 +7,8 @@ var ka = {}
     errors: require('./errors'),
     user: require('./user'),
     hr: require('./hr'),
-    ui: require('./ui')
+    ui: require('./ui'),
+    vacation: require('./vacation')
   };
 
 var addProperties = function(ka, ru, data) {

@@ -128,7 +128,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general1",
+                    "name": "document.editor.general",
                     "configAlternates": {
                         "title": "binding"
                     },

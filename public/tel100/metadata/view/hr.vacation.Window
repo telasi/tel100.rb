@@ -1,0 +1,191 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "hrvacationwindow",
+        "designer|userClassName": "hr.vacation.Window",
+        "height": 182,
+        "layout": "fit",
+        "title": [
+            "{i18n.vacation.ui.button}"
+        ],
+        "width": 864
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "b0ff8f46-49f6-4d80-b67c-6748903bedc4",
+    "viewControllerInstanceId": "605118dc-a16c-4202-9040-76432286c4ba",
+    "viewModelInstanceId": "7412ebcf-ba35-479a-a188-060b2412d102",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "header": false,
+                "title": "My Form"
+            },
+            "name": "MyForm",
+            "designerId": "198d6e2a-016e-4a98-b67d-47ad33a3ba01",
+            "cn": [
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowBlank": false,
+                        "fieldLabel": [
+                            "{i18n.vacation.fields.type}"
+                        ],
+                        "layout|anchor": "100%"
+                    },
+                    "name": "MyComboBox2",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "db45b30b-3311-4df3-ba20-6a8bf84b0fdb"
+                },
+                {
+                    "type": "Ext.form.FieldContainer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "fieldLabel": "",
+                        "height": 26,
+                        "layout": "hbox"
+                    },
+                    "name": "MyFieldContainer",
+                    "designerId": "74f5ac2d-cc00-4993-9fba-fff98f59bf67",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "fieldLabel": [
+                                    "{i18n.vacation.fields.from}"
+                                ],
+                                "layout|flex": 1,
+                                "margin": "0 10 0 0"
+                            },
+                            "name": "MyDateField2",
+                            "configAlternates": {
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "658a90ea-efb0-4da2-9ed3-3c089a454c5d"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "fieldLabel": [
+                                    "{i18n.vacation.fields.to}"
+                                ],
+                                "layout|flex": 1
+                            },
+                            "name": "MyDateField3",
+                            "configAlternates": {
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "284e7fd4-1ffa-4679-b076-2547242b4a9b"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": [
+                            "{i18n.vacation.fields.substitude}"
+                        ],
+                        "layout|anchor": "100%"
+                    },
+                    "name": "MyComboBox3",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "27b2916d-6852-4cb2-bd00-8a0249370f56"
+                },
+                {
+                    "type": "Ext.form.FieldContainer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "container|pack": "end",
+                        "container|padding": 5,
+                        "fieldLabel": "",
+                        "height": 32,
+                        "layout": "hbox"
+                    },
+                    "name": "MyFieldContainer1",
+                    "designerId": "cf00f080-7b3f-4ea1-8a36-b3ebb873b74d",
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1,
+                                "margin": "0 10 0 0",
+                                "text": "MyButton"
+                            },
+                            "name": "MyButton1",
+                            "designerId": "b53e1c9b-4288-4f90-af46-e6fa0614e516"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1,
+                                "text": "MyButton"
+                            },
+                            "name": "MyButton2",
+                            "designerId": "77e18fcd-e743-4780-836d-b6d2debfcd7b"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
