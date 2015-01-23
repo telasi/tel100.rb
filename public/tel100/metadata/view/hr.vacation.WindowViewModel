@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "hrvacationwindow",
+        "designer|userClassName": "hr.vacation.WindowViewModel"
+    },
+    "designerId": "7412ebcf-ba35-479a-a188-060b2412d102"
+}
