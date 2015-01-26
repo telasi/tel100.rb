@@ -60,8 +60,7 @@ Ext.define('Tel100.view.party.Selector', {
           }
         }
       ],
-      width: 300,
-      region: 'west',
+      region: 'center',
       split: true,
       listeners: {
         celldblclick: 'onHRTreeDblClick'
@@ -69,8 +68,10 @@ Ext.define('Tel100.view.party.Selector', {
     },
     {
       xtype: 'gridpanel',
-      region: 'center',
+      region: 'east',
+      split: true,
       itemId: 'selectedParties',
+      width: 300,
       hideHeaders: true,
       bind: {
         title: '{i18n.selector.selectedParties}',

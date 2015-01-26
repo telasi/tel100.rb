@@ -92,8 +92,20 @@ var base = {
   }
 };
 
+var motion = {
+  createDraft: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/motion/create_draft';
+    ajax.request(opts);
+  },
+
+  // TODO: other methods!
+};
+
 module.exports = {
-  base: base
+  base: base,
+  motion: motion
 };
 
 },{"../ajax":1}],3:[function(require,module,exports){

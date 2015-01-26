@@ -23,24 +23,18 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
 
   addReceiver: function(receiver) {
     var extType = receiver.get('ext_type');
-    var name;
-    if (extType === 'hr.Employee') {
-      name = receiver.get('full_name');
-    } else {
-      name = receiver.get('name');
-    }
+    var document = this.getViewModel().get('document');
 
-    var motion = Ext.create('Tel100.model.document.Motion', {
-      status: helpers.document.status.DRAFT,
-      ordering: 999,
-      receiverId: receiver.id,
-      receiverName: name,
-      receiverType: extType
+    helpers.api.document.motion.createDraft({
+      params: {
+        document_id: document.id,
+        receiver_id: receiver.id,
+        receiver_type: receiver.get('ext_type')
+      },
+      success: function(motionData) {
+        // TODO: receive motion data
+      }.bind(this)
     });
-
-
-    debugger;
-
   },
 
   onAddReceiver: function(tool, e, owner, eOpts) {

@@ -33,7 +33,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "hrTree",
-                "layout|region": "west",
+                "layout|region": "center",
                 "layout|split": true,
                 "store": null,
                 "tools": [
@@ -49,9 +49,9 @@
                     "  }",
                     "}]"
                 ],
-                "width": 300
+                "width": null
             },
-            "name": "hr.tree.panel6",
+            "name": "hr.tree.panel7",
             "configAlternates": {
                 "tools": "array"
             },
@@ -99,13 +99,15 @@
                 "designer|displayName": "grid",
                 "hideHeaders": true,
                 "itemId": "selectedParties",
-                "layout|region": "center",
+                "layout|region": "east",
+                "layout|split": true,
                 "store": [
                     "{parties}"
                 ],
                 "title": [
                     "{i18n.selector.selectedParties}"
-                ]
+                ],
+                "width": 300
             },
             "name": "MyGridPanel",
             "configAlternates": {
