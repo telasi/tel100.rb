@@ -9,5 +9,26 @@
         "designer|userAlias": "partyselector",
         "designer|userClassName": "party.SelectorViewController"
     },
-    "designerId": "5ab917bd-df16-4cd4-a1a4-253bd8a43e41"
+    "designerId": "5ab917bd-df16-4cd4-a1a4-253bd8a43e41",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "obj"
+                ],
+                "fn": "onAddParty",
+                "implHandler": [
+                    "console.log('adding party...', obj.$className);"
+                ]
+            },
+            "name": "onAddParty",
+            "designerId": "9255f505-8da9-45ea-9d1c-2214acef1fb2"
+        }
+    ]
 }

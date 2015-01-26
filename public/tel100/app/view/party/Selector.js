@@ -19,15 +19,15 @@ Ext.define('Tel100.view.party.Selector', {
 
   requires: [
     'Tel100.view.party.SelectorViewModel',
+    'Tel100.view.party.SelectorViewController',
     'Tel100.view.hr.tree.Panel',
     'Ext.tree.Panel',
     'Ext.grid.Panel',
-    'Ext.grid.column.Number',
-    'Ext.grid.column.Date',
-    'Ext.grid.column.Boolean',
-    'Ext.grid.View'
+    'Ext.grid.View',
+    'Ext.grid.column.Column'
   ],
 
+  controller: 'partyselector',
   viewModel: {
     type: 'partyselector'
   },
@@ -38,42 +38,51 @@ Ext.define('Tel100.view.party.Selector', {
   title: 'Select Party',
   maximizable: true,
   modal: true,
+  defaultListenerScope: true,
 
   items: [
     {
       xtype: 'hrtreepanel',
+      tools: [
+        {
+          type: 'plus',
+          handler: function() {
+            var tree = this.up('hrtreepanel');
+            var selection = tree.getSelection();
+            if (selection.length > 0) {
+              var controller = this.up('partyselector').getController();
+              controller.onAddParty(selection[0]);
+            }
+          }
+        }
+      ],
       width: 300,
       region: 'west',
-      split: true
+      split: true,
+      listeners: {
+        celldblclick: 'onHRTreeDblClick'
+      }
     },
     {
       xtype: 'gridpanel',
       region: 'center',
       itemId: 'selectedParties',
       title: 'Selected Parties',
+      hideHeaders: true,
       columns: [
         {
           xtype: 'gridcolumn',
-          dataIndex: 'string',
-          text: 'String'
-        },
-        {
-          xtype: 'numbercolumn',
-          dataIndex: 'number',
-          text: 'Number'
-        },
-        {
-          xtype: 'datecolumn',
-          dataIndex: 'date',
-          text: 'Date'
-        },
-        {
-          xtype: 'booleancolumn',
-          dataIndex: 'bool',
-          text: 'Boolean'
+          dataIndex: 'name',
+          flex: 1
         }
       ]
     }
-  ]
+  ],
+
+  onHRTreeDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    if (record.get('ext_type') === 'hr.Employee' && record.get('has_user')) {
+      this.getController().onAddParty(record);
+    }
+  }
 
 });
