@@ -17,6 +17,9 @@
         "width": 700
     },
     "name": "MyWindow",
+    "configAlternates": {
+        "dockedItems": "array"
+    },
     "designerId": "25529ec3-6431-4660-a40e-47839eaa8823",
     "viewControllerInstanceId": "5ab917bd-df16-4cd4-a1a4-253bd8a43e41",
     "viewModelInstanceId": "09c4d34e-a3bb-44df-bbfb-ebdc378427a5",
@@ -48,7 +51,7 @@
                 ],
                 "width": 300
             },
-            "name": "hr.tree.panel2",
+            "name": "hr.tree.panel4",
             "configAlternates": {
                 "tools": "array"
             },
@@ -216,6 +219,120 @@
                             },
                             "name": "onRemoveToolClick",
                             "designerId": "6cee409a-99ae-4dfa-a9b4-f0d655d9e776"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dock": "bottom"
+            },
+            "name": "MyToolbar",
+            "designerId": "da30ce8a-b031-4293-b04a-65dc7cad5efc",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "Cancel",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.cancel}"
+                        ]
+                    },
+                    "name": "MyButton1",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "599f7557-36c1-4797-84d8-c88c084f7345",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCancelClick",
+                                "implHandler": [
+                                    "this.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onCancelClick",
+                            "designerId": "d3ccf40a-8128-4b3f-8e59-63b394479414"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 1
+                    },
+                    "name": "MySpacer",
+                    "designerId": "d8dedea9-45ca-4498-aad5-bd3b6e1a257a"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "Select",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.selector.selectorConfirm}"
+                        ]
+                    },
+                    "name": "MyButton",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "4efbac2d-50ab-4216-9509-44cce6892e25",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSelectClicked",
+                                "implHandler": [
+                                    "var data = [];",
+                                    "var grid = this.down('gridpanel');",
+                                    "var store = grid.getStore();",
+                                    "store.each(function(item) { data.push(item); });",
+                                    "console.log( data.length );",
+                                    "this.fireEvent('selectioncomplete', data);",
+                                    "this.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onSelectClicked",
+                            "designerId": "307d51cc-24e9-4c1c-801e-a383ccfbfc22"
                         }
                     ]
                 }

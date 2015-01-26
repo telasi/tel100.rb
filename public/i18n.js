@@ -177,7 +177,7 @@ window.ru = ru;
 },{"./admin":1,"./application":2,"./document":5,"./errors":8,"./hr":9,"./selector":11,"./ui":12,"./user":13,"./vacation":14}],11:[function(require,module,exports){
 module.exports = {
   selectedParties: 'არჩეული პირები და ორგანიზაციები',
-  selectorConfirm: 'არჩევა'
+  selectorConfirm: 'არჩევანის დადასტურება'
 };
 },{}],12:[function(require,module,exports){
 module.exports = {
@@ -196,6 +196,10 @@ module.exports = {
   saving: {
     ka: '<i class="fa fa-circle-o-notch fa-spin"></i> ინახება...',
     ru: '<i class="fa fa-circle-o-notch fa-spin"></i> Сохраняется...'
+  },
+  cancel: {
+    ka: '<i class="fa fa-times"></i> გაუქმება',
+    ru: '<i class="fa fa-times"></i> Отмена'
   }
 };
 },{}],13:[function(require,module,exports){

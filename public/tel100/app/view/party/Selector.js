@@ -25,7 +25,10 @@ Ext.define('Tel100.view.party.Selector', {
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
-    'Ext.panel.Tool'
+    'Ext.panel.Tool',
+    'Ext.toolbar.Toolbar',
+    'Ext.button.Button',
+    'Ext.toolbar.Spacer'
   ],
 
   controller: 'partyselector',
@@ -97,6 +100,36 @@ Ext.define('Tel100.view.party.Selector', {
       ]
     }
   ],
+  dockedItems: [
+    {
+      xtype: 'toolbar',
+      dock: 'bottom',
+      items: [
+        {
+          xtype: 'button',
+          bind: {
+            text: '{i18n.ui.cancel}'
+          },
+          listeners: {
+            click: 'onCancelClick'
+          }
+        },
+        {
+          xtype: 'tbspacer',
+          flex: 1
+        },
+        {
+          xtype: 'button',
+          bind: {
+            text: '{i18n.selector.selectorConfirm}'
+          },
+          listeners: {
+            click: 'onSelectClicked'
+          }
+        }
+      ]
+    }
+  ],
 
   onHRTreeDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     if (record.get('ext_type') === 'hr.Employee' && record.get('has_user')) {
@@ -114,6 +147,20 @@ Ext.define('Tel100.view.party.Selector', {
     if (selection.length > 0) {
       this.getController().onRemoveParty(selection[0]);
     }
+  },
+
+  onCancelClick: function(button, e, eOpts) {
+    this.close();
+  },
+
+  onSelectClicked: function(button, e, eOpts) {
+    var data = [];
+    var grid = this.down('gridpanel');
+    var store = grid.getStore();
+    store.each(function(item) { data.push(item); });
+    console.log( data.length );
+    this.fireEvent('selectioncomplete', data);
+    this.close();
   }
 
 });

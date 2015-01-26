@@ -14,5 +14,9 @@ module.exports = {
   saving: {
     ka: '<i class="fa fa-circle-o-notch fa-spin"></i> ინახება...',
     ru: '<i class="fa fa-circle-o-notch fa-spin"></i> Сохраняется...'
+  },
+  cancel: {
+    ka: '<i class="fa fa-times"></i> გაუქმება',
+    ru: '<i class="fa fa-times"></i> Отмена'
   }
 };
