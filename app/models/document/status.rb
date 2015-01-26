@@ -1,13 +1,14 @@
 # -*- encoding : utf-8 -*-
 module Document::Status
-  DRAFT     =  0
-  CURRENT   =  1
-  COMPLETED =  2
   NOT_SENT  = -1
-  CANCELED  = -2
+  DRAFT     = 0
+  SENT      = 1
+  CURRENT   = 2
+  COMPLETED = 3
+  CANCELED  = 4
 
-  ALL_STATUSES = [ DRAFT, CURRENT, COMPLETED, NOT_SENT, CANCELED ]
-  OPEN_STATUSES = [ DRAFT, CURRENT ]
+  ALL_STATUSES = [ NOT_SENT, DRAFT, SENT, CURRENT, COMPLETED, CANCELED ]
+  OPEN_STATUSES = [ DRAFT, SENT, CURRENT ]
   CLOSED_STATUSES = ALL_STATUSES - OPEN_STATUSES
 
   def self.included(base)
