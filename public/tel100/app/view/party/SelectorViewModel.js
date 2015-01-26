@@ -15,6 +15,16 @@
 
 Ext.define('Tel100.view.party.SelectorViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.partyselector'
+  alias: 'viewmodel.partyselector',
+
+  requires: [
+    'Ext.data.Store'
+  ],
+
+  stores: {
+    parties: {
+
+    }
+  }
 
 });

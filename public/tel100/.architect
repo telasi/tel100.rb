@@ -892,20 +892,29 @@
                 },
                 {
                     "id": "ce6ba457-7cba-4179-84c2-66e961746a89",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "5b3f49ae-6fff-4acc-87eb-8b08873b5267"
                         },
                         {
-                            "id": "10e886db-1f11-446c-867d-e4dff3c1ff15"
+                            "id": "10e886db-1f11-446c-867d-e4dff3c1ff15",
+                            "cn": [
+                                {
+                                    "id": "773bb44d-a95f-4ef9-80a9-2e716b7fe966"
+                                }
+                            ]
                         }
                     ]
                 }
             ]
         },
         "09c4d34e-a3bb-44df-bbfb-ebdc378427a5": {
-            "id": "09c4d34e-a3bb-44df-bbfb-ebdc378427a5"
+            "id": "09c4d34e-a3bb-44df-bbfb-ebdc378427a5",
+            "cn": [
+                {
+                    "id": "48a0d967-56fc-4a33-b4ab-1eb96134f1c3"
+                }
+            ]
         },
         "5ab917bd-df16-4cd4-a1a4-253bd8a43e41": {
             "id": "5ab917bd-df16-4cd4-a1a4-253bd8a43e41",
@@ -925,6 +934,14 @@
             "cn": [
                 {
                     "id": "dab0e5ff-7792-4226-b2ad-ad6d74b2a2ab"
+                }
+            ]
+        },
+        "630bfd3f-2bb9-4872-adb4-14e196195724": {
+            "id": "630bfd3f-2bb9-4872-adb4-14e196195724",
+            "cn": [
+                {
+                    "id": "b618a70f-42f2-4818-ba29-2e3a866c8d7d"
                 }
             ]
         },
@@ -1055,6 +1072,7 @@
     "tabState": {
         "openTabs": [
             "25529ec3-6431-4660-a40e-47839eaa8823",
+            "09c4d34e-a3bb-44df-bbfb-ebdc378427a5",
             "5ab917bd-df16-4cd4-a1a4-253bd8a43e41"
         ]
     },
@@ -1063,7 +1081,7 @@
     },
     "inspectorState": {
         "topInstance": "25529ec3-6431-4660-a40e-47839eaa8823",
-        "selectedInstance": "25529ec3-6431-4660-a40e-47839eaa8823"
+        "selectedInstance": "ce6ba457-7cba-4179-84c2-66e961746a89"
     },
     "editMode": "code",
     "userSettings": {

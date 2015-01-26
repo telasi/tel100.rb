@@ -14,12 +14,12 @@
  */
 
 Ext.define('Tel100.model.hr.Organization', {
-    extend: 'Ext.data.TreeModel',
+  extend: 'Ext.data.TreeModel',
 
-    entityName: 'hr.Organization',
+  entityName: 'hr.Organization',
 
-    toTreeHtml: function() {
-        return ['<i class="fa fa-bank"></i>', this.get('name')].join(' ');
-    }
+  toTreeHtml: function() {
+    return ['<i class="fa fa-bank"></i>', this.get('name')].join(' ');
+  }
 
 });

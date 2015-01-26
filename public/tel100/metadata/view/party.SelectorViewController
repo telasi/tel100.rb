@@ -24,7 +24,8 @@
                 ],
                 "fn": "onAddParty",
                 "implHandler": [
-                    "console.log('adding party...', obj.$className);"
+                    "var grid = this.getView().down('gridpanel');",
+                    "grid.getStore().add(obj);"
                 ]
             },
             "name": "onAddParty",

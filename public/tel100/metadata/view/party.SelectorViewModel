@@ -9,5 +9,20 @@
         "designer|userAlias": "partyselector",
         "designer|userClassName": "party.SelectorViewModel"
     },
-    "designerId": "09c4d34e-a3bb-44df-bbfb-ebdc378427a5"
+    "designerId": "09c4d34e-a3bb-44df-bbfb-ebdc378427a5",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "parties"
+            },
+            "name": "MyStore",
+            "designerId": "48a0d967-56fc-4a33-b4ab-1eb96134f1c3"
+        }
+    ]
 }

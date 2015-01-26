@@ -8,12 +8,12 @@ var ka = {}
     user: require('./user'),
     hr: require('./hr'),
     ui: require('./ui'),
-    vacation: require('./vacation')
+    vacation: require('./vacation'),
+    selector: require('./selector')
   };
 
 var addProperties = function(ka, ru, data) {
   for(prop in data) {
-    // console.log(prop, data[prop]);
     var value = data[prop];
     if (typeof value === 'string') {
       ka[prop] = value;

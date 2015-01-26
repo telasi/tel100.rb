@@ -48,7 +48,7 @@
                 ],
                 "width": 300
             },
-            "name": "hr.tree.panel1",
+            "name": "hr.tree.panel2",
             "configAlternates": {
                 "tools": "array"
             },
@@ -92,13 +92,23 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "name",
+                "designer|createAlias": "",
+                "designer|displayName": "grid",
                 "hideHeaders": true,
                 "itemId": "selectedParties",
                 "layout|region": "center",
-                "title": "Selected Parties"
+                "store": [
+                    "{parties}"
+                ],
+                "title": [
+                    "{i18n.selector.selectedParties}"
+                ]
             },
             "name": "MyGridPanel",
+            "configAlternates": {
+                "store": "binding",
+                "title": "binding"
+            },
             "designerId": "ce6ba457-7cba-4179-84c2-66e961746a89",
             "cn": [
                 {
@@ -125,7 +135,34 @@
                         "text": null
                     },
                     "name": "MyColumn",
-                    "designerId": "10e886db-1f11-446c-867d-e4dff3c1ff15"
+                    "designerId": "10e886db-1f11-446c-867d-e4dff3c1ff15",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "return record.toTreeHtml();"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "773bb44d-a95f-4ef9-80a9-2e716b7fe966"
+                        }
+                    ]
                 }
             ]
         }

@@ -18,7 +18,8 @@ Ext.define('Tel100.view.party.SelectorViewController', {
   alias: 'controller.partyselector',
 
   onAddParty: function(obj) {
-    console.log('adding party...', obj.$className);
+    var grid = this.getView().down('gridpanel');
+    grid.getStore().add(obj);
   }
 
 });

@@ -146,12 +146,13 @@ var ka = {}
     errors: require('./errors'),
     user: require('./user'),
     hr: require('./hr'),
-    ui: require('./ui')
+    ui: require('./ui'),
+    vacation: require('./vacation'),
+    selector: require('./selector')
   };
 
 var addProperties = function(ka, ru, data) {
   for(prop in data) {
-    // console.log(prop, data[prop]);
     var value = data[prop];
     if (typeof value === 'string') {
       ka[prop] = value;
@@ -173,7 +174,12 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./admin":1,"./application":2,"./document":5,"./errors":8,"./hr":9,"./ui":11,"./user":12}],11:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./document":5,"./errors":8,"./hr":9,"./selector":11,"./ui":12,"./user":13,"./vacation":14}],11:[function(require,module,exports){
+module.exports = {
+  selectedParties: 'არჩეული პირები და ორგანიზაციები',
+  selectorConfirm: 'არჩევა'
+};
+},{}],12:[function(require,module,exports){
 module.exports = {
   confirmTitle: {
     ka: 'დადასტურება',
@@ -192,7 +198,7 @@ module.exports = {
     ru: '<i class="fa fa-circle-o-notch fa-spin"></i> Сохраняется...'
   }
 };
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -213,6 +219,46 @@ module.exports = {
     },
     profile: 'მომხმარებლის პროფილი',
     logout: 'სისტემიდან გასვლა'
+  }
+};
+
+},{}],14:[function(require,module,exports){
+module.exports = {
+  ui: {
+    button: {
+      ka: 'შვებულება',
+      ru: 'Отсутствие'
+    },
+    save: {
+      ka: 'შენაზვა',
+      ru: 'Сохранить'
+    },
+    cancel: {
+      ka: 'გაუქმება',
+      ru: 'Отмена'
+    }
+  },
+  fields: {
+  	period: {
+  		ka: 'პერიოდი',
+  		ru: 'Период'
+  	},
+  	type: {
+  		ka: 'ტიპი',
+  		ru: 'тип'
+  	},
+  	from: {
+  		ka: 'დასაწყისი',
+  		ru: 'С'
+  	},
+  	to: {
+  		ka: 'დამთავრება',
+  		ru: 'По'
+  	},
+  	substitude: {
+  		ka: 'მოვალეობა შეეთავსოს',
+  		ru: 'Обязанность совместить'
+  	}
   }
 };
 

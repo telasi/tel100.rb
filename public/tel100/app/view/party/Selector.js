@@ -67,11 +67,17 @@ Ext.define('Tel100.view.party.Selector', {
       xtype: 'gridpanel',
       region: 'center',
       itemId: 'selectedParties',
-      title: 'Selected Parties',
       hideHeaders: true,
+      bind: {
+        title: '{i18n.selector.selectedParties}',
+        store: '{parties}'
+      },
       columns: [
         {
           xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            return record.toTreeHtml();
+          },
           dataIndex: 'name',
           flex: 1
         }
