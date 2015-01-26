@@ -61,6 +61,10 @@ Rails.application.routes.draw do
         put  '/update_draft', action: 'update_draft'
         delete '/delete_draft', action: 'delete_draft'
       end
+      scope 'motion', controller: 'motion' do
+        get '/', action: 'index'
+        post '/create_draft', action: 'create_draft'
+      end
       scope 'types', controller: 'types' do
         get '/',    action: 'index'
         get '/:id', action: 'show'
