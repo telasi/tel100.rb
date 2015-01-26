@@ -24,7 +24,8 @@ Ext.define('Tel100.view.party.Selector', {
     'Ext.tree.Panel',
     'Ext.grid.Panel',
     'Ext.grid.View',
-    'Ext.grid.column.Column'
+    'Ext.grid.column.Column',
+    'Ext.panel.Tool'
   ],
 
   controller: 'partyselector',
@@ -81,6 +82,18 @@ Ext.define('Tel100.view.party.Selector', {
           dataIndex: 'name',
           flex: 1
         }
+      ],
+      listeners: {
+        celldblclick: 'onSelectedPartiesCellDblClick'
+      },
+      tools: [
+        {
+          xtype: 'tool',
+          type: 'minus',
+          listeners: {
+            click: 'onRemoveToolClick'
+          }
+        }
       ]
     }
   ],
@@ -88,6 +101,18 @@ Ext.define('Tel100.view.party.Selector', {
   onHRTreeDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     if (record.get('ext_type') === 'hr.Employee' && record.get('has_user')) {
       this.getController().onAddParty(record);
+    }
+  },
+
+  onSelectedPartiesCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    this.getController().onRemoveParty(record);
+  },
+
+  onRemoveToolClick: function(tool, e, owner, eOpts) {
+    var grid = this.down('gridpanel');
+    var selection = grid.getSelection();
+    if (selection.length > 0) {
+      this.getController().onRemoveParty(selection[0]);
     }
   }
 

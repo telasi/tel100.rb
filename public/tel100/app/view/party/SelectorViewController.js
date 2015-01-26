@@ -20,6 +20,12 @@ Ext.define('Tel100.view.party.SelectorViewController', {
   onAddParty: function(obj) {
     var grid = this.getView().down('gridpanel');
     grid.getStore().add(obj);
+  },
+
+  onRemoveParty: function(obj) {
+    var grid = this.getView().down('gridpanel');
+    var store = grid.getStore();
+    store.remove(obj);
   }
 
 });

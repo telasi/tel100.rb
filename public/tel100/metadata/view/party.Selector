@@ -163,6 +163,61 @@
                             "designerId": "773bb44d-a95f-4ef9-80a9-2e716b7fe966"
                         }
                     ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onSelectedPartiesCellDblClick",
+                        "implHandler": [
+                            "this.getController().onRemoveParty(record);"
+                        ],
+                        "name": "celldblclick",
+                        "scope": "me"
+                    },
+                    "name": "onSelectedPartiesCellDblClick",
+                    "designerId": "f8f3a50d-3a88-41c7-9e58-b52fa59440fa"
+                },
+                {
+                    "type": "Ext.panel.Tool",
+                    "reference": {
+                        "name": "tools",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "type": "minus"
+                    },
+                    "name": "MyTool",
+                    "designerId": "8af1b4fb-e308-4cd2-8a11-2150264a135b",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onRemoveToolClick",
+                                "implHandler": [
+                                    "var grid = this.down('gridpanel');",
+                                    "var selection = grid.getSelection();",
+                                    "if (selection.length > 0) {",
+                                    "  this.getController().onRemoveParty(selection[0]);",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onRemoveToolClick",
+                            "designerId": "6cee409a-99ae-4dfa-a9b4-f0d655d9e776"
+                        }
+                    ]
                 }
             ]
         }

@@ -30,6 +30,27 @@
             },
             "name": "onAddParty",
             "designerId": "9255f505-8da9-45ea-9d1c-2214acef1fb2"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "obj"
+                ],
+                "fn": "onRemoveParty",
+                "implHandler": [
+                    "var grid = this.getView().down('gridpanel');",
+                    "var store = grid.getStore();",
+                    "store.remove(obj);"
+                ]
+            },
+            "name": "onRemoveParty",
+            "designerId": "d2055c7d-b6a5-401d-9f28-0bd9832430e9"
         }
     ]
 }
