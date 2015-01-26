@@ -478,7 +478,6 @@
         },
         "368a0f4e-bc1c-41fd-98ea-3e2c39105b2e": {
             "id": "368a0f4e-bc1c-41fd-98ea-3e2c39105b2e",
-            "expanded": false,
             "cn": [
                 {
                     "id": "a5bb3bf9-bfc0-46e4-a1ea-176101ed4d23"
@@ -1124,7 +1123,8 @@
             "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68",
             "05865998-80f8-449c-af7e-5966e96edc93",
             "25529ec3-6431-4660-a40e-47839eaa8823",
-            "8fd1c70a-465c-4cac-b890-164824e7df59"
+            "8fd1c70a-465c-4cac-b890-164824e7df59",
+            "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
         ]
     },
     "canvasState": {
