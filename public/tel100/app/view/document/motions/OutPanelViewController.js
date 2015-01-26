@@ -21,11 +21,42 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
     'Tel100.view.party.Selector'
   ],
 
+  addReceiver: function(receiver) {
+    var extType = receiver.get('ext_type');
+    var name;
+    if (extType === 'hr.Employee') {
+      name = receiver.get('full_name');
+    } else {
+      name = receiver.get('name');
+    }
+
+    var motion = Ext.create('Tel100.model.document.Motion', {
+      status: helpers.document.status.DRAFT,
+      ordering: 999,
+      receiverId: receiver.id,
+      receiverName: name,
+      receiverType: extType
+    });
+
+
+    debugger;
+
+  },
+
   onAddReceiver: function(tool, e, owner, eOpts) {
+    // open receiver dialog
     var receiverDialog = Ext.create('Tel100.view.party.Selector', {
       title: i18n.document.motion.selectReceiver
     });
     receiverDialog.show();
+
+    receiverDialog.on('selectioncomplete', function(receivers) {
+      if (receivers.length > 0) {
+        for (var i = 0; i < receivers.length; i++) {
+          this.addReceiver(receivers[i]);
+        }
+      }
+    }.bind(this));
   }
 
 });

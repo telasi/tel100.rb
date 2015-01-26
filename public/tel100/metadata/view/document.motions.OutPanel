@@ -41,7 +41,7 @@
                 "layout|flex": 2,
                 "layout|region": "center"
             },
-            "name": "document.motions.grid5",
+            "name": "document.motions.grid",
             "configAlternates": {
                 "basemotion": "binding",
                 "outmode": "boolean"
@@ -72,7 +72,7 @@
                 "layout|split": true,
                 "width": null
             },
-            "name": "document.motions.editor4",
+            "name": "document.motions.editor",
             "designerId": "1701200c-a6e5-4f13-988a-3d34cd65034f",
             "masterInstanceId": "463ae07f-b8b5-4808-b995-965e07289448"
         },
@@ -106,10 +106,19 @@
                     "userConfig": {
                         "fn": "onAddReceiver",
                         "implHandler": [
+                            "// open receiver dialog",
                             "var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
                             "  title: i18n.document.motion.selectReceiver",
                             "});",
-                            "receiverDialog.show();"
+                            "receiverDialog.show();",
+                            "",
+                            "receiverDialog.on('selectioncomplete', function(receivers) {",
+                            "  if (receivers.length > 0) {",
+                            "    for (var i = 0; i < receivers.length; i++) {",
+                            "      this.addReceiver(receivers[i]);",
+                            "    }",
+                            "  }",
+                            "}.bind(this));"
                         ],
                         "name": "click",
                         "scope": "me"

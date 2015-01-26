@@ -200,7 +200,7 @@
                     "  var vm = this.getViewModel();",
                     "  vm.set('isSaving', true);",
                     "  var changes = document.getChanges();",
-                    "  helpers.api.document.updateDraft(document.id, {",
+                    "  helpers.api.document.base.updateDraft(document.id, {",
                     "    params: changes,",
                     "    success: function() {",
                     "      document.commit(true);",

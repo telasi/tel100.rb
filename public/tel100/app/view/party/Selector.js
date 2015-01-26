@@ -158,7 +158,6 @@ Ext.define('Tel100.view.party.Selector', {
     var grid = this.down('gridpanel');
     var store = grid.getStore();
     store.each(function(item) { data.push(item); });
-    console.log( data.length );
     this.fireEvent('selectioncomplete', data);
     this.close();
   }

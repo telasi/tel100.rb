@@ -51,7 +51,7 @@
                 ],
                 "width": 300
             },
-            "name": "hr.tree.panel4",
+            "name": "hr.tree.panel6",
             "configAlternates": {
                 "tools": "array"
             },
@@ -324,7 +324,6 @@
                                     "var grid = this.down('gridpanel');",
                                     "var store = grid.getStore();",
                                     "store.each(function(item) { data.push(item); });",
-                                    "console.log( data.length );",
                                     "this.fireEvent('selectioncomplete', data);",
                                     "this.close();"
                                 ],

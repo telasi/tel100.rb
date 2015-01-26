@@ -15,5 +15,44 @@
     "configAlternates": {
         "includes": "array"
     },
-    "designerId": "8fd1c70a-465c-4cac-b890-164824e7df59"
+    "designerId": "8fd1c70a-465c-4cac-b890-164824e7df59",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "receiver"
+                ],
+                "fn": "addReceiver",
+                "implHandler": [
+                    "var extType = receiver.get('ext_type');",
+                    "var name;",
+                    "if (extType === 'hr.Employee') {",
+                    "  name = receiver.get('full_name');",
+                    "} else {",
+                    "  name = receiver.get('name');",
+                    "}",
+                    "",
+                    "var motion = Ext.create('Tel100.model.document.Motion', {",
+                    "  status: helpers.document.status.DRAFT,",
+                    "  ordering: 999,",
+                    "  receiverId: receiver.id,",
+                    "  receiverName: name,",
+                    "  receiverType: extType",
+                    "});",
+                    "",
+                    "",
+                    "debugger;",
+                    ""
+                ]
+            },
+            "name": "addReceiver",
+            "designerId": "e820e9c0-20e8-4d72-b70c-7fe1d927dfd5"
+        }
+    ]
 }
