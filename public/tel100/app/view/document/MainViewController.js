@@ -33,7 +33,7 @@ Ext.define('Tel100.view.document.MainViewController', {
         var title = i18n.ui.confirmTitle;
         Ext.Msg.confirm(title, msg, function(resp) {
           if (resp === 'yes') {
-            helpers.api.document.deleteDraft(selection.id, {
+            helpers.api.document.base.deleteDraft(selection.id, {
               success: this.onRefresh.bind(this)
             });
           }
@@ -57,7 +57,7 @@ Ext.define('Tel100.view.document.MainViewController', {
       }
     };
 
-    helpers.api.document.createDraft({
+    helpers.api.document.base.createDraft({
       success: function(data) {
         id = data.id;
         this.onRefresh({
