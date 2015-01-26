@@ -1,10 +1,11 @@
 var role = require('./role');
 
-var STATUS_CANCELED = -2;
 var STATUS_NOT_SENT = -1;
 var STATUS_DRAFT = 0;
-var STATUS_CURRENT = 1;
-var STATUS_COMPLETED = 2;
+var STATUS_SENT = 1;
+var STATUS_CURRENT = 2;
+var STATUS_COMPLETED = 3;
+var STATUS_CANCELED = 4;
 
 var ROLE_OWNER = role.OWNER;
 var ROLE_CREATOR = role.CREATOR;
@@ -86,11 +87,12 @@ var statusFormatted = function(status, role, opts) {
 
 module.exports = {
   // constants
-  CANCELED: STATUS_CANCELED,
   NOT_SENT: STATUS_NOT_SENT,
   DRAFT: STATUS_DRAFT,
+  SENT: STATUS_SENT,
   CURRENT: STATUS_CURRENT,
   COMPLETED: STATUS_COMPLETED,
+  CANCELED: STATUS_CANCELED,
 
   // functions
   statusDecoration: statusDecoration,
