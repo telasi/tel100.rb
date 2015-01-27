@@ -7,24 +7,16 @@ module Document::Who
   module ClassMethods
     def who_eval(whom, opts)
       id = opts[ "#{whom.to_s}_id".to_sym ]
+
+      # getting type
       type = opts[ "#{whom.to_s}_type".to_sym ]
+      type = 'HR::Employee' if type == 'hr.Employee'
+      type = 'HR::Organization' if type == 'hr.Organization'
 
-      if type.blank?
-        if id.is_a?(String)
-          if id[0] == 'P'
-            id = id[1..-1].to_i ; type = 'HR::Employee'
-          elsif id[0] == 'U'
-            id = id[1..-1].to_i ; type = 'Sys::User'
-          else
-            id = id.to_i ; type = 'HR::Organization'
-          end
-        else
-          type = 'HR::Organization'
-        end
-      end
-
+      # neither id not type are defined
       return [ nil, nil ] if ( id.blank? or type.blank? )
 
+      # find person & related user
       who = user = nil
       if type == 'Sys::User'
         user = Sys::User.find(id)
@@ -34,6 +26,7 @@ module Document::Who
         user = user_by_who( who )
       end
 
+      # checking user matching
       if user.present? and who.present?
         user2 = user_by_who(who)
         raise "users do not match" if user != user2
