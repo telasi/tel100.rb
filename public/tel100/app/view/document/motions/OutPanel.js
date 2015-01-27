@@ -44,10 +44,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
         basemotion: false
       },
       flex: 2,
-      region: 'center',
-      bind: {
-        store: '{motions}'
-      }
+      region: 'center'
     },
     {
       xtype: 'documentmotionseditor',
@@ -84,16 +81,8 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
   },
 
   refresh: function() {
-    var vm = this.getViewModel();
-    var document = vm.get('document');
-    var parent = vm.get('parent');
-    var params = { document_id: document.id, mode: 'out' };
-    if (parent && parent.id) { params.parent_id = parent.id; }
     var grid = this.down('documentmotionsoutgrid');
-    grid.getStore().load({ params: params, callback: function() {
-      grid.setLoading(false);
-    } });
-    grid.setLoading(true);
+    grid.refresh();
   }
 
 });

@@ -39,16 +39,12 @@
                 ],
                 "designer|displayName": "grid",
                 "layout|flex": 2,
-                "layout|region": "center",
-                "store": [
-                    "{motions}"
-                ]
+                "layout|region": "center"
             },
             "name": "document.motions.outgrid1",
             "configAlternates": {
                 "basemotion": "binding",
-                "outmode": "boolean",
-                "store": "binding"
+                "outmode": "boolean"
             },
             "designerId": "dc0ede8d-fb3b-4b1d-b635-f018c6523f2d",
             "customConfigs": [
@@ -176,16 +172,8 @@
             "userConfig": {
                 "fn": "refresh",
                 "implHandler": [
-                    "var vm = this.getViewModel();",
-                    "var document = vm.get('document');",
-                    "var parent = vm.get('parent');",
-                    "var params = { document_id: document.id, mode: 'out' };",
-                    "if (parent && parent.id) { params.parent_id = parent.id; }",
                     "var grid = this.down('documentmotionsoutgrid');",
-                    "grid.getStore().load({ params: params, callback: function() {",
-                    "  grid.setLoading(false);",
-                    "} });",
-                    "grid.setLoading(true);"
+                    "grid.refresh();"
                 ]
             },
             "name": "refresh",

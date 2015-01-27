@@ -189,12 +189,12 @@ var statusDecoration = function(status, role, opts) {
   }
   iconStyleId = styleId;
 
-  if (isNew) {
-    iconId = 'fa-circle';
-    iconStyleId = 'text-danger';
-  } else if (isChanged) {
-    iconId = 'fa-circle';
-  }
+  // if (isNew) {
+  //   iconId = 'fa-circle';
+  //   iconStyleId = 'text-danger';
+  // } else if (isChanged) {
+  //   iconId = 'fa-circle';
+  // }
 
   return {
     text: textId,
@@ -224,8 +224,7 @@ var statusFormatted = function(status, role, opts) {
 
 var motionStatusIcon = function(status, motion) {
   var role = motion.get('receiver_role');
-  var isNew = motion.get('is_new') === 1;
-  var decor = statusDecoration(status, role, { isNew: isNew, isMotion: true });
+  var decor = statusDecoration(status, role, { isMotion: true });
   return [
     '<span class="', decor.iconStyle, '">',
     '<i class="fa ', decor.icon, '"></i>',

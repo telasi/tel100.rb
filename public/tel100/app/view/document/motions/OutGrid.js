@@ -26,11 +26,14 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
     type: 'documentmotionsoutgrid'
   },
 
+  bind: {
+    store: '{motions}'
+  },
   columns: [
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        return helpers.document.status.motionStatusIcon(status, record);
+        return helpers.document.status.motionStatusIcon(value, record);
       },
       resizable: false,
       width: 28,
@@ -68,6 +71,10 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
         text: '{i18n.document.motion.due_date}'
       }
     }
-  ]
+  ],
+
+  refresh: function() {
+    this.getStore().load();
+  }
 
 });
