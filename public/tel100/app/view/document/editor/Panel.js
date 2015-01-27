@@ -65,7 +65,7 @@ Ext.define('Tel100.view.document.editor.Panel', {
       region: 'east',
       split: true,
       padding: 0,
-      width: 300,
+      width: 400,
       layout: 'accordion',
       items: [
         {
