@@ -47,3 +47,6 @@ gem 'rspec-rails', '~> 3.0.0', group: [:development, :test]
 gem 'forma', path: '../forma'
 gem 'will_paginate-bootstrap'
 gem 'select2-rails'
+
+# https://github.com/rails/jbuilder#faster-json-backends
+gem 'yajl-ruby'
