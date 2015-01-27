@@ -12,6 +12,128 @@
     "designerId": "836b8ce7-85ef-4805-b52b-145045d03f17",
     "cn": [
         {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "receiver"
+            },
+            "name": "MyField15",
+            "designerId": "df3c96e1-7131-4c32-8668-07c6ecabb857"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "receiver_user"
+            },
+            "name": "MyField16",
+            "designerId": "855b7515-63a4-49e3-b2e5-d7cf0038e5b5"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "receiverName"
+            },
+            "name": "MyField19",
+            "designerId": "c13d2000-f6fb-4394-bcc7-44b8d4ed1b19",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "var receiver = data.receiver;",
+                            "return receiver.name || ( receiver.first_name + ' ' + receiver.last_name );"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "13f8ce60-71f4-44e7-b4cb-254d236e9840"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sender"
+            },
+            "name": "MyField17",
+            "designerId": "b7e7fe34-d0df-40ba-beb9-c3354f4fa473"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sender_user"
+            },
+            "name": "MyField18",
+            "designerId": "f985c77c-9c73-4f01-a462-be2b67f36070"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "senderName"
+            },
+            "name": "MyField20",
+            "designerId": "883ea4d8-384f-4db3-a012-24854c0eb180",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "var sender = data.sender;",
+                            "return sender.name || ( sender.first_name + ' ' + sender.last_name );"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "ddc930b7-994f-465a-aac6-b54e95c9de27"
+                }
+            ]
+        },
+        {
             "type": "Ext.data.field.Date",
             "reference": {
                 "name": "fields",

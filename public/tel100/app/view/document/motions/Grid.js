@@ -45,22 +45,17 @@ Ext.define('Tel100.view.document.motions.Grid', {
       sortable: false,
       hideable: false,
       bind: {
-        hidden: '{hideOrderingColumn}',
         text: '{i18n.document.motion.orderingShort}'
       }
     },
     {
       xtype: 'gridcolumn',
-      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        var party = record.get('receiver');
-        return party.name || (party.first_name + ' ' + party.last_name);
-      },
+      dataIndex: 'receiverName',
       sortable: false,
-      dataIndex: 'partyName',
       hideable: false,
       flex: 1,
       bind: {
-        text: '{partyColumnText}'
+        text: '{i18n.document.motion.receiver}'
       }
     },
     {

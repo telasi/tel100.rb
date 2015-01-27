@@ -73,9 +73,7 @@
             "userConfig": {
                 "dataIndex": "ordering",
                 "designer|displayName": "ordering",
-                "hidden": [
-                    "{hideOrderingColumn}"
-                ],
+                "hidden": null,
                 "hideable": false,
                 "sortable": false,
                 "text": [
@@ -98,13 +96,13 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "partyName",
-                "designer|displayName": "partyName",
+                "dataIndex": "receiverName",
+                "designer|displayName": "receiverName",
                 "flex": 1,
                 "hideable": false,
                 "sortable": false,
                 "text": [
-                    "{partyColumnText}"
+                    "{i18n.document.motion.receiver}"
                 ],
                 "width": null
             },
@@ -112,35 +110,7 @@
             "configAlternates": {
                 "text": "binding"
             },
-            "designerId": "363b07a0-ecbf-4e81-bb96-c5902cbb6fdd",
-            "cn": [
-                {
-                    "type": "fixedfunction",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|params": [
-                            "value",
-                            "metaData",
-                            "record",
-                            "rowIndex",
-                            "colIndex",
-                            "store",
-                            "view"
-                        ],
-                        "fn": "renderer",
-                        "implHandler": [
-                            "var party = record.get('receiver');",
-                            "return party.name || (party.first_name + ' ' + party.last_name);"
-                        ]
-                    },
-                    "name": "renderer",
-                    "designerId": "b59aeb54-e482-40d6-abc1-1bc1fac672c3"
-                }
-            ]
+            "designerId": "363b07a0-ecbf-4e81-bb96-c5902cbb6fdd"
         },
         {
             "type": "Ext.grid.column.Column",

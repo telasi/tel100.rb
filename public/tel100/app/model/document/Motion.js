@@ -22,6 +22,32 @@ Ext.define('Tel100.model.document.Motion', {
 
   fields: [
     {
+      name: 'receiver'
+    },
+    {
+      name: 'receiver_user'
+    },
+    {
+      calculate: function(data) {
+        var receiver = data.receiver;
+        return receiver.name || ( receiver.first_name + ' ' + receiver.last_name );
+      },
+      name: 'receiverName'
+    },
+    {
+      name: 'sender'
+    },
+    {
+      name: 'sender_user'
+    },
+    {
+      calculate: function(data) {
+        var sender = data.sender;
+        return sender.name || ( sender.first_name + ' ' + sender.last_name );
+      },
+      name: 'senderName'
+    },
+    {
       type: 'date',
       name: 'due_date'
     },

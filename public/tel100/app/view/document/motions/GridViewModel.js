@@ -15,23 +15,6 @@
 
 Ext.define('Tel100.view.document.motions.GridViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documentmotionsgrid',
-
-  requires: [
-    'Ext.app.bind.Formula'
-  ],
-
-  formulas: {
-    hideOrderingColumn: function(get) {
-      return !get('motionbase');
-    },
-    partyColumnText: function(get) {
-      var out = get('motionout');
-      var name;
-      if (out) { name = i18n.document.motion.receiver; }
-      else { name = i18n.document.motion.sender; }
-      return name;
-    }
-  }
+  alias: 'viewmodel.documentmotionsgrid'
 
 });
