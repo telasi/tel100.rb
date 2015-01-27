@@ -57,7 +57,9 @@ module.exports = {
     not_sent: 'გაუგზავნელი',
     completed: 'შესრულებული',
     signed: 'ხელმოწერილი',
-    current: 'მიმდინარე'
+    current: 'მიღებული',
+    sent: 'გაგზავნილი',
+    not_received: 'მიუღებელი'
   },
   directions: {
     in: 'შემოსული',

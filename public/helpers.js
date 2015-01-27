@@ -131,56 +131,61 @@ module.exports = {
 },{}],6:[function(require,module,exports){
 var role = require('./role');
 
-var STATUS_DRAFT = 0;
-var STATUS_NOT_SENT = -1;
-var STATUS_SENT = 1;
-var STATUS_CURRENT = 2;
-var STATUS_NOT_RECEIVED = -2;
-var STATUS_COMPLETED = 3;
-var STATUS_CANCELED = -3;
+var DRAFT = 0;
+var NOT_SENT = -1;
+var SENT = 1;
+var CURRENT = 2;
+var NOT_RECEIVED = -2;
+var COMPLETED = 3;
+var CANCELED = -3;
 
-var ROLE_OWNER = role.OWNER;
-var ROLE_CREATOR = role.CREATOR;
-var ROLE_AUTHOR = role.AUTHOR;
-var ROLE_SIGNEE = role.SIGNEE;
-var ROLE_ASSIGNEE = role.ASSIGNEE;
+var OWNER = role.OWNER;
+var CREATOR = role.CREATOR;
+var AUTHOR = role.AUTHOR;
+var SIGNEE = role.SIGNEE;
+var ASSIGNEE = role.ASSIGNEE;
 
 var statusDecoration = function(status, role, opts) {
   var textId, iconId, styleId, iconStyleId;
   var isMotion = opts && opts.isMotion;
   var isNew = opts && opts.isNew;
   var isChanged = opts && opts.isChanged;
-  role = role || ROLE_OWNER;
+  role = role || OWNER;
 
-  var isSignee = (role === ROLE_AUTHOR || role === ROLE_SIGNEE);
+  var isSignee = (role === AUTHOR || role === SIGNEE);
   if (typeof isMotion === 'undefined') { isMotion = false; }
   if (typeof isNew === 'undefined') { isNew = false; }
   if (typeof isChanged === 'undefined') { isChanged = false; }
 
-  if (status === STATUS_CANCELED) {
-    textId = isSignee ? 'canceled' : 'not_signed';
-    iconId = 'fa-times';
-    styleId = 'text-danger';
-  } else if (status === STATUS_NOT_SENT) {
-    textId = 'not_sent';
-    iconId = 'fa-ban';
-    styleId = 'text-muted';
-  } else if (status === STATUS_DRAFT) {
-    if (isMotion) {
-      textId = isSignee ? 'to_be_signed' : 'to_be_sent';
-    } else {
-      textId = 'draft';
-    }
+  if (status === DRAFT) {
+    if (isMotion) { textId = isSignee ? 'to_be_signed' : 'to_be_sent'; }
+    else { textId = 'draft'; }
     iconId = 'fa-circle-o';
     styleId = 'text-muted';
-  } else if (status === STATUS_CURRENT) {
+  } else if (status === SENT) {
+    textId = 'sent';
+    iconId = 'fa-send-o';
+    styleId = 'text-info';
+  } else if (status === NOT_SENT) {
+    textId = 'not_sent';
+    iconId = 'fa-frown-o';
+    styleId = 'text-muted';
+  } else if (status === CURRENT) {
     textId = isSignee ? 'to_be_signed' : 'current';
     iconId = 'fa-clock-o';
     styleId = 'text-info';
-  } else if (status === STATUS_COMPLETED) {
+  } else if (status === NOT_RECEIVED) {
+    textId = 'not_received';
+    iconId = 'fa-ban';
+    styleId = 'text-muted';
+  } else if (status === COMPLETED) {
     textId = isSignee ? 'signed' : 'completed';
     iconId = 'fa-check';
     styleId = 'text-success';
+  } else if (status === CANCELED) {
+    textId = isSignee ? 'canceled' : 'not_signed';
+    iconId = 'fa-times';
+    styleId = 'text-danger';
   }
   iconStyleId = styleId;
 
@@ -219,13 +224,13 @@ var statusFormatted = function(status, role, opts) {
 
 module.exports = {
   // constants
-  DRAFT: STATUS_DRAFT,
-  SENT: STATUS_SENT,
-  NOT_SENT: STATUS_NOT_SENT,
-  CURRENT: STATUS_CURRENT,
-  NOT_RECEIVED: STATUS_NOT_RECEIVED,
-  COMPLETED: STATUS_COMPLETED,
-  CANCELED: STATUS_CANCELED,
+  DRAFT: DRAFT,
+  SENT: SENT,
+  NOT_SENT: NOT_SENT,
+  CURRENT: CURRENT,
+  NOT_RECEIVED: NOT_RECEIVED,
+  COMPLETED: COMPLETED,
+  CANCELED: CANCELED,
 
   // functions
   statusDecoration: statusDecoration,
