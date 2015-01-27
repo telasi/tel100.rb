@@ -38,7 +38,7 @@
                     "}"
                 ],
                 "designer|displayName": "grid",
-                "layout|flex": 2,
+                "layout|flex": 1,
                 "layout|region": "center"
             },
             "name": "document.motions.outgrid1",
