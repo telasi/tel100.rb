@@ -47,7 +47,7 @@ Ext.application({
     'document.grid.Panel',
     'document.editor.Panel',
     'document.editor.General',
-    'document.motions.Grid',
+    'document.motions.OutGrid',
     'document.motions.OutPanel',
     'document.motions.Editor',
     'party.Selector',

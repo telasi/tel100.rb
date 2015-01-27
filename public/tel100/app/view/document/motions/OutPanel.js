@@ -20,7 +20,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
   requires: [
     'Tel100.view.document.motions.OutPanelViewModel',
     'Tel100.view.document.motions.OutPanelViewController',
-    'Tel100.view.document.motions.Grid',
+    'Tel100.view.document.motions.OutGrid',
     'Tel100.view.document.motions.Editor',
     'Ext.grid.Panel',
     'Ext.panel.Tool'
@@ -38,7 +38,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
   },
   items: [
     {
-      xtype: 'documentmotionsgrid',
+      xtype: 'documentmotionsoutgrid',
       data: {
         outmode: true,
         basemotion: false
@@ -89,7 +89,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     var parent = vm.get('parent');
     var params = { document_id: document.id, mode: 'out' };
     if (parent && parent.id) { params.parent_id = parent.id; }
-    var grid = this.down('documentmotionsgrid');
+    var grid = this.down('documentmotionsoutgrid');
     grid.getStore().load({ params: params, callback: function() {
       grid.setLoading(false);
     } });

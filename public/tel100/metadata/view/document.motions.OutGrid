@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documentmotionsgrid",
-        "designer|userClassName": "document.motions.Grid",
+        "designer|userAlias": "documentmotionsoutgrid",
+        "designer|userClassName": "document.motions.OutGrid",
         "height": null,
         "title": null,
         "width": null

@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documentmotionsgrid",
-        "designer|userClassName": "document.motions.GridViewModel"
+        "designer|userAlias": "documentmotionsoutgrid",
+        "designer|userClassName": "document.motions.OutGridViewModel"
     },
     "designerId": "ffd21d10-0bfb-41e9-b435-4d3c447514c0"
 }
