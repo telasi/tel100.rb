@@ -9,5 +9,46 @@
         "designer|userClassName": "document.Motion"
     },
     "name": "MyModel",
-    "designerId": "836b8ce7-85ef-4805-b52b-145045d03f17"
+    "designerId": "836b8ce7-85ef-4805-b52b-145045d03f17",
+    "cn": [
+        {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "due_date"
+            },
+            "name": "MyDate2",
+            "designerId": "6cf194cb-2b66-413d-a056-755bdc7bb547"
+        },
+        {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "created_at"
+            },
+            "name": "MyDate3",
+            "designerId": "f8683a4d-93c0-4fcd-94ce-0ec674ef44e4"
+        },
+        {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "updated_at"
+            },
+            "name": "MyDate4",
+            "designerId": "d3849a49-c3ca-45b5-9d95-3353a46d0441"
+        }
+    ]
 }

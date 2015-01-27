@@ -39,12 +39,16 @@
                 ],
                 "designer|displayName": "grid",
                 "layout|flex": 2,
-                "layout|region": "center"
+                "layout|region": "center",
+                "store": [
+                    "{motions}"
+                ]
             },
-            "name": "document.motions.grid",
+            "name": "document.motions.grid1",
             "configAlternates": {
                 "basemotion": "binding",
-                "outmode": "boolean"
+                "outmode": "boolean",
+                "store": "binding"
             },
             "designerId": "dc0ede8d-fb3b-4b1d-b635-f018c6523f2d",
             "customConfigs": [
@@ -72,9 +76,43 @@
                 "layout|split": true,
                 "width": null
             },
-            "name": "document.motions.editor",
+            "name": "document.motions.editor1",
             "designerId": "1701200c-a6e5-4f13-988a-3d34cd65034f",
             "masterInstanceId": "463ae07f-b8b5-4808-b995-965e07289448"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool2",
+            "designerId": "b22441a6-7b45-46c4-99ab-19a0136c784d",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefresh",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefresh",
+                    "designerId": "ae98d0cd-5bb6-45b5-b660-6e3471d7ca5d"
+                }
+            ]
         },
         {
             "type": "Ext.panel.Tool",
@@ -127,6 +165,30 @@
                     "designerId": "545910f6-42f5-421a-974b-37311cc60957"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "var document = vm.get('document');",
+                    "var parent = vm.get('parent');",
+                    "var params = { document_id: document.id, parent_id: (parent && parent.id), mode: 'out' };",
+                    "var grid = this.down('documentmotionsgrid');",
+                    "grid.getStore().load({ params: params, callback: function() {",
+                    "  grid.setLoading(false);",
+                    "} });",
+                    "grid.setLoading(true);"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "80ad4655-3d15-452b-acaa-8678be2740ed"
         }
     ]
 }

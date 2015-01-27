@@ -14,5 +14,24 @@
  */
 
 Ext.define('Tel100.model.document.Motion', {
-  extend: 'Ext.data.Model'
+  extend: 'Ext.data.Model',
+
+  requires: [
+    'Ext.data.field.Date'
+  ],
+
+  fields: [
+    {
+      type: 'date',
+      name: 'due_date'
+    },
+    {
+      type: 'date',
+      name: 'created_at'
+    },
+    {
+      type: 'date',
+      name: 'updated_at'
+    }
+  ]
 });

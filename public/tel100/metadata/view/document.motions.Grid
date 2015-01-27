@@ -25,6 +25,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dataIndex": "status",
                 "designer|displayName": "status",
                 "hideable": false,
                 "resizable": false,
@@ -33,7 +34,34 @@
                 "width": 24
             },
             "name": "MyColumn13",
-            "designerId": "8594ac90-35e8-4a68-8622-8f1c261aab51"
+            "designerId": "8594ac90-35e8-4a68-8622-8f1c261aab51",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return value;"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "64b4b997-2a5c-47ea-9eb2-1a5c9c68ec6c"
+                }
+            ]
         },
         {
             "type": "Ext.grid.column.Column",

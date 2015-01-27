@@ -31,6 +31,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     type: 'documentmotionsoutpanel'
   },
   layout: 'border',
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.motion.outMotions}'
@@ -43,7 +44,10 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
         basemotion: false
       },
       flex: 2,
-      region: 'center'
+      region: 'center',
+      bind: {
+        store: '{motions}'
+      }
     },
     {
       xtype: 'documentmotionseditor',
@@ -55,14 +59,40 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
   tools: [
     {
       xtype: 'tool',
+      type: 'refresh',
+      listeners: {
+        click: 'onRefresh'
+      }
+    },
+    {
+      xtype: 'tool',
       type: 'plus',
       bind: {
         tooltip: '{i18n.document.motion.addReceiver}'
       },
       listeners: {
-        click: 'onAddReceiver'
+        click: {
+          fn: 'onAddReceiver',
+          scope: 'controller'
+        }
       }
     }
-  ]
+  ],
+
+  onRefresh: function(tool, e, owner, eOpts) {
+    this.refresh();
+  },
+
+  refresh: function() {
+    var vm = this.getViewModel();
+    var document = vm.get('document');
+    var parent = vm.get('parent');
+    var params = { document_id: document.id, parent_id: (parent && parent.id), mode: 'out' };
+    var grid = this.down('documentmotionsgrid');
+    grid.getStore().load({ params: params, callback: function() {
+      grid.setLoading(false);
+    } });
+    grid.setLoading(true);
+  }
 
 });

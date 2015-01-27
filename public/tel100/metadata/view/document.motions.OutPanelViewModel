@@ -15,5 +15,49 @@
         "designer|userAlias": "documentmotionsoutpanel",
         "designer|userClassName": "document.motions.OutPanelViewModel"
     },
-    "designerId": "f95d1ab0-4cdd-49f6-afad-12afa284befb"
+    "designerId": "f95d1ab0-4cdd-49f6-afad-12afa284befb",
+    "cn": [
+        {
+            "type": "jsonstore",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": false,
+                "model": "document.Motion",
+                "name": "motions"
+            },
+            "name": "MyJsonStore",
+            "designerId": "30b1485a-06ec-4262-96eb-aa0a82ba95e6",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "url": "/api/documents/motion"
+                    },
+                    "name": "MyAjaxProxy1",
+                    "designerId": "22fa195b-8942-4752-9fcc-5b5fc1f68944",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader1",
+                            "designerId": "13c65e0f-3bcf-4394-ad53-34998181bbd7"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

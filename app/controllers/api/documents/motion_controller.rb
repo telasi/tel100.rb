@@ -5,7 +5,8 @@ class Api::Documents::MotionController < ApiController
   def index
     rel = Document::Motion.where(document_id: params[:document_id])
     if params[:mode] == 'out'
-      rel = rel.where(sender_user: current_user, parent_id: params[:parent_id])
+      rel = rel.where(sender_user: current_user,)
+      rel = rel.where(parent_id: params[:parent_id]) if params[:parent_id].present?
     else
       rel = rel.where(receiver_user: current_user)
     end

@@ -29,9 +29,13 @@ Ext.define('Tel100.view.document.motions.Grid', {
   columns: [
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return value;
+      },
       resizable: false,
       width: 24,
       sortable: false,
+      dataIndex: 'status',
       hideable: false
     },
     {
