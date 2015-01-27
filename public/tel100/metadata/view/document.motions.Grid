@@ -77,7 +77,6 @@
                     "{hideOrderingColumn}"
                 ],
                 "hideable": false,
-                "resizable": false,
                 "sortable": false,
                 "text": [
                     "{i18n.document.motion.orderingShort}"
@@ -113,7 +112,35 @@
             "configAlternates": {
                 "text": "binding"
             },
-            "designerId": "363b07a0-ecbf-4e81-bb96-c5902cbb6fdd"
+            "designerId": "363b07a0-ecbf-4e81-bb96-c5902cbb6fdd",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "var party = record.get('receiver');",
+                            "return party.name || (party.first_name + ' ' + party.last_name);"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "b59aeb54-e482-40d6-abc1-1bc1fac672c3"
+                }
+            ]
         },
         {
             "type": "Ext.grid.column.Column",

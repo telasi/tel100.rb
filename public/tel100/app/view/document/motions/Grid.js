@@ -40,10 +40,9 @@ Ext.define('Tel100.view.document.motions.Grid', {
     },
     {
       xtype: 'gridcolumn',
-      resizable: false,
+      dataIndex: 'ordering',
       width: 48,
       sortable: false,
-      dataIndex: 'ordering',
       hideable: false,
       bind: {
         hidden: '{hideOrderingColumn}',
@@ -52,6 +51,10 @@ Ext.define('Tel100.view.document.motions.Grid', {
     },
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        var party = record.get('receiver');
+        return party.name || (party.first_name + ' ' + party.last_name);
+      },
       sortable: false,
       dataIndex: 'partyName',
       hideable: false,
