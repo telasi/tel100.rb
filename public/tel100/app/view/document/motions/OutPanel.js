@@ -87,7 +87,8 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     var vm = this.getViewModel();
     var document = vm.get('document');
     var parent = vm.get('parent');
-    var params = { document_id: document.id, parent_id: (parent && parent.id), mode: 'out' };
+    var params = { document_id: document.id, mode: 'out' };
+    if (parent && parent.id) { params.parent_id = parent.id; }
     var grid = this.down('documentmotionsgrid');
     grid.getStore().load({ params: params, callback: function() {
       grid.setLoading(false);
