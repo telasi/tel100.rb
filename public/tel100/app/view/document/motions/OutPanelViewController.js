@@ -24,7 +24,6 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
   addReceiver: function(receiver) {
     var extType = receiver.get('ext_type');
     var document = this.getViewModel().get('document');
-
     helpers.api.document.motion.createDraft({
       params: {
         document_id: document.id,
@@ -32,18 +31,20 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
         receiver_type: receiver.get('ext_type')
       },
       success: function(motionData) {
-        // TODO: receive motion data
+        var motion = Ext.create('Tel100.model.document.Motion', motionData);
+        var view = this.getView();
+        var grid = view.down('documentmotionsoutgrid');
+        var store = grid.getStore();
+        store.add(motion);
       }.bind(this)
     });
   },
 
   onAddReceiver: function(tool, e, owner, eOpts) {
-    // open receiver dialog
     var receiverDialog = Ext.create('Tel100.view.party.Selector', {
       title: i18n.document.motion.selectReceiver
     });
     receiverDialog.show();
-
     receiverDialog.on('selectioncomplete', function(receivers) {
       if (receivers.length > 0) {
         for (var i = 0; i < receivers.length; i++) {

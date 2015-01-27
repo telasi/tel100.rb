@@ -43,9 +43,9 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
     },
     {
       xtype: 'gridcolumn',
-      dataIndex: 'ordering',
       width: 48,
       sortable: false,
+      dataIndex: 'ordering',
       hideable: false,
       bind: {
         text: '{i18n.document.motion.orderingShort}'
@@ -53,8 +53,8 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
     },
     {
       xtype: 'gridcolumn',
-      dataIndex: 'receiverName',
       sortable: false,
+      dataIndex: 'receiverName',
       hideable: false,
       flex: 1,
       bind: {

@@ -140,12 +140,10 @@
                     "userConfig": {
                         "fn": "onAddReceiver",
                         "implHandler": [
-                            "// open receiver dialog",
                             "var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
                             "  title: i18n.document.motion.selectReceiver",
                             "});",
                             "receiverDialog.show();",
-                            "",
                             "receiverDialog.on('selectioncomplete', function(receivers) {",
                             "  if (receivers.length > 0) {",
                             "    for (var i = 0; i < receivers.length; i++) {",

@@ -32,7 +32,6 @@
                 "implHandler": [
                     "var extType = receiver.get('ext_type');",
                     "var document = this.getViewModel().get('document');",
-                    "",
                     "helpers.api.document.motion.createDraft({",
                     "  params: {",
                     "    document_id: document.id,",
@@ -40,7 +39,11 @@
                     "    receiver_type: receiver.get('ext_type')",
                     "  },",
                     "  success: function(motionData) {",
-                    "    // TODO: receive motion data",
+                    "    var motion = Ext.create('Tel100.model.document.Motion', motionData);",
+                    "    var view = this.getView();",
+                    "    var grid = view.down('documentmotionsoutgrid');",
+                    "    var store = grid.getStore();",
+                    "    store.add(motion);",
                     "  }.bind(this)",
                     "});"
                 ]
