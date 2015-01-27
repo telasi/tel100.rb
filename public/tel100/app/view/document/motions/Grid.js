@@ -30,10 +30,10 @@ Ext.define('Tel100.view.document.motions.Grid', {
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        return value;
+        return helpers.document.status.motionStatusIcon(status, record);
       },
       resizable: false,
-      width: 24,
+      width: 28,
       sortable: false,
       dataIndex: 'status',
       hideable: false

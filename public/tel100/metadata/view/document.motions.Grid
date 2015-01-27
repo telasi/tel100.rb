@@ -31,7 +31,7 @@
                 "resizable": false,
                 "sortable": false,
                 "text": null,
-                "width": 24
+                "width": 28
             },
             "name": "MyColumn13",
             "designerId": "8594ac90-35e8-4a68-8622-8f1c261aab51",
@@ -55,7 +55,7 @@
                         ],
                         "fn": "renderer",
                         "implHandler": [
-                            "return value;"
+                            "return helpers.document.status.motionStatusIcon(status, record);"
                         ]
                     },
                     "name": "renderer",

@@ -222,6 +222,17 @@ var statusFormatted = function(status, role, opts) {
   }
 };
 
+var motionStatusIcon = function(status, motion) {
+  var role = motion.get('receiver_role');
+  var isNew = motion.get('is_new') === 1;
+  var decor = statusDecoration(status, role, { isNew: isNew, isMotion: true });
+  return [
+    '<span class="', decor.iconStyle, '">',
+    '<i class="fa ', decor.icon, '"></i>',
+    '</span>'
+  ].join('');
+};
+
 module.exports = {
   // constants
   DRAFT: DRAFT,
@@ -234,7 +245,8 @@ module.exports = {
 
   // functions
   statusDecoration: statusDecoration,
-  statusFormatted: statusFormatted
+  statusFormatted: statusFormatted,
+  motionStatusIcon: motionStatusIcon
 };
 
 },{"./role":5}],7:[function(require,module,exports){
