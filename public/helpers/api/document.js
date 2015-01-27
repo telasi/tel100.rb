@@ -26,6 +26,15 @@ var base = {
 };
 
 var motion = {
+  motions: function(docid, mode, args) {
+    var opts = args || {};
+    opts.method = 'GET';
+    opts.document_id = docid;
+    opts.mode = mode || 'in'; // mode is 'in' or 'out'
+    opts.url = '/api/documents/motion';
+    ajax.request(opts);
+  },
+
   createDraft: function(args) {
     var opts = args || {};
     opts.method = 'POST';
