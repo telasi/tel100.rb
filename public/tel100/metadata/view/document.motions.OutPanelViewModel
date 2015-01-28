@@ -9,11 +9,53 @@
         "data": [
             "{",
             "  motionbase: true,",
-            "  motionout: true",
+            "  selection: null",
             "}"
         ],
         "designer|userAlias": "documentmotionsoutpanel",
         "designer|userClassName": "document.motions.OutPanelViewModel"
     },
-    "designerId": "f95d1ab0-4cdd-49f6-afad-12afa284befb"
+    "designerId": "f95d1ab0-4cdd-49f6-afad-12afa284befb",
+    "cn": [
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "deleteDraftButtonDisabled"
+            },
+            "name": "MyFormula1",
+            "designerId": "1fb36c8e-ae4e-4b95-ae3a-8248927cab15",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var selection = get('selection');",
+                            "if (selection) {",
+                            "  var status = selection.get('status');",
+                            "  return status !== helpers.document.status.DRAFT;",
+                            "} else {",
+                            "  return true;",
+                            "}"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "77e3227b-d8ba-41e0-8a5a-d4650cf3e907"
+                }
+            ]
+        }
+    ]
 }

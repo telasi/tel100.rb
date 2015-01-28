@@ -39,18 +39,27 @@
                 ],
                 "designer|displayName": "grid",
                 "layout|flex": 1,
-                "layout|region": "center"
+                "layout|region": "center",
+                "selection": [
+                    "{selection}"
+                ]
             },
             "name": "document.motions.outgrid1",
             "configAlternates": {
                 "basemotion": "binding",
-                "outmode": "boolean"
+                "outmode": "boolean",
+                "selection": "binding"
             },
             "designerId": "dc0ede8d-fb3b-4b1d-b635-f018c6523f2d",
             "customConfigs": [
                 {
                     "group": "(Custom Properties)",
                     "name": "outmode",
+                    "type": "string"
+                },
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
                     "type": "string"
                 }
             ],
@@ -227,6 +236,9 @@
                     "userConfig": {
                         "cls": "danger-button",
                         "designer|displayName": "delete",
+                        "disabled": [
+                            "{deleteDraftButtonDisabled}"
+                        ],
                         "layout|flex": null,
                         "text": [
                             "{i18n.ui.delete}"
@@ -234,7 +246,8 @@
                     },
                     "name": "MyButton2",
                     "configAlternates": {
-                        "text": "binding"
+                        "text": "binding",
+                        "disabled": "binding"
                     },
                     "designerId": "3dfa9c60-f3dd-408c-8e9a-400ee27d1b39"
                 }

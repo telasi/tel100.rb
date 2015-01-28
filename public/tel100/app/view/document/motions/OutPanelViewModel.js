@@ -17,9 +17,25 @@ Ext.define('Tel100.view.document.motions.OutPanelViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.documentmotionsoutpanel',
 
+  requires: [
+    'Ext.app.bind.Formula'
+  ],
+
   data: {
     motionbase: true,
-    motionout: true
+    selection: null
+  },
+
+  formulas: {
+    deleteDraftButtonDisabled: function(get) {
+      var selection = get('selection');
+      if (selection) {
+        var status = selection.get('status');
+        return status !== helpers.document.status.DRAFT;
+      } else {
+        return true;
+      }
+    }
   }
 
 });

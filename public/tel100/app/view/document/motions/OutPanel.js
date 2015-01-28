@@ -45,7 +45,10 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
         basemotion: false
       },
       flex: 1,
-      region: 'center'
+      region: 'center',
+      bind: {
+        selection: '{selection}'
+      }
     },
     {
       xtype: 'documentmotionsouteditor',
@@ -98,6 +101,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
           xtype: 'button',
           cls: 'danger-button',
           bind: {
+            disabled: '{deleteDraftButtonDisabled}',
             text: '{i18n.ui.delete}'
           }
         }
