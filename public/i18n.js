@@ -115,9 +115,11 @@ module.exports = {
 
 },{}],7:[function(require,module,exports){
 module.exports = {
-  assignee: 'შემსრულებელი',
+  owner: 'მფლობელი',
+  creator: 'ინიციატორი',
+  author: 'ავტორი',
   signee: 'ხელმომწერი',
-  author: 'ავტორი'
+  assignee: 'მიმღები',
 };
 
 },{}],8:[function(require,module,exports){

@@ -1,5 +1,7 @@
 module.exports = {
-  assignee: 'შემსრულებელი',
+  owner: 'მფლობელი',
+  creator: 'ინიციატორი',
+  author: 'ავტორი',
   signee: 'ხელმომწერი',
-  author: 'ავტორი'
+  assignee: 'მიმღები',
 };
