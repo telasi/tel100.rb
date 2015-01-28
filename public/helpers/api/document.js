@@ -34,6 +34,14 @@ var motion = {
   },
 
   // TODO: other methods!
+
+  deleteDraft: function(id, args) {
+    var opts = args || {};
+    opts.method = 'DELETE';
+    opts.url = '/api/documents/motion/delete_draft';
+    opts.params = { id: id };
+    ajax.request(opts);
+  }
 };
 
 module.exports = {

@@ -99,6 +99,19 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
         },
         {
           xtype: 'button',
+          handler: function(button, e) {
+            var panel = this.up('documentmotionsoutpanel');
+            var vm = panel.getViewModel();
+            var selection = vm.get('selection');
+            if (selection) {
+              helpers.api.document.motion.deleteDraft(selection.id, {
+                success: function() {
+                  var grid = panel.down('documentmotionsoutgrid');
+                  grid.getStore().remove(selection);
+                }
+              });
+            }
+          },
           cls: 'danger-button',
           bind: {
             disabled: '{deleteDraftButtonDisabled}',

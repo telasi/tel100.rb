@@ -249,7 +249,39 @@
                         "text": "binding",
                         "disabled": "binding"
                     },
-                    "designerId": "3dfa9c60-f3dd-408c-8e9a-400ee27d1b39"
+                    "designerId": "3dfa9c60-f3dd-408c-8e9a-400ee27d1b39",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var panel = this.up('documentmotionsoutpanel');",
+                                    "var vm = panel.getViewModel();",
+                                    "var selection = vm.get('selection');",
+                                    "if (selection) {",
+                                    "  helpers.api.document.motion.deleteDraft(selection.id, {",
+                                    "    success: function() {",
+                                    "      var grid = panel.down('documentmotionsoutgrid');",
+                                    "      grid.getStore().remove(selection);",
+                                    "    }",
+                                    "  });",
+                                    "}"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "81767362-bdd0-49ad-85a0-87334ab6a601"
+                        }
+                    ]
                 }
             ]
         }

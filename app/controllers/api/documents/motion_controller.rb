@@ -16,4 +16,10 @@ class Api::Documents::MotionController < ApiController
   def create_draft
     @motion = Document::Motion.create_draft!(current_user, params)
   end
+
+  def delete_draft
+    motion = Document::Motion.find(params[:id])
+    motion.destroy
+    render json: { status: 'ok' }
+  end
 end
