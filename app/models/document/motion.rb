@@ -3,6 +3,7 @@ class Document::Motion < ActiveRecord::Base
   include Document::Status
   include Document::Role
   include Document::Who
+  MIN = 1
   MAX = 999
 
   include Document::Personalize
@@ -19,6 +20,8 @@ class Document::Motion < ActiveRecord::Base
   def new=(val); self.is_new = val ? 1 : 0 end
   def new?; self.is_new == 1 end
   def can_destroy?; self.new? end
+  def draft?; self.status == DRAFT end
+  def can_edit?(user); self.sender_user == user end
 
   def self.create_draft!(sender_user, params)
     document_id = params[:document_id] ; parent_id = params[:parent_id]
@@ -43,7 +46,7 @@ class Document::Motion < ActiveRecord::Base
       parent: parent,
       document: document,
       status: DRAFT,
-      ordering: MAX,
+      ordering: MIN,
       sender_user: sender_user,
       sender: sender,
       receiver_user: receiver_user,
@@ -52,9 +55,18 @@ class Document::Motion < ActiveRecord::Base
     })
   end
 
+  def update_draft!(user, params)
+    raise 'not a draft' unless self.draft?
+    raise 'don\'t have edit permission' unless self.can_edit?(user)
+    Document::Motion.transaction do
+      self.update_attributes(params.permit(:ordering, :due_date))
+      self.save!
+    end
+  end
+
   def delete_draft!(user)
-    raise 'not a draft' unless self.status == DRAFT
-    raise 'don\'t have privileges to delete' unless self.sender_user == user
+    raise 'not a draft' unless self.draft?
+    raise 'don\'t have delete permission' unless self.can_edit?(user)
     self.destroy
   end
 end

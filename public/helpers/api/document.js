@@ -33,7 +33,13 @@ var motion = {
     ajax.request(opts);
   },
 
-  // TODO: other methods!
+  updateDraft: function(id, args) {
+    var opts = args || {};
+    opts.method = 'PUT';
+    opts.url = '/api/documents/motion/update_draft';
+    opts.params.id = id;
+    ajax.request(opts);
+  },
 
   deleteDraft: function(id, args) {
     var opts = args || {};

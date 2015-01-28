@@ -65,6 +65,7 @@ Rails.application.routes.draw do
         get '/', action: 'index'
         # motion draft operations
         post '/create_draft', action: 'create_draft'
+        put  '/update_draft', action: 'update_draft'
         delete '/delete_draft', action: 'delete_draft'
       end
       scope 'types', controller: 'types' do
