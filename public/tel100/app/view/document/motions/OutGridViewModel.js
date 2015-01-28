@@ -20,7 +20,8 @@ Ext.define('Tel100.view.document.motions.OutGridViewModel', {
   requires: [
     'Ext.data.Store',
     'Ext.data.proxy.Ajax',
-    'Ext.data.reader.Json'
+    'Ext.data.reader.Json',
+    'Ext.data.field.Field'
   ],
 
   stores: {
@@ -38,6 +39,30 @@ Ext.define('Tel100.view.document.motions.OutGridViewModel', {
           type: 'json'
         }
       }
+    },
+    roles: {
+      data: [
+        {
+          name: 'assignee'
+        },
+        {
+          name: 'signee'
+        },
+        {
+          name: 'author'
+        }
+      ],
+      fields: [
+        {
+          name: 'name'
+        },
+        {
+          calculate: function(data) {
+            return i18n.document.role[data.name];
+          },
+          name: 'localeField'
+        }
+      ]
     }
   }
 

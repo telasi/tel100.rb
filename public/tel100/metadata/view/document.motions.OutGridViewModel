@@ -58,6 +58,77 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "data": [
+                    "[{",
+                    "  name: 'assignee'",
+                    "}, {",
+                    "  name: 'signee'",
+                    "}, {",
+                    "  name: 'author'",
+                    "}]"
+                ],
+                "name": "roles"
+            },
+            "name": "MyStore4",
+            "designerId": "fdcfc78d-8c82-4543-9795-395f01c4d2ec",
+            "cn": [
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "name"
+                    },
+                    "name": "MyField21",
+                    "designerId": "750a42a7-0174-4a08-8b77-b61ef5ee8181"
+                },
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "localeField"
+                    },
+                    "name": "MyField22",
+                    "designerId": "5cf38f11-ff8e-40ab-b729-1c2a76d4a5b0",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "data"
+                                ],
+                                "fn": "calculate",
+                                "implHandler": [
+                                    "return i18n.document.role[data.name];"
+                                ]
+                            },
+                            "name": "calculate",
+                            "designerId": "1c567364-dad5-427c-9a33-05f564806f9f"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

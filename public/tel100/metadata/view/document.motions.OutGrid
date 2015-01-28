@@ -77,6 +77,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "align": "right",
                 "dataIndex": "ordering",
                 "designer|displayName": "ordering",
                 "hidden": null,
@@ -122,13 +123,13 @@
             "userConfig": {
                 "dataIndex": "receiverName",
                 "designer|displayName": "receiverName",
-                "flex": 1,
+                "flex": null,
                 "hideable": false,
                 "sortable": false,
                 "text": [
                     "{i18n.document.motion.receiver}"
                 ],
-                "width": null
+                "width": 200
             },
             "name": "MyColumn10",
             "configAlternates": {
@@ -165,6 +166,109 @@
                     },
                     "name": "renderer",
                     "designerId": "cda87fe6-6ae2-48fe-9962-bed704b568a3"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "receiver_role",
+                "designer|displayName": "receiver_role",
+                "text": [
+                    "{i18n.document.motion.receiver_role}"
+                ],
+                "width": 110
+            },
+            "name": "MyColumn11",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "9b3188c3-438c-408f-8c81-e261e05a4a8c",
+            "cn": [
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "editor",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "localeField",
+                        "editable": false,
+                        "store": [
+                            "{roles}"
+                        ],
+                        "valueField": "name"
+                    },
+                    "name": "MyComboBox4",
+                    "configAlternates": {
+                        "data": "array",
+                        "store": "binding"
+                    },
+                    "designerId": "43c5b566-f428-4ccb-a8cc-339bff231071"
+                },
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return i18n.document.role[value];"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "3f8abc1a-e49e-4ae3-be43-74e5974bae4d"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "motion_text",
+                "designer|displayName": "motion_text",
+                "text": [
+                    "{i18n.document.motion.motion_text}"
+                ],
+                "width": 200
+            },
+            "name": "MyColumn14",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "9bf41768-1d82-42f3-90c7-0d6d12d39127",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "editor",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyTextField1",
+                    "designerId": "16502647-933d-42a0-b541-1e62c39216c1"
                 }
             ]
         },

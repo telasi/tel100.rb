@@ -59,7 +59,7 @@ class Document::Motion < ActiveRecord::Base
     raise 'not a draft' unless self.draft?
     raise 'don\'t have edit permission' unless self.can_edit?(user)
     Document::Motion.transaction do
-      self.update_attributes(params.permit(:ordering, :due_date))
+      self.update_attributes(params.permit(:ordering, :due_date, :motion_text, :receiver_role))
       self.save!
     end
   end

@@ -93,16 +93,17 @@ module.exports = {
   base: require('./base'),
   motion: require('./motion'),
   folder: require('./folder'),
-  type: require('./type')
+  type: require('./type'),
+  role: require('./role')
 };
 
-},{"./base":3,"./folder":4,"./motion":6,"./type":7}],6:[function(require,module,exports){
+},{"./base":3,"./folder":4,"./motion":6,"./role":7,"./type":8}],6:[function(require,module,exports){
 module.exports = {
   ordering: 'ეტაპი',
   orderingShort: '#',
   receiver: 'ადრესატი',
   sender: 'გამგზავნი',
-  role: 'როლი',
+  receiver_role: 'როლი',
   motion_text: 'რეზოლუცია',
   due_date: 'ვადა',
   addReceiver: 'ადრესატის დამატება',
@@ -114,6 +115,13 @@ module.exports = {
 
 },{}],7:[function(require,module,exports){
 module.exports = {
+  assignee: 'შემსრულებელი',
+  signee: 'ხელმომწერი',
+  author: 'ავტორი'
+};
+
+},{}],8:[function(require,module,exports){
+module.exports = {
   ui: {
     types: 'სახეობები'
   },
@@ -121,14 +129,14 @@ module.exports = {
   order_by: '#'
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = {
   title: {
     ka: 'შეცდომა',
     ru: 'Ошибка'
   }
 };
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = {
   tree: {
     title: {
@@ -138,7 +146,7 @@ module.exports = {
   }
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
@@ -176,12 +184,12 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./admin":1,"./application":2,"./document":5,"./errors":8,"./hr":9,"./selector":11,"./ui":12,"./user":13,"./vacation":14}],11:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./document":5,"./errors":9,"./hr":10,"./selector":12,"./ui":13,"./user":14,"./vacation":15}],12:[function(require,module,exports){
 module.exports = {
   selectedParties: 'არჩეული პირები და ორგანიზაციები',
   selectorConfirm: 'არჩევანის დადასტურება'
 };
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = {
   confirmTitle: {
     ka: 'დადასტურება',
@@ -220,7 +228,7 @@ module.exports = {
     ru: 'Вы действительно хотите удалить?',
   }
 };
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -244,7 +252,7 @@ module.exports = {
   }
 };
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = {
   ui: {
     button: {
@@ -284,4 +292,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[10]);
+},{}]},{},[11]);

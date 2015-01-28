@@ -21,6 +21,7 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
     'Tel100.view.document.motions.OutGridViewModel',
     'Ext.grid.column.Column',
     'Ext.form.field.Number',
+    'Ext.form.field.ComboBox',
     'Ext.form.field.Date',
     'Ext.grid.View',
     'Ext.grid.plugin.CellEditing'
@@ -50,6 +51,7 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
       dataIndex: 'ordering',
       width: 48,
       sortable: false,
+      align: 'right',
       hideable: false,
       bind: {
         text: '{i18n.document.motion.orderingShort}'
@@ -71,12 +73,43 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
           return '<i class="fa fa-user"></i> ' + value;
         }
       },
+      width: 200,
       sortable: false,
       dataIndex: 'receiverName',
       hideable: false,
-      flex: 1,
       bind: {
         text: '{i18n.document.motion.receiver}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return i18n.document.role[value];
+      },
+      width: 110,
+      dataIndex: 'receiver_role',
+      bind: {
+        text: '{i18n.document.motion.receiver_role}'
+      },
+      editor: {
+        xtype: 'combobox',
+        editable: false,
+        displayField: 'localeField',
+        valueField: 'name',
+        bind: {
+          store: '{roles}'
+        }
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      width: 200,
+      dataIndex: 'motion_text',
+      bind: {
+        text: '{i18n.document.motion.motion_text}'
+      },
+      editor: {
+        xtype: 'textfield'
       }
     },
     {

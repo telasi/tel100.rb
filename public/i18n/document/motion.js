@@ -3,7 +3,7 @@ module.exports = {
   orderingShort: '#',
   receiver: 'ადრესატი',
   sender: 'გამგზავნი',
-  role: 'როლი',
+  receiver_role: 'როლი',
   motion_text: 'რეზოლუცია',
   due_date: 'ვადა',
   addReceiver: 'ადრესატის დამატება',
