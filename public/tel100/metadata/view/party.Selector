@@ -14,7 +14,7 @@
         "maximizable": true,
         "modal": true,
         "title": "Select Party",
-        "width": 700
+        "width": 800
     },
     "name": "MyWindow",
     "configAlternates": {
@@ -107,7 +107,7 @@
                 "title": [
                     "{i18n.selector.selectedParties}"
                 ],
-                "width": 300
+                "width": 250
             },
             "name": "MyGridPanel",
             "configAlternates": {

@@ -30,5 +30,9 @@ module.exports = {
   delete: {
     ka: '<i class="fa fa-trash"></i> წაშლა',
     ru: '<i class="fa fa-trash"></i> Удалить',
+  },
+  deleteConfirm: {
+    ka: 'ნამდვილად გინდათ წაშლა?',
+    ru: 'Вы действительно хотите удалить?',
   }
 };

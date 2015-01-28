@@ -104,12 +104,19 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
             var vm = panel.getViewModel();
             var selection = vm.get('selection');
             if (selection) {
-              helpers.api.document.motion.deleteDraft(selection.id, {
-                success: function() {
-                  var grid = panel.down('documentmotionsoutgrid');
-                  grid.getStore().remove(selection);
+              var msg = i18n.ui.deleteConfirm;
+              var title = i18n.ui.confirmTitle;
+              var grid = panel.down('documentmotionsoutgrid');
+              var successFunction = function() {
+                grid.getStore().remove(selection);
+              };
+              Ext.Msg.confirm(title, msg, function(resp) {
+                if (resp === 'yes') {
+                  helpers.api.document.motion.deleteDraft(selection.id, {
+                    success: successFunction
+                  });
                 }
-              });
+              }.bind(this));
             }
           },
           cls: 'danger-button',

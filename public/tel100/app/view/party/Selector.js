@@ -36,7 +36,7 @@ Ext.define('Tel100.view.party.Selector', {
     type: 'partyselector'
   },
   height: 400,
-  width: 700,
+  width: 800,
   autoDestroy: false,
   layout: 'border',
   title: 'Select Party',
@@ -71,7 +71,7 @@ Ext.define('Tel100.view.party.Selector', {
       region: 'east',
       split: true,
       itemId: 'selectedParties',
-      width: 300,
+      width: 250,
       hideHeaders: true,
       bind: {
         title: '{i18n.selector.selectedParties}',
