@@ -87,7 +87,9 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
         return i18n.document.role[value];
       },
       width: 110,
+      sortable: false,
       dataIndex: 'receiver_role',
+      hideable: false,
       bind: {
         text: '{i18n.document.motion.receiver_role}'
       },
@@ -104,7 +106,9 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
     {
       xtype: 'gridcolumn',
       width: 200,
+      sortable: false,
       dataIndex: 'motion_text',
+      hideable: false,
       bind: {
         text: '{i18n.document.motion.motion_text}'
       },

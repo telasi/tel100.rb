@@ -179,6 +179,8 @@
             "userConfig": {
                 "dataIndex": "receiver_role",
                 "designer|displayName": "receiver_role",
+                "hideable": false,
+                "sortable": false,
                 "text": [
                     "{i18n.document.motion.receiver_role}"
                 ],
@@ -249,6 +251,8 @@
             "userConfig": {
                 "dataIndex": "motion_text",
                 "designer|displayName": "motion_text",
+                "hideable": false,
+                "sortable": false,
                 "text": [
                     "{i18n.document.motion.motion_text}"
                 ],
