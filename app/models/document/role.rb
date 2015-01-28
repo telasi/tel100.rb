@@ -2,7 +2,7 @@
 module Document::Role
   # მფლობელი
   ROLE_OWNER    = 'owner'
-  # შემქმენლი/ინიტციატორი
+  # შემქმენლი/ინიციატორი
   ROLE_CREATOR   = 'sender'
   # ავტორი
   ROLE_AUTHOR   = 'author'
