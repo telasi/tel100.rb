@@ -38,13 +38,13 @@
                     "}"
                 ],
                 "designer|displayName": "grid",
-                "layout|flex": 1,
+                "layout|flex": 2,
                 "layout|region": "center",
                 "selection": [
                     "{selection}"
                 ]
             },
-            "name": "document.motions.outgrid2",
+            "name": "document.motions.outgrid3",
             "configAlternates": {
                 "basemotion": "binding",
                 "outmode": "boolean",
@@ -64,26 +64,6 @@
                 }
             ],
             "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
-        },
-        {
-            "type": "linkedinstance",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|displayName": "editor",
-                "height": null,
-                "layout": null,
-                "layout|flex": 1,
-                "layout|region": "south",
-                "layout|split": true,
-                "width": null
-            },
-            "name": "document.motions.outeditor2",
-            "designerId": "1701200c-a6e5-4f13-988a-3d34cd65034f",
-            "masterInstanceId": "463ae07f-b8b5-4808-b995-965e07289448"
         },
         {
             "type": "basicfunction",

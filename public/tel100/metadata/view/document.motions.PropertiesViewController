@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsproperties",
+        "designer|userClassName": "document.motions.PropertiesViewController"
+    },
+    "designerId": "bbb83198-05d2-46a3-9bd1-e2f902caf864"
+}

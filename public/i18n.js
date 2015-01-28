@@ -118,8 +118,8 @@ module.exports = {
   owner: 'მფლობელი',
   creator: 'ინიციატორი',
   author: 'ავტორი',
-  signee: 'ხელმომწერი',
-  assignee: 'მიმღები',
+  signee: 'ვიზატორი',
+  assignee: 'ადრესატი',
 };
 
 },{}],8:[function(require,module,exports){

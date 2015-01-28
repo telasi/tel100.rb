@@ -49,9 +49,9 @@ Ext.application({
     'document.editor.General',
     'document.motions.OutGrid',
     'document.motions.OutPanel',
-    'document.motions.OutEditor',
     'party.Selector',
-    'hr.vacation.Window'
+    'hr.vacation.Window',
+    'document.motions.Properties'
   ],
   name: 'Tel100',
 

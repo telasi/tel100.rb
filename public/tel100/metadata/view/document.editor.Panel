@@ -144,8 +144,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "receivers",
-                        "hideCollapseTool": true,
-                        "title": null
+                        "hideCollapseTool": true
                     },
                     "name": "document.motions.outpanel",
                     "configAlternates": {
