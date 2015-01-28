@@ -30,6 +30,12 @@ Ext.define('Tel100.view.document.grid.Panel', {
   bind: {
     store: '{documents}'
   },
+  viewConfig: {
+    getRowClass: function(record, rowIndex, rowParams, store) {
+      var status = record.get('my_status');
+      return helpers.document.status.documentStatusRowClass(status, record);
+    }
+  },
   columns: [
     {
       xtype: 'gridcolumn',

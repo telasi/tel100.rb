@@ -41,7 +41,7 @@
                 "layout|flex": 1,
                 "layout|region": "center"
             },
-            "name": "document.motions.outgrid",
+            "name": "document.motions.outgrid1",
             "configAlternates": {
                 "basemotion": "binding",
                 "outmode": "boolean"
@@ -72,7 +72,7 @@
                 "layout|split": true,
                 "width": null
             },
-            "name": "document.motions.outeditor",
+            "name": "document.motions.outeditor1",
             "designerId": "1701200c-a6e5-4f13-988a-3d34cd65034f",
             "masterInstanceId": "463ae07f-b8b5-4808-b995-965e07289448"
         },

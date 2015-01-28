@@ -31,7 +31,32 @@
             },
             "codeClass": null,
             "name": "MyGridView",
-            "designerId": "62b4b19f-0718-424d-95e8-abea984bf5c4"
+            "designerId": "62b4b19f-0718-424d-95e8-abea984bf5c4",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "record",
+                            "rowIndex",
+                            "rowParams",
+                            "store"
+                        ],
+                        "fn": "getRowClass",
+                        "implHandler": [
+                            "var status = record.get('my_status');",
+                            "return helpers.document.status.documentStatusRowClass(status, record);"
+                        ]
+                    },
+                    "name": "getRowClass",
+                    "designerId": "8f71b666-0e68-4332-8ff4-2e03e87bd615"
+                }
+            ]
         },
         {
             "type": "Ext.grid.column.Column",
