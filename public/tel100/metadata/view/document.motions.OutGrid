@@ -134,7 +134,39 @@
             "configAlternates": {
                 "text": "binding"
             },
-            "designerId": "363b07a0-ecbf-4e81-bb96-c5902cbb6fdd"
+            "designerId": "363b07a0-ecbf-4e81-bb96-c5902cbb6fdd",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "var receiver = record.get('receiver');",
+                            "if (receiver && receiver.ext_type == 'hr.Organization') {",
+                            "  return '<i class=\"fa fa-bank\"></i> ' + value;",
+                            "} else {",
+                            "  return '<i class=\"fa fa-user\"></i> ' + value;",
+                            "}"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "cda87fe6-6ae2-48fe-9962-bed704b568a3"
+                }
+            ]
         },
         {
             "type": "Ext.grid.column.Column",
