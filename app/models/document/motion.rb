@@ -51,4 +51,10 @@ class Document::Motion < ActiveRecord::Base
       is_new: true
     })
   end
+
+  def delete_draft!(user)
+    raise 'not a draft' unless self.status == DRAFT
+    raise 'don\'t have privileges to delete' unless self.sender_user == user
+    self.destroy
+  end
 end
