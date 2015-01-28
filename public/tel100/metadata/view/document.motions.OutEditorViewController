@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documentmotionseditor",
-        "designer|userClassName": "document.motions.EditorViewController"
+        "designer|userAlias": "documentmotionsouteditor",
+        "designer|userClassName": "document.motions.OutEditorViewController"
     },
     "designerId": "f84a4bb1-8617-4e24-afae-8a158ca4c6e0"
 }

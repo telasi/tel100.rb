@@ -21,9 +21,11 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     'Tel100.view.document.motions.OutPanelViewModel',
     'Tel100.view.document.motions.OutPanelViewController',
     'Tel100.view.document.motions.OutGrid',
-    'Tel100.view.document.motions.Editor',
+    'Tel100.view.document.motions.OutEditor',
     'Ext.grid.Panel',
-    'Ext.panel.Tool'
+    'Ext.toolbar.Toolbar',
+    'Ext.button.Button',
+    'Ext.toolbar.Fill'
   ],
 
   controller: 'documentmotionsoutpanel',
@@ -31,7 +33,6 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     type: 'documentmotionsoutpanel'
   },
   layout: 'border',
-  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.motion.outMotions}'
@@ -47,38 +48,62 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
       region: 'center'
     },
     {
-      xtype: 'documentmotionseditor',
+      xtype: 'documentmotionsouteditor',
       flex: 1,
       region: 'south',
       split: true
     }
   ],
-  tools: [
+  dockedItems: [
     {
-      xtype: 'tool',
-      type: 'refresh',
-      listeners: {
-        click: 'onRefresh'
-      }
-    },
-    {
-      xtype: 'tool',
-      type: 'plus',
-      bind: {
-        tooltip: '{i18n.document.motion.addReceiver}'
-      },
-      listeners: {
-        click: {
-          fn: 'onAddReceiver',
-          scope: 'controller'
+      xtype: 'toolbar',
+      dock: 'top',
+      items: [
+        {
+          xtype: 'button',
+          handler: function(button, e) {
+            var panel = this.up('documentmotionsoutpanel');
+            panel.refresh();
+          },
+          bind: {
+            text: '{i18n.ui.refresh}'
+          }
+        },
+        {
+          xtype: 'button',
+          handler: function(button, e) {
+            var receiverDialog = Ext.create('Tel100.view.party.Selector', {
+              title: i18n.document.motion.selectReceiver
+            });
+            receiverDialog.show();
+            receiverDialog.on('selectioncomplete', function(receivers) {
+              if (receivers.length > 0) {
+                for (var i = 0; i < receivers.length; i++) {
+                  var panel = this.up('documentmotionsoutpanel');
+                  var controller = panel.getController();
+                  controller.addReceiver(receivers[i]);
+                }
+              }
+            }.bind(this));
+          },
+          cls: 'success-button',
+          bind: {
+            text: '{i18n.ui.add}'
+          }
+        },
+        {
+          xtype: 'tbfill'
+        },
+        {
+          xtype: 'button',
+          cls: 'danger-button',
+          bind: {
+            text: '{i18n.ui.delete}'
+          }
         }
-      }
+      ]
     }
   ],
-
-  onRefresh: function(tool, e, owner, eOpts) {
-    this.refresh();
-  },
 
   refresh: function() {
     var grid = this.down('documentmotionsoutgrid');

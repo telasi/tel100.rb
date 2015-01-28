@@ -41,7 +41,7 @@
                 "layout|flex": 1,
                 "layout|region": "center"
             },
-            "name": "document.motions.outgrid1",
+            "name": "document.motions.outgrid",
             "configAlternates": {
                 "basemotion": "binding",
                 "outmode": "boolean"
@@ -72,93 +72,9 @@
                 "layout|split": true,
                 "width": null
             },
-            "name": "document.motions.editor1",
+            "name": "document.motions.outeditor",
             "designerId": "1701200c-a6e5-4f13-988a-3d34cd65034f",
             "masterInstanceId": "463ae07f-b8b5-4808-b995-965e07289448"
-        },
-        {
-            "type": "Ext.panel.Tool",
-            "reference": {
-                "name": "tools",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|displayName": "refresh",
-                "type": "refresh"
-            },
-            "name": "MyTool2",
-            "designerId": "b22441a6-7b45-46c4-99ab-19a0136c784d",
-            "cn": [
-                {
-                    "type": "basiceventbinding",
-                    "reference": {
-                        "name": "listeners",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fn": "onRefresh",
-                        "implHandler": [
-                            "this.refresh();"
-                        ],
-                        "name": "click",
-                        "scope": "me"
-                    },
-                    "name": "onRefresh",
-                    "designerId": "ae98d0cd-5bb6-45b5-b660-6e3471d7ca5d"
-                }
-            ]
-        },
-        {
-            "type": "Ext.panel.Tool",
-            "reference": {
-                "name": "tools",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|displayName": "add",
-                "tooltip": [
-                    "{i18n.document.motion.addReceiver}"
-                ],
-                "type": "plus"
-            },
-            "name": "MyTool",
-            "configAlternates": {
-                "tooltip": "binding"
-            },
-            "designerId": "f76101b9-a863-40a0-a7ec-18d37c1dbc57",
-            "cn": [
-                {
-                    "type": "viewcontrollereventbinding",
-                    "reference": {
-                        "name": "listeners",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fn": "onAddReceiver",
-                        "implHandler": [
-                            "var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
-                            "  title: i18n.document.motion.selectReceiver",
-                            "});",
-                            "receiverDialog.show();",
-                            "receiverDialog.on('selectioncomplete', function(receivers) {",
-                            "  if (receivers.length > 0) {",
-                            "    for (var i = 0; i < receivers.length; i++) {",
-                            "      this.addReceiver(receivers[i]);",
-                            "    }",
-                            "  }",
-                            "}.bind(this));"
-                        ],
-                        "name": "click",
-                        "scope": "me"
-                    },
-                    "name": "onAddReceiver",
-                    "designerId": "545910f6-42f5-421a-974b-37311cc60957"
-                }
-            ]
         },
         {
             "type": "basicfunction",
@@ -176,6 +92,153 @@
             },
             "name": "refresh",
             "designerId": "80ad4655-3d15-452b-acaa-8678be2740ed"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dock": "top"
+            },
+            "name": "MyToolbar",
+            "designerId": "081c0c3e-9847-4732-ba81-0ef45195e0ed",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "refresh",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.refresh}"
+                        ]
+                    },
+                    "name": "MyButton",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "23ab105a-1e8e-45f7-90ab-edee8d8a2d1e",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var panel = this.up('documentmotionsoutpanel');",
+                                    "panel.refresh();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "23ef0702-e31b-4b42-889c-12b252e8cc65"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "success-button",
+                        "designer|displayName": "add",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.add}"
+                        ]
+                    },
+                    "name": "MyButton1",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "d6460e20-0467-4c28-b428-a21b63c549c0",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
+                                    "  title: i18n.document.motion.selectReceiver",
+                                    "});",
+                                    "receiverDialog.show();",
+                                    "receiverDialog.on('selectioncomplete', function(receivers) {",
+                                    "  if (receivers.length > 0) {",
+                                    "    for (var i = 0; i < receivers.length; i++) {",
+                                    "      var panel = this.up('documentmotionsoutpanel');",
+                                    "      var controller = panel.getController();",
+                                    "      controller.addReceiver(receivers[i]);",
+                                    "    }",
+                                    "  }",
+                                    "}.bind(this));"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "4cae08dd-dc02-42f0-be79-a8c3e454f283"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null
+                    },
+                    "name": "MyFill",
+                    "designerId": "57f21aca-ea2c-4281-a420-b63c2437a54a"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "danger-button",
+                        "designer|displayName": "delete",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.delete}"
+                        ]
+                    },
+                    "name": "MyButton2",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "3dfa9c60-f3dd-408c-8e9a-400ee27d1b39"
+                }
+            ]
         }
     ]
 }

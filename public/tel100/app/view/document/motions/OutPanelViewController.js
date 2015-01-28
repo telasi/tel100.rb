@@ -36,22 +36,11 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
         var grid = view.down('documentmotionsoutgrid');
         var store = grid.getStore();
         store.add(motion);
+      }.bind(this),
+      failure: function(error) {
+        debugger;
       }.bind(this)
     });
-  },
-
-  onAddReceiver: function(tool, e, owner, eOpts) {
-    var receiverDialog = Ext.create('Tel100.view.party.Selector', {
-      title: i18n.document.motion.selectReceiver
-    });
-    receiverDialog.show();
-    receiverDialog.on('selectioncomplete', function(receivers) {
-      if (receivers.length > 0) {
-        for (var i = 0; i < receivers.length; i++) {
-          this.addReceiver(receivers[i]);
-        }
-      }
-    }.bind(this));
   }
 
 });

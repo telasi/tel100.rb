@@ -18,5 +18,17 @@ module.exports = {
   cancel: {
     ka: '<i class="fa fa-times"></i> გაუქმება',
     ru: '<i class="fa fa-times"></i> Отмена'
+  },
+  refresh: {
+    ka: '<i class="fa fa-refresh"></i> განახლება',
+    ru: '<i class="fa fa-refresh"></i> Обновить',
+  },
+  add: {
+    ka: '<i class="fa fa-plus"></i> დამატება',
+    ru: '<i class="fa fa-plus"></i> Добавить',
+  },
+  delete: {
+    ka: '<i class="fa fa-trash"></i> წაშლა',
+    ru: '<i class="fa fa-trash"></i> Удалить',
   }
 };

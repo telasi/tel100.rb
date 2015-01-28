@@ -44,6 +44,9 @@
                     "    var grid = view.down('documentmotionsoutgrid');",
                     "    var store = grid.getStore();",
                     "    store.add(motion);",
+                    "  }.bind(this),",
+                    "  failure: function(error) {",
+                    "    debugger;",
                     "  }.bind(this)",
                     "});"
                 ]

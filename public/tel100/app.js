@@ -49,7 +49,7 @@ Ext.application({
     'document.editor.General',
     'document.motions.OutGrid',
     'document.motions.OutPanel',
-    'document.motions.Editor',
+    'document.motions.OutEditor',
     'party.Selector',
     'hr.vacation.Window'
   ],

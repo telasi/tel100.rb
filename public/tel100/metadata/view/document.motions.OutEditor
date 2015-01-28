@@ -8,8 +8,8 @@
     "userConfig": {
         "autoScroll": true,
         "cls": "white-panel",
-        "designer|userAlias": "documentmotionseditor",
-        "designer|userClassName": "document.motions.Editor",
+        "designer|userAlias": "documentmotionsouteditor",
+        "designer|userClassName": "document.motions.OutEditor",
         "height": null,
         "layout": "card",
         "width": null
