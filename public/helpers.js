@@ -12,7 +12,9 @@ var request = function(opts) {
   var success = opts && opts.success;
   var failure = opts && opts.failure;
 
-  if (view) { view.setLoading(true); }
+  if (view) {
+    view.setLoading(true);
+  }
 
   Ext.Ajax.request({
     url: url,
@@ -22,7 +24,11 @@ var request = function(opts) {
       if (view) { view.setLoading(false); }
       var data = JSON.parse(response.responseText);
       if (data.success === false) {
-        errorMessage(data.message || data.error);
+        if (failure) {
+          failure(data.message || data.error);
+        } else {
+          errorMessage(data.message || data.error);
+        }
       } else if (success) {
         success(data);
       }

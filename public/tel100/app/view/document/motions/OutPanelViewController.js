@@ -38,7 +38,7 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
         store.add(motion);
       }.bind(this),
       failure: function(error) {
-        debugger;
+        console.error(error);
       }.bind(this)
     });
   }

@@ -46,7 +46,7 @@
                     "    store.add(motion);",
                     "  }.bind(this),",
                     "  failure: function(error) {",
-                    "    debugger;",
+                    "    console.error(error);",
                     "  }.bind(this)",
                     "});"
                 ]
