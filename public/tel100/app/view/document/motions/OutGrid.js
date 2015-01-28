@@ -19,7 +19,8 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
 
   requires: [
     'Tel100.view.document.motions.OutGridViewModel',
-    'Ext.grid.column.Column'
+    'Ext.grid.column.Column',
+    'Ext.grid.View'
   ],
 
   viewModel: {
@@ -72,6 +73,12 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
       }
     }
   ],
+  viewConfig: {
+    getRowClass: function(record, rowIndex, rowParams, store) {
+      var status = record.get('status');
+      return helpers.document.status.motionStatusRowClass(status, record);
+    }
+  },
 
   refresh: function() {
     this.getStore().load();

@@ -238,6 +238,12 @@ var motionStatusIcon = function(status, motion) {
   ].join('');
 };
 
+var motionStatusRowClass = function(status, motion) {
+  var role = motion.get('receiver_role');
+  var decor = statusDecoration(status, role, { isMotion: true });
+  return 'row-' + decor.iconStyle;
+};
+
 module.exports = {
   // constants
   DRAFT: DRAFT,
@@ -251,7 +257,8 @@ module.exports = {
   // functions
   statusDecoration: statusDecoration,
   statusFormatted: statusFormatted,
-  motionStatusIcon: motionStatusIcon
+  motionStatusIcon: motionStatusIcon,
+  motionStatusRowClass: motionStatusRowClass
 };
 
 },{"./role":5}],7:[function(require,module,exports){
