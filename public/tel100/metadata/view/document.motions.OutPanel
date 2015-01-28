@@ -44,7 +44,7 @@
                     "{selection}"
                 ]
             },
-            "name": "document.motions.outgrid1",
+            "name": "document.motions.outgrid2",
             "configAlternates": {
                 "basemotion": "binding",
                 "outmode": "boolean",
@@ -81,7 +81,7 @@
                 "layout|split": true,
                 "width": null
             },
-            "name": "document.motions.outeditor1",
+            "name": "document.motions.outeditor2",
             "designerId": "1701200c-a6e5-4f13-988a-3d34cd65034f",
             "masterInstanceId": "463ae07f-b8b5-4808-b995-965e07289448"
         },
@@ -291,6 +291,63 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "var onChange = function(newVal, oldVal, binding) {",
+                    "  if (newVal) {",
+                    "    this.getView().fireEvent('motionchange', newVal);",
+                    "  }",
+                    "};",
+                    "var options = { deep: true };",
+                    "vm.bind('{selection}', onChange, this, options);"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "bf12bc2d-cad2-4fd9-8e30-21137286d161"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "motion"
+                ],
+                "fn": "onPanelMotionChange",
+                "implHandler": [
+                    "if (motion.dirty) {",
+                    "  var changes = motion.getChanges();",
+                    "  helpers.api.document.motion.updateDraft(motion.id, {",
+                    "    params: changes,",
+                    "    success: function() {",
+                    "      motion.commit(true);",
+                    "    }.bind(this),",
+                    "    failure: function(message) {",
+                    "      console.error(message);",
+                    "    }",
+                    "  });",
+                    "}"
+                ],
+                "name": "motionchange",
+                "scope": "me"
+            },
+            "name": "onPanelMotionChange",
+            "designerId": "0929d72d-3a72-407c-804f-6e014f066a39"
         }
     ]
 }

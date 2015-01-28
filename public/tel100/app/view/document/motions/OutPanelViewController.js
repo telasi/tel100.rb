@@ -41,6 +41,32 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
         console.error(error);
       }.bind(this)
     });
+  },
+
+  onBeforeRender: function(component, eOpts) {
+    var vm = this.getViewModel();
+    var onChange = function(newVal, oldVal, binding) {
+      if (newVal) {
+        this.getView().fireEvent('motionchange', newVal);
+      }
+    };
+    var options = { deep: true };
+    vm.bind('{selection}', onChange, this, options);
+  },
+
+  onPanelMotionChange: function(motion) {
+    if (motion.dirty) {
+      var changes = motion.getChanges();
+      helpers.api.document.motion.updateDraft(motion.id, {
+        params: changes,
+        success: function() {
+          motion.commit(true);
+        }.bind(this),
+        failure: function(message) {
+          console.error(message);
+        }
+      });
+    }
   }
 
 });

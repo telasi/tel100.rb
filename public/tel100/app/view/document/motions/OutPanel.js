@@ -128,6 +128,10 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
       ]
     }
   ],
+  listeners: {
+    beforerender: 'onBeforeRender',
+    motionchange: 'onPanelMotionChange'
+  },
 
   refresh: function() {
     var grid = this.down('documentmotionsoutgrid');

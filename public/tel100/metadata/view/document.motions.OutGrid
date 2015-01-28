@@ -92,7 +92,25 @@
                 "text": "binding",
                 "hidden": "binding"
             },
-            "designerId": "ada23e4d-c7da-4464-af68-644ed9969dbf"
+            "designerId": "ada23e4d-c7da-4464-af68-644ed9969dbf",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Number",
+                    "reference": {
+                        "name": "editor",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "decimalPrecision": 0,
+                        "designer|displayName": "editor",
+                        "maxValue": 999,
+                        "minValue": 1
+                    },
+                    "name": "MyNumberField",
+                    "designerId": "65a62202-a931-46a7-b85e-1eec8eb86cb6"
+                }
+            ]
         },
         {
             "type": "Ext.grid.column.Column",
@@ -128,6 +146,7 @@
             "userConfig": {
                 "dataIndex": "due_date",
                 "designer|displayName": "due_date",
+                "formatter": "date(\"d/m/Y\")",
                 "hideable": false,
                 "sortable": false,
                 "text": [
@@ -139,7 +158,23 @@
             "configAlternates": {
                 "text": "binding"
             },
-            "designerId": "12ce88e6-8ad1-4522-8724-76b7039bcbae"
+            "designerId": "12ce88e6-8ad1-4522-8724-76b7039bcbae",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Date",
+                    "reference": {
+                        "name": "editor",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "altFormats": "",
+                        "format": "d/m/Y"
+                    },
+                    "name": "MyDateField",
+                    "designerId": "406825c5-ca01-4e35-8fff-f429aa1981fe"
+                }
+            ]
         },
         {
             "type": "basicfunction",
@@ -191,6 +226,16 @@
                     "designerId": "2fc4e378-72d0-475f-b55c-6699f6f0ed8c"
                 }
             ]
+        },
+        {
+            "type": "Ext.grid.plugin.CellEditing",
+            "reference": {
+                "name": "plugins",
+                "type": "array"
+            },
+            "codeClass": null,
+            "name": "MyCellEditingPlugin",
+            "designerId": "bfa49dbe-448d-4724-ba41-42537fd64ee2"
         }
     ]
 }

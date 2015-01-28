@@ -20,7 +20,10 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
   requires: [
     'Tel100.view.document.motions.OutGridViewModel',
     'Ext.grid.column.Column',
-    'Ext.grid.View'
+    'Ext.form.field.Number',
+    'Ext.form.field.Date',
+    'Ext.grid.View',
+    'Ext.grid.plugin.CellEditing'
   ],
 
   viewModel: {
@@ -44,12 +47,18 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
     },
     {
       xtype: 'gridcolumn',
+      dataIndex: 'ordering',
       width: 48,
       sortable: false,
-      dataIndex: 'ordering',
       hideable: false,
       bind: {
         text: '{i18n.document.motion.orderingShort}'
+      },
+      editor: {
+        xtype: 'numberfield',
+        decimalPrecision: 0,
+        maxValue: 999,
+        minValue: 1
       }
     },
     {
@@ -67,9 +76,15 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
       width: 100,
       sortable: false,
       dataIndex: 'due_date',
+      formatter: 'date("d/m/Y")',
       hideable: false,
       bind: {
         text: '{i18n.document.motion.due_date}'
+      },
+      editor: {
+        xtype: 'datefield',
+        altFormats: '',
+        format: 'd/m/Y'
       }
     }
   ],
@@ -79,6 +94,11 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
       return helpers.document.status.motionStatusRowClass(status, record);
     }
   },
+  plugins: [
+    {
+      ptype: 'cellediting'
+    }
+  ],
 
   refresh: function() {
     this.getStore().load();
