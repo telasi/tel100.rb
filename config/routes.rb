@@ -57,9 +57,10 @@ Rails.application.routes.draw do
         get '/', action: 'index'
         get '/:id', action: 'show'
         # draft operations
-        post '/create_draft', action: 'create_draft'
-        put  '/update_draft', action: 'update_draft'
+        post   '/create_draft', action: 'create_draft'
+        put    '/update_draft', action: 'update_draft'
         delete '/delete_draft', action: 'delete_draft'
+        post   '/send_draft',   action: 'send_draft'
       end
       scope 'motion', controller: 'motion' do
         get '/', action: 'index'

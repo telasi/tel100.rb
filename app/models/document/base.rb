@@ -21,6 +21,13 @@ class Document::Base < ActiveRecord::Base
   def motions_waiting; self.motions_total - self.motions_completed - self.motions_canceled end
   def draft?; self.status == DRAFT end
 
+  def self.docnumber_eval(type, date)
+    last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('id DESC').first
+    last_number = '1'
+    last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
+    "#{date.strftime('%m%d')}/#{last_number.rjust(3,'0')}"
+  end
+
   def self.create_draft!(sender_user)
     raise 'sender not defined' if sender_user.blank?
 
@@ -62,6 +69,24 @@ class Document::Base < ActiveRecord::Base
       self.text.destroy if self.text
       Document::User.where(document_id: self.id).destroy_all
       self.destroy
+    end
+  end
+
+  def send_draft!(user)
+    raise 'don\'t have privileges to send' unless user == self.owner_user
+    raise 'can\'t send non draft document' unless self.draft?
+    Document::Base.transaction do
+      docuser = Document::User.where(document: self, user: user).first
+      debugger
+      self.status = docuser.status = CURRENT
+      self.docdate = self.docdate || Date.today
+      self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate)
+      self.sent_at = self.received_at = Time.now
+      self.motions.order('ordering ASC, id ASC').each do |motion|
+        motion.send_draft!(user)
+      end
+      docuser.save!
+      self.save!
     end
   end
 
@@ -108,15 +133,6 @@ class Document::Base < ActiveRecord::Base
       self.motions_canceled = self.motions.where('status IN ? and parent_id IS NULL', [ CANCELED ]).count
       self.motions_total = self.motions.where('parent_id IS NULL').count
       self.save!
-    end
-  end
-
-  def self.docnumber_eval(type, status, date)
-    if status == CURRENT
-      last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('id DESC').first
-      last_number = '1'
-      last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
-      "#{date.strftime('%m%d')}/#{last_number.rjust(3,'0')}"
     end
   end
 

@@ -16,6 +16,7 @@ class Document::Motion < ActiveRecord::Base
   belongs_to :parent, class_name: 'Document::Motion'
   personalize 'receiver'
   personalize 'sender'
+  personalize 'owner'
 
   def new=(val); self.is_new = val ? 1 : 0 end
   def new?; self.is_new == 1 end
@@ -68,5 +69,30 @@ class Document::Motion < ActiveRecord::Base
     raise 'not a draft' unless self.draft?
     raise 'don\'t have delete permission' unless self.can_edit?(user)
     self.destroy
+  end
+
+  def send_draft!(user)
+    raise 'not a draft' unless self.draft?
+    # raise 'don\'t have send permission' unless self.can_edit?(user)
+    rel = Document::Motion.where(document: self.document, parent: self.parent)
+    # checking if there are some motions above this motion
+    upper = rel.where('ordering > ? AND status NOT IN (?)', self.ordering, [DRAFT]).count
+    raise 'not possible to send from this level' if upper > 0
+    # sending this motion
+    self.sent_at = Time.now
+    self.status = self.receiver_user.blank? ? NOT_SENT : SENT
+    if self.status == SENT
+      # try to make this motion current
+      lower = rel.where('ordering < ? AND status IN (?)', self.ordering, [SENT,CURRENT,NOT_RECEIVED,CANCELED]).count
+      if lower == 0
+        self.status = CURRENT
+        self.received_at = Time.now
+      end
+
+      # setting Document::User
+      Document::User.upsert!(self.document, self.receiver_user, self.receiver_role, { status: self.status })
+    end
+    # save motion data
+    self.save!
   end
 end

@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 module Document::Status 
   DRAFT     = 0
-  SENT     = 1
-  NOT_SENT = -1
-  CURRENT      = 2
+  SENT      = 1
+  NOT_SENT  = -1
+  CURRENT   = 2
   NOT_RECEIVED = -2
   COMPLETED = 3
   CANCELED  = -3

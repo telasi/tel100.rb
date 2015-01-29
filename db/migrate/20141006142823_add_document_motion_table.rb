@@ -6,7 +6,6 @@ class AddDocumentMotionTable < ActiveRecord::Migration
         ID          number(12, 0) not null,
         PARENT_ID   number(12, 0),
         DOCUMENT_ID number(10, 0) not null,
-        STATUS      number( 1, 0) default 0 not null,
         IS_NEW      number( 1, 0) default 1 not null,
         DUE_DATE    date,
         ---------
@@ -23,8 +22,12 @@ class AddDocumentMotionTable < ActiveRecord::Migration
         RECEIVER_TYPE    varchar2(50 CHAR),
         RECEIVER_ROLE    varchar2(10 CHAR) default 'assignee' not null,
         -----
-        CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
-        UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
+        STATUS       number( 1, 0) default 0 not null,
+        CREATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null, -- შექმნა (DRAFT)
+        SENT_AT      TIMESTAMP, -- გაგზავნა  (SENT / NOT_SENT)
+        RECEIVED_AT  TIMESTAMP, -- მიღება    (CURRENT / NOT_RECEIVED)
+        COMPLETED_AT TIMESTAMP, -- შესრულება (COMPLETED / CANCELED)
+        UPDATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint DOCMOTION_PRIMARYKEY primary key ( id ) enable
       )
     SQL
