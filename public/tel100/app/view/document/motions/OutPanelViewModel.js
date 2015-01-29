@@ -23,7 +23,8 @@ Ext.define('Tel100.view.document.motions.OutPanelViewModel', {
 
   data: {
     motionbase: true,
-    selection: null
+    selection: null,
+    
   },
 
   formulas: {

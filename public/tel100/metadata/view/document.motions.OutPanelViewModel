@@ -9,7 +9,7 @@
         "data": [
             "{",
             "  motionbase: true,",
-            "  selection: null",
+            "  selection: null,",
             "}"
         ],
         "designer|userAlias": "documentmotionsoutpanel",

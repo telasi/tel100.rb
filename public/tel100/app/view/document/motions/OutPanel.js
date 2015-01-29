@@ -43,7 +43,6 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
         outmode: true,
         basemotion: false
       },
-      flex: 2,
       region: 'center',
       bind: {
         selection: '{selection}'

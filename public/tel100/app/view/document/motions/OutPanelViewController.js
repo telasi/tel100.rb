@@ -44,6 +44,7 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
   },
 
   onBeforeRender: function(component, eOpts) {
+    // selection change
     var vm = this.getViewModel();
     var onChange = function(newVal, oldVal, binding) {
       if (newVal) {

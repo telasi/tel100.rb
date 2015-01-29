@@ -38,13 +38,13 @@
                     "}"
                 ],
                 "designer|displayName": "grid",
-                "layout|flex": 2,
+                "layout|flex": null,
                 "layout|region": "center",
                 "selection": [
                     "{selection}"
                 ]
             },
-            "name": "document.motions.outgrid3",
+            "name": "document.motions.outgrid1",
             "configAlternates": {
                 "basemotion": "binding",
                 "outmode": "boolean",
@@ -282,6 +282,7 @@
             "userConfig": {
                 "fn": "onBeforeRender",
                 "implHandler": [
+                    "// selection change",
                     "var vm = this.getViewModel();",
                     "var onChange = function(newVal, oldVal, binding) {",
                     "  if (newVal) {",
