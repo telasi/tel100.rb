@@ -19,16 +19,33 @@ Ext.define('Tel100.view.modules.HR', {
 
   requires: [
     'Tel100.view.modules.HRViewModel',
+    'Tel100.view.modules.HRViewController',
     'Tel100.view.hr.tree.Panel',
+    'Ext.toolbar.Toolbar',
+    'Ext.button.Button',
     'Ext.tree.Panel'
   ],
 
+  controller: 'moduleshr',
   viewModel: {
     type: 'moduleshr'
   },
-  layout: 'fit',
 
   items: [
+    {
+      xtype: 'toolbar',
+      items: [
+        {
+          xtype: 'button',
+          bind: {
+            text: '{i18n.vacation.ui.button}'
+          },
+          listeners: {
+            click: 'onButtonClick'
+          }
+        }
+      ]
+    },
     {
       xtype: 'hrtreepanel'
     }

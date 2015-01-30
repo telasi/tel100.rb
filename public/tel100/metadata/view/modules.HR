@@ -9,7 +9,7 @@
         "designer|userAlias": "moduleshr",
         "designer|userClassName": "modules.HR",
         "height": null,
-        "layout": "fit",
+        "layout": null,
         "width": null
     },
     "name": "MyContainer4",
@@ -17,6 +17,62 @@
     "viewControllerInstanceId": "5fb75dec-673a-4f03-9c60-a7b2c80c01e0",
     "viewModelInstanceId": "ba3d3bbb-e4e7-4af8-86ad-31d6ac18d695",
     "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null
+            },
+            "name": "MyToolbar",
+            "designerId": "25a3f5ee-158b-4556-9290-fc517c37892c",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.vacation.ui.button}"
+                        ]
+                    },
+                    "name": "MyButton",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "5d1c54ae-9b82-45ba-84cd-ae26f9ff9476",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonClick",
+                                "implHandler": [
+                                    "     var vacationwindow = Ext.create('Tel100.view.hr.vacation.Window');",
+                                    "     vacationwindow.modal = true;",
+                                    "     vacationwindow.show();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onButtonClick",
+                            "designerId": "1b262345-fcfc-4732-bca9-a6d70017851c"
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "type": "linkedinstance",
             "reference": {

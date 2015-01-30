@@ -15,6 +15,17 @@
 
 Ext.define('Tel100.view.hr.vacation.WindowViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.hrvacationwindow'
+  alias: 'viewmodel.hrvacationwindow',
+
+  requires: [
+    'Ext.data.Store'
+  ],
+
+  stores: {
+    types: {
+      autoLoad: true,
+      model: 'Tel100.model.hr.vacation.Type'
+    }
+  }
 
 });

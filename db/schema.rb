@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120094044) do
+ActiveRecord::Schema.define(version: 20150130081958) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -139,6 +139,22 @@ ActiveRecord::Schema.define(version: 20141120094044) do
     t.string    "priority",     limit: 2
     t.timestamp "created_at",   limit: 6,                                            null: false
     t.timestamp "updated_at",   limit: 6,                                            null: false
+  end
+
+  create_table "hr_vacation", id: false, force: true do |t|
+    t.integer   "userid",        limit: 10, precision: 10, scale: 0, null: false
+    t.datetime  "from_date"
+    t.datetime  "to_date"
+    t.integer   "vacation_type", limit: 3,  precision: 3,  scale: 0
+    t.integer   "substitude",    limit: 10, precision: 10, scale: 0
+    t.timestamp "created_at",    limit: 6,                           null: false
+    t.timestamp "updated_at",    limit: 6,                           null: false
+  end
+
+  create_table "hr_vacation_type", force: true do |t|
+    t.string "name_ka", limit: 50, null: false
+    t.string "name_ru", limit: 50, null: false
+    t.string "name_en", limit: 50, null: false
   end
 
   create_table "party_base", force: true do |t|

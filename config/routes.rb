@@ -37,6 +37,10 @@ Rails.application.routes.draw do
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
     end
+    scope 'vacation', controller: 'vacation' do
+      get '/types', action: 'types'
+      post '/create', action: 'create'
+    end
     # scope 'docs', controller: 'docs' do
     #   get '/', action: 'index'
     #   get '/show/:id', action: 'show'

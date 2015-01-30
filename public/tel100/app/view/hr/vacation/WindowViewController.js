@@ -15,5 +15,34 @@
 
 Ext.define('Tel100.view.hr.vacation.WindowViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.hrvacationwindow'
+  alias: 'controller.hrvacationwindow',
+
+  onSelectSubstitute: function(field, eOpts) {
+    var receiverDialog = Ext.create('Tel100.view.party.Selector', {
+      title: i18n.document.motion.selectReceiver
+    });
+    receiverDialog.show();
+  },
+
+  onOKButtonClick: function(button, e, eOpts) {
+    var form = button.up('form').getForm();
+    if(form.isValid()) {
+      form.submit({
+        success: function(form,action) {
+          //we have to close the window here!!
+        },
+        failure: function(form,action){
+          Ext.MessageBox.alert('Erro',action.result.data.msg);
+        }});
+      } else {
+        Ext.Msg.alert('Invalid Data', 'Please correct form errors.');
+      }
+
+      //button.up('window').close();
+  },
+
+  onCancelButtonClick: function(button, e, eOpts) {
+    button.up('window').close();
+  }
+
 });
