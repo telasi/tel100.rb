@@ -1,5 +1,5 @@
 var errorMessage = function(error, title) {
-  var titleText = title || '<i class="fa fa-times-circle"></i> ' + i18n.errors.title;
+  var titleText = title || i18n.errors.title;
   Ext.Msg.alert(titleText, error);
 };
 

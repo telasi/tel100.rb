@@ -142,8 +142,8 @@ module.exports = {
 },{}],9:[function(require,module,exports){
 module.exports = {
   title: {
-    ka: 'შეცდომა',
-    ru: 'Ошибка'
+    ka: '<i class="fa fa-times-circle"></i> შეცდომა',
+    ru: '<i class="fa fa-times-circle"></i> Ошибка'
   }
 };
 },{}],10:[function(require,module,exports){
