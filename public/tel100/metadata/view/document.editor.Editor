@@ -9,10 +9,32 @@
         "designer|userAlias": "documenteditoreditor",
         "designer|userClassName": "document.editor.Editor",
         "height": null,
+        "layout": "border",
         "width": null
     },
     "name": "MyContainer1",
     "designerId": "33bff602-b08f-4c74-8a04-4172e5eeb359",
     "viewControllerInstanceId": "7e2799f7-0d42-44a4-924e-569df02b0d44",
-    "viewModelInstanceId": "478f1cf4-3904-4bc8-a97a-56853b2a53b0"
+    "viewModelInstanceId": "478f1cf4-3904-4bc8-a97a-56853b2a53b0",
+    "cn": [
+        {
+            "type": "Ext.form.Label",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "center",
+                "text": [
+                    "{document.subject}"
+                ]
+            },
+            "name": "MyLabel",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "2da7eb9b-4892-4c40-8e0a-debc4fcea5ec"
+        }
+    ]
 }

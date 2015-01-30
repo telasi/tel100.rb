@@ -6,6 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  document: null",
+            "}"
+        ],
         "designer|userAlias": "documenteditoreditor",
         "designer|userClassName": "document.editor.EditorViewModel"
     },

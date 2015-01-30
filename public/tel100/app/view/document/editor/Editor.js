@@ -18,11 +18,23 @@ Ext.define('Tel100.view.document.editor.Editor', {
   alias: 'widget.documenteditoreditor',
 
   requires: [
-    'Tel100.view.document.editor.EditorViewModel'
+    'Tel100.view.document.editor.EditorViewModel',
+    'Ext.form.Label'
   ],
 
   viewModel: {
     type: 'documenteditoreditor'
-  }
+  },
+  layout: 'border',
+
+  items: [
+    {
+      xtype: 'label',
+      region: 'center',
+      bind: {
+        text: '{document.subject}'
+      }
+    }
+  ]
 
 });

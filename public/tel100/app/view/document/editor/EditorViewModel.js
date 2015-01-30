@@ -15,6 +15,10 @@
 
 Ext.define('Tel100.view.document.editor.EditorViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documenteditoreditor'
+  alias: 'viewmodel.documenteditoreditor',
+
+  data: {
+    document: null
+  }
 
 });

@@ -83,30 +83,36 @@ Ext.define('Tel100.view.document.MainViewController', {
 
     // loading document for edit
     doc.load({
-      success: function(doc) {
-        // create editor for the document
-        var editor;
-        // draft editor
-        if (doc.get('status') === helpers.document.status.DRAFT) {
-          var title = i18n.document.base.ui.editDraftTitle;
-          editor = Tel100.view.document.editor.Creator.create({ title: title, closable: true });
-          editor.getViewModel().set('document', doc);
-          editor.on('documentsent', function(document) {
-            tabs.remove(editor);
-            this.onRefresh();
-            // TODO: open viewer
-          }.bind(this));
-        }
-        // non-draft editor
-        else {
-          // TODO: open viewer
-        }
-        if (editor) {
-          tabs.add(editor);
-          tabs.setActiveTab(editor);
+      success: function(document) {
+        var isDraft = document.get('status') === helpers.document.status.DRAFT;
+        if (isDraft) {
+          this.openDraftDocument(tabs, document);
+        } else {
+          this.openCurrentDocument(tabs, document);
         }
       }.bind(this)
     });
+  },
+
+  openDraftDocument: function(tabs, document) {
+    var title = i18n.document.base.ui.editDraftTitle;
+    var editor = Tel100.view.document.editor.Creator.create({ title: title, closable: true });
+    editor.getViewModel().set('document', document);
+    editor.on('documentsent', function(document) {
+      tabs.remove(editor);
+      this.onRefresh();
+      // TODO: open viewer
+    }.bind(this));
+    tabs.add(editor);
+    tabs.setActiveTab(editor);
+  },
+
+  openCurrentDocument: function(tabs, document) {
+    var title = document.get('docnumber');
+    var editor = Tel100.view.document.editor.Editor.create({ title: title, closable: true });
+    editor.getViewModel().set('document', document);
+    tabs.add(editor);
+    tabs.setActiveTab(editor);
   },
 
   onGridDoubleClick: function(dataview, record, item, index, e, eOpts) {
