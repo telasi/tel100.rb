@@ -18,7 +18,6 @@ Ext.define('Tel100.view.document.editor.PanelViewModel', {
   alias: 'viewmodel.documenteditorpanel',
 
   requires: [
-    'Ext.data.Store',
     'Ext.app.bind.Formula'
   ],
 
@@ -28,11 +27,6 @@ Ext.define('Tel100.view.document.editor.PanelViewModel', {
     isSaved: true
   },
 
-  stores: {
-    motions: {
-      model: 'Tel100.model.document.Motion'
-    }
-  },
   formulas: {
     saveButtonText: function(get) {
       var isSaving = get('isSaving');
@@ -53,8 +47,7 @@ Ext.define('Tel100.view.document.editor.PanelViewModel', {
       return isSaving || isSaved;
     },
     sendButtonDisabled: function(get) {
-      var isSending = get('isSending');
-      return !!isSending;
+      return !!get('isSending');
     }
   }
 

@@ -19,20 +19,6 @@
     "designerId": "fe587c2a-b4ef-4d70-853d-8111aa0a6616",
     "cn": [
         {
-            "type": "Ext.data.Store",
-            "reference": {
-                "name": "stores",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "model": "document.Motion",
-                "name": "motions"
-            },
-            "name": "MyStore3",
-            "designerId": "df966594-b1de-4785-86c6-903e0b766e97"
-        },
-        {
             "type": "Ext.app.bind.Formula",
             "reference": {
                 "name": "formulas",
@@ -138,8 +124,7 @@
                         ],
                         "fn": "get",
                         "implHandler": [
-                            "var isSending = get('isSending');",
-                            "return !!isSending;"
+                            "return !!get('isSending');"
                         ]
                     },
                     "name": "get",

@@ -13,6 +13,10 @@ module.exports = {
       ru: '<i class="fa fa-send"></i> Послать документ'
     }
   },
+  errors: {
+    empty_subject: 'ჩაწერეთ დოკუმენტის სათაური.',
+    empty_body: 'ჩაწერეთ დოკუმენტის შინაარსი.'
+  },
   type: 'სახეობა',
   direction: 'მიმართულება',
   subject: 'სათაური',
