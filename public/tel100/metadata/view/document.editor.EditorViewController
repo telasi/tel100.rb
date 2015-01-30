@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documenteditoreditor",
+        "designer|userClassName": "document.editor.EditorViewController"
+    },
+    "designerId": "7e2799f7-0d42-44a4-924e-569df02b0d44"
+}

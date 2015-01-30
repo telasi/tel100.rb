@@ -51,7 +51,8 @@ Ext.application({
     'document.motions.OutPanel',
     'party.Selector',
     'hr.vacation.Window',
-    'document.motions.Properties'
+    'document.motions.Properties',
+    'document.editor.Editor'
   ],
   name: 'Tel100',
 
