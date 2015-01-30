@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documenteditorpanel",
-        "designer|userClassName": "document.editor.Panel",
+        "designer|userAlias": "documenteditorcreator",
+        "designer|userClassName": "document.editor.Creator",
         "height": null,
         "layout": "border",
         "width": null

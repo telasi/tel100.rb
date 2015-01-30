@@ -13,8 +13,8 @@
             "isSaved: true",
             "}"
         ],
-        "designer|userAlias": "documenteditorpanel",
-        "designer|userClassName": "document.editor.PanelViewModel"
+        "designer|userAlias": "documenteditorcreator",
+        "designer|userClassName": "document.editor.CreatorViewModel"
     },
     "designerId": "fe587c2a-b4ef-4d70-853d-8111aa0a6616",
     "cn": [

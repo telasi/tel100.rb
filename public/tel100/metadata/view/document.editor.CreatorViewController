@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documenteditorpanel",
-        "designer|userClassName": "document.editor.PanelViewController"
+        "designer|userAlias": "documenteditorcreator",
+        "designer|userClassName": "document.editor.CreatorViewController"
     },
     "designerId": "c8ab8f23-6495-434a-8b4b-78f9ef9be27b"
 }

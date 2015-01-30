@@ -45,7 +45,7 @@ Ext.application({
     'document.Main',
     'document.folder.Panel',
     'document.grid.Panel',
-    'document.editor.Panel',
+    'document.editor.Creator',
     'document.editor.General',
     'document.motions.OutGrid',
     'document.motions.OutPanel',

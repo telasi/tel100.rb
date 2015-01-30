@@ -89,7 +89,7 @@ Ext.define('Tel100.view.document.MainViewController', {
         // draft editor
         if (doc.get('status') === helpers.document.status.DRAFT) {
           var title = i18n.document.base.ui.editDraftTitle;
-          editor = Tel100.view.document.editor.Panel.create({ title: title, closable: true });
+          editor = Tel100.view.document.editor.Creator.create({ title: title, closable: true });
           editor.getViewModel().set('document', doc);
           editor.on('documentsent', function(document) {
             tabs.remove(editor);
