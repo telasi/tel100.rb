@@ -6,14 +6,19 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoDestroy": false,
         "designer|userAlias": "hrvacationwindow",
         "designer|userClassName": "hr.vacation.Window",
-        "height": 182,
-        "layout": "fit",
+        "height": 190,
+        "modal": true,
+        "resizable": [
+            "false",
+            ""
+        ],
         "title": [
             "{i18n.vacation.ui.button}"
         ],
-        "width": 864
+        "width": 480
     },
     "name": "MyWindow",
     "configAlternates": {
@@ -31,9 +36,12 @@
             },
             "codeClass": null,
             "userConfig": {
+                "baseParams": null,
                 "bodyPadding": 10,
                 "header": false,
-                "title": "My Form"
+                "jsonSubmit": true,
+                "title": "My Form",
+                "url": "/api/vacation/create"
             },
             "name": "MyForm",
             "designerId": "198d6e2a-016e-4a98-b67d-47ad33a3ba01",
@@ -47,14 +55,22 @@
                     "codeClass": null,
                     "userConfig": {
                         "allowBlank": false,
+                        "displayField": "name",
+                        "editable": false,
                         "fieldLabel": [
                             "{i18n.vacation.fields.type}"
                         ],
-                        "layout|anchor": "100%"
+                        "layout|anchor": "100%",
+                        "name": "vacation_type",
+                        "store": [
+                            "{types}"
+                        ],
+                        "valueField": "id"
                     },
                     "name": "MyComboBox2",
                     "configAlternates": {
-                        "fieldLabel": "binding"
+                        "fieldLabel": "binding",
+                        "store": "binding"
                     },
                     "designerId": "db45b30b-3311-4df3-ba20-6a8bf84b0fdb"
                 },
@@ -87,7 +103,8 @@
                                     "{i18n.vacation.fields.from}"
                                 ],
                                 "layout|flex": 1,
-                                "margin": "0 10 0 0"
+                                "margin": "0 10 0 0",
+                                "name": "from_date"
                             },
                             "name": "MyDateField2",
                             "configAlternates": {
@@ -107,7 +124,8 @@
                                 "fieldLabel": [
                                     "{i18n.vacation.fields.to}"
                                 ],
-                                "layout|flex": 1
+                                "layout|flex": 1,
+                                "name": "to_date"
                             },
                             "name": "MyDateField3",
                             "configAlternates": {
@@ -128,13 +146,37 @@
                         "fieldLabel": [
                             "{i18n.vacation.fields.substitude}"
                         ],
-                        "layout|anchor": "100%"
+                        "layout|anchor": "100%",
+                        "name": "substitude"
                     },
                     "name": "MyComboBox3",
                     "configAlternates": {
                         "fieldLabel": "binding"
                     },
-                    "designerId": "27b2916d-6852-4cb2-bd00-8a0249370f56"
+                    "designerId": "27b2916d-6852-4cb2-bd00-8a0249370f56",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSelectSubstitute",
+                                "implHandler": [
+                                    "    var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
+                                    "      title: i18n.document.motion.selectReceiver",
+                                    "    });",
+                                    "    receiverDialog.show();"
+                                ],
+                                "name": "expand",
+                                "scope": "me"
+                            },
+                            "name": "onSelectSubstitute",
+                            "designerId": "2aab0371-c7ca-4de3-b51e-bd239634ae7b"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.form.FieldContainer",
@@ -149,7 +191,8 @@
                         "container|padding": 5,
                         "fieldLabel": "",
                         "height": 32,
-                        "layout": "hbox"
+                        "layout": "hbox",
+                        "margin": "0 0 10 0"
                     },
                     "name": "MyFieldContainer1",
                     "designerId": "cf00f080-7b3f-4ea1-8a36-b3ebb873b74d",
@@ -164,10 +207,48 @@
                             "userConfig": {
                                 "layout|flex": 1,
                                 "margin": "0 10 0 0",
-                                "text": "MyButton"
+                                "text": [
+                                    "{i18n.vacation.ui.save}"
+                                ]
                             },
                             "name": "MyButton1",
-                            "designerId": "b53e1c9b-4288-4f90-af46-e6fa0614e516"
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "b53e1c9b-4288-4f90-af46-e6fa0614e516",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onOKButtonClick",
+                                        "implHandler": [
+                                            "     var form = button.up('form').getForm();",
+                                            "     if(form.isValid()) {",
+                                            "       form.submit({",
+                                            "         success: function(form,action) {",
+                                            "                            //we have to close the window here!!",
+                                            "                  },",
+                                            "         failure: function(form,action){",
+                                            "                    Ext.MessageBox.alert('Erro',action.result.data.msg);",
+                                            "         }});",
+                                            "     } else {",
+                                            "      Ext.Msg.alert('Invalid Data', 'Please correct form errors.');",
+                                            "     }",
+                                            "",
+                                            "     //button.up('window').close();"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onOKButtonClick",
+                                    "designerId": "98b8ab3d-c058-4a9f-abef-bba2d68ad74b"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.button.Button",
@@ -178,10 +259,35 @@
                             "codeClass": null,
                             "userConfig": {
                                 "layout|flex": 1,
-                                "text": "MyButton"
+                                "text": [
+                                    "{i18n.vacation.ui.cancel}"
+                                ]
                             },
                             "name": "MyButton2",
-                            "designerId": "77e18fcd-e743-4780-836d-b6d2debfcd7b"
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "77e18fcd-e743-4780-836d-b6d2debfcd7b",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onCancelButtonClick",
+                                        "implHandler": [
+                                            "    button.up('window').close();"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onCancelButtonClick",
+                                    "designerId": "86077567-335e-4ec5-850e-bf5f7fb9856c"
+                                }
+                            ]
                         }
                     ]
                 }

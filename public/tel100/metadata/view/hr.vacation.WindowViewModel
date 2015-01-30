@@ -9,5 +9,23 @@
         "designer|userAlias": "hrvacationwindow",
         "designer|userClassName": "hr.vacation.WindowViewModel"
     },
-    "designerId": "7412ebcf-ba35-479a-a188-060b2412d102"
+    "designerId": "7412ebcf-ba35-479a-a188-060b2412d102",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "designer|displayName": "types",
+                "model": "hr.vacation.Type",
+                "name": "types"
+            },
+            "name": "MyStore4",
+            "designerId": "1ea418bb-0f70-4666-9ece-9dc30b7dc9c0"
+        }
+    ]
 }

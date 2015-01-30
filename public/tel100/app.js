@@ -25,7 +25,9 @@ Ext.application({
     'document.Type',
     'document.Base',
     'document.Direction',
-    'document.Motion'
+    'document.Motion',
+    'hr.vacation.Type',
+    'hr.vacation.Vacation'
   ],
   views: [
     'Main',
