@@ -26,7 +26,8 @@ Ext.define('Tel100.view.document.editor.Panel', {
     'Ext.form.field.HtmlEditor',
     'Ext.form.Panel',
     'Ext.toolbar.Toolbar',
-    'Ext.button.Button'
+    'Ext.button.Button',
+    'Ext.toolbar.Fill'
   ],
 
   controller: 'documenteditorpanel',
@@ -88,12 +89,25 @@ Ext.define('Tel100.view.document.editor.Panel', {
         {
           xtype: 'button',
           bind: {
+            disabled: '{sendButtonDisabled}',
+            text: '{i18n.document.base.ui.send}'
+          },
+          listeners: {
+            click: 'onSendClick'
+          }
+        },
+        {
+          xtype: 'button',
+          bind: {
             disabled: '{saveButtonDisabled}',
             text: '{saveButtonText}'
           },
           listeners: {
             click: 'onSaveClick'
           }
+        },
+        {
+          xtype: 'tbfill'
         }
       ]
     }

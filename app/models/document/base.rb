@@ -77,7 +77,6 @@ class Document::Base < ActiveRecord::Base
     raise 'can\'t send non draft document' unless self.draft?
     Document::Base.transaction do
       docuser = Document::User.where(document: self, user: user).first
-      debugger
       self.status = docuser.status = CURRENT
       self.docdate = self.docdate || Date.today
       self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate)

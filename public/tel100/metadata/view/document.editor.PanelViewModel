@@ -111,6 +111,41 @@
                     "designerId": "4f92bf0c-0c9c-47bd-b29f-38c346b85763"
                 }
             ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sendButtonDisabled"
+            },
+            "name": "MyFormula4",
+            "designerId": "1fce31d8-3488-4b3c-8bb1-cb7922e85f91",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var isSending = get('isSending');",
+                            "return !!isSending;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "e069ca18-bfed-4542-89f3-e23b98590a0f"
+                }
+            ]
         }
     ]
 }

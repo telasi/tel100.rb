@@ -51,6 +51,10 @@ Ext.define('Tel100.view.document.editor.PanelViewModel', {
       var isSaving = get('isSaving');
       var isSaved = get('isSaved');
       return isSaving || isSaved;
+    },
+    sendButtonDisabled: function(get) {
+      var isSending = get('isSending');
+      return !!isSending;
     }
   }
 

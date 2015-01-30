@@ -22,6 +22,14 @@ var base = {
     opts.url = '/api/documents/base/delete_draft';
     opts.params = { id: id };
     ajax.request(opts);
+  },
+
+  sendDraft: function(id, args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/base/send_draft';
+    opts.params = { id: id };
+    ajax.request(opts);
   }
 };
 

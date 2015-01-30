@@ -49,6 +49,25 @@ Ext.define('Tel100.view.document.editor.PanelViewController', {
     }
   },
 
+  onSendClick: function(button, e, eOpts) {
+    var vm = this.getViewModel();
+    var isSending = vm.get('isSending');
+    if (!isSending) {
+      vm.set('isSending', true);
+      var document = vm.get('document');
+      helpers.api.document.base.sendDraft(document.id, {
+        success: function() {
+          // TODO: close this editor and open in viewer
+          vm.set('isSending', false);
+        }.bind(this),
+        failure: function() {
+          console.log('failed to save document');
+          vm.set('isSending', false);
+        }
+      });
+    }
+  },
+
   onSaveClick: function(button, e, eOpts) {
     var doc = this.getViewModel().get('document');
     this.onDocumentChange(doc);

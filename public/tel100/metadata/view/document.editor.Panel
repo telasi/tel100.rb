@@ -242,6 +242,65 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "designer|displayName": "send",
+                        "disabled": [
+                            "{sendButtonDisabled}"
+                        ],
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.document.base.ui.send}"
+                        ]
+                    },
+                    "name": "MyButton3",
+                    "configAlternates": {
+                        "text": "binding",
+                        "disabled": "binding"
+                    },
+                    "designerId": "f85da665-4fb0-4825-b972-4fe5381b116b",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSendClick",
+                                "implHandler": [
+                                    "var vm = this.getViewModel();",
+                                    "var isSending = vm.get('isSending');",
+                                    "if (!isSending) {",
+                                    "  vm.set('isSending', true);",
+                                    "  var document = vm.get('document');",
+                                    "  helpers.api.document.base.sendDraft(document.id, {",
+                                    "    success: function() {",
+                                    "      // TODO: close this editor and open in viewer",
+                                    "      vm.set('isSending', false);",
+                                    "    }.bind(this),",
+                                    "    failure: function() {",
+                                    "      console.log('failed to save document');",
+                                    "      vm.set('isSending', false);",
+                                    "    }",
+                                    "  });",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onSendClick",
+                            "designerId": "bed7d75e-73a8-4b13-9854-ebf01b5f547f"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
                         "designer|displayName": "save",
                         "disabled": [
                             "{saveButtonDisabled}"
@@ -278,6 +337,19 @@
                             "designerId": "d9c1d152-3c37-404a-b57e-cdbb070f5afc"
                         }
                     ]
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null
+                    },
+                    "name": "MyFill1",
+                    "designerId": "4db86121-bbf8-4f46-9683-6a42799d46f0"
                 }
             ]
         }
