@@ -75,9 +75,9 @@ class Document::Base < ActiveRecord::Base
   def send_draft!(user)
     raise I18n.t('models.document_base.errors.no_privilege_to_send') unless user == self.owner_user
     raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
-    # TODO: check motions
-    # TODO: check body
-    # TODO: check subject
+    raise I18n.t('models.document_base.errors.empty_subject') unless self.subject.present?
+    raise I18n.t('models.document_base.errors.empty_body') unless self.body.present?
+    raise I18n.t('models.document_base.errors.no_motions') unless self.motions.any?
     Document::Base.transaction do
       docuser = Document::User.where(document: self, user: user).first
       self.status = docuser.status = CURRENT

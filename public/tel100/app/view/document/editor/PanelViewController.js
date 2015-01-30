@@ -68,6 +68,10 @@ Ext.define('Tel100.view.document.editor.PanelViewController', {
       helpers.api.document.base.sendDraft(document.id, {
         success: function() {
           view.fireEvent('documentsent', document);
+        }.bind(this),
+        failure: function(msg) {
+          Ext.Msg.alert(i18n.errors.title, msg);
+          vm.set('isSending', false);
         }.bind(this)
       });
     }
