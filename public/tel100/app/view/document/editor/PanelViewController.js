@@ -55,10 +55,10 @@ Ext.define('Tel100.view.document.editor.PanelViewController', {
     if (!isSending) {
       vm.set('isSending', true);
       var document = vm.get('document');
+      var view = this.getView();
       helpers.api.document.base.sendDraft(document.id, {
         success: function() {
-          // TODO: close this editor and open in viewer
-          vm.set('isSending', false);
+          view.fireEvent('documentsent', document);
         }.bind(this),
         failure: function() {
           console.log('failed to save document');
