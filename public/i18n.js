@@ -217,19 +217,23 @@ module.exports = {
     ka: '<i class="fa fa-refresh"></i> განახლება',
     ru: '<i class="fa fa-refresh"></i> Обновить',
   },
+  refresh_short: '<i class="fa fa-refresh"></i>',
   add: {
     ka: '<i class="fa fa-plus"></i> დამატება',
     ru: '<i class="fa fa-plus"></i> Добавить',
   },
-  delete: {
+  add_short: '<i class="fa fa-plus"></i>',
+  destroy: {
     ka: '<i class="fa fa-trash"></i> წაშლა',
     ru: '<i class="fa fa-trash"></i> Удалить',
   },
-  deleteConfirm: {
+  destroy_short: '<i class="fa fa-trash"></i>',
+  destroyConfirm: {
     ka: 'ნამდვილად გინდათ წაშლა?',
     ru: 'Вы действительно хотите удалить?',
   }
 };
+
 },{}],14:[function(require,module,exports){
 module.exports = {
   username: {

@@ -44,7 +44,7 @@
                     "{selection}"
                 ]
             },
-            "name": "document.motions.outgrid1",
+            "name": "document.motions.outgrid",
             "configAlternates": {
                 "basemotion": "binding",
                 "outmode": "boolean",
@@ -106,12 +106,16 @@
                         "designer|displayName": "refresh",
                         "layout|flex": null,
                         "text": [
+                            "{i18n.ui.refresh_short}"
+                        ],
+                        "tooltip": [
                             "{i18n.ui.refresh}"
                         ]
                     },
                     "name": "MyButton",
                     "configAlternates": {
-                        "text": "binding"
+                        "text": "binding",
+                        "tooltip": "binding"
                     },
                     "designerId": "23ab105a-1e8e-45f7-90ab-edee8d8a2d1e",
                     "cn": [
@@ -150,12 +154,16 @@
                         "designer|displayName": "add",
                         "layout|flex": null,
                         "text": [
+                            "{i18n.ui.add_short}"
+                        ],
+                        "tooltip": [
                             "{i18n.ui.add}"
                         ]
                     },
                     "name": "MyButton1",
                     "configAlternates": {
-                        "text": "binding"
+                        "text": "binding",
+                        "tooltip": "binding"
                     },
                     "designerId": "d6460e20-0467-4c28-b428-a21b63c549c0",
                     "cn": [
@@ -221,13 +229,17 @@
                         ],
                         "layout|flex": null,
                         "text": [
-                            "{i18n.ui.delete}"
+                            "{i18n.ui.destroy_short}"
+                        ],
+                        "tooltip": [
+                            "{i18n.ui.destroy}"
                         ]
                     },
                     "name": "MyButton2",
                     "configAlternates": {
                         "text": "binding",
-                        "disabled": "binding"
+                        "disabled": "binding",
+                        "tooltip": "binding"
                     },
                     "designerId": "3dfa9c60-f3dd-408c-8e9a-400ee27d1b39",
                     "cn": [
@@ -249,7 +261,7 @@
                                     "var vm = panel.getViewModel();",
                                     "var selection = vm.get('selection');",
                                     "if (selection) {",
-                                    "  var msg = i18n.ui.deleteConfirm;",
+                                    "  var msg = i18n.ui.destroyConfirm;",
                                     "  var title = i18n.ui.confirmTitle;",
                                     "  var grid = panel.down('documentmotionsoutgrid');",
                                     "  var successFunction = function() {",

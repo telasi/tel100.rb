@@ -61,7 +61,8 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
             panel.refresh();
           },
           bind: {
-            text: '{i18n.ui.refresh}'
+            text: '{i18n.ui.refresh_short}',
+            tooltip: '{i18n.ui.refresh}'
           }
         },
         {
@@ -83,7 +84,8 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
           },
           cls: 'success-button',
           bind: {
-            text: '{i18n.ui.add}'
+            text: '{i18n.ui.add_short}',
+            tooltip: '{i18n.ui.add}'
           }
         },
         {
@@ -96,7 +98,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
             var vm = panel.getViewModel();
             var selection = vm.get('selection');
             if (selection) {
-              var msg = i18n.ui.deleteConfirm;
+              var msg = i18n.ui.destroyConfirm;
               var title = i18n.ui.confirmTitle;
               var grid = panel.down('documentmotionsoutgrid');
               var successFunction = function() {
@@ -114,7 +116,8 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
           cls: 'danger-button',
           bind: {
             disabled: '{deleteDraftButtonDisabled}',
-            text: '{i18n.ui.delete}'
+            text: '{i18n.ui.destroy_short}',
+            tooltip: '{i18n.ui.destroy}'
           }
         }
       ]
