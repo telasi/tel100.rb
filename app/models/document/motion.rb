@@ -31,17 +31,17 @@ class Document::Motion < ActiveRecord::Base
     # check user permission for this action
     is_receiver_user = ( parent.present? and sender_user == parent.receiver_user )
     is_owner_user = ( parent.blank? and sender_user == document.owner_user )
-    raise "#{sender_user.username} doesn't have permission for this action" unless is_receiver_user or is_owner_user
+    raise I18n.t('models.document_motion.errors.no_privilege_to_add') unless is_receiver_user or is_owner_user
     # sender/receiver information
     sender = whose_user(sender_user)
     receiver_user, receiver = who_eval('receiver', params)
     same_receiver_user = ( receiver_user.present? and sender_user == receiver_user )
     same_receiver = ( receiver.present? and sender.present? and sender == receiver )
-    raise 'sender should not send to himself' if same_receiver or same_receiver_user
+    raise I18n.t('models.document_motion.errors.sent_to_himself') if (same_receiver or same_receiver_user)
     # check existence of this receiver on the branch
     receiver_count = receiver.present? ? document.motions.where(parent_id: parent_id, receiver: receiver).count : 0
     receiver_user_count = receiver_user.present? ? document.motions.where(parent_id: parent_id, receiver_user: receiver_user).count : 0
-    raise 'this receiver is already on this branch' if ( receiver_count > 0 or receiver_user_count > 0 )
+    raise I18n.t('models.document_motion.errors.receiver_exists_on_branch') if ( receiver_count > 0 or receiver_user_count > 0 )
     # create this
     Document::Motion.create!({
       parent: parent,
@@ -57,8 +57,8 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def update_draft!(user, params)
-    raise 'not a draft' unless self.draft?
-    raise 'don\'t have edit permission' unless self.can_edit?(user)
+    raise I18n.t('models.document_motion.errors.not_a_draft') unless self.draft?
+    raise I18n.t('models.document_motion.errors.not_allowed') unless self.can_edit?(user)
     Document::Motion.transaction do
       self.update_attributes(params.permit(:ordering, :due_date, :motion_text, :receiver_role))
       self.save!
@@ -72,12 +72,12 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def send_draft!(user)
-    raise 'not a draft' unless self.draft?
+    raise I18n.t('models.document_motion.errors.not_a_draft') unless self.draft?
     # raise 'don\'t have send permission' unless self.can_edit?(user)
     rel = Document::Motion.where(document: self.document, parent: self.parent)
     # checking if there are some motions above this motion
     upper = rel.where('ordering > ? AND status NOT IN (?)', self.ordering, [DRAFT]).count
-    raise 'not possible to send from this level' if upper > 0
+    raise I18n.t('models.document_motion.errors.cannot_send_from_this_level') if upper > 0
     # sending this motion
     self.sent_at = Time.now
     self.status = self.receiver_user.blank? ? NOT_SENT : SENT
@@ -88,7 +88,6 @@ class Document::Motion < ActiveRecord::Base
         self.status = CURRENT
         self.received_at = Time.now
       end
-
       # setting Document::User
       Document::User.upsert!(self.document, self.receiver_user, self.receiver_role, { status: self.status })
     end

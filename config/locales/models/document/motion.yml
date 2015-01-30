@@ -1,0 +1,10 @@
+ka:
+  models:
+    document_motion:
+      errors:
+        not_a_draft: ოპერაცია მხოლოდ დრაფტის დოკუმენტზეა შესაძლებელი.
+        not_allowed: ამ ოპერაციის შესულების უფლება არ გაქვთ.
+        no_privilege_to_add: არ გაქვთ აქ ადრესატის დამატების უბლება.
+        sent_to_himself: არ შეიძლება საკუთარ თავზე დოკუმენტის გაგზავნა.
+        receiver_exists_on_branch: ეს მომხმარებელი უკვე ჩართულია ადრესატებში.
+        cannot_send_from_this_level: ადრესატზე გაგზავნა ამ დონიდან არის შეუძლებელი.
