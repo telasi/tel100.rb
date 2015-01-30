@@ -47,8 +47,8 @@ class Document::Base < ActiveRecord::Base
   end
 
   def update_draft!(user, params)
-    raise 'user not defined' if user.blank?
-    raise 'not a draft' unless self.draft?
+    raise I18n.t('models.document_base.errors.user_not_defined') unless user.present?
+    raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
     Document::Base.transaction do
       if params.key?(:body)
         text = self.text || Document::Text.new(document: self)
@@ -61,8 +61,8 @@ class Document::Base < ActiveRecord::Base
   end
 
   def delete_draft!(user)
-    raise 'user not defined' if user.blank?
-    raise 'not a draft' unless self.draft?
+    raise I18n.t('models.document_base.errors.user_not_defined') unless user.present?
+    raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
     Document::Base.transaction do
       self.motions.destroy_all
       self.comments.destroy_all
@@ -73,8 +73,11 @@ class Document::Base < ActiveRecord::Base
   end
 
   def send_draft!(user)
-    raise 'don\'t have privileges to send' unless user == self.owner_user
-    raise 'can\'t send non draft document' unless self.draft?
+    raise I18n.t('models.document_base.errors.no_privilege_to_send') unless user == self.owner_user
+    raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
+    # TODO: check motions
+    # TODO: check body
+    # TODO: check subject
     Document::Base.transaction do
       docuser = Document::User.where(document: self, user: user).first
       self.status = docuser.status = CURRENT

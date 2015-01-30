@@ -94,6 +94,7 @@ Ext.define('Tel100.view.document.MainViewController', {
           editor.on('documentsent', function(document) {
             tabs.remove(editor);
             this.onRefresh();
+            // TODO: open viewer
           }.bind(this));
         }
         // non-draft editor

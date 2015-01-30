@@ -59,11 +59,7 @@ Ext.define('Tel100.view.document.editor.PanelViewController', {
       helpers.api.document.base.sendDraft(document.id, {
         success: function() {
           view.fireEvent('documentsent', document);
-        }.bind(this),
-        failure: function() {
-          console.log('failed to save document');
-          vm.set('isSending', false);
-        }
+        }.bind(this)
       });
     }
   },

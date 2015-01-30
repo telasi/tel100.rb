@@ -1,0 +1,7 @@
+ka:
+  models:
+    document_base:
+      errors:
+        user_not_defined: მომხმარებელი არაა განსაზღვრული.
+        not_a_draft: ამ ოპერაციის შესრულება მოითხოვს დოკუმენტი იყოს დრაფტი.
+        no_privilege_to_send: თქვენ არ გაქვთ ამ დოკუმენტის გაგზავნის უფლება.
