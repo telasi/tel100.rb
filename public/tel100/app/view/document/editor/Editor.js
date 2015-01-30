@@ -19,7 +19,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
 
   requires: [
     'Tel100.view.document.editor.EditorViewModel',
-    'Ext.form.Label'
+    'Ext.container.Container'
   ],
 
   viewModel: {
@@ -29,11 +29,28 @@ Ext.define('Tel100.view.document.editor.Editor', {
 
   items: [
     {
-      xtype: 'label',
+      xtype: 'container',
       region: 'center',
-      bind: {
-        text: '{document.subject}'
-      }
+      layout: 'border',
+      items: [
+        {
+          xtype: 'container',
+          region: 'north',
+          cls: 'document-subject',
+          bind: {
+            html: '{document.subject}'
+          }
+        },
+        {
+          xtype: 'container',
+          region: 'center',
+          cls: 'document-body',
+          overflowY: 'scroll',
+          bind: {
+            html: '{document.body}'
+          }
+        }
+      ]
     }
   ]
 
