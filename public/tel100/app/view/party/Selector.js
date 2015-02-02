@@ -96,7 +96,6 @@ Ext.define('Tel100.view.party.Selector', {
           }
         }
       ],
-      border: true,
       flex: 1,
       listeners: {
         celldblclick: 'onHRTreeDblClick'
@@ -152,6 +151,7 @@ Ext.define('Tel100.view.party.Selector', {
     var store = grid.getStore();
     store.each(function(item) { data.push(item); });
     this.fireEvent('selectioncomplete', data);
+    store.removeAll();
     this.close();
   },
 
