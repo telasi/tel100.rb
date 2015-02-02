@@ -7,6 +7,7 @@
     "codeClass": null,
     "userConfig": {
         "autoDestroy": false,
+        "closeAction": "hide",
         "container|align": "stretch",
         "designer|userAlias": "partyselector",
         "designer|userClassName": "party.Selector",

@@ -39,6 +39,7 @@ Ext.define('Tel100.view.party.Selector', {
   height: 400,
   width: 800,
   autoDestroy: false,
+  closeAction: 'hide',
   title: 'Select Party',
   maximizable: true,
   modal: true,
