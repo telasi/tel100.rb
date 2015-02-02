@@ -9,6 +9,7 @@
         "designer|userAlias": "documentmotionsinpanel",
         "designer|userClassName": "document.motions.InPanel",
         "height": null,
+        "layout": "fit",
         "title": [
             "{i18n.document.motion.inMotions}"
         ],
@@ -56,6 +57,17 @@
                     "designerId": "0b6a8853-e490-42fa-bc9d-25432479fa0e"
                 }
             ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "name": "document.motions.ingrid",
+            "designerId": "b749e325-7a6a-4de7-9bc9-691c57a61005",
+            "masterInstanceId": "04ffc6b0-782b-4122-ba75-5b1dd5b66d45"
         }
     ]
 }

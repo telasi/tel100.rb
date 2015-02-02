@@ -1,0 +1,87 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsingrid",
+        "designer|userClassName": "document.motions.InGrid",
+        "height": 250,
+        "title": null,
+        "width": 400
+    },
+    "name": "MyGridPanel",
+    "designerId": "04ffc6b0-782b-4122-ba75-5b1dd5b66d45",
+    "viewControllerInstanceId": "cf2a119c-c478-4ed7-821f-90e860de37eb",
+    "viewModelInstanceId": "44641ffa-61ba-46ed-8624-5e2d6fe5e932",
+    "cn": [
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "string",
+                "text": "String"
+            },
+            "name": "MyColumn15",
+            "designerId": "979bf355-5d16-4f24-ba05-61aa24a92940"
+        },
+        {
+            "type": "Ext.grid.column.Number",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "number",
+                "text": "Number"
+            },
+            "name": "MyNumberColumn",
+            "designerId": "dc503770-ab77-4d4b-8d95-5d05d6b19d9d"
+        },
+        {
+            "type": "Ext.grid.column.Date",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "date",
+                "text": "Date"
+            },
+            "name": "MyDateColumn",
+            "designerId": "1054764b-4186-45f6-803b-2d94ad64a1a4"
+        },
+        {
+            "type": "Ext.grid.column.Boolean",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "bool",
+                "text": "Boolean"
+            },
+            "name": "MyBooleanColumn",
+            "designerId": "f21f7152-67c9-4f7e-b7d3-13c866c9e83c"
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView1",
+            "designerId": "1c9b26cd-3e92-4395-bf7c-df21df349f8d"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsingrid",
+        "designer|userClassName": "document.motions.InGridViewModel"
+    },
+    "designerId": "44641ffa-61ba-46ed-8624-5e2d6fe5e932"
+}

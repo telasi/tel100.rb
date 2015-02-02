@@ -19,13 +19,16 @@ Ext.define('Tel100.view.document.motions.InPanel', {
 
   requires: [
     'Tel100.view.document.motions.InPanelViewModel',
+    'Tel100.view.document.motions.InGrid',
     'Ext.toolbar.Toolbar',
-    'Ext.button.Button'
+    'Ext.button.Button',
+    'Ext.grid.Panel'
   ],
 
   viewModel: {
     type: 'documentmotionsinpanel'
   },
+  layout: 'fit',
 
   bind: {
     title: '{i18n.document.motion.inMotions}'
@@ -42,6 +45,11 @@ Ext.define('Tel100.view.document.motions.InPanel', {
           }
         }
       ]
+    }
+  ],
+  items: [
+    {
+      xtype: 'documentmotionsingrid'
     }
   ]
 

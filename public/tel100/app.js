@@ -52,7 +52,8 @@ Ext.application({
     'party.Selector',
     'hr.vacation.Window',
     'document.editor.Editor',
-    'document.motions.InPanel'
+    'document.motions.InPanel',
+    'document.motions.InGrid'
   ],
   name: 'Tel100',
 
