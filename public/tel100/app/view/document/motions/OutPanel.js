@@ -61,7 +61,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
             panel.refresh();
           },
           bind: {
-            text: '{i18n.ui.refresh_short}',
+            text: '{i18n.ui.refresh}',
             tooltip: '{i18n.ui.refresh}'
           }
         },

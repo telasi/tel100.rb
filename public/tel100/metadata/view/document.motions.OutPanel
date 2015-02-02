@@ -106,7 +106,7 @@
                         "designer|displayName": "refresh",
                         "layout|flex": null,
                         "text": [
-                            "{i18n.ui.refresh_short}"
+                            "{i18n.ui.refresh}"
                         ],
                         "tooltip": [
                             "{i18n.ui.refresh}"

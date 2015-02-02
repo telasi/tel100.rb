@@ -172,6 +172,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "border": true,
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
@@ -187,7 +188,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "width": 10
+                                "width": 5
                             },
                             "name": "MySplitter",
                             "designerId": "0dae154d-b544-4ef6-a46b-1fb586d1e0ac"
@@ -200,6 +201,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "border": true,
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },

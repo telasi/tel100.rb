@@ -83,15 +83,17 @@ Ext.define('Tel100.view.document.editor.Editor', {
           items: [
             {
               xtype: 'documentmotionsinpanel',
-              flex: 1
+              flex: 1,
+              border: true
             },
             {
               xtype: 'splitter',
-              width: 10
+              width: 5
             },
             {
               xtype: 'documentmotionsoutpanel',
-              flex: 1
+              flex: 1,
+              border: true
             }
           ]
         }
