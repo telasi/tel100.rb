@@ -78,9 +78,10 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
       helpers.api.document.motion.updateDraft(motion.id, {
         params: changes,
         success: function() {
-          motion.commit(true);
+          motion.commit();
         }.bind(this),
         failure: function(message) {
+          motion.reject();
           console.error(message);
         }
       });
