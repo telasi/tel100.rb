@@ -21,14 +21,15 @@ Ext.define('Tel100.view.party.Selector', {
     'Tel100.view.party.SelectorViewModel',
     'Tel100.view.party.SelectorViewController',
     'Tel100.view.hr.tree.Panel',
+    'Ext.toolbar.Toolbar',
+    'Ext.button.Button',
+    'Ext.toolbar.Spacer',
     'Ext.tree.Panel',
+    'Ext.resizer.Splitter',
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
-    'Ext.panel.Tool',
-    'Ext.toolbar.Toolbar',
-    'Ext.button.Button',
-    'Ext.toolbar.Spacer'
+    'Ext.panel.Tool'
   ],
 
   controller: 'partyselector',
@@ -38,72 +39,19 @@ Ext.define('Tel100.view.party.Selector', {
   height: 400,
   width: 800,
   autoDestroy: false,
-  layout: 'border',
   title: 'Select Party',
   maximizable: true,
   modal: true,
   defaultListenerScope: true,
 
-  items: [
-    {
-      xtype: 'hrtreepanel',
-      tools: [
-        {
-          type: 'plus',
-          handler: function() {
-            var tree = this.up('hrtreepanel');
-            var selection = tree.getSelection();
-            if (selection.length > 0) {
-              var controller = this.up('partyselector').getController();
-              controller.onAddParty(selection[0]);
-            }
-          }
-        }
-      ],
-      region: 'center',
-      split: true,
-      listeners: {
-        celldblclick: 'onHRTreeDblClick'
-      }
-    },
-    {
-      xtype: 'gridpanel',
-      region: 'east',
-      split: true,
-      itemId: 'selectedParties',
-      width: 250,
-      hideHeaders: true,
-      bind: {
-        title: '{i18n.selector.selectedParties}',
-        store: '{parties}'
-      },
-      columns: [
-        {
-          xtype: 'gridcolumn',
-          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-            return record.toTreeHtml();
-          },
-          dataIndex: 'name',
-          flex: 1
-        }
-      ],
-      listeners: {
-        celldblclick: 'onSelectedPartiesCellDblClick'
-      },
-      tools: [
-        {
-          xtype: 'tool',
-          type: 'minus',
-          listeners: {
-            click: 'onRemoveToolClick'
-          }
-        }
-      ]
-    }
-  ],
+  layout: {
+    type: 'hbox',
+    align: 'stretch'
+  },
   dockedItems: [
     {
       xtype: 'toolbar',
+      flex: 1,
       dock: 'bottom',
       items: [
         {
@@ -131,6 +79,80 @@ Ext.define('Tel100.view.party.Selector', {
       ]
     }
   ],
+  items: [
+    {
+      xtype: 'hrtreepanel',
+      tools: [
+        {
+          type: 'plus',
+          handler: function() {
+            var tree = this.up('hrtreepanel');
+            var selection = tree.getSelection();
+            if (selection.length > 0) {
+              var controller = this.up('partyselector').getController();
+              controller.onAddParty(selection[0]);
+            }
+          }
+        }
+      ],
+      border: true,
+      flex: 1,
+      listeners: {
+        celldblclick: 'onHRTreeDblClick'
+      }
+    },
+    {
+      xtype: 'splitter',
+      width: 5
+    },
+    {
+      xtype: 'gridpanel',
+      cls: 'panel-with-border',
+      itemId: 'selectedParties',
+      width: 300,
+      bodyBorder: true,
+      bind: {
+        title: '{i18n.selector.selectedParties}',
+        store: '{parties}'
+      },
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            return record.toTreeHtml();
+          },
+          dataIndex: 'name',
+          text: 'Name',
+          flex: 1
+        }
+      ],
+      listeners: {
+        celldblclick: 'onSelectedPartiesCellDblClick'
+      },
+      tools: [
+        {
+          xtype: 'tool',
+          type: 'minus',
+          listeners: {
+            click: 'onRemoveToolClick'
+          }
+        }
+      ]
+    }
+  ],
+
+  onCancelClick: function(button, e, eOpts) {
+    this.close();
+  },
+
+  onSelectClicked: function(button, e, eOpts) {
+    var data = [];
+    var grid = this.down('gridpanel');
+    var store = grid.getStore();
+    store.each(function(item) { data.push(item); });
+    this.fireEvent('selectioncomplete', data);
+    this.close();
+  },
 
   onHRTreeDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     if (record.get('ext_type') === 'hr.Employee' && record.get('has_user')) {
@@ -148,19 +170,6 @@ Ext.define('Tel100.view.party.Selector', {
     if (selection.length > 0) {
       this.getController().onRemoveParty(selection[0]);
     }
-  },
-
-  onCancelClick: function(button, e, eOpts) {
-    this.close();
-  },
-
-  onSelectClicked: function(button, e, eOpts) {
-    var data = [];
-    var grid = this.down('gridpanel');
-    var store = grid.getStore();
-    store.each(function(item) { data.push(item); });
-    this.fireEvent('selectioncomplete', data);
-    this.close();
   }
 
 });
