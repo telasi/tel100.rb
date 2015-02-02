@@ -181,19 +181,9 @@
                                 ],
                                 "fn": "handler",
                                 "implHandler": [
-                                    "var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
-                                    "  title: i18n.document.motion.selectReceiver",
-                                    "});",
-                                    "receiverDialog.show();",
-                                    "receiverDialog.on('selectioncomplete', function(receivers) {",
-                                    "  if (receivers.length > 0) {",
-                                    "    for (var i = 0; i < receivers.length; i++) {",
-                                    "      var panel = this.up('documentmotionsoutpanel');",
-                                    "      var controller = panel.getController();",
-                                    "      controller.addReceiver(receivers[i]);",
-                                    "    }",
-                                    "  }",
-                                    "}.bind(this));"
+                                    "var controller = this.up('documentmotionsoutpanel').getController();",
+                                    "var dialog = controller.receiverDialog;",
+                                    "dialog.show();"
                                 ]
                             },
                             "name": "handler",
@@ -294,6 +284,8 @@
             "userConfig": {
                 "fn": "onBeforeRender",
                 "implHandler": [
+                    "var view = this.getView();",
+                    "",
                     "// selection change",
                     "var vm = this.getViewModel();",
                     "var onChange = function(newVal, oldVal, binding) {",
@@ -302,7 +294,22 @@
                     "  }",
                     "};",
                     "var options = { deep: true };",
-                    "vm.bind('{selection}', onChange, this, options);"
+                    "vm.bind('{selection}', onChange, this, options);",
+                    "",
+                    "// selector dialog initalization",
+                    "if (!this.receiverDialog) {",
+                    "  this.receiverDialog = Ext.create('Tel100.view.party.Selector', {",
+                    "    title: i18n.document.motion.selectReceiver",
+                    "  });",
+                    "",
+                    "  this.receiverDialog.on('selectioncomplete', function(receivers) {",
+                    "    if (receivers.length > 0) {",
+                    "      for (var i = 0; i < receivers.length; i++) {",
+                    "        this.addReceiver(receivers[i]);",
+                    "      }",
+                    "    }",
+                    "  }.bind(this));",
+                    "}"
                 ],
                 "name": "beforerender",
                 "scope": "me"
@@ -341,6 +348,24 @@
             },
             "name": "onPanelMotionChange",
             "designerId": "0929d72d-3a72-407c-804f-6e014f066a39"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPanelBeforeDestroy",
+                "implHandler": [
+                    "this.receiverDialog.destroy();"
+                ],
+                "name": "beforedestroy",
+                "scope": "me"
+            },
+            "name": "onPanelBeforeDestroy",
+            "designerId": "8c01e4ab-d081-4b9a-a9e7-91f2ddaa6d18"
         }
     ]
 }

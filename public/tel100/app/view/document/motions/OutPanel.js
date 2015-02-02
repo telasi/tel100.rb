@@ -68,19 +68,9 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
         {
           xtype: 'button',
           handler: function(button, e) {
-            var receiverDialog = Ext.create('Tel100.view.party.Selector', {
-              title: i18n.document.motion.selectReceiver
-            });
-            receiverDialog.show();
-            receiverDialog.on('selectioncomplete', function(receivers) {
-              if (receivers.length > 0) {
-                for (var i = 0; i < receivers.length; i++) {
-                  var panel = this.up('documentmotionsoutpanel');
-                  var controller = panel.getController();
-                  controller.addReceiver(receivers[i]);
-                }
-              }
-            }.bind(this));
+            var controller = this.up('documentmotionsoutpanel').getController();
+            var dialog = controller.receiverDialog;
+            dialog.show();
           },
           cls: 'success-button',
           bind: {
@@ -125,7 +115,8 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
   ],
   listeners: {
     beforerender: 'onBeforeRender',
-    motionchange: 'onPanelMotionChange'
+    motionchange: 'onPanelMotionChange',
+    beforedestroy: 'onPanelBeforeDestroy'
   },
 
   refresh: function() {
