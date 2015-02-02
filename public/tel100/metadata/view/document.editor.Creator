@@ -128,7 +128,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general2",
+                    "name": "document.editor.general",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -146,7 +146,7 @@
                         "designer|displayName": "receivers",
                         "hideCollapseTool": true
                     },
-                    "name": "document.motions.outpanel2",
+                    "name": "document.motions.outpanel",
                     "configAlternates": {
                         "title": "binding"
                     },

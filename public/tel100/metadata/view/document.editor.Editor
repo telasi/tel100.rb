@@ -21,67 +21,148 @@
     "viewModelInstanceId": "478f1cf4-3904-4bc8-a97a-56853b2a53b0",
     "cn": [
         {
-            "type": "Ext.container.Container",
+            "type": "Ext.tab.Panel",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "main",
-                "layout": "border",
-                "layout|region": "center"
+                "activeTab": 0,
+                "layout|region": "center",
+                "padding": "",
+                "tabPosition": "bottom"
             },
-            "name": "MyContainer1",
-            "designerId": "4e7d6269-7ce2-491f-b47c-fd8880fae8fc",
+            "name": "MyTabPanel",
+            "designerId": "bd5684ae-47f5-4638-b39b-1ddea2a00140",
             "cn": [
                 {
-                    "type": "Ext.container.Container",
+                    "type": "Ext.panel.Panel",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "document-subject",
-                        "designer|displayName": "subject",
-                        "height": null,
-                        "html": [
-                            "{document.subject}"
-                        ],
-                        "layout|region": "north",
-                        "margin": null
+                        "designer|displayName": "content",
+                        "layout": "fit",
+                        "title": [
+                            "{i18n.document.base.ui.contentTabTitle}"
+                        ]
                     },
-                    "name": "MyContainer4",
+                    "name": "MyPanel",
                     "configAlternates": {
-                        "html": "binding"
+                        "title": "binding"
                     },
-                    "designerId": "fd642e95-ee63-4987-baa9-05d725945fa7"
+                    "designerId": "7b29f01b-4c9a-4087-b3cd-27faa54f2fe7",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig",
+                            "designerId": "3b2c9457-4a88-48d7-b6fe-355cdd011b2f"
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|padding": null,
+                                "designer|displayName": "main",
+                                "layout": "border"
+                            },
+                            "name": "MyContainer1",
+                            "designerId": "4e7d6269-7ce2-491f-b47c-fd8880fae8fc",
+                            "cn": [
+                                {
+                                    "type": "Ext.container.Container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "document-subject",
+                                        "designer|displayName": "subject",
+                                        "height": null,
+                                        "html": [
+                                            "{document.subject}"
+                                        ],
+                                        "layout|region": "north",
+                                        "margin": null
+                                    },
+                                    "name": "MyContainer4",
+                                    "configAlternates": {
+                                        "html": "binding"
+                                    },
+                                    "designerId": "fd642e95-ee63-4987-baa9-05d725945fa7"
+                                },
+                                {
+                                    "type": "Ext.container.Container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "document-body",
+                                        "designer|displayName": "body",
+                                        "html": [
+                                            "{document.body}"
+                                        ],
+                                        "layout|margins": null,
+                                        "layout|region": "center",
+                                        "margin": null,
+                                        "overflowX": null,
+                                        "overflowY": "scroll"
+                                    },
+                                    "name": "MyContainer3",
+                                    "configAlternates": {
+                                        "html": "binding"
+                                    },
+                                    "designerId": "202382c5-c35b-4cf4-9714-00da706beef8"
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "type": "Ext.container.Container",
+                    "type": "Ext.panel.Panel",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "document-body",
-                        "designer|displayName": "body",
-                        "html": [
-                            "{document.body}"
-                        ],
-                        "layout|margins": null,
-                        "layout|region": "center",
-                        "margin": null,
-                        "overflowX": null,
-                        "overflowY": "scroll"
+                        "designer|displayName": "motions",
+                        "title": [
+                            "{i18n.document.base.ui.motionsTabTitle}"
+                        ]
                     },
-                    "name": "MyContainer3",
+                    "name": "MyPanel1",
                     "configAlternates": {
-                        "html": "binding"
+                        "title": "binding"
                     },
-                    "designerId": "202382c5-c35b-4cf4-9714-00da706beef8"
+                    "designerId": "078af9f1-570e-492f-a4bf-91bf22aafa9b",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig1",
+                            "designerId": "3dd313a1-5a75-4d4f-84e6-a5669b18992e"
+                        }
+                    ]
                 }
             ]
         }

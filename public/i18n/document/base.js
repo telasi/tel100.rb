@@ -11,7 +11,9 @@ module.exports = {
     send: {
       ka: '<i class="fa fa-send"></i> დოკუმენტის გაგზავნა',
       ru: '<i class="fa fa-send"></i> Послать документ'
-    }
+    },
+    contentTabTitle: '<i class="fa fa-file-text-o"></i> შინაარსი',
+    motionsTabTitle: '<i class="fa fa-send"></i> მოძრაობები',
   },
   errors: {
     empty_subject: 'ჩაწერეთ დოკუმენტის სათაური.',

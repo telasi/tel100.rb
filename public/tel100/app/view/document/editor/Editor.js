@@ -19,7 +19,8 @@ Ext.define('Tel100.view.document.editor.Editor', {
 
   requires: [
     'Tel100.view.document.editor.EditorViewModel',
-    'Ext.container.Container'
+    'Ext.tab.Panel',
+    'Ext.tab.Tab'
   ],
 
   viewModel: {
@@ -29,25 +30,48 @@ Ext.define('Tel100.view.document.editor.Editor', {
 
   items: [
     {
-      xtype: 'container',
+      xtype: 'tabpanel',
       region: 'center',
-      layout: 'border',
+      padding: '',
+      activeTab: 0,
+      tabPosition: 'bottom',
       items: [
         {
-          xtype: 'container',
-          region: 'north',
-          cls: 'document-subject',
+          xtype: 'panel',
+          layout: 'fit',
           bind: {
-            html: '{document.subject}'
-          }
+            title: '{i18n.document.base.ui.contentTabTitle}'
+          },
+          items: [
+            {
+              xtype: 'container',
+              layout: 'border',
+              items: [
+                {
+                  xtype: 'container',
+                  region: 'north',
+                  cls: 'document-subject',
+                  bind: {
+                    html: '{document.subject}'
+                  }
+                },
+                {
+                  xtype: 'container',
+                  region: 'center',
+                  cls: 'document-body',
+                  overflowY: 'scroll',
+                  bind: {
+                    html: '{document.body}'
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          xtype: 'container',
-          region: 'center',
-          cls: 'document-body',
-          overflowY: 'scroll',
+          xtype: 'panel',
           bind: {
-            html: '{document.body}'
+            title: '{i18n.document.base.ui.motionsTabTitle}'
           }
         }
       ]
