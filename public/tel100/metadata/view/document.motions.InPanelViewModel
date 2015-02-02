@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsinpanel",
+        "designer|userClassName": "document.motions.InPanelViewModel"
+    },
+    "designerId": "b6e8ac23-725d-4d84-a4e2-450609b75485"
+}

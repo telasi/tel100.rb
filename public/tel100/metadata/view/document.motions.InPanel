@@ -1,0 +1,19 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsinpanel",
+        "designer|userClassName": "document.motions.InPanel",
+        "height": null,
+        "title": "Incoming Motions",
+        "width": null
+    },
+    "name": "MyPanel2",
+    "designerId": "360c0d57-9834-48d9-9eb7-d6316da82b30",
+    "viewControllerInstanceId": "b1cd19bb-5903-4b37-a7bb-bb57bfa9b85f",
+    "viewModelInstanceId": "b6e8ac23-725d-4d84-a4e2-450609b75485"
+}

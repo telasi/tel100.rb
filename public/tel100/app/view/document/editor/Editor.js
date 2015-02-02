@@ -19,8 +19,11 @@ Ext.define('Tel100.view.document.editor.Editor', {
 
   requires: [
     'Tel100.view.document.editor.EditorViewModel',
+    'Tel100.view.document.motions.InPanel',
+    'Tel100.view.document.motions.OutPanel',
     'Ext.tab.Panel',
-    'Ext.tab.Tab'
+    'Ext.tab.Tab',
+    'Ext.resizer.Splitter'
   ],
 
   viewModel: {
@@ -70,9 +73,27 @@ Ext.define('Tel100.view.document.editor.Editor', {
         },
         {
           xtype: 'panel',
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
           bind: {
             title: '{i18n.document.base.ui.motionsTabTitle}'
-          }
+          },
+          items: [
+            {
+              xtype: 'documentmotionsinpanel',
+              flex: 1
+            },
+            {
+              xtype: 'splitter',
+              width: 10
+            },
+            {
+              xtype: 'documentmotionsoutpanel',
+              flex: 1
+            }
+          ]
         }
       ]
     }
