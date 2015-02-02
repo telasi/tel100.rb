@@ -24,65 +24,6 @@
     "viewModelInstanceId": "f95d1ab0-4cdd-49f6-afad-12afa284befb",
     "cn": [
         {
-            "type": "linkedinstance",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "data": [
-                    "{",
-                    "  outmode: true,",
-                    "  basemotion: false",
-                    "}"
-                ],
-                "designer|displayName": "grid",
-                "layout|flex": null,
-                "layout|region": "center",
-                "selection": [
-                    "{selection}"
-                ]
-            },
-            "name": "document.motions.outgrid",
-            "configAlternates": {
-                "basemotion": "binding",
-                "outmode": "boolean",
-                "selection": "binding"
-            },
-            "designerId": "dc0ede8d-fb3b-4b1d-b635-f018c6523f2d",
-            "customConfigs": [
-                {
-                    "group": "(Custom Properties)",
-                    "name": "outmode",
-                    "type": "string"
-                },
-                {
-                    "group": "(Custom Properties)",
-                    "name": "selection",
-                    "type": "string"
-                }
-            ],
-            "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "refresh",
-                "implHandler": [
-                    "var grid = this.down('documentmotionsoutgrid');",
-                    "grid.refresh();"
-                ]
-            },
-            "name": "refresh",
-            "designerId": "80ad4655-3d15-452b-acaa-8678be2740ed"
-        },
-        {
             "type": "Ext.toolbar.Toolbar",
             "reference": {
                 "name": "dockedItems",
@@ -90,6 +31,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "toolbar",
                 "dock": "top"
             },
             "name": "MyToolbar",
@@ -273,6 +215,65 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "data": [
+                    "{",
+                    "  outmode: true,",
+                    "  basemotion: false",
+                    "}"
+                ],
+                "designer|displayName": "grid",
+                "layout|flex": null,
+                "layout|region": "center",
+                "selection": [
+                    "{selection}"
+                ]
+            },
+            "name": "document.motions.outgrid",
+            "configAlternates": {
+                "basemotion": "binding",
+                "outmode": "boolean",
+                "selection": "binding"
+            },
+            "designerId": "dc0ede8d-fb3b-4b1d-b635-f018c6523f2d",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "outmode",
+                    "type": "string"
+                },
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
+                    "type": "string"
+                }
+            ],
+            "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "var grid = this.down('documentmotionsoutgrid');",
+                    "grid.refresh();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "80ad4655-3d15-452b-acaa-8678be2740ed"
         },
         {
             "type": "viewcontrollereventbinding",

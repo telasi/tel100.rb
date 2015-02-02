@@ -21,10 +21,10 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     'Tel100.view.document.motions.OutPanelViewModel',
     'Tel100.view.document.motions.OutPanelViewController',
     'Tel100.view.document.motions.OutGrid',
-    'Ext.grid.Panel',
     'Ext.toolbar.Toolbar',
     'Ext.button.Button',
-    'Ext.toolbar.Fill'
+    'Ext.toolbar.Fill',
+    'Ext.grid.Panel'
   ],
 
   controller: 'documentmotionsoutpanel',
@@ -36,19 +36,6 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
   bind: {
     title: '{i18n.document.motion.outMotions}'
   },
-  items: [
-    {
-      xtype: 'documentmotionsoutgrid',
-      data: {
-        outmode: true,
-        basemotion: false
-      },
-      region: 'center',
-      bind: {
-        selection: '{selection}'
-      }
-    }
-  ],
   dockedItems: [
     {
       xtype: 'toolbar',
@@ -111,6 +98,19 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
           }
         }
       ]
+    }
+  ],
+  items: [
+    {
+      xtype: 'documentmotionsoutgrid',
+      data: {
+        outmode: true,
+        basemotion: false
+      },
+      region: 'center',
+      bind: {
+        selection: '{selection}'
+      }
     }
   ],
   listeners: {

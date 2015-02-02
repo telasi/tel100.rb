@@ -9,11 +9,53 @@
         "designer|userAlias": "documentmotionsinpanel",
         "designer|userClassName": "document.motions.InPanel",
         "height": null,
-        "title": "Incoming Motions",
+        "title": [
+            "{i18n.document.motion.inMotions}"
+        ],
         "width": null
     },
     "name": "MyPanel2",
+    "configAlternates": {
+        "title": "binding"
+    },
     "designerId": "360c0d57-9834-48d9-9eb7-d6316da82b30",
     "viewControllerInstanceId": "b1cd19bb-5903-4b37-a7bb-bb57bfa9b85f",
-    "viewModelInstanceId": "b6e8ac23-725d-4d84-a4e2-450609b75485"
+    "viewModelInstanceId": "b6e8ac23-725d-4d84-a4e2-450609b75485",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbar",
+                "dock": "top"
+            },
+            "name": "MyToolbar1",
+            "designerId": "9af9fdcb-76be-4be5-b534-cd540612e51b",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.refresh}"
+                        ]
+                    },
+                    "name": "MyButton4",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "0b6a8853-e490-42fa-bc9d-25432479fa0e"
+                }
+            ]
+        }
+    ]
 }

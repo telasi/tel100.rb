@@ -18,12 +18,31 @@ Ext.define('Tel100.view.document.motions.InPanel', {
   alias: 'widget.documentmotionsinpanel',
 
   requires: [
-    'Tel100.view.document.motions.InPanelViewModel'
+    'Tel100.view.document.motions.InPanelViewModel',
+    'Ext.toolbar.Toolbar',
+    'Ext.button.Button'
   ],
 
   viewModel: {
     type: 'documentmotionsinpanel'
   },
-  title: 'Incoming Motions'
+
+  bind: {
+    title: '{i18n.document.motion.inMotions}'
+  },
+  dockedItems: [
+    {
+      xtype: 'toolbar',
+      dock: 'top',
+      items: [
+        {
+          xtype: 'button',
+          bind: {
+            text: '{i18n.ui.refresh}'
+          }
+        }
+      ]
+    }
+  ]
 
 });
