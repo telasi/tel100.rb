@@ -361,7 +361,9 @@
             "userConfig": {
                 "fn": "onPanelBeforeDestroy",
                 "implHandler": [
-                    "this.receiverDialog.destroy();"
+                    "if (this.receiverDialog) {",
+                    "  this.receiverDialog.destroy();",
+                    "}"
                 ],
                 "name": "beforedestroy",
                 "scope": "me"

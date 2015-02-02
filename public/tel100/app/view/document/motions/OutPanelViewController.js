@@ -89,7 +89,9 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
   },
 
   onPanelBeforeDestroy: function(component, eOpts) {
-    this.receiverDialog.destroy();
+    if (this.receiverDialog) {
+      this.receiverDialog.destroy();
+    }
   }
 
 });
