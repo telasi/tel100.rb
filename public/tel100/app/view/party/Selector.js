@@ -96,6 +96,7 @@ Ext.define('Tel100.view.party.Selector', {
           }
         }
       ],
+      cls: 'panel-with-border',
       flex: 1,
       listeners: {
         celldblclick: 'onHRTreeDblClick'

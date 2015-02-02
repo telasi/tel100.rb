@@ -149,6 +149,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "cls": "panel-with-border",
                 "designer|displayName": "hrTree",
                 "layout|flex": 1,
                 "store": null,
@@ -167,7 +168,7 @@
                 ],
                 "width": null
             },
-            "name": "hr.tree.panel2",
+            "name": "hr.tree.panel3",
             "configAlternates": {
                 "tools": "array"
             },
