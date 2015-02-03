@@ -27,13 +27,21 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     'Ext.grid.Panel'
   ],
 
+  config: {
+    hasDraftMotion: null
+  },
+
   controller: 'documentmotionsoutpanel',
   viewModel: {
     type: 'documentmotionsoutpanel'
   },
+  publishes: [
+    'hasDraftMotion'
+  ],
   layout: 'border',
 
   bind: {
+    hasDraftMotion: '{hasDraftMotion}',
     title: '{i18n.document.motion.outMotions}'
   },
   dockedItems: [
@@ -109,7 +117,8 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
       },
       region: 'center',
       bind: {
-        selection: '{selection}'
+        selection: '{selection}',
+        hasDraftMotion: '{hasDraftMotion}'
       }
     }
   ],

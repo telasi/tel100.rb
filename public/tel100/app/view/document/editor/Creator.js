@@ -22,12 +22,12 @@ Ext.define('Tel100.view.document.editor.Creator', {
     'Tel100.view.document.editor.CreatorViewController',
     'Tel100.view.document.editor.General',
     'Tel100.view.document.motions.OutPanel',
-    'Ext.form.field.Text',
-    'Ext.form.field.HtmlEditor',
-    'Ext.form.Panel',
     'Ext.toolbar.Toolbar',
     'Ext.button.Button',
-    'Ext.toolbar.Fill'
+    'Ext.toolbar.Fill',
+    'Ext.form.field.Text',
+    'Ext.form.field.HtmlEditor',
+    'Ext.form.Panel'
   ],
 
   controller: 'documenteditorcreator',
@@ -37,6 +37,35 @@ Ext.define('Tel100.view.document.editor.Creator', {
   layout: 'border',
 
   items: [
+    {
+      xtype: 'toolbar',
+      region: 'north',
+      items: [
+        {
+          xtype: 'button',
+          bind: {
+            disabled: '{sendButtonDisabled}',
+            text: '{i18n.document.base.ui.send}'
+          },
+          listeners: {
+            click: 'onSendClick'
+          }
+        },
+        {
+          xtype: 'button',
+          bind: {
+            disabled: '{saveButtonDisabled}',
+            text: '{saveButtonText}'
+          },
+          listeners: {
+            click: 'onSaveClick'
+          }
+        },
+        {
+          xtype: 'tbfill'
+        }
+      ]
+    },
     {
       xtype: 'container',
       flex: 1,
@@ -79,35 +108,6 @@ Ext.define('Tel100.view.document.editor.Creator', {
         {
           xtype: 'documentmotionsoutpanel',
           hideCollapseTool: true
-        }
-      ]
-    },
-    {
-      xtype: 'toolbar',
-      region: 'north',
-      items: [
-        {
-          xtype: 'button',
-          bind: {
-            disabled: '{sendButtonDisabled}',
-            text: '{i18n.document.base.ui.send}'
-          },
-          listeners: {
-            click: 'onSendClick'
-          }
-        },
-        {
-          xtype: 'button',
-          bind: {
-            disabled: '{saveButtonDisabled}',
-            text: '{saveButtonText}'
-          },
-          listeners: {
-            click: 'onSaveClick'
-          }
-        },
-        {
-          xtype: 'tbfill'
         }
       ]
     }

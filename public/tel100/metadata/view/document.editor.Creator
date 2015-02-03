@@ -20,206 +20,6 @@
     "viewModelInstanceId": "fe587c2a-b4ef-4d70-853d-8111aa0a6616",
     "cn": [
         {
-            "type": "Ext.container.Container",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|displayName": "main",
-                "layout": "border",
-                "layout|flex": 1,
-                "layout|region": "center"
-            },
-            "name": "MyContainer",
-            "configAlternates": {
-                "dockedItems": "array"
-            },
-            "designerId": "ab8db9ac-653f-41d8-956a-2aa0b96a6219",
-            "cn": [
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "subject",
-                        "emptyText": "enter document status",
-                        "fieldLabel": null,
-                        "height": null,
-                        "itemId": null,
-                        "layout|flex": null,
-                        "layout|region": "north",
-                        "margin": null,
-                        "submitEmptyText": false,
-                        "value": [
-                            "{document.subject}"
-                        ]
-                    },
-                    "name": "MyTextField",
-                    "configAlternates": {
-                        "value": "binding",
-                        "submitEmptyText": "boolean"
-                    },
-                    "designerId": "bafc9b59-5005-4231-8ddf-54504a224295",
-                    "customConfigs": [
-                        {
-                            "group": "(Custom Properties)",
-                            "name": "submitEmptyText",
-                            "type": "string"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.form.field.HtmlEditor",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "body",
-                        "fieldLabel": null,
-                        "layout|region": "center",
-                        "value": [
-                            "{document.body}"
-                        ]
-                    },
-                    "name": "MyHtmlEditor",
-                    "configAlternates": {
-                        "value": "binding"
-                    },
-                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27"
-                }
-            ]
-        },
-        {
-            "type": "Ext.container.Container",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|displayName": "details",
-                "layout": "accordion",
-                "layout|region": "east",
-                "layout|split": true,
-                "padding": 0,
-                "width": 400
-            },
-            "name": "MyContainer2",
-            "designerId": "73758d87-5031-4919-ae73-76bb68a3183a",
-            "cn": [
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "general",
-                        "hideCollapseTool": true,
-                        "title": [
-                            "{i18n.document.base.ui.generalTabTitle}"
-                        ]
-                    },
-                    "name": "document.editor.general",
-                    "configAlternates": {
-                        "title": "binding"
-                    },
-                    "designerId": "64724350-d954-4466-9245-c5be18a57dee",
-                    "masterInstanceId": "759b5380-72a7-453f-b37c-cfc4a98ba34e"
-                },
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "receivers",
-                        "hideCollapseTool": true
-                    },
-                    "name": "document.motions.outpanel1",
-                    "configAlternates": {
-                        "title": "binding"
-                    },
-                    "designerId": "e445635e-38ea-44e9-949d-881be372d75f",
-                    "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
-                }
-            ]
-        },
-        {
-            "type": "viewcontrollereventbinding",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onBeforeRender",
-                "implHandler": [
-                    "// fire documentchange",
-                    "var vm = this.getViewModel();",
-                    "var onChange = function() {",
-                    "  var doc = vm.get('document');",
-                    "  if (doc.dirty) { vm.set('isSaved', false); }",
-                    "  this.getView().fireEvent('documentchange', doc);",
-                    "};",
-                    "var options = { deep: true };",
-                    "vm.bind('{document}', onChange, this, options);"
-                ],
-                "name": "beforerender",
-                "scope": "me"
-            },
-            "name": "onBeforeRender",
-            "designerId": "e5a4a44e-11b5-4df5-a3a0-d76a31553ba6"
-        },
-        {
-            "type": "viewcontrollereventbinding",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "buffer": 500,
-                "designer|params": [
-                    "document"
-                ],
-                "fn": "onDocumentChange",
-                "implHandler": [
-                    "if (document.dirty) {",
-                    "  var vm = this.getViewModel();",
-                    "  vm.set('isSaving', true);",
-                    "  var changes = document.getChanges();",
-                    "  helpers.api.document.base.updateDraft(document.id, {",
-                    "    params: changes,",
-                    "    success: function() {",
-                    "      document.commit(true);",
-                    "      vm.set('isSaved', true);",
-                    "      vm.set('isSaving', false);",
-                    "    }.bind(this),",
-                    "    failure: function() {",
-                    "      console.log('failed to save document');",
-                    "      vm.set('isSaving', false);",
-                    "    }",
-                    "  });",
-                    "}"
-                ],
-                "name": "documentchange",
-                "scope": "me"
-            },
-            "name": "onDocumentChange",
-            "designerId": "c9c23952-8061-42d3-a33b-d80834d9e37a"
-        },
-        {
             "type": "Ext.toolbar.Toolbar",
             "reference": {
                 "name": "items",
@@ -361,6 +161,206 @@
                     "designerId": "4db86121-bbf8-4f46-9683-6a42799d46f0"
                 }
             ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "main",
+                "layout": "border",
+                "layout|flex": 1,
+                "layout|region": "center"
+            },
+            "name": "MyContainer",
+            "configAlternates": {
+                "dockedItems": "array"
+            },
+            "designerId": "ab8db9ac-653f-41d8-956a-2aa0b96a6219",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "subject",
+                        "emptyText": "enter document status",
+                        "fieldLabel": null,
+                        "height": null,
+                        "itemId": null,
+                        "layout|flex": null,
+                        "layout|region": "north",
+                        "margin": null,
+                        "submitEmptyText": false,
+                        "value": [
+                            "{document.subject}"
+                        ]
+                    },
+                    "name": "MyTextField",
+                    "configAlternates": {
+                        "value": "binding",
+                        "submitEmptyText": "boolean"
+                    },
+                    "designerId": "bafc9b59-5005-4231-8ddf-54504a224295",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "submitEmptyText",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.HtmlEditor",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "body",
+                        "fieldLabel": null,
+                        "layout|region": "center",
+                        "value": [
+                            "{document.body}"
+                        ]
+                    },
+                    "name": "MyHtmlEditor",
+                    "configAlternates": {
+                        "value": "binding"
+                    },
+                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "details",
+                "layout": "accordion",
+                "layout|region": "east",
+                "layout|split": true,
+                "padding": 0,
+                "width": 400
+            },
+            "name": "MyContainer2",
+            "designerId": "73758d87-5031-4919-ae73-76bb68a3183a",
+            "cn": [
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "general",
+                        "hideCollapseTool": true,
+                        "title": [
+                            "{i18n.document.base.ui.generalTabTitle}"
+                        ]
+                    },
+                    "name": "document.editor.general1",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
+                    "designerId": "64724350-d954-4466-9245-c5be18a57dee",
+                    "masterInstanceId": "759b5380-72a7-453f-b37c-cfc4a98ba34e"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "receivers",
+                        "hideCollapseTool": true
+                    },
+                    "name": "document.motions.outpanel1",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
+                    "designerId": "e445635e-38ea-44e9-949d-881be372d75f",
+                    "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
+                }
+            ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "// fire documentchange",
+                    "var vm = this.getViewModel();",
+                    "var onChange = function() {",
+                    "  var doc = vm.get('document');",
+                    "  if (doc.dirty) { vm.set('isSaved', false); }",
+                    "  this.getView().fireEvent('documentchange', doc);",
+                    "};",
+                    "var options = { deep: true };",
+                    "vm.bind('{document}', onChange, this, options);"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "e5a4a44e-11b5-4df5-a3a0-d76a31553ba6"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "buffer": 500,
+                "designer|params": [
+                    "document"
+                ],
+                "fn": "onDocumentChange",
+                "implHandler": [
+                    "if (document.dirty) {",
+                    "  var vm = this.getViewModel();",
+                    "  vm.set('isSaving', true);",
+                    "  var changes = document.getChanges();",
+                    "  helpers.api.document.base.updateDraft(document.id, {",
+                    "    params: changes,",
+                    "    success: function() {",
+                    "      document.commit(true);",
+                    "      vm.set('isSaved', true);",
+                    "      vm.set('isSaving', false);",
+                    "    }.bind(this),",
+                    "    failure: function() {",
+                    "      console.log('failed to save document');",
+                    "      vm.set('isSaving', false);",
+                    "    }",
+                    "  });",
+                    "}"
+                ],
+                "name": "documentchange",
+                "scope": "me"
+            },
+            "name": "onDocumentChange",
+            "designerId": "c9c23952-8061-42d3-a33b-d80834d9e37a"
         }
     ]
 }

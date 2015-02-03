@@ -26,6 +26,29 @@ Ext.define('Tel100.view.document.motions.OutGridViewModel', {
 
   stores: {
     motions: {
+      onStoreChanges: function() {
+        var hasDraftMotion = false;
+        for(var i = 0; i < this.getCount(); i++) {
+          var motion = this.getAt(i);
+          if (motion.get('status') === helpers.document.status.DRAFT) {
+            hasDraftMotion = true;
+            break;
+          }
+        }
+        var vm = this.viewModel;
+        vm.set('hasDraftMotion', hasDraftMotion);
+      },
+      listeners: {
+        update: function() {
+          this.onStoreChanges();
+        },
+        remove: function() {
+          this.onStoreChanges();
+        },
+        datachanged: function() {
+          this.onStoreChanges();
+        }
+      },
       autoLoad: true,
       model: 'Tel100.model.document.Motion',
       proxy: {

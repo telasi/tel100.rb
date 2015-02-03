@@ -20,11 +20,34 @@
             "codeClass": null,
             "userConfig": {
                 "autoLoad": true,
+                "listeners": [
+                    "{",
+                    "  update: function() {",
+                    "    this.onStoreChanges();",
+                    "  },",
+                    "  remove: function() {",
+                    "    this.onStoreChanges();",
+                    "  },",
+                    "  datachanged: function() {",
+                    "    this.onStoreChanges();",
+                    "  }",
+                    "}"
+                ],
                 "model": "document.Motion",
                 "name": "motions"
             },
             "name": "MyJsonStore",
+            "configAlternates": {
+                "listeners": "object"
+            },
             "designerId": "b6849dd3-02d1-47df-a916-5509559a1e32",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "listeners",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "Ext.data.proxy.Ajax",
@@ -56,6 +79,31 @@
                             "designerId": "13c65e0f-3bcf-4394-ad53-34998181bbd7"
                         }
                     ]
+                },
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onStoreChanges",
+                        "implHandler": [
+                            "var hasDraftMotion = false;",
+                            "for(var i = 0; i < this.getCount(); i++) {",
+                            "  var motion = this.getAt(i);",
+                            "  if (motion.get('status') === helpers.document.status.DRAFT) {",
+                            "    hasDraftMotion = true;",
+                            "    break;",
+                            "  }",
+                            "}",
+                            "var vm = this.viewModel;",
+                            "vm.set('hasDraftMotion', hasDraftMotion);"
+                        ]
+                    },
+                    "name": "onStoreChanges",
+                    "designerId": "4ca308d4-ec10-4a3f-8278-782dbbbab6dc"
                 }
             ]
         },

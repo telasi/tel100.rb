@@ -8,8 +8,14 @@
     "userConfig": {
         "designer|userAlias": "documentmotionsoutpanel",
         "designer|userClassName": "document.motions.OutPanel",
+        "hasDraftMotion": [
+            "{hasDraftMotion}"
+        ],
         "height": null,
         "layout": "border",
+        "publishes": [
+            "[\"hasDraftMotion\"]"
+        ],
         "title": [
             "{i18n.document.motion.outMotions}"
         ],
@@ -17,9 +23,17 @@
     },
     "name": "MyPanel1",
     "configAlternates": {
-        "title": "binding"
+        "title": "binding",
+        "hasDraftMotion": "binding"
     },
     "designerId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "hasDraftMotion",
+            "type": "string"
+        }
+    ],
     "viewControllerInstanceId": "8fd1c70a-465c-4cac-b890-164824e7df59",
     "viewModelInstanceId": "f95d1ab0-4cdd-49f6-afad-12afa284befb",
     "cn": [
@@ -231,17 +245,21 @@
                     "}"
                 ],
                 "designer|displayName": "grid",
+                "hasDraftMotion": [
+                    "{hasDraftMotion}"
+                ],
                 "layout|flex": null,
                 "layout|region": "center",
                 "selection": [
                     "{selection}"
                 ]
             },
-            "name": "document.motions.outgrid",
+            "name": "document.motions.outgrid2",
             "configAlternates": {
                 "basemotion": "binding",
                 "outmode": "boolean",
-                "selection": "binding"
+                "selection": "binding",
+                "hasDraftMotion": "binding"
             },
             "designerId": "dc0ede8d-fb3b-4b1d-b635-f018c6523f2d",
             "customConfigs": [
@@ -253,6 +271,11 @@
                 {
                     "group": "(Custom Properties)",
                     "name": "selection",
+                    "type": "string"
+                },
+                {
+                    "group": "(Custom Properties)",
+                    "name": "hasDraftMotion",
                     "type": "string"
                 }
             ],

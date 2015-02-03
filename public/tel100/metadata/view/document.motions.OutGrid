@@ -8,7 +8,11 @@
     "userConfig": {
         "designer|userAlias": "documentmotionsoutgrid",
         "designer|userClassName": "document.motions.OutGrid",
+        "hasDraftMotion": false,
         "height": null,
+        "publishes": [
+            "[\"selection\",\"hasDraftMotion\"]"
+        ],
         "store": [
             "{motions}"
         ],
@@ -20,6 +24,13 @@
         "store": "binding"
     },
     "designerId": "832f7258-59e2-4085-8f40-bfc5c37587b2",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "hasDraftMotion",
+            "type": "boolean"
+        }
+    ],
     "viewControllerInstanceId": "ff949836-9bc0-42b8-87ad-24dc99fa18d1",
     "viewModelInstanceId": "ffd21d10-0bfb-41e9-b435-4d3c447514c0",
     "cn": [
@@ -376,6 +387,27 @@
             "codeClass": null,
             "name": "MyCellEditingPlugin",
             "designerId": "bfa49dbe-448d-4724-ba41-42537fd64ee2"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "var vm = this.getViewModel();",
+                    "vm.bind('{motions}', function() {",
+                    "  var store = arguments[0];",
+                    "  store.viewModel = this;",
+                    "});"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "079e37c6-9f9f-4f49-8975-4c64289aa53d"
         }
     ]
 }

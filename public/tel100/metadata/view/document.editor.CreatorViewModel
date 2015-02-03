@@ -10,7 +10,8 @@
             "{",
             "document: null,",
             "isSaving: false,",
-            "isSaved: true",
+            "isSaved: true,",
+            "hasDraftMotion: false",
             "}"
         ],
         "designer|userAlias": "documenteditorcreator",
@@ -124,7 +125,12 @@
                         ],
                         "fn": "get",
                         "implHandler": [
-                            "return !!get('isSending');"
+                            "// if (get('isSending')) {",
+                            "//   return true;",
+                            "// }",
+                            "// debugger;",
+                            "// return false;",
+                            "return true;"
                         ]
                     },
                     "name": "get",

@@ -24,7 +24,8 @@ Ext.define('Tel100.view.document.editor.CreatorViewModel', {
   data: {
     document: null,
     isSaving: false,
-    isSaved: true
+    isSaved: true,
+    hasDraftMotion: false
   },
 
   formulas: {
@@ -47,7 +48,12 @@ Ext.define('Tel100.view.document.editor.CreatorViewModel', {
       return isSaving || isSaved;
     },
     sendButtonDisabled: function(get) {
-      return !!get('isSending');
+      // if (get('isSending')) {
+      //   return true;
+      // }
+      // debugger;
+      // return false;
+      return true;
     }
   }
 

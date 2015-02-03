@@ -27,9 +27,17 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
     'Ext.grid.plugin.CellEditing'
   ],
 
+  config: {
+    hasDraftMotion: false
+  },
+
   viewModel: {
     type: 'documentmotionsoutgrid'
   },
+  publishes: [
+    'selection',
+    'hasDraftMotion'
+  ],
 
   bind: {
     store: '{motions}'
@@ -147,6 +155,15 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
 
   refresh: function() {
     this.getStore().load();
+  },
+
+  initComponent: function() {
+    this.callParent();
+    var vm = this.getViewModel();
+    vm.bind('{motions}', function() {
+      var store = arguments[0];
+      store.viewModel = this;
+    });
   }
 
 });

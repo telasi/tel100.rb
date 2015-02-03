@@ -17,38 +17,6 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenteditorcreator',
 
-  onBeforeRender: function(component, eOpts) {
-    // fire documentchange
-    var vm = this.getViewModel();
-    var onChange = function() {
-      var doc = vm.get('document');
-      if (doc.dirty) { vm.set('isSaved', false); }
-      this.getView().fireEvent('documentchange', doc);
-    };
-    var options = { deep: true };
-    vm.bind('{document}', onChange, this, options);
-  },
-
-  onDocumentChange: function(document) {
-    if (document.dirty) {
-      var vm = this.getViewModel();
-      vm.set('isSaving', true);
-      var changes = document.getChanges();
-      helpers.api.document.base.updateDraft(document.id, {
-        params: changes,
-        success: function() {
-          document.commit(true);
-          vm.set('isSaved', true);
-          vm.set('isSaving', false);
-        }.bind(this),
-        failure: function() {
-          console.log('failed to save document');
-          vm.set('isSaving', false);
-        }
-      });
-    }
-  },
-
   onSendClick: function(button, e, eOpts) {
     var vm = this.getViewModel();
     var isSending = vm.get('isSending');
@@ -80,6 +48,38 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
   onSaveClick: function(button, e, eOpts) {
     var doc = this.getViewModel().get('document');
     this.onDocumentChange(doc);
+  },
+
+  onBeforeRender: function(component, eOpts) {
+    // fire documentchange
+    var vm = this.getViewModel();
+    var onChange = function() {
+      var doc = vm.get('document');
+      if (doc.dirty) { vm.set('isSaved', false); }
+      this.getView().fireEvent('documentchange', doc);
+    };
+    var options = { deep: true };
+    vm.bind('{document}', onChange, this, options);
+  },
+
+  onDocumentChange: function(document) {
+    if (document.dirty) {
+      var vm = this.getViewModel();
+      vm.set('isSaving', true);
+      var changes = document.getChanges();
+      helpers.api.document.base.updateDraft(document.id, {
+        params: changes,
+        success: function() {
+          document.commit(true);
+          vm.set('isSaved', true);
+          vm.set('isSaving', false);
+        }.bind(this),
+        failure: function() {
+          console.log('failed to save document');
+          vm.set('isSaving', false);
+        }
+      });
+    }
   }
 
 });
