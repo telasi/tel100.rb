@@ -11,6 +11,7 @@
             "document: null,",
             "isSaving: false,",
             "isSaved: true,",
+            "isSending: false,",
             "hasDraftMotion: false",
             "}"
         ],
@@ -110,7 +111,7 @@
                 "name": "sendButtonDisabled"
             },
             "name": "MyFormula4",
-            "designerId": "1fce31d8-3488-4b3c-8bb1-cb7922e85f91",
+            "designerId": "758fcf4d-5a9a-46fc-964b-b6c6ec9b6095",
             "cn": [
                 {
                     "type": "fixedfunction",
@@ -125,16 +126,16 @@
                         ],
                         "fn": "get",
                         "implHandler": [
-                            "// if (get('isSending')) {",
-                            "//   return true;",
-                            "// }",
-                            "// debugger;",
-                            "// return false;",
-                            "return true;"
+                            "var isSending = get('isSending');",
+                            "var hasDraftMotion = get('hasDraftMotion');",
+                            "",
+                            "console.log( isSending, hasDraftMotion );",
+                            "",
+                            "return !hasDraftMotion;"
                         ]
                     },
                     "name": "get",
-                    "designerId": "e069ca18-bfed-4542-89f3-e23b98590a0f"
+                    "designerId": "d9c15e31-071e-4489-9ed3-19612a922b0f"
                 }
             ]
         }

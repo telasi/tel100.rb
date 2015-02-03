@@ -107,7 +107,8 @@ Ext.define('Tel100.view.document.editor.Creator', {
         },
         {
           xtype: 'documentmotionsoutpanel',
-          hideCollapseTool: true
+          hideCollapseTool: true,
+          hasDraftMotion: '{hasDraftMotion}'
         }
       ]
     }
