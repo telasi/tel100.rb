@@ -19,7 +19,7 @@ Ext.define('Tel100.view.modules.HRViewController', {
 
   onButtonClick: function(button, e, eOpts) {
     var vacationwindow = Ext.create('Tel100.view.hr.vacation.Window');
-    vacationwindow.modal = true;
+    //vacationwindow.modal = true;
     vacationwindow.show();
   }
 

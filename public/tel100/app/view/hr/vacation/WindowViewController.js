@@ -17,11 +17,18 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.hrvacationwindow',
 
-  onSelectSubstitute: function(field, eOpts) {
+  onSelectSubstitude: function(button, e, eOpts) {
     var receiverDialog = Ext.create('Tel100.view.party.Selector', {
       title: i18n.document.motion.selectReceiver
     });
     receiverDialog.show();
+    receiverDialog.on('selectioncomplete', function(receivers) {
+      if (receivers.length > 0) {
+        var substituder = receivers[0];
+        this.getView().down('form').getForm().findField('substitude').setValue(substituder.id);
+        this.getView().down('form').getForm().findField('substitude_name').setValue(substituder.data.full_name);
+      }
+    }.bind(this));
   },
 
   onOKButtonClick: function(button, e, eOpts) {

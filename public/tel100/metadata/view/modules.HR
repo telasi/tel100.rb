@@ -60,7 +60,7 @@
                                 "fn": "onButtonClick",
                                 "implHandler": [
                                     "     var vacationwindow = Ext.create('Tel100.view.hr.vacation.Window');",
-                                    "     vacationwindow.modal = true;",
+                                    "     //vacationwindow.modal = true;",
                                     "     vacationwindow.show();"
                                 ],
                                 "name": "click",
@@ -83,7 +83,7 @@
             "userConfig": {
                 "designer|displayName": "HR structrure"
             },
-            "name": "hr.tree.panel1",
+            "name": "hr.tree.panel",
             "designerId": "d7b9a894-cc9f-48a6-b20b-9cdcfc8eb941",
             "masterInstanceId": "9ddd38b1-6ef9-4475-87d7-6ce8e4c6298c"
         }

@@ -99,18 +99,28 @@
                             "codeClass": null,
                             "userConfig": {
                                 "allowBlank": false,
+                                "endDateField": null,
                                 "fieldLabel": [
                                     "{i18n.vacation.fields.from}"
                                 ],
+                                "id": null,
                                 "layout|flex": 1,
                                 "margin": "0 10 0 0",
-                                "name": "from_date"
+                                "name": "from_date",
+                                "vtype": null
                             },
                             "name": "MyDateField2",
                             "configAlternates": {
                                 "fieldLabel": "binding"
                             },
-                            "designerId": "658a90ea-efb0-4da2-9ed3-3c089a454c5d"
+                            "designerId": "658a90ea-efb0-4da2-9ed3-3c089a454c5d",
+                            "customConfigs": [
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "endDateField",
+                                    "type": "string"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.form.field.Date",
@@ -124,57 +134,127 @@
                                 "fieldLabel": [
                                     "{i18n.vacation.fields.to}"
                                 ],
+                                "id": null,
                                 "layout|flex": 1,
-                                "name": "to_date"
+                                "name": "to_date",
+                                "startDateField": null,
+                                "vtype": null
                             },
                             "name": "MyDateField3",
                             "configAlternates": {
                                 "fieldLabel": "binding"
                             },
-                            "designerId": "284e7fd4-1ffa-4679-b076-2547242b4a9b"
+                            "designerId": "284e7fd4-1ffa-4679-b076-2547242b4a9b",
+                            "customConfigs": [
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "startDateField",
+                                    "type": "string"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    "type": "Ext.form.field.ComboBox",
+                    "type": "Ext.form.FieldContainer",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "container|align": "stretch",
                         "fieldLabel": [
                             "{i18n.vacation.fields.substitude}"
                         ],
-                        "layout|anchor": "100%",
-                        "name": "substitude"
+                        "height": 26,
+                        "layout": "hbox"
                     },
-                    "name": "MyComboBox3",
+                    "name": "MyFieldContainer2",
                     "configAlternates": {
                         "fieldLabel": "binding"
                     },
-                    "designerId": "27b2916d-6852-4cb2-bd00-8a0249370f56",
+                    "designerId": "1c74f1f2-7c7a-4d8e-be94-9ce7ea0bd39d",
                     "cn": [
                         {
-                            "type": "viewcontrollereventbinding",
+                            "type": "Ext.form.field.Text",
                             "reference": {
-                                "name": "listeners",
+                                "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "fn": "onSelectSubstitute",
-                                "implHandler": [
-                                    "    var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
-                                    "      title: i18n.document.motion.selectReceiver",
-                                    "    });",
-                                    "    receiverDialog.show();"
-                                ],
-                                "name": "expand",
-                                "scope": "me"
+                                "editable": false,
+                                "fieldLabel": null,
+                                "id": "substitude_name",
+                                "layout|flex": 5,
+                                "name": "substitude_name"
                             },
-                            "name": "onSelectSubstitute",
-                            "designerId": "2aab0371-c7ca-4de3-b51e-bd239634ae7b"
+                            "name": "MyTextField2",
+                            "configAlternates": {
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "27b2916d-6852-4cb2-bd00-8a0249370f56"
+                        },
+                        {
+                            "type": "Ext.form.field.Hidden",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "substitude",
+                                "layout|flex": 1,
+                                "name": "substitude"
+                            },
+                            "name": "MyHiddenField",
+                            "designerId": "f123e96d-d29e-489c-934f-004bae0e5bb8"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": null,
+                                "layout|flex": 1,
+                                "text": "..."
+                            },
+                            "name": "MyButton4",
+                            "designerId": "86588255-910d-401d-9ee1-13797c863c56",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onSelectSubstitude",
+                                        "implHandler": [
+                                            "var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
+                                            "  title: i18n.document.motion.selectReceiver",
+                                            "});",
+                                            "receiverDialog.show();",
+                                            "receiverDialog.on('selectioncomplete', function(receivers) {",
+                                            "  if (receivers.length > 0) {",
+                                            "    var substituder = receivers[0];",
+                                            "    this.getView().down('form').getForm().findField('substitude').setValue(substituder.id);",
+                                            "    this.getView().down('form').getForm().findField('substitude_name').setValue(substituder.data.full_name);",
+                                            "  }",
+                                            "}.bind(this));"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onSelectSubstitude",
+                                    "designerId": "ae20091a-0a06-4252-828a-fa80442beaec"
+                                }
+                            ]
                         }
                     ]
                 },

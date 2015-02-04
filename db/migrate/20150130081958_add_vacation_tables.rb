@@ -3,9 +3,9 @@ class AddVacationTables < ActiveRecord::Migration
   	execute <<-SQL
       create table HR_VACATION_TYPE (
        ID                             NUMBER(3,0) NOT NULL,
-       NAME_KA                        VARCHAR2(50 CHAR) NOT NULL,
-       NAME_RU                        VARCHAR2(50 CHAR) NOT NULL,
-       NAME_EN                        VARCHAR2(50 CHAR) NOT NULL,
+       NAME_KA                        VARCHAR2(50 CHAR),
+       NAME_RU                        VARCHAR2(50 CHAR),
+       NAME_EN                        VARCHAR2(50 CHAR),
        CONSTRAINT hr_vacation_typeprimarykey PRIMARY KEY (id) enable
       )
     SQL
@@ -33,6 +33,7 @@ class AddVacationTables < ActiveRecord::Migration
         TO_DATE                     DATE,
         VACATION_TYPE               NUMBER(3,0),
         SUBSTITUDE                  NUMBER(10,0),
+        CONFIRMED                   NUMBER(1,0),
 
         created_at                  TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
         updated_at                  TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL
@@ -59,6 +60,8 @@ class AddVacationTables < ActiveRecord::Migration
   def down
     execute "drop sequence HR_VACATION_SEQ"
   	execute "drop table HR_VACATION"
+    execute "drop sequence HR_VACATION_TYPE_SEQ"
+    execute "drop table HR_VACATION_TYPE"
   end
 
 end

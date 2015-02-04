@@ -24,6 +24,7 @@ Ext.define('Tel100.view.hr.vacation.Window', {
     'Ext.form.field.ComboBox',
     'Ext.form.FieldContainer',
     'Ext.form.field.Date',
+    'Ext.form.field.Hidden',
     'Ext.button.Button'
   ],
 
@@ -93,15 +94,38 @@ Ext.define('Tel100.view.hr.vacation.Window', {
           ]
         },
         {
-          xtype: 'combobox',
-          anchor: '100%',
-          name: 'substitude',
+          xtype: 'fieldcontainer',
+          height: 26,
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
           bind: {
             fieldLabel: '{i18n.vacation.fields.substitude}'
           },
-          listeners: {
-            expand: 'onSelectSubstitute'
-          }
+          items: [
+            {
+              xtype: 'textfield',
+              flex: 5,
+              id: 'substitude_name',
+              name: 'substitude_name',
+              editable: false
+            },
+            {
+              xtype: 'hiddenfield',
+              flex: 1,
+              fieldLabel: 'substitude',
+              name: 'substitude'
+            },
+            {
+              xtype: 'button',
+              flex: 1,
+              text: '...',
+              listeners: {
+                click: 'onSelectSubstitude'
+              }
+            }
+          ]
         },
         {
           xtype: 'fieldcontainer',
