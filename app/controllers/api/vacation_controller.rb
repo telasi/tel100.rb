@@ -6,12 +6,12 @@ class Api::VacationController < ApiController
   end
 
   def create
-    @vac = HR::Vacation::Vacation.new(params.require(:vacation).permit(:vacation_type, :from_date, :to_date, :substitude))
+    @vac = HR::Vacation::Vacation.new(params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude))
     @vac.userid = current_user.id
-    if @vac.save!
-     render json: { success: true } 
+    if @vac.save
+     render json: { success: true }
     else
-     render json: { success: false, message: @vac.errors.full_messages }
+     render json: { success: false, message: @vac.errors.full_messages[0] }
     end
   end
 

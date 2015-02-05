@@ -11,7 +11,8 @@
             "document.Type",
             "document.Base",
             "document.Direction",
-            "document.Motion"
+            "document.Motion",
+            "hr.vacation.Type"
         ],
         "name": "Tel100",
         "views": [
