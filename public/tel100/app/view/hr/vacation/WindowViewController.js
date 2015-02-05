@@ -36,16 +36,15 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
     if(form.isValid()) {
       form.submit({
         success: function(form,action) {
+          button.up('window').close();
           //we have to close the window here!!
         },
         failure: function(form,action){
-          Ext.MessageBox.alert('Erro',action.result.data.msg);
+          Ext.MessageBox.alert('Error',action.result.message);
         }});
       } else {
         Ext.Msg.alert('Invalid Data', 'Please correct form errors.');
       }
-
-      //button.up('window').close();
   },
 
   onCancelButtonClick: function(button, e, eOpts) {
