@@ -168,7 +168,7 @@
                 ],
                 "width": null
             },
-            "name": "hr.tree.panel3",
+            "name": "hr.tree.panel",
             "configAlternates": {
                 "tools": "array"
             },
@@ -230,6 +230,7 @@
                 "cls": "panel-with-border",
                 "designer|createAlias": "",
                 "designer|displayName": "grid",
+                "hideHeaders": true,
                 "itemId": "selectedParties",
                 "layout|flex": null,
                 "store": [

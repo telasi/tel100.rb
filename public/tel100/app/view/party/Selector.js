@@ -112,6 +112,7 @@ Ext.define('Tel100.view.party.Selector', {
       itemId: 'selectedParties',
       width: 300,
       bodyBorder: true,
+      hideHeaders: true,
       bind: {
         title: '{i18n.selector.selectedParties}',
         store: '{parties}'
