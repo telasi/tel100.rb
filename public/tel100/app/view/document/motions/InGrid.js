@@ -19,7 +19,7 @@ Ext.define('Tel100.view.document.motions.InGrid', {
 
   requires: [
     'Tel100.view.document.motions.InGridViewModel',
-    'Ext.grid.column.Date',
+    'Ext.grid.column.Column',
     'Ext.grid.View'
   ],
 
@@ -30,13 +30,42 @@ Ext.define('Tel100.view.document.motions.InGrid', {
   columns: [
     {
       xtype: 'gridcolumn',
-      dataIndex: 'string',
-      text: 'String'
+      draggable: false,
+      width: 28,
+      sortable: false,
+      emptyCellText: '',
+      hideable: false
     },
     {
-      xtype: 'datecolumn',
-      dataIndex: 'date',
-      text: 'Date'
+      xtype: 'gridcolumn',
+      draggable: false,
+      width: 200,
+      sortable: false,
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.sender}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      draggable: false,
+      width: 200,
+      sortable: false,
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.motion_text}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      draggable: false,
+      width: 100,
+      sortable: false,
+      formatter: 'date("d/m/Y")',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.due_date}'
+      }
     }
   ]
 

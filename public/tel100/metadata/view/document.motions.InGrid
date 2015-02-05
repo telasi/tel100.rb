@@ -25,25 +25,86 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "string",
-                "text": "String"
+                "designer|displayName": "status",
+                "draggable": false,
+                "emptyCellText": "",
+                "hideable": false,
+                "sortable": false,
+                "text": null,
+                "width": 28
             },
-            "name": "MyColumn15",
-            "designerId": "979bf355-5d16-4f24-ba05-61aa24a92940"
+            "name": "MyColumn",
+            "designerId": "9edb49d6-3d9a-4cc9-acf9-b0681214c910"
         },
         {
-            "type": "Ext.grid.column.Date",
+            "type": "Ext.grid.column.Column",
             "reference": {
                 "name": "columns",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "date",
-                "text": "Date"
+                "designer|displayName": "senderName",
+                "draggable": false,
+                "hideable": false,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.motion.sender}"
+                ],
+                "width": 200
             },
-            "name": "MyDateColumn",
-            "designerId": "1054764b-4186-45f6-803b-2d94ad64a1a4"
+            "name": "MyColumn1",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "fcfb7ad9-36a3-421d-979c-4511b756c2a0"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "motion_text",
+                "draggable": false,
+                "hideable": false,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.motion.motion_text}"
+                ],
+                "width": 200
+            },
+            "name": "MyColumn3",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "28f8d66f-dfb8-4a35-ab3a-e61d61f354dc"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "due_date",
+                "draggable": false,
+                "formatter": "date(\"d/m/Y\")",
+                "hideable": false,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.motion.due_date}"
+                ],
+                "width": 100
+            },
+            "name": "MyColumn2",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "9854e2ec-57a8-4399-931d-cca99c024e01"
         },
         {
             "type": "Ext.grid.View",
