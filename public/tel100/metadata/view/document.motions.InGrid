@@ -8,9 +8,9 @@
     "userConfig": {
         "designer|userAlias": "documentmotionsingrid",
         "designer|userClassName": "document.motions.InGrid",
-        "height": 250,
+        "height": null,
         "title": null,
-        "width": 400
+        "width": null
     },
     "name": "MyGridPanel",
     "designerId": "04ffc6b0-782b-4122-ba75-5b1dd5b66d45",
@@ -32,20 +32,6 @@
             "designerId": "979bf355-5d16-4f24-ba05-61aa24a92940"
         },
         {
-            "type": "Ext.grid.column.Number",
-            "reference": {
-                "name": "columns",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "dataIndex": "number",
-                "text": "Number"
-            },
-            "name": "MyNumberColumn",
-            "designerId": "dc503770-ab77-4d4b-8d95-5d05d6b19d9d"
-        },
-        {
             "type": "Ext.grid.column.Date",
             "reference": {
                 "name": "columns",
@@ -58,20 +44,6 @@
             },
             "name": "MyDateColumn",
             "designerId": "1054764b-4186-45f6-803b-2d94ad64a1a4"
-        },
-        {
-            "type": "Ext.grid.column.Boolean",
-            "reference": {
-                "name": "columns",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "dataIndex": "bool",
-                "text": "Boolean"
-            },
-            "name": "MyBooleanColumn",
-            "designerId": "f21f7152-67c9-4f7e-b7d3-13c866c9e83c"
         },
         {
             "type": "Ext.grid.View",

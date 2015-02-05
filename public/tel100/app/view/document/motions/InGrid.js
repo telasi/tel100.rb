@@ -19,17 +19,13 @@ Ext.define('Tel100.view.document.motions.InGrid', {
 
   requires: [
     'Tel100.view.document.motions.InGridViewModel',
-    'Ext.grid.column.Number',
     'Ext.grid.column.Date',
-    'Ext.grid.column.Boolean',
     'Ext.grid.View'
   ],
 
   viewModel: {
     type: 'documentmotionsingrid'
   },
-  height: 250,
-  width: 400,
 
   columns: [
     {
@@ -38,19 +34,9 @@ Ext.define('Tel100.view.document.motions.InGrid', {
       text: 'String'
     },
     {
-      xtype: 'numbercolumn',
-      dataIndex: 'number',
-      text: 'Number'
-    },
-    {
       xtype: 'datecolumn',
       dataIndex: 'date',
       text: 'Date'
-    },
-    {
-      xtype: 'booleancolumn',
-      dataIndex: 'bool',
-      text: 'Boolean'
     }
   ]
 
