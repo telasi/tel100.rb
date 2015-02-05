@@ -160,6 +160,7 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
   initComponent: function() {
     this.callParent();
     var vm = this.getViewModel();
+    // setting view model for the motions store
     vm.bind('{motions}', function() {
       var store = arguments[0];
       store.viewModel = this;

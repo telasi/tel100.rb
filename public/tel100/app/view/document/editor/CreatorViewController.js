@@ -51,20 +51,34 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
   },
 
   onBeforeRender: function(component, eOpts) {
-    // fire documentchange
+    var view = this.getView();
     var vm = this.getViewModel();
+    // fire documentchange
     var onChange = function() {
       var doc = vm.get('document');
       if (doc.dirty) { vm.set('isSaved', false); }
-      this.getView().fireEvent('documentchange', doc);
+      view.fireEvent('documentchange', doc);
     };
     var options = { deep: true };
     vm.bind('{document}', onChange, this, options);
+    //
+    var motionsPanel = view.down('documentmotionsoutpanel');
+    // motionsPanel.getViewModel().bind('{hasDraftMotion}', function() {
+    //   console.log('HERE!');
+    // }, this);
   },
 
   onDocumentChange: function(document) {
+    var vm = this.getViewModel();
+
+    // update subject/body properties
+    if (document) {
+      vm.set('hasSubject', document.get('subject'));
+      vm.set('hasBody', document.get('body'));
+    }
+
+    // save changes
     if (document.dirty) {
-      var vm = this.getViewModel();
       vm.set('isSaving', true);
       var changes = document.getChanges();
       helpers.api.document.base.updateDraft(document.id, {

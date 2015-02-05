@@ -271,7 +271,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general",
+                    "name": "document.editor.general1",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -289,12 +289,36 @@
                         "designer|displayName": "receivers",
                         "hideCollapseTool": true
                     },
-                    "name": "document.motions.outpanel",
+                    "name": "document.motions.outpanel1",
                     "configAlternates": {
                         "title": "binding"
                     },
                     "designerId": "e445635e-38ea-44e9-949d-881be372d75f",
-                    "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
+                    "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "hasDraftMotion"
+                                ],
+                                "fn": "onDraftmotionChanged",
+                                "implHandler": [
+                                    "var vm = this.getViewModel();",
+                                    "vm.set('hasDraftMotion', hasDraftMotion);"
+                                ],
+                                "name": "draftmotionchanged",
+                                "scope": "me"
+                            },
+                            "name": "onDraftmotionChanged",
+                            "designerId": "51ad1a18-0194-4246-b423-019cb65f87a7"
+                        }
+                    ]
                 }
             ]
         },
@@ -308,15 +332,21 @@
             "userConfig": {
                 "fn": "onBeforeRender",
                 "implHandler": [
-                    "// fire documentchange",
+                    "var view = this.getView();",
                     "var vm = this.getViewModel();",
+                    "// fire documentchange",
                     "var onChange = function() {",
                     "  var doc = vm.get('document');",
                     "  if (doc.dirty) { vm.set('isSaved', false); }",
-                    "  this.getView().fireEvent('documentchange', doc);",
+                    "  view.fireEvent('documentchange', doc);",
                     "};",
                     "var options = { deep: true };",
-                    "vm.bind('{document}', onChange, this, options);"
+                    "vm.bind('{document}', onChange, this, options);",
+                    "//",
+                    "var motionsPanel = view.down('documentmotionsoutpanel');",
+                    "// motionsPanel.getViewModel().bind('{hasDraftMotion}', function() {",
+                    "//   console.log('HERE!');",
+                    "// }, this);"
                 ],
                 "name": "beforerender",
                 "scope": "me"
@@ -338,8 +368,16 @@
                 ],
                 "fn": "onDocumentChange",
                 "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "",
+                    "// update subject/body properties",
+                    "if (document) {",
+                    "  vm.set('hasSubject', document.get('subject'));",
+                    "  vm.set('hasBody', document.get('body'));",
+                    "}",
+                    "",
+                    "// save changes",
                     "if (document.dirty) {",
-                    "  var vm = this.getViewModel();",
                     "  vm.set('isSaving', true);",
                     "  var changes = document.getChanges();",
                     "  helpers.api.document.base.updateDraft(document.id, {",

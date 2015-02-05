@@ -25,8 +25,7 @@ Ext.define('Tel100.view.document.editor.CreatorViewModel', {
     document: null,
     isSaving: false,
     isSaved: true,
-    isSending: false,
-    hasDraftMotion: false
+    isSending: false
   },
 
   formulas: {
@@ -49,12 +48,15 @@ Ext.define('Tel100.view.document.editor.CreatorViewModel', {
       return isSaving || isSaved;
     },
     sendButtonDisabled: function(get) {
-      var isSending = get('isSending');
-      var hasDraftMotion = get('hasDraftMotion');
-
-      console.log( isSending, hasDraftMotion );
-
-      return !hasDraftMotion;
+      // disable when sending document
+      if (get('isSending')) { return true; }
+      // disable when no draft motion
+      if (!get('hasDraftMotion')) { return true; }
+      // checking subject/body
+      if (!get('hasSubject')) { return true; }
+      if (!get('hasBody')) { return true; }
+      // send is open
+      return false;
     }
   }
 

@@ -35,6 +35,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
     type: 'documenteditorcreator'
   },
   layout: 'border',
+  defaultListenerScope: true,
 
   items: [
     {
@@ -48,7 +49,10 @@ Ext.define('Tel100.view.document.editor.Creator', {
             text: '{i18n.document.base.ui.send}'
           },
           listeners: {
-            click: 'onSendClick'
+            click: {
+              fn: 'onSendClick',
+              scope: 'controller'
+            }
           }
         },
         {
@@ -58,7 +62,10 @@ Ext.define('Tel100.view.document.editor.Creator', {
             text: '{saveButtonText}'
           },
           listeners: {
-            click: 'onSaveClick'
+            click: {
+              fn: 'onSaveClick',
+              scope: 'controller'
+            }
           }
         },
         {
@@ -107,17 +114,29 @@ Ext.define('Tel100.view.document.editor.Creator', {
         },
         {
           xtype: 'documentmotionsoutpanel',
-          hideCollapseTool: true
+          hideCollapseTool: true,
+          listeners: {
+            draftmotionchanged: 'onDraftmotionChanged'
+          }
         }
       ]
     }
   ],
   listeners: {
-    beforerender: 'onBeforeRender',
+    beforerender: {
+      fn: 'onBeforeRender',
+      scope: 'controller'
+    },
     documentchange: {
       fn: 'onDocumentChange',
-      buffer: 500
+      buffer: 500,
+      scope: 'controller'
     }
+  },
+
+  onDraftmotionChanged: function(hasDraftMotion) {
+    var vm = this.getViewModel();
+    vm.set('hasDraftMotion', hasDraftMotion);
   }
 
 });

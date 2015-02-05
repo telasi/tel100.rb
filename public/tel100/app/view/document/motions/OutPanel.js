@@ -27,21 +27,13 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     'Ext.grid.Panel'
   ],
 
-  config: {
-    hasDraftMotion: null
-  },
-
   controller: 'documentmotionsoutpanel',
   viewModel: {
     type: 'documentmotionsoutpanel'
   },
-  publishes: [
-    'hasDraftMotion'
-  ],
   layout: 'border',
 
   bind: {
-    hasDraftMotion: '{hasDraftMotion}',
     title: '{i18n.document.motion.outMotions}'
   },
   dockedItems: [
@@ -117,8 +109,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
       },
       region: 'center',
       bind: {
-        selection: '{selection}',
-        hasDraftMotion: '{hasDraftMotion}'
+        selection: '{selection}'
       }
     }
   ],
@@ -129,8 +120,21 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
   },
 
   refresh: function() {
-    var grid = this.down('documentmotionsoutgrid');
-    grid.refresh();
+    this.getGrid().refresh();
+  },
+
+  getGrid: function() {
+    return this.down('documentmotionsoutgrid');
+  },
+
+  initComponent: function() {
+    this.callParent();
+    var gridVM = this.getGrid().getViewModel();
+    var self = this;
+    gridVM.bind('{hasDraftMotion}', function() {
+      var draftMotion = gridVM.get('hasDraftMotion');
+      self.fireEvent('draftmotionchanged', draftMotion);
+    });
   }
 
 });

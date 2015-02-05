@@ -8,14 +8,8 @@
     "userConfig": {
         "designer|userAlias": "documentmotionsoutpanel",
         "designer|userClassName": "document.motions.OutPanel",
-        "hasDraftMotion": [
-            "{hasDraftMotion}"
-        ],
         "height": null,
         "layout": "border",
-        "publishes": [
-            "[\"hasDraftMotion\"]"
-        ],
         "title": [
             "{i18n.document.motion.outMotions}"
         ],
@@ -23,17 +17,10 @@
     },
     "name": "MyPanel1",
     "configAlternates": {
-        "title": "binding",
-        "hasDraftMotion": "binding"
+        "hasDraftMotion": "binding",
+        "title": "binding"
     },
     "designerId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd",
-    "customConfigs": [
-        {
-            "group": "(Custom Properties)",
-            "name": "hasDraftMotion",
-            "type": "string"
-        }
-    ],
     "viewControllerInstanceId": "8fd1c70a-465c-4cac-b890-164824e7df59",
     "viewModelInstanceId": "f95d1ab0-4cdd-49f6-afad-12afa284befb",
     "cn": [
@@ -245,9 +232,6 @@
                     "}"
                 ],
                 "designer|displayName": "grid",
-                "hasDraftMotion": [
-                    "{hasDraftMotion}"
-                ],
                 "layout|flex": null,
                 "layout|region": "center",
                 "selection": [
@@ -272,11 +256,6 @@
                     "group": "(Custom Properties)",
                     "name": "selection",
                     "type": "string"
-                },
-                {
-                    "group": "(Custom Properties)",
-                    "name": "hasDraftMotion",
-                    "type": "string"
                 }
             ],
             "masterInstanceId": "832f7258-59e2-4085-8f40-bfc5c37587b2"
@@ -291,8 +270,7 @@
             "userConfig": {
                 "fn": "refresh",
                 "implHandler": [
-                    "var grid = this.down('documentmotionsoutgrid');",
-                    "grid.refresh();"
+                    "this.getGrid().refresh();"
                 ]
             },
             "name": "refresh",
@@ -309,9 +287,9 @@
                 "fn": "onBeforeRender",
                 "implHandler": [
                     "var view = this.getView();",
+                    "var vm = this.getViewModel();",
                     "",
                     "// selection change",
-                    "var vm = this.getViewModel();",
                     "var onChange = function(newVal, oldVal, binding) {",
                     "  if (newVal) {",
                     "    this.getView().fireEvent('motionchange', newVal);",
@@ -393,6 +371,44 @@
             },
             "name": "onPanelBeforeDestroy",
             "designerId": "8c01e4ab-d081-4b9a-a9e7-91f2ddaa6d18"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getGrid",
+                "implHandler": [
+                    "return this.down('documentmotionsoutgrid');"
+                ]
+            },
+            "name": "getGrid",
+            "designerId": "cf2362a2-daa2-4ae7-ada2-bffd5f4a5792"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "var gridVM = this.getGrid().getViewModel();",
+                    "var self = this;",
+                    "gridVM.bind('{hasDraftMotion}', function() {",
+                    "  var draftMotion = gridVM.get('hasDraftMotion');",
+                    "  self.fireEvent('draftmotionchanged', draftMotion);",
+                    "});"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "5ca01573-1a76-442f-869b-e34a1a9d6878"
         }
     ]
 }
