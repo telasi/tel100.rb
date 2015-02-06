@@ -23,8 +23,7 @@ Ext.define('Tel100.view.document.folder.PanelViewModel', {
   ],
 
   stores: {
-    folders: {
-      groupField: 'category',
+    standardfolders: {
       data: [
         {
           name: 'inbox',
@@ -39,6 +38,24 @@ Ext.define('Tel100.view.document.folder.PanelViewModel', {
           category: 'b'
         }
       ],
+      fields: [
+        {
+          name: 'name'
+        },
+        {
+          name: 'category'
+        }
+      ]
+    },
+    customfolders: {
+      autoLoad: true,
+      model: 'Tel100.model.folder.Base',
+      listeners: {
+        load: 'onCustomStoreLoad'
+      }
+    },
+    folders: {
+      groupField: 'category',
       fields: [
         {
           name: 'name'

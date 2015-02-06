@@ -19,6 +19,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "autoLoad": null,
                 "data": [
                     "[",
                     "    {",
@@ -33,8 +34,8 @@
                     "    }",
                     "  ]"
                 ],
-                "groupField": "category",
-                "name": "folders"
+                "groupField": null,
+                "name": "standardfolders"
             },
             "name": "MyStore",
             "designerId": "e7406db1-0f11-498f-889d-f0b1c84b0ac9",
@@ -64,6 +65,89 @@
                     },
                     "name": "MyField4",
                     "designerId": "d0ba8fda-d50c-48cf-9e46-e55cccd10f4b"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "groupField": null,
+                "model": "folder.Base",
+                "name": "customfolders"
+            },
+            "name": "MyStore3",
+            "designerId": "daf154d2-3e27-4bdc-bc31-cc9e8018091d",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onCustomStoreLoad",
+                        "implHandler": [
+                            "var standardstore = this.getStore('standardfolders');",
+                            "var foldersstore = this.getStore('folders');",
+                            "foldersstore.loadData(standardstore.getRange(),true);",
+                            "foldersstore.loadData(records,true);"
+                        ],
+                        "name": "load",
+                        "scope": "me"
+                    },
+                    "name": "onCustomStoreLoad",
+                    "designerId": "5c780ea1-cb0a-48d1-8d81-042c8637a262"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": null,
+                "groupField": "category",
+                "model": null,
+                "name": "folders"
+            },
+            "name": "MyStore5",
+            "designerId": "209a0278-9d7a-4e5b-8f10-45004cf93a97",
+            "cn": [
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "name"
+                    },
+                    "name": "MyField23",
+                    "designerId": "3e31c33b-d5d4-4776-9607-dcf8ac9d601d"
+                },
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "category"
+                    },
+                    "name": "MyField24",
+                    "designerId": "8272d035-a9a3-4c92-b6e3-92a560f2f6c8"
                 }
             ]
         }

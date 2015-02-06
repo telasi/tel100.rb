@@ -19,11 +19,13 @@ Ext.define('Tel100.view.document.folder.Panel', {
 
   requires: [
     'Tel100.view.document.folder.PanelViewModel',
+    'Tel100.view.document.folder.PanelViewController',
     'Ext.grid.column.Column',
     'Ext.grid.feature.Grouping',
     'Ext.XTemplate'
   ],
 
+  controller: 'documentfolderpanel',
   viewModel: {
     type: 'documentfolderpanel'
   },
@@ -46,7 +48,15 @@ Ext.define('Tel100.view.document.folder.Panel', {
       ftype: 'grouping',
       groupByText: 'category',
       groupHeaderTpl: Ext.create('Ext.XTemplate', 
-        '{name:this.categoryName}',
+        '{name:this.categoryName} ',
+        '<tpl for=".">',
+        '  <tpl if="name == \'b\'">',
+        '    <span style="float:right">',
+        '      <input type="button" value=\'+\'>',
+        '      <input type="button" value=\'-\'>',
+        '    </span></div>',
+        '  </tpl>',
+        '</tpl>',
         {
           categoryName: function(name) {
             return i18n.document.folder.categories[name];
@@ -54,6 +64,9 @@ Ext.define('Tel100.view.document.folder.Panel', {
         }
       )
     }
-  ]
+  ],
+  listeners: {
+    groupclick: 'onGridpanelGroupClick'
+  }
 
 });

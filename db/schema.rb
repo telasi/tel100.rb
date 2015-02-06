@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130081958) do
+ActiveRecord::Schema.define(version: 20150205083821) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -104,6 +104,24 @@ ActiveRecord::Schema.define(version: 20150130081958) do
     t.boolean   "is_changed",             precision: 1,  scale: 0, default: true,  null: false
     t.timestamp "created_at",  limit: 6,                                           null: false
     t.timestamp "updated_at",  limit: 6,                                           null: false
+  end
+
+  create_table "folder_base", force: true do |t|
+    t.integer   "owner_id",    limit: 10,  precision: 10, scale: 0, null: false
+    t.string    "name",        limit: 100
+    t.string    "folder_type", limit: 50,                           null: false
+    t.integer   "parent_id",   limit: 10,  precision: 10, scale: 0
+    t.timestamp "created_at",  limit: 6,                            null: false
+    t.timestamp "updated_at",  limit: 6,                            null: false
+  end
+
+  add_index "folder_base", ["owner_id"], name: "owner_id_idx", unique: true
+
+  create_table "folder_documents", id: false, force: true do |t|
+    t.integer   "id",         limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "doc_id",     limit: 10, precision: 10, scale: 0, null: false
+    t.timestamp "created_at", limit: 6,                           null: false
+    t.timestamp "updated_at", limit: 6,                           null: false
   end
 
   create_table "hr_employees", force: true do |t|

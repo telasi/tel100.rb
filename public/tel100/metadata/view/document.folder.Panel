@@ -66,7 +66,15 @@
                     "userConfig": {
                         "designer|displayName": "groupHeaderTpl",
                         "implHandler": [
-                            "{name:this.categoryName}"
+                            "{name:this.categoryName} ",
+                            "<tpl for=\".\">",
+                            "  <tpl if=\"name == 'b'\">",
+                            "    <span style=\"float:right\">",
+                            "      <input type=\"button\" value='+'>",
+                            "      <input type=\"button\" value='-'>",
+                            "    </span></div>",
+                            "  </tpl>",
+                            "</tpl>"
                         ]
                     },
                     "name": "groupHeaderTpl",
@@ -94,6 +102,42 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "view",
+                    "node",
+                    "group",
+                    "e",
+                    "eOpts"
+                ],
+                "fn": "onGridpanelGroupClick",
+                "implHandler": [
+                    "      if (e.getTarget().type === 'button'){",
+                    "        e.stopEvent();",
+                    "        view.features[0].expand(group);",
+                    "        switch(e.getTarget().value){",
+                    "          case '+':",
+                    "            this.addfolder();",
+                    "            break;",
+                    "          case '-':",
+                    "            view.fireEvent('removefolder', node);",
+                    "            break;",
+                    "        }",
+                    "      }"
+                ],
+                "name": "groupclick",
+                "scope": "me"
+            },
+            "name": "onGridpanelGroupClick",
+            "designerId": "40dd3e11-955d-461d-be63-50ad24fa8050"
         }
     ]
 }

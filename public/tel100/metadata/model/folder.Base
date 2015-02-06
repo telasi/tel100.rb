@@ -1,0 +1,29 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "folder.Base",
+        "schema": "tel100"
+    },
+    "name": "MyModel",
+    "designerId": "d2df7497-4416-4a44-9da8-44d5f976710d",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "/api/folder"
+            },
+            "name": "MyRestProxy3",
+            "designerId": "6ef60d1b-09e9-4444-bac0-70a837e727e9"
+        }
+    ]
+}

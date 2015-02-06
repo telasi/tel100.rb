@@ -9,5 +9,40 @@
         "designer|userAlias": "documentfolderpanel",
         "designer|userClassName": "document.folder.PanelViewController"
     },
-    "designerId": "6e6edce7-d5e1-4ac0-8610-329e1b1bb4a8"
+    "designerId": "6e6edce7-d5e1-4ac0-8610-329e1b1bb4a8",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "addfolder",
+                "implHandler": [
+                    "Ext.MessageBox.prompt('საქაღალდე','შეიყვანეთ სახელი', function(btn, text){",
+                    "  if(btn == 'ok'){",
+                    "    Ext.Ajax.request({",
+                    "      url: '/api/folder',",
+                    "      method: 'POST',",
+                    "      params: { name: text},",
+                    "      success: function(response){",
+                    "        var folderstore = Ext.getStore('folders');",
+                    "        folderstore.reload();",
+                    "        Ext.MessageBox.alert('ok');",
+                    "      },",
+                    "      failure: function(response){",
+                    "        Ext.MessageBox.alert('error');",
+                    "      }",
+                    "    });",
+                    "    close();",
+                    "  }",
+                    "});"
+                ]
+            },
+            "name": "addfolder",
+            "designerId": "397e969e-50fe-4425-b030-d692b6ad22e5"
+        }
+    ]
 }

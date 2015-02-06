@@ -238,7 +238,7 @@
                     "{selection}"
                 ]
             },
-            "name": "document.motions.outgrid",
+            "name": "document.motions.outgrid2",
             "configAlternates": {
                 "basemotion": "binding",
                 "outmode": "boolean",

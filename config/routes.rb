@@ -41,6 +41,10 @@ Rails.application.routes.draw do
       get '/types', action: 'types'
       post '/create', action: 'create'
     end
+    scope 'folder', controller: 'folder' do
+      get '/', action: 'index'
+      post '/', action: 'create'
+    end
     # scope 'docs', controller: 'docs' do
     #   get '/', action: 'index'
     #   get '/show/:id', action: 'show'

@@ -15,5 +15,49 @@
 
 Ext.define('Tel100.view.document.folder.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentfolderpanel'
+  alias: 'controller.documentfolderpanel',
+
+  addfolder: function() {
+    Ext.MessageBox.prompt('საქაღალდე','შეიყვანეთ სახელი', function(btn, text){
+      if(btn == 'ok'){
+        Ext.Ajax.request({
+          url: '/api/folder',
+          method: 'POST',
+          params: { name: text},
+          success: function(response){
+            var folderstore = Ext.getStore('folders');
+            folderstore.reload();
+            Ext.MessageBox.alert('ok');
+          },
+          failure: function(response){
+            Ext.MessageBox.alert('error');
+          }
+        });
+        close();
+      }
+    });
+  },
+
+  onGridpanelGroupClick: function(view, node, group, e, eOpts) {
+    if (e.getTarget().type === 'button'){
+      e.stopEvent();
+      view.features[0].expand(group);
+      switch(e.getTarget().value){
+        case '+':
+        this.addfolder();
+        break;
+        case '-':
+        view.fireEvent('removefolder', node);
+        break;
+      }
+    }
+  },
+
+  onCustomStoreLoad: function(store, records, successful, eOpts) {
+    var standardstore = this.getStore('standardfolders');
+    var foldersstore = this.getStore('folders');
+    foldersstore.loadData(standardstore.getRange(),true);
+    foldersstore.loadData(records,true);
+  }
+
 });
