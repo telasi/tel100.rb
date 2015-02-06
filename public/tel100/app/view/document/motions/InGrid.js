@@ -26,6 +26,9 @@ Ext.define('Tel100.view.document.motions.InGrid', {
   viewModel: {
     type: 'documentmotionsingrid'
   },
+  publishes: [
+    'selection'
+  ],
 
   bind: {
     store: '{motions}'

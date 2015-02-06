@@ -90,8 +90,25 @@
                 "type": "array"
             },
             "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "grid",
+                "disableSelection": null,
+                "selection": [
+                    "{selection}"
+                ]
+            },
             "name": "document.motions.ingrid",
+            "configAlternates": {
+                "selection": "binding"
+            },
             "designerId": "b749e325-7a6a-4de7-9bc9-691c57a61005",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
+                    "type": "string"
+                }
+            ],
             "masterInstanceId": "04ffc6b0-782b-4122-ba75-5b1dd5b66d45"
         }
     ]

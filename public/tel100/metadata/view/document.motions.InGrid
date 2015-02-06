@@ -9,6 +9,9 @@
         "designer|userAlias": "documentmotionsingrid",
         "designer|userClassName": "document.motions.InGrid",
         "height": null,
+        "publishes": [
+            "    [\"selection\"]"
+        ],
         "store": [
             "{motions}"
         ],
