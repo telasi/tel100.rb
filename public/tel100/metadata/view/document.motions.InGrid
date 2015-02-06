@@ -8,11 +8,20 @@
     "userConfig": {
         "designer|userAlias": "documentmotionsingrid",
         "designer|userClassName": "document.motions.InGrid",
-        "height": 250,
+        "height": null,
+        "publishes": [
+            "    [\"selection\"]"
+        ],
+        "store": [
+            "{motions}"
+        ],
         "title": null,
-        "width": 400
+        "width": null
     },
     "name": "MyGridPanel",
+    "configAlternates": {
+        "store": "binding"
+    },
     "designerId": "04ffc6b0-782b-4122-ba75-5b1dd5b66d45",
     "viewControllerInstanceId": "cf2a119c-c478-4ed7-821f-90e860de37eb",
     "viewModelInstanceId": "44641ffa-61ba-46ed-8624-5e2d6fe5e932",
@@ -25,53 +34,151 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "string",
-                "text": "String"
+                "dataIndex": "status",
+                "designer|displayName": "status",
+                "draggable": false,
+                "emptyCellText": "",
+                "hideable": false,
+                "sortable": false,
+                "text": null,
+                "width": 28
             },
-            "name": "MyColumn15",
-            "designerId": "979bf355-5d16-4f24-ba05-61aa24a92940"
+            "name": "MyColumn",
+            "designerId": "9edb49d6-3d9a-4cc9-acf9-b0681214c910",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return helpers.document.status.motionStatusIcon(value, record);"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "94a4eee2-5b68-47e4-84f1-959c08589447"
+                }
+            ]
         },
         {
-            "type": "Ext.grid.column.Number",
+            "type": "Ext.grid.column.Column",
             "reference": {
                 "name": "columns",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "number",
-                "text": "Number"
+                "dataIndex": "senderName",
+                "designer|displayName": "senderName",
+                "draggable": false,
+                "hideable": false,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.motion.sender}"
+                ],
+                "width": 200
             },
-            "name": "MyNumberColumn",
-            "designerId": "dc503770-ab77-4d4b-8d95-5d05d6b19d9d"
+            "name": "MyColumn1",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "fcfb7ad9-36a3-421d-979c-4511b756c2a0",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "if (value) {",
+                            "  return value;",
+                            "} else {",
+                            "  var vm = this.getViewModel();",
+                            "  var doc = vm.get('document');",
+                            "  var numb = doc.get('docnumber');",
+                            "  return '>>> ' + numb;",
+                            "}"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "4d41af03-c622-4b15-89d0-a9efa7f81429"
+                }
+            ]
         },
         {
-            "type": "Ext.grid.column.Date",
+            "type": "Ext.grid.column.Column",
             "reference": {
                 "name": "columns",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "date",
-                "text": "Date"
+                "dataIndex": "motion_text",
+                "designer|displayName": "motion_text",
+                "draggable": false,
+                "hideable": false,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.motion.motion_text}"
+                ],
+                "width": 200
             },
-            "name": "MyDateColumn",
-            "designerId": "1054764b-4186-45f6-803b-2d94ad64a1a4"
+            "name": "MyColumn3",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "28f8d66f-dfb8-4a35-ab3a-e61d61f354dc"
         },
         {
-            "type": "Ext.grid.column.Boolean",
+            "type": "Ext.grid.column.Column",
             "reference": {
                 "name": "columns",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "bool",
-                "text": "Boolean"
+                "dataIndex": "due_date",
+                "designer|displayName": "due_date",
+                "draggable": false,
+                "formatter": "date(\"d/m/Y\")",
+                "hideable": false,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.motion.due_date}"
+                ],
+                "width": 100
             },
-            "name": "MyBooleanColumn",
-            "designerId": "f21f7152-67c9-4f7e-b7d3-13c866c9e83c"
+            "name": "MyColumn2",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "9854e2ec-57a8-4399-931d-cca99c024e01"
         },
         {
             "type": "Ext.grid.View",
@@ -81,7 +188,48 @@
             },
             "codeClass": null,
             "name": "MyGridView1",
-            "designerId": "1c9b26cd-3e92-4395-bf7c-df21df349f8d"
+            "designerId": "1c9b26cd-3e92-4395-bf7c-df21df349f8d",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "record",
+                            "rowIndex",
+                            "rowParams",
+                            "store"
+                        ],
+                        "fn": "getRowClass",
+                        "implHandler": [
+                            "var status = record.get('status');",
+                            "return helpers.document.status.motionStatusRowClass(status, record);"
+                        ]
+                    },
+                    "name": "getRowClass",
+                    "designerId": "f45911c3-29e5-4f39-8fd0-0846eab2cf7e"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "this.getStore().load();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "117add5d-d81b-4d29-8849-cc5c2286aa97"
         }
     ]
 }

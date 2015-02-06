@@ -40,6 +40,11 @@ Ext.define('Tel100.view.document.motions.InPanel', {
       items: [
         {
           xtype: 'button',
+          handler: function(button, e) {
+            var panel = this.up('documentmotionsinpanel');
+            var grid = panel.down('documentmotionsingrid');
+            grid.refresh();
+          },
           bind: {
             text: '{i18n.ui.refresh}'
           }
@@ -49,7 +54,10 @@ Ext.define('Tel100.view.document.motions.InPanel', {
   ],
   items: [
     {
-      xtype: 'documentmotionsingrid'
+      xtype: 'documentmotionsingrid',
+      bind: {
+        selection: '{selection}'
+      }
     }
   ]
 

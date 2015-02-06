@@ -19,39 +19,87 @@ Ext.define('Tel100.view.document.motions.InGrid', {
 
   requires: [
     'Tel100.view.document.motions.InGridViewModel',
-    'Ext.grid.column.Number',
-    'Ext.grid.column.Date',
-    'Ext.grid.column.Boolean',
+    'Ext.grid.column.Column',
     'Ext.grid.View'
   ],
 
   viewModel: {
     type: 'documentmotionsingrid'
   },
-  height: 250,
-  width: 400,
+  publishes: [
+    'selection'
+  ],
 
+  bind: {
+    store: '{motions}'
+  },
   columns: [
     {
       xtype: 'gridcolumn',
-      dataIndex: 'string',
-      text: 'String'
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return helpers.document.status.motionStatusIcon(value, record);
+      },
+      draggable: false,
+      width: 28,
+      sortable: false,
+      dataIndex: 'status',
+      emptyCellText: '',
+      hideable: false
     },
     {
-      xtype: 'numbercolumn',
-      dataIndex: 'number',
-      text: 'Number'
+      xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        if (value) {
+          return value;
+        } else {
+          var vm = this.getViewModel();
+          var doc = vm.get('document');
+          var numb = doc.get('docnumber');
+          return '>>> ' + numb;
+        }
+      },
+      draggable: false,
+      width: 200,
+      sortable: false,
+      dataIndex: 'senderName',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.sender}'
+      }
     },
     {
-      xtype: 'datecolumn',
-      dataIndex: 'date',
-      text: 'Date'
+      xtype: 'gridcolumn',
+      draggable: false,
+      width: 200,
+      sortable: false,
+      dataIndex: 'motion_text',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.motion_text}'
+      }
     },
     {
-      xtype: 'booleancolumn',
-      dataIndex: 'bool',
-      text: 'Boolean'
+      xtype: 'gridcolumn',
+      draggable: false,
+      width: 100,
+      sortable: false,
+      dataIndex: 'due_date',
+      formatter: 'date("d/m/Y")',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.due_date}'
+      }
     }
-  ]
+  ],
+  viewConfig: {
+    getRowClass: function(record, rowIndex, rowParams, store) {
+      var status = record.get('status');
+      return helpers.document.status.motionStatusRowClass(status, record);
+    }
+  },
+
+  refresh: function() {
+    this.getStore().load();
+  }
 
 });

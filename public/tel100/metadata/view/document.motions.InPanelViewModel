@@ -6,6 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  selection: null",
+            "}"
+        ],
         "designer|userAlias": "documentmotionsinpanel",
         "designer|userClassName": "document.motions.InPanelViewModel"
     },

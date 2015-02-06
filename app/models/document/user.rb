@@ -1,12 +1,17 @@
 # -*- encoding : utf-8 -*-
 class Document::User < ActiveRecord::Base
   include Document::Role
+  include Document::Status
   self.table_name  = 'document_user'
   self.primary_keys = :user_id, :document_id
   self.set_integer_columns :is_new, :is_changed, :status
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
   before_save :update_document_motions
+
+  def self.mydocs(user)
+    Document::User.where('status IN (?) AND user_id = ?', [CURRENT, CANCELED, COMPLETED], user.id)
+  end
 
   def self.upsert!(doc, user, role, opts={})
     if user.present?

@@ -6,43 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
-        "models": [
-            "User",
-            "document.Type",
-            "document.Base",
-            "document.Direction",
-            "document.Motion",
-            "hr.vacation.Type"
-        ],
-        "name": "Tel100",
-        "views": [
-            "Main",
-            "user.login.Panel",
-            "workarea.Panel",
-            "workarea.LocaleSelector",
-            "user.box.Button",
-            "modules.Documents",
-            "modules.HR",
-            "modules.Admin",
-            "hr.tree.Panel",
-            "admin.Panel",
-            "admin.actions.Panel",
-            "admin.types.AdminPanel",
-            "admin.users.AdminPanel",
-            "admin.types.grid.Panel",
-            "document.Main",
-            "document.folder.Panel",
-            "document.grid.Panel",
-            "document.editor.Creator",
-            "document.editor.General",
-            "document.motions.OutGrid",
-            "document.motions.OutPanel",
-            "party.Selector",
-            "hr.vacation.Window",
-            "document.editor.Editor",
-            "document.motions.InPanel",
-            "document.motions.InGrid"
-        ]
+        "name": "Tel100"
     },
     "name": "Application",
     "designerId": "application"

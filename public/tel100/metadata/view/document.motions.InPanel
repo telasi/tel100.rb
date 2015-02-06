@@ -45,6 +45,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "designer|displayName": "refresh",
                         "layout|flex": null,
                         "text": [
                             "{i18n.ui.refresh}"
@@ -54,7 +55,31 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "0b6a8853-e490-42fa-bc9d-25432479fa0e"
+                    "designerId": "0b6a8853-e490-42fa-bc9d-25432479fa0e",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var panel = this.up('documentmotionsinpanel');",
+                                    "var grid = panel.down('documentmotionsingrid');",
+                                    "grid.refresh();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "1b5f9178-78b5-4875-86ac-a4ff7c3d0d90"
+                        }
+                    ]
                 }
             ]
         },
@@ -65,8 +90,25 @@
                 "type": "array"
             },
             "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "grid",
+                "disableSelection": null,
+                "selection": [
+                    "{selection}"
+                ]
+            },
             "name": "document.motions.ingrid",
+            "configAlternates": {
+                "selection": "binding"
+            },
             "designerId": "b749e325-7a6a-4de7-9bc9-691c57a61005",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
+                    "type": "string"
+                }
+            ],
             "masterInstanceId": "04ffc6b0-782b-4122-ba75-5b1dd5b66d45"
         }
     ]

@@ -2,7 +2,7 @@ module.exports = {
   ordering: 'ეტაპი',
   orderingShort: '#',
   receiver: 'ადრესატი',
-  sender: 'გამგზავნი',
+  sender: 'გამომგზავნი',
   receiver_role: 'როლი',
   motion_text: 'რეზოლუცია',
   due_date: 'ვადა',
