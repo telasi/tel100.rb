@@ -211,6 +211,22 @@
                     "designerId": "f45911c3-29e5-4f39-8fd0-0846eab2cf7e"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "this.getStore().load();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "117add5d-d81b-4d29-8849-cc5c2286aa97"
         }
     ]
 }

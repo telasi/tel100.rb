@@ -93,6 +93,10 @@ Ext.define('Tel100.view.document.motions.InGrid', {
       var status = record.get('status');
       return helpers.document.status.motionStatusRowClass(status, record);
     }
+  },
+
+  refresh: function() {
+    this.getStore().load();
   }
 
 });
