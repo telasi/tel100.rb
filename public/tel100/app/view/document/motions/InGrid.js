@@ -33,6 +33,9 @@ Ext.define('Tel100.view.document.motions.InGrid', {
   columns: [
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return helpers.document.status.motionStatusIcon(value, record);
+      },
       draggable: false,
       width: 28,
       sortable: false,
@@ -42,6 +45,16 @@ Ext.define('Tel100.view.document.motions.InGrid', {
     },
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        if (value) {
+          return value;
+        } else {
+          var vm = this.getViewModel();
+          var doc = vm.get('document');
+          var numb = doc.get('docnumber');
+          return '>>> ' + numb;
+        }
+      },
       draggable: false,
       width: 200,
       sortable: false,
@@ -74,6 +87,12 @@ Ext.define('Tel100.view.document.motions.InGrid', {
         text: '{i18n.document.motion.due_date}'
       }
     }
-  ]
+  ],
+  viewConfig: {
+    getRowClass: function(record, rowIndex, rowParams, store) {
+      var status = record.get('status');
+      return helpers.document.status.motionStatusRowClass(status, record);
+    }
+  }
 
 });
