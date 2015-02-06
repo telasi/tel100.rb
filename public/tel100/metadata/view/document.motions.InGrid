@@ -9,10 +9,16 @@
         "designer|userAlias": "documentmotionsingrid",
         "designer|userClassName": "document.motions.InGrid",
         "height": null,
+        "store": [
+            "{motions}"
+        ],
         "title": null,
         "width": null
     },
     "name": "MyGridPanel",
+    "configAlternates": {
+        "store": "binding"
+    },
     "designerId": "04ffc6b0-782b-4122-ba75-5b1dd5b66d45",
     "viewControllerInstanceId": "cf2a119c-c478-4ed7-821f-90e860de37eb",
     "viewModelInstanceId": "44641ffa-61ba-46ed-8624-5e2d6fe5e932",

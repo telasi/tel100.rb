@@ -27,6 +27,9 @@ Ext.define('Tel100.view.document.motions.InGrid', {
     type: 'documentmotionsingrid'
   },
 
+  bind: {
+    store: '{motions}'
+  },
   columns: [
     {
       xtype: 'gridcolumn',
