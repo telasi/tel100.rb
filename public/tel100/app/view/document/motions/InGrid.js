@@ -36,6 +36,7 @@ Ext.define('Tel100.view.document.motions.InGrid', {
       draggable: false,
       width: 28,
       sortable: false,
+      dataIndex: 'status',
       emptyCellText: '',
       hideable: false
     },
@@ -44,6 +45,7 @@ Ext.define('Tel100.view.document.motions.InGrid', {
       draggable: false,
       width: 200,
       sortable: false,
+      dataIndex: 'senderName',
       hideable: false,
       bind: {
         text: '{i18n.document.motion.sender}'
@@ -54,6 +56,7 @@ Ext.define('Tel100.view.document.motions.InGrid', {
       draggable: false,
       width: 200,
       sortable: false,
+      dataIndex: 'motion_text',
       hideable: false,
       bind: {
         text: '{i18n.document.motion.motion_text}'
@@ -64,6 +67,7 @@ Ext.define('Tel100.view.document.motions.InGrid', {
       draggable: false,
       width: 100,
       sortable: false,
+      dataIndex: 'due_date',
       formatter: 'date("d/m/Y")',
       hideable: false,
       bind: {

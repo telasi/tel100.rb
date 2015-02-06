@@ -31,6 +31,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dataIndex": "status",
                 "designer|displayName": "status",
                 "draggable": false,
                 "emptyCellText": "",
@@ -50,6 +51,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dataIndex": "senderName",
                 "designer|displayName": "senderName",
                 "draggable": false,
                 "hideable": false,
@@ -73,6 +75,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dataIndex": "motion_text",
                 "designer|displayName": "motion_text",
                 "draggable": false,
                 "hideable": false,
@@ -96,6 +99,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dataIndex": "due_date",
                 "designer|displayName": "due_date",
                 "draggable": false,
                 "formatter": "date(\"d/m/Y\")",
