@@ -9,5 +9,55 @@
         "designer|userAlias": "documentmotionsingrid",
         "designer|userClassName": "document.motions.InGridViewModel"
     },
-    "designerId": "44641ffa-61ba-46ed-8624-5e2d6fe5e932"
+    "designerId": "44641ffa-61ba-46ed-8624-5e2d6fe5e932",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Motion",
+                "name": "motions"
+            },
+            "name": "MyStore",
+            "designerId": "703fe2f1-1826-4167-b29d-671b1dc1535c",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  mode: 'in',",
+                            "  document_id: '{document.id}'",
+                            "}"
+                        ],
+                        "url": "/api/documents/motion"
+                    },
+                    "name": "MyAjaxProxy",
+                    "designerId": "f27b02b0-f1ce-42c1-afcb-6a4638aab1db",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader",
+                            "designerId": "8c32e67e-0d2e-403b-891f-68f53ac6f565"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }
