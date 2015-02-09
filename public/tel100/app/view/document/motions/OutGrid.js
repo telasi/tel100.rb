@@ -154,7 +154,9 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
   ],
 
   refresh: function() {
-    this.getStore().load();
+    var vm = this.getViewModel();
+    var parentId = vm.get('parentId');
+    this.getStore().load({ params: { parent_id: parentId } });
   },
 
   initComponent: function() {

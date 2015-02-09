@@ -18,7 +18,14 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
   alias: 'controller.documenteditoreditor',
 
   onInMotionChanged: function(motion) {
-    console.log(motion);
+    var view = this.getView();
+    var outPanel = view.down('documentmotionsoutpanel');
+    if (!motion || motion.get('type') === 'document') {
+      outPanel.setParentId(null);
+    } else {
+      outPanel.setParentId(motion.id);
+    }
+    outPanel.refresh();
   }
 
 });

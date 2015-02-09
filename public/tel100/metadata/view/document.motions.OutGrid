@@ -337,7 +337,9 @@
             "userConfig": {
                 "fn": "refresh",
                 "implHandler": [
-                    "this.getStore().load();"
+                    "var vm = this.getViewModel();",
+                    "var parentId = vm.get('parentId');",
+                    "this.getStore().load({ params: { parent_id: parentId } });"
                 ]
             },
             "name": "refresh",
