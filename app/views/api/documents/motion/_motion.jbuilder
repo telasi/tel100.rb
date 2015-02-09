@@ -1,5 +1,6 @@
 if motion.blank?
   json.document_id document.id
+  json.type 'document'
   json.status document.status
   json.due_date document.due_date
   json.motion_text document.subject
@@ -7,6 +8,7 @@ if motion.blank?
   json.updated_at document.updated_at
 else
   json.id motion.id
+  json.type 'motion'
   json.parent_id motion.parent_id
   json.document_id motion.document_id
   json.status motion.status
