@@ -6,7 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
-        "border": null,
+        "border": false,
         "designer|userAlias": "documenteditoreditor",
         "designer|userClassName": "document.editor.Editor",
         "height": null,
@@ -30,6 +30,7 @@
             "codeClass": null,
             "userConfig": {
                 "activeTab": 0,
+                "border": false,
                 "layout|region": "center",
                 "padding": "",
                 "tabPosition": "bottom"
@@ -45,6 +46,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "border": false,
                         "designer|displayName": "content",
                         "layout": "fit",
                         "title": [
@@ -75,6 +77,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "border": false,
                                 "container|padding": null,
                                 "designer|displayName": "main",
                                 "layout": "border"
@@ -142,6 +145,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "border": false,
                         "container|align": "stretch",
                         "designer|displayName": "motions",
                         "layout": "hbox",
@@ -177,7 +181,7 @@
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.inpanel",
+                            "name": "document.motions.inpanel1",
                             "designerId": "7a1fd724-1ec5-45fc-bb58-39815d4d9bac",
                             "masterInstanceId": "360c0d57-9834-48d9-9eb7-d6316da82b30"
                         },
@@ -206,7 +210,7 @@
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel",
+                            "name": "document.motions.outpanel3",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }
