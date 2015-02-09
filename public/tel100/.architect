@@ -1,6 +1,6 @@
 {
     "expandedState": {
-        "view": true,
+        "view": false,
         "3b3e6a36-63b9-49a2-acd9-921ae36e718d": {
             "id": "3b3e6a36-63b9-49a2-acd9-921ae36e718d",
             "cn": [
@@ -1630,7 +1630,7 @@
             ]
         },
         "controller": true,
-        "resource": false,
+        "resource": true,
         "07083251-dd31-41ec-b832-49c43b90f87a": {
             "id": "07083251-dd31-41ec-b832-49c43b90f87a"
         },
@@ -1641,31 +1641,36 @@
             "id": "7035d869-c80b-4b47-ad7d-5a2420d6994e"
         },
         "c2778a78-bfd4-4779-b8a0-7dd25679b344": {
-            "id": "c2778a78-bfd4-4779-b8a0-7dd25679b344",
+            "id": "c2778a78-bfd4-4779-b8a0-7dd25679b344"
+        },
+        "a811de51-e846-4e59-89d4-aeb7562cf7bc": {
+            "id": "a811de51-e846-4e59-89d4-aeb7562cf7bc",
             "cn": [
                 {
-                    "id": "c84f98be-18cb-4373-9aa1-4d82b6845c5c"
+                    "id": "67f106f2-68dd-442a-926e-1eeed0e0ab10"
                 },
                 {
-                    "id": "12adccbd-f38a-4d00-981b-79c792788813"
+                    "id": "069f21e4-b8d9-409b-97e4-9520f8f5bacd"
                 },
                 {
-                    "id": "6f642291-8d5f-4071-a6be-3ca9397ad7d0"
+                    "id": "ffa22be3-b09e-4b1a-aaf9-d3fc6abc4021"
                 }
             ]
         }
     },
     "tabState": {
         "openTabs": [
-            "33bff602-b08f-4c74-8a04-4172e5eeb359"
+            "33bff602-b08f-4c74-8a04-4172e5eeb359",
+            "a811de51-e846-4e59-89d4-aeb7562cf7bc",
+            "c2778a78-bfd4-4779-b8a0-7dd25679b344"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "33bff602-b08f-4c74-8a04-4172e5eeb359",
-        "selectedInstance": "33bff602-b08f-4c74-8a04-4172e5eeb359"
+        "topInstance": "a811de51-e846-4e59-89d4-aeb7562cf7bc",
+        "selectedInstance": "ffa22be3-b09e-4b1a-aaf9-d3fc6abc4021"
     },
     "editMode": "code",
     "userSettings": {
