@@ -54,10 +54,7 @@ Ext.define('Tel100.view.document.motions.InPanel', {
   ],
   items: [
     {
-      xtype: 'documentmotionsingrid',
-      bind: {
-        selection: '{selection}'
-      }
+      xtype: 'documentmotionsingrid'
     }
   ]
 

@@ -12,6 +12,9 @@
         "publishes": [
             "    [\"selection\"]"
         ],
+        "selection": [
+            "{selection}"
+        ],
         "store": [
             "{motions}"
         ],
@@ -20,9 +23,17 @@
     },
     "name": "MyGridPanel",
     "configAlternates": {
-        "store": "binding"
+        "store": "binding",
+        "selection": "binding"
     },
     "designerId": "04ffc6b0-782b-4122-ba75-5b1dd5b66d45",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "selection",
+            "type": "string"
+        }
+    ],
     "viewControllerInstanceId": "cf2a119c-c478-4ed7-821f-90e860de37eb",
     "viewModelInstanceId": "44641ffa-61ba-46ed-8624-5e2d6fe5e932",
     "cn": [
@@ -230,6 +241,26 @@
             },
             "name": "refresh",
             "designerId": "117add5d-d81b-4d29-8849-cc5c2286aa97"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "var vm = this.getViewModel();",
+                    "vm.bind('{selection}', function(selected) {",
+                    "  debugger;",
+                    "});"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "1df0c58c-ae99-47cb-99d8-625ffd215216"
         }
     ]
 }

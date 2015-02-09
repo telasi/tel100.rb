@@ -23,6 +23,10 @@ Ext.define('Tel100.view.document.motions.InGrid', {
     'Ext.grid.View'
   ],
 
+  config: {
+    selection: null
+  },
+
   viewModel: {
     type: 'documentmotionsingrid'
   },
@@ -31,6 +35,7 @@ Ext.define('Tel100.view.document.motions.InGrid', {
   ],
 
   bind: {
+    selection: '{selection}',
     store: '{motions}'
   },
   columns: [
@@ -100,6 +105,14 @@ Ext.define('Tel100.view.document.motions.InGrid', {
 
   refresh: function() {
     this.getStore().load();
+  },
+
+  initComponent: function() {
+    this.callParent();
+    var vm = this.getViewModel();
+    vm.bind('{selection}', function(selected) {
+      debugger;
+    });
   }
 
 });

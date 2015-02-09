@@ -6,6 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  selection: null",
+            "}"
+        ],
         "designer|userAlias": "documentmotionsingrid",
         "designer|userClassName": "document.motions.InGridViewModel"
     },

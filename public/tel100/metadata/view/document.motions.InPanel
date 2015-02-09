@@ -92,10 +92,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "grid",
-                "disableSelection": null,
-                "selection": [
-                    "{selection}"
-                ]
+                "disableSelection": null
             },
             "name": "document.motions.ingrid",
             "configAlternates": {

@@ -23,6 +23,10 @@ Ext.define('Tel100.view.document.motions.InGridViewModel', {
     'Ext.data.reader.Json'
   ],
 
+  data: {
+    selection: null
+  },
+
   stores: {
     motions: {
       autoLoad: true,
