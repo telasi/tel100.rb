@@ -236,7 +236,13 @@
             "userConfig": {
                 "fn": "refresh",
                 "implHandler": [
-                    "this.getStore().load();"
+                    "var self = this;",
+                    "self.setLoading(true);",
+                    "this.getStore().load({",
+                    "  callback: function() {",
+                    "    self.setLoading(false);",
+                    "  }",
+                    "});"
                 ]
             },
             "name": "refresh",

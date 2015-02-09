@@ -104,7 +104,13 @@ Ext.define('Tel100.view.document.motions.InGrid', {
   },
 
   refresh: function() {
-    this.getStore().load();
+    var self = this;
+    self.setLoading(true);
+    this.getStore().load({
+      callback: function() {
+        self.setLoading(false);
+      }
+    });
   },
 
   initComponent: function() {
