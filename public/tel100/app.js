@@ -49,7 +49,8 @@ Ext.application({
     'hr.tree.Panel',
     'modules.HR',
     'admin.actions.Panel',
-    'admin.types.grid.Panel'
+    'admin.types.grid.Panel',
+    'Main'
   ],
   name: 'Tel100',
 

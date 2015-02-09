@@ -61,6 +61,7 @@ Ext.define('Tel100.view.Main', {
     },
     {
       xtype: 'workareapanel',
+      border: false,
       itemId: 'workarea'
     }
   ],

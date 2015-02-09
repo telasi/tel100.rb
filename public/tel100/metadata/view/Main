@@ -102,6 +102,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "border": false,
                 "itemId": "workarea"
             },
             "name": "workarea.panel",

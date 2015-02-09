@@ -47,7 +47,8 @@ Ext.define('Tel100.view.modules.HR', {
       ]
     },
     {
-      xtype: 'hrtreepanel'
+      xtype: 'hrtreepanel',
+      border: false
     }
   ]
 

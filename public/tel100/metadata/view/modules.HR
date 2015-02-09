@@ -81,6 +81,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "border": false,
                 "designer|displayName": "HR structrure"
             },
             "name": "hr.tree.panel",

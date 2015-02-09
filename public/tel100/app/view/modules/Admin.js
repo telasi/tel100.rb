@@ -30,7 +30,8 @@ Ext.define('Tel100.view.modules.Admin', {
 
   items: [
     {
-      xtype: 'adminpanel'
+      xtype: 'adminpanel',
+      border: false
     }
   ]
 
