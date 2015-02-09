@@ -24,9 +24,6 @@
                 "type": "array"
             },
             "codeClass": null,
-            "userConfig": {
-                "border": false
-            },
             "name": "document.main",
             "designerId": "e207c3ba-974b-4008-a398-e52b897b42a4",
             "masterInstanceId": "368a0f4e-bc1c-41fd-98ea-3e2c39105b2e"

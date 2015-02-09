@@ -27,7 +27,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "border": false,
                 "height": null,
                 "layout|flex": null,
                 "layout|region": "north"
@@ -225,7 +224,6 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "border": false,
                         "designer|displayName": "body",
                         "fieldLabel": null,
                         "layout|region": "center",
@@ -273,7 +271,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general1",
+                    "name": "document.editor.general",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -291,7 +289,7 @@
                         "designer|displayName": "receivers",
                         "hideCollapseTool": true
                     },
-                    "name": "document.motions.outpanel2",
+                    "name": "document.motions.outpanel",
                     "configAlternates": {
                         "title": "binding"
                     },

@@ -4,7 +4,7 @@
    "classpath": "${app.dir}/app,${app.dir}//",
    "overrides": "${app.dir}/overrides",
    "framework": "ext",
-   "theme": "ext-theme-neptune-a811de51-e846-4e59-89d4-aeb7562cf7bc",
+   "theme": "ext-theme-neptune-c2778a78-bfd4-4779-b8a0-7dd25679b344",
    "requires": [],
    "sass": {
       "namespace": "Tel100"
