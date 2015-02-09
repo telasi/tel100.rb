@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "border": null,
         "designer|userAlias": "documenteditoreditor",
         "designer|userClassName": "document.editor.Editor",
         "height": null,
@@ -172,7 +173,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "border": true,
+                                "border": false,
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
@@ -201,7 +202,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "border": true,
+                                "border": false,
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
