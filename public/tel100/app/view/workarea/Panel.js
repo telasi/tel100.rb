@@ -33,6 +33,7 @@ Ext.define('Tel100.view.workarea.Panel', {
   viewModel: {
     type: 'workareapanel'
   },
+  border: false,
   layout: 'border',
 
   items: [
@@ -85,6 +86,7 @@ Ext.define('Tel100.view.workarea.Panel', {
       items: [
         {
           xtype: 'modulesdocuments',
+          border: 0,
           itemId: 'docs'
         },
         {

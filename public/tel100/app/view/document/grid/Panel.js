@@ -26,6 +26,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
   viewModel: {
     type: 'documentgridpanel'
   },
+  border: false,
 
   bind: {
     store: '{documents}'

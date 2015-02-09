@@ -43,6 +43,7 @@ Ext.define('Tel100.view.document.Main', {
     {
       xtype: 'tabpanel',
       region: 'center',
+      border: false,
       itemId: 'documentTabs',
       activeTab: 0,
       items: [
@@ -78,6 +79,7 @@ Ext.define('Tel100.view.document.Main', {
               ]
             }
           ],
+          border: false,
           layout: 'fit',
           bind: {
             title: '{i18n.document.base.ui.documents}'

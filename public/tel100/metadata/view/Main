@@ -44,7 +44,7 @@
                     "userConfig": {
                         "itemId": "login"
                     },
-                    "name": "user.login.panel",
+                    "name": "user.login.panel1",
                     "designerId": "b56e0aff-35ba-45b9-b38a-2f551b242bf3",
                     "masterInstanceId": "03cd4760-d7dc-43e4-aa67-42897fda1600",
                     "cn": [
@@ -88,7 +88,7 @@
                     "userConfig": {
                         "margin": 8
                     },
-                    "name": "workarea.localeselector",
+                    "name": "workarea.localeselector1",
                     "designerId": "e248601a-26d6-4cbb-b2c8-207c74b760ac",
                     "masterInstanceId": "78f2feb6-6129-46fd-878f-74b250ed6144"
                 }
@@ -104,7 +104,7 @@
             "userConfig": {
                 "itemId": "workarea"
             },
-            "name": "workarea.panel",
+            "name": "workarea.panel1",
             "designerId": "0f56d711-270d-431c-8d3a-75f20b6ef2af",
             "masterInstanceId": "fd6e4e1e-6a42-4835-914a-754234022494"
         },

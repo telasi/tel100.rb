@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "border": false,
         "designer|userAlias": "workareapanel",
         "designer|userClassName": "workarea.Panel",
         "height": null,
@@ -162,6 +163,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "border": 0,
                         "itemId": "docs"
                     },
                     "name": "modules.documents",

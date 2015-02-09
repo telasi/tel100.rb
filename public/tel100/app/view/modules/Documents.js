@@ -30,7 +30,8 @@ Ext.define('Tel100.view.modules.Documents', {
 
   items: [
     {
-      xtype: 'documentmain'
+      xtype: 'documentmain',
+      border: false
     }
   ]
 

@@ -44,6 +44,7 @@
             "codeClass": null,
             "userConfig": {
                 "activeTab": 0,
+                "border": false,
                 "designer|displayName": "tabs",
                 "itemId": "documentTabs",
                 "layout|region": "center"
@@ -59,6 +60,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "border": false,
                         "designer|displayName": "documents",
                         "dock": null,
                         "dockedItems": [
@@ -112,6 +114,9 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "userConfig": {
+                                "border": null
+                            },
                             "name": "TabConfig",
                             "designerId": "695da095-0804-4ecc-9ed7-284625c01f68"
                         },

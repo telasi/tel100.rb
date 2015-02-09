@@ -29,6 +29,7 @@ Ext.define('Tel100.view.document.folder.Panel', {
   viewModel: {
     type: 'documentfolderpanel'
   },
+  border: false,
   width: 300,
   hideHeaders: true,
 
