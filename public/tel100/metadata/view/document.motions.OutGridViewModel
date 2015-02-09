@@ -6,6 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  parentId: null",
+            "}"
+        ],
         "designer|userAlias": "documentmotionsoutgrid",
         "designer|userClassName": "document.motions.OutGridViewModel"
     },

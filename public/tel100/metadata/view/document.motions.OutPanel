@@ -409,6 +409,45 @@
             },
             "name": "initComponent",
             "designerId": "5ca01573-1a76-442f-869b-e34a1a9d6878"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "id"
+                ],
+                "fn": "setParentId",
+                "implHandler": [
+                    "var grid = this.down('documentmotionsoutgrid');",
+                    "var vm = grid.getViewModel();",
+                    "vm.set('parentId', id);"
+                ]
+            },
+            "name": "setParentId",
+            "designerId": "9303b763-558b-4f5a-8c70-43de42076bb9"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getParentId",
+                "implHandler": [
+                    "var grid = this.down('documentmotionsoutgrid');",
+                    "var vm = grid.getViewModel();",
+                    "return vm.get('parentId');"
+                ]
+            },
+            "name": "getParentId",
+            "designerId": "1e546c4c-3e0c-4e45-90e1-f46b14d3895a"
         }
     ]
 }

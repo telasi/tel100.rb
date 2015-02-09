@@ -135,6 +135,18 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
       var draftMotion = gridVM.get('hasDraftMotion');
       self.fireEvent('draftmotionchanged', draftMotion);
     });
+  },
+
+  setParentId: function(id) {
+    var grid = this.down('documentmotionsoutgrid');
+    var vm = grid.getViewModel();
+    vm.set('parentId', id);
+  },
+
+  getParentId: function() {
+    var grid = this.down('documentmotionsoutgrid');
+    var vm = grid.getViewModel();
+    return vm.get('parentId');
   }
 
 });

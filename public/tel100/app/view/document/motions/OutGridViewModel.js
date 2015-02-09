@@ -24,6 +24,10 @@ Ext.define('Tel100.view.document.motions.OutGridViewModel', {
     'Ext.data.field.Field'
   ],
 
+  data: {
+    parentId: null
+  },
+
   stores: {
     motions: {
       onStoreChanges: function() {
