@@ -19,6 +19,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
 
   requires: [
     'Tel100.view.document.editor.EditorViewModel',
+    'Tel100.view.document.editor.EditorViewController',
     'Tel100.view.document.motions.InPanel',
     'Tel100.view.document.motions.OutPanel',
     'Ext.tab.Panel',
@@ -26,6 +27,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     'Ext.resizer.Splitter'
   ],
 
+  controller: 'documenteditoreditor',
   viewModel: {
     type: 'documenteditoreditor'
   },
@@ -87,7 +89,10 @@ Ext.define('Tel100.view.document.editor.Editor', {
             {
               xtype: 'documentmotionsinpanel',
               border: false,
-              flex: 1
+              flex: 1,
+              listeners: {
+                motionchanged: 'onInMotionChanged'
+              }
             },
             {
               xtype: 'splitter',

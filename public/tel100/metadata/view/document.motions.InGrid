@@ -260,7 +260,7 @@
                     "});",
                     "vm.bind('{motions}', function(store) {",
                     "  store.on('load', function() {",
-                    "    vm.set('activeMotion', self.getActiveMotion());",
+                    "    vm.set('activeMotion', self.getActiveMotion({ store: store }));",
                     "  });",
                     "});"
                 ]
@@ -276,6 +276,9 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|params": [
+                    "opts"
+                ],
                 "fn": "getActiveMotion",
                 "implHandler": [
                     "var vm = this.getViewModel();",
@@ -283,7 +286,7 @@
                     "if (selection) {",
                     "  return selection;",
                     "} else {",
-                    "  var store = this.getStore();",
+                    "  var store = (opts && opts.store) || this.getStore();",
                     "  if (store && store.getCount() > 0) {",
                     "    return store.getAt(0);",
                     "  }",

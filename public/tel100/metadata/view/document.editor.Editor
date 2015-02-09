@@ -179,9 +179,32 @@
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.inpanel",
+                            "name": "document.motions.inpanel1",
                             "designerId": "7a1fd724-1ec5-45fc-bb58-39815d4d9bac",
-                            "masterInstanceId": "360c0d57-9834-48d9-9eb7-d6316da82b30"
+                            "masterInstanceId": "360c0d57-9834-48d9-9eb7-d6316da82b30",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "motion"
+                                        ],
+                                        "fn": "onInMotionChanged",
+                                        "implHandler": [
+                                            "console.log(motion);"
+                                        ],
+                                        "name": "motionchanged",
+                                        "scope": "me"
+                                    },
+                                    "name": "onInMotionChanged",
+                                    "designerId": "2a9958b0-8e00-4d3c-a13c-33d8419769d0"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.resizer.Splitter",
@@ -208,7 +231,7 @@
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel2",
+                            "name": "document.motions.outpanel4",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }

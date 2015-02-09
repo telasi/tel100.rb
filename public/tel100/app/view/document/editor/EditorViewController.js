@@ -15,5 +15,10 @@
 
 Ext.define('Tel100.view.document.editor.EditorViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documenteditoreditor'
+  alias: 'controller.documenteditoreditor',
+
+  onInMotionChanged: function(motion) {
+    console.log(motion);
+  }
+
 });
