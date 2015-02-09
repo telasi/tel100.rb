@@ -123,6 +123,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "border": false,
                                 "designer|displayName": "documents",
                                 "selection": [
                                     "{selection}"

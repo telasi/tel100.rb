@@ -85,6 +85,7 @@ Ext.define('Tel100.view.document.Main', {
           items: [
             {
               xtype: 'documentgridpanel',
+              border: false,
               bind: {
                 selection: '{selection}'
               },

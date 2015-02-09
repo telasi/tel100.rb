@@ -41,6 +41,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
     {
       xtype: 'toolbar',
       region: 'north',
+      border: false,
       items: [
         {
           xtype: 'button',
@@ -91,6 +92,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
         {
           xtype: 'htmleditor',
           region: 'center',
+          border: false,
           bind: {
             value: '{document.body}'
           }

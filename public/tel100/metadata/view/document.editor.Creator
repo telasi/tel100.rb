@@ -27,6 +27,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "border": false,
                 "height": null,
                 "layout|flex": null,
                 "layout|region": "north"
@@ -224,6 +225,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "border": false,
                         "designer|displayName": "body",
                         "fieldLabel": null,
                         "layout|region": "center",
@@ -289,7 +291,7 @@
                         "designer|displayName": "receivers",
                         "hideCollapseTool": true
                     },
-                    "name": "document.motions.outpanel",
+                    "name": "document.motions.outpanel1",
                     "configAlternates": {
                         "title": "binding"
                     },
