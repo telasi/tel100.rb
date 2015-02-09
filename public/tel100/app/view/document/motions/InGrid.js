@@ -109,10 +109,30 @@ Ext.define('Tel100.view.document.motions.InGrid', {
 
   initComponent: function() {
     this.callParent();
+    var self = this;
     var vm = this.getViewModel();
-    vm.bind('{selection}', function(selected) {
-      debugger;
+    vm.bind('{selection}', function(motion) {
+      vm.set('activeMotion', self.getActiveMotion());
     });
+    vm.bind('{motions}', function(store) {
+      store.on('load', function() {
+        vm.set('activeMotion', self.getActiveMotion());
+      });
+    });
+  },
+
+  getActiveMotion: function() {
+    var vm = this.getViewModel();
+    var selection = vm.get('selection');
+    if (selection) {
+      return selection;
+    } else {
+      var store = this.getStore();
+      if (store && store.getCount() > 0) {
+        return store.getAt(0);
+      }
+      return null;
+    }
   }
 
 });

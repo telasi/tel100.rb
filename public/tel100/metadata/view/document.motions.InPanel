@@ -107,6 +107,28 @@
                 }
             ],
             "masterInstanceId": "04ffc6b0-782b-4122-ba75-5b1dd5b66d45"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "var self = this;",
+                    "var grid = this.down('documentmotionsingrid');",
+                    "var vm = grid.getViewModel();",
+                    "vm.bind('{activeMotion}', function(motion) {",
+                    "  self.fireEvent('motionchanged', motion);",
+                    "});"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "be58eb15-2228-4e92-9fec-c69a7097afe7"
         }
     ]
 }

@@ -24,7 +24,8 @@ Ext.define('Tel100.view.document.motions.InGridViewModel', {
   ],
 
   data: {
-    selection: null
+    selection: null,
+    activeMotion: null
   },
 
   stores: {

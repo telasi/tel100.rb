@@ -8,7 +8,8 @@
     "userConfig": {
         "data": [
             "{",
-            "  selection: null",
+            "  selection: null,",
+            "  activeMotion: null",
             "}"
         ],
         "designer|userAlias": "documentmotionsingrid",

@@ -253,14 +253,46 @@
                 "fn": "initComponent",
                 "implHandler": [
                     "this.callParent();",
+                    "var self = this;",
                     "var vm = this.getViewModel();",
-                    "vm.bind('{selection}', function(selected) {",
-                    "  debugger;",
+                    "vm.bind('{selection}', function(motion) {",
+                    "  vm.set('activeMotion', self.getActiveMotion());",
+                    "});",
+                    "vm.bind('{motions}', function(store) {",
+                    "  store.on('load', function() {",
+                    "    vm.set('activeMotion', self.getActiveMotion());",
+                    "  });",
                     "});"
                 ]
             },
             "name": "initComponent",
-            "designerId": "1df0c58c-ae99-47cb-99d8-625ffd215216"
+            "designerId": "d5890fc9-e8d9-4004-81f3-c5fa7a99877a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getActiveMotion",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "var selection = vm.get('selection');",
+                    "if (selection) {",
+                    "  return selection;",
+                    "} else {",
+                    "  var store = this.getStore();",
+                    "  if (store && store.getCount() > 0) {",
+                    "    return store.getAt(0);",
+                    "  }",
+                    "  return null;",
+                    "}"
+                ]
+            },
+            "name": "getActiveMotion",
+            "designerId": "e0724696-fa15-445e-bf4d-7c5c5308ca1a"
         }
     ]
 }
