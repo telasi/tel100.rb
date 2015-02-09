@@ -29,6 +29,7 @@
             "codeClass": null,
             "userConfig": {
                 "activeTab": 0,
+                "border": false,
                 "layout|region": "center",
                 "padding": "",
                 "tabPosition": "bottom"
@@ -44,6 +45,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "border": false,
                         "designer|displayName": "content",
                         "layout": "fit",
                         "title": [
@@ -141,6 +143,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "border": false,
                         "container|align": "stretch",
                         "designer|displayName": "motions",
                         "layout": "hbox",
@@ -172,6 +175,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "border": false,
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
@@ -200,10 +204,11 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "border": false,
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel1",
+                            "name": "document.motions.outpanel2",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }

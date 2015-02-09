@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "border": false,
         "designer|userAlias": "documenteditorcreator",
         "designer|userClassName": "document.editor.Creator",
         "height": null,
@@ -27,6 +28,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "border": false,
                 "height": null,
                 "layout|flex": null,
                 "layout|region": "north"
@@ -170,6 +172,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "border": false,
                 "designer|displayName": "main",
                 "layout": "border",
                 "layout|flex": 1,
@@ -247,6 +250,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "border": false,
                 "designer|displayName": "details",
                 "layout": "accordion",
                 "layout|region": "east",
@@ -271,7 +275,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general",
+                    "name": "document.editor.general1",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -289,7 +293,7 @@
                         "designer|displayName": "receivers",
                         "hideCollapseTool": true
                     },
-                    "name": "document.motions.outpanel",
+                    "name": "document.motions.outpanel1",
                     "configAlternates": {
                         "title": "binding"
                     },

@@ -34,6 +34,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
   viewModel: {
     type: 'documenteditorcreator'
   },
+  border: false,
   layout: 'border',
   defaultListenerScope: true,
 
@@ -41,6 +42,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
     {
       xtype: 'toolbar',
       region: 'north',
+      border: false,
       items: [
         {
           xtype: 'button',
@@ -77,6 +79,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
       xtype: 'container',
       flex: 1,
       region: 'center',
+      border: false,
       layout: 'border',
       items: [
         {
@@ -101,6 +104,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
       xtype: 'container',
       region: 'east',
       split: true,
+      border: false,
       padding: 0,
       width: 400,
       layout: 'accordion',

@@ -35,12 +35,14 @@ Ext.define('Tel100.view.document.editor.Editor', {
     {
       xtype: 'tabpanel',
       region: 'center',
+      border: false,
       padding: '',
       activeTab: 0,
       tabPosition: 'bottom',
       items: [
         {
           xtype: 'panel',
+          border: false,
           layout: 'fit',
           bind: {
             title: '{i18n.document.base.ui.contentTabTitle}'
@@ -73,6 +75,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
         },
         {
           xtype: 'panel',
+          border: false,
           layout: {
             type: 'hbox',
             align: 'stretch'
@@ -83,6 +86,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
           items: [
             {
               xtype: 'documentmotionsinpanel',
+              border: false,
               flex: 1
             },
             {
@@ -91,6 +95,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
             },
             {
               xtype: 'documentmotionsoutpanel',
+              border: false,
               flex: 1
             }
           ]
