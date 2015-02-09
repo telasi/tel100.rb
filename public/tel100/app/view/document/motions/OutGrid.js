@@ -160,7 +160,14 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
 
     /// XXX isEmptyStore is not listed as a API method
     if (!store.isEmptyStore) {
-      store.load({ params: { parent_id: parentId } });
+      var self = this;
+      self.setLoading(true);
+      store.load({
+        params: { parent_id: parentId },
+        callback: function() {
+          self.setLoading(false);
+        }
+      });
     }
   },
 
