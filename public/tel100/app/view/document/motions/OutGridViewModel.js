@@ -39,8 +39,9 @@ Ext.define('Tel100.view.document.motions.OutGridViewModel', {
             break;
           }
         }
-        var vm = this.viewModel;
-        vm.set('hasDraftMotion', hasDraftMotion);
+        if (this.viewModel) {
+          this.viewModel.set('hasDraftMotion', hasDraftMotion);
+        }
       },
       listeners: {
         update: function() {

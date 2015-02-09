@@ -156,15 +156,19 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
   refresh: function() {
     var vm = this.getViewModel();
     var parentId = vm.get('parentId');
-    this.getStore().load({ params: { parent_id: parentId } });
+    var store = this.getStore();
+
+    /// XXX isEmptyStore is not listed as a API method
+    if (!store.isEmptyStore) {
+      store.load({ params: { parent_id: parentId } });
+    }
   },
 
   initComponent: function() {
     this.callParent();
     var vm = this.getViewModel();
     // setting view model for the motions store
-    vm.bind('{motions}', function() {
-      var store = arguments[0];
+    vm.bind('{motions}', function(store) {
       store.viewModel = this;
     });
   }
