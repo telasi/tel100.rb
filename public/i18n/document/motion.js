@@ -7,8 +7,9 @@ module.exports = {
   motion_text: 'რეზოლუცია',
   due_date: 'ვადა',
   addReceiver: 'ადრესატის დამატება',
-  outMotions: 'ადრესატები',
-  inMotions: 'გამომგზავნები',
+  outMotions: 'გაცემული რეზოლუციები',
+  inMotions: 'შემოსული რეზოლუციები',
   selectToEdit: 'აარჩიეთ მოძრაობა მისი თვისებების სანახავად',
-  selectReceiver: 'ადრესატების არჩევა'
+  selectReceiver: 'ადრესატების არჩევა',
+  sendMotions: '<i class="fa fa-send"></i> გაგზავნა'
 };
