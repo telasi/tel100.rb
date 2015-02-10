@@ -40,6 +40,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
       border: false,
       padding: '',
       activeTab: 0,
+      deferredRender: false,
       tabPosition: 'bottom',
       items: [
         {
