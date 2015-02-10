@@ -62,26 +62,25 @@ Rails.application.routes.draw do
 
     namespace 'documents' do
       scope 'base', controller: 'base' do
-        get '/', action: 'index'
-        get '/:id', action: 'show'
-        # draft operations
+        get    '/', action: 'index'
+        get    '/:id', action: 'show'
         post   '/create_draft', action: 'create_draft'
         put    '/update_draft', action: 'update_draft'
         delete '/delete_draft', action: 'delete_draft'
         post   '/send_draft',   action: 'send_draft'
       end
       scope 'motion', controller: 'motion' do
-        get '/', action: 'index'
-        # motion draft operations
-        post '/create_draft', action: 'create_draft'
-        put  '/update_draft', action: 'update_draft'
+        get    '/', action: 'index'
+        post   '/create_draft', action: 'create_draft'
+        put    '/update_draft', action: 'update_draft'
         delete '/delete_draft', action: 'delete_draft'
+        post   '/send_draft_motions', action: 'send_draft_motions'
       end
       scope 'types', controller: 'types' do
-        get '/',    action: 'index'
-        get '/:id', action: 'show'
-        post '/',   action: 'create'
-        put '/:id', action: 'update'
+        get    '/',    action: 'index'
+        get    '/:id', action: 'show'
+        post   '/',   action: 'create'
+        put    '/:id', action: 'update'
         delete '/:id', action: 'destroy'
       end
     end

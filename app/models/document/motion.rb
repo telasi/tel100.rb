@@ -56,6 +56,11 @@ class Document::Motion < ActiveRecord::Base
     })
   end
 
+  def send_draft_motions!(user)
+    # TODO
+    raise 'not yet implemented'
+  end
+
   def update_draft!(user, params)
     raise I18n.t('models.document_motion.errors.not_a_draft') unless self.draft?
     raise I18n.t('models.document_motion.errors.not_allowed') unless self.can_edit?(user)

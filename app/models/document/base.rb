@@ -92,6 +92,11 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
+  def send_draft_motions!(user)
+    # TODO
+    raise 'not yet implemented'
+  end
+
 ### old API
 
   def revisit_motions!

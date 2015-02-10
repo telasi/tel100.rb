@@ -25,12 +25,23 @@ class Api::Documents::MotionController < ApiController
   def update_draft
     motion = Document::Motion.find(params[:id])
     motion.update_draft!(current_user, params)
-    render json: { status: 'ok' }
+    render json: { success: true }
   end
 
   def delete_draft
     motion = Document::Motion.find(params[:id])
     motion.delete_draft!(current_user)
-    render json: { status: 'ok' }
+    render json: { success: true }
+  end
+
+  def send_draft_motions
+    doc = Document::Base.find(params[:document_id])
+    parent_motion = Document::Motion.find(params[:parent_id]) if params[:parent_id].present?
+    if parent_motion.present?
+      parent_motion.send_draft_motions!(current_user)
+    else
+      doc.send_draft_motions!(current_user)
+    end
+    render json: { success: true }
   end
 end
