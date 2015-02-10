@@ -68,6 +68,19 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
         },
         {
           xtype: 'button',
+          handler: function(button, e) {
+            var panel = this.up('documentmotionsoutpanel');
+            var vm = panel.getViewModel();
+            if (vm.get('sendButtonDisabled')) { return; }
+            var title = i18n.ui.confirmTitle;
+            var message = i18n.document.motion.sendMotionsConfirm;
+            Ext.Msg.confirm(title, message, function(resp) {
+              if (resp === 'yes') {
+                // TODO
+                console.log('ok');
+              }
+            });
+          },
           bind: {
             disabled: '{sendButtonDisabled}',
             hidden: '{sendButtonDisabled}',

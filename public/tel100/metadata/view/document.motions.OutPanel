@@ -160,7 +160,39 @@
                         "disabled": "binding",
                         "hidden": "binding"
                     },
-                    "designerId": "63588d29-99d6-42be-9c7e-5c60c50e1d55"
+                    "designerId": "63588d29-99d6-42be-9c7e-5c60c50e1d55",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var panel = this.up('documentmotionsoutpanel');",
+                                    "var vm = panel.getViewModel();",
+                                    "if (vm.get('sendButtonDisabled')) { return; }",
+                                    "var title = i18n.ui.confirmTitle;",
+                                    "var message = i18n.document.motion.sendMotionsConfirm;",
+                                    "Ext.Msg.confirm(title, message, function(resp) {",
+                                    "  if (resp === 'yes') {",
+                                    "    // TODO",
+                                    "    console.log('ok');",
+                                    "  }",
+                                    "});"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "e3726680-5238-4269-ba84-e397b76d2371"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.toolbar.Fill",

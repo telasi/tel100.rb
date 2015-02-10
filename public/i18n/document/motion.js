@@ -11,5 +11,6 @@ module.exports = {
   inMotions: 'შემოსული რეზოლუციები',
   selectToEdit: 'აარჩიეთ მოძრაობა მისი თვისებების სანახავად',
   selectReceiver: 'ადრესატების არჩევა',
-  sendMotions: '<i class="fa fa-send"></i> გაგზავნა'
+  sendMotions: '<i class="fa fa-send"></i> გაგზავნა',
+  sendMotionsConfirm: 'ნამდვილად გინდათ ყველა დრაფტის დაგზავნა?'
 };
