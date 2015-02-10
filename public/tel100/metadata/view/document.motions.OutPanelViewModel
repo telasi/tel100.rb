@@ -56,6 +56,45 @@
                     "designerId": "77e3227b-d8ba-41e0-8a5a-d4650cf3e907"
                 }
             ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sendButtonDisabled"
+            },
+            "name": "MyFormula2",
+            "designerId": "50203c94-afaf-400a-97a7-a3d4fd88e99c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var docstatus = get('document.status');",
+                            "if (docstatus === helpers.document.status.DRAFT) {",
+                            "  return true;",
+                            "} else {",
+                            "  return !get('hasDraftMotions');",
+                            "}"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "658cba26-d448-400f-80e9-4fac68c707ae"
+                }
+            ]
         }
     ]
 }

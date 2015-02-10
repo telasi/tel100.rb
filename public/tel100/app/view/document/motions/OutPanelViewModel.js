@@ -35,6 +35,14 @@ Ext.define('Tel100.view.document.motions.OutPanelViewModel', {
       } else {
         return true;
       }
+    },
+    sendButtonDisabled: function(get) {
+      var docstatus = get('document.status');
+      if (docstatus === helpers.document.status.DRAFT) {
+        return true;
+      } else {
+        return !get('hasDraftMotions');
+      }
     }
   }
 

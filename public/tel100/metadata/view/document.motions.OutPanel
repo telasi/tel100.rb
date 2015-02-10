@@ -135,6 +135,30 @@
                     ]
                 },
                 {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "send",
+                        "disabled": [
+                            "{sendButtonDisabled}"
+                        ],
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.document.motion.sendMotions}"
+                        ]
+                    },
+                    "name": "MyButton3",
+                    "configAlternates": {
+                        "text": "binding",
+                        "disabled": "binding"
+                    },
+                    "designerId": "63588d29-99d6-42be-9c7e-5c60c50e1d55"
+                },
+                {
                     "type": "Ext.toolbar.Fill",
                     "reference": {
                         "name": "items",
@@ -145,7 +169,7 @@
                         "layout|flex": null
                     },
                     "name": "MyFill",
-                    "designerId": "57f21aca-ea2c-4281-a420-b63c2437a54a"
+                    "designerId": "4ea5546f-35ef-466f-9771-bf56cb21c9d4"
                 },
                 {
                     "type": "Ext.button.Button",
@@ -448,6 +472,28 @@
             },
             "name": "getParentId",
             "designerId": "1e546c4c-3e0c-4e45-90e1-f46b14d3895a"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "hasDraftMotions"
+                ],
+                "fn": "onDraftmotionChanged",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "vm.set('hasDraftMotions', hasDraftMotions);"
+                ],
+                "name": "draftmotionchanged",
+                "scope": "me"
+            },
+            "name": "onDraftmotionChanged",
+            "designerId": "178602ba-beec-46a6-b78c-e6fc7a5f80fc"
         }
     ]
 }

@@ -32,6 +32,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     type: 'documentmotionsoutpanel'
   },
   layout: 'border',
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.motion.outMotions}'
@@ -63,6 +64,13 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
           bind: {
             text: '{i18n.ui.add_short}',
             tooltip: '{i18n.ui.add}'
+          }
+        },
+        {
+          xtype: 'button',
+          bind: {
+            disabled: '{sendButtonDisabled}',
+            text: '{i18n.document.motion.sendMotions}'
           }
         },
         {
@@ -114,9 +122,24 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     }
   ],
   listeners: {
-    beforerender: 'onBeforeRender',
-    motionchange: 'onPanelMotionChange',
-    beforedestroy: 'onPanelBeforeDestroy'
+    beforerender: {
+      fn: 'onBeforeRender',
+      scope: 'controller'
+    },
+    motionchange: {
+      fn: 'onPanelMotionChange',
+      scope: 'controller'
+    },
+    beforedestroy: {
+      fn: 'onPanelBeforeDestroy',
+      scope: 'controller'
+    },
+    draftmotionchanged: 'onDraftmotionChanged'
+  },
+
+  onDraftmotionChanged: function(hasDraftMotions) {
+    var vm = this.getViewModel();
+    vm.set('hasDraftMotions', hasDraftMotions);
   },
 
   refresh: function() {
