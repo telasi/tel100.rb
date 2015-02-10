@@ -57,8 +57,12 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def send_draft_motions!(user)
-    # TODO
-    raise 'not yet implemented'
+    raise I18n.t('models.document_motion.errors.no_privilege_to_send') unless user == self.receiver_user
+    Document::Motion.transaction do
+      Document::Motion.where(status: DRAFT, parent: self).order('ordering').each do |motion|
+        motion.send_draft!(user)
+      end
+    end
   end
 
   def update_draft!(user, params)
