@@ -183,8 +183,14 @@
                                     "var message = i18n.document.motion.sendMotionsConfirm;",
                                     "Ext.Msg.confirm(title, message, function(resp) {",
                                     "  if (resp === 'yes') {",
-                                    "    // TODO",
-                                    "    console.log('ok');",
+                                    "    var parentId = panel.getParentId();",
+                                    "    var document = vm.get('document');",
+                                    "    var documentId = document.id;",
+                                    "    helpers.api.document.motion.sendDraft(documentId, parentId, {",
+                                    "      success: function() {",
+                                    "        panel.refresh();",
+                                    "      }",
+                                    "    });",
                                     "  }",
                                     "});"
                                 ]
