@@ -93,8 +93,12 @@ class Document::Base < ActiveRecord::Base
   end
 
   def send_draft_motions!(user)
-    # TODO
-    raise 'not yet implemented'
+    raise I18n.t('models.document_base.errors.no_privilege_to_send') unless user == self.owner_user
+    Document::Base.transaction do
+      self.motions.where(status: DRAFT, parent_id: nil).each do |motion|
+        motion.send_draft!(user)
+      end
+    end
   end
 
 ### old API
