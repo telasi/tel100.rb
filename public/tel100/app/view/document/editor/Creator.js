@@ -86,7 +86,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
           xtype: 'textfield',
           submitEmptyText: false,
           region: 'north',
-          emptyText: 'enter document status',
+          emptyText: 'enter document\'s subject',
           bind: {
             value: '{document.subject}'
           }

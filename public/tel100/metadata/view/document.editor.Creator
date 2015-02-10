@@ -193,13 +193,14 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "subject",
-                        "emptyText": "enter document status",
+                        "emptyText": "enter document's subject",
                         "fieldLabel": null,
                         "height": null,
                         "itemId": null,
                         "layout|flex": null,
                         "layout|region": "north",
                         "margin": null,
+                        "reference": null,
                         "submitEmptyText": false,
                         "value": [
                             "{document.subject}"
@@ -207,8 +208,8 @@
                     },
                     "name": "MyTextField",
                     "configAlternates": {
-                        "value": "binding",
-                        "submitEmptyText": "boolean"
+                        "submitEmptyText": "boolean",
+                        "value": "binding"
                     },
                     "designerId": "bafc9b59-5005-4231-8ddf-54504a224295",
                     "customConfigs": [
@@ -275,7 +276,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general2",
+                    "name": "document.editor.general",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -293,7 +294,7 @@
                         "designer|displayName": "receivers",
                         "hideCollapseTool": true
                     },
-                    "name": "document.motions.outpanel3",
+                    "name": "document.motions.outpanel",
                     "configAlternates": {
                         "title": "binding"
                     },

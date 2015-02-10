@@ -46,6 +46,7 @@ module.exports = {
   type: 'სახეობა',
   direction: 'მიმართულება',
   subject: 'სათაური',
+  subject_tooltip: 'ჩაწერეთ დოკუმენტის სათაური',
   original_number: 'დედანის #',
   original_date: 'დედანის თარიღი',
   docnumber: 'ნომერი',
