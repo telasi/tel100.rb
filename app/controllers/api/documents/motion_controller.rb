@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Api::Documents::MotionController < ApiController
+  include Document::Status
   before_filter :validate_login
 
   def index
@@ -11,6 +12,7 @@ class Api::Documents::MotionController < ApiController
     else
       hasbase = true if current_user == @document.sender_user
       rel = rel.where(receiver_user: current_user)
+      rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
     end
     motions = rel.order('ordering ASC, id ASC').to_a
     @motions = hasbase ? [ nil ] + motions : motions
