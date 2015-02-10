@@ -70,6 +70,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
           xtype: 'button',
           bind: {
             disabled: '{sendButtonDisabled}',
+            hidden: '{sendButtonDisabled}',
             text: '{i18n.document.motion.sendMotions}'
           }
         },

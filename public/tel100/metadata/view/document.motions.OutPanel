@@ -146,6 +146,9 @@
                         "disabled": [
                             "{sendButtonDisabled}"
                         ],
+                        "hidden": [
+                            "{sendButtonDisabled}"
+                        ],
                         "layout|flex": null,
                         "text": [
                             "{i18n.document.motion.sendMotions}"
@@ -154,7 +157,8 @@
                     "name": "MyButton3",
                     "configAlternates": {
                         "text": "binding",
-                        "disabled": "binding"
+                        "disabled": "binding",
+                        "hidden": "binding"
                     },
                     "designerId": "63588d29-99d6-42be-9c7e-5c60c50e1d55"
                 },
