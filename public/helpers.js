@@ -128,6 +128,14 @@ var motion = {
     opts.url = '/api/documents/motion/delete_draft';
     opts.params = { id: id };
     ajax.request(opts);
+  },
+
+  sendDraft: function(documentId, parentId, args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/motion/send_draft_motions';
+    opts.params = { document_id: documentId, parent_id: parentId };
+    ajax.request(opts);
   }
 };
 
