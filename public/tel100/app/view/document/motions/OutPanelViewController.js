@@ -24,10 +24,13 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
   addReceiver: function(receiver) {
     var extType = receiver.get('ext_type');
     var document = this.getViewModel().get('document');
+    var grid = this.getView().getGrid();
+    var parentId = grid.getViewModel().get('parentId');
     helpers.api.document.motion.createDraft({
       params: {
         document_id: document.id,
         receiver_id: receiver.id,
+        parent_id: parentId,
         receiver_type: receiver.get('ext_type')
       },
       success: function(motionData) {
