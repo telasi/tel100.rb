@@ -7,7 +7,7 @@ class Api::Documents::MotionController < ApiController
     rel = @document.motions
     if params[:mode] == 'out'
       rel = rel.where(sender_user: current_user)
-      rel = rel.where(parent_id: params[:parent_id]) if params[:parent_id].present?
+      rel = rel.where(parent_id: (params[:parent_id].present? ? params[:parent_id] : nil))
     else
       hasbase = true if current_user == @document.sender_user
       rel = rel.where(receiver_user: current_user)
