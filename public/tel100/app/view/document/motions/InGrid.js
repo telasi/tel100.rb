@@ -60,7 +60,8 @@ Ext.define('Tel100.view.document.motions.InGrid', {
           var vm = this.getViewModel();
           var doc = vm.get('document');
           var numb = doc.get('docnumber');
-          return '>>> ' + numb;
+          var senderName = doc.get('sender_name');
+          return '<strong>#' + numb + '</strong>: ' + senderName;
         }
       },
       draggable: false,
