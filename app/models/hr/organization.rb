@@ -11,6 +11,7 @@ class HR::Organization < ActiveRecord::Base
   def chain; self.parent ? self.parent.chain << self : [self] end
   def manager?; self.is_manager == 1 end
   def active?; self.is_active == 1 end
+  def to_s; self.name end
 
   def to_hash
     {

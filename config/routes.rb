@@ -70,10 +70,11 @@ Rails.application.routes.draw do
         post   '/send_draft',   action: 'send_draft'
       end
       scope 'motion', controller: 'motion' do
-        get    '/', action: 'index'
-        post   '/create_draft', action: 'create_draft'
-        put    '/update_draft', action: 'update_draft'
-        delete '/delete_draft', action: 'delete_draft'
+        get    '/',                   action: 'index'
+        get    '/tree',               action: 'tree'
+        post   '/create_draft',       action: 'create_draft'
+        put    '/update_draft',       action: 'update_draft'
+        delete '/delete_draft',       action: 'delete_draft'
         post   '/send_draft_motions', action: 'send_draft_motions'
       end
       scope 'types', controller: 'types' do

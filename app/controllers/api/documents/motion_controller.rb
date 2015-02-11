@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Api::Documents::MotionController < ApiController
   include Document::Status
+  include TreeUtils
   before_filter :validate_login
 
   def index
@@ -16,6 +17,21 @@ class Api::Documents::MotionController < ApiController
     end
     motions = rel.order('ordering ASC, id ASC').to_a
     @motions = hasbase ? [ nil ] + motions : motions
+  end
+
+  def tree
+    document = Document::Base.find(params[:document_id])
+    motionsArray = document.motions.order('ordering ASC, id ASC').map do |motion|
+      {
+        id: motion.id,
+        parent_id: motion.parent_id,
+        status: motion.status,
+        ordering: motion.ordering,
+        sender: motion.sender_name,
+        receiver: motion.receiver_name
+      }
+    end
+    render json: array_to_tree(motionsArray)
   end
 
   def create_draft

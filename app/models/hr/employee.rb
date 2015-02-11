@@ -12,7 +12,7 @@ class HR::Employee < ActiveRecord::Base
   has_one :user, class_name: 'Sys::User'
 
   def self.active; HR::Employee.where(is_active: 1) end
-  def to_s; "#{self.person_number} - #{self.full_name}" end
+  def to_s; self.full_name end
   def person_number; self.person_id.to_s.rjust(5, '0') end
   def full_name; "#{first_name} #{last_name}" end
   def active?; self.is_active == 1 end
