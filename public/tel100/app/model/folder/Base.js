@@ -18,7 +18,8 @@ Ext.define('Tel100.model.folder.Base', {
 
   requires: [
     'Tel100.model.Tel100',
-    'Ext.data.proxy.Rest'
+    'Ext.data.proxy.Rest',
+    'Ext.data.field.Field'
   ],
 
   schema: 'tel100',
@@ -26,5 +27,20 @@ Ext.define('Tel100.model.folder.Base', {
   proxy: {
     type: 'rest',
     url: '/api/folder'
-  }
+  },
+
+  fields: [
+    {
+      name: 'name'
+    },
+    {
+      name: 'category'
+    },
+    {
+      calculate: function(data) {
+        return true;
+      },
+      name: 'custom'
+    }
+  ]
 });

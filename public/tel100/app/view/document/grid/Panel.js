@@ -20,6 +20,8 @@ Ext.define('Tel100.view.document.grid.Panel', {
   requires: [
     'Tel100.view.document.grid.PanelViewModel',
     'Ext.grid.View',
+    'Ext.grid.plugin.DragDrop',
+    'Ext.util.Point',
     'Ext.grid.column.Column'
   ],
 
@@ -35,7 +37,15 @@ Ext.define('Tel100.view.document.grid.Panel', {
     getRowClass: function(record, rowIndex, rowParams, store) {
       var status = record.get('my_status');
       return helpers.document.status.documentStatusRowClass(status, record);
-    }
+    },
+    plugins: [
+      {
+        ptype: 'gridviewdragdrop',
+        pluginId: 'draganddropplug',
+        ddGroup: 'GridExample',
+        enableDrop: false
+      }
+    ]
   },
   columns: [
     {

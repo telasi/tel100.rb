@@ -53,6 +53,25 @@ Ext.define('Tel100.view.document.folder.PanelViewController', {
     }
   },
 
+  onGridpanelAfterRender: function(component, eOpts) {
+    component.dropZone = Ext.create('Ext.dd.DropZone', component.el,{
+      ddGroup: 'GridExample',
+
+      getTargetFromEvent: function(e) {
+        return e.getTarget('.foldercls');
+      },
+
+      onNodeEnter : function(target, dd, e, data){
+        Ext.fly(target).highlight();
+      },
+
+      onNodeOver : function(target, dd, e, data){
+        var proto = Ext.dd.DropZone.prototype;
+        return proto.dropAllowed;
+      },
+    });
+  },
+
   onCustomStoreLoad: function(store, records, successful, eOpts) {
     var standardstore = this.getStore('standardfolders');
     var foldersstore = this.getStore('folders');

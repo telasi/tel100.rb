@@ -19,7 +19,8 @@ Ext.define('Tel100.view.document.folder.PanelViewModel', {
 
   requires: [
     'Ext.data.Store',
-    'Ext.data.field.Field'
+    'Ext.data.field.Field',
+    'Tel100.view.document.folder.PanelViewController'
   ],
 
   stores: {
