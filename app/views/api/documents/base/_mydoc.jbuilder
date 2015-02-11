@@ -29,6 +29,7 @@ json.status      doc.status
 json.sender_user_id doc.sender_user_id
 json.sender_id   doc.sender_id
 json.sender_type doc.sender_type
+json.sender_name doc.sender_name
 json.owner_user_id doc.owner_user_id
 json.owner_id    doc.owner_id
 json.owner_type  doc.owner_type

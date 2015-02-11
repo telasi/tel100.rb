@@ -1728,8 +1728,8 @@
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": null,
-        "selectedInstance": null
+        "topInstance": "23c81566-c199-406f-8b0e-a0b49f286dd9",
+        "selectedInstance": "9dbd6a3c-4d49-4b11-897a-e0c1133aca7a"
     },
     "editMode": "code",
     "userSettings": {
