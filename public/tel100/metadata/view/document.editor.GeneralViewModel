@@ -6,6 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  readonly: false",
+            "}"
+        ],
         "designer|userAlias": "documenteditorgeneral",
         "designer|userClassName": "document.editor.GeneralViewModel"
     },

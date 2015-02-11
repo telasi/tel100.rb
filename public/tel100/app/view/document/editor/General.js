@@ -42,6 +42,7 @@ Ext.define('Tel100.view.document.editor.General', {
       bind: {
         fieldLabel: '{i18n.document.base.type}',
         value: '{document.type_id}',
+        readOnly: '{readonly}',
         store: '{types}'
       },
       listeners: {
@@ -54,7 +55,8 @@ Ext.define('Tel100.view.document.editor.General', {
       format: 'd/m/Y',
       bind: {
         fieldLabel: '{i18n.document.base.docdate}',
-        value: '{document.docdate}'
+        value: '{document.docdate}',
+        readOnly: '{readonly}'
       }
     },
     {
@@ -63,7 +65,8 @@ Ext.define('Tel100.view.document.editor.General', {
       minValue: 0,
       bind: {
         fieldLabel: '{i18n.document.base.page_count}',
-        value: '{document.page_count}'
+        value: '{document.page_count}',
+        readOnly: '{readonly}'
       }
     },
     {
@@ -72,7 +75,8 @@ Ext.define('Tel100.view.document.editor.General', {
       minValue: 0,
       bind: {
         fieldLabel: '{i18n.document.base.additions_count}',
-        value: '{document.additions_count}'
+        value: '{document.additions_count}',
+        readOnly: '{readonly}'
       }
     },
     {
@@ -84,6 +88,7 @@ Ext.define('Tel100.view.document.editor.General', {
       bind: {
         fieldLabel: '{i18n.document.base.direction}',
         value: '{document.direction}',
+        readOnly: '{readonly}',
         store: '{directions}'
       }
     },
@@ -99,7 +104,8 @@ Ext.define('Tel100.view.document.editor.General', {
           anchor: '100%',
           bind: {
             fieldLabel: '{i18n.document.base.original_number}',
-            value: '{document.original_number}'
+            value: '{document.original_number}',
+            readOnly: '{readonly}'
           }
         },
         {
@@ -108,11 +114,20 @@ Ext.define('Tel100.view.document.editor.General', {
           format: 'd/m/Y',
           bind: {
             fieldLabel: '{i18n.document.base.original_date}',
-            value: '{document.original_date}'
+            value: '{document.original_date}',
+            readOnly: '{readonly}'
           }
         }
       ]
     }
-  ]
+  ],
+
+  getReadonly: function() {
+    return this.getViewModel().get('readonly');
+  },
+
+  setReadonly: function(ro) {
+    return this.getViewModel().set('readonly', ro);
+  }
 
 });

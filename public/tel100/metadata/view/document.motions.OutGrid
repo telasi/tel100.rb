@@ -116,6 +116,7 @@
                     "userConfig": {
                         "decimalPrecision": 0,
                         "designer|displayName": "editor",
+                        "editable": null,
                         "maxValue": 999,
                         "minValue": 1
                     },

@@ -23,6 +23,10 @@ Ext.define('Tel100.view.document.editor.GeneralViewModel', {
     'Ext.app.bind.Formula'
   ],
 
+  data: {
+    readonly: false
+  },
+
   stores: {
     types: {
       autoLoad: true,

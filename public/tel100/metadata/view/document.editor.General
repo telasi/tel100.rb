@@ -10,10 +10,14 @@
         "designer|userAlias": "documenteditorgeneral",
         "designer|userClassName": "document.editor.General",
         "height": null,
+        "publishes": null,
         "title": null,
         "width": null
     },
     "name": "MyForm1",
+    "configAlternates": {
+        "readonly": "boolean"
+    },
     "designerId": "759b5380-72a7-453f-b37c-cfc4a98ba34e",
     "viewControllerInstanceId": "4acf4a7b-d90a-4e22-a209-3d24103b9bb3",
     "viewModelInstanceId": "78e4b3f1-6207-4071-931a-f4d7da273c9b",
@@ -33,6 +37,9 @@
                     "{i18n.document.base.type}"
                 ],
                 "layout|anchor": "100%",
+                "readOnly": [
+                    "{readonly}"
+                ],
                 "store": [
                     "{types}"
                 ],
@@ -45,7 +52,8 @@
             "configAlternates": {
                 "value": "binding",
                 "fieldLabel": "binding",
-                "store": "binding"
+                "store": "binding",
+                "readOnly": "binding"
             },
             "designerId": "75daabda-af54-40d2-a244-920a0c37c2b0",
             "cn": [
@@ -87,6 +95,9 @@
                 ],
                 "format": "d/m/Y",
                 "layout|anchor": "100%",
+                "readOnly": [
+                    "{readonly}"
+                ],
                 "value": [
                     "{document.docdate}"
                 ]
@@ -94,7 +105,8 @@
             "name": "MyDateField",
             "configAlternates": {
                 "value": "binding",
-                "fieldLabel": "binding"
+                "fieldLabel": "binding",
+                "readOnly": "binding"
             },
             "designerId": "89cc25d6-0295-4e93-8a22-a1e3ae9c6a6d"
         },
@@ -112,6 +124,9 @@
                 ],
                 "layout|anchor": "100%",
                 "minValue": 0,
+                "readOnly": [
+                    "{readonly}"
+                ],
                 "value": [
                     "{document.page_count}"
                 ]
@@ -119,7 +134,8 @@
             "name": "MyNumberField",
             "configAlternates": {
                 "fieldLabel": "binding",
-                "value": "binding"
+                "value": "binding",
+                "readOnly": "binding"
             },
             "designerId": "48b5d188-a87e-41cd-b28b-59d08a550c15"
         },
@@ -137,6 +153,9 @@
                 ],
                 "layout|anchor": "100%",
                 "minValue": 0,
+                "readOnly": [
+                    "{readonly}"
+                ],
                 "value": [
                     "{document.additions_count}"
                 ]
@@ -144,7 +163,8 @@
             "name": "MyNumberField1",
             "configAlternates": {
                 "value": "binding",
-                "fieldLabel": "binding"
+                "fieldLabel": "binding",
+                "readOnly": "binding"
             },
             "designerId": "7507dc2a-0810-43ef-a107-c66c1694a15f"
         },
@@ -163,6 +183,9 @@
                     "{i18n.document.base.direction}"
                 ],
                 "layout|anchor": "100%",
+                "readOnly": [
+                    "{readonly}"
+                ],
                 "store": [
                     "{directions}"
                 ],
@@ -175,7 +198,8 @@
             "configAlternates": {
                 "fieldLabel": "binding",
                 "store": "binding",
-                "value": "binding"
+                "value": "binding",
+                "readOnly": "binding"
             },
             "designerId": "338347f7-e594-4dd2-a722-669f5fe3507c"
         },
@@ -215,6 +239,9 @@
                             "{i18n.document.base.original_number}"
                         ],
                         "layout|anchor": "100%",
+                        "readOnly": [
+                            "{readonly}"
+                        ],
                         "value": [
                             "{document.original_number}"
                         ]
@@ -222,7 +249,8 @@
                     "name": "MyTextField",
                     "configAlternates": {
                         "value": "binding",
-                        "fieldLabel": "binding"
+                        "fieldLabel": "binding",
+                        "readOnly": "binding"
                     },
                     "designerId": "af102114-0c49-476f-9c44-fb9425b89cbb"
                 },
@@ -240,6 +268,9 @@
                         ],
                         "format": "d/m/Y",
                         "layout|anchor": "100%",
+                        "readOnly": [
+                            "{readonly}"
+                        ],
                         "value": [
                             "{document.original_date}"
                         ]
@@ -247,11 +278,47 @@
                     "name": "MyDateField1",
                     "configAlternates": {
                         "value": "binding",
-                        "fieldLabel": "binding"
+                        "fieldLabel": "binding",
+                        "readOnly": "binding"
                     },
                     "designerId": "9f19c385-9f64-4dab-a4a9-241c823f5f29"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getReadonly",
+                "implHandler": [
+                    "return this.getViewModel().get('readonly');"
+                ]
+            },
+            "name": "getReadonly",
+            "designerId": "7842fdd5-b186-4ea5-92b5-a7b61b8cdae6"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "ro"
+                ],
+                "fn": "setReadonly",
+                "implHandler": [
+                    "return this.getViewModel().set('readonly', ro);"
+                ]
+            },
+            "name": "setReadonly",
+            "designerId": "375e0ed2-c376-43d9-9036-150f763c9094"
         }
     ]
 }

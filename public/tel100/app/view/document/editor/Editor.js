@@ -20,10 +20,12 @@ Ext.define('Tel100.view.document.editor.Editor', {
   requires: [
     'Tel100.view.document.editor.EditorViewModel',
     'Tel100.view.document.editor.EditorViewController',
+    'Tel100.view.document.editor.General',
     'Tel100.view.document.motions.InPanel',
     'Tel100.view.document.motions.OutPanel',
     'Ext.tab.Panel',
     'Ext.tab.Tab',
+    'Ext.form.Panel',
     'Ext.resizer.Splitter'
   ],
 
@@ -46,13 +48,14 @@ Ext.define('Tel100.view.document.editor.Editor', {
         {
           xtype: 'panel',
           border: false,
-          layout: 'fit',
+          layout: 'border',
           bind: {
             title: '{i18n.document.base.ui.contentTabTitle}'
           },
           items: [
             {
               xtype: 'container',
+              region: 'center',
               layout: 'border',
               items: [
                 {
@@ -70,6 +73,21 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   overflowY: 'scroll',
                   bind: {
                     html: '{document.body}'
+                  }
+                }
+              ]
+            },
+            {
+              xtype: 'container',
+              region: 'east',
+              split: true,
+              width: 350,
+              layout: 'accordion',
+              items: [
+                {
+                  xtype: 'documenteditorgeneral',
+                  bind: {
+                    title: '{i18n.document.base.ui.generalTabTitle}'
                   }
                 }
               ]
@@ -108,6 +126,12 @@ Ext.define('Tel100.view.document.editor.Editor', {
         }
       ]
     }
-  ]
+  ],
+
+  initComponent: function() {
+    this.callParent();
+    var general = this.down('documenteditorgeneral');
+    general.setReadonly(true);
+  }
 
 });
