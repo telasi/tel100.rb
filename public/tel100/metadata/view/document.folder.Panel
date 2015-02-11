@@ -11,6 +11,9 @@
         "designer|userClassName": "document.folder.Panel",
         "height": null,
         "hideHeaders": true,
+        "requires": [
+            "Ext.grid.View"
+        ],
         "store": [
             "{folders}"
         ],
@@ -36,6 +39,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "cls": null,
                 "dataIndex": "name",
                 "flex": 1,
                 "text": null
@@ -139,6 +143,73 @@
             },
             "name": "onGridpanelGroupClick",
             "designerId": "40dd3e11-955d-461d-be63-50ad24fa8050"
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView1",
+            "designerId": "fc6771c2-c013-4623-bab3-8971db9c5b8c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "record",
+                            "rowIndex",
+                            "rowParams",
+                            "store"
+                        ],
+                        "fn": "getRowClass",
+                        "implHandler": [
+                            "if(record.data.custom){return 'foldercls'; }"
+                        ]
+                    },
+                    "name": "getRowClass",
+                    "designerId": "964d6163-be64-412b-a922-8a3e600ee619"
+                }
+            ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelAfterRender",
+                "implHandler": [
+                    "component.dropZone = Ext.create('Ext.dd.DropZone', component.el,{",
+                    "  ddGroup: 'GridExample',",
+                    "",
+                    "  getTargetFromEvent: function(e) {",
+                    "   return e.getTarget('.foldercls');",
+                    "  },",
+                    "",
+                    "  onNodeEnter : function(target, dd, e, data){",
+                    "    Ext.fly(target).highlight();",
+                    "  },",
+                    "",
+                    "  onNodeOver : function(target, dd, e, data){",
+                    "    var proto = Ext.dd.DropZone.prototype;",
+                    "    return proto.dropAllowed;",
+                    "  },",
+                    "});"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onGridpanelAfterRender",
+            "designerId": "b1557717-c80e-436a-a495-f79a2bcabd1b"
         }
     ]
 }

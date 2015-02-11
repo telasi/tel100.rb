@@ -56,6 +56,22 @@
                     },
                     "name": "getRowClass",
                     "designerId": "8f71b666-0e68-4332-8ff4-2e03e87bd615"
+                },
+                {
+                    "type": "Ext.grid.plugin.DragDrop",
+                    "reference": {
+                        "name": "plugins",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "ddGroup": "GridExample",
+                        "dragGroup": null,
+                        "enableDrop": false,
+                        "pluginId": "draganddropplug"
+                    },
+                    "name": "MyGridDragDropPlugin",
+                    "designerId": "3dcd5181-a6b8-43cf-9edd-55df1e9add65"
                 }
             ]
         },

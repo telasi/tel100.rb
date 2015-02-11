@@ -7,7 +7,10 @@
     "codeClass": null,
     "userConfig": {
         "designer|userAlias": "documentfolderpanel",
-        "designer|userClassName": "document.folder.PanelViewModel"
+        "designer|userClassName": "document.folder.PanelViewModel",
+        "requires": [
+            "Tel100.view.document.folder.PanelViewController"
+        ]
     },
     "designerId": "50a5db55-1646-4ce5-987d-bdf7742061f7",
     "cn": [

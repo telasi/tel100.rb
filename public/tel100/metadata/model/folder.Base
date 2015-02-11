@@ -24,6 +24,66 @@
             },
             "name": "MyRestProxy3",
             "designerId": "6ef60d1b-09e9-4444-bac0-70a837e727e9"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name"
+            },
+            "name": "MyField12",
+            "designerId": "1a87204d-df85-4564-af21-546b3db31f92"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "category"
+            },
+            "name": "MyField13",
+            "designerId": "b5b1e95b-0bea-4bcc-93e6-7960a8d45065"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "custom"
+            },
+            "name": "MyField15",
+            "designerId": "5e72d3cc-7f1c-4756-9d3b-c5bf4cf1bbf2",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "return true;"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "5b3cb96b-d1bb-4e2b-bb0a-3eeb0d483575"
+                }
+            ]
         }
     ]
 }

@@ -57,7 +57,8 @@ Ext.application({
     'user.login.Panel',
     'workarea.LocaleSelector',
     'Main',
-    'document.motions.Tree'
+    'document.motions.Tree',
+    'document.folder.FolderDropZone'
   ],
   name: 'Tel100',
 

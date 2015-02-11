@@ -22,7 +22,8 @@ Ext.define('Tel100.view.document.folder.Panel', {
     'Tel100.view.document.folder.PanelViewController',
     'Ext.grid.column.Column',
     'Ext.grid.feature.Grouping',
-    'Ext.XTemplate'
+    'Ext.XTemplate',
+    'Ext.grid.View'
   ],
 
   controller: 'documentfolderpanel',
@@ -67,7 +68,13 @@ Ext.define('Tel100.view.document.folder.Panel', {
     }
   ],
   listeners: {
-    groupclick: 'onGridpanelGroupClick'
+    groupclick: 'onGridpanelGroupClick',
+    afterrender: 'onGridpanelAfterRender'
+  },
+  viewConfig: {
+    getRowClass: function(record, rowIndex, rowParams, store) {
+      if(record.data.custom){return 'foldercls'; }
+    }
   }
 
 });
