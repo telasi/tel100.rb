@@ -21,11 +21,13 @@ Ext.define('Tel100.view.document.editor.Editor', {
     'Tel100.view.document.editor.EditorViewModel',
     'Tel100.view.document.editor.EditorViewController',
     'Tel100.view.document.editor.General',
+    'Tel100.view.document.motions.Tree',
     'Tel100.view.document.motions.InPanel',
     'Tel100.view.document.motions.OutPanel',
     'Ext.tab.Panel',
     'Ext.tab.Tab',
     'Ext.form.Panel',
+    'Ext.tree.Panel',
     'Ext.resizer.Splitter'
   ],
 
@@ -89,6 +91,9 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   bind: {
                     title: '{i18n.document.base.ui.generalTabTitle}'
                   }
+                },
+                {
+                  xtype: 'documentmotionstree'
                 }
               ]
             }

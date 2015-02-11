@@ -172,6 +172,20 @@
                                     },
                                     "designerId": "7e5cb190-a184-4bb0-8f56-8dee4db4bcd5",
                                     "masterInstanceId": "759b5380-72a7-453f-b37c-cfc4a98ba34e"
+                                },
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "motions"
+                                    },
+                                    "name": "document.motions.tree",
+                                    "designerId": "2eeacca2-a92c-45b2-a223-929269d20dbd",
+                                    "masterInstanceId": "23c81566-c199-406f-8b0e-a0b49f286dd9"
                                 }
                             ]
                         }

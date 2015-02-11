@@ -1,0 +1,98 @@
+{
+    "type": "Ext.tree.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "bodyCls": [
+            "x-tree-noicon"
+        ],
+        "designer|userAlias": "documentmotionstree",
+        "designer|userClassName": "document.motions.Tree",
+        "enableColumnHide": false,
+        "height": null,
+        "hideHeaders": true,
+        "lines": false,
+        "rowLines": true,
+        "store": [
+            "{motions}"
+        ],
+        "title": [
+            "{i18n.document.motion.tree}"
+        ],
+        "useArrows": true,
+        "width": null
+    },
+    "name": "MyTreePanel",
+    "configAlternates": {
+        "title": "binding",
+        "store": "binding"
+    },
+    "designerId": "23c81566-c199-406f-8b0e-a0b49f286dd9",
+    "viewControllerInstanceId": "aed29f99-e122-46cc-9957-0a673ae6aec2",
+    "viewModelInstanceId": "c7ddb49e-bdb7-4beb-98cd-5bb56c49ce2c",
+    "cn": [
+        {
+            "type": "Ext.tree.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyTreeView",
+            "designerId": "9076f02c-5c8e-44ca-9473-348bd6d1cabb"
+        },
+        {
+            "type": "Ext.tree.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "receiver",
+                "flex": 1,
+                "text": "Receiver"
+            },
+            "name": "MyTreeColumn1",
+            "designerId": "f662d157-fcdb-4edc-b6ce-e7140ce5b38d",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "if (record.get('root')) {",
+                            "  var grid = view.up('documentmotionstree');",
+                            "  var vm = grid.getViewModel();",
+                            "  var doc = vm.get('document');",
+                            "  return doc.get('docnumber');",
+                            "} else {",
+                            "  return value;",
+                            "}"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "9dbd6a3c-4d49-4b11-897a-e0c1133aca7a"
+                }
+            ]
+        }
+    ]
+}

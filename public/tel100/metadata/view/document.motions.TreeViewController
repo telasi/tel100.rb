@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionstree",
+        "designer|userClassName": "document.motions.TreeViewController"
+    },
+    "designerId": "aed29f99-e122-46cc-9957-0a673ae6aec2"
+}
