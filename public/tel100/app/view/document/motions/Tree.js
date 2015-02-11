@@ -49,6 +49,9 @@ Ext.define('Tel100.view.document.motions.Tree', {
           var grid = view.up('documentmotionstree');
           var vm = grid.getViewModel();
           var doc = vm.get('document');
+
+          debugger;
+
           return doc.get('docnumber');
         } else {
           return value;
