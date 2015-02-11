@@ -104,6 +104,57 @@
                     "designerId": "9dbd6a3c-4d49-4b11-897a-e0c1133aca7a"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "var store = vm.get('motions');",
+                    "store.load();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "6dca8fcb-8dd6-4ae2-b005-a8ba7a9571fd"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "type": "refresh"
+            },
+            "name": "MyTool",
+            "designerId": "1dd0c34e-3770-4acc-92de-bb5b9a1bd2e6",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefresh",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefresh",
+                    "designerId": "89d25871-cf73-4a57-8755-696bf00432ae"
+                }
+            ]
         }
     ]
 }
