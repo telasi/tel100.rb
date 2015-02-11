@@ -107,18 +107,21 @@ Ext.define('Tel100.view.document.editor.Creator', {
       border: false,
       padding: 0,
       width: 400,
-      layout: 'accordion',
+      layout: {
+        type: 'accordion',
+        hideCollapseTool: false
+      },
       items: [
         {
           xtype: 'documenteditorgeneral',
-          hideCollapseTool: true,
+          hideCollapseTool: false,
           bind: {
             title: '{i18n.document.base.ui.generalTabTitle}'
           }
         },
         {
           xtype: 'documentmotionsoutpanel',
-          hideCollapseTool: true,
+          hideCollapseTool: false,
           listeners: {
             draftmotionchanged: 'onDraftmotionChanged'
           }

@@ -252,6 +252,7 @@
             "codeClass": null,
             "userConfig": {
                 "border": false,
+                "container|hideCollapseTool": false,
                 "designer|displayName": "details",
                 "layout": "accordion",
                 "layout|region": "east",
@@ -271,12 +272,12 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "general",
-                        "hideCollapseTool": true,
+                        "hideCollapseTool": false,
                         "title": [
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general1",
+                    "name": "document.editor.general",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -292,9 +293,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "receivers",
-                        "hideCollapseTool": true
+                        "hideCollapseTool": false
                     },
-                    "name": "document.motions.outpanel1",
+                    "name": "document.motions.outpanel",
                     "configAlternates": {
                         "title": "binding"
                     },
