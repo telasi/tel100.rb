@@ -147,6 +147,10 @@ Ext.define('Tel100.view.document.editor.Editor', {
       ]
     }
   ],
+  listeners: {
+    beforerender: 'onBeforeRender',
+    destroy: 'onDestroy'
+  },
 
   initComponent: function() {
     this.callParent();

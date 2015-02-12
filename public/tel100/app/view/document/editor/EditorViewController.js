@@ -26,6 +26,20 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
       outPanel.setParentId(motion.id);
     }
     outPanel.refresh();
+  },
+
+  onBeforeRender: function(component, eOpts) {
+    var view = this.getView();
+    var dialog = Ext.create('Tel100.view.document.motions.ResponseDialog');
+    dialog.on('close', function() {
+      debugger;
+    });
+    view.commentsDialog = dialog;
+  },
+
+  onDestroy: function(component, eOpts) {
+    var dialog = component.commentsDialog;
+    dialog.destroy();
   }
 
 });

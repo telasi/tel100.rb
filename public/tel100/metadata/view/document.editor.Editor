@@ -356,6 +356,48 @@
             },
             "name": "initComponent",
             "designerId": "f7e76c20-4b15-4fb9-bdec-f49ce76d3e28"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "var view = this.getView();",
+                    "var dialog = Ext.create('Tel100.view.document.motions.ResponseDialog');",
+                    "dialog.on('close', function() {",
+                    "  debugger;",
+                    "});",
+                    "view.commentsDialog = dialog;"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "d766bb1a-3d84-403b-97eb-7900851781a3"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onDestroy",
+                "implHandler": [
+                    "var dialog = component.commentsDialog;",
+                    "dialog.destroy();"
+                ],
+                "name": "destroy",
+                "scope": "me"
+            },
+            "name": "onDestroy",
+            "designerId": "c22d6f29-8e83-4d03-a542-42fd718f14a7"
         }
     ]
 }
