@@ -71,7 +71,43 @@
                             "configAlternates": {
                                 "text": "binding"
                             },
-                            "designerId": "8979d484-46f3-475d-921e-54fe1fb44f70"
+                            "designerId": "8979d484-46f3-475d-921e-54fe1fb44f70",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var view = this.up('documenteditoreditor');",
+                                            "view.commentsDialog.show();"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "1b494181-dec4-490f-80bc-1b11b7c5907c"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": null
+                            },
+                            "name": "TabConfig2",
+                            "designerId": "71a76f8f-476a-4ded-8192-e251216d5a8e"
                         }
                     ]
                 },
@@ -202,7 +238,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general4",
+                                    "name": "document.editor.general5",
                                     "configAlternates": {
                                         "title": "binding",
                                         "readonly": "boolean"
@@ -220,7 +256,7 @@
                                     "userConfig": {
                                         "designer|displayName": "motions"
                                     },
-                                    "name": "document.motions.tree3",
+                                    "name": "document.motions.tree4",
                                     "designerId": "2eeacca2-a92c-45b2-a223-929269d20dbd",
                                     "masterInstanceId": "23c81566-c199-406f-8b0e-a0b49f286dd9"
                                 }
@@ -272,7 +308,7 @@
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.inpanel3",
+                            "name": "document.motions.inpanel4",
                             "designerId": "7a1fd724-1ec5-45fc-bb58-39815d4d9bac",
                             "masterInstanceId": "360c0d57-9834-48d9-9eb7-d6316da82b30",
                             "cn": [
@@ -331,7 +367,7 @@
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel4",
+                            "name": "document.motions.outpanel5",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }
@@ -370,7 +406,7 @@
                     "var view = this.getView();",
                     "var dialog = Ext.create('Tel100.view.document.motions.ResponseDialog');",
                     "dialog.on('close', function() {",
-                    "  debugger;",
+                    "  // TODO: close logic here",
                     "});",
                     "view.commentsDialog = dialog;"
                 ],

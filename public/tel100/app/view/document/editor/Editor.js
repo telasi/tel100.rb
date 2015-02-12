@@ -54,6 +54,10 @@ Ext.define('Tel100.view.document.editor.Editor', {
           items: [
             {
               xtype: 'button',
+              handler: function(button, e) {
+                var view = this.up('documenteditoreditor');
+                view.commentsDialog.show();
+              },
               bind: {
                 text: '{i18n.document.motion.respond}'
               }

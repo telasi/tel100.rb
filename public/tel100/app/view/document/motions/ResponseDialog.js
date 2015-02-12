@@ -27,6 +27,7 @@ Ext.define('Tel100.view.document.motions.ResponseDialog', {
   height: 250,
   width: 400,
   autoDestroy: false,
+  closeAction: 'hide',
   title: 'My Window'
 
 });

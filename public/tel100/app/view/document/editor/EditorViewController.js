@@ -32,7 +32,7 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
     var view = this.getView();
     var dialog = Ext.create('Tel100.view.document.motions.ResponseDialog');
     dialog.on('close', function() {
-      debugger;
+      // TODO: close logic here
     });
     view.commentsDialog = dialog;
   },
