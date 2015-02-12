@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsresponsedialog",
+        "designer|userClassName": "document.motions.ResponseDialogViewModel"
+    },
+    "designerId": "ee6d96d8-f96c-4935-a437-95f6ff8c4d53"
+}

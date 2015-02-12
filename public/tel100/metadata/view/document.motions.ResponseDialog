@@ -1,0 +1,19 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsresponsedialog",
+        "designer|userClassName": "document.motions.ResponseDialog",
+        "height": 250,
+        "title": "My Window",
+        "width": 400
+    },
+    "name": "MyWindow",
+    "designerId": "47da6235-8b3b-4874-a833-736dd75272b4",
+    "viewControllerInstanceId": "03bcb80b-58fa-4851-8c66-719c51d7c512",
+    "viewModelInstanceId": "ee6d96d8-f96c-4935-a437-95f6ff8c4d53"
+}
