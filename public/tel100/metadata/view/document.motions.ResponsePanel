@@ -6,13 +6,28 @@
     },
     "codeClass": null,
     "userConfig": {
+        "container|align": "stretch",
         "designer|userAlias": "documentmotionsresponsepanel",
         "designer|userClassName": "document.motions.ResponsePanel",
         "height": 250,
+        "layout": "vbox",
         "width": 400
     },
     "name": "MyContainer1",
     "designerId": "d8c79172-94f6-485b-9778-e8a4ab72eb30",
     "viewControllerInstanceId": "4920da83-0c17-4443-ad76-bd2a691d25cc",
-    "viewModelInstanceId": "39e8e93b-7670-4083-bfac-86d41ee57f88"
+    "viewModelInstanceId": "39e8e93b-7670-4083-bfac-86d41ee57f88",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "name": "document.motions.incombo",
+            "designerId": "5b665463-d7a8-4569-8036-86f0c745a7a3",
+            "masterInstanceId": "dc3c3559-9f62-4285-b87e-7b92b96fd58c"
+        }
+    ]
 }

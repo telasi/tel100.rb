@@ -124,7 +124,8 @@ module.exports = {
   selectReceiver: 'ადრესატების არჩევა',
   sendMotions: '<i class="fa fa-send"></i> გაგზავნა',
   sendMotionsConfirm: 'ნამდვილად გინდათ ყველა დრაფტის დაგზავნა?',
-  tree: 'დოკუმენტის მოძრაობა'
+  tree: 'დოკუმენტის მოძრაობა',
+  respond: '<i class="fa fa-comment"></i> კომენტარი ან შესრულება'
 };
 
 },{}],7:[function(require,module,exports){

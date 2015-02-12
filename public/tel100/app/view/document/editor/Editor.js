@@ -25,6 +25,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     'Tel100.view.document.motions.InPanel',
     'Tel100.view.document.motions.OutPanel',
     'Ext.tab.Panel',
+    'Ext.toolbar.Toolbar',
     'Ext.tab.Tab',
     'Ext.form.Panel',
     'Ext.tree.Panel',
@@ -46,6 +47,20 @@ Ext.define('Tel100.view.document.editor.Editor', {
       activeTab: 0,
       deferredRender: false,
       tabPosition: 'bottom',
+      dockedItems: [
+        {
+          xtype: 'toolbar',
+          dock: 'top',
+          items: [
+            {
+              xtype: 'button',
+              bind: {
+                text: '{i18n.document.motion.respond}'
+              }
+            }
+          ]
+        }
+      ],
       items: [
         {
           xtype: 'panel',

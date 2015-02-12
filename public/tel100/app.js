@@ -57,7 +57,10 @@ Ext.application({
     'user.login.Panel',
     'workarea.LocaleSelector',
     'Main',
-    'document.motions.Tree'
+    'document.motions.Tree',
+    'document.motions.ResponseDialog',
+    'document.motions.ResponsePanel',
+    'document.motions.InCombo'
   ],
   name: 'Tel100',
 

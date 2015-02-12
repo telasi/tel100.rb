@@ -18,13 +18,25 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
   alias: 'widget.documentmotionsresponsepanel',
 
   requires: [
-    'Tel100.view.document.motions.ResponsePanelViewModel'
+    'Tel100.view.document.motions.ResponsePanelViewModel',
+    'Tel100.view.document.motions.InCombo',
+    'Ext.form.field.ComboBox'
   ],
 
   viewModel: {
     type: 'documentmotionsresponsepanel'
   },
   height: 250,
-  width: 400
+  width: 400,
+
+  layout: {
+    type: 'vbox',
+    align: 'stretch'
+  },
+  items: [
+    {
+      xtype: 'documentmotionsincombo'
+    }
+  ]
 
 });
