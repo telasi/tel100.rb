@@ -272,12 +272,11 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "general",
-                        "hideCollapseTool": false,
                         "title": [
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general",
+                    "name": "document.editor.general1",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -292,10 +291,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": "receivers",
-                        "hideCollapseTool": false
+                        "designer|displayName": "receivers"
                     },
-                    "name": "document.motions.outpanel",
+                    "name": "document.motions.outpanel1",
                     "configAlternates": {
                         "title": "binding"
                     },

@@ -147,7 +147,7 @@
                                 "layout": "accordion",
                                 "layout|region": "east",
                                 "layout|split": true,
-                                "width": 350
+                                "width": 400
                             },
                             "name": "MyContainer",
                             "designerId": "defe46f4-7969-4954-96dd-c88f5c09e96c",

@@ -83,7 +83,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
               xtype: 'container',
               region: 'east',
               split: true,
-              width: 350,
+              width: 400,
               layout: 'accordion',
               items: [
                 {

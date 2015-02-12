@@ -114,14 +114,12 @@ Ext.define('Tel100.view.document.editor.Creator', {
       items: [
         {
           xtype: 'documenteditorgeneral',
-          hideCollapseTool: false,
           bind: {
             title: '{i18n.document.base.ui.generalTabTitle}'
           }
         },
         {
           xtype: 'documentmotionsoutpanel',
-          hideCollapseTool: false,
           listeners: {
             draftmotionchanged: 'onDraftmotionChanged'
           }
