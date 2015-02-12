@@ -19,14 +19,17 @@ Ext.define('Tel100.view.document.motions.Tree', {
 
   requires: [
     'Tel100.view.document.motions.TreeViewModel',
+    'Ext.toolbar.Toolbar',
+    'Ext.button.Button',
     'Ext.tree.View',
-    'Ext.tree.Column',
-    'Ext.panel.Tool'
+    'Ext.tree.Column'
   ],
 
   viewModel: {
     type: 'documentmotionstree'
   },
+  border: false,
+  bodyBorder: false,
   bodyCls: 'x-tree-noicon',
   autoLoad: true,
   enableColumnHide: false,
@@ -34,12 +37,29 @@ Ext.define('Tel100.view.document.motions.Tree', {
   rowLines: true,
   lines: false,
   useArrows: true,
-  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.motion.tree}',
     store: '{motions}'
   },
+  dockedItems: [
+    {
+      xtype: 'toolbar',
+      dock: 'top',
+      border: 0,
+      items: [
+        {
+          xtype: 'button',
+          handler: function(button, e) {
+            this.up('documentmotionstree').refresh();
+          },
+          bind: {
+            text: '{i18n.ui.refresh}'
+          }
+        }
+      ]
+    }
+  ],
   viewConfig: {
 
   },
@@ -72,19 +92,6 @@ Ext.define('Tel100.view.document.motions.Tree', {
       flex: 1
     }
   ],
-  tools: [
-    {
-      xtype: 'tool',
-      type: 'refresh',
-      listeners: {
-        click: 'onRefresh'
-      }
-    }
-  ],
-
-  onRefresh: function(tool, e, owner, eOpts) {
-    this.refresh();
-  },
 
   refresh: function() {
     var vm = this.getViewModel();

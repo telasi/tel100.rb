@@ -7,9 +7,11 @@
     "codeClass": null,
     "userConfig": {
         "autoLoad": true,
+        "bodyBorder": false,
         "bodyCls": [
             "x-tree-noicon"
         ],
+        "border": false,
         "designer|userAlias": "documentmotionstree",
         "designer|userClassName": "document.motions.Tree",
         "enableColumnHide": false,
@@ -36,12 +38,74 @@
     "viewModelInstanceId": "c7ddb49e-bdb7-4beb-98cd-5bb56c49ce2c",
     "cn": [
         {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": 0,
+                "designer|displayName": "toolbar",
+                "dock": "top"
+            },
+            "name": "MyToolbar2",
+            "designerId": "a51c1279-3ddb-420d-989e-38992e0ae19e",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "refresh",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.refresh}"
+                        ]
+                    },
+                    "name": "MyButton5",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "228f53ba-a920-465b-aaf3-8093a86e52f8",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "this.up('documentmotionstree').refresh();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "7bd33a53-b76b-4699-9b19-aaf7f1fa4cae"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "type": "Ext.tree.View",
             "reference": {
                 "name": "viewConfig",
                 "type": "object"
             },
             "codeClass": null,
+            "userConfig": {
+                "border": null
+            },
             "name": "MyTreeView",
             "designerId": "9076f02c-5c8e-44ca-9473-348bd6d1cabb"
         },
@@ -122,39 +186,6 @@
             },
             "name": "refresh",
             "designerId": "6dca8fcb-8dd6-4ae2-b005-a8ba7a9571fd"
-        },
-        {
-            "type": "Ext.panel.Tool",
-            "reference": {
-                "name": "tools",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "type": "refresh"
-            },
-            "name": "MyTool",
-            "designerId": "1dd0c34e-3770-4acc-92de-bb5b9a1bd2e6",
-            "cn": [
-                {
-                    "type": "basiceventbinding",
-                    "reference": {
-                        "name": "listeners",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fn": "onRefresh",
-                        "implHandler": [
-                            "this.refresh();"
-                        ],
-                        "name": "click",
-                        "scope": "me"
-                    },
-                    "name": "onRefresh",
-                    "designerId": "89d25871-cf73-4a57-8755-696bf00432ae"
-                }
-            ]
         }
     ]
 }
