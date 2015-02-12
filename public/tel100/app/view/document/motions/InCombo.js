@@ -24,6 +24,10 @@ Ext.define('Tel100.view.document.motions.InCombo', {
   viewModel: {
     type: 'documentmotionsincombo'
   },
-  editable: false
+  editable: false,
+
+  bind: {
+    store: '{motions}'
+  }
 
 });

@@ -29,8 +29,8 @@
                 "model": "document.Motion",
                 "name": "motions"
             },
-            "name": "MyStore",
-            "designerId": "703fe2f1-1826-4167-b29d-671b1dc1535c",
+            "name": "MyStore7",
+            "designerId": "f6bf4955-4368-4bd8-8729-89100a1745ac",
             "cn": [
                 {
                     "type": "Ext.data.proxy.Ajax",
@@ -49,7 +49,7 @@
                         "url": "/api/documents/motion"
                     },
                     "name": "MyAjaxProxy",
-                    "designerId": "f27b02b0-f1ce-42c1-afcb-6a4638aab1db",
+                    "designerId": "9e50dafc-1be5-4124-8da2-4fb925fd1490",
                     "cn": [
                         {
                             "type": "Ext.data.reader.Json",
@@ -59,7 +59,7 @@
                             },
                             "codeClass": null,
                             "name": "MyJsonReader",
-                            "designerId": "8c32e67e-0d2e-403b-891f-68f53ac6f565"
+                            "designerId": "ea7fd53d-c2ec-4b82-a412-cc036947be54"
                         }
                     ]
                 }

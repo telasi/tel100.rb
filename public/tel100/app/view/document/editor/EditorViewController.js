@@ -28,18 +28,10 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
     outPanel.refresh();
   },
 
-  onBeforeRender: function(component, eOpts) {
-    var view = this.getView();
-    var dialog = Ext.create('Tel100.view.document.motions.ResponseDialog');
-    dialog.on('close', function() {
-      // TODO: close logic here
-    });
-    view.commentsDialog = dialog;
-  },
-
   onDestroy: function(component, eOpts) {
-    var dialog = component.commentsDialog;
-    dialog.destroy();
+    if (component.commentsDialog) {
+      component.commentsDialog.destroy();
+    }
   }
 
 });

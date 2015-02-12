@@ -56,7 +56,15 @@ Ext.define('Tel100.view.document.editor.Editor', {
               xtype: 'button',
               handler: function(button, e) {
                 var view = this.up('documenteditoreditor');
-                view.commentsDialog.show();
+                var dialog = view.commentsDialog;
+                if (!dialog) {
+                  dialog = Ext.create('Tel100.view.document.motions.ResponseDialog');
+                  dialog.on('close', function() {
+                    // TODO
+                  });
+                  view.commentsDialog = dialog;
+                }
+                dialog.show();
               },
               bind: {
                 text: '{i18n.document.motion.respond}'
@@ -152,7 +160,6 @@ Ext.define('Tel100.view.document.editor.Editor', {
     }
   ],
   listeners: {
-    beforerender: 'onBeforeRender',
     destroy: 'onDestroy'
   },
 
