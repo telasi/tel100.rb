@@ -25,6 +25,8 @@ Ext.define('Tel100.view.document.motions.InCombo', {
     type: 'documentmotionsincombo'
   },
   editable: false,
+  displayField: 'senderName',
+  valueField: 'id',
 
   bind: {
     store: '{motions}'

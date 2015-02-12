@@ -163,6 +163,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "text",
                 "fieldLabel": [
                     "{i18n.document.comment.text}"
                 ],

@@ -56,6 +56,21 @@
                             "designerId": "489317cd-a69b-4fcf-a01e-4b90f2e99c92"
                         }
                     ]
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onStoreLoad",
+                        "name": "load",
+                        "scope": "me"
+                    },
+                    "name": "onStoreLoad",
+                    "designerId": "359051a2-5588-449c-a386-812f5ea3a4b0"
                 }
             ]
         }

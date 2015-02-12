@@ -37,6 +37,9 @@ Ext.define('Tel100.view.document.motions.InComboViewModel', {
         reader: {
           type: 'json'
         }
+      },
+      listeners: {
+        load: 'onStoreLoad'
       }
     }
   }

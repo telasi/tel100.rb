@@ -8,11 +8,13 @@
     "userConfig": {
         "designer|userAlias": "documentmotionsincombo",
         "designer|userClassName": "document.motions.InCombo",
+        "displayField": "senderName",
         "editable": false,
         "fieldLabel": null,
         "store": [
             "{motions}"
-        ]
+        ],
+        "valueField": "id"
     },
     "name": "MyComboBox2",
     "configAlternates": {
