@@ -6,11 +6,13 @@
     },
     "codeClass": null,
     "userConfig": {
+        "border": null,
         "container|align": "stretch",
         "designer|userAlias": "documentmotionsresponsepanel",
         "designer|userClassName": "document.motions.ResponsePanel",
         "height": 250,
         "layout": "vbox",
+        "padding": 8,
         "width": 400
     },
     "name": "MyContainer1",
@@ -26,11 +28,151 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "incombo"
+                "border": null,
+                "designer|displayName": "incombo",
+                "fieldLabel": [
+                    "{i18n.document.comment.motion}"
+                ]
             },
-            "name": "document.motions.incombo",
+            "name": "document.motions.incombo3",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
             "designerId": "5b665463-d7a8-4569-8036-86f0c745a7a3",
             "masterInstanceId": "dc3c3559-9f62-4285-b87e-7b92b96fd58c"
+        },
+        {
+            "type": "Ext.form.FieldContainer",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "stretch",
+                "designer|displayName": "buttons",
+                "fieldLabel": [
+                    "{i18n.document.comment.action}"
+                ],
+                "height": null,
+                "layout": "hbox",
+                "layout|flex": 0,
+                "width": null
+            },
+            "name": "MyFieldContainer",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
+            "designerId": "184fc187-9a3f-4104-91b3-c0e923759a78",
+            "cn": [
+                {
+                    "type": "Ext.button.Segmented",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "activeItem": 0,
+                        "data": null,
+                        "designer|displayName": "buttons",
+                        "layout|flex": 0
+                    },
+                    "name": "MySegmentedButton1",
+                    "configAlternates": {
+                        "activeItem": "number"
+                    },
+                    "designerId": "8a28bd5d-2f13-4082-808f-4b85640dbf96",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "activeItem",
+                            "type": "number"
+                        }
+                    ],
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "comment",
+                                "itemId": "comment",
+                                "text": [
+                                    "{i18n.document.comment.actions.comment}"
+                                ]
+                            },
+                            "name": "MyButton7",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "8d69b8fb-ca2b-4ab1-a01c-629616014815"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "confirm",
+                                "itemId": "confirm",
+                                "text": [
+                                    "{i18n.document.comment.actions.confirm}"
+                                ]
+                            },
+                            "name": "MyButton8",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "679a6c4d-ca67-45db-bf97-e6512b32b333"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "cancel",
+                                "itemId": "cancel",
+                                "text": [
+                                    "{i18n.document.comment.actions.cancel}"
+                                ]
+                            },
+                            "name": "MyButton9",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "65a766c7-b227-478b-bb0e-83195cd9b8db"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.field.TextArea",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": [
+                    "{i18n.document.comment.text}"
+                ],
+                "layout|flex": 1
+            },
+            "name": "MyTextArea",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
+            "designerId": "e9db2e46-0e35-4d5e-99a7-300468d00b45"
         }
     ]
 }

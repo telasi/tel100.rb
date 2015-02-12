@@ -14,5 +14,5 @@ module.exports = {
   sendMotions: '<i class="fa fa-send"></i> გაგზავნა',
   sendMotionsConfirm: 'ნამდვილად გინდათ ყველა დრაფტის დაგზავნა?',
   tree: 'დოკუმენტის მოძრაობა',
-  respond: '<i class="fa fa-comment"></i> კომენტარი ან შესრულება'
+  respond: '<i class="fa fa-comment"></i> კომენტარი ან შესრულება',
 };

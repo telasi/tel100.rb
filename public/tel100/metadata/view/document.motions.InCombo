@@ -8,6 +8,7 @@
     "userConfig": {
         "designer|userAlias": "documentmotionsincombo",
         "designer|userClassName": "document.motions.InCombo",
+        "editable": false,
         "fieldLabel": null
     },
     "name": "MyComboBox2",

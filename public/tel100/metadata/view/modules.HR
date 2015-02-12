@@ -83,7 +83,7 @@
             "userConfig": {
                 "designer|displayName": "HR structrure"
             },
-            "name": "hr.tree.panel",
+            "name": "hr.tree.panel1",
             "designerId": "d7b9a894-cc9f-48a6-b20b-9cdcfc8eb941",
             "masterInstanceId": "9ddd38b1-6ef9-4475-87d7-6ce8e4c6298c"
         }

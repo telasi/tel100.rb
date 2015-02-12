@@ -81,6 +81,17 @@ module.exports = {
 
 },{}],4:[function(require,module,exports){
 module.exports = {
+  motion: 'შემომავალი',
+  action: 'მოქმედება',
+  text: 'განმარტება',
+  actions: {
+    comment: '<i class="fa fa-comment"></i> კომენტარი',
+    confirm: '<i class="fa fa-check"></i> დადასტურება',
+    cancel: '<i class="fa fa-times"></i> გაუქმება'
+  }
+};
+},{}],5:[function(require,module,exports){
+module.exports = {
   ui: {
     folders: {
       ka: '<i class="fa fa-folder-open-o"></i> საქაღალდეები',
@@ -99,16 +110,17 @@ module.exports = {
   }
 };
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 module.exports = {
   base: require('./base'),
   motion: require('./motion'),
+  comment: require('./comment'),
   folder: require('./folder'),
   type: require('./type'),
   role: require('./role')
 };
 
-},{"./base":3,"./folder":4,"./motion":6,"./role":7,"./type":8}],6:[function(require,module,exports){
+},{"./base":3,"./comment":4,"./folder":5,"./motion":7,"./role":8,"./type":9}],7:[function(require,module,exports){
 module.exports = {
   ordering: 'ეტაპი',
   orderingShort: '#',
@@ -125,10 +137,10 @@ module.exports = {
   sendMotions: '<i class="fa fa-send"></i> გაგზავნა',
   sendMotionsConfirm: 'ნამდვილად გინდათ ყველა დრაფტის დაგზავნა?',
   tree: 'დოკუმენტის მოძრაობა',
-  respond: '<i class="fa fa-comment"></i> კომენტარი ან შესრულება'
+  respond: '<i class="fa fa-comment"></i> კომენტარი ან შესრულება',
 };
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 module.exports = {
   owner: 'მფლობელი',
   creator: 'ინიციატორი',
@@ -137,7 +149,7 @@ module.exports = {
   assignee: 'ადრესატი',
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = {
   ui: {
     types: 'სახეობები'
@@ -146,14 +158,14 @@ module.exports = {
   order_by: '#'
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = {
   title: {
     ka: '<i class="fa fa-times-circle"></i> შეცდომა',
     ru: '<i class="fa fa-times-circle"></i> Ошибка'
   }
 };
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = {
   tree: {
     title: {
@@ -163,7 +175,7 @@ module.exports = {
   }
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
@@ -201,12 +213,12 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./admin":1,"./application":2,"./document":5,"./errors":9,"./hr":10,"./selector":12,"./ui":13,"./user":14,"./vacation":15}],12:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./document":6,"./errors":10,"./hr":11,"./selector":13,"./ui":14,"./user":15,"./vacation":16}],13:[function(require,module,exports){
 module.exports = {
   selectedParties: 'არჩეული პირები და ორგანიზაციები',
   selectorConfirm: 'არჩევანის დადასტურება'
 };
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = {
   confirmTitle: {
     ka: 'დადასტურება',
@@ -249,7 +261,7 @@ module.exports = {
   }
 };
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -273,7 +285,7 @@ module.exports = {
   }
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = {
   ui: {
     button: {
@@ -313,4 +325,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[11]);
+},{}]},{},[12]);

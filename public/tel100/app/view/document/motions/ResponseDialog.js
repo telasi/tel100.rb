@@ -18,16 +18,27 @@ Ext.define('Tel100.view.document.motions.ResponseDialog', {
   alias: 'widget.documentmotionsresponsedialog',
 
   requires: [
-    'Tel100.view.document.motions.ResponseDialogViewModel'
+    'Tel100.view.document.motions.ResponseDialogViewModel',
+    'Tel100.view.document.motions.ResponsePanel',
+    'Ext.container.Container'
   ],
 
   viewModel: {
     type: 'documentmotionsresponsedialog'
   },
-  height: 250,
-  width: 400,
+  height: 300,
+  width: 500,
   autoDestroy: false,
+  layout: 'fit',
   closeAction: 'hide',
-  title: 'My Window'
+
+  bind: {
+    title: '{i18n.document.motion.respond}'
+  },
+  items: [
+    {
+      xtype: 'documentmotionsresponsepanel'
+    }
+  ]
 
 });

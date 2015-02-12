@@ -10,12 +10,35 @@
         "closeAction": "hide",
         "designer|userAlias": "documentmotionsresponsedialog",
         "designer|userClassName": "document.motions.ResponseDialog",
-        "height": 250,
-        "title": "My Window",
-        "width": 400
+        "height": 300,
+        "layout": "fit",
+        "padding": null,
+        "title": [
+            "{i18n.document.motion.respond}"
+        ],
+        "width": 500
     },
     "name": "MyWindow",
+    "configAlternates": {
+        "title": "binding"
+    },
     "designerId": "47da6235-8b3b-4874-a833-736dd75272b4",
     "viewControllerInstanceId": "03bcb80b-58fa-4851-8c66-719c51d7c512",
-    "viewModelInstanceId": "ee6d96d8-f96c-4935-a437-95f6ff8c4d53"
+    "viewModelInstanceId": "ee6d96d8-f96c-4935-a437-95f6ff8c4d53",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "response-panel"
+            },
+            "name": "document.motions.responsepanel",
+            "designerId": "cabe578b-ba2f-43c2-92fa-7c19259e4449",
+            "masterInstanceId": "d8c79172-94f6-485b-9778-e8a4ab72eb30"
+        }
+    ]
 }

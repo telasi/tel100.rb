@@ -20,13 +20,18 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
   requires: [
     'Tel100.view.document.motions.ResponsePanelViewModel',
     'Tel100.view.document.motions.InCombo',
-    'Ext.form.field.ComboBox'
+    'Ext.form.field.ComboBox',
+    'Ext.form.FieldContainer',
+    'Ext.button.Segmented',
+    'Ext.button.Button',
+    'Ext.form.field.TextArea'
   ],
 
   viewModel: {
     type: 'documentmotionsresponsepanel'
   },
   height: 250,
+  padding: 8,
   width: 400,
 
   layout: {
@@ -35,7 +40,55 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
   },
   items: [
     {
-      xtype: 'documentmotionsincombo'
+      xtype: 'documentmotionsincombo',
+      bind: {
+        fieldLabel: '{i18n.document.comment.motion}'
+      }
+    },
+    {
+      xtype: 'fieldcontainer',
+      flex: 0,
+      layout: {
+        type: 'hbox',
+        align: 'stretch'
+      },
+      bind: {
+        fieldLabel: '{i18n.document.comment.action}'
+      },
+      items: [
+        {
+          xtype: 'segmentedbutton',
+          flex: 0,
+          activeItem: 0,
+          items: [
+            {
+              itemId: 'comment',
+              bind: {
+                text: '{i18n.document.comment.actions.comment}'
+              }
+            },
+            {
+              itemId: 'confirm',
+              bind: {
+                text: '{i18n.document.comment.actions.confirm}'
+              }
+            },
+            {
+              itemId: 'cancel',
+              bind: {
+                text: '{i18n.document.comment.actions.cancel}'
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      xtype: 'textareafield',
+      flex: 1,
+      bind: {
+        fieldLabel: '{i18n.document.comment.text}'
+      }
     }
   ]
 
