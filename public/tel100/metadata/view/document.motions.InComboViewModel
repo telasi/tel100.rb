@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsincombo",
+        "designer|userClassName": "document.motions.InComboViewModel"
+    },
+    "designerId": "84d78dad-f4fb-44cc-9c73-266bf4cf1a00"
+}
