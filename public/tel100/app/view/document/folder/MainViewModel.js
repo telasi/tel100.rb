@@ -46,6 +46,9 @@ Ext.define('Tel100.view.document.folder.MainViewModel', {
     customfolders: {
       autoLoad: true,
       model: 'Tel100.model.folder.Base'
+    },
+    documentStore: {
+      model: 'Tel100.model.folder.Document'
     }
   }
 

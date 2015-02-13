@@ -80,6 +80,21 @@
             },
             "name": "MyStore3",
             "designerId": "359f59d4-6d57-4ded-9f62-56d2a5733e2d"
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "documentStore",
+                "model": "folder.Document",
+                "name": "documentStore"
+            },
+            "name": "MyStore5",
+            "designerId": "914157e3-47b1-46ff-9680-28ee8271474b"
         }
     ]
 }

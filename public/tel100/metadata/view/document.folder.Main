@@ -146,15 +146,10 @@
                 "designer|displayName": "customFolders",
                 "header": false,
                 "itemId": "customFolders",
-                "store": [
-                    "{customfolders}"
-                ],
+                "store": "CustomFolders",
                 "title": "My Grid Panel"
             },
             "name": "MyGridPanel2",
-            "configAlternates": {
-                "store": "binding"
-            },
             "designerId": "2b70ba58-7a16-4470-8a5b-1514e29cba70",
             "cn": [
                 {
@@ -215,7 +210,16 @@
                             "    return proto.dropAllowed;",
                             "  },",
                             "  onNodeDrop : function(target, dd, e, data){",
-                            "    debugger;",
+                            "    var customGrid = Ext.ComponentQuery.query('grid[itemId=customFolders]')[0];",
+                            "    var view = customGrid.getView();",
+                            "    var record = view.getRecord(target);",
+                            "",
+                            "    var vm = customGrid.up('panel').getViewModel();",
+                            "    var model = Ext.create('Tel100.model.folder.Document',{",
+                            "      folder_id: record.id, doc_id: data.records[0].id",
+                            "    });",
+                            "    model.save();",
+                            "",
                             "    return true;",
                             "  }",
                             "});"
@@ -245,6 +249,24 @@
                     "designerId": "9faf3bcf-b0af-4047-b241-3f8b4837fc6c"
                 }
             ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPanelBeforeRender",
+                "implHandler": [
+                    "Ext.getStore('CustomFolders').load();"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onPanelBeforeRender",
+            "designerId": "ac352398-da3b-4cb9-9eb6-16716d8dfa3f"
         }
     ]
 }

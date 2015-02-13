@@ -30,4 +30,14 @@ class Api::FolderController < ApiController
   def delete
     Folder::Base.destroy(params[:id])
   end
+
+  def document_index
+  end
+
+  def document_create
+    Folder::Document.new(params.permit(:folder_id, :doc_id)).save
+  end
+
+  def document_delete
+  end
 end

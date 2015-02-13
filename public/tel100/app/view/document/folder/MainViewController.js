@@ -43,7 +43,16 @@ Ext.define('Tel100.view.document.folder.MainViewController', {
         return proto.dropAllowed;
       },
       onNodeDrop : function(target, dd, e, data){
-        debugger;
+        var customGrid = Ext.ComponentQuery.query('grid[itemId=customFolders]')[0];
+        var view = customGrid.getView();
+        var record = view.getRecord(target);
+
+        var vm = customGrid.up('panel').getViewModel();
+        var model = Ext.create('Tel100.model.folder.Document',{
+          folder_id: record.id, doc_id: data.records[0].id
+        });
+        model.save();
+
         return true;
       }
     });
@@ -51,6 +60,10 @@ Ext.define('Tel100.view.document.folder.MainViewController', {
 
   onCustomFoldersSelect: function(rowmodel, record, index, eOpts) {
     this.getView().down('#standardFolders').getSelectionModel().deselectAll();
+  },
+
+  onPanelBeforeRender: function(component, eOpts) {
+    Ext.getStore('CustomFolders').load();
   }
 
 });

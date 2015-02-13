@@ -73,9 +73,7 @@ Ext.define('Tel100.view.document.folder.Main', {
       itemId: 'customFolders',
       header: false,
       title: 'My Grid Panel',
-      bind: {
-        store: '{customfolders}'
-      },
+      store: 'CustomFolders',
       columns: [
         {
           xtype: 'gridcolumn',
@@ -92,6 +90,9 @@ Ext.define('Tel100.view.document.folder.Main', {
         select: 'onCustomFoldersSelect'
       }
     }
-  ]
+  ],
+  listeners: {
+    beforerender: 'onPanelBeforeRender'
+  }
 
 });
