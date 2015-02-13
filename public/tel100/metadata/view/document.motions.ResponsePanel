@@ -37,7 +37,7 @@
                     "{parentMotionId}"
                 ]
             },
-            "name": "document.motions.incombo3",
+            "name": "document.motions.incombo",
             "configAlternates": {
                 "fieldLabel": "binding",
                 "selection": "binding"
@@ -213,7 +213,7 @@
                     "vm.bind('{comment}', function(comment) {",
                     "  var type = comment.get('type');",
                     "  var view = this.getView();",
-                    "  view.down('#' + type).toggle();",
+                    "  view.down('#' + type).toggle(true);",
                     "});"
                 ]
             },

@@ -112,7 +112,7 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
     vm.bind('{comment}', function(comment) {
       var type = comment.get('type');
       var view = this.getView();
-      view.down('#' + type).toggle();
+      view.down('#' + type).toggle(true);
     });
   }
 
