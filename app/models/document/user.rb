@@ -13,6 +13,10 @@ class Document::User < ActiveRecord::Base
     Document::User.where('status IN (?) AND user_id = ?', [CURRENT, CANCELED, COMPLETED], user.id)
   end
 
+  def self.docs_cfolders(fodler)
+    
+  end
+
   def self.upsert!(doc, user, role, opts={})
     if user.present?
       params   = { document_id: doc.id, user_id: user.id }

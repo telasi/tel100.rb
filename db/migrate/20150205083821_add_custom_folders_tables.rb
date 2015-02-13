@@ -45,6 +45,10 @@ class AddCustomFoldersTables < ActiveRecord::Migration
       )
     SQL
 
+    execute <<-SQL
+       alter table folder_documents add constraint folder_doc_unique UNIQUE (folder_id, doc_id)
+    SQL
+
   def down
   	execute "drop table FOLDER_DOCUMENTS"
     execute "drop sequence FOLDER_BASE_SEQ"

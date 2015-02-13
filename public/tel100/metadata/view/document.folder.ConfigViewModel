@@ -9,23 +9,5 @@
         "designer|userAlias": "documentfolderconfig",
         "designer|userClassName": "document.folder.ConfigViewModel"
     },
-    "designerId": "abc529a1-596a-4682-a9e8-3d2af9a7edba",
-    "cn": [
-        {
-            "type": "Ext.data.Store",
-            "reference": {
-                "name": "stores",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "autoLoad": true,
-                "designer|displayName": "configfolderStore",
-                "model": "folder.Base",
-                "name": "configfolderStore"
-            },
-            "name": "MyStore5",
-            "designerId": "5c6313de-e626-4eb1-8eb0-aff378a60c4f"
-        }
-    ]
+    "designerId": "abc529a1-596a-4682-a9e8-3d2af9a7edba"
 }

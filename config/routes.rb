@@ -46,6 +46,9 @@ Rails.application.routes.draw do
       post '/', action: 'create'
       delete '/:id', action: 'delete'
       post '/order', action: 'order'
+      get '/document', action: 'document_index'
+      post '/document/', action: 'document_create'
+      delete '/document', action: 'document_delete'
     end
     # scope 'docs', controller: 'docs' do
     #   get '/', action: 'index'

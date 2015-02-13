@@ -29,7 +29,11 @@ Ext.application({
     'folder.Base',
     'document.Type',
     'document.Base',
-    'document.Comment'
+    'document.Comment',
+    'folder.Document'
+  ],
+  stores: [
+    'CustomFolders'
   ],
   views: [
     'document.editor.Creator',
@@ -60,7 +64,9 @@ Ext.application({
     'document.motions.Tree',
     'document.motions.ResponseDialog',
     'document.motions.ResponsePanel',
-    'document.motions.InCombo'
+    'document.motions.InCombo',
+    'document.folder.Main',
+    'document.folder.Config'
   ],
   name: 'Tel100',
 
