@@ -1,0 +1,13 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "document.Comment"
+    },
+    "name": "MyModel",
+    "designerId": "a943935a-5806-4d33-bde5-6a5906e75043"
+}
