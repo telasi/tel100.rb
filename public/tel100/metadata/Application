@@ -44,10 +44,15 @@
             "user.login.Panel",
             "workarea.LocaleSelector",
             "Main",
+<<<<<<< Updated upstream
             "document.motions.Tree",
             "document.motions.ResponseDialog",
             "document.motions.ResponsePanel",
             "document.motions.InCombo"
+=======
+            "document.folder.Main",
+            "document.folder.Config"
+>>>>>>> Stashed changes
         ]
     },
     "name": "Application",

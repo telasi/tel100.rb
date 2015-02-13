@@ -65,7 +65,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "ddGroup": "GridExample",
+                        "ddGroup": "Grid2FolderDDGroup",
                         "dragGroup": null,
                         "enableDrop": false,
                         "pluginId": "draganddropplug"

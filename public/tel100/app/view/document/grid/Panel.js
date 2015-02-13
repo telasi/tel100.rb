@@ -42,7 +42,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
       {
         ptype: 'gridviewdragdrop',
         pluginId: 'draganddropplug',
-        ddGroup: 'GridExample',
+        ddGroup: 'Grid2FolderDDGroup',
         enableDrop: false
       }
     ]

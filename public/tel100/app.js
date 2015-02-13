@@ -61,6 +61,8 @@ Ext.application({
     'document.motions.ResponseDialog',
     'document.motions.ResponsePanel',
     'document.motions.InCombo'
+    'document.folder.Main',
+    'document.folder.Config'
   ],
   name: 'Tel100',
 

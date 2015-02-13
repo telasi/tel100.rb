@@ -3,7 +3,7 @@ class Api::FolderController < ApiController
   before_filter :validate_login
 
   def index
-    @folders = Folder::Base.where(owner_id: current_user.id)
+    @folders = Folder::Base.where(owner_id: current_user.id).order('ORDER_BY')
   end
 
   def create
@@ -15,5 +15,19 @@ class Api::FolderController < ApiController
     else
      render json: { success: false, message: @folder.errors.full_messages[0] }
     end
+  end
+
+  def order
+    parsed = JSON.parse(param.permit(:list))
+    parsed.each do |folder|
+      @folder = Folder::Base.where(id: folder.id).first
+      if @folder
+
+      end
+    end
+  end
+
+  def delete
+    Folder::Base.destroy(params[:id])
   end
 end

@@ -5,6 +5,7 @@ class AddCustomFoldersTables < ActiveRecord::Migration
        OWNER_ID 					  NUMBER(10,0) NOT NULL,
        NAME 						  VARCHAR2(100 CHAR),
        FOLDER_TYPE					  VARCHAR2(50) NOT NULL,
+       ORDER_BY             NUMBER(3,0),
        PARENT_ID					  NUMBER(10,0),
 
        CREATED_AT                     TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
@@ -15,7 +16,7 @@ class AddCustomFoldersTables < ActiveRecord::Migration
     SQL
 
     execute <<-SQL
-      create unique index OWNER_ID_IDX on FOLDER_BASE (OWNER_ID)
+      create index OWNER_ID_IDX on FOLDER_BASE (OWNER_ID)
     SQL
 
     execute <<-SQL
