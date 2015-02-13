@@ -32,11 +32,15 @@
                 "designer|displayName": "incombo",
                 "fieldLabel": [
                     "{i18n.document.comment.motion}"
+                ],
+                "selection": [
+                    "{parentMotionId}"
                 ]
             },
             "name": "document.motions.incombo3",
             "configAlternates": {
-                "fieldLabel": "binding"
+                "fieldLabel": "binding",
+                "selection": "binding"
             },
             "designerId": "5b665463-d7a8-4569-8036-86f0c745a7a3",
             "masterInstanceId": "dc3c3559-9f62-4285-b87e-7b92b96fd58c"
@@ -73,23 +77,15 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "activeItem": 0,
                         "data": null,
                         "designer|displayName": "buttons",
                         "layout|flex": 0
                     },
                     "name": "MySegmentedButton1",
                     "configAlternates": {
-                        "activeItem": "number"
+                        "activeItem": "binding"
                     },
                     "designerId": "8a28bd5d-2f13-4082-808f-4b85640dbf96",
-                    "customConfigs": [
-                        {
-                            "group": "(Custom Properties)",
-                            "name": "activeItem",
-                            "type": "number"
-                        }
-                    ],
                     "cn": [
                         {
                             "type": "Ext.button.Button",
@@ -151,6 +147,28 @@
                                 "text": "binding"
                             },
                             "designerId": "65a766c7-b227-478b-bb0e-83195cd9b8db"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onTypeToggle",
+                                "implHandler": [
+                                    "if (isPressed) {",
+                                    "  var vm = this.getViewModel();",
+                                    "  var comment = vm.get('comment');",
+                                    "  comment.set('type', button.itemId);",
+                                    "}"
+                                ],
+                                "name": "toggle",
+                                "scope": "me"
+                            },
+                            "name": "onTypeToggle",
+                            "designerId": "7092e096-7b64-4ab3-bd2a-39615c3c03e3"
                         }
                     ]
                 }
@@ -168,13 +186,39 @@
                 "fieldLabel": [
                     "{i18n.document.comment.text}"
                 ],
-                "layout|flex": 1
+                "layout|flex": 1,
+                "value": [
+                    "{comment.text}"
+                ]
             },
             "name": "MyTextArea",
             "configAlternates": {
-                "fieldLabel": "binding"
+                "fieldLabel": "binding",
+                "value": "binding"
             },
             "designerId": "e9db2e46-0e35-4d5e-99a7-300468d00b45"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "var vm = this.getViewModel();",
+                    "vm.bind('{comment}', function(comment) {",
+                    "  var type = comment.get('type');",
+                    "  var view = this.getView();",
+                    "  view.down('#' + type).toggle();",
+                    "});"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "aeff8b3b-a644-4aa3-847d-f02ec7685572"
         }
     ]
 }

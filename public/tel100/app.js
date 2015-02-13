@@ -28,7 +28,8 @@ Ext.application({
     'hr.vacation.Vacation',
     'folder.Base',
     'document.Type',
-    'document.Base'
+    'document.Base',
+    'document.Comment'
   ],
   views: [
     'document.editor.Creator',

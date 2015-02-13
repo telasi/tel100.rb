@@ -33,6 +33,7 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
   height: 250,
   padding: 8,
   width: 400,
+  defaultListenerScope: true,
 
   layout: {
     type: 'vbox',
@@ -42,7 +43,8 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
     {
       xtype: 'documentmotionsincombo',
       bind: {
-        fieldLabel: '{i18n.document.comment.motion}'
+        fieldLabel: '{i18n.document.comment.motion}',
+        selection: '{parentMotionId}'
       }
     },
     {
@@ -59,7 +61,6 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
         {
           xtype: 'segmentedbutton',
           flex: 0,
-          activeItem: 0,
           items: [
             {
               itemId: 'comment',
@@ -80,7 +81,10 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
                 text: '{i18n.document.comment.actions.cancel}'
               }
             }
-          ]
+          ],
+          listeners: {
+            toggle: 'onTypeToggle'
+          }
         }
       ]
     },
@@ -88,9 +92,28 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
       xtype: 'textareafield',
       flex: 1,
       bind: {
-        fieldLabel: '{i18n.document.comment.text}'
+        fieldLabel: '{i18n.document.comment.text}',
+        value: '{comment.text}'
       }
     }
-  ]
+  ],
+
+  onTypeToggle: function(segmentedbutton, button, isPressed, eOpts) {
+    if (isPressed) {
+      var vm = this.getViewModel();
+      var comment = vm.get('comment');
+      comment.set('type', button.itemId);
+    }
+  },
+
+  initComponent: function() {
+    this.callParent();
+    var vm = this.getViewModel();
+    vm.bind('{comment}', function(comment) {
+      var type = comment.get('type');
+      var view = this.getView();
+      view.down('#' + type).toggle();
+    });
+  }
 
 });

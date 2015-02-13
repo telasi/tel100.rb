@@ -67,6 +67,12 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   });
                   view.commentsDialog = dialog;
                 }
+                var comment = Ext.create('Tel100.model.document.Comment', {
+                  parent_id: null,
+                  type: 'comment',
+                  text: 'this is a test text'
+                });
+                dialog.getViewModel().set('comment', comment);
                 dialog.show();
               },
               bind: {

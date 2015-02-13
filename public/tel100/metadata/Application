@@ -14,7 +14,8 @@
             "hr.vacation.Vacation",
             "folder.Base",
             "document.Type",
-            "document.Base"
+            "document.Base",
+            "document.Comment"
         ],
         "name": "Tel100",
         "views": [
