@@ -9,5 +9,20 @@
         "designer|userAlias": "documentfoldermain",
         "designer|userClassName": "document.folder.MainViewController"
     },
-    "designerId": "18c65a2a-f744-47d3-880e-821e3e2a7b6a"
+    "designerId": "18c65a2a-f744-47d3-880e-821e3e2a7b6a",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refreshDocuments"
+            },
+            "name": "refreshDocuments",
+            "designerId": "07009e92-5319-447f-84e6-be259ba8650a"
+        }
+    ]
 }

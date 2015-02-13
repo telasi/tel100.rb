@@ -25,9 +25,8 @@ Ext.define('Tel100.view.document.folder.ConfigViewController', {
           method: 'POST',
           params: { name: text},
           success: function(response){
-            var folderstore = Ext.getStore('configfolderStore');
+            var folderstore = Ext.getStore('CustomFolders');
             folderstore.reload();
-            Ext.MessageBox.alert('ok');
           },
           failure: function(response){
             Ext.MessageBox.alert('error');
