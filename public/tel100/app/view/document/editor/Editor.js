@@ -58,7 +58,10 @@ Ext.define('Tel100.view.document.editor.Editor', {
                 var view = this.up('documenteditoreditor');
                 var dialog = view.commentsDialog;
                 if (!dialog) {
+                  var vm = view.getViewModel();
+                  var doc = vm.get('document');
                   dialog = Ext.create('Tel100.view.document.motions.ResponseDialog');
+                  dialog.getViewModel().set('document', doc);
                   dialog.on('close', function() {
                     // TODO
                   });

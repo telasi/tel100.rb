@@ -15,10 +15,5 @@
 
 Ext.define('Tel100.view.document.motions.InComboViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentmotionsincombo',
-
-  onStoreLoad: function(store, records, successful, eOpts) {
-
-  }
-
+  alias: 'controller.documentmotionsincombo'
 });
