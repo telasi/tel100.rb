@@ -46,9 +46,7 @@ Ext.define('Tel100.view.document.folder.Config', {
       header: false,
       title: 'My Grid Panel',
       hideHeaders: true,
-      bind: {
-        store: '{configfolderStore}'
-      },
+      store: 'CustomFolders',
       columns: [
         {
           xtype: 'gridcolumn',

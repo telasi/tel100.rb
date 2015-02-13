@@ -17,12 +17,17 @@ Ext.define('Tel100.view.document.folder.MainViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentfoldermain',
 
+  refreshDocuments: function() {
+
+  },
+
   onToolClick: function(tool, e, owner, eOpts) {
     var configwindow = Ext.create('Tel100.view.document.folder.Config');
     configwindow.show();
   },
 
   onstandardGridpanelSelect: function(rowmodel, record, index, eOpts) {
+    this.refreshDocuments();
     this.getView().down('#customFolders').getSelectionModel().deselectAll();
   },
 
@@ -59,6 +64,7 @@ Ext.define('Tel100.view.document.folder.MainViewController', {
   },
 
   onCustomFoldersSelect: function(rowmodel, record, index, eOpts) {
+    this.refreshDocuments();
     this.getView().down('#standardFolders').getSelectionModel().deselectAll();
   },
 

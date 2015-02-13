@@ -125,6 +125,7 @@
                     "userConfig": {
                         "fn": "onstandardGridpanelSelect",
                         "implHandler": [
+                            "this.refreshDocuments();",
                             "this.getView().down('#customFolders').getSelectionModel().deselectAll();"
                         ],
                         "name": "select",
@@ -240,6 +241,7 @@
                     "userConfig": {
                         "fn": "onCustomFoldersSelect",
                         "implHandler": [
+                            "this.refreshDocuments();",
                             "this.getView().down('#standardFolders').getSelectionModel().deselectAll();"
                         ],
                         "name": "select",

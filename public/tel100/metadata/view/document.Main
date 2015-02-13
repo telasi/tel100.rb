@@ -19,6 +19,22 @@
     "viewModelInstanceId": "8db27d88-0934-4e59-bebc-ea6b2d462d9b",
     "cn": [
         {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|flex": null,
+                "layout|region": "west",
+                "layout|split": true
+            },
+            "name": "document.folder.main",
+            "designerId": "5a55363e-6302-4d94-bf66-30216e745273",
+            "masterInstanceId": "89aa358d-ea16-4a11-b22d-1dd751653032"
+        },
+        {
             "type": "Ext.tab.Panel",
             "reference": {
                 "name": "items",
@@ -116,7 +132,7 @@
                                     "{selection}"
                                 ]
                             },
-                            "name": "document.grid.panel2",
+                            "name": "document.grid.panel",
                             "configAlternates": {
                                 "selection": "binding"
                             },
