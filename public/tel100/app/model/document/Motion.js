@@ -45,7 +45,9 @@ Ext.define('Tel100.model.document.Motion', {
     {
       calculate: function(data) {
         var sender = data.sender;
-        if (sender) {
+        if (typeof sender === 'string') {
+          return sender;
+        } else {
           return sender.name || ( sender.first_name + ' ' + sender.last_name );
         }
       },

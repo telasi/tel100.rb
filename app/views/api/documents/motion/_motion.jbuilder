@@ -2,6 +2,7 @@ if motion.blank?
   json.document_id document.id
   json.type 'document'
   json.status document.status
+  json.sender "##{document.docnumber}: #{document.sender}"
   json.due_date document.due_date
   json.motion_text document.subject
   json.created_at document.created_at
