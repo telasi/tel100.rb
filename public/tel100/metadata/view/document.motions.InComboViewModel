@@ -24,6 +24,9 @@
                 "name": "motions"
             },
             "name": "MyStore6",
+            "configAlternates": {
+                "listeners": "object"
+            },
             "designerId": "01914cf1-820b-4ba7-ac4c-986cc292ed0f",
             "cn": [
                 {

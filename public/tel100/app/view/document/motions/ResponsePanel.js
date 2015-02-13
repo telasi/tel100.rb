@@ -63,6 +63,7 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
           items: [
             {
               itemId: 'comment',
+              allowDepress: false,
               bind: {
                 text: '{i18n.document.comment.actions.comment}'
               }

@@ -35,7 +35,6 @@ Ext.application({
     'document.editor.General',
     'document.motions.OutGrid',
     'document.motions.InGrid',
-    'document.folder.Panel',
     'document.motions.OutPanel',
     'party.Selector',
     'hr.vacation.Window',
@@ -61,8 +60,6 @@ Ext.application({
     'document.motions.ResponseDialog',
     'document.motions.ResponsePanel',
     'document.motions.InCombo'
-    'document.folder.Main',
-    'document.folder.Config'
   ],
   name: 'Tel100',
 

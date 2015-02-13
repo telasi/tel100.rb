@@ -99,6 +99,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "allowDepress": false,
                                 "designer|displayName": "comment",
                                 "itemId": "comment",
                                 "text": [
