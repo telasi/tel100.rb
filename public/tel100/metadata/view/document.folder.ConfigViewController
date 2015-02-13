@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfolderconfig",
+        "designer|userClassName": "document.folder.ConfigViewController"
+    },
+    "designerId": "5699b11d-14f3-474a-88de-9ae26205ff79"
+}

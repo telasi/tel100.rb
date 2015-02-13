@@ -26,14 +26,12 @@
             },
             "codeClass": null,
             "userConfig": {
-                "collapsible": true,
-                "designer|displayName": "folders",
                 "layout|region": "west",
                 "layout|split": true
             },
-            "name": "document.folder.panel",
-            "designerId": "a5bb3bf9-bfc0-46e4-a1ea-176101ed4d23",
-            "masterInstanceId": "009b3140-7885-4b70-bcb4-7abfbdcccf21"
+            "name": "document.folder.main",
+            "designerId": "22ed1286-abca-4dcc-8588-5764d2219d5b",
+            "masterInstanceId": "89aa358d-ea16-4a11-b22d-1dd751653032"
         },
         {
             "type": "Ext.tab.Panel",

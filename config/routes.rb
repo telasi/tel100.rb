@@ -44,6 +44,8 @@ Rails.application.routes.draw do
     scope 'folder', controller: 'folder' do
       get '/', action: 'index'
       post '/', action: 'create'
+      delete '/:id', action: 'delete'
+      post '/order', action: 'order'
     end
     # scope 'docs', controller: 'docs' do
     #   get '/', action: 'index'

@@ -20,11 +20,11 @@ Ext.define('Tel100.view.document.Main', {
   requires: [
     'Tel100.view.document.MainViewModel',
     'Tel100.view.document.MainViewController',
-    'Tel100.view.document.folder.Panel',
+    'Tel100.view.document.folder.Main',
     'Tel100.view.document.grid.Panel',
-    'Ext.grid.Panel',
     'Ext.tab.Panel',
-    'Ext.tab.Tab'
+    'Ext.tab.Tab',
+    'Ext.grid.Panel'
   ],
 
   controller: 'documentmain',
@@ -35,8 +35,7 @@ Ext.define('Tel100.view.document.Main', {
 
   items: [
     {
-      xtype: 'documentfolderpanel',
-      collapsible: true,
+      xtype: 'documentfoldermain',
       region: 'west',
       split: true
     },
