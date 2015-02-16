@@ -18,8 +18,7 @@ Ext.define('Tel100.view.document.folder.ConfigViewController', {
   alias: 'controller.documentfolderconfig',
 
   onPlusButtonClick: function(button, e, eOpts) {
-    //Ext.MessageBox.prompt(i18n.ui.folder,i18n.ui.enter_name, function(btn, text){
-    Ext.MessageBox.prompt('Folder','Enter name', function(btn, text){
+    Ext.MessageBox.prompt('საქაღალდე','შეიყვანეთ სახელი', function(btn, text){
       if(btn == 'ok'){
         Ext.Ajax.request({
           url: '/api/folder',
@@ -44,8 +43,8 @@ Ext.define('Tel100.view.document.folder.ConfigViewController', {
     var selection = grid.selection;
     if (selection){
       Ext.Msg.show({
-        title: i18n.ui.destroy,
-        message: i18n.ui.destroyConfirm,
+        title: '{i18n.ui.destroy}',
+        message: '{i18n.ui.destroyConfirm}',
         buttons: Ext.Msg.YESNO,
         icon: Ext.Msg.QUESTION,
         fn: function(btn) {

@@ -19,8 +19,6 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
 
   requires: [
     'Tel100.view.document.motions.ResponsePanelViewModel',
-    'Tel100.view.document.motions.InCombo',
-    'Ext.form.field.ComboBox',
     'Ext.form.FieldContainer',
     'Ext.button.Segmented',
     'Ext.button.Button',
@@ -41,11 +39,11 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
   },
   items: [
     {
-      xtype: 'documentmotionsincombo',
-      autoSelect: true,
-      forceSelection: false,
+      xtype: 'textfield',
+      editable: false,
       bind: {
-        fieldLabel: '{i18n.document.comment.motion}'
+        fieldLabel: '{i18n.document.comment.motion}',
+        value: '{motion.senderName}'
       }
     },
     {

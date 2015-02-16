@@ -21,27 +21,29 @@
     "viewModelInstanceId": "39e8e93b-7670-4083-bfac-86d41ee57f88",
     "cn": [
         {
-            "type": "linkedinstance",
+            "type": "Ext.form.field.Text",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "autoSelect": true,
-                "border": null,
-                "designer|displayName": "incombo",
+                "designer|displayName": "motion",
+                "editable": false,
                 "fieldLabel": [
                     "{i18n.document.comment.motion}"
                 ],
-                "forceSelection": false
+                "layout|flex": null,
+                "value": [
+                    "{motion.senderName}"
+                ]
             },
-            "name": "document.motions.incombo",
+            "name": "MyTextField2",
             "configAlternates": {
+                "value": "binding",
                 "fieldLabel": "binding"
             },
-            "designerId": "5b665463-d7a8-4569-8036-86f0c745a7a3",
-            "masterInstanceId": "dc3c3559-9f62-4285-b87e-7b92b96fd58c"
+            "designerId": "f8a7f613-3e79-4ca8-b0e6-0fcb055f3272"
         },
         {
             "type": "Ext.form.FieldContainer",

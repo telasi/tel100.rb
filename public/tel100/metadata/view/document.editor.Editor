@@ -106,12 +106,11 @@
                                             "",
                                             "if (activeMotion) {",
                                             "  var comment = Ext.create('Tel100.model.document.Comment', {",
-                                            "    parent_ids: [ activeMotion.id ],",
                                             "    type: 'comment',",
                                             "    text: ''",
                                             "  });",
                                             "  dialog.getViewModel().set('comment', comment);",
-                                            "  //dialog.getViewModel().set('motions', [activeMotion]);",
+                                            "  dialog.getViewModel().set('motion', activeMotion);",
                                             "  dialog.show();",
                                             "}"
                                         ]
@@ -263,7 +262,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general8",
+                                    "name": "document.editor.general1",
                                     "configAlternates": {
                                         "title": "binding",
                                         "readonly": "boolean"
@@ -281,7 +280,7 @@
                                     "userConfig": {
                                         "designer|displayName": "motions"
                                     },
-                                    "name": "document.motions.tree8",
+                                    "name": "document.motions.tree1",
                                     "designerId": "2eeacca2-a92c-45b2-a223-929269d20dbd",
                                     "masterInstanceId": "23c81566-c199-406f-8b0e-a0b49f286dd9"
                                 }
@@ -333,7 +332,7 @@
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.inpanel6",
+                            "name": "document.motions.inpanel1",
                             "designerId": "7a1fd724-1ec5-45fc-bb58-39815d4d9bac",
                             "masterInstanceId": "360c0d57-9834-48d9-9eb7-d6316da82b30",
                             "cn": [
@@ -392,7 +391,7 @@
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel6",
+                            "name": "document.motions.outpanel1",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }

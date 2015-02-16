@@ -74,12 +74,11 @@ Ext.define('Tel100.view.document.editor.Editor', {
 
                 if (activeMotion) {
                   var comment = Ext.create('Tel100.model.document.Comment', {
-                    parent_ids: [ activeMotion.id ],
                     type: 'comment',
                     text: ''
                   });
                   dialog.getViewModel().set('comment', comment);
-                  //dialog.getViewModel().set('motions', [activeMotion]);
+                  dialog.getViewModel().set('motion', activeMotion);
                   dialog.show();
                 }
               },

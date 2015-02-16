@@ -25,6 +25,12 @@ Ext.define('Tel100.view.document.motions.InComboViewModel', {
 
   stores: {
     motions: {
+      listeners: {
+        load: function() {
+          debugger;
+          console.log('loaded!');
+        }
+      },
       autoLoad: true,
       model: 'Tel100.model.document.Motion',
       proxy: {

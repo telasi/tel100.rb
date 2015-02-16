@@ -20,14 +20,30 @@
             "codeClass": null,
             "userConfig": {
                 "autoLoad": true,
+                "listeners": [
+                    "{",
+                    "  load: function() {",
+                    "    debugger;",
+                    "    console.log('loaded!');",
+                    "  }",
+                    "}"
+                ],
                 "model": "document.Motion",
                 "name": "motions"
             },
             "name": "MyStore6",
             "configAlternates": {
-                "listeners": "object"
+                "listeners": "object",
+                "listners": "object"
             },
             "designerId": "01914cf1-820b-4ba7-ac4c-986cc292ed0f",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "listeners",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "Ext.data.proxy.Ajax",

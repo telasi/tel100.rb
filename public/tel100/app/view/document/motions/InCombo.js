@@ -30,6 +30,22 @@ Ext.define('Tel100.view.document.motions.InCombo', {
 
   bind: {
     store: '{motions}'
+  },
+
+  initComponent: function() {
+    this.callParent();
+    var vm = this.getViewModel();
+    // var view = this;
+    // vm.bind('{motions}', function(store) {
+    //   store.load();
+    //   store.on('load', function() {
+    //     debugger;
+    //     if (store.getCount() > 0) {
+    //       var selection = store.getAt(0);
+    //       view.setSelection(selection);
+    //     }
+    //   });
+    // });
   }
 
 });
