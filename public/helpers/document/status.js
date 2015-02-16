@@ -34,11 +34,11 @@ var statusDecoration = function(status, role, opts) {
   } else if (status === SENT) {
     textId = 'sent';
     iconId = 'fa-send-o';
-    styleId = 'text-info';
+    styleId = 'text-muted';
   } else if (status === NOT_SENT) {
     textId = 'not_sent';
     iconId = 'fa-frown-o';
-    styleId = 'text-muted';
+    styleId = 'text-warning';
   } else if (status === CURRENT) {
     textId = isSignee ? 'to_be_signed' : 'current';
     iconId = 'fa-clock-o';
@@ -46,7 +46,7 @@ var statusDecoration = function(status, role, opts) {
   } else if (status === NOT_RECEIVED) {
     textId = 'not_received';
     iconId = 'fa-ban';
-    styleId = 'text-muted';
+    styleId = 'text-warning';
   } else if (status === COMPLETED) {
     textId = isSignee ? 'signed' : 'completed';
     iconId = 'fa-check';
