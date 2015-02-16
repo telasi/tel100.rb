@@ -140,7 +140,7 @@
             "userConfig": {
                 "fn": "getActiveMotion",
                 "implHandler": [
-                    "var grid = this.down('documentmotionsinpanel');",
+                    "var grid = this.down('documentmotionsingrid');",
                     "return grid.getActiveMotion();"
                 ]
             },

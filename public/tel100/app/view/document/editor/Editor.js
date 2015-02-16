@@ -56,24 +56,32 @@ Ext.define('Tel100.view.document.editor.Editor', {
               xtype: 'button',
               handler: function(button, e) {
                 var view = this.up('documenteditoreditor');
+
                 var dialog = view.commentsDialog;
                 if (!dialog) {
                   var vm = view.getViewModel();
                   var doc = vm.get('document');
-                  dialog = Ext.create('Tel100.view.document.motions.ResponseDialog');
+                  dialog = Ext.create('Tel100.view.document.motions.ResponseDialog', {modal: true});
                   dialog.getViewModel().set('document', doc);
                   dialog.on('close', function() {
                     // TODO
                   });
                   view.commentsDialog = dialog;
                 }
-                var comment = Ext.create('Tel100.model.document.Comment', {
-                  parent_id: null,
-                  type: 'comment',
-                  text: 'this is a test text'
-                });
-                dialog.getViewModel().set('comment', comment);
-                dialog.show();
+
+                var inMotionsPanel = view.down('documentmotionsinpanel');
+                var activeMotion = inMotionsPanel.getActiveMotion();
+
+                if (activeMotion) {
+                  var comment = Ext.create('Tel100.model.document.Comment', {
+                    parent_ids: [ activeMotion.id ],
+                    type: 'comment',
+                    text: ''
+                  });
+                  dialog.getViewModel().set('comment', comment);
+                  //dialog.getViewModel().set('motions', [activeMotion]);
+                  dialog.show();
+                }
               },
               bind: {
                 text: '{i18n.document.motion.respond}'

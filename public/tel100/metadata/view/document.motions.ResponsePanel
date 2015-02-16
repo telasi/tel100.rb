@@ -28,19 +28,17 @@
             },
             "codeClass": null,
             "userConfig": {
+                "autoSelect": true,
                 "border": null,
                 "designer|displayName": "incombo",
                 "fieldLabel": [
                     "{i18n.document.comment.motion}"
                 ],
-                "selection": [
-                    "{parentMotionId}"
-                ]
+                "forceSelection": false
             },
             "name": "document.motions.incombo",
             "configAlternates": {
-                "fieldLabel": "binding",
-                "selection": "binding"
+                "fieldLabel": "binding"
             },
             "designerId": "5b665463-d7a8-4569-8036-86f0c745a7a3",
             "masterInstanceId": "dc3c3559-9f62-4285-b87e-7b92b96fd58c"

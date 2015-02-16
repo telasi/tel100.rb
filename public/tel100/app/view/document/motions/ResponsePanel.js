@@ -42,9 +42,10 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
   items: [
     {
       xtype: 'documentmotionsincombo',
+      autoSelect: true,
+      forceSelection: false,
       bind: {
-        fieldLabel: '{i18n.document.comment.motion}',
-        selection: '{parentMotionId}'
+        fieldLabel: '{i18n.document.comment.motion}'
       }
     },
     {

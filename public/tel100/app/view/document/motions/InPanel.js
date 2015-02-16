@@ -69,7 +69,7 @@ Ext.define('Tel100.view.document.motions.InPanel', {
   },
 
   getActiveMotion: function() {
-    var grid = this.down('documentmotionsinpanel');
+    var grid = this.down('documentmotionsingrid');
     return grid.getActiveMotion();
   }
 
