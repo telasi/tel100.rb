@@ -65,7 +65,6 @@ Ext.application({
     'document.motions.Tree',
     'document.motions.ResponseDialog',
     'document.motions.ResponsePanel',
-    'document.motions.InCombo',
     'document.folder.Main',
     'document.folder.Config'
   ],
