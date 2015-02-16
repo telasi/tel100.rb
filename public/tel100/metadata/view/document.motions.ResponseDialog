@@ -38,7 +38,30 @@
             },
             "name": "document.motions.responsepanel",
             "designerId": "cabe578b-ba2f-43c2-92fa-7c19259e4449",
-            "masterInstanceId": "d8c79172-94f6-485b-9778-e8a4ab72eb30"
+            "masterInstanceId": "d8c79172-94f6-485b-9778-e8a4ab72eb30",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "container"
+                        ],
+                        "fn": "onContainerCancelcomment",
+                        "implHandler": [
+                            "this.close();"
+                        ],
+                        "name": "cancelcomment",
+                        "scope": "me"
+                    },
+                    "name": "onContainerCancelcomment",
+                    "designerId": "55a9d6ea-d042-4071-b70c-6724f58773da"
+                }
+            ]
         }
     ]
 }

@@ -22,15 +22,15 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
     'Ext.form.FieldContainer',
     'Ext.button.Segmented',
     'Ext.button.Button',
-    'Ext.form.field.TextArea'
+    'Ext.form.field.TextArea',
+    'Ext.toolbar.Toolbar',
+    'Ext.toolbar.Fill'
   ],
 
   viewModel: {
     type: 'documentmotionsresponsepanel'
   },
-  height: 250,
   padding: 8,
-  width: 400,
   defaultListenerScope: true,
 
   layout: {
@@ -94,6 +94,31 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
         fieldLabel: '{i18n.document.comment.text}',
         value: '{comment.text}'
       }
+    },
+    {
+      xtype: 'toolbar',
+      border: 0,
+      items: [
+        {
+          xtype: 'button',
+          bind: {
+            text: '{i18n.ui.save}'
+          }
+        },
+        {
+          xtype: 'tbfill'
+        },
+        {
+          xtype: 'button',
+          handler: function(button, e) {
+            var view = this.up('documentmotionsresponsepanel');
+            view.fireEvent('cancelcomment');
+          },
+          bind: {
+            text: '{i18n.ui.cancel}'
+          }
+        }
+      ]
     }
   ],
 

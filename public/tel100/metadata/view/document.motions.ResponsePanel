@@ -10,10 +10,10 @@
         "container|align": "stretch",
         "designer|userAlias": "documentmotionsresponsepanel",
         "designer|userClassName": "document.motions.ResponsePanel",
-        "height": 250,
+        "height": null,
         "layout": "vbox",
         "padding": 8,
-        "width": 400
+        "width": null
     },
     "name": "MyContainer1",
     "designerId": "d8c79172-94f6-485b-9778-e8a4ab72eb30",
@@ -54,7 +54,7 @@
             "codeClass": null,
             "userConfig": {
                 "container|align": "stretch",
-                "designer|displayName": "buttons",
+                "designer|displayName": "type",
                 "fieldLabel": [
                     "{i18n.document.comment.action}"
                 ],
@@ -219,6 +219,98 @@
             },
             "name": "initComponent",
             "designerId": "aeff8b3b-a644-4aa3-847d-f02ec7685572"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": 0,
+                "layout|flex": null
+            },
+            "name": "MyToolbar3",
+            "designerId": "6afff624-8398-40a4-9a02-8dbdd38e50db",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "save",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.save}"
+                        ]
+                    },
+                    "name": "MyButton10",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "20fd4486-4823-49c8-9720-f6d9cbfae49d"
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null
+                    },
+                    "name": "MyFill1",
+                    "designerId": "8691b556-670c-4b3f-9c96-9dfcba7968a5"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "cancel",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.cancel}"
+                        ]
+                    },
+                    "name": "MyButton11",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "05651188-d287-41fc-9160-0f66451cc597",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var view = this.up('documentmotionsresponsepanel');",
+                                    "view.fireEvent('cancelcomment');"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "8aaa890c-51bc-4525-9308-e787600fa116"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

@@ -31,14 +31,22 @@ Ext.define('Tel100.view.document.motions.ResponseDialog', {
   autoDestroy: false,
   layout: 'fit',
   closeAction: 'hide',
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.motion.respond}'
   },
   items: [
     {
-      xtype: 'documentmotionsresponsepanel'
+      xtype: 'documentmotionsresponsepanel',
+      listeners: {
+        cancelcomment: 'onContainerCancelcomment'
+      }
     }
-  ]
+  ],
+
+  onContainerCancelcomment: function(container) {
+    this.close();
+  }
 
 });
