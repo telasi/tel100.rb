@@ -6,6 +6,10 @@ class Api::FolderController < ApiController
     @folders = Folder::Base.where(owner_id: current_user.id).order('ORDER_BY')
   end
 
+  def standard
+    @folders = Folders::STANDARD
+  end
+
   def create
     @folder = Folder::Base.new(params.permit(:name))
     @folder.owner_id = current_user.id

@@ -17,8 +17,8 @@ Ext.define('Tel100.view.document.folder.MainViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentfoldermain',
 
-  refreshDocuments: function() {
-
+  refreshDocuments: function(opts) {
+    this.getView().up().down('documentgridpanel').refresh({params: opts});
   },
 
   onToolClick: function(tool, e, owner, eOpts) {
@@ -27,7 +27,7 @@ Ext.define('Tel100.view.document.folder.MainViewController', {
   },
 
   onstandardGridpanelSelect: function(rowmodel, record, index, eOpts) {
-    this.refreshDocuments();
+    this.refreshDocuments({folderType: 'standard', folderId: record.id});
     this.getView().down('#customFolders').getSelectionModel().deselectAll();
   },
 
@@ -64,7 +64,7 @@ Ext.define('Tel100.view.document.folder.MainViewController', {
   },
 
   onCustomFoldersSelect: function(rowmodel, record, index, eOpts) {
-    this.refreshDocuments();
+    this.refreshDocuments({folderType: 'custom', folderId: record.id});
     this.getView().down('#standardFolders').getSelectionModel().deselectAll();
   },
 
