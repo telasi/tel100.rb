@@ -66,7 +66,17 @@ var motion = {
   }
 };
 
+var comment = {
+  create: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/comment/create';
+    ajax.request(opts);
+  }
+};
+
 module.exports = {
   base: base,
-  motion: motion
+  motion: motion,
+  comment: comment
 };
