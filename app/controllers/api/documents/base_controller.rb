@@ -3,7 +3,14 @@ class Api::Documents::BaseController < ApiController
   before_filter :validate_login
 
   def index
-    @my_docs = Document::User.mydocs(current_user).order('UPDATED_AT desc')
+    @my_docs = case params[:folderType]
+                when 'standard'
+                  Folder::Standard.docs(params[:folderId], current_user)
+                when 'custom'
+                  Folder::Document.docs(params[:folderId])
+                else 
+                  Document::User.mydocs(current_user).order('UPDATED_AT desc')
+               end
   end
 
   def show

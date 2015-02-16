@@ -1,0 +1,56 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "folder.Standard",
+        "schema": "tel100"
+    },
+    "name": "MyModel",
+    "designerId": "dcd02e16-f4a4-476b-8f1f-7958947be51b",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "restProxy",
+                "url": "/api/folder/standard"
+            },
+            "name": "MyRestProxy4",
+            "designerId": "8452c299-ed43-4491-93ff-04f725ff18fa"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name"
+            },
+            "name": "MyField25",
+            "designerId": "7294498b-646b-497b-8227-ec172fa5a94c"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "category"
+            },
+            "name": "MyField26",
+            "designerId": "0860bd9e-cbd2-4dde-aafc-65a699cdf234"
+        }
+    ]
+}

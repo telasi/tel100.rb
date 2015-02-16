@@ -93,9 +93,17 @@ module.exports = {
 },{}],5:[function(require,module,exports){
 module.exports = {
   ui: {
+    folder:{
+      ka: 'საქაღალდე',
+      ru: 'Папка'
+    },
     folders: {
       ka: '<i class="fa fa-folder-open-o"></i> საქაღალდეები',
       ru: '<i class="fa fa-folder-open-o"></i> Папки'
+    },
+    enter_name:{
+      ka: 'შეიყვანეთ სახელი',
+      ru: 'Введите имя'
     }
   },
   categories: {

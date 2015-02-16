@@ -19,51 +19,13 @@
             },
             "codeClass": null,
             "userConfig": {
-                "autoLoad": null,
-                "data": [
-                    "[",
-                    "    {",
-                    "      name: 'inbox',",
-                    "      category: 'a'",
-                    "    }, {",
-                    "      name: 'outbox',",
-                    "      category: 'a'",
-                    "    }",
-                    "  ]"
-                ],
+                "autoLoad": true,
                 "groupField": null,
+                "model": "folder.Standard",
                 "name": "folders"
             },
             "name": "MyStore",
-            "designerId": "77377884-6ab5-4da4-8ba3-9ee9d2cdc957",
-            "cn": [
-                {
-                    "type": "Ext.data.field.Field",
-                    "reference": {
-                        "name": "fields",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "name": "name"
-                    },
-                    "name": "MyField3",
-                    "designerId": "dae626c2-a04e-413a-afff-2773c0e1e4f0"
-                },
-                {
-                    "type": "Ext.data.field.Field",
-                    "reference": {
-                        "name": "fields",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "name": "category"
-                    },
-                    "name": "MyField4",
-                    "designerId": "d0ba8fda-d50c-48cf-9e46-e55cccd10f4b"
-                }
-            ]
+            "designerId": "77377884-6ab5-4da4-8ba3-9ee9d2cdc957"
         },
         {
             "type": "Ext.data.Store",

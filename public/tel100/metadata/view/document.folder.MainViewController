@@ -19,7 +19,13 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "refreshDocuments"
+                "designer|params": [
+                    "opts"
+                ],
+                "fn": "refreshDocuments",
+                "implHandler": [
+                    "this.getView().up().down('documentgridpanel').refresh({params: opts});"
+                ]
             },
             "name": "refreshDocuments",
             "designerId": "07009e92-5319-447f-84e6-be259ba8650a"

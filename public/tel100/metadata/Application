@@ -16,7 +16,8 @@
             "document.Type",
             "document.Base",
             "document.Comment",
-            "folder.Document"
+            "folder.Document",
+            "folder.Standard"
         ],
         "name": "Tel100",
         "stores": [

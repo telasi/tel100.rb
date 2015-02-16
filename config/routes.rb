@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     end
     scope 'folder', controller: 'folder' do
       get '/', action: 'index'
+      get '/standard', action: 'standard'
       post '/', action: 'create'
       delete '/:id', action: 'delete'
       post '/order', action: 'order'
