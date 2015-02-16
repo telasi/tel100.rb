@@ -90,6 +90,9 @@ Rails.application.routes.draw do
         put    '/:id', action: 'update'
         delete '/:id', action: 'destroy'
       end
+      scope 'comments', controller: 'comments' do
+        post '/create', action: 'create'
+      end
     end
   end
 
