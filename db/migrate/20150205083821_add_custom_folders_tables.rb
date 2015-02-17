@@ -36,7 +36,7 @@ class AddCustomFoldersTables < ActiveRecord::Migration
 
   	execute <<-SQL
       create table FOLDER_DOCUMENTS (
-      	ID         NUMBER(10,0) NOT NULL,
+      	FOLDER_ID  NUMBER(10,0) NOT NULL,
       	DOC_ID     NUMBER(10,0) NOT NULL,
         created_at TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
         updated_at TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL

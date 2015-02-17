@@ -47,13 +47,15 @@ ActiveRecord::Schema.define(version: 20150205083821) do
   end
 
   create_table "document_comment", force: true do |t|
-    t.integer   "document_id", limit: 10,   precision: 10, scale: 0,                 null: false
-    t.integer   "user_id",     limit: 10,   precision: 10, scale: 0,                 null: false
-    t.boolean   "status",                   precision: 1,  scale: 0, default: false, null: false
-    t.string    "operation",   limit: 30,                                            null: false
+    t.integer   "document_id", limit: 10,   precision: 10, scale: 0, null: false
+    t.integer   "motion_id",   limit: 10,   precision: 10, scale: 0
+    t.integer   "user_id",     limit: 10,   precision: 10, scale: 0, null: false
+    t.boolean   "status",                   precision: 1,  scale: 0, null: false
+    t.boolean   "old_status",               precision: 1,  scale: 0, null: false
+    t.string    "role",        limit: 10,                            null: false
     t.string    "text",        limit: 1000
-    t.timestamp "created_at",  limit: 6,                                             null: false
-    t.timestamp "updated_at",  limit: 6,                                             null: false
+    t.timestamp "created_at",  limit: 6,                             null: false
+    t.timestamp "updated_at",  limit: 6,                             null: false
   end
 
   create_table "document_motion", force: true do |t|
@@ -110,19 +112,22 @@ ActiveRecord::Schema.define(version: 20150205083821) do
     t.integer   "owner_id",    limit: 10,  precision: 10, scale: 0, null: false
     t.string    "name",        limit: 100
     t.string    "folder_type", limit: 50,                           null: false
+    t.integer   "order_by",    limit: 3,   precision: 3,  scale: 0
     t.integer   "parent_id",   limit: 10,  precision: 10, scale: 0
     t.timestamp "created_at",  limit: 6,                            null: false
     t.timestamp "updated_at",  limit: 6,                            null: false
   end
 
-  add_index "folder_base", ["owner_id"], name: "owner_id_idx", unique: true
+  add_index "folder_base", ["owner_id"], name: "owner_id_idx"
 
   create_table "folder_documents", id: false, force: true do |t|
-    t.integer   "id",         limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "folder_id",  limit: 10, precision: 10, scale: 0, null: false
     t.integer   "doc_id",     limit: 10, precision: 10, scale: 0, null: false
     t.timestamp "created_at", limit: 6,                           null: false
     t.timestamp "updated_at", limit: 6,                           null: false
   end
+
+  add_index "folder_documents", ["folder_id", "doc_id"], name: "folder_doc_unique", unique: true
 
   create_table "hr_employees", force: true do |t|
     t.boolean   "is_active",                     precision: 1,  scale: 0, default: true,  null: false
