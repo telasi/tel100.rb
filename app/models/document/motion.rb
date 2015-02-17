@@ -105,4 +105,62 @@ class Document::Motion < ActiveRecord::Base
     # save motion data
     self.save!
   end
+
+  def add_comment(user, params)
+    raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
+    raise 'not your motion' if user != self.receiver_user
+    new_status = self.status
+    if self.status == CURRENT
+      new_status = COMPLETED if params[:type] == Document::Comment::POSITIVE
+      new_status = CANCELED  if params[:type] == Document::Comment::NEGATIVE
+    end
+    Document::Comment.transaction do
+      # S1: create comment
+      Document::Comment.create!(document: self.document, motion: self, user: user,
+        status: new_status, old_status: self.status, role: self.role,
+        text: params[:text])
+      # S2: update motion
+      if self.status != new_status # it's completed
+        self.completed_at = Time.now
+        self.status = new_status
+        self.save!
+      end
+      # S3: update upper motions
+      check_level_ups!
+    end
+  end
+
+  def check_level_ups!
+    if self.status == CANCELED
+      cancel_ups!
+    elsif self.status == COMPLETED
+      resend_ups!
+    end
+  end
+
+  private
+
+  def cancel_ups!
+    ups = Document::Motion.where(parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
+    ups.each do |up|
+      Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: NOT_RECEIVED })
+      up.status = NOT_RECEIVED
+      up.received_at = Time.now
+      up.save!
+    end
+  end
+
+  def resend_ups!
+    ups = Document::Motion.where(parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
+    if ups.count > 0
+      ordering = ups.minimum('ordering')
+      ups = ups.where(ordering: ordering)
+      ups.each do |ups|
+        Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: CURRENT })
+        up.status = CURRENT
+        up.received_at = Time.now
+        up.save!
+      end
+    end
+  end
 end
