@@ -1,17 +1,16 @@
 class AddCustomFoldersTables < ActiveRecord::Migration
-  execute <<-SQL
+  def up
+    execute <<-SQL
       create table FOLDER_BASE (
-       ID                             NUMBER(10,0) NOT NULL,
-       OWNER_ID 					  NUMBER(10,0) NOT NULL,
-       NAME 						  VARCHAR2(100 CHAR),
-       FOLDER_TYPE					  VARCHAR2(50) NOT NULL,
-       ORDER_BY             NUMBER(3,0),
-       PARENT_ID					  NUMBER(10,0),
-
-       CREATED_AT                     TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
-       UPDATED_AT                     TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
-
-       CONSTRAINT folder_base_primarykey PRIMARY KEY (id) enable
+        ID           NUMBER(10,0) NOT NULL,
+        OWNER_ID     NUMBER(10,0) NOT NULL,
+        NAME         VARCHAR2(100 CHAR),
+        FOLDER_TYPE  VARCHAR2(50) NOT NULL,
+        ORDER_BY     NUMBER(3,0),
+        PARENT_ID		 NUMBER(10,0),
+        CREATED_AT   TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
+        UPDATED_AT   TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
+        CONSTRAINT folder_base_primarykey PRIMARY KEY (id) enable
       )
     SQL
 
@@ -37,17 +36,17 @@ class AddCustomFoldersTables < ActiveRecord::Migration
 
   	execute <<-SQL
       create table FOLDER_DOCUMENTS (
-      	ID							NUMBER(10,0) NOT NULL,
-      	DOC_ID						NUMBER(10,0) NOT NULL,
-
-        created_at                  TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
-        updated_at                  TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL
+      	ID         NUMBER(10,0) NOT NULL,
+      	DOC_ID     NUMBER(10,0) NOT NULL,
+        created_at TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
+        updated_at TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL
       )
     SQL
 
     execute <<-SQL
        alter table folder_documents add constraint folder_doc_unique UNIQUE (folder_id, doc_id)
     SQL
+  end
 
   def down
   	execute "drop table FOLDER_DOCUMENTS"
