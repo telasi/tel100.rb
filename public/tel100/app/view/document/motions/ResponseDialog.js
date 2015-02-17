@@ -40,13 +40,19 @@ Ext.define('Tel100.view.document.motions.ResponseDialog', {
     {
       xtype: 'documentmotionsresponsepanel',
       listeners: {
-        cancelcomment: 'onContainerCancelcomment'
+        cancelcomment: 'onContainerCancelcomment',
+        commentsent: 'onContainerCommentsent'
       }
     }
   ],
 
   onContainerCancelcomment: function(container) {
     this.close();
+  },
+
+  onContainerCommentsent: function(container) {
+    this.close();
+    this.fireEvent('commentsent');
   }
 
 });

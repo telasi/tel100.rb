@@ -125,7 +125,7 @@ class Document::Motion < ActiveRecord::Base
         self.completed_at = Time.now
         self.status = new_status
       end
-      self.text = text
+      self.response_text = text
       self.save!
       # S3: update upper motions
       check_level_ups!
