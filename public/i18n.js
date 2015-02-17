@@ -104,6 +104,20 @@ module.exports = {
     enter_name:{
       ka: 'შეიყვანეთ სახელი',
       ru: 'Введите имя'
+    },
+    standard:{
+      draft: {
+        ka: 'Draft',
+        ru: 'Черновики'
+      },
+      inbox: {
+        ka: 'შემოსული',
+        ru: 'Полученные'
+      },
+      outbox: {
+        ka: 'გაგზავნილი',
+        ru: 'Отправленные'
+      },
     }
   },
   categories: {
