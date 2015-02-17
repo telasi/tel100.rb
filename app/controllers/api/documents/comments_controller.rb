@@ -4,6 +4,11 @@ class Api::Documents::MotionController < ApiController
   before_filter :validate_login
 
   def create
-    # TODO: create operation for comment
+    user = current_user
+    doc  = Document::Base.find(params[:document_id])
+    motion = Document::Motion.find(params[:motion_id]) if params[:motion_id].present?
+    raise 'illegal document' if ( motion.present? and motion.document != doc )
+    Document::Comment.create(user, doc, motion, params)
+    render json: { success: true }
   end
 end
