@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-class Api::Documents::MotionController < ApiController
+class Api::Documents::CommentsController < ApiController
   include Document::Status
   before_filter :validate_login
 

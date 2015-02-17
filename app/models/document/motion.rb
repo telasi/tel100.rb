@@ -116,15 +116,17 @@ class Document::Motion < ActiveRecord::Base
     end
     Document::Comment.transaction do
       # S1: create comment
+      text = params[:text] if params[:text].present?
       Document::Comment.create!(document: self.document, motion: self, user: user,
-        status: new_status, old_status: self.status, role: self.role,
-        text: params[:text])
+        status: new_status, old_status: self.status, role: self.receiver_role,
+        text: text)
       # S2: update motion
       if self.status != new_status # it's completed
         self.completed_at = Time.now
         self.status = new_status
-        self.save!
       end
+      self.text = text
+      self.save!
       # S3: update upper motions
       check_level_ups!
     end
