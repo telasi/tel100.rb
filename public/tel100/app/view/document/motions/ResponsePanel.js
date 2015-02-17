@@ -102,7 +102,6 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
         {
           xtype: 'button',
           handler: function(button, e) {
-            debugger;
             var view = this.up('documentmotionsresponsepanel');
             var vm = view.getViewModel();
             var doc = vm.get('document');
@@ -119,7 +118,7 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
             helpers.api.document.comment.create({
               params: params,
               success: function() {
-                debugger;
+                view.fireEvent('commentsent');
               }
             });
           },

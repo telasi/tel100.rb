@@ -268,7 +268,6 @@
                                 ],
                                 "fn": "handler",
                                 "implHandler": [
-                                    "debugger;",
                                     "var view = this.up('documentmotionsresponsepanel');",
                                     "var vm = view.getViewModel();",
                                     "var doc = vm.get('document');",
@@ -285,7 +284,7 @@
                                     "helpers.api.document.comment.create({",
                                     "  params: params,",
                                     "  success: function() {",
-                                    "    debugger;",
+                                    "    view.fireEvent('commentsent');",
                                     "  }",
                                     "});"
                                 ]
