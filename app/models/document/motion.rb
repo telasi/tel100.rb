@@ -157,7 +157,7 @@ class Document::Motion < ActiveRecord::Base
     if ups.count > 0
       ordering = ups.minimum('ordering')
       ups = ups.where(ordering: ordering)
-      ups.each do |ups|
+      ups.each do |up|
         Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: CURRENT })
         up.status = CURRENT
         up.received_at = Time.now
