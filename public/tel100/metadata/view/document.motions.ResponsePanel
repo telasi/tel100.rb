@@ -252,7 +252,48 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "20fd4486-4823-49c8-9720-f6d9cbfae49d"
+                    "designerId": "20fd4486-4823-49c8-9720-f6d9cbfae49d",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "debugger;",
+                                    "var view = this.up('documentmotionsresponsepanel');",
+                                    "var vm = view.getViewModel();",
+                                    "var doc = vm.get('document');",
+                                    "var motion = vm.get('motion');",
+                                    "var comment = vm.get('comment');",
+                                    "var params = {",
+                                    "  document_id: doc.get('id'),",
+                                    "  type: comment.get('type'),",
+                                    "  text: comment.get('text')",
+                                    "};",
+                                    "if (motion.get('type') === 'motion') {",
+                                    "  params.motion_id = motion.get('id');",
+                                    "}",
+                                    "helpers.api.document.comment.create({",
+                                    "  params: params,",
+                                    "  success: function() {",
+                                    "    debugger;",
+                                    "  }",
+                                    "});"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "bce95e4c-ff09-4ab0-b1bc-8fe8184d1bd0"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.toolbar.Fill",

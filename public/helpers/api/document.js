@@ -70,7 +70,7 @@ var comment = {
   create: function(args) {
     var opts = args || {};
     opts.method = 'POST';
-    opts.url = '/api/documents/comment/create';
+    opts.url = '/api/documents/comments/create';
     ajax.request(opts);
   }
 };

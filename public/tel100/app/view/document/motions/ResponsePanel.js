@@ -101,6 +101,28 @@ Ext.define('Tel100.view.document.motions.ResponsePanel', {
       items: [
         {
           xtype: 'button',
+          handler: function(button, e) {
+            debugger;
+            var view = this.up('documentmotionsresponsepanel');
+            var vm = view.getViewModel();
+            var doc = vm.get('document');
+            var motion = vm.get('motion');
+            var comment = vm.get('comment');
+            var params = {
+              document_id: doc.get('id'),
+              type: comment.get('type'),
+              text: comment.get('text')
+            };
+            if (motion.get('type') === 'motion') {
+              params.motion_id = motion.get('id');
+            }
+            helpers.api.document.comment.create({
+              params: params,
+              success: function() {
+                debugger;
+              }
+            });
+          },
           bind: {
             text: '{i18n.ui.save}'
           }
