@@ -101,4 +101,32 @@ class Document::Base < ActiveRecord::Base
       end
     end
   end
+
+  def add_comment(user, params)
+    raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
+    raise 'not your motion' if user != self.sender_user
+    new_status = self.status
+    if self.status == CURRENT
+      if params[:type] == Document::Comment::POSITIVE
+        new_status = COMPLETED
+      elsif params[:type] == Document::Comment::NEGATIVE
+        new_status = CANCELED
+      end
+    end
+    Document::Comment.transaction do
+      # S1: create comment
+      text = params[:text] if params[:text].present?
+      Document::Comment.create!(document: self, motion: nil, user: user,
+        status: new_status, old_status: self.status, role: ROLE_OWNER,
+        text: text)
+      # S2: update document itself
+      if self.status != new_status # it's completed
+        self.completed_at = Time.now
+        self.status = new_status
+        self.save!
+      end
+      # S3: document_user updates
+      Document::User.upsert!(self, user, ROLE_OWNER, { status: new_status })
+    end
+  end
 end
