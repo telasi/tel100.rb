@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionspanel",
+        "designer|userClassName": "document.motions.PanelViewController"
+    },
+    "designerId": "0357c6af-d2b0-43a1-aae6-33cd328b1c71"
+}

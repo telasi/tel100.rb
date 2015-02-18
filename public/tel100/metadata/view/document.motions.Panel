@@ -1,0 +1,162 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionspanel",
+        "designer|userClassName": "document.motions.Panel",
+        "height": null,
+        "layout": "fit",
+        "width": null
+    },
+    "name": "MyContainer2",
+    "designerId": "63482771-036c-4fa9-9692-dfd1aa5b4bb8",
+    "viewControllerInstanceId": "0357c6af-d2b0-43a1-aae6-33cd328b1c71",
+    "viewModelInstanceId": "c27cfcde-8218-4243-997a-bfcd2b8b4a06",
+    "cn": [
+        {
+            "type": "Ext.tab.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "activeTab": 0
+            },
+            "name": "MyTabPanel1",
+            "designerId": "0f78be00-3716-4855-ab8e-5d953f658881",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "layout": "vbox",
+                        "title": "Tab1"
+                    },
+                    "name": "MyPanel2",
+                    "designerId": "44a1b774-534f-48d5-bb0e-a2035fba5d69",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig3",
+                            "designerId": "691d5075-cc9b-4e3a-97d3-c13ebd81b0e2"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Label",
+                                "layout|flex": 0
+                            },
+                            "name": "MyTextField3",
+                            "designerId": "a91a5f23-5563-4530-9005-3dfdcac3c494"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "title": "Tab 2"
+                    },
+                    "name": "MyPanel3",
+                    "designerId": "fd95bf7b-1bd9-4edc-8b01-7acf2947e512",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig4",
+                            "designerId": "bc088552-79e6-4dac-b050-0eb991708b55"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "title": "Tab 3"
+                    },
+                    "name": "MyPanel4",
+                    "designerId": "534c688a-96d4-4d31-bc71-2529b277f3a1",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig5",
+                            "designerId": "ef1aa44e-1a54-440b-8644-dd5fcff7816a"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "motion"
+                ],
+                "fn": "setMotion",
+                "implHandler": [
+                    "this.getViewModel().set('motion', motion);"
+                ]
+            },
+            "name": "setMotion",
+            "designerId": "37fca658-c765-4fdd-9299-99f36361f84f"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getMotion",
+                "implHandler": [
+                    "return this.getViewModel().get('motion');"
+                ]
+            },
+            "name": "getMotion",
+            "designerId": "a185bf5f-4ec3-4fb5-bfc8-ad98898cc72e"
+        }
+    ]
+}
