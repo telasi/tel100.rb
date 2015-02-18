@@ -111,8 +111,11 @@ class Document::Motion < ActiveRecord::Base
     raise 'not your motion' if user != self.receiver_user
     new_status = self.status
     if self.status == CURRENT
-      new_status = COMPLETED if params[:type] == Document::Comment::POSITIVE
-      new_status = CANCELED  if params[:type] == Document::Comment::NEGATIVE
+      if params[:type] == Document::Comment::POSITIVE
+        new_status = COMPLETED
+      elsif params[:type] == Document::Comment::NEGATIVE
+        new_status = CANCELED
+      end
     end
     Document::Comment.transaction do
       # S1: create comment
