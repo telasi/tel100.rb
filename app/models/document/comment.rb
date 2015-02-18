@@ -5,7 +5,7 @@ class Document::Comment < ActiveRecord::Base
 
   NEUTRAL  = 'comment'
   POSITIVE = 'confirm'
-  NEGATIVE = 'reject'
+  NEGATIVE = 'cancel'
 
   self.table_name  = 'document_comment'
   self.sequence_name = 'doccomment_seq'
