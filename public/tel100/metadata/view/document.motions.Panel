@@ -73,7 +73,7 @@
                                 "fieldLabel": "#",
                                 "layout|flex": 0,
                                 "value": [
-                                    "{motion.senderName}"
+                                    "{motion.id}"
                                 ]
                             },
                             "name": "MyTextField3",

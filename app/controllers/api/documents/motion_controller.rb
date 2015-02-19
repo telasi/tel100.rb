@@ -24,6 +24,7 @@ class Api::Documents::MotionController < ApiController
     motionsArray = document.motions.order('ordering ASC, id ASC').map do |motion|
       {
         id: motion.id,
+        type: 'motion',
         parent_id: motion.parent_id,
         status: motion.status,
         ordering: motion.ordering,

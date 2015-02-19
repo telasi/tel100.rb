@@ -1652,7 +1652,6 @@
                     "cn": [
                         {
                             "id": "44a1b774-534f-48d5-bb0e-a2035fba5d69",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "691d5075-cc9b-4e3a-97d3-c13ebd81b0e2"
@@ -2036,8 +2035,8 @@
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "23c81566-c199-406f-8b0e-a0b49f286dd9",
-        "selectedInstance": "c727c179-79da-4c16-b30c-852abce52b33"
+        "topInstance": "63482771-036c-4fa9-9692-dfd1aa5b4bb8",
+        "selectedInstance": "a91a5f23-5563-4530-9005-3dfdcac3c494"
     },
     "editMode": "code",
     "userSettings": {

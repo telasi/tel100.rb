@@ -40,7 +40,7 @@ Ext.define('Tel100.view.document.motions.Properties', {
   ],
 
   getPanel: function() {
-    return this.get('documentmotionspanel');
+    return this.down('documentmotionspanel');
   },
 
   getMotion: function() {

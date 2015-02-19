@@ -49,7 +49,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
               flex: 0,
               fieldLabel: '#',
               bind: {
-                value: '{motion.senderName}'
+                value: '{motion.id}'
               }
             }
           ]

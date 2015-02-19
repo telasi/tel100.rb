@@ -70,7 +70,17 @@ Ext.define('Tel100.view.document.motions.Tree', {
         {
           xtype: 'button',
           handler: function(button, e) {
-            console.log('properties');
+            var tree = this.up('documentmotionstree');
+            var vm = tree.getViewModel();
+            var selection = vm.get('selection');
+            debugger;
+            if (selection && selection.get('type') === 'motion') {
+              var dialog = Ext.create('Tel100.view.document.motions.Properties', {
+                modal: true
+              });
+              dialog.setMotion(selection);
+              dialog.show();
+            }
           },
           bind: {
             disabled: '{disableProperties}',
