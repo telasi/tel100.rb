@@ -77,6 +77,7 @@ Rails.application.routes.draw do
       end
       scope 'motion', controller: 'motion' do
         get    '/',                   action: 'index'
+        get    '/show',               action: 'show'
         get    '/tree',               action: 'tree'
         post   '/create_draft',       action: 'create_draft'
         put    '/update_draft',       action: 'update_draft'

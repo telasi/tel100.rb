@@ -19,6 +19,10 @@ class Api::Documents::MotionController < ApiController
     @motions = hasbase ? [ nil ] + motions : motions
   end
 
+  def show
+    @motion = Document::Motion.find(params[:id])
+  end
+
   def tree
     document = Document::Base.find(params[:document_id])
     motionsArray = document.motions.order('ordering ASC, id ASC').map do |motion|
