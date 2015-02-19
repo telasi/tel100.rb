@@ -36,26 +36,35 @@ Ext.define('Tel100.view.document.motions.Panel', {
       items: [
         {
           xtype: 'panel',
-          title: 'Tab1',
           layout: {
             type: 'vbox',
             align: 'stretch'
+          },
+          bind: {
+            title: '{i18n.document.motion.general}'
           },
           items: [
             {
               xtype: 'textfield',
               flex: 0,
-              fieldLabel: 'Label'
+              fieldLabel: '#',
+              bind: {
+                value: '{motion.senderName}'
+              }
             }
           ]
         },
         {
           xtype: 'panel',
-          title: 'Tab 2'
+          bind: {
+            title: '{i18n.document.motion.times}'
+          }
         },
         {
           xtype: 'panel',
-          title: 'Tab 3'
+          bind: {
+            title: '{i18n.document.motion.comments}'
+          }
         }
       ]
     }

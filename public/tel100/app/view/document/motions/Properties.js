@@ -28,12 +28,27 @@ Ext.define('Tel100.view.document.motions.Properties', {
   },
   height: 250,
   width: 400,
-  title: 'My Window',
+  layout: 'fit',
 
+  bind: {
+    title: '{i18n.document.motion.properties}'
+  },
   items: [
     {
       xtype: 'documentmotionspanel'
     }
-  ]
+  ],
+
+  getPanel: function() {
+    return this.get('documentmotionspanel');
+  },
+
+  getMotion: function() {
+    return this.getPanel().getMotion();
+  },
+
+  setMotion: function(motion) {
+    this.getPanel().setMotion(motion);
+  }
 
 });

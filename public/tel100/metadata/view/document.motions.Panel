@@ -39,10 +39,16 @@
                     "codeClass": null,
                     "userConfig": {
                         "container|align": "stretch",
+                        "designer|displayName": "general",
                         "layout": "vbox",
-                        "title": "Tab1"
+                        "title": [
+                            "{i18n.document.motion.general}"
+                        ]
                     },
                     "name": "MyPanel2",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
                     "designerId": "44a1b774-534f-48d5-bb0e-a2035fba5d69",
                     "cn": [
                         {
@@ -63,10 +69,17 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "fieldLabel": "Label",
-                                "layout|flex": 0
+                                "designer|displayName": "docnumber",
+                                "fieldLabel": "#",
+                                "layout|flex": 0,
+                                "value": [
+                                    "{motion.senderName}"
+                                ]
                             },
                             "name": "MyTextField3",
+                            "configAlternates": {
+                                "value": "binding"
+                            },
                             "designerId": "a91a5f23-5563-4530-9005-3dfdcac3c494"
                         }
                     ]
@@ -79,9 +92,15 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "title": "Tab 2"
+                        "designer|displayName": "times",
+                        "title": [
+                            "{i18n.document.motion.times}"
+                        ]
                     },
                     "name": "MyPanel3",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
                     "designerId": "fd95bf7b-1bd9-4edc-8b01-7acf2947e512",
                     "cn": [
                         {
@@ -104,9 +123,15 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "title": "Tab 3"
+                        "designer|displayName": "comments",
+                        "title": [
+                            "{i18n.document.motion.comments}"
+                        ]
                     },
                     "name": "MyPanel4",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
                     "designerId": "534c688a-96d4-4d31-bc71-2529b277f3a1",
                     "cn": [
                         {

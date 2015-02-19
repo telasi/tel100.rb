@@ -15,4 +15,8 @@ module.exports = {
   sendMotionsConfirm: 'ნამდვილად გინდათ ყველა დრაფტის დაგზავნა?',
   tree: 'დოკუმენტის მოძრაობა',
   respond: '<i class="fa fa-comment"></i> კომენტარი ან შესრულება',
+  properties: 'მოძრაობის თვისებები',
+  general: 'ზოგადი',
+  times: 'ვადები',
+  comments: 'კომენტარები'
 };
