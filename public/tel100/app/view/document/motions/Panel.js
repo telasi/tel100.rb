@@ -36,6 +36,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
       items: [
         {
           xtype: 'panel',
+          bodyPadding: 5,
           layout: {
             type: 'vbox',
             align: 'stretch'
@@ -48,6 +49,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
               xtype: 'textfield',
               flex: 0,
               fieldLabel: '#',
+              readOnly: true,
               bind: {
                 value: '{motion.id}'
               }

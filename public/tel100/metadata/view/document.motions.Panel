@@ -38,6 +38,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "bodyPadding": 5,
                         "container|align": "stretch",
                         "designer|displayName": "general",
                         "layout": "vbox",
@@ -72,6 +73,7 @@
                                 "designer|displayName": "docnumber",
                                 "fieldLabel": "#",
                                 "layout|flex": 0,
+                                "readOnly": true,
                                 "value": [
                                     "{motion.id}"
                                 ]
