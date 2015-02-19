@@ -77,12 +77,12 @@ Rails.application.routes.draw do
       end
       scope 'motion', controller: 'motion' do
         get    '/',                   action: 'index'
-        get    '/show',               action: 'show'
         get    '/tree',               action: 'tree'
         post   '/create_draft',       action: 'create_draft'
         put    '/update_draft',       action: 'update_draft'
         delete '/delete_draft',       action: 'delete_draft'
         post   '/send_draft_motions', action: 'send_draft_motions'
+        get    '/:id',                action: 'show'
       end
       scope 'types', controller: 'types' do
         get    '/',    action: 'index'
