@@ -129,7 +129,7 @@
                             "var sender = data.sender;",
                             "if (typeof sender === 'string') {",
                             "  return sender;",
-                            "} else {",
+                            "} else if (sender) {",
                             "  return sender.name || ( sender.first_name + ' ' + sender.last_name );",
                             "}"
                         ]
@@ -177,6 +177,20 @@
             },
             "name": "MyDate4",
             "designerId": "d3849a49-c3ca-45b5-9d95-3353a46d0441"
+        },
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "motion proxy",
+                "url": "/api/documents/motion"
+            },
+            "name": "MyRestProxy5",
+            "designerId": "dc197665-b7cd-45bf-9570-e8d1919a05c0"
         }
     ]
 }

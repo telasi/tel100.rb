@@ -17,7 +17,8 @@ Ext.define('Tel100.model.document.Motion', {
   extend: 'Ext.data.Model',
 
   requires: [
-    'Ext.data.field.Date'
+    'Ext.data.field.Date',
+    'Ext.data.proxy.Rest'
   ],
 
   fields: [
@@ -47,7 +48,7 @@ Ext.define('Tel100.model.document.Motion', {
         var sender = data.sender;
         if (typeof sender === 'string') {
           return sender;
-        } else {
+        } else if (sender) {
           return sender.name || ( sender.first_name + ' ' + sender.last_name );
         }
       },
@@ -65,5 +66,10 @@ Ext.define('Tel100.model.document.Motion', {
       type: 'date',
       name: 'updated_at'
     }
-  ]
+  ],
+
+  proxy: {
+    type: 'rest',
+    url: '/api/documents/motion'
+  }
 });

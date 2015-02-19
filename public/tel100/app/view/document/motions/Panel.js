@@ -73,7 +73,15 @@ Ext.define('Tel100.view.document.motions.Panel', {
   ],
 
   setMotion: function(motion) {
-    this.getViewModel().set('motion', motion);
+    var view = this;
+    Ext.create('Tel100.model.document.Motion', { id : motion.id }).load({
+      success: function(record, operation) {
+        view.getViewModel().set('motion', record);
+      },
+      failure: function(record, operation) {
+        console.log('cannot load motion');
+      }
+    });
   },
 
   getMotion: function() {
