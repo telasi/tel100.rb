@@ -21,7 +21,8 @@ Ext.define('Tel100.view.document.motions.Panel', {
     'Tel100.view.document.motions.PanelViewModel',
     'Ext.tab.Panel',
     'Ext.tab.Tab',
-    'Ext.form.field.Text'
+    'Ext.form.field.TextArea',
+    'Ext.form.field.Date'
   ],
 
   viewModel: {
@@ -48,10 +49,43 @@ Ext.define('Tel100.view.document.motions.Panel', {
             {
               xtype: 'textfield',
               flex: 0,
-              fieldLabel: '#',
               readOnly: true,
               bind: {
-                value: '{motion.id}'
+                fieldLabel: '{i18n.document.motion.sender}',
+                value: '{motion.senderName}'
+              }
+            },
+            {
+              xtype: 'textareafield',
+              readOnly: true,
+              bind: {
+                fieldLabel: '{i18n.document.motion.motion_text}',
+                value: '{motion.motion_text}'
+              }
+            },
+            {
+              xtype: 'textfield',
+              flex: 0,
+              readOnly: true,
+              bind: {
+                fieldLabel: '{i18n.document.motion.receiver}',
+                value: '{motion.receiverName}'
+              }
+            },
+            {
+              xtype: 'textareafield',
+              readOnly: true,
+              bind: {
+                fieldLabel: '{i18n.document.motion.response_text}',
+                value: '{motion.response_text}'
+              }
+            },
+            {
+              xtype: 'datefield',
+              readOnly: true,
+              format: 'd/m/Y',
+              bind: {
+                fieldLabel: '{i18n.document.motion.due_date}'
               }
             }
           ]

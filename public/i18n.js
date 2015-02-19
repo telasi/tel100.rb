@@ -150,6 +150,7 @@ module.exports = {
   sender: 'გამომგზავნი',
   receiver_role: 'როლი',
   motion_text: 'რეზოლუცია',
+  response_text: 'პასუხი',
   due_date: 'ვადა',
   addReceiver: 'ადრესატის დამატება',
   outMotions: 'გაცემული რეზოლუციები',

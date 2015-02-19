@@ -70,19 +70,121 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "designer|displayName": "docnumber",
-                                "fieldLabel": "#",
+                                "designer|displayName": "sender_name",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.sender}"
+                                ],
                                 "layout|flex": 0,
                                 "readOnly": true,
                                 "value": [
-                                    "{motion.id}"
+                                    "{motion.senderName}"
                                 ]
                             },
                             "name": "MyTextField3",
                             "configAlternates": {
-                                "value": "binding"
+                                "value": "binding",
+                                "fieldLabel": "binding"
                             },
                             "designerId": "a91a5f23-5563-4530-9005-3dfdcac3c494"
+                        },
+                        {
+                            "type": "Ext.form.field.TextArea",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "motion_text",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.motion_text}"
+                                ],
+                                "height": null,
+                                "layout|flex": null,
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.motion_text}"
+                                ]
+                            },
+                            "name": "MyTextArea",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "263e3b92-6ec0-424c-81c3-351193d1b9a2"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "receiver_name",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.receiver}"
+                                ],
+                                "layout|flex": 0,
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.receiverName}"
+                                ]
+                            },
+                            "name": "MyTextField2",
+                            "configAlternates": {
+                                "value": "binding",
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "4983738b-fbfb-419e-9074-af094be48cf7"
+                        },
+                        {
+                            "type": "Ext.form.field.TextArea",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "response_text",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.response_text}"
+                                ],
+                                "height": null,
+                                "layout|flex": null,
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.response_text}"
+                                ]
+                            },
+                            "name": "MyTextArea1",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "bef9ad9c-6d77-4241-bb29-77cfd46a2b0a"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "due_date",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.due_date}"
+                                ],
+                                "format": "d/m/Y",
+                                "layout|flex": null,
+                                "readOnly": true
+                            },
+                            "name": "MyDateField2",
+                            "configAlternates": {
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "77db4504-134a-46e9-8a1f-1f7a2b349c20"
                         }
                     ]
                 },
