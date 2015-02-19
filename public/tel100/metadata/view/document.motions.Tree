@@ -19,6 +19,9 @@
         "hideHeaders": true,
         "lines": false,
         "rowLines": true,
+        "selection": [
+            "{selection}"
+        ],
         "store": [
             "{motions}"
         ],
@@ -31,9 +34,17 @@
     "name": "MyTreePanel",
     "configAlternates": {
         "title": "binding",
-        "store": "binding"
+        "store": "binding",
+        "selection": "binding"
     },
     "designerId": "23c81566-c199-406f-8b0e-a0b49f286dd9",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "selection",
+            "type": "string"
+        }
+    ],
     "viewControllerInstanceId": "aed29f99-e122-46cc-9957-0a673ae6aec2",
     "viewModelInstanceId": "c7ddb49e-bdb7-4beb-98cd-5bb56c49ce2c",
     "cn": [
@@ -91,6 +102,65 @@
                             },
                             "name": "handler",
                             "designerId": "7bd33a53-b76b-4699-9b19-aaf7f1fa4cae"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 1
+                    },
+                    "name": "MySpacer",
+                    "designerId": "08976b92-9aa4-4f36-998e-e52dddc8988e"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "properties",
+                        "disabled": [
+                            "{disableProperties}"
+                        ],
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.properties}"
+                        ]
+                    },
+                    "name": "MyButton9",
+                    "configAlternates": {
+                        "text": "binding",
+                        "disabled": "binding"
+                    },
+                    "designerId": "8590ece3-2462-4d53-b3d6-65bdb6d7cfa5",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "console.log('properties');"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "c727c179-79da-4c16-b30c-852abce52b33"
                         }
                     ]
                 }

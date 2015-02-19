@@ -6,6 +6,12 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "",
+            "{",
+            "  selection: null",
+            "}"
+        ],
         "designer|userAlias": "documentmotionstree",
         "designer|userClassName": "document.motions.TreeViewModel"
     },
@@ -126,6 +132,40 @@
                     },
                     "name": "MyField4",
                     "designerId": "4c840346-db8e-45a2-b49f-df3a73d8fc6c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "disableProperties"
+            },
+            "name": "MyFormula3",
+            "designerId": "2cb47d54-6729-49bc-8703-2eb1f714dc81",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return !get('selection');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "aa77e3f8-ea98-468f-9f61-46e54e835d21"
                 }
             ]
         }

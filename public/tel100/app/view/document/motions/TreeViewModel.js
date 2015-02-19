@@ -21,8 +21,13 @@ Ext.define('Tel100.view.document.motions.TreeViewModel', {
     'Ext.data.TreeStore',
     'Ext.data.proxy.Ajax',
     'Ext.data.reader.Json',
-    'Ext.data.field.Field'
+    'Ext.data.field.Field',
+    'Ext.app.bind.Formula'
   ],
+
+  data: {
+    selection: null
+  },
 
   stores: {
     motions: {
@@ -58,6 +63,11 @@ Ext.define('Tel100.view.document.motions.TreeViewModel', {
           name: 'ordering'
         }
       ]
+    }
+  },
+  formulas: {
+    disableProperties: function(get) {
+      return !get('selection');
     }
   }
 

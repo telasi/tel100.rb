@@ -37,5 +37,9 @@ module.exports = {
   destroyConfirm: {
     ka: 'ნამდვილად გინდათ წაშლა?',
     ru: 'Вы действительно хотите удалить?',
+  },
+  properties: {
+    ka: '<i class="fa fa-list-ul"></i> თვისებები',
+    ru: '<i class="fa fa-list-ul"></i> Свойства'
   }
 };

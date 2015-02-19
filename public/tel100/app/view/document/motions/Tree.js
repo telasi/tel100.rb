@@ -21,9 +21,14 @@ Ext.define('Tel100.view.document.motions.Tree', {
     'Tel100.view.document.motions.TreeViewModel',
     'Ext.toolbar.Toolbar',
     'Ext.button.Button',
+    'Ext.toolbar.Spacer',
     'Ext.tree.View',
     'Ext.tree.Column'
   ],
+
+  config: {
+    selection: null
+  },
 
   viewModel: {
     type: 'documentmotionstree'
@@ -39,6 +44,7 @@ Ext.define('Tel100.view.document.motions.Tree', {
   useArrows: true,
 
   bind: {
+    selection: '{selection}',
     title: '{i18n.document.motion.tree}',
     store: '{motions}'
   },
@@ -55,6 +61,20 @@ Ext.define('Tel100.view.document.motions.Tree', {
           },
           bind: {
             text: '{i18n.ui.refresh}'
+          }
+        },
+        {
+          xtype: 'tbspacer',
+          flex: 1
+        },
+        {
+          xtype: 'button',
+          handler: function(button, e) {
+            console.log('properties');
+          },
+          bind: {
+            disabled: '{disableProperties}',
+            text: '{i18n.ui.properties}'
           }
         }
       ]
