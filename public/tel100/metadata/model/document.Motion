@@ -173,6 +173,45 @@
             },
             "codeClass": null,
             "userConfig": {
+                "name": "sent_at"
+            },
+            "name": "MyDate5",
+            "designerId": "4bdf2a12-4407-4032-b891-9bbc491539b1"
+        },
+        {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "received_at"
+            },
+            "name": "MyDate6",
+            "designerId": "e3cbcf82-1b0d-4d1a-ab30-853c3f601bdc"
+        },
+        {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "completed_at"
+            },
+            "name": "MyDate7",
+            "designerId": "aa84231e-6e98-49c4-b5db-a1bba383b2d5"
+        },
+        {
+            "type": "Ext.data.field.Date",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "name": "updated_at"
             },
             "name": "MyDate4",

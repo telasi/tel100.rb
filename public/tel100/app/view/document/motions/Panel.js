@@ -102,12 +102,65 @@ Ext.define('Tel100.view.document.motions.Panel', {
         },
         {
           xtype: 'panel',
+          bodyPadding: 5,
+          layout: {
+            type: 'vbox',
+            align: 'stretch'
+          },
           bind: {
             title: '{i18n.document.motion.times}'
-          }
+          },
+          items: [
+            {
+              xtype: 'datefield',
+              readOnly: true,
+              format: 'd/m/Y H:i:s',
+              bind: {
+                fieldLabel: '{i18n.document.motion.created_at}',
+                value: '{motion.created_at}'
+              }
+            },
+            {
+              xtype: 'datefield',
+              readOnly: true,
+              format: 'd/m/Y H:i:s',
+              bind: {
+                fieldLabel: '{i18n.document.motion.sent_at}',
+                value: '{motion.sent_at}'
+              }
+            },
+            {
+              xtype: 'datefield',
+              readOnly: true,
+              format: 'd/m/Y H:i:s',
+              bind: {
+                fieldLabel: '{i18n.document.motion.received_at}',
+                value: '{motion.received_at}'
+              }
+            },
+            {
+              xtype: 'datefield',
+              readOnly: true,
+              format: 'd/m/Y H:i:s',
+              bind: {
+                fieldLabel: '{i18n.document.motion.completed_at}',
+                value: '{motion.completed_at}'
+              }
+            },
+            {
+              xtype: 'datefield',
+              readOnly: true,
+              format: 'd/m/Y H:i:s',
+              bind: {
+                fieldLabel: '{i18n.document.motion.updated_at}',
+                value: '{motion.updated_at}'
+              }
+            }
+          ]
         },
         {
           xtype: 'panel',
+          bodyPadding: 5,
           bind: {
             title: '{i18n.document.motion.comments}'
           }

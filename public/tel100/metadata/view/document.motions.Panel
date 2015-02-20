@@ -225,7 +225,10 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "bodyPadding": 5,
+                        "container|align": "stretch",
                         "designer|displayName": "times",
+                        "layout": "vbox",
                         "title": [
                             "{i18n.document.motion.times}"
                         ]
@@ -245,6 +248,131 @@
                             "codeClass": null,
                             "name": "TabConfig4",
                             "designerId": "bc088552-79e6-4dac-b050-0eb991708b55"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "created_at",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.created_at}"
+                                ],
+                                "format": "d/m/Y H:i:s",
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.created_at}"
+                                ]
+                            },
+                            "name": "MyDateField3",
+                            "configAlternates": {
+                                "value": "binding",
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "6cebe6f5-fce9-430c-bfbf-ed69102235a3"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "sent_at",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.sent_at}"
+                                ],
+                                "format": "d/m/Y H:i:s",
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.sent_at}"
+                                ]
+                            },
+                            "name": "MyDateField4",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "7b6b9ee5-77ed-45dd-96d7-325133f7bc44"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "received_at",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.received_at}"
+                                ],
+                                "format": "d/m/Y H:i:s",
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.received_at}"
+                                ]
+                            },
+                            "name": "MyDateField5",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "f50c7816-4b9c-4efd-b51b-aee6a2180343"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "completed_at",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.completed_at}"
+                                ],
+                                "format": "d/m/Y H:i:s",
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.completed_at}"
+                                ]
+                            },
+                            "name": "MyDateField6",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "dc45eb58-0e11-452d-b092-f3f36c587cf7"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "updated_at",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.updated_at}"
+                                ],
+                                "format": "d/m/Y H:i:s",
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.updated_at}"
+                                ]
+                            },
+                            "name": "MyDateField7",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "b5f1a30b-8d41-415d-b949-aad5337823ef"
                         }
                     ]
                 },
@@ -256,6 +384,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "bodyPadding": 5,
                         "designer|displayName": "comments",
                         "title": [
                             "{i18n.document.motion.comments}"
