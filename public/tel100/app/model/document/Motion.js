@@ -64,6 +64,18 @@ Ext.define('Tel100.model.document.Motion', {
     },
     {
       type: 'date',
+      name: 'sent_at'
+    },
+    {
+      type: 'date',
+      name: 'received_at'
+    },
+    {
+      type: 'date',
+      name: 'completed_at'
+    },
+    {
+      type: 'date',
       name: 'updated_at'
     },
     {
