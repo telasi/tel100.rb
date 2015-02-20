@@ -384,8 +384,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "bodyPadding": 5,
+                        "bodyPadding": null,
                         "designer|displayName": "comments",
+                        "layout": "fit",
                         "title": [
                             "{i18n.document.motion.comments}"
                         ]
@@ -405,6 +406,90 @@
                             "codeClass": null,
                             "name": "TabConfig5",
                             "designerId": "ef1aa44e-1a54-440b-8644-dd5fcff7816a"
+                        },
+                        {
+                            "type": "Ext.grid.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": false,
+                                "designer|displayName": "comments-grid",
+                                "title": null
+                            },
+                            "name": "MyGridPanel3",
+                            "designerId": "7efe2d80-73d3-48d5-821d-8b43c2e6e647",
+                            "cn": [
+                                {
+                                    "type": "Ext.grid.View",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "name": "MyGridView5",
+                                    "designerId": "3ca15b8f-f58f-4519-a6ed-89594f93da10"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "status",
+                                        "text": "MyColumn18"
+                                    },
+                                    "name": "MyColumn18",
+                                    "designerId": "4f608e9d-b586-4bc3-b420-2ad7405c9386"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Date",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dataIndex": "date",
+                                        "designer|displayName": "created",
+                                        "text": "Date"
+                                    },
+                                    "name": "MyDateColumn",
+                                    "designerId": "731ae7c8-c30c-49fb-b992-b15bc046f402"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "sender",
+                                        "text": "MyColumn19"
+                                    },
+                                    "name": "MyColumn19",
+                                    "designerId": "235ac072-eed5-44d5-993a-9162725686c5"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "text",
+                                        "text": "MyColumn20"
+                                    },
+                                    "name": "MyColumn20",
+                                    "designerId": "99ad25aa-c766-42a8-9bae-6cad44efeec8"
+                                }
+                            ]
                         }
                     ]
                 }

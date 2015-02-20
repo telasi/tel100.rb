@@ -23,7 +23,10 @@ Ext.define('Tel100.view.document.motions.Panel', {
     'Ext.tab.Tab',
     'Ext.form.field.TextArea',
     'Ext.form.field.Date',
-    'Ext.form.field.Display'
+    'Ext.form.field.Display',
+    'Ext.grid.Panel',
+    'Ext.grid.View',
+    'Ext.grid.column.Date'
   ],
 
   viewModel: {
@@ -160,10 +163,35 @@ Ext.define('Tel100.view.document.motions.Panel', {
         },
         {
           xtype: 'panel',
-          bodyPadding: 5,
+          layout: 'fit',
           bind: {
             title: '{i18n.document.motion.comments}'
-          }
+          },
+          items: [
+            {
+              xtype: 'gridpanel',
+              border: false,
+              columns: [
+                {
+                  xtype: 'gridcolumn',
+                  text: 'MyColumn18'
+                },
+                {
+                  xtype: 'datecolumn',
+                  dataIndex: 'date',
+                  text: 'Date'
+                },
+                {
+                  xtype: 'gridcolumn',
+                  text: 'MyColumn19'
+                },
+                {
+                  xtype: 'gridcolumn',
+                  text: 'MyColumn20'
+                }
+              ]
+            }
+          ]
         }
       ]
     }
