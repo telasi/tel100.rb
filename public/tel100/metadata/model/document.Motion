@@ -179,6 +179,53 @@
             "designerId": "d3849a49-c3ca-45b5-9d95-3353a46d0441"
         },
         {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "status"
+            },
+            "name": "MyField28",
+            "designerId": "b90c30b0-a70d-4fcc-bd9b-49826e2a97cf"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "statusFull"
+            },
+            "name": "MyField27",
+            "designerId": "fa44d170-011b-424e-bfba-cd72348373e1",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "return helpers.document.status.motionStatusFull(data.status, data);"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "1559ac71-b4a1-4652-9533-55555a97c4ff"
+                }
+            ]
+        },
+        {
             "type": "Ext.data.proxy.Rest",
             "reference": {
                 "name": "proxy",

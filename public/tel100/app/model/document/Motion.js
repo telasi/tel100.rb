@@ -65,6 +65,15 @@ Ext.define('Tel100.model.document.Motion', {
     {
       type: 'date',
       name: 'updated_at'
+    },
+    {
+      name: 'status'
+    },
+    {
+      calculate: function(data) {
+        return helpers.document.status.motionStatusFull(data.status, data);
+      },
+      name: 'statusFull'
     }
   ],
 

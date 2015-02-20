@@ -63,6 +63,30 @@
                             "designerId": "691d5075-cc9b-4e3a-97d3-c13ebd81b0e2"
                         },
                         {
+                            "type": "Ext.form.field.Display",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "status",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.status}"
+                                ],
+                                "layout|flex": null,
+                                "value": [
+                                    "{motion.statusFull}"
+                                ]
+                            },
+                            "name": "MyDisplayField",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "c1550349-4d70-4ddb-9ed1-3e545ac643cf"
+                        },
+                        {
                             "type": "Ext.form.field.Text",
                             "reference": {
                                 "name": "items",
@@ -114,6 +138,32 @@
                             "designerId": "263e3b92-6ec0-424c-81c3-351193d1b9a2"
                         },
                         {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "due_date",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.due_date}"
+                                ],
+                                "format": "d/m/Y",
+                                "layout|flex": null,
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.due_date}"
+                                ]
+                            },
+                            "name": "MyDateField2",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "77db4504-134a-46e9-8a1f-1f7a2b349c20"
+                        },
+                        {
                             "type": "Ext.form.field.Text",
                             "reference": {
                                 "name": "items",
@@ -163,28 +213,6 @@
                                 "value": "binding"
                             },
                             "designerId": "bef9ad9c-6d77-4241-bb29-77cfd46a2b0a"
-                        },
-                        {
-                            "type": "Ext.form.field.Date",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "due_date",
-                                "fieldLabel": [
-                                    "{i18n.document.motion.due_date}"
-                                ],
-                                "format": "d/m/Y",
-                                "layout|flex": null,
-                                "readOnly": true
-                            },
-                            "name": "MyDateField2",
-                            "configAlternates": {
-                                "fieldLabel": "binding"
-                            },
-                            "designerId": "77db4504-134a-46e9-8a1f-1f7a2b349c20"
                         }
                     ]
                 },
