@@ -38,6 +38,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "autoScroll": true,
                         "bodyPadding": 5,
                         "container|align": "stretch",
                         "designer|displayName": "general",
@@ -61,30 +62,6 @@
                             "codeClass": null,
                             "name": "TabConfig3",
                             "designerId": "691d5075-cc9b-4e3a-97d3-c13ebd81b0e2"
-                        },
-                        {
-                            "type": "Ext.form.field.Display",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "status",
-                                "fieldLabel": [
-                                    "{i18n.document.motion.status}"
-                                ],
-                                "layout|flex": null,
-                                "value": [
-                                    "{motion.statusFull}"
-                                ]
-                            },
-                            "name": "MyDisplayField",
-                            "configAlternates": {
-                                "fieldLabel": "binding",
-                                "value": "binding"
-                            },
-                            "designerId": "c1550349-4d70-4ddb-9ed1-3e545ac643cf"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -162,6 +139,30 @@
                                 "value": "binding"
                             },
                             "designerId": "77db4504-134a-46e9-8a1f-1f7a2b349c20"
+                        },
+                        {
+                            "type": "Ext.form.field.Display",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "status",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.status}"
+                                ],
+                                "layout|flex": null,
+                                "value": [
+                                    "{motion.statusFull}"
+                                ]
+                            },
+                            "name": "MyDisplayField",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "c1550349-4d70-4ddb-9ed1-3e545ac643cf"
                         },
                         {
                             "type": "Ext.form.field.Text",
