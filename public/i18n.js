@@ -165,7 +165,12 @@ module.exports = {
   properties: 'მოძრაობის თვისებები',
   general: 'ზოგადი',
   times: 'ვადები',
-  comments: 'კომენტარები'
+  comments: 'კომენტარები',
+  created_at: 'შექმნილია',
+  sent_at: 'გაგზავნილია',
+  received_at: 'მიღებულია',
+  completed_at: 'შესრულებულია',
+  updated_at: 'ბოლო ცვლილება'
 };
 
 },{}],8:[function(require,module,exports){
