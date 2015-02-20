@@ -28,5 +28,8 @@ else
   json.receiver { json.partial! 'api/documents/party', party: receiver } if receiver
   json.receiver_role motion.receiver_role
   json.created_at motion.created_at
+  json.sent_at motion.sent_at
+  json.received_at motion.received_at
+  json.completed_at motion.completed_at
   json.updated_at motion.updated_at
 end
