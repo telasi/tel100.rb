@@ -1,4 +1,5 @@
 module.exports = {
+  status: 'სტატუსი',
   ordering: 'ეტაპი',
   orderingShort: '#',
   receiver: 'ადრესატი',

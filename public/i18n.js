@@ -144,6 +144,7 @@ module.exports = {
 
 },{"./base":3,"./comment":4,"./folder":5,"./motion":7,"./role":8,"./type":9}],7:[function(require,module,exports){
 module.exports = {
+  status: 'სტატუსი',
   ordering: 'ეტაპი',
   orderingShort: '#',
   receiver: 'ადრესატი',

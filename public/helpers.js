@@ -268,6 +268,13 @@ var statusFormatted = function(status, role, opts) {
   }
 };
 
+var motionStatusFull = function(status, motion) {
+  var role;
+  if (motion.get) { role = motion.get('receiver_role'); }
+  else { role = motion.receiver_role; }
+  return statusFormatted(status, role);
+};
+
 var motionStatusIcon = function(status, motion) {
   var role = motion.get('receiver_role');
   var decor = statusDecoration(status, role, { isMotion: true });
@@ -303,6 +310,7 @@ module.exports = {
   // functions
   statusDecoration: statusDecoration,
   statusFormatted: statusFormatted,
+  motionStatusFull: motionStatusFull,
   motionStatusIcon: motionStatusIcon,
   motionStatusRowClass: motionStatusRowClass,
   documentStatusRowClass: documentStatusRowClass
