@@ -4,5 +4,6 @@ module.exports = {
   comment: require('./comment'),
   folder: require('./folder'),
   type: require('./type'),
-  role: require('./role')
+  role: require('./role'),
+  file: require('./file')
 };

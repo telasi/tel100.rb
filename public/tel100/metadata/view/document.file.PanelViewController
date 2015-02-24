@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfilepanel",
+        "designer|userClassName": "document.file.PanelViewController"
+    },
+    "designerId": "97a6c433-033f-4338-baba-02016bc96f79"
+}

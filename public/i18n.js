@@ -92,6 +92,11 @@ module.exports = {
 };
 },{}],5:[function(require,module,exports){
 module.exports = {
+  attachments: 'მიმაგრებული ფაილები',
+};
+
+},{}],6:[function(require,module,exports){
+module.exports = {
   ui: {
     folder:{
       ka: 'საქაღალდე',
@@ -132,17 +137,18 @@ module.exports = {
   }
 };
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 module.exports = {
   base: require('./base'),
   motion: require('./motion'),
   comment: require('./comment'),
   folder: require('./folder'),
   type: require('./type'),
-  role: require('./role')
+  role: require('./role'),
+  file: require('./file')
 };
 
-},{"./base":3,"./comment":4,"./folder":5,"./motion":7,"./role":8,"./type":9}],7:[function(require,module,exports){
+},{"./base":3,"./comment":4,"./file":5,"./folder":6,"./motion":8,"./role":9,"./type":10}],8:[function(require,module,exports){
 module.exports = {
   status: 'სტატუსი',
   ordering: 'ეტაპი',
@@ -173,7 +179,7 @@ module.exports = {
   updated_at: 'ბოლო ცვლილება'
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = {
   owner: 'მფლობელი',
   creator: 'ინიციატორი',
@@ -182,7 +188,7 @@ module.exports = {
   assignee: 'ადრესატი',
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = {
   ui: {
     types: 'სახეობები'
@@ -191,14 +197,14 @@ module.exports = {
   order_by: '#'
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = {
   title: {
     ka: '<i class="fa fa-times-circle"></i> შეცდომა',
     ru: '<i class="fa fa-times-circle"></i> Ошибка'
   }
 };
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = {
   tree: {
     title: {
@@ -208,7 +214,7 @@ module.exports = {
   }
 };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
@@ -246,12 +252,12 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./admin":1,"./application":2,"./document":6,"./errors":10,"./hr":11,"./selector":13,"./ui":14,"./user":15,"./vacation":16}],13:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./document":7,"./errors":11,"./hr":12,"./selector":14,"./ui":15,"./user":16,"./vacation":17}],14:[function(require,module,exports){
 module.exports = {
   selectedParties: 'არჩეული პირები და ორგანიზაციები',
   selectorConfirm: 'არჩევანის დადასტურება'
 };
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = {
   confirmTitle: {
     ka: 'დადასტურება',
@@ -298,7 +304,7 @@ module.exports = {
   }
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -322,7 +328,7 @@ module.exports = {
   }
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = {
   ui: {
     button: {
@@ -362,4 +368,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[12]);
+},{}]},{},[13]);

@@ -1,0 +1,24 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfilepanel",
+        "designer|userClassName": "document.file.Panel",
+        "height": 250,
+        "title": [
+            "{i18n.document.file.attachments}"
+        ],
+        "width": 400
+    },
+    "name": "MyPanel",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd",
+    "viewControllerInstanceId": "97a6c433-033f-4338-baba-02016bc96f79",
+    "viewModelInstanceId": "7088dc9e-b5e0-4a55-a49b-30422ce13348"
+}

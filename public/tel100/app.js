@@ -68,7 +68,8 @@ Ext.application({
     'document.folder.Main',
     'document.folder.Config',
     'document.motions.Panel',
-    'document.motions.Properties'
+    'document.motions.Properties',
+    'document.file.Panel'
   ],
   name: 'Tel100',
 
