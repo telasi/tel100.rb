@@ -18,7 +18,12 @@ Ext.define('Tel100.view.document.file.Panel', {
   alias: 'widget.documentfilepanel',
 
   requires: [
-    'Tel100.view.document.file.PanelViewModel'
+    'Tel100.view.document.file.PanelViewModel',
+    'Ext.toolbar.Toolbar',
+    'Ext.button.Button',
+    'Ext.grid.Panel',
+    'Ext.grid.column.Column',
+    'Ext.grid.View'
   ],
 
   viewModel: {
@@ -29,6 +34,32 @@ Ext.define('Tel100.view.document.file.Panel', {
 
   bind: {
     title: '{i18n.document.file.attachments}'
-  }
+  },
+  dockedItems: [
+    {
+      xtype: 'toolbar',
+      dock: 'top',
+      items: [
+        {
+          xtype: 'button',
+          text: 'new file'
+        }
+      ]
+    }
+  ],
+  items: [
+    {
+      xtype: 'gridpanel',
+      hideHeaders: true,
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          dataIndex: 'string',
+          text: 'String',
+          flex: 1
+        }
+      ]
+    }
+  ]
 
 });
