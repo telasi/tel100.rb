@@ -19,13 +19,16 @@ Ext.define('Tel100.view.document.file.Panel', {
 
   requires: [
     'Tel100.view.document.file.PanelViewModel',
+    'Tel100.view.document.file.PanelViewController',
     'Ext.toolbar.Toolbar',
-    'Ext.button.Button',
+    'Ext.form.Panel',
+    'Ext.form.field.File',
     'Ext.grid.Panel',
     'Ext.grid.column.Column',
     'Ext.grid.View'
   ],
 
+  controller: 'documentfilepanel',
   viewModel: {
     type: 'documentfilepanel'
   },
@@ -41,8 +44,20 @@ Ext.define('Tel100.view.document.file.Panel', {
       dock: 'top',
       items: [
         {
-          xtype: 'button',
-          text: 'new file'
+          xtype: 'form',
+          border: false,
+          padding: 0,
+          bodyPadding: 0,
+          items: [
+            {
+              xtype: 'filefield',
+              cls: 'file-upload',
+              buttonText: '<i class="fa fa-plus"></i>',
+              listeners: {
+                change: 'onFilefieldChange'
+              }
+            }
+          ]
         }
       ]
     }
@@ -55,7 +70,6 @@ Ext.define('Tel100.view.document.file.Panel', {
         {
           xtype: 'gridcolumn',
           dataIndex: 'string',
-          text: 'String',
           flex: 1
         }
       ]

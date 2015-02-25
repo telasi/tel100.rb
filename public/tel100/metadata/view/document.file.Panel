@@ -36,18 +36,61 @@
             "designerId": "890f436d-768d-4a48-a63c-32ec3787be70",
             "cn": [
                 {
-                    "type": "Ext.button.Button",
+                    "type": "Ext.form.Panel",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "bodyPadding": 0,
+                        "border": false,
+                        "designer|displayName": "file-upload",
                         "layout|flex": null,
-                        "text": "new file"
+                        "padding": 0,
+                        "title": null
                     },
-                    "name": "MyButton4",
-                    "designerId": "a6c3efd5-a5f4-46c1-9e11-62d9506753f4"
+                    "name": "MyForm",
+                    "designerId": "b4fcc5f0-49d1-420b-b4c7-429c81290df0",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.File",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "buttonText": "<i class=\"fa fa-plus\"></i>",
+                                "cls": "file-upload",
+                                "designer|displayName": "file-upload",
+                                "fieldLabel": null
+                            },
+                            "name": "MyFileUpload",
+                            "designerId": "246824f5-563d-4770-8e1d-f5b8a128a705",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onFilefieldChange",
+                                        "implHandler": [
+                                            "debugger;",
+                                            "console.log('changed!', value);"
+                                        ],
+                                        "name": "change",
+                                        "scope": "me"
+                                    },
+                                    "name": "onFilefieldChange",
+                                    "designerId": "b20be02d-674f-4fee-8080-2c3006078bf4"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -75,7 +118,7 @@
                     "userConfig": {
                         "dataIndex": "string",
                         "flex": 1,
-                        "text": "String"
+                        "text": null
                     },
                     "name": "MyColumn",
                     "designerId": "e6d7628e-79eb-421e-9862-de97501ac0fb"

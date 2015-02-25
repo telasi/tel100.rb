@@ -15,5 +15,11 @@
 
 Ext.define('Tel100.view.document.file.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentfilepanel'
+  alias: 'controller.documentfilepanel',
+
+  onFilefieldChange: function(filefield, value, eOpts) {
+    debugger;
+    console.log('changed!', value);
+  }
+
 });
