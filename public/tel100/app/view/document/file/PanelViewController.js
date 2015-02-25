@@ -18,8 +18,20 @@ Ext.define('Tel100.view.document.file.PanelViewController', {
   alias: 'controller.documentfilepanel',
 
   onFilefieldChange: function(filefield, value, eOpts) {
-    debugger;
-    console.log('changed!', value);
+    if (value) {
+      var form = filefield.up('form').getForm();
+      form.submit({
+        url: '/api/document/files/upload',
+        success: function() {
+          debugger;
+          console.log('success');
+        },
+        failure: function() {
+          debugger;
+          console.log('failure');
+        }
+      });
+    }
   }
 
 });
