@@ -94,6 +94,9 @@ Rails.application.routes.draw do
       scope 'comments', controller: 'comments' do
         post '/create', action: 'create'
       end
+      scope 'files', controller: 'files' do
+        post '/upload', action: 'upload'
+      end
     end
   end
 
