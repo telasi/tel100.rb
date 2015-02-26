@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205083821) do
+ActiveRecord::Schema.define(version: 20150226055621) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -56,6 +56,11 @@ ActiveRecord::Schema.define(version: 20150205083821) do
     t.string    "text",        limit: 1000
     t.timestamp "created_at",  limit: 6,                             null: false
     t.timestamp "updated_at",  limit: 6,                             null: false
+  end
+
+  create_table "document_file", force: true do |t|
+    t.string    "original_name", limit: 500, null: false
+    t.timestamp "created_at",    limit: 6,   null: false
   end
 
   create_table "document_motion", force: true do |t|
@@ -120,7 +125,7 @@ ActiveRecord::Schema.define(version: 20150205083821) do
 
   add_index "folder_base", ["owner_id"], name: "owner_id_idx"
 
-  create_table "folder_documents", id: false, force: true do |t|
+  create_table "folder_documents", force: true do |t|
     t.integer   "folder_id",  limit: 10, precision: 10, scale: 0, null: false
     t.integer   "doc_id",     limit: 10, precision: 10, scale: 0, null: false
     t.timestamp "created_at", limit: 6,                           null: false
