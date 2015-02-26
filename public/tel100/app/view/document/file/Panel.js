@@ -52,6 +52,7 @@ Ext.define('Tel100.view.document.file.Panel', {
             {
               xtype: 'filefield',
               cls: 'file-upload',
+              name: 'file',
               buttonText: '<i class="fa fa-plus"></i>',
               listeners: {
                 change: 'onFilefieldChange'

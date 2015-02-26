@@ -64,7 +64,8 @@
                                 "buttonText": "<i class=\"fa fa-plus\"></i>",
                                 "cls": "file-upload",
                                 "designer|displayName": "file-upload",
-                                "fieldLabel": null
+                                "fieldLabel": null,
+                                "name": "file"
                             },
                             "name": "MyFileUpload",
                             "designerId": "246824f5-563d-4770-8e1d-f5b8a128a705",
