@@ -3,8 +3,6 @@ class Api::Documents::FilesController < ApiController
   before_filter :validate_login
 
   def upload
-    # TODO: fileupload
-    debugger
-    render json: { success: true }
+    render json: { success: Document::File.upload(params) }
   end
 end
