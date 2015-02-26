@@ -3,6 +3,7 @@ class AddDocumentFileTable < ActiveRecord::Migration
     execute <<-SQL
       create table DOCUMENT_FILE (
         ID number(10, 0) not null,
+        DOCUMENT_ID number(10, 0) not null,
         ORIGINAL_NAME varchar2(500) not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,

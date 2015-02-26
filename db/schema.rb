@@ -59,8 +59,9 @@ ActiveRecord::Schema.define(version: 20150226055621) do
   end
 
   create_table "document_file", force: true do |t|
-    t.string    "original_name", limit: 500, null: false
-    t.timestamp "created_at",    limit: 6,   null: false
+    t.integer   "document_id",   limit: 10,  precision: 10, scale: 0, null: false
+    t.string    "original_name", limit: 500,                          null: false
+    t.timestamp "created_at",    limit: 6,                            null: false
   end
 
   create_table "document_motion", force: true do |t|
