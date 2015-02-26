@@ -6,13 +6,14 @@
     },
     "codeClass": null,
     "userConfig": {
+        "border": false,
         "designer|userAlias": "documentfilepanel",
         "designer|userClassName": "document.file.Panel",
-        "height": 250,
+        "height": null,
         "title": [
             "{i18n.document.file.attachments}"
         ],
-        "width": 400
+        "width": null
     },
     "name": "MyPanel",
     "configAlternates": {
@@ -30,7 +31,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dock": "top"
+                "border": 0,
+                "dock": "top",
+                "padding": null
             },
             "name": "MyToolbar1",
             "designerId": "890f436d-768d-4a48-a63c-32ec3787be70",
@@ -65,7 +68,8 @@
                                 "cls": "file-upload",
                                 "designer|displayName": "file-upload",
                                 "fieldLabel": null,
-                                "name": "file"
+                                "name": "file",
+                                "padding": 0
                             },
                             "name": "MyFileUpload",
                             "designerId": "246824f5-563d-4770-8e1d-f5b8a128a705",
@@ -117,6 +121,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "border": false,
                 "hideHeaders": true,
                 "title": null
             },
