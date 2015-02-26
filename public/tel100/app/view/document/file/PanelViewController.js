@@ -20,8 +20,10 @@ Ext.define('Tel100.view.document.file.PanelViewController', {
   onFilefieldChange: function(filefield, value, eOpts) {
     if (value) {
       var form = filefield.up('form').getForm();
+      var vm = this.getViewModel();
+      var doc = vm.get('document');
       form.submit({
-        url: '/api/documents/files/upload',
+        url: '/api/documents/files/upload?document_id=' + doc.id,
         success: function() {
           debugger;
           console.log('success');
