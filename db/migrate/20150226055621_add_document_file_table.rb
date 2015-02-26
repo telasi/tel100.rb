@@ -5,6 +5,7 @@ class AddDocumentFileTable < ActiveRecord::Migration
         ID number(10, 0) not null,
         DOCUMENT_ID number(10, 0) not null,
         ORIGINAL_NAME varchar2(500) not null,
+        STORE_NAME varchar2(64) not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint DOCFILE_PRIMARYKEY primary key ( ID ) enable
