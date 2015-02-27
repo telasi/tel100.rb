@@ -21,10 +21,8 @@ Ext.define('Tel100.view.document.file.Panel', {
     'Tel100.view.document.file.PanelViewModel',
     'Tel100.view.document.file.PanelViewController',
     'Ext.toolbar.Toolbar',
-    'Ext.button.Button',
     'Ext.form.Panel',
     'Ext.form.field.File',
-    'Ext.toolbar.Spacer',
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Action'
@@ -46,15 +44,6 @@ Ext.define('Tel100.view.document.file.Panel', {
       border: 0,
       items: [
         {
-          xtype: 'button',
-          handler: function(button, e) {
-            this.up('documentfilepanel').refresh();
-          },
-          bind: {
-            text: '{i18n.ui.refresh}'
-          }
-        },
-        {
           xtype: 'form',
           border: false,
           padding: 0,
@@ -71,9 +60,6 @@ Ext.define('Tel100.view.document.file.Panel', {
               }
             }
           ]
-        },
-        {
-          xtype: 'tbspacer'
         }
       ]
     }
@@ -97,6 +83,14 @@ Ext.define('Tel100.view.document.file.Panel', {
           width: 24,
           items: [
             {
+              handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                var id = record.id;
+                helpers.api.document.file.delete(id, {
+                  success: function() {
+                    view.up('documentfilepanel').refresh();
+                  }
+                });
+              },
               icon: '/images/delete.gif'
             }
           ]
@@ -106,7 +100,7 @@ Ext.define('Tel100.view.document.file.Panel', {
   ],
 
   refresh: function() {
-    console.log('refresh...');
+    this.down('gridpanel').getStore().load();
   }
 
 });
