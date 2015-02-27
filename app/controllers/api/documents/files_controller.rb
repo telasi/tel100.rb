@@ -3,7 +3,7 @@ class Api::Documents::FilesController < ApiController
   before_filter :validate_login
 
   def index
-    @files = Document::File.where(document_id: params[:document_id])
+    @files = Document::File.where(document_id: params[:document_id]).order(:id)
   end
 
   def upload
