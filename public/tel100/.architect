@@ -1176,11 +1176,9 @@
         },
         "33bff602-b08f-4c74-8a04-4172e5eeb359": {
             "id": "33bff602-b08f-4c74-8a04-4172e5eeb359",
-            "expanded": false,
             "cn": [
                 {
                     "id": "bd5684ae-47f5-4638-b39b-1ddea2a00140",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "dc649243-f45f-4f27-b9e1-f3bce0c5c7fc",
@@ -1200,7 +1198,6 @@
                         },
                         {
                             "id": "7b29f01b-4c9a-4087-b3cd-27faa54f2fe7",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "3b2c9457-4a88-48d7-b6fe-355cdd011b2f"
@@ -1219,13 +1216,15 @@
                                 },
                                 {
                                     "id": "defe46f4-7969-4954-96dd-c88f5c09e96c",
-                                    "expanded": false,
                                     "cn": [
                                         {
                                             "id": "7e5cb190-a184-4bb0-8f56-8dee4db4bcd5"
                                         },
                                         {
                                             "id": "2eeacca2-a92c-45b2-a223-929269d20dbd"
+                                        },
+                                        {
+                                            "id": "42827a7e-f66e-4467-8802-58a12e25162b"
                                         }
                                     ]
                                 }
@@ -1389,6 +1388,17 @@
                                     "id": "7bd33a53-b76b-4699-9b19-aaf7f1fa4cae"
                                 }
                             ]
+                        },
+                        {
+                            "id": "08976b92-9aa4-4f36-998e-e52dddc8988e"
+                        },
+                        {
+                            "id": "8590ece3-2462-4d53-b3d6-65bdb6d7cfa5",
+                            "cn": [
+                                {
+                                    "id": "c727c179-79da-4c16-b30c-852abce52b33"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1440,6 +1450,14 @@
                         },
                         {
                             "id": "4c840346-db8e-45a2-b49f-df3a73d8fc6c"
+                        }
+                    ]
+                },
+                {
+                    "id": "2cb47d54-6729-49bc-8703-2eb1f714dc81",
+                    "cn": [
+                        {
+                            "id": "aa77e3f8-ea98-468f-9f61-46e54e835d21"
                         }
                     ]
                 }
@@ -1759,6 +1777,7 @@
         },
         "aff49a9b-8ace-4060-9429-0aa8bb62e5cd": {
             "id": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd",
+            "expanded": false,
             "cn": [
                 {
                     "id": "890f436d-768d-4a48-a63c-32ec3787be70",
@@ -1783,6 +1802,7 @@
                 },
                 {
                     "id": "3b90d001-5a41-4cf6-982a-c5212aa79e91",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "e6d7628e-79eb-421e-9862-de97501ac0fb"
@@ -2175,16 +2195,15 @@
     },
     "tabState": {
         "openTabs": [
-            "7088dc9e-b5e0-4a55-a49b-30422ce13348",
-            "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
+            "33bff602-b08f-4c74-8a04-4172e5eeb359"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd",
-        "selectedInstance": "44893e28-b4c4-4f18-8470-ced12fa57d6a"
+        "topInstance": "33bff602-b08f-4c74-8a04-4172e5eeb359",
+        "selectedInstance": "42827a7e-f66e-4467-8802-58a12e25162b"
     },
     "editMode": "code",
     "userSettings": {
