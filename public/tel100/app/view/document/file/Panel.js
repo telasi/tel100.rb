@@ -33,6 +33,7 @@ Ext.define('Tel100.view.document.file.Panel', {
     type: 'documentfilepanel'
   },
   border: false,
+  layout: 'fit',
 
   bind: {
     title: '{i18n.document.file.attachments}'
@@ -67,8 +68,11 @@ Ext.define('Tel100.view.document.file.Panel', {
   items: [
     {
       xtype: 'gridpanel',
+      autoScroll: true,
       border: false,
       hideHeaders: true,
+      reserveScrollbar: true,
+      scroll: 'vertical',
       bind: {
         store: '{files}'
       },

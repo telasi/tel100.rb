@@ -10,6 +10,7 @@
         "designer|userAlias": "documentfilepanel",
         "designer|userClassName": "document.file.Panel",
         "height": null,
+        "layout": "fit",
         "title": [
             "{i18n.document.file.attachments}"
         ],
@@ -117,8 +118,11 @@
             },
             "codeClass": null,
             "userConfig": {
+                "autoScroll": true,
                 "border": false,
                 "hideHeaders": true,
+                "reserveScrollbar": true,
+                "scroll": "vertical",
                 "store": [
                     "{files}"
                 ],
