@@ -51,21 +51,11 @@ Rails.application.routes.draw do
       post '/document/', action: 'document_create'
       delete '/document', action: 'document_delete'
     end
-    # scope 'docs', controller: 'docs' do
-    #   get '/', action: 'index'
-    #   get '/show/:id', action: 'show'
-    #   get '/motions', action: 'motions'
-    #   get '/sender_motions', action: 'sender_motions'
-    #   get '/comments', action: 'comments'
-    #   post '/create', action: 'create'
-    #   post '/add_comment', action: 'add_comment'
-    # end
     namespace 'sys' do
       scope 'users', controller: 'users' do
         get '/', action: 'index'
       end
     end
-
     namespace 'documents' do
       scope 'base', controller: 'base' do
         get    '/', action: 'index'
@@ -96,6 +86,7 @@ Rails.application.routes.draw do
       end
       scope 'files', controller: 'files' do
         get    '/',       action: 'index'
+        get    '/download', action: 'download'
         post   '/upload', action: 'upload'
         delete '/delete', action: 'destroy'
       end

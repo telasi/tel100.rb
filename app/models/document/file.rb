@@ -9,13 +9,17 @@ class Document::File < ActiveRecord::Base
     storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
     f = Document::File.new(document: document, original_name: params[:file].original_filename, store_name: storename, created_at: Time.now)
     dir = File.join(Rails.root, 'public', 'uploads', 'docfiles')
-    file = File.join(dir, storename)
+    # file = File.join(dir, storename)
     FileUtils.mkdir_p(dir)
-    FileUtils.cp(params[:file].tempfile, file)
+    FileUtils.cp(params[:file].tempfile, f.full_path)
     f.save!
   end
 
+  def full_path
+    File.join(Rails.root, 'public', 'uploads', 'docfiles', self.store_name)
+  end
+
   def delete_file
-    FileUtils.rm(File.join(Rails.root, 'public', 'uploads', 'docfiles', self.store_name))
+    FileUtils.rm(self.full_path)
   end
 end
