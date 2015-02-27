@@ -9,5 +9,54 @@
         "designer|userAlias": "documentfilepanel",
         "designer|userClassName": "document.file.PanelViewModel"
     },
-    "designerId": "7088dc9e-b5e0-4a55-a49b-30422ce13348"
+    "designerId": "7088dc9e-b5e0-4a55-a49b-30422ce13348",
+    "cn": [
+        {
+            "type": "jsonstore",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.File",
+                "name": "files"
+            },
+            "name": "MyJsonStore1",
+            "designerId": "38b98ece-b3c2-41ec-a8d6-750137206b59",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  document_id: '{document.id}'",
+                            "}"
+                        ],
+                        "url": "/api/documents/files"
+                    },
+                    "name": "MyAjaxProxy",
+                    "designerId": "3fb7cf5d-8fc8-40d6-b09a-62addd2be073",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader",
+                            "designerId": "f71408cd-795d-4232-a199-d871f737f1cf"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

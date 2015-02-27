@@ -39,6 +39,48 @@
             "designerId": "890f436d-768d-4a48-a63c-32ec3787be70",
             "cn": [
                 {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "refresh",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.refresh}"
+                        ]
+                    },
+                    "name": "MyButton4",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "04dcc1e9-2fc1-430d-8444-bda8761330b3",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "this.up('documentfilepanel').refresh();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "98a55fc7-f2b3-494a-9559-51f74fb8b8e6"
+                        }
+                    ]
+                },
+                {
                     "type": "Ext.form.Panel",
                     "reference": {
                         "name": "items",
@@ -110,6 +152,19 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null
+                    },
+                    "name": "MySpacer",
+                    "designerId": "c6297042-b084-4a24-8aa6-609c84396a39"
                 }
             ]
         },
@@ -123,9 +178,15 @@
             "userConfig": {
                 "border": false,
                 "hideHeaders": true,
+                "store": [
+                    "{files}"
+                ],
                 "title": null
             },
             "name": "MyGridPanel",
+            "configAlternates": {
+                "store": "binding"
+            },
             "designerId": "3b90d001-5a41-4cf6-982a-c5212aa79e91",
             "cn": [
                 {
@@ -136,7 +197,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "dataIndex": "string",
+                        "dataIndex": "name",
                         "flex": 1,
                         "text": null
                     },
@@ -152,8 +213,54 @@
                     "codeClass": null,
                     "name": "MyGridView1",
                     "designerId": "32ee4ec4-df61-4582-9b1c-6a98384ed79c"
+                },
+                {
+                    "type": "Ext.grid.column.Action",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "actions",
+                        "width": 24
+                    },
+                    "name": "MyActionColumn",
+                    "designerId": "fbb875cb-5e04-4a38-8116-522d8a1ab237",
+                    "cn": [
+                        {
+                            "type": "actioncolumnitem",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "delete",
+                                "icon": "/images/delete.gif"
+                            },
+                            "name": "MyActionColumnItem",
+                            "designerId": "a61b37d1-a6ab-4b83-a697-68950770d749"
+                        }
+                    ]
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "console.log('refresh...');"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "b60bf08f-fb70-4269-9981-9c7e26c21b9e"
         }
     ]
 }

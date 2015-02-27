@@ -31,7 +31,8 @@ Ext.application({
     'document.Base',
     'document.Comment',
     'folder.Document',
-    'folder.Standard'
+    'folder.Standard',
+    'document.File'
   ],
   stores: [
     'CustomFolders'
