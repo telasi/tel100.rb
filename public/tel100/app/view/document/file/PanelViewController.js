@@ -33,7 +33,9 @@ Ext.define('Tel100.view.document.file.PanelViewController', {
   },
 
   onGridpanelCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
-    debugger;
+    var url = '/api/documents/files/download?id=' + record.id;
+    var tab = window.open(url, 'tel100');
+    tab.focus();
   }
 
 });

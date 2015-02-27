@@ -230,7 +230,9 @@
                     "userConfig": {
                         "fn": "onGridpanelCellDblClick",
                         "implHandler": [
-                            "debugger;"
+                            "var url = '/api/documents/files/download?id=' + record.id;",
+                            "var tab = window.open(url, 'tel100');",
+                            "tab.focus();"
                         ],
                         "name": "celldblclick",
                         "scope": "me"
