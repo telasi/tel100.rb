@@ -10,9 +10,10 @@ class Api::Documents::FilesController < ApiController
     render json: { success: Document::File.upload(params) }
   end
 
-  def delete
+  def destroy
     file = Document::File.find(params[:id])
     file.delete_file
     file.destroy
+    render json: { success: true }
   end
 end
