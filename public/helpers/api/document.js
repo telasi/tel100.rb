@@ -75,8 +75,19 @@ var comment = {
   }
 };
 
+var file = {
+  delete: function(id, args) {
+    var opts = args || {};
+    opts.method = 'DELETE';
+    opts.url = '/api/documents/files/delete';
+    opts.params = { id: id };
+    ajax.request(opts);
+  },
+};
+
 module.exports = {
   base: base,
   motion: motion,
-  comment: comment
+  comment: comment,
+  file: file
 };
