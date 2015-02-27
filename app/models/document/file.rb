@@ -14,4 +14,8 @@ class Document::File < ActiveRecord::Base
     FileUtils.cp(params[:file].tempfile, file)
     f.save!
   end
+
+  def delete_file
+    FileUtils.rm(File.join(Rails.root, 'public', 'uploads', 'docfiles', self.store_name))
+  end
 end
