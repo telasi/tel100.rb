@@ -21,16 +21,12 @@ Ext.define('Tel100.view.document.file.PanelViewController', {
     if (value) {
       var form = filefield.up('form').getForm();
       var vm = this.getViewModel();
+      var view = this.getView();
       var doc = vm.get('document');
       form.submit({
         url: '/api/documents/files/upload?document_id=' + doc.id,
         success: function() {
-          debugger;
-          console.log('success');
-        },
-        failure: function() {
-          debugger;
-          console.log('failure');
+          view.refresh();
         }
       });
     }
