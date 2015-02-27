@@ -71,7 +71,6 @@ Ext.define('Tel100.view.document.file.Panel', {
       autoScroll: true,
       border: false,
       hideHeaders: true,
-      reserveScrollbar: true,
       scroll: 'vertical',
       bind: {
         store: '{files}'
@@ -99,7 +98,10 @@ Ext.define('Tel100.view.document.file.Panel', {
             }
           ]
         }
-      ]
+      ],
+      listeners: {
+        celldblclick: 'onGridpanelCellDblClick'
+      }
     }
   ],
 

@@ -1783,7 +1783,6 @@
                 },
                 {
                     "id": "3b90d001-5a41-4cf6-982a-c5212aa79e91",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "e6d7628e-79eb-421e-9862-de97501ac0fb"
@@ -1804,6 +1803,9 @@
                                     ]
                                 }
                             ]
+                        },
+                        {
+                            "id": "44893e28-b4c4-4f18-8470-ced12fa57d6a"
                         }
                     ]
                 },
@@ -2178,7 +2180,7 @@
         ]
     },
     "canvasState": {
-        "topInstance": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
+        "topInstance": null
     },
     "inspectorState": {
         "topInstance": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd",
