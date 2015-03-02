@@ -48,16 +48,16 @@ class Folder::Standard
    def self.docs(folderType, user)
    	case folderType.to_i
    		when DRAFT
-   		 	Document::User.where('status = ? AND user_id = ?', Document::Status::DRAFT, user.id)
+   		 	Document::User.where('document_user.status = ? AND user_id = ?', Document::Status::DRAFT, user.id)
       when INBOX
-        Document::User.where('status = ? AND user_id = ?', Document::Status::CURRENT, user.id)
+        Document::User.where('document_user.status = ? AND user_id = ?', Document::Status::CURRENT, user.id)
    		when INBOX_NONREAD
-   			Document::User.where('status = ? AND is_new = ? AND user_id = ?', Document::Status::CURRENT, 1, user.id)
+   			Document::User.where('document_user.status = ? AND is_new = ? AND user_id = ?', Document::Status::CURRENT, 1, user.id)
    		when INBOX_READ
-   			Document::User.where('status = ? AND is_new = ? AND user_id = ?', Document::Status::CURRENT, 0, user.id)
+   			Document::User.where('document_user.status = ? AND is_new = ? AND user_id = ?', Document::Status::CURRENT, 0, user.id)
    		when INBOX_RESENT
    		when SENT
-   			Document::User.where('status = ? AND user_id = ?', Document::Status::SENT, user.id)
+   			Document::User.where('document_user.status = ? AND user_id = ?', Document::Status::SENT, user.id)
     end
    end
 end
