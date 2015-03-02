@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfoldersubstitude",
+        "designer|userClassName": "document.folder.SubstitudeViewController"
+    },
+    "designerId": "0866b4d2-2547-44f4-9a4f-116727f5bf8a"
+}

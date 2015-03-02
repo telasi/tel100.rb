@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfoldersearch",
+        "designer|userClassName": "document.folder.SearchViewController"
+    },
+    "designerId": "02e92488-2fea-485c-83d1-fa0aab8ee1b4"
+}

@@ -3,6 +3,7 @@ module.exports = {
   motion: require('./motion'),
   comment: require('./comment'),
   folder: require('./folder'),
+  search: require('./search'),
   type: require('./type'),
   role: require('./role'),
   file: require('./file')

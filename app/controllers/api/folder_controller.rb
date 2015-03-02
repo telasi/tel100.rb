@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Api::FolderController < ApiController
+  include TreeUtils
   before_filter :validate_login
 
   def index
@@ -8,6 +9,8 @@ class Api::FolderController < ApiController
 
   def standard
     @folders = Folders::STANDARD
+    #foldersArray = Folders::STANDARD.map{ |i| i.to_hash }
+    #render json: array_to_tree(foldersArray)
   end
 
   def create
@@ -32,7 +35,9 @@ class Api::FolderController < ApiController
   end
 
   def delete
-    Folder::Base.destroy(params[:id])
+    folder = Folder::Base.find(params[:id])
+    folder.delete_folder
+    render json: { success: true }
   end
 
   def document_index

@@ -10,11 +10,7 @@ class Document::User < ActiveRecord::Base
   before_save :update_document_motions
 
   def self.mydocs(user)
-    Document::User.where('status IN (?) AND user_id = ?', [CURRENT, CANCELED, COMPLETED], user.id)
-  end
-
-  def self.docs_cfolders(fodler)
-    
+    Document::User.where('document_user.status IN (?) AND user_id = ?', [CURRENT, CANCELED, COMPLETED], user.id)
   end
 
   def self.upsert!(doc, user, role, opts={})

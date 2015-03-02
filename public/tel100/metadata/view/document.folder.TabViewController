@@ -1,0 +1,54 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfoldertab",
+        "designer|userClassName": "document.folder.TabViewController"
+    },
+    "designerId": "34bc20db-588e-4f2d-9a37-299a4336bb40",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "opts"
+                ],
+                "fn": "refreshDocuments",
+                "implHandler": [
+                    "this.getView().up().down('documentgridpanel').refresh({params: opts});"
+                ]
+            },
+            "name": "refreshDocuments",
+            "designerId": "447649f4-5aab-4726-8fb8-0b61ca65f94f"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "button"
+                ],
+                "fn": "onGearClick",
+                "implHandler": [
+                    "var configwindow = Ext.create('Tel100.view.document.folder.Config');",
+                    "configwindow.show();"
+                ]
+            },
+            "name": "onGearClick",
+            "designerId": "eb214370-3d70-4b74-8f45-a27884d9f1b1"
+        }
+    ]
+}

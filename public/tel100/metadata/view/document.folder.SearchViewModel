@@ -1,0 +1,85 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfoldersearch",
+        "designer|userClassName": "document.folder.SearchViewModel"
+    },
+    "designerId": "a19fc1dd-8cb9-44dd-bcd5-cb803ba49d90",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "designer|displayName": "types",
+                "model": "document.Type",
+                "name": "types"
+            },
+            "name": "MyStore6",
+            "designerId": "dc3ad069-67fc-4c31-b7d6-b01e18a2b179"
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "designer|displayName": "standardFolders",
+                "model": "folder.Standard",
+                "name": "standardFolders"
+            },
+            "name": "MyStore3",
+            "designerId": "69a184e6-4082-4beb-97de-7bfd54f03765"
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Direction",
+                "name": "direction"
+            },
+            "name": "MyStore6",
+            "designerId": "84245d97-2341-43d9-96c0-97584f66af59",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Memory",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "data": [
+                            "[{",
+                            "  id:'inner'",
+                            "}, {",
+                            "  id: 'out'",
+                            "}, {",
+                            "  id: 'in'",
+                            "}]"
+                        ]
+                    },
+                    "name": "MyMemoryProxy1",
+                    "designerId": "4c219d21-9261-4e7f-a23b-860d9dab275a"
+                }
+            ]
+        }
+    ]
+}

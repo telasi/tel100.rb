@@ -1,0 +1,386 @@
+{
+    "type": "Ext.tab.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "activeTab": 0,
+        "designer|userAlias": "documentfoldertab",
+        "designer|userClassName": "document.folder.Tab",
+        "header": false,
+        "height": null,
+        "width": null
+    },
+    "name": "MyTabPanel2",
+    "designerId": "c09758ae-9832-4db7-9ae8-b1c0009112a7",
+    "viewControllerInstanceId": "34bc20db-588e-4f2d-9a37-299a4336bb40",
+    "viewModelInstanceId": "ad723040-eb0c-4688-a8ff-985715261b4a",
+    "cn": [
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout": "border",
+                "title": [
+                    "{i18n.document.folder.ui.folders}"
+                ]
+            },
+            "name": "MyPanel3",
+            "configAlternates": {
+                "title": "binding"
+            },
+            "designerId": "14ab9444-3ec1-49f1-a9d9-910e8765b03e",
+            "cn": [
+                {
+                    "type": "Ext.tab.Tab",
+                    "reference": {
+                        "name": "tabConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "TabConfig5",
+                    "designerId": "a4ee6059-8c3a-4340-a635-22d782953658"
+                },
+                {
+                    "type": "Ext.grid.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "standardFolders",
+                        "header": false,
+                        "height": null,
+                        "itemId": "standardFolders",
+                        "layout|region": "north",
+                        "store": [
+                            "{standardfolders}"
+                        ],
+                        "title": "My Grid Panel"
+                    },
+                    "name": "MyGridPanel1",
+                    "configAlternates": {
+                        "store": "binding"
+                    },
+                    "designerId": "c3e264be-b03b-4006-a8f0-9cd32d9f6773",
+                    "cn": [
+                        {
+                            "type": "Ext.grid.column.Column",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dataIndex": "name",
+                                "flex": 1,
+                                "text": [
+                                    "{i18n.document.folder.categories.a}"
+                                ]
+                            },
+                            "name": "MyColumn12",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "20d431bc-b79f-4fd8-b61c-0723923b2f0c",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "value",
+                                            "metaData",
+                                            "record",
+                                            "rowIndex",
+                                            "colIndex",
+                                            "store",
+                                            "view"
+                                        ],
+                                        "fn": "renderer",
+                                        "implHandler": [
+                                            "if(record.data.parent_id){",
+                                            " return '<span style=\"margin-left: 20px;\">' + record.data.icon + ' ' + value + '</span>'; ",
+                                            "}",
+                                            "return record.data.icon + ' ' + value;"
+                                        ]
+                                    },
+                                    "name": "renderer",
+                                    "designerId": "667edfc5-39fe-4f9e-aed4-df55ca76bca0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.grid.View",
+                            "reference": {
+                                "name": "viewConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyGridView1",
+                            "designerId": "fc8415cf-0091-4a4b-b3d6-4a2663427995"
+                        },
+                        {
+                            "type": "Ext.selection.RowModel",
+                            "reference": {
+                                "name": "selModel",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowDeselect": true,
+                                "mode": "MULTI"
+                            },
+                            "name": "MyRowSelectionModel1",
+                            "designerId": "85dc2910-02c0-46d6-a2ac-96785cbff61e"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onStandardGridpanelSelect",
+                                "implHandler": [
+                                    "this.refreshDocuments({folderType: 'standard', folderId: record.id});",
+                                    "this.getView().down('#customFolders').getSelectionModel().deselectAll();"
+                                ],
+                                "name": "select",
+                                "scope": "me"
+                            },
+                            "name": "onStandardGridpanelSelect",
+                            "designerId": "06a447e9-cc88-4c52-acef-2aba2878a6f6"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "customFolders",
+                        "header": false,
+                        "height": null,
+                        "itemId": "customFolders",
+                        "layout|region": "north",
+                        "store": "CustomFolders",
+                        "title": "My Grid Panel"
+                    },
+                    "name": "MyGridPanel2",
+                    "designerId": "723c0bce-106d-42d1-8613-bf532c91b22f",
+                    "cn": [
+                        {
+                            "type": "Ext.grid.column.Column",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": null,
+                                "dataIndex": "name",
+                                "flex": 1,
+                                "tdCls": "foldercls",
+                                "text": [
+                                    "{i18n.document.folder.categories.b}"
+                                ]
+                            },
+                            "name": "MyColumn17",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "b5af7482-42a3-48cf-827a-53fd9b4af74f"
+                        },
+                        {
+                            "type": "Ext.grid.View",
+                            "reference": {
+                                "name": "viewConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyGridView3",
+                            "designerId": "19101984-f73a-4493-b6fb-c1caa2ade612"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onGridpanelAfterRender",
+                                "implHandler": [
+                                    "component.dropZone = Ext.create('Ext.dd.DropZone', component.el,{",
+                                    "  ddGroup: 'Grid2FolderDDGroup',",
+                                    "",
+                                    "  getTargetFromEvent: function(e) {",
+                                    "    return e.getTarget('.foldercls');",
+                                    "  },",
+                                    "",
+                                    "  onNodeEnter : function(target, dd, e, data){",
+                                    "    Ext.fly(target).highlight();",
+                                    "  },",
+                                    "",
+                                    "  onNodeOver : function(target, dd, e, data){",
+                                    "    var proto = Ext.dd.DropZone.prototype;",
+                                    "    return proto.dropAllowed;",
+                                    "  },",
+                                    "  onNodeDrop : function(target, dd, e, data){",
+                                    "    var customGrid = Ext.ComponentQuery.query('grid[itemId=customFolders]')[0];",
+                                    "    var view = customGrid.getView();",
+                                    "    var record = view.getRecord(target);",
+                                    "",
+                                    "    var vm = customGrid.up('panel').getViewModel();",
+                                    "    var model = Ext.create('Tel100.model.folder.Document',{",
+                                    "      folder_id: record.id, doc_id: data.records[0].id",
+                                    "    });",
+                                    "    model.save();",
+                                    "",
+                                    "    return true;",
+                                    "  }",
+                                    "});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "name": "onGridpanelAfterRender",
+                            "designerId": "1a0aef8e-2902-4611-89d1-d3cedd86953f"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCustomFoldersSelect",
+                                "implHandler": [
+                                    "this.refreshDocuments({folderType: 'custom', folderId: record.id});",
+                                    "this.getView().down('#standardFolders').getSelectionModel().deselectAll();"
+                                ],
+                                "name": "select",
+                                "scope": "me"
+                            },
+                            "name": "onCustomFoldersSelect",
+                            "designerId": "9faf3bcf-b0af-4047-b241-3f8b4837fc6c"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCustomFoldersBeforeRender",
+                                "implHandler": [
+                                    "Ext.getStore('CustomFolders').load();"
+                                ],
+                                "name": "beforerender",
+                                "scope": "me"
+                            },
+                            "name": "onCustomFoldersBeforeRender",
+                            "designerId": "d2d894e8-160e-4bd5-b1ea-3a840f4ad332"
+                        }
+                    ]
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|region": "south",
+                        "title": "Substitute"
+                    },
+                    "name": "document.folder.substitude",
+                    "designerId": "91c9da6c-18a6-4210-884d-4500407a41ce",
+                    "masterInstanceId": "01a908bf-258b-416e-bb38-3d6268909ac4"
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTabpanelAfterRender",
+                "implHandler": [
+                    "var bar = component.tabBar;",
+                    "            bar.insert(2,[",
+                    "                 {",
+                    "                     xtype: 'component',",
+                    "                     flex: 1",
+                    "                 },",
+                    "                {",
+                    "                    xtype: 'button',",
+                    "                    text: '<i class=\"fa fa-cog\"></i>',",
+                    "                  handler: function(button){",
+                    "                    var configwindow = Ext.create('Tel100.view.document.folder.Config');",
+                    "                    configwindow.show();",
+                    "                  }",
+                    "                }",
+                    "            ]);"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onTabpanelAfterRender",
+            "designerId": "d2176402-a966-40d6-8eb1-acd21eb729e6"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": [
+                    "{i18n.document.search.ui.search}"
+                ]
+            },
+            "name": "document.folder.search",
+            "configAlternates": {
+                "title": "binding"
+            },
+            "designerId": "da49fc0a-28c1-42f0-ac6a-3a756d728f49",
+            "masterInstanceId": "3281b413-350a-479e-b657-0f1bef619a39",
+            "cn": [
+                {
+                    "type": "Ext.tab.Tab",
+                    "reference": {
+                        "name": "tabConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "TabConfig2",
+                    "designerId": "6a061f84-ec27-411f-a143-7fe45d3cd381"
+                }
+            ]
+        }
+    ]
+}

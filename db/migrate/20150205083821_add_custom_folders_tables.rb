@@ -36,19 +36,39 @@ class AddCustomFoldersTables < ActiveRecord::Migration
 
   	execute <<-SQL
       create table FOLDER_DOCUMENTS (
+        ID         NUMBER(10,0) NOT NULL,
       	FOLDER_ID  NUMBER(10,0) NOT NULL,
       	DOC_ID     NUMBER(10,0) NOT NULL,
         created_at TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
-        updated_at TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL
+        updated_at TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
+
+        CONSTRAINT folder_documents_primarykey PRIMARY KEY (id) enable
       )
     SQL
 
     execute <<-SQL
        alter table folder_documents add constraint folder_doc_unique UNIQUE (folder_id, doc_id)
     SQL
+
+    execute <<-SQL
+      create sequence FOLDER_DOCUMENTS_SEQ increment by 1 start with 1 nocache
+    SQL
+
+    execute <<-SQL
+      create trigger FOLDER_DOCUMENTS_BEFORE_INSERT
+      before insert on FOLDER_DOCUMENTS
+      for each row
+      BEGIN
+        IF :new.ID is null
+        THEN
+          :new.ID := FOLDER_DOCUMENTS_SEQ.nextval;
+        END IF;
+      END;
+    SQL
   end
 
   def down
+    execute "drop sequence FOLDER_DOCUMENTS_SEQ"
   	execute "drop table FOLDER_DOCUMENTS"
     execute "drop sequence FOLDER_BASE_SEQ"
     execute "drop index OWNER_ID_IDX"

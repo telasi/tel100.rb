@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get '/document', action: 'document_index'
       post '/document/', action: 'document_create'
       delete '/document', action: 'document_delete'
+      post '/search', action: 'search'
     end
     namespace 'sys' do
       scope 'users', controller: 'users' do
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
     namespace 'documents' do
       scope 'base', controller: 'base' do
         get    '/', action: 'index'
+        get    '/search',       action: 'search'
         get    '/:id', action: 'show'
         post   '/create_draft', action: 'create_draft'
         put    '/update_draft', action: 'update_draft'

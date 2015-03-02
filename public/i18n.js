@@ -111,20 +111,6 @@ module.exports = {
       ka: 'შეიყვანეთ სახელი',
       ru: 'Введите имя'
     },
-    standard:{
-      draft: {
-        ka: 'Draft',
-        ru: 'Черновики'
-      },
-      inbox: {
-        ka: 'შემოსული',
-        ru: 'Полученные'
-      },
-      outbox: {
-        ka: 'გაგზავნილი',
-        ru: 'Отправленные'
-      },
-    }
   },
   categories: {
     a: {
@@ -144,12 +130,13 @@ module.exports = {
   motion: require('./motion'),
   comment: require('./comment'),
   folder: require('./folder'),
+  search: require('./search'),
   type: require('./type'),
   role: require('./role'),
   file: require('./file')
 };
 
-},{"./base":3,"./comment":4,"./file":5,"./folder":6,"./motion":8,"./role":9,"./type":10}],8:[function(require,module,exports){
+},{"./base":3,"./comment":4,"./file":5,"./folder":6,"./motion":8,"./role":9,"./search":10,"./type":11}],8:[function(require,module,exports){
 module.exports = {
   status: 'სტატუსი',
   ordering: 'ეტაპი',
@@ -192,20 +179,49 @@ module.exports = {
 },{}],10:[function(require,module,exports){
 module.exports = {
   ui: {
+    search:{
+      ka: '<i class="fa fa-filter"></i> ძებნა',
+      ru: '<i class="fa fa-filter"></i> Поиск'
+    },
+  },
+  folder: 'საქაალდე',
+  type: 'სახეობა',
+  direction: 'მიმართულება',
+  subject: 'სათაური',
+  original_number: 'დედანის #',
+  original_date: 'დედანის თარიღი',
+  docnumber: 'ნომერი',
+  docdate: 'თარიღი',
+  page_count: 'გვერდები',
+  due_date: 'ვადა',
+  sender: 'ინიციატორი',
+  owner: 'მფლობელი',
+  status: 'სტატუსი',
+  from: 'დან',
+  to: 'მდე',
+  buttons: {
+  	search: 'ძებნა',
+  	reset: 'წაშლა'
+  }
+};
+
+},{}],11:[function(require,module,exports){
+module.exports = {
+  ui: {
     types: 'სახეობები'
   },
   name: 'დასახელება',
   order_by: '#'
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = {
   title: {
     ka: '<i class="fa fa-times-circle"></i> შეცდომა',
     ru: '<i class="fa fa-times-circle"></i> Ошибка'
   }
 };
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = {
   tree: {
     title: {
@@ -215,7 +231,7 @@ module.exports = {
   }
 };
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
@@ -253,12 +269,12 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./admin":1,"./application":2,"./document":7,"./errors":11,"./hr":12,"./selector":14,"./ui":15,"./user":16,"./vacation":17}],14:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./document":7,"./errors":12,"./hr":13,"./selector":15,"./ui":16,"./user":17,"./vacation":18}],15:[function(require,module,exports){
 module.exports = {
   selectedParties: 'არჩეული პირები და ორგანიზაციები',
   selectorConfirm: 'არჩევანის დადასტურება'
 };
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = {
   confirmTitle: {
     ka: 'დადასტურება',
@@ -305,7 +321,7 @@ module.exports = {
   }
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -329,7 +345,7 @@ module.exports = {
   }
 };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = {
   ui: {
     button: {
@@ -363,10 +379,26 @@ module.exports = {
   		ru: 'По'
   	},
   	substitude: {
-  		ka: 'მოვალეობა შეეთავსოს',
+  		ka: 'მოვალეობა შეათავსოს',
   		ru: 'Обязанность совместить'
-  	}
+  	},
+    docview: {
+      ka: 'დოკუმენტები',
+      ru: 'Документы'
+    },
+    none: {
+      ka: 'a',
+      ru: 'a'
+    },
+    all: {
+      ka: 'ყველა',
+      ru: 'Все'
+    },
+    new: {
+      ka: 'ახალი',
+      ru: 'Новые'
+    }
   }
 };
 
-},{}]},{},[13]);
+},{}]},{},[14]);

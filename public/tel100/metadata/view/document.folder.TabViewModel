@@ -1,0 +1,45 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfoldertab",
+        "designer|userClassName": "document.folder.TabViewModel"
+    },
+    "designerId": "ad723040-eb0c-4688-a8ff-985715261b4a",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "documentStore",
+                "model": "folder.Document",
+                "name": "documentStore"
+            },
+            "name": "MyStore5",
+            "designerId": "142a9937-8f81-4ada-bacf-827f37c2c42f"
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "folder.Standard",
+                "name": "standardfolders"
+            },
+            "name": "MyStore",
+            "designerId": "3efedd6b-4a27-4958-92b7-2c7f1a542cdc"
+        }
+    ]
+}

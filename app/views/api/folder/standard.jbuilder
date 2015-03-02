@@ -1,5 +1,6 @@
 json.array! @folders do |folder|
   json.id         folder.folder_type
   json.name       folder.name
-  json.category   'a'
+  json.icon       folder.icon
+  json.parent_id  folder.parent_id
 end

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfoldersubstitude",
+        "designer|userClassName": "document.folder.SubstitudeViewModel"
+    },
+    "designerId": "db56cde6-d608-4364-a8e7-9998bb5cfc50"
+}
