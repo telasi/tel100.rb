@@ -9,11 +9,46 @@
         "designer|userAlias": "documentfoldersubstitude",
         "designer|userClassName": "document.folder.Substitude",
         "height": 250,
+        "layout": "accordion",
         "title": "My Panel",
         "width": 400
     },
     "name": "MyPanel2",
     "designerId": "01a908bf-258b-416e-bb38-3d6268909ac4",
     "viewControllerInstanceId": "0866b4d2-2547-44f4-9a4f-116727f5bf8a",
-    "viewModelInstanceId": "db56cde6-d608-4364-a8e7-9998bb5cfc50"
+    "viewModelInstanceId": "db56cde6-d608-4364-a8e7-9998bb5cfc50",
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPanelAfterRender",
+                "implHandler": [
+                    "var me = this;",
+                    "var vm = this.getViewModel();",
+                    "var store = vm.getStore('substitudes');",
+                    "store.load(function(records,operation,success){",
+                    "  var length = records.length;",
+                    "  me.setVisible(length > 0);",
+                    "  for(var i =0; i < length; i++){",
+                    "    var subitem = Ext.create('Tel100.view.document.folder.SubItem');",
+                    "    var newsubitem = { title: records[i].data.first_name + ' ' + records[i].data.last_name};",
+                    "    subitem.getViewModel().set('subitem', newsubitem);",
+                    "    me.add(subitem);  ",
+                    "  }",
+                    "  ",
+                    "});",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onPanelAfterRender",
+            "designerId": "7877c377-c033-4958-88e5-c86633b54f72"
+        }
+    ]
 }

@@ -97,6 +97,14 @@ Ext.define('Tel100.view.document.folder.Search', {
       }
     },
     {
+      xtype: 'textfield',
+      anchor: '100%',
+      name: 'sender',
+      bind: {
+        fieldLabel: '{i18n.document.search.sender}'
+      }
+    },
+    {
       xtype: 'spinnerfield',
       anchor: '100%',
       bind: {

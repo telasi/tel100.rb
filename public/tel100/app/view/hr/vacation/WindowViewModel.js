@@ -18,13 +18,45 @@ Ext.define('Tel100.view.hr.vacation.WindowViewModel', {
   alias: 'viewmodel.hrvacationwindow',
 
   requires: [
-    'Ext.data.Store'
+    'Ext.data.Store',
+    'Ext.data.field.Field'
   ],
 
   stores: {
     types: {
       autoLoad: true,
       model: 'Tel100.model.hr.vacation.Type'
+    },
+    substitude_type: {
+      data: [
+        {
+          id: '1',
+          name: '{i18n.vacation.substitude_type.none.title}',
+          explain: '{i18n.vacation.substitude_type.none.explain}'
+        },
+        {
+          id: '2',
+          name: '{i18n.vacation.substitude_type.all.title}',
+          explain: '{i18n.vacation.substitude_type.all.explain}'
+        },
+        {
+          id: '3',
+          name: '{i18n.vacation.substitude_type.new.title}',
+          explain: '{i18n.vacation.substitude_type.new.explain}'
+        },
+        
+      ],
+      fields: [
+        {
+          name: 'id'
+        },
+        {
+          name: 'name'
+        },
+        {
+          name: 'explain'
+        }
+      ]
     }
   }
 

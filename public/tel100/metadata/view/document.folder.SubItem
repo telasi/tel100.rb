@@ -1,0 +1,24 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfoldersubitem",
+        "designer|userClassName": "document.folder.SubItem",
+        "height": 250,
+        "title": [
+            "{subitem.title}"
+        ],
+        "width": 400
+    },
+    "name": "MyPanel2",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "41494879-2dd6-4209-8fbb-05d4018172f3",
+    "viewControllerInstanceId": "4787657b-9e57-485d-b50e-05fecbbba82d",
+    "viewModelInstanceId": "c4a2c5d2-ae4a-43df-9157-fde7dc00f105"
+}

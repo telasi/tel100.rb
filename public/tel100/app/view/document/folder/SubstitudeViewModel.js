@@ -15,6 +15,29 @@
 
 Ext.define('Tel100.view.document.folder.SubstitudeViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documentfoldersubstitude'
+  alias: 'viewmodel.documentfoldersubstitude',
+
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.proxy.Rest',
+    'Ext.data.field.Field'
+  ],
+
+  stores: {
+    substitudes: {
+      proxy: {
+        type: 'rest',
+        url: '/api/vacation/substitudes'
+      },
+      fields: [
+        {
+          name: 'id'
+        },
+        {
+          name: 'substitude_type'
+        }
+      ]
+    }
+  }
 
 });

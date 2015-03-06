@@ -118,6 +118,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
         },
         {
           xtype: 'documentfoldersubstitude',
+          collapsible: true,
           title: 'Substitute',
           region: 'south'
         }

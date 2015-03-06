@@ -53,11 +53,11 @@
             "document.motions.Tree",
             "document.motions.ResponseDialog",
             "document.motions.ResponsePanel",
-            "document.folder.Main",
             "document.folder.Config",
             "document.motions.Panel",
             "document.motions.Properties",
-            "document.file.Panel"
+            "document.file.Panel",
+            "document.folder.SubItem"
         ]
     },
     "name": "Application",

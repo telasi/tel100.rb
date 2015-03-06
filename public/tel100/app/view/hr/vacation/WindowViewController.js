@@ -25,8 +25,10 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
     receiverDialog.on('selectioncomplete', function(receivers) {
       if (receivers.length > 0) {
         var substituder = receivers[0];
-        this.getView().down('form').getForm().findField('substitude').setValue(substituder.id);
-        this.getView().down('form').getForm().findField('substitude_name').setValue(substituder.data.full_name);
+        if (substituder.user_id !== undefined){
+          this.getView().down('form').getForm().findField('substitude').setValue(substituder.user_id);
+          this.getView().down('form').getForm().findField('substitude_name').setValue(substituder.data.full_name);
+        }
       }
     }.bind(this));
   },

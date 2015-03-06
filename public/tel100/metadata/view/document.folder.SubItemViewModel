@@ -1,0 +1,16 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{ subitem : null}"
+        ],
+        "designer|userAlias": "documentfoldersubitem",
+        "designer|userClassName": "document.folder.SubItemViewModel"
+    },
+    "designerId": "c4a2c5d2-ae4a-43df-9157-fde7dc00f105"
+}

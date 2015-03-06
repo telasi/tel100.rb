@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     scope 'vacation', controller: 'vacation' do
       get '/types', action: 'types'
       post '/create', action: 'create'
+      get '/substitudes', action: 'substitudes'
     end
     scope 'folder', controller: 'folder' do
       get '/', action: 'index'

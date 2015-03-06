@@ -26,6 +26,30 @@ Ext.define('Tel100.view.document.folder.Substitude', {
   },
   height: 250,
   width: 400,
-  title: 'My Panel'
+  layout: 'accordion',
+  title: 'My Panel',
+  defaultListenerScope: true,
+
+  listeners: {
+    afterrender: 'onPanelAfterRender'
+  },
+
+  onPanelAfterRender: function(component, eOpts) {
+    var me = this;
+    var vm = this.getViewModel();
+    var store = vm.getStore('substitudes');
+    store.load(function(records,operation,success){
+      var length = records.length;
+      me.setVisible(length > 0);
+      for(var i =0; i < length; i++){
+        var subitem = Ext.create('Tel100.view.document.folder.SubItem');
+        var newsubitem = { title: records[i].data.first_name + ' ' + records[i].data.last_name};
+        subitem.getViewModel().set('subitem', newsubitem);
+        me.add(subitem);
+      }
+
+    });
+
+  }
 
 });

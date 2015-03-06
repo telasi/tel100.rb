@@ -103,6 +103,7 @@
                                 "fieldLabel": [
                                     "{i18n.vacation.fields.from}"
                                 ],
+                                "format": "d/m/Y",
                                 "id": null,
                                 "layout|flex": 1,
                                 "margin": "0 10 0 0",
@@ -134,6 +135,7 @@
                                 "fieldLabel": [
                                     "{i18n.vacation.fields.to}"
                                 ],
+                                "format": "d/m/Y",
                                 "id": null,
                                 "layout|flex": 1,
                                 "name": "to_date",
@@ -243,8 +245,10 @@
                                             "receiverDialog.on('selectioncomplete', function(receivers) {",
                                             "  if (receivers.length > 0) {",
                                             "    var substituder = receivers[0];",
-                                            "    this.getView().down('form').getForm().findField('substitude').setValue(substituder.id);",
-                                            "    this.getView().down('form').getForm().findField('substitude_name').setValue(substituder.data.full_name);",
+                                            "    if (substituder.user_id !== undefined){",
+                                            "     this.getView().down('form').getForm().findField('substitude').setValue(substituder.user_id);",
+                                            "     this.getView().down('form').getForm().findField('substitude_name').setValue(substituder.data.full_name);",
+                                            "    }",
                                             "  }",
                                             "}.bind(this));"
                                         ],
@@ -266,10 +270,29 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "fieldLabel": "Label",
-                        "layout|anchor": "100%"
+                        "displayField": "name",
+                        "editable": false,
+                        "fieldLabel": [
+                            "{i18n.vacation.fields.docview}"
+                        ],
+                        "layout|anchor": "100%",
+                        "name": "substitude_type",
+                        "readOnly": false,
+                        "selection": [
+                            "{substitude_explain}"
+                        ],
+                        "store": [
+                            "{substitude_type}"
+                        ],
+                        "value": null,
+                        "valueField": "id"
                     },
                     "name": "MyComboBox3",
+                    "configAlternates": {
+                        "fieldLabel": "binding",
+                        "store": "binding",
+                        "selection": "binding"
+                    },
                     "designerId": "bea106e1-3b1f-4d8d-8b65-8274fcf783d0"
                 },
                 {
@@ -282,10 +305,18 @@
                     "userConfig": {
                         "editable": false,
                         "fieldLabel": null,
-                        "height": 101,
+                        "height": 100,
+                        "name": "substitude_type_explanation",
+                        "submitValue": false,
+                        "value": [
+                            "{substitude_explain.explain}"
+                        ],
                         "width": "100%"
                     },
                     "name": "MyTextArea",
+                    "configAlternates": {
+                        "value": "binding"
+                    },
                     "designerId": "09aadb80-3c02-435c-b557-796b36334016"
                 },
                 {

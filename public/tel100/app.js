@@ -31,7 +31,8 @@ Ext.application({
     'document.Base',
     'document.Comment',
     'folder.Document',
-    'folder.Standard'
+    'folder.Standard',
+    'document.File'
   ],
   stores: [
     'CustomFolders'
@@ -68,8 +69,8 @@ Ext.application({
     'document.folder.Config',
     'document.motions.Panel',
     'document.motions.Properties',
-    'document.folder.Tab',
-    'document.folder.Search'
+    'document.file.Panel',
+    'document.folder.SubItem'
   ],
   name: 'Tel100',
 

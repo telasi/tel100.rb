@@ -10,6 +10,10 @@ class Api::Documents::BaseController < ApiController
     @my_docs = Document::User.mydocs(current_user).joins(:document)
     @my_docs = doc_list('standard', params['folder']) if params['folder'].present?
     @my_docs = @my_docs.joins(:document)
+    if params['sender'].present?
+      @employees = HR::Employee.find_by_name(params['sender'])
+      @my_docs = @my_docs.where('document_base.sender_id IN (?)', @employees)
+    end
     @my_docs = @my_docs.where("document_base.type_id" => params['type']) if params['type'].present?
     @my_docs = @my_docs.where("document_base.docdate >= ?", Date.strptime(params['docdate_from'], '%d/%m/%Y')) if params['docdate_from'].present?
     @my_docs = @my_docs.where("document_base.docdate <= ?", Date.strptime(params['docdate_to'], '%d/%m/%Y')) if params['docdate_to'].present?

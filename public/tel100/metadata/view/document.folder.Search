@@ -167,6 +167,26 @@
             "designerId": "3a468900-e4fa-4322-ac0c-2bca77963669"
         },
         {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": [
+                    "{i18n.document.search.sender}"
+                ],
+                "layout|anchor": "100%",
+                "name": "sender"
+            },
+            "name": "MyTextField",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
+            "designerId": "e49e9afb-c593-4a73-9be9-e61c2f274888"
+        },
+        {
             "type": "Ext.form.field.Spinner",
             "reference": {
                 "name": "items",

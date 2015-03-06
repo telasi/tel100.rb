@@ -310,6 +310,8 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "collapsible": true,
+                        "disabled": null,
                         "layout|region": "south",
                         "title": "Substitute"
                     },

@@ -1,7 +1,7 @@
 default: &default
   adapter: oracle_enhanced
-  # database: ORCL_1.1.2.65
-  database: 1.1.2.65:1521/ORCL
+  database: ORCL_1.1.2.65
+  #database: 1.1.2.65:1521/ORCL
 
 development:
   <<: *default

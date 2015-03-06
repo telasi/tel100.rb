@@ -94,7 +94,7 @@
                 "designer|displayName": "grid",
                 "disableSelection": null
             },
-            "name": "document.motions.ingrid6",
+            "name": "document.motions.ingrid",
             "configAlternates": {
                 "selection": "binding"
             },

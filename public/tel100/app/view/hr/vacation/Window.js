@@ -79,6 +79,7 @@ Ext.define('Tel100.view.hr.vacation.Window', {
               margin: '0 10 0 0',
               name: 'from_date',
               allowBlank: false,
+              format: 'd/m/Y',
               bind: {
                 fieldLabel: '{i18n.vacation.fields.from}'
               }
@@ -88,6 +89,7 @@ Ext.define('Tel100.view.hr.vacation.Window', {
               flex: 1,
               name: 'to_date',
               allowBlank: false,
+              format: 'd/m/Y',
               bind: {
                 fieldLabel: '{i18n.vacation.fields.to}'
               }
@@ -131,13 +133,27 @@ Ext.define('Tel100.view.hr.vacation.Window', {
         {
           xtype: 'combobox',
           anchor: '100%',
-          fieldLabel: 'Label'
+          name: 'substitude_type',
+          readOnly: false,
+          editable: false,
+          displayField: 'name',
+          valueField: 'id',
+          bind: {
+            fieldLabel: '{i18n.vacation.fields.docview}',
+            store: '{substitude_type}',
+            selection: '{substitude_explain}'
+          }
         },
         {
           xtype: 'textareafield',
-          height: 101,
+          height: 100,
           width: '100%',
-          editable: false
+          name: 'substitude_type_explanation',
+          submitValue: false,
+          editable: false,
+          bind: {
+            value: '{substitude_explain.explain}'
+          }
         },
         {
           xtype: 'fieldcontainer',

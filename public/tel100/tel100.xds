@@ -37,6 +37,9 @@
     "framework": "ext50",
     "viewOrderMap": {
         "view": [
+            "97a6c433-033f-4338-baba-02016bc96f79",
+            "7088dc9e-b5e0-4a55-a49b-30422ce13348",
+            "aff49a9b-8ace-4060-9429-0aa8bb62e5cd",
             "3b3e6a36-63b9-49a2-acd9-921ae36e718d",
             "f2dd7093-81f6-4fba-89ab-40ce536b968b",
             "e8a0032c-7a81-4be4-afec-604b31ffd23c",
@@ -138,13 +141,17 @@
             "429fbd8f-126d-4ac7-9b90-5f85806c9f88",
             "3281b413-350a-479e-b657-0f1bef619a39",
             "a19fc1dd-8cb9-44dd-bcd5-cb803ba49d90",
-            "02e92488-2fea-485c-83d1-fa0aab8ee1b4"
+            "02e92488-2fea-485c-83d1-fa0aab8ee1b4",
+            "41494879-2dd6-4209-8fbb-05d4018172f3",
+            "c4a2c5d2-ae4a-43df-9157-fde7dc00f105",
+            "4787657b-9e57-485d-b50e-05fecbbba82d"
         ],
         "store": [
             "f2f1d15c-aa1d-46bf-a1e0-d2092a7ecee2"
         ],
         "controller": [],
         "model": [
+            "06222ca1-8290-49f9-b5b3-3f256c9e0ca4",
             "b5fb3de7-1056-41ad-99c7-8e38a4aba07d",
             "8e1ea4f4-f8a7-41f2-8ab5-d3b3017bb281",
             "5adf3616-9660-46bd-91e3-645c3e72322a",

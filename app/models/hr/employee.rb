@@ -40,4 +40,11 @@ class HR::Employee < ActiveRecord::Base
       ext_type: 'hr.Employee'
     }
   end
+
+  def self.find_by_name(name)
+    name.split(' ').map do |phrase|
+      HR::Employee.where("first_name_ka LIKE :phrase or first_name_ru LIKE :phrase or first_name_en LIKE :phrase or 
+                          last_name_ka LIKE :phrase or last_name_ru LIKE :phrase or last_name_en LIKE :phrase", {phrase: '%'+phrase+'%'}).map{|emp| emp.id }
+    end.flatten
+  end
 end

@@ -6,7 +6,7 @@ class Api::VacationController < ApiController
   end
 
   def create
-    @vac = HR::Vacation::Vacation.new(params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude))
+    @vac = HR::Vacation::Vacation.new(params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type))
     @vac.userid = current_user.id
     if @vac.save
      render json: { success: true }
@@ -18,5 +18,9 @@ class Api::VacationController < ApiController
   def types
     @types = HR::Vacation::Type.order('id ASC')
     render formats: ['json']
+  end
+
+  def substitudes
+    @substitudes = HR::Vacation::Vacation.get_substitudes(current_user)
   end
 end

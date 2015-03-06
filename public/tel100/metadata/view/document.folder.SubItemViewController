@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentfoldersubitem",
+        "designer|userClassName": "document.folder.SubItemViewController"
+    },
+    "designerId": "4787657b-9e57-485d-b50e-05fecbbba82d"
+}

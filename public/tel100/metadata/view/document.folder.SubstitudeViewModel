@@ -9,5 +9,62 @@
         "designer|userAlias": "documentfoldersubstitude",
         "designer|userClassName": "document.folder.SubstitudeViewModel"
     },
-    "designerId": "db56cde6-d608-4364-a8e7-9998bb5cfc50"
+    "designerId": "db56cde6-d608-4364-a8e7-9998bb5cfc50",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "substitudes"
+            },
+            "name": "MyStore8",
+            "designerId": "9a441edd-ab57-4a26-902c-d848b8a560db",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Rest",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "restProxy",
+                        "url": "/api/vacation/substitudes"
+                    },
+                    "name": "MyRestProxy6",
+                    "designerId": "b68ab48d-020f-4138-ac53-b34a2dc47a0e"
+                },
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "id"
+                    },
+                    "name": "MyField29",
+                    "designerId": "45f7b8b5-1a79-448d-b637-ae169a8d8c39"
+                },
+                {
+                    "type": "Ext.data.field.Field",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "substitude_type"
+                    },
+                    "name": "MyField30",
+                    "designerId": "db1400fa-0f42-4e14-a6d0-66d56fb4c4b9"
+                }
+            ]
+        }
+    ]
 }
