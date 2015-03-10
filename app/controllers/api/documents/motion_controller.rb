@@ -17,7 +17,7 @@ class Api::Documents::MotionController < ApiController
       rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
     end
 
-    rel = rel.where(role: params[:role]) if params[:role].present?
+    rel = rel.where(receiver_role: params[:role]) if params[:role].present?
 
     motions = rel.order('ordering ASC, id ASC').to_a
     @motions = hasbase ? [ nil ] + motions : motions
