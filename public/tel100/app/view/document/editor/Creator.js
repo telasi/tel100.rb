@@ -80,22 +80,31 @@ Ext.define('Tel100.view.document.editor.Creator', {
       xtype: 'container',
       flex: 1,
       region: 'center',
+      baseCls: 'white-panel',
       border: false,
-      layout: 'border',
+      layout: {
+        type: 'vbox',
+        align: 'stretch'
+      },
       items: [
         {
           xtype: 'textfield',
           submitEmptyText: false,
-          region: 'north',
+          padding: 5,
+          labelAlign: 'top',
           emptyText: 'enter document\'s subject',
           bind: {
+            fieldLabel: '{i18n.document.base.subject}',
             value: '{document.subject}'
           }
         },
         {
           xtype: 'htmleditor',
-          region: 'center',
+          flex: 1,
+          padding: '0 5 5 5',
+          labelAlign: 'top',
           bind: {
+            fieldLabel: '{i18n.document.base.body}',
             value: '{document.body}'
           }
         }

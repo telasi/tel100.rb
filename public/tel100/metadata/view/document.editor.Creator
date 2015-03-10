@@ -172,9 +172,12 @@
             },
             "codeClass": null,
             "userConfig": {
+                "baseCls": "white-panel",
                 "border": false,
+                "container|align": "stretch",
+                "container|padding": null,
                 "designer|displayName": "main",
-                "layout": "border",
+                "layout": "vbox",
                 "layout|flex": 1,
                 "layout|region": "center"
             },
@@ -194,12 +197,15 @@
                     "userConfig": {
                         "designer|displayName": "subject",
                         "emptyText": "enter document's subject",
-                        "fieldLabel": null,
+                        "fieldLabel": [
+                            "{i18n.document.base.subject}"
+                        ],
                         "height": null,
                         "itemId": null,
+                        "labelAlign": "top",
                         "layout|flex": null,
-                        "layout|region": "north",
                         "margin": null,
+                        "padding": 5,
                         "reference": null,
                         "submitEmptyText": false,
                         "value": [
@@ -209,7 +215,8 @@
                     "name": "MyTextField",
                     "configAlternates": {
                         "submitEmptyText": "boolean",
-                        "value": "binding"
+                        "value": "binding",
+                        "fieldLabel": "binding"
                     },
                     "designerId": "bafc9b59-5005-4231-8ddf-54504a224295",
                     "customConfigs": [
@@ -229,15 +236,20 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "body",
-                        "fieldLabel": null,
-                        "layout|region": "center",
+                        "fieldLabel": [
+                            "{i18n.document.base.body}"
+                        ],
+                        "labelAlign": "top",
+                        "layout|flex": 1,
+                        "padding": "0 5 5 5",
                         "value": [
                             "{document.body}"
                         ]
                     },
                     "name": "MyHtmlEditor",
                     "configAlternates": {
-                        "value": "binding"
+                        "value": "binding",
+                        "fieldLabel": "binding"
                     },
                     "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27"
                 }

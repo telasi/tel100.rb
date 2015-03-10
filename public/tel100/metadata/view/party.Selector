@@ -168,7 +168,7 @@
                 ],
                 "width": null
             },
-            "name": "hr.tree.panel1",
+            "name": "hr.tree.panel",
             "configAlternates": {
                 "tools": "array"
             },
