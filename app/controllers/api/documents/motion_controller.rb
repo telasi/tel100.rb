@@ -7,6 +7,7 @@ class Api::Documents::MotionController < ApiController
   def index
     @document = Document::Base.find(params[:document_id])
     rel = @document.motions
+
     if params[:mode] == 'out'
       rel = rel.where(sender_user: current_user)
       rel = rel.where(parent_id: (params[:parent_id].present? ? params[:parent_id] : nil))
@@ -15,6 +16,9 @@ class Api::Documents::MotionController < ApiController
       rel = rel.where(receiver_user: current_user)
       rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
     end
+
+    rel = rel.where(role: params[:role]) if params[:role].present?
+
     motions = rel.order('ordering ASC, id ASC').to_a
     @motions = hasbase ? [ nil ] + motions : motions
   end
