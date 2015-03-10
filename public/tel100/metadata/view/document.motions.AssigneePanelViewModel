@@ -1,0 +1,18 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{",
+            "  assigneeCount: 0",
+            "}"
+        ],
+        "designer|userAlias": "documentmotionsassigneepanel",
+        "designer|userClassName": "document.motions.AssigneePanelViewModel"
+    },
+    "designerId": "07ff2a31-20df-4e11-959f-6d0928318bf8"
+}

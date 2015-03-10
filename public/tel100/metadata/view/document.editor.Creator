@@ -235,6 +235,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "border": null,
                         "designer|displayName": "body",
                         "fieldLabel": [
                             "{i18n.document.base.body}"
@@ -269,7 +270,7 @@
                 "layout": "accordion",
                 "layout|region": "east",
                 "layout|split": true,
-                "padding": 0,
+                "padding": null,
                 "width": 400
             },
             "name": "MyContainer2",
@@ -288,7 +289,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general1",
+                    "name": "document.editor.general2",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -302,10 +303,21 @@
                         "type": "array"
                     },
                     "codeClass": null,
+                    "name": "document.motions.assigneepanel",
+                    "designerId": "ecad5a78-fdb2-4d7b-aebf-a130f6e419e2",
+                    "masterInstanceId": "da24e6c3-26d6-4d2a-bedc-c822727570b4"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "receivers"
                     },
-                    "name": "document.motions.outpanel1",
+                    "name": "document.motions.outpanel2",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -346,7 +358,7 @@
                     "userConfig": {
                         "designer|displayName": "files"
                     },
-                    "name": "document.file.panel1",
+                    "name": "document.file.panel2",
                     "designerId": "fa5bcbd5-6feb-4cd1-af00-84c5dbfab0a3",
                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                 }

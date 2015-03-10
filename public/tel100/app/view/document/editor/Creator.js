@@ -21,6 +21,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
     'Tel100.view.document.editor.CreatorViewModel',
     'Tel100.view.document.editor.CreatorViewController',
     'Tel100.view.document.editor.General',
+    'Tel100.view.document.motions.AssigneePanel',
     'Tel100.view.document.motions.OutPanel',
     'Tel100.view.document.file.Panel',
     'Ext.toolbar.Toolbar',
@@ -115,7 +116,6 @@ Ext.define('Tel100.view.document.editor.Creator', {
       region: 'east',
       split: true,
       border: false,
-      padding: 0,
       width: 400,
       layout: {
         type: 'accordion',
@@ -127,6 +127,9 @@ Ext.define('Tel100.view.document.editor.Creator', {
           bind: {
             title: '{i18n.document.base.ui.generalTabTitle}'
           }
+        },
+        {
+          xtype: 'documentmotionsassigneepanel'
         },
         {
           xtype: 'documentmotionsoutpanel',

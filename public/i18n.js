@@ -165,7 +165,8 @@ module.exports = {
   sent_at: 'გაგზავნილია',
   received_at: 'მიღებულია',
   completed_at: 'შესრულებულია',
-  updated_at: 'ბოლო ცვლილება'
+  updated_at: 'ბოლო ცვლილება',
+  assignees: 'ადრესატები'
 };
 
 },{}],9:[function(require,module,exports){

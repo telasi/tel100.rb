@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsassigneepanel",
+        "designer|userClassName": "document.motions.AssigneePanelViewController"
+    },
+    "designerId": "22aa1e5c-2222-453a-8710-cb6354c2fe9b"
+}

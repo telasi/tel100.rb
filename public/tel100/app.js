@@ -70,7 +70,8 @@ Ext.application({
     'document.motions.Panel',
     'document.motions.Properties',
     'document.file.Panel',
-    'document.folder.SubItem'
+    'document.folder.SubItem',
+    'document.motions.AssigneePanel'
   ],
   name: 'Tel100',
 
