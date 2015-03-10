@@ -232,6 +232,39 @@
             ]
         },
         {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "type": "refresh"
+            },
+            "name": "MyTool2",
+            "designerId": "d4fe2e2e-5f45-4965-b49f-e1d40752e4e2",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefreshClick",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefreshClick",
+                    "designerId": "1147263d-4aa7-40bd-abc0-7ab62b31612e"
+                }
+            ]
+        },
+        {
             "type": "basicfunction",
             "reference": {
                 "name": "items",
@@ -239,20 +272,14 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "initComponent",
+                "fn": "refresh",
                 "implHandler": [
-                    "this.callParent();",
-                    "// var vm = this.getViewModel();",
-                    "// // setting view model for the motions store",
-                    "// vm.bind('{motions}', function(store) {",
-                    "//   if (store) {",
-                    "//     store.viewModel = this;",
-                    "//   }",
-                    "// });"
+                    "var vm = this.getViewModel();",
+                    "vm.getStore('motions').load();"
                 ]
             },
-            "name": "initComponent",
-            "designerId": "16aa0cc7-fc99-4d0d-8015-1cc404c9e657"
+            "name": "refresh",
+            "designerId": "264921b2-8733-4393-9177-8604bbc10df0"
         }
     ]
 }

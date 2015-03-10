@@ -119,7 +119,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
       width: 400,
       layout: {
         type: 'accordion',
-        hideCollapseTool: false
+        hideCollapseTool: true
       },
       items: [
         {

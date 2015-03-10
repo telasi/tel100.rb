@@ -21,7 +21,8 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
     'Tel100.view.document.motions.AssigneePanelViewModel',
     'Ext.grid.Panel',
     'Ext.grid.View',
-    'Ext.grid.column.Column'
+    'Ext.grid.column.Column',
+    'Ext.panel.Tool'
   ],
 
   viewModel: {
@@ -30,6 +31,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
   height: 250,
   width: 400,
   layout: 'fit',
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.motion.assignees} ({assigneeCount})'
@@ -105,16 +107,23 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
       ]
     }
   ],
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'refresh',
+      listeners: {
+        click: 'onRefreshClick'
+      }
+    }
+  ],
 
-  initComponent: function() {
-    this.callParent();
-    // var vm = this.getViewModel();
-    // // setting view model for the motions store
-    // vm.bind('{motions}', function(store) {
-    //   if (store) {
-    //     store.viewModel = this;
-    //   }
-    // });
+  onRefreshClick: function(tool, e, owner, eOpts) {
+    this.refresh();
+  },
+
+  refresh: function() {
+    var vm = this.getViewModel();
+    vm.getStore('motions').load();
   }
 
 });

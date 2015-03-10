@@ -265,7 +265,7 @@
             "codeClass": null,
             "userConfig": {
                 "border": false,
-                "container|hideCollapseTool": false,
+                "container|hideCollapseTool": true,
                 "designer|displayName": "details",
                 "layout": "accordion",
                 "layout|region": "east",
