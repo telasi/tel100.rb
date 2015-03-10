@@ -18,7 +18,10 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
   alias: 'widget.documentmotionsassigneepanel',
 
   requires: [
-    'Tel100.view.document.motions.AssigneePanelViewModel'
+    'Tel100.view.document.motions.AssigneePanelViewModel',
+    'Ext.grid.Panel',
+    'Ext.grid.View',
+    'Ext.grid.column.Column'
   ],
 
   viewModel: {
@@ -26,9 +29,56 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
   },
   height: 250,
   width: 400,
+  layout: 'fit',
 
   bind: {
     title: '{i18n.document.motion.assignees} ({assigneeCount})'
-  }
+  },
+  items: [
+    {
+      xtype: 'gridpanel',
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          draggable: false,
+          resizable: false,
+          width: 40,
+          sortable: false,
+          hideable: false,
+          text: ''
+        },
+        {
+          xtype: 'gridcolumn',
+          draggable: false,
+          width: 200,
+          sortable: false,
+          hideable: false,
+          bind: {
+            text: '{i18n.document.motion.receiver}'
+          }
+        },
+        {
+          xtype: 'gridcolumn',
+          draggable: false,
+          width: 200,
+          sortable: false,
+          hideable: false,
+          bind: {
+            text: '{i18n.document.motion.motion_text}'
+          }
+        },
+        {
+          xtype: 'gridcolumn',
+          draggable: false,
+          width: 100,
+          sortable: false,
+          hideable: false,
+          bind: {
+            text: '{i18n.document.motion.due_date}'
+          }
+        }
+      ]
+    }
+  ]
 
 });
