@@ -31,9 +31,15 @@
             },
             "codeClass": null,
             "userConfig": {
+                "store": [
+                    "{motions}"
+                ],
                 "title": null
             },
             "name": "MyGridPanel1",
+            "configAlternates": {
+                "store": "binding"
+            },
             "designerId": "590d4d9f-2ea2-4702-9232-46b663bc51e8",
             "cn": [
                 {
@@ -135,6 +141,29 @@
                     "designerId": "87cd2ed8-2fd3-424f-83f9-73729cf26653"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "// var vm = this.getViewModel();",
+                    "// // setting view model for the motions store",
+                    "// vm.bind('{motions}', function(store) {",
+                    "//   if (store) {",
+                    "//     store.viewModel = this;",
+                    "//   }",
+                    "// });"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "16aa0cc7-fc99-4d0d-8015-1cc404c9e657"
         }
     ]
 }

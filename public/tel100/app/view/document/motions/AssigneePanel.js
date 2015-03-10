@@ -37,6 +37,9 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
   items: [
     {
       xtype: 'gridpanel',
+      bind: {
+        store: '{motions}'
+      },
       columns: [
         {
           xtype: 'gridcolumn',
@@ -79,6 +82,17 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
         }
       ]
     }
-  ]
+  ],
+
+  initComponent: function() {
+    this.callParent();
+    // var vm = this.getViewModel();
+    // // setting view model for the motions store
+    // vm.bind('{motions}', function(store) {
+    //   if (store) {
+    //     store.viewModel = this;
+    //   }
+    // });
+  }
 
 });

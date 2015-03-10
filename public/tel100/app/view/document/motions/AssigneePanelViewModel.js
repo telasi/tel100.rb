@@ -17,8 +17,33 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.documentmotionsassigneepanel',
 
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.proxy.Ajax',
+    'Ext.data.reader.Json'
+  ],
+
   data: {
     assigneeCount: 0
+  },
+
+  stores: {
+    motions: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Motion',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          mode: 'out',
+          role: 'assignee',
+          document_id: '{document.id}'
+        },
+        url: '/api/documents/motion',
+        reader: {
+          type: 'json'
+        }
+      }
+    }
   }
 
 });

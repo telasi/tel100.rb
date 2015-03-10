@@ -14,5 +14,56 @@
         "designer|userAlias": "documentmotionsassigneepanel",
         "designer|userClassName": "document.motions.AssigneePanelViewModel"
     },
-    "designerId": "07ff2a31-20df-4e11-959f-6d0928318bf8"
+    "designerId": "07ff2a31-20df-4e11-959f-6d0928318bf8",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Motion",
+                "name": "motions"
+            },
+            "name": "MyStore1",
+            "designerId": "77c32564-04f0-4998-bc19-2f9f63a9eaab",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  mode: 'out',",
+                            "  role: 'assignee',",
+                            "  document_id: '{document.id}'",
+                            "}"
+                        ],
+                        "url": "/api/documents/motion"
+                    },
+                    "name": "MyAjaxProxy3",
+                    "designerId": "fbfce93b-fa46-455f-8fc5-c756cdadb54e",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader3",
+                            "designerId": "8fbe2a0a-444e-46b3-a952-885930e39c09"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }
