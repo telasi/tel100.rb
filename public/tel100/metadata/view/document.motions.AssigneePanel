@@ -50,7 +50,32 @@
                     },
                     "codeClass": null,
                     "name": "MyGridView2",
-                    "designerId": "a8e416fb-a70d-4592-96da-56f6b26a3424"
+                    "designerId": "a8e416fb-a70d-4592-96da-56f6b26a3424",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "record",
+                                    "rowIndex",
+                                    "rowParams",
+                                    "store"
+                                ],
+                                "fn": "getRowClass",
+                                "implHandler": [
+                                    "var status = record.get('status');",
+                                    "return helpers.document.status.motionStatusRowClass(status, record);"
+                                ]
+                            },
+                            "name": "getRowClass",
+                            "designerId": "5c7423f2-d993-4d4b-ab09-f7a58c448076"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.grid.column.Column",
@@ -60,16 +85,44 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "dataIndex": "status",
                         "designer|displayName": "status",
                         "draggable": false,
                         "hideable": false,
                         "resizable": false,
                         "sortable": false,
                         "text": "",
-                        "width": 40
+                        "width": 32
                     },
                     "name": "MyColumn4",
-                    "designerId": "e5a6ec21-41e0-4393-b97b-e193d93e88e5"
+                    "designerId": "e5a6ec21-41e0-4393-b97b-e193d93e88e5",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "return helpers.document.status.motionStatusIcon(value, record);"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "70f6745d-a74f-48b3-939f-6e6e80d596b6"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.grid.column.Column",
@@ -79,6 +132,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "dataIndex": "receiverName",
                         "designer|displayName": "assignee",
                         "draggable": false,
                         "hideable": false,
@@ -92,7 +146,39 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "d8b7b83e-d1ed-4145-9cfd-e84658814d1a"
+                    "designerId": "d8b7b83e-d1ed-4145-9cfd-e84658814d1a",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "var receiver = record.get('receiver');",
+                                    "if (receiver && receiver.ext_type == 'hr.Organization') {",
+                                    "  return '<i class=\"fa fa-bank\"></i> ' + value;",
+                                    "} else {",
+                                    "  return '<i class=\"fa fa-user\"></i> ' + value;",
+                                    "}"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "b19dfba6-29bf-46df-a839-1b704bfcbdc4"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.grid.column.Column",
@@ -102,6 +188,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "dataIndex": "motion_text",
                         "designer|displayName": "motion_text",
                         "draggable": false,
                         "hideable": false,
@@ -125,8 +212,10 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "dataIndex": "due_date",
                         "designer|displayName": "due_date",
                         "draggable": false,
+                        "formatter": "date(\"d/m/Y\")",
                         "hideable": false,
                         "sortable": false,
                         "text": [

@@ -40,21 +40,40 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
       bind: {
         store: '{motions}'
       },
+      viewConfig: {
+        getRowClass: function(record, rowIndex, rowParams, store) {
+          var status = record.get('status');
+          return helpers.document.status.motionStatusRowClass(status, record);
+        }
+      },
       columns: [
         {
           xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            return helpers.document.status.motionStatusIcon(value, record);
+          },
           draggable: false,
           resizable: false,
-          width: 40,
+          width: 32,
           sortable: false,
+          dataIndex: 'status',
           hideable: false,
           text: ''
         },
         {
           xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            var receiver = record.get('receiver');
+            if (receiver && receiver.ext_type == 'hr.Organization') {
+              return '<i class="fa fa-bank"></i> ' + value;
+            } else {
+              return '<i class="fa fa-user"></i> ' + value;
+            }
+          },
           draggable: false,
           width: 200,
           sortable: false,
+          dataIndex: 'receiverName',
           hideable: false,
           bind: {
             text: '{i18n.document.motion.receiver}'
@@ -65,6 +84,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
           draggable: false,
           width: 200,
           sortable: false,
+          dataIndex: 'motion_text',
           hideable: false,
           bind: {
             text: '{i18n.document.motion.motion_text}'
@@ -75,6 +95,8 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
           draggable: false,
           width: 100,
           sortable: false,
+          dataIndex: 'due_date',
+          formatter: 'date("d/m/Y")',
           hideable: false,
           bind: {
             text: '{i18n.document.motion.due_date}'
