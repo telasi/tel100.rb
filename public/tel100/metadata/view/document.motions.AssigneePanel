@@ -252,14 +252,14 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "fn": "onRefreshClick",
+                        "fn": "onRefreshToolClick",
                         "implHandler": [
                             "this.refresh();"
                         ],
                         "name": "click",
                         "scope": "me"
                     },
-                    "name": "onRefreshClick",
+                    "name": "onRefreshToolClick",
                     "designerId": "1147263d-4aa7-40bd-abc0-7ab62b31612e"
                 }
             ]
@@ -280,6 +280,30 @@
             },
             "name": "refresh",
             "designerId": "264921b2-8733-4393-9177-8604bbc10df0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "var view = this;",
+                    "var viewModel = this.getViewModel();",
+                    "viewModel.bind('{motions}', function(store) {",
+                    "  if (store) {",
+                    "    store.view = view;",
+                    "    store.viewModel = viewModel;",
+                    "  }",
+                    "});"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "e6c63fd1-1409-485c-a34e-bb5bb424d412"
         }
     ]
 }

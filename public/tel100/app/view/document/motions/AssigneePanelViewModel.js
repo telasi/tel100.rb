@@ -29,6 +29,16 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewModel', {
 
   stores: {
     motions: {
+      onStoreChanges: function() {
+        var store = this;
+        this.viewModel.set('assigneeCount', store.getCount());
+        this.view.fireEvent('listchanged', store);
+      },
+      listeners: {
+        datachanged: function() {
+          this.onStoreChanges();
+        }
+      },
       autoLoad: true,
       model: 'Tel100.model.document.Motion',
       proxy: {

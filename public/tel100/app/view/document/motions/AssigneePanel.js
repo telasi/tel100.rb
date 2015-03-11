@@ -112,18 +112,30 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
       xtype: 'tool',
       type: 'refresh',
       listeners: {
-        click: 'onRefreshClick'
+        click: 'onRefreshToolClick'
       }
     }
   ],
 
-  onRefreshClick: function(tool, e, owner, eOpts) {
+  onRefreshToolClick: function(tool, e, owner, eOpts) {
     this.refresh();
   },
 
   refresh: function() {
     var vm = this.getViewModel();
     vm.getStore('motions').load();
+  },
+
+  initComponent: function() {
+    this.callParent();
+    var view = this;
+    var viewModel = this.getViewModel();
+    viewModel.bind('{motions}', function(store) {
+      if (store) {
+        store.view = view;
+        store.viewModel = viewModel;
+      }
+    });
   }
 
 });

@@ -25,11 +25,28 @@
             "codeClass": null,
             "userConfig": {
                 "autoLoad": true,
+                "listeners": [
+                    "{",
+                    "  datachanged: function() {",
+                    "    this.onStoreChanges();",
+                    "  }",
+                    "}"
+                ],
                 "model": "document.Motion",
                 "name": "motions"
             },
             "name": "MyStore1",
+            "configAlternates": {
+                "listeners": "object"
+            },
             "designerId": "77c32564-04f0-4998-bc19-2f9f63a9eaab",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "listeners",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "Ext.data.proxy.Ajax",
@@ -62,6 +79,24 @@
                             "designerId": "8fbe2a0a-444e-46b3-a952-885930e39c09"
                         }
                     ]
+                },
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onStoreChanges",
+                        "implHandler": [
+                            "var store = this;",
+                            "this.viewModel.set('assigneeCount', store.getCount());",
+                            "this.view.fireEvent('listchanged', store);"
+                        ]
+                    },
+                    "name": "onStoreChanges",
+                    "designerId": "d2fd55de-d6a1-4a9b-b8e9-121565ca7bb5"
                 }
             ]
         }
