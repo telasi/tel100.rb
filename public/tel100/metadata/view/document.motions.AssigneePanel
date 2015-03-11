@@ -277,7 +277,31 @@
                 "type": "plus"
             },
             "name": "MyTool3",
-            "designerId": "99573081-7611-4a8f-8248-81c09d502746"
+            "designerId": "99573081-7611-4a8f-8248-81c09d502746",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onAddToolClick",
+                        "implHandler": [
+                            "var dialog = helpers.party.getPartyDialog(function(assignees) {",
+                            "  // TODO:",
+                            "  console.log('assignees', assignees.length);",
+                            "});",
+                            "dialog.show();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onAddToolClick",
+                    "designerId": "21de5d1a-bcfe-4c1d-8c41-dd1805dd79c7"
+                }
+            ]
         },
         {
             "type": "basicfunction",

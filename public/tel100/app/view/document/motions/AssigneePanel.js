@@ -117,12 +117,23 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
     },
     {
       xtype: 'tool',
-      type: 'plus'
+      type: 'plus',
+      listeners: {
+        click: 'onAddToolClick'
+      }
     }
   ],
 
   onRefreshToolClick: function(tool, e, owner, eOpts) {
     this.refresh();
+  },
+
+  onAddToolClick: function(tool, e, owner, eOpts) {
+    var dialog = helpers.party.getPartyDialog(function(assignees) {
+      // TODO:
+      console.log('assignees', assignees.length);
+    });
+    dialog.show();
   },
 
   refresh: function() {

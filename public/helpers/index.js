@@ -4,5 +4,6 @@ window.helpers = {
   i18n: require('./i18n'),
   preferences: require('./preferences'),
   user: require('./user'),
-  api: require('./api')
+  api: require('./api'),
+  party: require('./party')
 };

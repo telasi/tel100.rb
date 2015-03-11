@@ -354,17 +354,44 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":1,"./preferences":9}],8:[function(require,module,exports){
+},{"./ajax":1,"./preferences":10}],8:[function(require,module,exports){
 window.helpers = {
   ajax: require('./ajax'),
   'document': require('./document'),
   i18n: require('./i18n'),
   preferences: require('./preferences'),
   user: require('./user'),
-  api: require('./api')
+  api: require('./api'),
+  party: require('./party')
 };
 
-},{"./ajax":1,"./api":3,"./document":4,"./i18n":7,"./preferences":9,"./user":10}],9:[function(require,module,exports){
+},{"./ajax":1,"./api":3,"./document":4,"./i18n":7,"./party":9,"./preferences":10,"./user":11}],9:[function(require,module,exports){
+var partyDialog;
+
+var getPartyDialog = function(callback) {
+
+  // create party listener if not created yet
+  if (!partyDialog) {
+    partyDialog = Ext.create('Tel100.view.party.Selector', {
+      title: i18n.document.motion.selectReceiver
+    });
+  }
+
+  // remove all listeners
+  partyDialog.clearListeners();
+
+  // adding new listener
+  partyDialog.on('selectioncomplete', callback);
+
+  // return dialog to the user
+  return partyDialog;
+};
+
+module.exports = {
+  getPartyDialog: getPartyDialog
+};
+
+},{}],10:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -395,7 +422,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -425,4 +452,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":1,"./i18n":7,"./preferences":9}]},{},[8]);
+},{"./ajax":1,"./i18n":7,"./preferences":10}]},{},[8]);
