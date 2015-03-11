@@ -9,5 +9,49 @@
         "designer|userAlias": "documentmotionsassigneepanel",
         "designer|userClassName": "document.motions.AssigneePanelViewController"
     },
-    "designerId": "22aa1e5c-2222-453a-8710-cb6354c2fe9b"
+    "designerId": "22aa1e5c-2222-453a-8710-cb6354c2fe9b",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "receiver"
+                ],
+                "fn": "addReceiver",
+                "implHandler": [
+                    "console.log( receiver.id, receiver.get('ext_type') );"
+                ]
+            },
+            "name": "addReceiver",
+            "designerId": "f5079f7a-627f-400f-a2b4-299955b51c22"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "receivers"
+                ],
+                "fn": "addReceivers",
+                "implHandler": [
+                    "if (receivers) {",
+                    "  for (var i = 0; i < receivers.length; i++) {",
+                    "    this.addReceiver( receivers[i]);",
+                    "  }",
+                    "}"
+                ]
+            },
+            "name": "addReceivers",
+            "designerId": "a7b14d59-a7c5-4010-8bcf-4a480edb7984"
+        }
+    ]
 }

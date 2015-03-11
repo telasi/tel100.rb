@@ -19,12 +19,14 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
 
   requires: [
     'Tel100.view.document.motions.AssigneePanelViewModel',
+    'Tel100.view.document.motions.AssigneePanelViewController',
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
     'Ext.panel.Tool'
   ],
 
+  controller: 'documentmotionsassigneepanel',
   viewModel: {
     type: 'documentmotionsassigneepanel'
   },
@@ -129,9 +131,9 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
   },
 
   onAddToolClick: function(tool, e, owner, eOpts) {
+    var view = this;
     var dialog = helpers.party.getPartyDialog(function(assignees) {
-      // TODO:
-      console.log('assignees', assignees.length);
+      view.getController().addReceivers(assignees);
     });
     dialog.show();
   },

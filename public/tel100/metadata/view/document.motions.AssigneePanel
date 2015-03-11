@@ -289,9 +289,9 @@
                     "userConfig": {
                         "fn": "onAddToolClick",
                         "implHandler": [
+                            "var view = this;",
                             "var dialog = helpers.party.getPartyDialog(function(assignees) {",
-                            "  // TODO:",
-                            "  console.log('assignees', assignees.length);",
+                            "  view.getController().addReceivers(assignees);",
                             "});",
                             "dialog.show();"
                         ],

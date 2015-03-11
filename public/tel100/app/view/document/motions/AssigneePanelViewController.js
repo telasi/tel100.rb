@@ -15,5 +15,18 @@
 
 Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentmotionsassigneepanel'
+  alias: 'controller.documentmotionsassigneepanel',
+
+  addReceiver: function(receiver) {
+    console.log( receiver.id, receiver.get('ext_type') );
+  },
+
+  addReceivers: function(receivers) {
+    if (receivers) {
+      for (var i = 0; i < receivers.length; i++) {
+        this.addReceiver( receivers[i]);
+      }
+    }
+  }
+
 });
