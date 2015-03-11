@@ -239,6 +239,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "refresh-tool",
                 "type": "refresh"
             },
             "name": "MyTool2",
@@ -263,6 +264,20 @@
                     "designerId": "1147263d-4aa7-40bd-abc0-7ab62b31612e"
                 }
             ]
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "add-tool",
+                "type": "plus"
+            },
+            "name": "MyTool3",
+            "designerId": "99573081-7611-4a8f-8248-81c09d502746"
         },
         {
             "type": "basicfunction",

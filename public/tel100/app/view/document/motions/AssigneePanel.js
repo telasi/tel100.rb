@@ -114,6 +114,10 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
       listeners: {
         click: 'onRefreshToolClick'
       }
+    },
+    {
+      xtype: 'tool',
+      type: 'plus'
     }
   ],
 
