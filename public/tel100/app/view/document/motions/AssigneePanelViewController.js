@@ -18,7 +18,35 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
   alias: 'controller.documentmotionsassigneepanel',
 
   addReceiver: function(receiver) {
-    console.log( receiver.id, receiver.get('ext_type') );
+    var view = this.getView();
+    var grid = view.getGrid();
+    var vm = this.getViewModel();
+    var extType = receiver.get('ext_type');
+    var document = vm.get('document');
+
+
+    // XXX: do we need parent ID here?
+    //
+    // var parentId = grid.getViewModel().get('parentId');
+
+    helpers.api.document.motion.createDraft({
+      params: {
+        document_id: document.id,
+        // parent_id: parentId,
+        parent_id: null,
+        receiver_id: receiver.id,
+        receiver_type: extType,
+        receiver_role: 'assignee'
+      },
+      success: function(motionData) {
+        var motion = Ext.create('Tel100.model.document.Motion', motionData);
+        var store = grid.getStore();
+        store.add(motion);
+      }.bind(this),
+      failure: function(error) {
+        console.error(error);
+      }.bind(this)
+    });
   },
 
   addReceivers: function(receivers) {

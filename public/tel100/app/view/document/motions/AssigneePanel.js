@@ -153,6 +153,10 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
         store.viewModel = viewModel;
       }
     });
+  },
+
+  getGrid: function() {
+    return this.down('gridpanel');
   }
 
 });

@@ -343,6 +343,22 @@
             },
             "name": "initComponent",
             "designerId": "e6c63fd1-1409-485c-a34e-bb5bb424d412"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getGrid",
+                "implHandler": [
+                    "return this.down('gridpanel');"
+                ]
+            },
+            "name": "getGrid",
+            "designerId": "f4d9b19c-86c8-4d02-9a8a-b97502683935"
         }
     ]
 }

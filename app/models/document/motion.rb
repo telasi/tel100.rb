@@ -6,8 +6,13 @@ class Document::Motion < ActiveRecord::Base
   MIN = 1
   MAX = 999
 
+  ORDERING_SINGEE  = 1
+  ORDERING_ASIGNEE = 100
+  ORDERING_AUTHOR  = 101
+
   include Document::Personalize
   include Document::Status
+  include Document::Role
   self.table_name  = 'document_motion'
   self.sequence_name = 'docmotion_seq'
   self.set_integer_columns :status, :is_new
@@ -44,16 +49,27 @@ class Document::Motion < ActiveRecord::Base
     receiver_count = receiver.present? ? document.motions.where(parent_id: parent_id, receiver: receiver).count : 0
     receiver_user_count = receiver_user.present? ? document.motions.where(parent_id: parent_id, receiver_user: receiver_user).count : 0
     raise I18n.t('models.document_motion.errors.receiver_exists_on_branch') if ( receiver_count > 0 or receiver_user_count > 0 )
+    # get ordering
+    role = params[:receiver_role]
+    case params[:receiver_role]
+    when ROLE_ASSIGNEE
+      ordering = ORDERING_ASIGNEE
+    when ROLE_SIGNEE
+      ordering = ORDERING_SINGEE + document.motions.where(parent: parent, role: ROLE_SIGNEE).count
+    else
+      ordering = ORDERING_AUTHOR
+    end
     # create this
     Document::Motion.create!({
       parent: parent,
       document: document,
       status: DRAFT,
-      ordering: MIN,
       sender_user: sender_user,
       sender: sender,
       receiver_user: receiver_user,
       receiver: receiver,
+      receiver_role: role,
+      ordering: ordering,
       is_new: true
     })
   end

@@ -41,7 +41,7 @@ gem 'debugger', group: [:development, :test]
 
 gem 'ka'
 gem 'ruby-oci8'
-gem 'activerecord-oracle_enhanced-adapter', '1.5.5'
+gem 'activerecord-oracle_enhanced-adapter'
 gem 'composite_primary_keys'
 gem 'rspec-rails', '~> 3.0.0', group: [:development, :test]
 gem 'forma', path: '../forma'
