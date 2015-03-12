@@ -289,7 +289,7 @@
                             "{i18n.document.base.ui.generalTabTitle}"
                         ]
                     },
-                    "name": "document.editor.general2",
+                    "name": "document.editor.general",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -317,7 +317,7 @@
                     "userConfig": {
                         "designer|displayName": "receivers"
                     },
-                    "name": "document.motions.outpanel2",
+                    "name": "document.motions.outpanel",
                     "configAlternates": {
                         "title": "binding"
                     },
@@ -358,7 +358,7 @@
                     "userConfig": {
                         "designer|displayName": "files"
                     },
-                    "name": "document.file.panel2",
+                    "name": "document.file.panel",
                     "designerId": "fa5bcbd5-6feb-4cd1-af00-84c5dbfab0a3",
                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                 }
