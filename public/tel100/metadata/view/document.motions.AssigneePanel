@@ -228,6 +228,38 @@
                         "text": "binding"
                     },
                     "designerId": "87cd2ed8-2fd3-424f-83f9-73729cf26653"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridBeforeItemContextMenu",
+                        "implHandler": [
+                            "if (record.get('status') === helpers.document.status.DRAFT) {",
+                            "  var gridMenu = Ext.create('Ext.menu.Menu', {",
+                            "    items: [{",
+                            "      text: i18n.document.motion.actions.delete_assignee,",
+                            "      icon: '/images/delete.png',",
+                            "      handler: function() {",
+                            "        var view = dataview.up('documentmotionsassigneepanel');",
+                            "        view.deleteItemAt(index);",
+                            "      }",
+                            "    }]",
+                            "  });",
+                            "",
+                            "  e.stopEvent();",
+                            "  gridMenu.showAt(e.getXY());",
+                            "}"
+                        ],
+                        "name": "beforeitemcontextmenu",
+                        "scope": "me"
+                    },
+                    "name": "onGridBeforeItemContextMenu",
+                    "designerId": "8f05a589-90f6-4f43-9291-84daf7970bd5"
                 }
             ]
         },
@@ -359,6 +391,32 @@
             },
             "name": "getGrid",
             "designerId": "f4d9b19c-86c8-4d02-9a8a-b97502683935"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "index"
+                ],
+                "fn": "deleteItemAt",
+                "implHandler": [
+                    "var view = this;",
+                    "var store = view.getViewModel().getStore('motions');",
+                    "var item = store.getAt(index);",
+                    "helpers.api.document.motion.deleteDraft(item.id, {",
+                    "  success: function() {",
+                    "    view.refresh();",
+                    "  }",
+                    "});"
+                ]
+            },
+            "name": "deleteItemAt",
+            "designerId": "28919e57-7cbe-4da7-9bed-edb59df12ed5"
         }
     ]
 }

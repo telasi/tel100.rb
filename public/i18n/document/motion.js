@@ -1,4 +1,7 @@
 module.exports = {
+  actions: {
+    delete_assignee: 'ადრესატის წაშლა'
+  },
   status: 'სტატუსი',
   ordering: 'ეტაპი',
   orderingShort: '#',

@@ -139,6 +139,9 @@ module.exports = {
 
 },{"./base":3,"./comment":4,"./file":5,"./folder":6,"./motion":8,"./role":9,"./search":10,"./type":11}],8:[function(require,module,exports){
 module.exports = {
+  actions: {
+    delete_assignee: 'ადრესატის წაშლა'
+  },
   status: 'სტატუსი',
   ordering: 'ეტაპი',
   orderingShort: '#',

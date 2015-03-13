@@ -106,7 +106,10 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
             text: '{i18n.document.motion.due_date}'
           }
         }
-      ]
+      ],
+      listeners: {
+        beforeitemcontextmenu: 'onGridBeforeItemContextMenu'
+      }
     }
   ],
   tools: [
@@ -125,6 +128,24 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
       }
     }
   ],
+
+  onGridBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
+    if (record.get('status') === helpers.document.status.DRAFT) {
+      var gridMenu = Ext.create('Ext.menu.Menu', {
+        items: [{
+          text: i18n.document.motion.actions.delete_assignee,
+          icon: '/images/delete.png',
+          handler: function() {
+            var view = dataview.up('documentmotionsassigneepanel');
+            view.deleteItemAt(index);
+          }
+        }]
+      });
+
+      e.stopEvent();
+      gridMenu.showAt(e.getXY());
+    }
+  },
 
   onRefreshToolClick: function(tool, e, owner, eOpts) {
     this.refresh();
@@ -157,6 +178,17 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
 
   getGrid: function() {
     return this.down('gridpanel');
+  },
+
+  deleteItemAt: function(index) {
+    var view = this;
+    var store = view.getViewModel().getStore('motions');
+    var item = store.getAt(index);
+    helpers.api.document.motion.deleteDraft(item.id, {
+      success: function() {
+        view.refresh();
+      }
+    });
   }
 
 });
