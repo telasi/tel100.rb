@@ -62,7 +62,18 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
     var vm = this.getViewModel();
     var onChange = function(newVal, oldVal, binding) {
       if (newVal && newVal.dirty) {
-        // TODO: send to server
+        var motion = newVal;
+        var changes = motion.getChanges();
+        helpers.api.document.motion.updateDraft(motion.id, {
+          params: changes,
+          success: function() {
+            motion.commit();
+          }.bind(this),
+          failure: function(message) {
+            motion.reject();
+            console.error(message);
+          }
+        });
       }
     };
     var options = { deep: true };
