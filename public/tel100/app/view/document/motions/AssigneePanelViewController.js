@@ -55,6 +55,18 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
         this.addReceiver( receivers[i]);
       }
     }
+  },
+
+  onBeforeRender: function(component, eOpts) {
+    var view = this.getView();
+    var vm = this.getViewModel();
+    var onChange = function(newVal, oldVal, binding) {
+      if (newVal && newVal.dirty) {
+        // TODO: send to server
+      }
+    };
+    var options = { deep: true };
+    vm.bind('{selection}', onChange, this, { deep: true });
   }
 
 });

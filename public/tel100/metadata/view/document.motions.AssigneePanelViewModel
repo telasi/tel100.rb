@@ -8,7 +8,8 @@
     "userConfig": {
         "data": [
             "{",
-            "  assigneeCount: 0",
+            "  assigneeCount: 0,",
+            "  selection: null",
             "}"
         ],
         "designer|userAlias": "documentmotionsassigneepanel",

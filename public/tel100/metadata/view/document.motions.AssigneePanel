@@ -31,6 +31,9 @@
             },
             "codeClass": null,
             "userConfig": {
+                "selection": [
+                    "{selection}"
+                ],
                 "store": [
                     "{motions}"
                 ],
@@ -38,9 +41,17 @@
             },
             "name": "MyGridPanel1",
             "configAlternates": {
-                "store": "binding"
+                "store": "binding",
+                "selection": "binding"
             },
             "designerId": "590d4d9f-2ea2-4702-9232-46b663bc51e8",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "Ext.grid.View",
@@ -202,7 +213,19 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "43367a11-1922-4e65-9b8d-b53de2c64dbc"
+                    "designerId": "43367a11-1922-4e65-9b8d-b53de2c64dbc",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyTextField",
+                            "designerId": "753f68fb-5495-4854-9cc3-7d51cd278fcb"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.grid.column.Column",
@@ -227,7 +250,22 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "87cd2ed8-2fd3-424f-83f9-73729cf26653"
+                    "designerId": "87cd2ed8-2fd3-424f-83f9-73729cf26653",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "format": "d/m/Y"
+                            },
+                            "name": "MyDateField",
+                            "designerId": "47b0ea8b-1709-42d4-8025-b8a2c8fe1e74"
+                        }
+                    ]
                 },
                 {
                     "type": "basiceventbinding",
@@ -260,6 +298,16 @@
                     },
                     "name": "onGridBeforeItemContextMenu",
                     "designerId": "8f05a589-90f6-4f43-9291-84daf7970bd5"
+                },
+                {
+                    "type": "Ext.grid.plugin.CellEditing",
+                    "reference": {
+                        "name": "plugins",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "name": "MyCellEditingPlugin1",
+                    "designerId": "31ca0d9a-3928-45f0-9260-50c0acf3481c"
                 }
             ]
         },
@@ -417,6 +465,32 @@
             },
             "name": "deleteItemAt",
             "designerId": "28919e57-7cbe-4da7-9bed-edb59df12ed5"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "var view = this.getView();",
+                    "var vm = this.getViewModel();",
+                    "var onChange = function(newVal, oldVal, binding) {",
+                    "  if (newVal && newVal.dirty) {",
+                    "    // TODO: send to server",
+                    "  }",
+                    "};",
+                    "var options = { deep: true };",
+                    "vm.bind('{selection}', onChange, this, { deep: true });"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "205cdc49-47f2-4e97-bca2-c1f546ff32cb"
         }
     ]
 }

@@ -23,6 +23,8 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
+    'Ext.form.field.Date',
+    'Ext.grid.plugin.CellEditing',
     'Ext.panel.Tool'
   ],
 
@@ -42,6 +44,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
     {
       xtype: 'gridpanel',
       bind: {
+        selection: '{selection}',
         store: '{motions}'
       },
       viewConfig: {
@@ -92,6 +95,9 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
           hideable: false,
           bind: {
             text: '{i18n.document.motion.motion_text}'
+          },
+          editor: {
+            xtype: 'textfield'
           }
         },
         {
@@ -104,12 +110,21 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
           hideable: false,
           bind: {
             text: '{i18n.document.motion.due_date}'
+          },
+          editor: {
+            xtype: 'datefield',
+            format: 'd/m/Y'
           }
         }
       ],
       listeners: {
         beforeitemcontextmenu: 'onGridBeforeItemContextMenu'
-      }
+      },
+      plugins: [
+        {
+          ptype: 'cellediting'
+        }
+      ]
     }
   ],
   tools: [
@@ -128,6 +143,12 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
       }
     }
   ],
+  listeners: {
+    beforerender: {
+      fn: 'onBeforeRender',
+      scope: 'controller'
+    }
+  },
 
   onGridBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
     if (record.get('status') === helpers.document.status.DRAFT) {
