@@ -155,7 +155,7 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
           text: i18n.document.motion.actions.delete_assignee,
           icon: '/images/delete.png',
           handler: function() {
-            var view = dataview.up('documentmotionsassigneepanel');
+            var view = dataview.up('documentmotionssigneepanel');
             view.deleteItemAt(index);
           }
         }]
