@@ -12,6 +12,7 @@ module.exports = {
       ka: '<i class="fa fa-send"></i> დოკუმენტის გაგზავნა',
       ru: '<i class="fa fa-send"></i> Послать документ'
     },
+    newDocumentTab: '<i class="fa fa-cog"></i> ახალი დოკუმენტი',
     contentTabTitle: '<i class="fa fa-file-text-o"></i> შინაარსი',
     motionsTabTitle: '<i class="fa fa-send"></i> მოძრაობები',
   },

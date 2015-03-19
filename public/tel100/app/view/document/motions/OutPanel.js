@@ -35,7 +35,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
   defaultListenerScope: true,
 
   bind: {
-    title: '{i18n.document.motion.outMotions}'
+    title: '{i18n.document.base.ui.motionsTabTitle}'
   },
   dockedItems: [
     {

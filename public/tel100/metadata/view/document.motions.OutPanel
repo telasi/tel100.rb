@@ -11,7 +11,7 @@
         "height": null,
         "layout": "border",
         "title": [
-            "{i18n.document.motion.outMotions}"
+            "{i18n.document.base.ui.motionsTabTitle}"
         ],
         "width": null
     },

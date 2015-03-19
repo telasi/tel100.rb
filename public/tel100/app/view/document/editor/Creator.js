@@ -26,8 +26,9 @@ Ext.define('Tel100.view.document.editor.Creator', {
     'Tel100.view.document.motions.AuthorPanel',
     'Tel100.view.document.file.Panel',
     'Tel100.view.document.motions.OutPanel',
+    'Ext.tab.Panel',
+    'Ext.tab.Tab',
     'Ext.toolbar.Toolbar',
-    'Ext.button.Button',
     'Ext.toolbar.Fill',
     'Ext.form.field.Text',
     'Ext.form.field.HtmlEditor',
@@ -42,115 +43,6 @@ Ext.define('Tel100.view.document.editor.Creator', {
   layout: 'border',
   defaultListenerScope: true,
 
-  items: [
-    {
-      xtype: 'toolbar',
-      region: 'north',
-      border: false,
-      items: [
-        {
-          xtype: 'button',
-          bind: {
-            disabled: '{sendButtonDisabled}',
-            text: '{i18n.document.base.ui.send}'
-          },
-          listeners: {
-            click: {
-              fn: 'onSendClick',
-              scope: 'controller'
-            }
-          }
-        },
-        {
-          xtype: 'button',
-          bind: {
-            disabled: '{saveButtonDisabled}',
-            text: '{saveButtonText}'
-          },
-          listeners: {
-            click: {
-              fn: 'onSaveClick',
-              scope: 'controller'
-            }
-          }
-        },
-        {
-          xtype: 'tbfill'
-        }
-      ]
-    },
-    {
-      xtype: 'container',
-      flex: 1,
-      region: 'center',
-      baseCls: 'white-panel',
-      border: false,
-      layout: {
-        type: 'vbox',
-        align: 'stretch'
-      },
-      items: [
-        {
-          xtype: 'textfield',
-          submitEmptyText: false,
-          padding: 5,
-          labelAlign: 'top',
-          emptyText: 'enter document\'s subject',
-          bind: {
-            fieldLabel: '{i18n.document.base.subject}',
-            value: '{document.subject}'
-          }
-        },
-        {
-          xtype: 'htmleditor',
-          flex: 1,
-          padding: '0 5 5 5',
-          labelAlign: 'top',
-          bind: {
-            fieldLabel: '{i18n.document.base.body}',
-            value: '{document.body}'
-          }
-        }
-      ]
-    },
-    {
-      xtype: 'container',
-      region: 'east',
-      split: true,
-      border: false,
-      width: 400,
-      layout: {
-        type: 'accordion',
-        hideCollapseTool: true
-      },
-      items: [
-        {
-          xtype: 'documenteditorgeneral',
-          bind: {
-            title: '{i18n.document.base.ui.generalTabTitle}'
-          }
-        },
-        {
-          xtype: 'documentmotionssigneepanel'
-        },
-        {
-          xtype: 'documentmotionsassigneepanel'
-        },
-        {
-          xtype: 'documentmotionsauthorpanel'
-        },
-        {
-          xtype: 'documentfilepanel'
-        },
-        {
-          xtype: 'documentmotionsoutpanel',
-          listeners: {
-            draftmotionchanged: 'onDraftmotionChanged'
-          }
-        }
-      ]
-    }
-  ],
   listeners: {
     beforerender: {
       fn: 'onBeforeRender',
@@ -162,6 +54,149 @@ Ext.define('Tel100.view.document.editor.Creator', {
       scope: 'controller'
     }
   },
+  items: [
+    {
+      xtype: 'tabpanel',
+      region: 'center',
+      activeTab: 0,
+      tabPosition: 'bottom',
+      items: [
+        {
+          xtype: 'panel',
+          border: false,
+          layout: 'border',
+          bodyBorder: false,
+          bind: {
+            title: '{i18n.document.base.ui.newDocumentTab}'
+          },
+          dockedItems: [
+            {
+              xtype: 'toolbar',
+              region: 'north',
+              dock: 'top',
+              border: false,
+              items: [
+                {
+                  xtype: 'button',
+                  bind: {
+                    disabled: '{sendButtonDisabled}',
+                    text: '{i18n.document.base.ui.send}'
+                  },
+                  listeners: {
+                    click: {
+                      fn: 'onSendClick',
+                      scope: 'controller'
+                    }
+                  }
+                },
+                {
+                  xtype: 'button',
+                  bind: {
+                    disabled: '{saveButtonDisabled}',
+                    text: '{saveButtonText}'
+                  },
+                  listeners: {
+                    click: {
+                      fn: 'onSaveClick',
+                      scope: 'controller'
+                    }
+                  }
+                },
+                {
+                  xtype: 'tbfill'
+                }
+              ]
+            }
+          ],
+          items: [
+            {
+              xtype: 'container',
+              flex: 1,
+              region: 'center',
+              baseCls: 'white-panel',
+              border: false,
+              layout: {
+                type: 'vbox',
+                align: 'stretch'
+              },
+              items: [
+                {
+                  xtype: 'textfield',
+                  submitEmptyText: false,
+                  padding: 5,
+                  labelAlign: 'top',
+                  emptyText: 'enter document\'s subject',
+                  bind: {
+                    fieldLabel: '{i18n.document.base.subject}',
+                    value: '{document.subject}'
+                  }
+                },
+                {
+                  xtype: 'htmleditor',
+                  flex: 1,
+                  padding: '0 5 5 5',
+                  labelAlign: 'top',
+                  bind: {
+                    fieldLabel: '{i18n.document.base.body}',
+                    value: '{document.body}'
+                  }
+                }
+              ]
+            },
+            {
+              xtype: 'container',
+              region: 'east',
+              split: true,
+              border: false,
+              width: 400,
+              layout: {
+                type: 'accordion',
+                hideCollapseTool: true
+              },
+              items: [
+                {
+                  xtype: 'documenteditorgeneral',
+                  bind: {
+                    title: '{i18n.document.base.ui.generalTabTitle}'
+                  }
+                },
+                {
+                  xtype: 'documentmotionssigneepanel'
+                },
+                {
+                  xtype: 'documentmotionsassigneepanel'
+                },
+                {
+                  xtype: 'documentmotionsauthorpanel'
+                },
+                {
+                  xtype: 'documentfilepanel'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          xtype: 'panel',
+          border: false,
+          layout: 'fit',
+          bind: {
+            title: '{i18n.document.base.ui.motionsTabTitle}'
+          },
+          items: [
+            {
+              xtype: 'documentmotionsoutpanel',
+              border: false,
+              bodyBorder: false,
+              listeners: {
+                draftmotionchanged: 'onDraftmotionChanged'
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
 
   onDraftmotionChanged: function(hasDraftMotion) {
     var vm = this.getViewModel();

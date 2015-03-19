@@ -17,39 +17,6 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenteditorcreator',
 
-  onSendClick: function(button, e, eOpts) {
-    var vm = this.getViewModel();
-    var isSending = vm.get('isSending');
-    if (!isSending) {
-      var view = this.getView();
-      var document = vm.get('document');
-      var subject = document.get('subject');
-      var body = document.get('body');
-      if (!subject) {
-        Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_subject);
-        return;
-      } else if (!body) {
-        Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_body);
-        return;
-      }
-      vm.set('isSending', true);
-      helpers.api.document.base.sendDraft(document.id, {
-        success: function() {
-          view.fireEvent('documentsent', document);
-        }.bind(this),
-        failure: function(msg) {
-          Ext.Msg.alert(i18n.errors.title, msg);
-          vm.set('isSending', false);
-        }.bind(this)
-      });
-    }
-  },
-
-  onSaveClick: function(button, e, eOpts) {
-    var doc = this.getViewModel().get('document');
-    this.onDocumentChange(doc);
-  },
-
   onBeforeRender: function(component, eOpts) {
     var view = this.getView();
     var vm = this.getViewModel();
@@ -94,6 +61,39 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
         }
       });
     }
+  },
+
+  onSendClick: function(button, e, eOpts) {
+    var vm = this.getViewModel();
+    var isSending = vm.get('isSending');
+    if (!isSending) {
+      var view = this.getView();
+      var document = vm.get('document');
+      var subject = document.get('subject');
+      var body = document.get('body');
+      if (!subject) {
+        Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_subject);
+        return;
+      } else if (!body) {
+        Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_body);
+        return;
+      }
+      vm.set('isSending', true);
+      helpers.api.document.base.sendDraft(document.id, {
+        success: function() {
+          view.fireEvent('documentsent', document);
+        }.bind(this),
+        failure: function(msg) {
+          Ext.Msg.alert(i18n.errors.title, msg);
+          vm.set('isSending', false);
+        }.bind(this)
+      });
+    }
+  },
+
+  onSaveClick: function(button, e, eOpts) {
+    var doc = this.getViewModel().get('document');
+    this.onDocumentChange(doc);
   }
 
 });

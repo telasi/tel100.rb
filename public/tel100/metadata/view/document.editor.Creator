@@ -21,381 +21,6 @@
     "viewModelInstanceId": "fe587c2a-b4ef-4d70-853d-8111aa0a6616",
     "cn": [
         {
-            "type": "Ext.toolbar.Toolbar",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "border": false,
-                "height": null,
-                "layout|flex": null,
-                "layout|region": "north"
-            },
-            "name": "MyToolbar",
-            "designerId": "a5feb720-961c-40bb-83ec-e4b04ba330ce",
-            "cn": [
-                {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "send",
-                        "disabled": [
-                            "{sendButtonDisabled}"
-                        ],
-                        "layout|flex": null,
-                        "text": [
-                            "{i18n.document.base.ui.send}"
-                        ]
-                    },
-                    "name": "MyButton3",
-                    "configAlternates": {
-                        "text": "binding",
-                        "disabled": "binding"
-                    },
-                    "designerId": "f85da665-4fb0-4825-b972-4fe5381b116b",
-                    "cn": [
-                        {
-                            "type": "viewcontrollereventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onSendClick",
-                                "implHandler": [
-                                    "var vm = this.getViewModel();",
-                                    "var isSending = vm.get('isSending');",
-                                    "if (!isSending) {",
-                                    "  var view = this.getView();",
-                                    "  var document = vm.get('document');",
-                                    "  var subject = document.get('subject');",
-                                    "  var body = document.get('body');",
-                                    "  if (!subject) {",
-                                    "    Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_subject);",
-                                    "    return;",
-                                    "  } else if (!body) {",
-                                    "    Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_body);",
-                                    "    return;",
-                                    "  }",
-                                    "  vm.set('isSending', true);",
-                                    "  helpers.api.document.base.sendDraft(document.id, {",
-                                    "    success: function() {",
-                                    "      view.fireEvent('documentsent', document);",
-                                    "    }.bind(this),",
-                                    "    failure: function(msg) {",
-                                    "      Ext.Msg.alert(i18n.errors.title, msg);",
-                                    "      vm.set('isSending', false);",
-                                    "    }.bind(this)",
-                                    "  });",
-                                    "}"
-                                ],
-                                "name": "click",
-                                "scope": "me"
-                            },
-                            "name": "onSendClick",
-                            "designerId": "bed7d75e-73a8-4b13-9854-ebf01b5f547f"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "save",
-                        "disabled": [
-                            "{saveButtonDisabled}"
-                        ],
-                        "layout|flex": null,
-                        "text": [
-                            "{saveButtonText}"
-                        ]
-                    },
-                    "name": "MyButton",
-                    "configAlternates": {
-                        "text": "binding",
-                        "disabled": "binding"
-                    },
-                    "designerId": "3ac5ef1b-56a3-4d36-bc21-f54993545721",
-                    "cn": [
-                        {
-                            "type": "viewcontrollereventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onSaveClick",
-                                "implHandler": [
-                                    "var doc = this.getViewModel().get('document');",
-                                    "this.onDocumentChange(doc);"
-                                ],
-                                "name": "click",
-                                "scope": "me"
-                            },
-                            "name": "onSaveClick",
-                            "designerId": "d9c1d152-3c37-404a-b57e-cdbb070f5afc"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.toolbar.Fill",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "layout|flex": null
-                    },
-                    "name": "MyFill1",
-                    "designerId": "4db86121-bbf8-4f46-9683-6a42799d46f0"
-                }
-            ]
-        },
-        {
-            "type": "Ext.container.Container",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "baseCls": "white-panel",
-                "border": false,
-                "container|align": "stretch",
-                "container|padding": null,
-                "designer|displayName": "main",
-                "layout": "vbox",
-                "layout|flex": 1,
-                "layout|region": "center"
-            },
-            "name": "MyContainer",
-            "configAlternates": {
-                "dockedItems": "array"
-            },
-            "designerId": "ab8db9ac-653f-41d8-956a-2aa0b96a6219",
-            "cn": [
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "subject",
-                        "emptyText": "enter document's subject",
-                        "fieldLabel": [
-                            "{i18n.document.base.subject}"
-                        ],
-                        "height": null,
-                        "itemId": null,
-                        "labelAlign": "top",
-                        "layout|flex": null,
-                        "margin": null,
-                        "padding": 5,
-                        "reference": null,
-                        "submitEmptyText": false,
-                        "value": [
-                            "{document.subject}"
-                        ]
-                    },
-                    "name": "MyTextField",
-                    "configAlternates": {
-                        "submitEmptyText": "boolean",
-                        "value": "binding",
-                        "fieldLabel": "binding"
-                    },
-                    "designerId": "bafc9b59-5005-4231-8ddf-54504a224295",
-                    "customConfigs": [
-                        {
-                            "group": "(Custom Properties)",
-                            "name": "submitEmptyText",
-                            "type": "string"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.form.field.HtmlEditor",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "border": null,
-                        "designer|displayName": "body",
-                        "fieldLabel": [
-                            "{i18n.document.base.body}"
-                        ],
-                        "labelAlign": "top",
-                        "layout|flex": 1,
-                        "padding": "0 5 5 5",
-                        "value": [
-                            "{document.body}"
-                        ]
-                    },
-                    "name": "MyHtmlEditor",
-                    "configAlternates": {
-                        "value": "binding",
-                        "fieldLabel": "binding"
-                    },
-                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27"
-                }
-            ]
-        },
-        {
-            "type": "Ext.container.Container",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "border": false,
-                "container|hideCollapseTool": true,
-                "designer|displayName": "details",
-                "layout": "accordion",
-                "layout|region": "east",
-                "layout|split": true,
-                "padding": null,
-                "width": 400
-            },
-            "name": "MyContainer2",
-            "designerId": "73758d87-5031-4919-ae73-76bb68a3183a",
-            "cn": [
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "general",
-                        "title": [
-                            "{i18n.document.base.ui.generalTabTitle}"
-                        ]
-                    },
-                    "name": "document.editor.general",
-                    "configAlternates": {
-                        "title": "binding"
-                    },
-                    "designerId": "64724350-d954-4466-9245-c5be18a57dee",
-                    "masterInstanceId": "759b5380-72a7-453f-b37c-cfc4a98ba34e"
-                },
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "signees"
-                    },
-                    "name": "document.motions.signeepanel",
-                    "designerId": "6c040662-e5fb-49a6-9215-b4a251a4c73a",
-                    "masterInstanceId": "a6e4f453-aa9b-4c0e-8a45-45e445ca2504"
-                },
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "asignees"
-                    },
-                    "name": "document.motions.assigneepanel",
-                    "designerId": "5b56765a-3219-46c0-94e7-73857f5db4fe",
-                    "masterInstanceId": "da24e6c3-26d6-4d2a-bedc-c822727570b4"
-                },
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "authors"
-                    },
-                    "name": "document.motions.authorpanel",
-                    "designerId": "9507dce8-8e97-4a00-8d9b-abcd88ae04f3",
-                    "masterInstanceId": "e3fa4671-a99b-4b98-adee-9628585fe14b"
-                },
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "files"
-                    },
-                    "name": "document.file.panel",
-                    "designerId": "fa5bcbd5-6feb-4cd1-af00-84c5dbfab0a3",
-                    "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
-                },
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "receivers"
-                    },
-                    "name": "document.motions.outpanel",
-                    "configAlternates": {
-                        "title": "binding"
-                    },
-                    "designerId": "e445635e-38ea-44e9-949d-881be372d75f",
-                    "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd",
-                    "cn": [
-                        {
-                            "type": "basiceventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|params": [
-                                    "hasDraftMotion"
-                                ],
-                                "fn": "onDraftmotionChanged",
-                                "implHandler": [
-                                    "var vm = this.getViewModel();",
-                                    "vm.set('hasDraftMotion', hasDraftMotion);"
-                                ],
-                                "name": "draftmotionchanged",
-                                "scope": "me"
-                            },
-                            "name": "onDraftmotionChanged",
-                            "designerId": "51ad1a18-0194-4246-b423-019cb65f87a7"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "type": "viewcontrollereventbinding",
             "reference": {
                 "name": "listeners",
@@ -472,6 +97,468 @@
             },
             "name": "onDocumentChange",
             "designerId": "c9c23952-8061-42d3-a33b-d80834d9e37a"
+        },
+        {
+            "type": "Ext.tab.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "activeTab": 0,
+                "layout|region": "center",
+                "tabPosition": "bottom"
+            },
+            "name": "MyTabPanel",
+            "designerId": "808f8187-9a5a-457a-88b9-fe5a40e75ab7",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "bodyBorder": false,
+                        "border": false,
+                        "designer|displayName": "general",
+                        "layout": "border",
+                        "title": [
+                            "{i18n.document.base.ui.newDocumentTab}"
+                        ]
+                    },
+                    "name": "MyPanel",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
+                    "designerId": "c15ff46d-5ed3-4d92-bc37-635296ee6dca",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig",
+                            "designerId": "5a33a0ab-5753-489f-ba88-2a69fe701096"
+                        },
+                        {
+                            "type": "Ext.toolbar.Toolbar",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": false,
+                                "dock": "top",
+                                "height": null,
+                                "layout|flex": null,
+                                "layout|region": "north"
+                            },
+                            "name": "MyToolbar",
+                            "designerId": "a5feb720-961c-40bb-83ec-e4b04ba330ce",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "send",
+                                        "disabled": [
+                                            "{sendButtonDisabled}"
+                                        ],
+                                        "layout|flex": null,
+                                        "text": [
+                                            "{i18n.document.base.ui.send}"
+                                        ]
+                                    },
+                                    "name": "MyButton3",
+                                    "configAlternates": {
+                                        "text": "binding",
+                                        "disabled": "binding"
+                                    },
+                                    "designerId": "f85da665-4fb0-4825-b972-4fe5381b116b",
+                                    "cn": [
+                                        {
+                                            "type": "viewcontrollereventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onSendClick",
+                                                "implHandler": [
+                                                    "var vm = this.getViewModel();",
+                                                    "var isSending = vm.get('isSending');",
+                                                    "if (!isSending) {",
+                                                    "  var view = this.getView();",
+                                                    "  var document = vm.get('document');",
+                                                    "  var subject = document.get('subject');",
+                                                    "  var body = document.get('body');",
+                                                    "  if (!subject) {",
+                                                    "    Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_subject);",
+                                                    "    return;",
+                                                    "  } else if (!body) {",
+                                                    "    Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_body);",
+                                                    "    return;",
+                                                    "  }",
+                                                    "  vm.set('isSending', true);",
+                                                    "  helpers.api.document.base.sendDraft(document.id, {",
+                                                    "    success: function() {",
+                                                    "      view.fireEvent('documentsent', document);",
+                                                    "    }.bind(this),",
+                                                    "    failure: function(msg) {",
+                                                    "      Ext.Msg.alert(i18n.errors.title, msg);",
+                                                    "      vm.set('isSending', false);",
+                                                    "    }.bind(this)",
+                                                    "  });",
+                                                    "}"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "name": "onSendClick",
+                                            "designerId": "bed7d75e-73a8-4b13-9854-ebf01b5f547f"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "save",
+                                        "disabled": [
+                                            "{saveButtonDisabled}"
+                                        ],
+                                        "layout|flex": null,
+                                        "text": [
+                                            "{saveButtonText}"
+                                        ]
+                                    },
+                                    "name": "MyButton",
+                                    "configAlternates": {
+                                        "text": "binding",
+                                        "disabled": "binding"
+                                    },
+                                    "designerId": "3ac5ef1b-56a3-4d36-bc21-f54993545721",
+                                    "cn": [
+                                        {
+                                            "type": "viewcontrollereventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onSaveClick",
+                                                "implHandler": [
+                                                    "var doc = this.getViewModel().get('document');",
+                                                    "this.onDocumentChange(doc);"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "name": "onSaveClick",
+                                            "designerId": "d9c1d152-3c37-404a-b57e-cdbb070f5afc"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.toolbar.Fill",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": null
+                                    },
+                                    "name": "MyFill1",
+                                    "designerId": "4db86121-bbf8-4f46-9683-6a42799d46f0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "baseCls": "white-panel",
+                                "border": false,
+                                "container|align": "stretch",
+                                "container|padding": null,
+                                "designer|displayName": "main",
+                                "layout": "vbox",
+                                "layout|flex": 1,
+                                "layout|region": "center"
+                            },
+                            "name": "MyContainer",
+                            "configAlternates": {
+                                "dockedItems": "array"
+                            },
+                            "designerId": "ab8db9ac-653f-41d8-956a-2aa0b96a6219",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "subject",
+                                        "emptyText": "enter document's subject",
+                                        "fieldLabel": [
+                                            "{i18n.document.base.subject}"
+                                        ],
+                                        "height": null,
+                                        "itemId": null,
+                                        "labelAlign": "top",
+                                        "layout|flex": null,
+                                        "margin": null,
+                                        "padding": 5,
+                                        "reference": null,
+                                        "submitEmptyText": false,
+                                        "value": [
+                                            "{document.subject}"
+                                        ]
+                                    },
+                                    "name": "MyTextField",
+                                    "configAlternates": {
+                                        "submitEmptyText": "boolean",
+                                        "value": "binding",
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "bafc9b59-5005-4231-8ddf-54504a224295",
+                                    "customConfigs": [
+                                        {
+                                            "group": "(Custom Properties)",
+                                            "name": "submitEmptyText",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.form.field.HtmlEditor",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "border": null,
+                                        "designer|displayName": "body",
+                                        "fieldLabel": [
+                                            "{i18n.document.base.body}"
+                                        ],
+                                        "labelAlign": "top",
+                                        "layout|flex": 1,
+                                        "padding": "0 5 5 5",
+                                        "value": [
+                                            "{document.body}"
+                                        ]
+                                    },
+                                    "name": "MyHtmlEditor",
+                                    "configAlternates": {
+                                        "value": "binding",
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": false,
+                                "container|hideCollapseTool": true,
+                                "designer|displayName": "details",
+                                "layout": "accordion",
+                                "layout|region": "east",
+                                "layout|split": true,
+                                "padding": null,
+                                "width": 400
+                            },
+                            "name": "MyContainer2",
+                            "designerId": "73758d87-5031-4919-ae73-76bb68a3183a",
+                            "cn": [
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "general",
+                                        "title": [
+                                            "{i18n.document.base.ui.generalTabTitle}"
+                                        ]
+                                    },
+                                    "name": "document.editor.general1",
+                                    "configAlternates": {
+                                        "title": "binding"
+                                    },
+                                    "designerId": "64724350-d954-4466-9245-c5be18a57dee",
+                                    "masterInstanceId": "759b5380-72a7-453f-b37c-cfc4a98ba34e"
+                                },
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "signees"
+                                    },
+                                    "name": "document.motions.signeepanel1",
+                                    "designerId": "6c040662-e5fb-49a6-9215-b4a251a4c73a",
+                                    "masterInstanceId": "a6e4f453-aa9b-4c0e-8a45-45e445ca2504"
+                                },
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "asignees"
+                                    },
+                                    "name": "document.motions.assigneepanel1",
+                                    "designerId": "5b56765a-3219-46c0-94e7-73857f5db4fe",
+                                    "masterInstanceId": "da24e6c3-26d6-4d2a-bedc-c822727570b4"
+                                },
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "authors"
+                                    },
+                                    "name": "document.motions.authorpanel1",
+                                    "designerId": "9507dce8-8e97-4a00-8d9b-abcd88ae04f3",
+                                    "masterInstanceId": "e3fa4671-a99b-4b98-adee-9628585fe14b"
+                                },
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "files"
+                                    },
+                                    "name": "document.file.panel1",
+                                    "designerId": "fa5bcbd5-6feb-4cd1-af00-84c5dbfab0a3",
+                                    "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "border": false,
+                        "designer|displayName": "motions",
+                        "layout": "fit",
+                        "title": [
+                            "{i18n.document.base.ui.motionsTabTitle}"
+                        ]
+                    },
+                    "name": "MyPanel1",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
+                    "designerId": "18d1cb0a-732d-40df-a810-7c3978bda850",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig1",
+                            "designerId": "3d9fa6b2-56b4-49be-b5b9-f21b4f8d0aa9"
+                        },
+                        {
+                            "type": "linkedinstance",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "bodyBorder": false,
+                                "border": false,
+                                "designer|displayName": "receivers"
+                            },
+                            "name": "document.motions.outpanel1",
+                            "configAlternates": {
+                                "title": "binding"
+                            },
+                            "designerId": "e445635e-38ea-44e9-949d-881be372d75f",
+                            "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "hasDraftMotion"
+                                        ],
+                                        "fn": "onDraftmotionChanged",
+                                        "implHandler": [
+                                            "var vm = this.getViewModel();",
+                                            "vm.set('hasDraftMotion', hasDraftMotion);"
+                                        ],
+                                        "name": "draftmotionchanged",
+                                        "scope": "me"
+                                    },
+                                    "name": "onDraftmotionChanged",
+                                    "designerId": "51ad1a18-0194-4246-b423-019cb65f87a7"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
