@@ -36,7 +36,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController1', {
         parent_id: null,
         receiver_id: receiver.id,
         receiver_type: extType,
-        receiver_role: 'assignee'
+        receiver_role: 'signee'
       },
       success: function(motionData) {
         var motion = Ext.create('Tel100.model.document.Motion', motionData);

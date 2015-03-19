@@ -93,7 +93,7 @@ module.exports = {
 };
 },{}],5:[function(require,module,exports){
 module.exports = {
-  attachments: 'მიმაგრებული ფაილები',
+  attachments: '<i class="fa fa-paperclip"></i> მიმაგრებული ფაილები',
   addfile: '<i class="fa fa-plus"></i> დამატება'
 };
 

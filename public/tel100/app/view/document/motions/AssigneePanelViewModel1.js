@@ -46,7 +46,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewModel1', {
         type: 'ajax',
         extraParams: {
           mode: 'out',
-          role: 'assignee',
+          role: 'signee',
           document_id: '{document.id}'
         },
         url: '/api/documents/motion',

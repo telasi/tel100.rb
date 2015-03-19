@@ -61,7 +61,7 @@
                         "extraParams": [
                             "{",
                             "  mode: 'out',",
-                            "  role: 'assignee',",
+                            "  role: 'signee',",
                             "  document_id: '{document.id}'",
                             "}"
                         ],
