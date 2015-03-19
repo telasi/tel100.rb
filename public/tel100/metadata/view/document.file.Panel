@@ -252,7 +252,8 @@
             "userConfig": {
                 "fn": "refresh",
                 "implHandler": [
-                    "this.down('gridpanel').getStore().load();"
+                    "var vm = this.getViewModel();",
+                    "vm.getStore('files').load();"
                 ]
             },
             "name": "refresh",
@@ -281,6 +282,40 @@
             },
             "name": "initComponent",
             "designerId": "564fcb78-927e-41a2-9732-736781f0e366"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool",
+            "designerId": "eb84fcc4-4a02-4ed3-84ea-8046c47bb3f6",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefresh",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefresh",
+                    "designerId": "e842c041-6a2c-446a-9880-5aa1d8be0c24"
+                }
+            ]
         }
     ]
 }

@@ -25,7 +25,8 @@ Ext.define('Tel100.view.document.file.Panel', {
     'Ext.form.field.File',
     'Ext.grid.Panel',
     'Ext.grid.View',
-    'Ext.grid.column.Action'
+    'Ext.grid.column.Action',
+    'Ext.panel.Tool'
   ],
 
   controller: 'documentfilepanel',
@@ -34,6 +35,7 @@ Ext.define('Tel100.view.document.file.Panel', {
   },
   border: false,
   layout: 'fit',
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.file.attachments} ({fileCount})'
@@ -57,7 +59,10 @@ Ext.define('Tel100.view.document.file.Panel', {
               name: 'file',
               buttonText: '<i class="fa fa-plus"></i>',
               listeners: {
-                change: 'onFilefieldChange'
+                change: {
+                  fn: 'onFilefieldChange',
+                  scope: 'controller'
+                }
               }
             }
           ]
@@ -100,13 +105,30 @@ Ext.define('Tel100.view.document.file.Panel', {
         }
       ],
       listeners: {
-        celldblclick: 'onGridpanelCellDblClick'
+        celldblclick: {
+          fn: 'onGridpanelCellDblClick',
+          scope: 'controller'
+        }
+      }
+    }
+  ],
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'refresh',
+      listeners: {
+        click: 'onRefresh'
       }
     }
   ],
 
+  onRefresh: function(tool, e, owner, eOpts) {
+    this.refresh();
+  },
+
   refresh: function() {
-    this.down('gridpanel').getStore().load();
+    var vm = this.getViewModel();
+    vm.getStore('files').load();
   },
 
   initComponent: function() {
