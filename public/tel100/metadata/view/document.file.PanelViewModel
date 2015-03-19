@@ -6,6 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "fileCount: 0",
+            "}"
+        ],
         "designer|userAlias": "documentfilepanel",
         "designer|userClassName": "document.file.PanelViewModel"
     },
@@ -20,11 +25,30 @@
             "codeClass": null,
             "userConfig": {
                 "autoLoad": true,
+                "listeners": [
+                    "{",
+                    "  datachanged: function() {",
+                    "    var store = this;",
+                    "    this.viewModel.set('fileCount', store.getCount());",
+                    "    this.view.fireEvent('fileschanged', store);",
+                    "  }",
+                    "}"
+                ],
                 "model": "document.File",
                 "name": "files"
             },
             "name": "MyJsonStore1",
+            "configAlternates": {
+                "listeners": "object"
+            },
             "designerId": "38b98ece-b3c2-41ec-a8d6-750137206b59",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "listeners",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "Ext.data.proxy.Ajax",

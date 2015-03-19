@@ -36,7 +36,7 @@ Ext.define('Tel100.view.document.file.Panel', {
   layout: 'fit',
 
   bind: {
-    title: '{i18n.document.file.attachments}'
+    title: '{i18n.document.file.attachments} ({fileCount})'
   },
   dockedItems: [
     {
@@ -107,6 +107,18 @@ Ext.define('Tel100.view.document.file.Panel', {
 
   refresh: function() {
     this.down('gridpanel').getStore().load();
+  },
+
+  initComponent: function() {
+    this.callParent();
+    var view = this;
+    var viewModel = this.getViewModel();
+    viewModel.bind('{files}', function(store) {
+      if (store) {
+        store.view = view;
+        store.viewModel = viewModel;
+      }
+    });
   }
 
 });

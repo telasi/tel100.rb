@@ -23,8 +23,19 @@ Ext.define('Tel100.view.document.file.PanelViewModel', {
     'Ext.data.reader.Json'
   ],
 
+  data: {
+    fileCount: 0
+  },
+
   stores: {
     files: {
+      listeners: {
+        datachanged: function() {
+          var store = this;
+          this.viewModel.set('fileCount', store.getCount());
+          this.view.fireEvent('fileschanged', store);
+        }
+      },
       autoLoad: true,
       model: 'Tel100.model.document.File',
       proxy: {

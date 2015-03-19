@@ -12,7 +12,7 @@
         "height": null,
         "layout": "fit",
         "title": [
-            "{i18n.document.file.attachments}"
+            "{i18n.document.file.attachments} ({fileCount})"
         ],
         "width": null
     },
@@ -257,6 +257,30 @@
             },
             "name": "refresh",
             "designerId": "b60bf08f-fb70-4269-9981-9c7e26c21b9e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "var view = this;",
+                    "var viewModel = this.getViewModel();",
+                    "viewModel.bind('{files}', function(store) {",
+                    "  if (store) {",
+                    "    store.view = view;",
+                    "    store.viewModel = viewModel;",
+                    "  }",
+                    "});"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "564fcb78-927e-41a2-9732-736781f0e366"
         }
     ]
 }
