@@ -1,6 +1,8 @@
 module.exports = {
   actions: {
-    delete_assignee: 'ადრესატის წაშლა'
+    delete_signee: 'ვიზატორის წაშლა',
+    delete_assignee: 'ადრესატის წაშლა',
+    delete_author: 'ავტორის წაშლა'
   },
   status: 'სტატუსი',
   ordering: 'ეტაპი',
@@ -30,5 +32,6 @@ module.exports = {
   completed_at: 'შესრულებულია',
   updated_at: 'ბოლო ცვლილება',
   assignees: '<i class="fa fa-user"></i> ადრესატები',
-  signees: '<i class="fa fa-edit"></i> ვიზატორები'
+  signees: '<i class="fa fa-edit"></i> ვიზატორები',
+  authors: '<i class="fa fa-edit"></i> ავტორები'
 };
