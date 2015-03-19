@@ -1,0 +1,106 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{",
+            "  assigneeCount: 0,",
+            "  selection: null",
+            "}"
+        ],
+        "designer|userAlias": "documentmotionsauthorpanel",
+        "designer|userClassName": "document.motions.AssigneePanelViewModel2"
+    },
+    "name": "document.motions.AssigneePanelViewModel2",
+    "designerId": "4c4658ce-dfd6-45db-865f-2b2d9ab649c5",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "listeners": [
+                    "{",
+                    "  datachanged: function() {",
+                    "    this.onStoreChanges();",
+                    "  }",
+                    "}"
+                ],
+                "model": "document.Motion",
+                "name": "motions"
+            },
+            "name": "MyStore1",
+            "configAlternates": {
+                "listeners": "object"
+            },
+            "designerId": "45ad747a-5d77-47bf-b70f-675fd6b1bad4",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "listeners",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  mode: 'out',",
+                            "  role: 'author',",
+                            "  document_id: '{document.id}'",
+                            "}"
+                        ],
+                        "url": "/api/documents/motion"
+                    },
+                    "name": "MyAjaxProxy3",
+                    "designerId": "405eb265-8db3-42d1-9a54-72c0df97a21f",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader3",
+                            "designerId": "8a06218a-b5bb-4969-91e6-8b4e75820f18"
+                        }
+                    ]
+                },
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onStoreChanges",
+                        "implHandler": [
+                            "var store = this;",
+                            "this.viewModel.set('assigneeCount', store.getCount());",
+                            "this.view.fireEvent('listchanged', store);"
+                        ]
+                    },
+                    "name": "onStoreChanges",
+                    "designerId": "cf20fd71-1e51-4154-84b7-e5483cb252ca"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,507 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsauthorpanel",
+        "designer|userClassName": "document.motions.AuthorPanel",
+        "height": null,
+        "layout": "fit",
+        "title": [
+            "{i18n.document.motion.authors} ({assigneeCount})"
+        ],
+        "width": null
+    },
+    "name": "document.motions.SigneePanel1",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "e3fa4671-a99b-4b98-adee-9628585fe14b",
+    "viewControllerInstanceId": "0d156721-62cf-48c2-bab2-65cf0a6a5338",
+    "viewModelInstanceId": "4c4658ce-dfd6-45db-865f-2b2d9ab649c5",
+    "cn": [
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "selection": [
+                    "{selection}"
+                ],
+                "store": [
+                    "{motions}"
+                ],
+                "title": null
+            },
+            "name": "MyGridPanel1",
+            "configAlternates": {
+                "store": "binding",
+                "selection": "binding"
+            },
+            "designerId": "e637db62-72fc-46ce-b68b-debdbe8e17eb",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.grid.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyGridView2",
+                    "designerId": "fba809de-4881-4614-a66a-8b9d46915d58",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "record",
+                                    "rowIndex",
+                                    "rowParams",
+                                    "store"
+                                ],
+                                "fn": "getRowClass",
+                                "implHandler": [
+                                    "var status = record.get('status');",
+                                    "return helpers.document.status.motionStatusRowClass(status, record);"
+                                ]
+                            },
+                            "name": "getRowClass",
+                            "designerId": "fc90bf12-0c4f-4932-a956-1c40d202208f"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "status",
+                        "designer|displayName": "status",
+                        "draggable": false,
+                        "hideable": false,
+                        "resizable": false,
+                        "sortable": false,
+                        "text": "",
+                        "width": 32
+                    },
+                    "name": "MyColumn4",
+                    "designerId": "60a90624-4ad5-4888-8a63-927bea814ae3",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "return helpers.document.status.motionStatusIcon(value, record);"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "1a9ecfbf-42ec-49e5-9e19-7b082d00343b"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "receiverName",
+                        "designer|displayName": "assignee",
+                        "draggable": false,
+                        "hideable": false,
+                        "sortable": false,
+                        "text": [
+                            "{i18n.document.motion.receiver}"
+                        ],
+                        "width": 200
+                    },
+                    "name": "MyColumn5",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "a592853e-27bb-4896-8fd1-90eb5e2fa1cb",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "var receiver = record.get('receiver');",
+                                    "if (receiver && receiver.ext_type == 'hr.Organization') {",
+                                    "  return '<i class=\"fa fa-bank\"></i> ' + value;",
+                                    "} else {",
+                                    "  return '<i class=\"fa fa-user\"></i> ' + value;",
+                                    "}"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "44a64137-87c8-46a7-9bc3-66ac5d406e12"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "motion_text",
+                        "designer|displayName": "motion_text",
+                        "draggable": false,
+                        "hideable": false,
+                        "sortable": false,
+                        "text": [
+                            "{i18n.document.motion.motion_text}"
+                        ],
+                        "width": 200
+                    },
+                    "name": "MyColumn6",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "0add62a4-0a4e-46c5-aec3-6328d4b9fbde",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyTextField",
+                            "designerId": "f0aab84e-308d-4bcc-b012-b2e42147aeb5"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "due_date",
+                        "designer|displayName": "due_date",
+                        "draggable": false,
+                        "formatter": "date(\"d/m/Y\")",
+                        "hideable": false,
+                        "sortable": false,
+                        "text": [
+                            "{i18n.document.motion.due_date}"
+                        ],
+                        "width": 100
+                    },
+                    "name": "MyColumn7",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "09c565fe-cb30-4762-acdb-67de64d8910f",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "format": "d/m/Y"
+                            },
+                            "name": "MyDateField",
+                            "designerId": "6e9adc42-15b3-417a-8178-afe7dec30e05"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridBeforeItemContextMenu",
+                        "implHandler": [
+                            "if (record.get('status') === helpers.document.status.DRAFT) {",
+                            "  var gridMenu = Ext.create('Ext.menu.Menu', {",
+                            "    items: [{",
+                            "      text: i18n.document.motion.actions.delete_signee,",
+                            "      icon: '/images/delete.png',",
+                            "      handler: function() {",
+                            "        var view = dataview.up('documentmotionssigneepanel');",
+                            "        view.deleteItemAt(index);",
+                            "      }",
+                            "    }]",
+                            "  });",
+                            "",
+                            "  e.stopEvent();",
+                            "  gridMenu.showAt(e.getXY());",
+                            "}"
+                        ],
+                        "name": "beforeitemcontextmenu",
+                        "scope": "me"
+                    },
+                    "name": "onGridBeforeItemContextMenu",
+                    "designerId": "ed77d8a1-8fd3-4289-89fa-ea43ecc4891d"
+                },
+                {
+                    "type": "Ext.grid.plugin.CellEditing",
+                    "reference": {
+                        "name": "plugins",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "name": "MyCellEditingPlugin1",
+                    "designerId": "d92d6e3d-9d47-4904-b45c-f730a4943afa"
+                }
+            ]
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh-tool",
+                "type": "refresh"
+            },
+            "name": "MyTool2",
+            "designerId": "7603f91b-cb9d-47f5-88f1-4988a1ec7d14",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefreshToolClick",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefreshToolClick",
+                    "designerId": "7caab992-d202-4a3c-a924-729da97db068"
+                }
+            ]
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "add-tool",
+                "type": "plus"
+            },
+            "name": "MyTool3",
+            "designerId": "c9d893b0-218c-44e7-be8c-fadf0c7914fc",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onAddToolClick",
+                        "implHandler": [
+                            "var view = this;",
+                            "var dialog = helpers.party.getPartyDialog(function(assignees) {",
+                            "  view.getController().addReceivers(assignees);",
+                            "});",
+                            "dialog.show();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onAddToolClick",
+                    "designerId": "26b7908e-3519-475a-8613-8e23aa5907fe"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "vm.getStore('motions').load();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "49885265-051c-4560-98a1-90134eb12685"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "var view = this;",
+                    "var viewModel = this.getViewModel();",
+                    "viewModel.bind('{motions}', function(store) {",
+                    "  if (store) {",
+                    "    store.view = view;",
+                    "    store.viewModel = viewModel;",
+                    "  }",
+                    "});"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "ae54fd78-0143-4526-8a08-1f7dd842760e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getGrid",
+                "implHandler": [
+                    "return this.down('gridpanel');"
+                ]
+            },
+            "name": "getGrid",
+            "designerId": "3c67e080-1947-4021-b503-cafac4da85a4"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "index"
+                ],
+                "fn": "deleteItemAt",
+                "implHandler": [
+                    "var view = this;",
+                    "var store = view.getViewModel().getStore('motions');",
+                    "var item = store.getAt(index);",
+                    "helpers.api.document.motion.deleteDraft(item.id, {",
+                    "  success: function() {",
+                    "    view.refresh();",
+                    "  }",
+                    "});"
+                ]
+            },
+            "name": "deleteItemAt",
+            "designerId": "c156690d-25e1-4dd1-b3cc-bd39b627f210"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onBeforeRender",
+                "implHandler": [
+                    "var view = this.getView();",
+                    "var vm = this.getViewModel();",
+                    "var onChange = function(newVal, oldVal, binding) {",
+                    "  if (newVal && newVal.dirty) {",
+                    "    var motion = newVal;",
+                    "    var changes = motion.getChanges();",
+                    "    helpers.api.document.motion.updateDraft(motion.id, {",
+                    "      params: changes,",
+                    "      success: function() {",
+                    "        motion.commit();",
+                    "      }.bind(this),",
+                    "      failure: function(message) {",
+                    "        motion.reject();",
+                    "        console.error(message);",
+                    "      }",
+                    "    });",
+                    "  }",
+                    "};",
+                    "var options = { deep: true };",
+                    "vm.bind('{selection}', onChange, this, { deep: true });"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onBeforeRender",
+            "designerId": "894a6f0c-320e-45c9-b34b-f6c60408b2a7"
+        }
+    ]
+}

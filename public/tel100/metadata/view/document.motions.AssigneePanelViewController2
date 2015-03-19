@@ -1,0 +1,86 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsauthorpanel",
+        "designer|userClassName": "document.motions.AssigneePanelViewController2"
+    },
+    "name": "document.motions.AssigneePanelViewController2",
+    "designerId": "0d156721-62cf-48c2-bab2-65cf0a6a5338",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "receiver"
+                ],
+                "fn": "addReceiver",
+                "implHandler": [
+                    "var view = this.getView();",
+                    "var grid = view.getGrid();",
+                    "var vm = this.getViewModel();",
+                    "var extType = receiver.get('ext_type');",
+                    "var document = vm.get('document');",
+                    "",
+                    "",
+                    "// XXX: do we need parent ID here?",
+                    "//",
+                    "// var parentId = grid.getViewModel().get('parentId');",
+                    "",
+                    "helpers.api.document.motion.createDraft({",
+                    "  params: {",
+                    "    document_id: document.id,",
+                    "    // parent_id: parentId,",
+                    "    parent_id: null,",
+                    "    receiver_id: receiver.id,",
+                    "    receiver_type: extType,",
+                    "    receiver_role: 'author'",
+                    "  },",
+                    "  success: function(motionData) {",
+                    "    var motion = Ext.create('Tel100.model.document.Motion', motionData);",
+                    "    var store = grid.getStore();",
+                    "    store.add(motion);",
+                    "  }.bind(this),",
+                    "  failure: function(error) {",
+                    "    console.error(error);",
+                    "  }.bind(this)",
+                    "});"
+                ]
+            },
+            "name": "addReceiver",
+            "designerId": "9559c6a5-bff2-4e8b-8d6e-54d6bc494290"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "receivers"
+                ],
+                "fn": "addReceivers",
+                "implHandler": [
+                    "if (receivers) {",
+                    "  for (var i = 0; i < receivers.length; i++) {",
+                    "    this.addReceiver( receivers[i]);",
+                    "  }",
+                    "}"
+                ]
+            },
+            "name": "addReceivers",
+            "designerId": "4c5e9647-f1f8-4170-ac49-fe81c490f6fc"
+        }
+    ]
+}
