@@ -332,6 +332,34 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "designer|displayName": "authors"
+                    },
+                    "name": "document.motions.authorpanel",
+                    "designerId": "9507dce8-8e97-4a00-8d9b-abcd88ae04f3",
+                    "masterInstanceId": "e3fa4671-a99b-4b98-adee-9628585fe14b"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "files"
+                    },
+                    "name": "document.file.panel1",
+                    "designerId": "fa5bcbd5-6feb-4cd1-af00-84c5dbfab0a3",
+                    "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
                         "designer|displayName": "receivers"
                     },
                     "name": "document.motions.outpanel1",
@@ -364,20 +392,6 @@
                             "designerId": "51ad1a18-0194-4246-b423-019cb65f87a7"
                         }
                     ]
-                },
-                {
-                    "type": "linkedinstance",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "files"
-                    },
-                    "name": "document.file.panel1",
-                    "designerId": "fa5bcbd5-6feb-4cd1-af00-84c5dbfab0a3",
-                    "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                 }
             ]
         },

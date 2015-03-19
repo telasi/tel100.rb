@@ -23,8 +23,9 @@ Ext.define('Tel100.view.document.editor.Creator', {
     'Tel100.view.document.editor.General',
     'Tel100.view.document.motions.SigneePanel',
     'Tel100.view.document.motions.AssigneePanel',
-    'Tel100.view.document.motions.OutPanel',
+    'Tel100.view.document.motions.AuthorPanel',
     'Tel100.view.document.file.Panel',
+    'Tel100.view.document.motions.OutPanel',
     'Ext.toolbar.Toolbar',
     'Ext.button.Button',
     'Ext.toolbar.Fill',
@@ -136,13 +137,16 @@ Ext.define('Tel100.view.document.editor.Creator', {
           xtype: 'documentmotionsassigneepanel'
         },
         {
+          xtype: 'documentmotionsauthorpanel'
+        },
+        {
+          xtype: 'documentfilepanel'
+        },
+        {
           xtype: 'documentmotionsoutpanel',
           listeners: {
             draftmotionchanged: 'onDraftmotionChanged'
           }
-        },
-        {
-          xtype: 'documentfilepanel'
         }
       ]
     }

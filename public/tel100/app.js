@@ -72,7 +72,8 @@ Ext.application({
     'document.file.Panel',
     'document.folder.SubItem',
     'document.motions.AssigneePanel',
-    'document.motions.SigneePanel'
+    'document.motions.SigneePanel',
+    'document.motions.AuthorPanel'
   ],
   name: 'Tel100',
 

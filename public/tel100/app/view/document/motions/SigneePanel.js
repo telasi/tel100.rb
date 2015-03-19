@@ -152,7 +152,7 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
     if (record.get('status') === helpers.document.status.DRAFT) {
       var gridMenu = Ext.create('Ext.menu.Menu', {
         items: [{
-          text: i18n.document.motion.actions.delete_assignee,
+          text: i18n.document.motion.actions.delete_signee,
           icon: '/images/delete.png',
           handler: function() {
             var view = dataview.up('documentmotionssigneepanel');
