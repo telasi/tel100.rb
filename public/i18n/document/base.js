@@ -6,7 +6,7 @@ module.exports = {
     deleteDraft: '<i class="fa fa-trash"></i> წაშლა',
     confirmDeleteDraft: 'დაადასტურეთ დოკუმენტის წაშლა',
     editDraftTitle: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
-    generalTabTitle: 'ზოგადი თვისებები',
+    generalTabTitle: '<i class="fa fa-send"></i> ზოგადი თვისებები',
     receiversTabTitle: 'ადრესატები',
     send: {
       ka: '<i class="fa fa-send"></i> დოკუმენტის გაგზავნა',

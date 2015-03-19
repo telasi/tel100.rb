@@ -6,22 +6,22 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documentmotionsassigneepanel",
-        "designer|userClassName": "document.motions.AssigneePanel",
+        "designer|userAlias": "documentmotionssigneepanel",
+        "designer|userClassName": "document.motions.SigneePanel",
         "height": null,
         "layout": "fit",
         "title": [
-            "{i18n.document.motion.assignees} ({assigneeCount})"
+            "{i18n.document.motion.signees} ({assigneeCount})"
         ],
         "width": null
     },
-    "name": "MyPanel",
+    "name": "document.motions.AssigneePanel1",
     "configAlternates": {
         "title": "binding"
     },
-    "designerId": "da24e6c3-26d6-4d2a-bedc-c822727570b4",
-    "viewControllerInstanceId": "22aa1e5c-2222-453a-8710-cb6354c2fe9b",
-    "viewModelInstanceId": "07ff2a31-20df-4e11-959f-6d0928318bf8",
+    "designerId": "a6e4f453-aa9b-4c0e-8a45-45e445ca2504",
+    "viewControllerInstanceId": "8b568f4a-46fe-46ae-90d0-0b3fa08d8627",
+    "viewModelInstanceId": "dbdee442-c0cc-4e07-be7c-306a99599c6b",
     "cn": [
         {
             "type": "Ext.grid.Panel",
@@ -44,7 +44,7 @@
                 "store": "binding",
                 "selection": "binding"
             },
-            "designerId": "590d4d9f-2ea2-4702-9232-46b663bc51e8",
+            "designerId": "2d9e8cb2-264a-45e2-b3c9-2e2d62a7acd8",
             "customConfigs": [
                 {
                     "group": "(Custom Properties)",
@@ -61,7 +61,7 @@
                     },
                     "codeClass": null,
                     "name": "MyGridView2",
-                    "designerId": "a8e416fb-a70d-4592-96da-56f6b26a3424",
+                    "designerId": "4ad8b4ea-51af-41e4-a81a-749939f34d22",
                     "cn": [
                         {
                             "type": "fixedfunction",
@@ -84,7 +84,7 @@
                                 ]
                             },
                             "name": "getRowClass",
-                            "designerId": "5c7423f2-d993-4d4b-ab09-f7a58c448076"
+                            "designerId": "5640cfcf-9784-44f9-b604-76a89c3654ec"
                         }
                     ]
                 },
@@ -106,7 +106,7 @@
                         "width": 32
                     },
                     "name": "MyColumn4",
-                    "designerId": "e5a6ec21-41e0-4393-b97b-e193d93e88e5",
+                    "designerId": "ed19fb68-4a7e-4742-91fc-9cfafe9648d2",
                     "cn": [
                         {
                             "type": "fixedfunction",
@@ -131,7 +131,7 @@
                                 ]
                             },
                             "name": "renderer",
-                            "designerId": "70f6745d-a74f-48b3-939f-6e6e80d596b6"
+                            "designerId": "2c438a2c-6ef4-4153-9cad-49ae91b69107"
                         }
                     ]
                 },
@@ -157,7 +157,7 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "d8b7b83e-d1ed-4145-9cfd-e84658814d1a",
+                    "designerId": "c99a5099-569b-4b15-bb93-c73af4623a9f",
                     "cn": [
                         {
                             "type": "fixedfunction",
@@ -187,7 +187,7 @@
                                 ]
                             },
                             "name": "renderer",
-                            "designerId": "b19dfba6-29bf-46df-a839-1b704bfcbdc4"
+                            "designerId": "f55cd001-50b7-4c52-a067-a02d9ddf7587"
                         }
                     ]
                 },
@@ -213,7 +213,7 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "43367a11-1922-4e65-9b8d-b53de2c64dbc",
+                    "designerId": "309723ca-b9f5-464a-b526-af090c0c9eb8",
                     "cn": [
                         {
                             "type": "Ext.form.field.Text",
@@ -223,7 +223,7 @@
                             },
                             "codeClass": null,
                             "name": "MyTextField",
-                            "designerId": "753f68fb-5495-4854-9cc3-7d51cd278fcb"
+                            "designerId": "12fbaa79-6ae2-49b3-b786-38bc1445a1f3"
                         }
                     ]
                 },
@@ -250,7 +250,7 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "87cd2ed8-2fd3-424f-83f9-73729cf26653",
+                    "designerId": "6a303da0-e1d8-49f7-809b-3c3e579d8012",
                     "cn": [
                         {
                             "type": "Ext.form.field.Date",
@@ -263,7 +263,7 @@
                                 "format": "d/m/Y"
                             },
                             "name": "MyDateField",
-                            "designerId": "47b0ea8b-1709-42d4-8025-b8a2c8fe1e74"
+                            "designerId": "12482a1a-0bd0-45b7-8813-bfbf099060b7"
                         }
                     ]
                 },
@@ -297,7 +297,7 @@
                         "scope": "me"
                     },
                     "name": "onGridBeforeItemContextMenu",
-                    "designerId": "8f05a589-90f6-4f43-9291-84daf7970bd5"
+                    "designerId": "e691b526-4c91-4fab-af34-08c7c5d86eb5"
                 },
                 {
                     "type": "Ext.grid.plugin.CellEditing",
@@ -307,7 +307,7 @@
                     },
                     "codeClass": null,
                     "name": "MyCellEditingPlugin1",
-                    "designerId": "31ca0d9a-3928-45f0-9260-50c0acf3481c"
+                    "designerId": "4350f91e-c8e1-49d1-b36b-5ff885027b18"
                 }
             ]
         },
@@ -323,7 +323,7 @@
                 "type": "refresh"
             },
             "name": "MyTool2",
-            "designerId": "d4fe2e2e-5f45-4965-b49f-e1d40752e4e2",
+            "designerId": "35f6b080-9542-463f-9c39-e80bc565b123",
             "cn": [
                 {
                     "type": "basiceventbinding",
@@ -341,7 +341,7 @@
                         "scope": "me"
                     },
                     "name": "onRefreshToolClick",
-                    "designerId": "1147263d-4aa7-40bd-abc0-7ab62b31612e"
+                    "designerId": "54942ad5-ecf8-43ac-8278-0f61e1dc2b0a"
                 }
             ]
         },
@@ -357,7 +357,7 @@
                 "type": "plus"
             },
             "name": "MyTool3",
-            "designerId": "99573081-7611-4a8f-8248-81c09d502746",
+            "designerId": "74f4b331-9db5-4d10-a2bd-13e28363465f",
             "cn": [
                 {
                     "type": "basiceventbinding",
@@ -379,7 +379,7 @@
                         "scope": "me"
                     },
                     "name": "onAddToolClick",
-                    "designerId": "21de5d1a-bcfe-4c1d-8c41-dd1805dd79c7"
+                    "designerId": "574a0388-854f-42f6-a407-d6f1f13cc841"
                 }
             ]
         },
@@ -398,7 +398,7 @@
                 ]
             },
             "name": "refresh",
-            "designerId": "264921b2-8733-4393-9177-8604bbc10df0"
+            "designerId": "cfe79437-b4f8-4a14-8670-f5d9756c8d7a"
         },
         {
             "type": "basicfunction",
@@ -422,7 +422,7 @@
                 ]
             },
             "name": "initComponent",
-            "designerId": "e6c63fd1-1409-485c-a34e-bb5bb424d412"
+            "designerId": "71c046a9-a62e-4bf5-ac9e-76e426026d33"
         },
         {
             "type": "basicfunction",
@@ -438,7 +438,7 @@
                 ]
             },
             "name": "getGrid",
-            "designerId": "f4d9b19c-86c8-4d02-9a8a-b97502683935"
+            "designerId": "f726ed92-ae88-42d4-abbd-db90a5a0451a"
         },
         {
             "type": "basicfunction",
@@ -464,7 +464,7 @@
                 ]
             },
             "name": "deleteItemAt",
-            "designerId": "28919e57-7cbe-4da7-9bed-edb59df12ed5"
+            "designerId": "1eb3be90-2e87-4f48-b7e9-9d0bd84d39e8"
         },
         {
             "type": "viewcontrollereventbinding",
@@ -501,7 +501,7 @@
                 "scope": "me"
             },
             "name": "onBeforeRender",
-            "designerId": "205cdc49-47f2-4e97-bca2-c1f546ff32cb"
+            "designerId": "6e96d023-951c-4116-9c6b-b9e964d7e224"
         }
     ]
 }

@@ -29,5 +29,6 @@ module.exports = {
   received_at: 'მიღებულია',
   completed_at: 'შესრულებულია',
   updated_at: 'ბოლო ცვლილება',
-  assignees: 'ადრესატები'
+  assignees: '<i class="fa fa-user"></i> ადრესატები',
+  signees: '<i class="fa fa-edit"></i> ვიზატორები'
 };
