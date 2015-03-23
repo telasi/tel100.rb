@@ -110,6 +110,7 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
               var grid = panel.down('documentmotionsoutgrid');
               var successFunction = function() {
                 grid.getStore().remove(selection);
+                panel.fireEvent('datachanged', panel, 'delete');
               };
               Ext.Msg.confirm(title, msg, function(resp) {
                 if (resp === 'yes') {

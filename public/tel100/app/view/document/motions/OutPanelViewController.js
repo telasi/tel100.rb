@@ -41,6 +41,7 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
         var grid = view.down('documentmotionsoutgrid');
         var store = grid.getStore();
         store.add(motion);
+        view.fireEvent('datachanged', view, 'add', motion);
       }.bind(this),
       failure: function(error) {
         console.error(error);
@@ -72,11 +73,13 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
 
   onPanelMotionChange: function(motion) {
     if (motion.dirty) {
+      var view = this.getView();
       var changes = motion.getChanges();
       helpers.api.document.motion.updateDraft(motion.id, {
         params: changes,
         success: function() {
           motion.commit();
+          view.fireEvent('datachanged', view, 'update', motion);
         }.bind(this),
         failure: function(message) {
           motion.reject();

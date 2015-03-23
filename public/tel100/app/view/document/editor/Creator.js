@@ -199,7 +199,8 @@ Ext.define('Tel100.view.document.editor.Creator', {
               border: false,
               bodyBorder: false,
               listeners: {
-                draftmotionchanged: 'onDraftmotionChanged'
+                draftmotionchanged: 'onDraftmotionChanged',
+                datachanged: 'onReceiversChanged'
               }
             }
           ]
@@ -223,6 +224,10 @@ Ext.define('Tel100.view.document.editor.Creator', {
   onDraftmotionChanged: function(hasDraftMotion) {
     var vm = this.getViewModel();
     vm.set('hasDraftMotion', hasDraftMotion);
+  },
+
+  onReceiversChanged: function(panel, operation, item) {
+    console.log('changed!');
   }
 
 });
