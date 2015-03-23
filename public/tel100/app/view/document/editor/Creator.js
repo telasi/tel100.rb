@@ -227,7 +227,12 @@ Ext.define('Tel100.view.document.editor.Creator', {
   },
 
   onReceiversChanged: function(panel, operation, item) {
-    console.log('changed!');
+    var signeesPanel = this.down('documentmotionssigneepanel');
+    var assigneesPanel = this.down('documentmotionsassigneepanel');
+    var authorPanel = this.down('documentmotionsauthorpanel');
+    signeesPanel.refresh();
+    assigneesPanel.refresh();
+    authorPanel.refresh();
   }
 
 });

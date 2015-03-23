@@ -645,7 +645,12 @@
                                         ],
                                         "fn": "onReceiversChanged",
                                         "implHandler": [
-                                            "console.log('changed!');"
+                                            "var signeesPanel = this.down('documentmotionssigneepanel');",
+                                            "var assigneesPanel = this.down('documentmotionsassigneepanel');",
+                                            "var authorPanel = this.down('documentmotionsauthorpanel');",
+                                            "signeesPanel.refresh();",
+                                            "assigneesPanel.refresh();",
+                                            "authorPanel.refresh();"
                                         ],
                                         "name": "datachanged",
                                         "scope": "me"
