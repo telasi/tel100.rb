@@ -174,7 +174,7 @@ module.exports = {
   updated_at: 'ბოლო ცვლილება',
   assignees: '<i class="fa fa-user"></i> ადრესატები',
   signees: '<i class="fa fa-edit"></i> ვიზატორები',
-  authors: '<i class="fa fa-edit"></i> ავტორები'
+  authors: '<i class="fa fa-legal"></i> ავტორები'
 };
 
 },{}],9:[function(require,module,exports){
