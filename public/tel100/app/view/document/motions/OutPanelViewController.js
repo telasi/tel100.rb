@@ -30,6 +30,8 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
       params: {
         document_id: document.id,
         receiver_id: receiver.id,
+        receiver_role: 'assignee',
+        ordering: 1,
         parent_id: parentId,
         receiver_type: receiver.get('ext_type')
       },
@@ -44,6 +46,14 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
         console.error(error);
       }.bind(this)
     });
+  },
+
+  addReceivers: function(receivers) {
+    if (receivers) {
+      for (var i = 0; i < receivers.length; i++) {
+        this.addReceiver( receivers[i]);
+      }
+    }
   },
 
   onBeforeRender: function(component, eOpts) {

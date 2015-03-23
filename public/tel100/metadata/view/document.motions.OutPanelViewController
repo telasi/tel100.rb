@@ -38,6 +38,8 @@
                     "  params: {",
                     "    document_id: document.id,",
                     "    receiver_id: receiver.id,",
+                    "    receiver_role: 'assignee',",
+                    "    ordering: 1,",
                     "    parent_id: parentId,",
                     "    receiver_type: receiver.get('ext_type')",
                     "  },",
@@ -56,6 +58,29 @@
             },
             "name": "addReceiver",
             "designerId": "e820e9c0-20e8-4d72-b70c-7fe1d927dfd5"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "receivers"
+                ],
+                "fn": "addReceivers",
+                "implHandler": [
+                    "if (receivers) {",
+                    "  for (var i = 0; i < receivers.length; i++) {",
+                    "    this.addReceiver( receivers[i]);",
+                    "  }",
+                    "}"
+                ]
+            },
+            "name": "addReceivers",
+            "designerId": "9105a630-7d94-43a9-b5c1-aaef41a36e0a"
         }
     ]
 }
