@@ -68,8 +68,8 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
         helpers.api.document.motion.updateDraft(motion.id, {
           params: changes,
           success: function() {
-            view.fireEvent('datachanged', view, 'update', motion);
             motion.commit();
+            view.fireEvent('datachanged', view, 'update', motion);
           }.bind(this),
           failure: function(message) {
             motion.reject();

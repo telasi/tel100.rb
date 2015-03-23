@@ -171,7 +171,10 @@ Ext.define('Tel100.view.document.editor.Creator', {
                   }
                 },
                 {
-                  xtype: 'documentmotionsauthorpanel'
+                  xtype: 'documentmotionsauthorpanel',
+                  listeners: {
+                    datachanged: 'onPanelDataChangeD'
+                  }
                 },
                 {
                   xtype: 'documentfilepanel'
@@ -203,6 +206,10 @@ Ext.define('Tel100.view.document.editor.Creator', {
   ],
 
   onAssigneeChange: function(panel, operation, item) {
+    this.down('documentmotionsoutpanel').refresh();
+  },
+
+  onPanelDataChangeD: function(panel, operation, item) {
     this.down('documentmotionsoutpanel').refresh();
   },
 

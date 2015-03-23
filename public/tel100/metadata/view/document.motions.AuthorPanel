@@ -459,6 +459,7 @@
                     "helpers.api.document.motion.deleteDraft(item.id, {",
                     "  success: function() {",
                     "    view.refresh();",
+                    "    view.fireEvent('datachanged', view, 'delete');",
                     "  }",
                     "});"
                 ]
@@ -486,6 +487,7 @@
                     "      params: changes,",
                     "      success: function() {",
                     "        motion.commit();",
+                    "        view.fireEvent('datachanged', view, 'update', motion);",
                     "      }.bind(this),",
                     "      failure: function(message) {",
                     "        motion.reject();",

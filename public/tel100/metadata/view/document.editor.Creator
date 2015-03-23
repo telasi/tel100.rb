@@ -488,7 +488,32 @@
                                     },
                                     "name": "document.motions.authorpanel1",
                                     "designerId": "9507dce8-8e97-4a00-8d9b-abcd88ae04f3",
-                                    "masterInstanceId": "e3fa4671-a99b-4b98-adee-9628585fe14b"
+                                    "masterInstanceId": "e3fa4671-a99b-4b98-adee-9628585fe14b",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "panel",
+                                                    "operation",
+                                                    "item"
+                                                ],
+                                                "fn": "onPanelDataChangeD",
+                                                "implHandler": [
+                                                    "this.down('documentmotionsoutpanel').refresh();"
+                                                ],
+                                                "name": "datachanged",
+                                                "scope": "me"
+                                            },
+                                            "name": "onPanelDataChangeD",
+                                            "designerId": "4c36daa5-762c-4447-b5d8-3ce1a124f025"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "linkedinstance",
