@@ -459,6 +459,7 @@
                     "helpers.api.document.motion.deleteDraft(item.id, {",
                     "  success: function() {",
                     "    view.refresh();",
+                    "    view.fireEvent('datachanged', view, 'delete');",
                     "  }",
                     "});"
                 ]

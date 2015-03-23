@@ -164,7 +164,10 @@ Ext.define('Tel100.view.document.editor.Creator', {
                   xtype: 'documentmotionssigneepanel'
                 },
                 {
-                  xtype: 'documentmotionsassigneepanel'
+                  xtype: 'documentmotionsassigneepanel',
+                  listeners: {
+                    datachanged: 'onAssigneeChange'
+                  }
                 },
                 {
                   xtype: 'documentmotionsauthorpanel'
@@ -197,6 +200,10 @@ Ext.define('Tel100.view.document.editor.Creator', {
       ]
     }
   ],
+
+  onAssigneeChange: function(panel, operation, item) {
+    this.down('documentmotionsoutpanel').refresh();
+  },
 
   onDraftmotionChanged: function(hasDraftMotion) {
     var vm = this.getViewModel();

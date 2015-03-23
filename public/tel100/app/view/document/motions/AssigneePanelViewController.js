@@ -42,6 +42,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
         var motion = Ext.create('Tel100.model.document.Motion', motionData);
         var store = grid.getStore();
         store.add(motion);
+        view.fireEvent('datachanged', view, 'add');
       }.bind(this),
       failure: function(error) {
         console.error(error);
