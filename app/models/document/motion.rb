@@ -51,13 +51,17 @@ class Document::Motion < ActiveRecord::Base
     raise I18n.t('models.document_motion.errors.receiver_exists_on_branch') if ( receiver_count > 0 or receiver_user_count > 0 )
     # get ordering
     role = params[:receiver_role]
-    case params[:receiver_role]
-    when ROLE_ASSIGNEE
-      ordering = ORDERING_ASIGNEE
-    when ROLE_SIGNEE
-      ordering = ORDERING_SINGEE + document.motions.where(parent: parent, receiver_role: ROLE_SIGNEE).count
+    if params[:ordering].blank?
+      case params[:receiver_role]
+      when ROLE_ASSIGNEE
+        ordering = ORDERING_ASIGNEE
+      when ROLE_SIGNEE
+        ordering = ORDERING_SINGEE + document.motions.where(parent: parent, receiver_role: ROLE_SIGNEE).count
+      else
+        ordering = ORDERING_AUTHOR
+      end
     else
-      ordering = ORDERING_AUTHOR
+      ordering = params[:ordering]
     end
     # create this
     Document::Motion.create!({
