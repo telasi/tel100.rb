@@ -59,6 +59,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
       xtype: 'tabpanel',
       region: 'center',
       activeTab: 0,
+      deferredRender: false,
       tabPosition: 'bottom',
       items: [
         {
