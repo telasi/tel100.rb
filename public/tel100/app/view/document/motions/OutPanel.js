@@ -56,9 +56,6 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
         {
           xtype: 'button',
           handler: function(button, e) {
-            // var controller = this.up('documentmotionsoutpanel').getController();
-            // var dialog = controller.receiverDialog;
-            // dialog.show();
             var view = this.up('documentmotionsoutpanel');
             var dialog = helpers.party.getPartyDialog(function(assignees) {
               view.getController().addReceivers(assignees);

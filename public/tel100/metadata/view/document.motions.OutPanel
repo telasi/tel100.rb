@@ -124,9 +124,6 @@
                                 ],
                                 "fn": "handler",
                                 "implHandler": [
-                                    "// var controller = this.up('documentmotionsoutpanel').getController();",
-                                    "// var dialog = controller.receiverDialog;",
-                                    "// dialog.show();",
                                     "var view = this.up('documentmotionsoutpanel');",
                                     "var dialog = helpers.party.getPartyDialog(function(assignees) {",
                                     "  view.getController().addReceivers(assignees);",
@@ -367,22 +364,7 @@
                     "  }",
                     "};",
                     "var options = { deep: true };",
-                    "vm.bind('{selection}', onChange, this, options);",
-                    "",
-                    "// selector dialog initalization",
-                    "if (!this.receiverDialog) {",
-                    "  this.receiverDialog = Ext.create('Tel100.view.party.Selector', {",
-                    "    title: i18n.document.motion.selectReceiver",
-                    "  });",
-                    "",
-                    "  this.receiverDialog.on('selectioncomplete', function(receivers) {",
-                    "    if (receivers.length > 0) {",
-                    "      for (var i = 0; i < receivers.length; i++) {",
-                    "        this.addReceiver(receivers[i]);",
-                    "      }",
-                    "    }",
-                    "  }.bind(this));",
-                    "}"
+                    "vm.bind('{selection}', onChange, this, options);"
                 ],
                 "name": "beforerender",
                 "scope": "me"

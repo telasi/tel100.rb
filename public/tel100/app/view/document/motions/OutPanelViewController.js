@@ -68,21 +68,6 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
     };
     var options = { deep: true };
     vm.bind('{selection}', onChange, this, options);
-
-    // selector dialog initalization
-    if (!this.receiverDialog) {
-      this.receiverDialog = Ext.create('Tel100.view.party.Selector', {
-        title: i18n.document.motion.selectReceiver
-      });
-
-      this.receiverDialog.on('selectioncomplete', function(receivers) {
-        if (receivers.length > 0) {
-          for (var i = 0; i < receivers.length; i++) {
-            this.addReceiver(receivers[i]);
-          }
-        }
-      }.bind(this));
-    }
   },
 
   onPanelMotionChange: function(motion) {
