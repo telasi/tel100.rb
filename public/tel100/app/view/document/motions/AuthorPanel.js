@@ -155,7 +155,7 @@ Ext.define('Tel100.view.document.motions.AuthorPanel', {
           text: i18n.document.motion.actions.delete_author,
           icon: '/images/delete.png',
           handler: function() {
-            var view = dataview.up('documentmotionssigneepanel');
+            var view = dataview.up('documentmotionsauthorpanel');
             view.deleteItemAt(index);
           }
         }]
