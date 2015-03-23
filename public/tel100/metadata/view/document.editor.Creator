@@ -435,7 +435,32 @@
                                     },
                                     "name": "document.motions.signeepanel1",
                                     "designerId": "6c040662-e5fb-49a6-9215-b4a251a4c73a",
-                                    "masterInstanceId": "a6e4f453-aa9b-4c0e-8a45-45e445ca2504"
+                                    "masterInstanceId": "a6e4f453-aa9b-4c0e-8a45-45e445ca2504",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "panel",
+                                                    "operation",
+                                                    "item"
+                                                ],
+                                                "fn": "onSigneesChanged",
+                                                "implHandler": [
+                                                    "this.down('documentmotionsoutpanel').refresh();"
+                                                ],
+                                                "name": "datachanged",
+                                                "scope": "me"
+                                            },
+                                            "name": "onSigneesChanged",
+                                            "designerId": "e1af3d57-2358-4df0-8908-c6ad53893d2d"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "linkedinstance",
@@ -503,14 +528,14 @@
                                                     "operation",
                                                     "item"
                                                 ],
-                                                "fn": "onPanelDataChangeD",
+                                                "fn": "onAuthorsChanged",
                                                 "implHandler": [
                                                     "this.down('documentmotionsoutpanel').refresh();"
                                                 ],
                                                 "name": "datachanged",
                                                 "scope": "me"
                                             },
-                                            "name": "onPanelDataChangeD",
+                                            "name": "onAuthorsChanged",
                                             "designerId": "4c36daa5-762c-4447-b5d8-3ce1a124f025"
                                         }
                                     ]

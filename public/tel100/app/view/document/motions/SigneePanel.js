@@ -206,6 +206,7 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
     helpers.api.document.motion.deleteDraft(item.id, {
       success: function() {
         view.refresh();
+        view.fireEvent('datachanged', view, 'delete');
       }
     });
   }
