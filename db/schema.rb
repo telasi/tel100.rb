@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226055621) do
+ActiveRecord::Schema.define(version: 20150324115019) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -90,6 +90,12 @@ ActiveRecord::Schema.define(version: 20150226055621) do
 
   add_index "document_motion", ["document_id"], name: "docmotions_base_idx"
   add_index "document_motion", ["parent_id"], name: "docmotions_prnt_idx"
+
+  create_table "document_relation", force: true do |t|
+    t.integer   "base_id",    limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "related_id", limit: 10, precision: 10, scale: 0, null: false
+    t.timestamp "created_at", limit: 6,                           null: false
+  end
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
     t.text "body"
@@ -171,16 +177,19 @@ ActiveRecord::Schema.define(version: 20150226055621) do
     t.timestamp "updated_at",   limit: 6,                                            null: false
   end
 
-  create_table "hr_vacation", id: false, force: true do |t|
-    t.integer   "userid",        limit: 10, precision: 10, scale: 0, null: false
+  create_table "hr_vacation", force: true do |t|
+    t.integer   "userid",          limit: 10, precision: 10, scale: 0, null: false
     t.datetime  "from_date"
     t.datetime  "to_date"
-    t.integer   "vacation_type", limit: 3,  precision: 3,  scale: 0
-    t.integer   "substitude",    limit: 10, precision: 10, scale: 0
-    t.boolean   "confirmed",                precision: 1,  scale: 0
-    t.timestamp "created_at",    limit: 6,                           null: false
-    t.timestamp "updated_at",    limit: 6,                           null: false
+    t.integer   "vacation_type",   limit: 3,  precision: 3,  scale: 0
+    t.integer   "substitude",      limit: 10, precision: 10, scale: 0
+    t.boolean   "substitude_type",            precision: 1,  scale: 0
+    t.boolean   "confirmed",                  precision: 1,  scale: 0
+    t.timestamp "created_at",      limit: 6,                           null: false
+    t.timestamp "updated_at",      limit: 6,                           null: false
   end
+
+  add_index "hr_vacation", ["substitude"], name: "hr_vacation_substitude_idx"
 
   create_table "hr_vacation_type", force: true do |t|
     t.string "name_ka", limit: 50
