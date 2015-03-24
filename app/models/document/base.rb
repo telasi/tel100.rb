@@ -56,7 +56,7 @@ class Document::Base < ActiveRecord::Base
         text.body = params[:body]
         text.save!
       end
-      self.update_attributes(params.permit(:subject,:type_id,:docdate,:page_count,:additions_count, :direction, :original_number, :original_date))
+      self.update_attributes(params.permit(:subject,:type_id,:docdate,:due_date,:page_count,:additions_count, :direction, :original_number, :original_date))
       self.save!
     end
   end
@@ -82,8 +82,8 @@ class Document::Base < ActiveRecord::Base
     Document::Base.transaction do
       docuser = Document::User.where(document: self, user: user).first
       self.status = docuser.status = CURRENT
-      self.docdate = self.docdate || Date.today
-      self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate)
+      self.docdate = Date.today if self.docdate.blank?
+      self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate) if self.docnumber.blank?
       self.sent_at = self.received_at = Time.now
       self.motions.order('ordering ASC, id ASC').each do |motion|
         motion.send_draft!(user)
