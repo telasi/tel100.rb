@@ -1,0 +1,24 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentsearch",
+        "designer|userClassName": "document.Search",
+        "height": 400,
+        "title": [
+            "{i18n.document.search.ui.search}"
+        ],
+        "width": 800
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "039f705d-1b41-4f8f-9c98-b8a891e3d2eb",
+    "viewControllerInstanceId": "72fc918e-68e2-420a-af96-394f5a4a21c3",
+    "viewModelInstanceId": "333b7a9e-c4b4-4121-969b-837af33a85e7"
+}
