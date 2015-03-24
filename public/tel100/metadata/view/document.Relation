@@ -9,6 +9,7 @@
         "designer|userAlias": "documentrelation",
         "designer|userClassName": "document.Relation",
         "height": null,
+        "layout": "fit",
         "title": [
             "{i18n.document.relation.relations} ({relationCount})"
         ],
@@ -20,5 +21,76 @@
     },
     "designerId": "f109941e-d70e-4dcf-96dd-cc8a778ba5f5",
     "viewControllerInstanceId": "4351ed5b-3b9a-4161-977e-7bf315d34a6c",
-    "viewModelInstanceId": "bfbabff8-dd78-46c2-ad79-5846374001fd"
+    "viewModelInstanceId": "bfbabff8-dd78-46c2-ad79-5846374001fd",
+    "cn": [
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "hideHeaders": true,
+                "title": null
+            },
+            "name": "MyGridPanel2",
+            "designerId": "f8e3dcf5-2c66-479a-bd20-88ad77e420c3",
+            "cn": [
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "docnumber",
+                        "flex": 1,
+                        "text": "document"
+                    },
+                    "name": "MyColumn1",
+                    "designerId": "d77679a9-449b-4cd8-8eb0-3a607062a320"
+                },
+                {
+                    "type": "Ext.grid.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyGridView3",
+                    "designerId": "ababc080-7eb4-423b-bce6-574023b7948c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "add",
+                "type": "plus"
+            },
+            "name": "MyTool1",
+            "designerId": "25d91077-7aef-4c8e-8d19-3a013357b993"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool4",
+            "designerId": "210b1ffb-06a3-4e01-bd95-f0fc681dfe89"
+        }
+    ]
 }

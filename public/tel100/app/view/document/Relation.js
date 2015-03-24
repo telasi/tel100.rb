@@ -18,15 +18,44 @@ Ext.define('Tel100.view.document.Relation', {
   alias: 'widget.documentrelation',
 
   requires: [
-    'Tel100.view.document.RelationViewModel'
+    'Tel100.view.document.RelationViewModel',
+    'Ext.grid.Panel',
+    'Ext.grid.column.Column',
+    'Ext.grid.View',
+    'Ext.panel.Tool'
   ],
 
   viewModel: {
     type: 'documentrelation'
   },
+  layout: 'fit',
 
   bind: {
     title: '{i18n.document.relation.relations} ({relationCount})'
-  }
+  },
+  items: [
+    {
+      xtype: 'gridpanel',
+      hideHeaders: true,
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          dataIndex: 'docnumber',
+          text: 'document',
+          flex: 1
+        }
+      ]
+    }
+  ],
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'plus'
+    },
+    {
+      xtype: 'tool',
+      type: 'refresh'
+    }
+  ]
 
 });
