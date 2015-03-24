@@ -1,0 +1,18 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{",
+            "  relationCount: 0",
+            "}"
+        ],
+        "designer|userAlias": "documentrelation",
+        "designer|userClassName": "document.RelationViewModel"
+    },
+    "designerId": "bfbabff8-dd78-46c2-ad79-5846374001fd"
+}

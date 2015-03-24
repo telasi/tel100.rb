@@ -1,0 +1,24 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentrelation",
+        "designer|userClassName": "document.Relation",
+        "height": null,
+        "title": [
+            "{i18n.document.relation.relations} ({relationCount})"
+        ],
+        "width": null
+    },
+    "name": "MyPanel2",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "f109941e-d70e-4dcf-96dd-cc8a778ba5f5",
+    "viewControllerInstanceId": "4351ed5b-3b9a-4161-977e-7bf315d34a6c",
+    "viewModelInstanceId": "bfbabff8-dd78-46c2-ad79-5846374001fd"
+}

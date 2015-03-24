@@ -135,10 +135,11 @@ module.exports = {
   search: require('./search'),
   type: require('./type'),
   role: require('./role'),
-  file: require('./file')
+  file: require('./file'),
+  relation: require('./relation')
 };
 
-},{"./base":3,"./comment":4,"./file":5,"./folder":6,"./motion":8,"./role":9,"./search":10,"./type":11}],8:[function(require,module,exports){
+},{"./base":3,"./comment":4,"./file":5,"./folder":6,"./motion":8,"./relation":9,"./role":10,"./search":11,"./type":12}],8:[function(require,module,exports){
 module.exports = {
   actions: {
     delete_signee: 'ვიზატორის წაშლა',
@@ -179,6 +180,11 @@ module.exports = {
 
 },{}],9:[function(require,module,exports){
 module.exports = {
+  relations: '<i class="fa fa-files-o"></i> საფუძვლები'
+};
+
+},{}],10:[function(require,module,exports){
+module.exports = {
   owner: 'მფლობელი',
   creator: 'ინიციატორი',
   author: 'ავტორი',
@@ -186,7 +192,7 @@ module.exports = {
   assignee: 'ადრესატი',
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = {
   ui: {
     search:{
@@ -215,7 +221,7 @@ module.exports = {
   }
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = {
   ui: {
     types: 'სახეობები'
@@ -224,14 +230,14 @@ module.exports = {
   order_by: '#'
 };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = {
   title: {
     ka: '<i class="fa fa-times-circle"></i> შეცდომა',
     ru: '<i class="fa fa-times-circle"></i> Ошибка'
   }
 };
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = {
   tree: {
     title: {
@@ -241,7 +247,7 @@ module.exports = {
   }
 };
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 var ka = {}
   , ru = {}
   , data = {
@@ -279,12 +285,12 @@ addProperties(ka, ru, data);
 window.ka = ka;
 window.ru = ru;
 
-},{"./admin":1,"./application":2,"./document":7,"./errors":12,"./hr":13,"./selector":15,"./ui":16,"./user":17,"./vacation":18}],15:[function(require,module,exports){
+},{"./admin":1,"./application":2,"./document":7,"./errors":13,"./hr":14,"./selector":16,"./ui":17,"./user":18,"./vacation":19}],16:[function(require,module,exports){
 module.exports = {
   selectedParties: 'არჩეული პირები და ორგანიზაციები',
   selectorConfirm: 'არჩევანის დადასტურება'
 };
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = {
   confirmTitle: {
     ka: 'დადასტურება',
@@ -331,7 +337,7 @@ module.exports = {
   }
 };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = {
   username: {
     ka: 'მომხმარებელი',
@@ -355,7 +361,7 @@ module.exports = {
   }
 };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = {
   ui: {
     button: {
@@ -431,4 +437,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[14]);
+},{}]},{},[15]);

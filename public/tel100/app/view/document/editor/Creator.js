@@ -21,6 +21,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
     'Tel100.view.document.editor.CreatorViewModel',
     'Tel100.view.document.editor.CreatorViewController',
     'Tel100.view.document.editor.General',
+    'Tel100.view.document.Relation',
     'Tel100.view.document.motions.SigneePanel',
     'Tel100.view.document.motions.AssigneePanel',
     'Tel100.view.document.motions.AuthorPanel',
@@ -160,6 +161,9 @@ Ext.define('Tel100.view.document.editor.Creator', {
                   bind: {
                     title: '{i18n.document.base.ui.generalTabTitle}'
                   }
+                },
+                {
+                  xtype: 'documentrelation'
                 },
                 {
                   xtype: 'documentmotionssigneepanel',

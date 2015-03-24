@@ -6,5 +6,6 @@ module.exports = {
   search: require('./search'),
   type: require('./type'),
   role: require('./role'),
-  file: require('./file')
+  file: require('./file'),
+  relation: require('./relation')
 };
