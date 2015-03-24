@@ -30,6 +30,7 @@ Ext.define('Tel100.view.document.editor.General', {
   viewModel: {
     type: 'documenteditorgeneral'
   },
+  autoScroll: true,
   bodyPadding: 5,
 
   items: [
@@ -50,12 +51,29 @@ Ext.define('Tel100.view.document.editor.General', {
       }
     },
     {
-      xtype: 'datefield',
+      xtype: 'textfield',
       anchor: '100%',
+      bind: {
+        fieldLabel: '{i18n.document.base.docnumber}',
+        value: '{document.docnumber}',
+        readOnly: '{readonly}'
+      }
+    },
+    {
+      xtype: 'datefield',
       format: 'd/m/Y',
       bind: {
         fieldLabel: '{i18n.document.base.docdate}',
         value: '{document.docdate}',
+        readOnly: '{readonly}'
+      }
+    },
+    {
+      xtype: 'datefield',
+      format: 'd/m/Y',
+      bind: {
+        fieldLabel: '{i18n.document.base.due_date}',
+        value: '{document.due_date}',
         readOnly: '{readonly}'
       }
     },

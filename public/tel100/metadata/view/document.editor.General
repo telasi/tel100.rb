@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoScroll": true,
         "bodyPadding": 5,
         "designer|userAlias": "documenteditorgeneral",
         "designer|userClassName": "document.editor.General",
@@ -82,6 +83,34 @@
             ]
         },
         {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "docnumber",
+                "fieldLabel": [
+                    "{i18n.document.base.docnumber}"
+                ],
+                "layout|anchor": "100%",
+                "readOnly": [
+                    "{readonly}"
+                ],
+                "value": [
+                    "{document.docnumber}"
+                ]
+            },
+            "name": "MyTextField2",
+            "configAlternates": {
+                "fieldLabel": "binding",
+                "value": "binding",
+                "readOnly": "binding"
+            },
+            "designerId": "bec6665c-c577-45f0-bcce-45eb5cdcf08a"
+        },
+        {
             "type": "Ext.form.field.Date",
             "reference": {
                 "name": "items",
@@ -94,7 +123,7 @@
                     "{i18n.document.base.docdate}"
                 ],
                 "format": "d/m/Y",
-                "layout|anchor": "100%",
+                "layout|anchor": null,
                 "readOnly": [
                     "{readonly}"
                 ],
@@ -109,6 +138,35 @@
                 "readOnly": "binding"
             },
             "designerId": "89cc25d6-0295-4e93-8a22-a1e3ae9c6a6d"
+        },
+        {
+            "type": "Ext.form.field.Date",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "due_date",
+                "fieldLabel": [
+                    "{i18n.document.base.due_date}"
+                ],
+                "format": "d/m/Y",
+                "layout|anchor": null,
+                "readOnly": [
+                    "{readonly}"
+                ],
+                "value": [
+                    "{document.due_date}"
+                ]
+            },
+            "name": "MyDateField2",
+            "configAlternates": {
+                "fieldLabel": "binding",
+                "value": "binding",
+                "readOnly": "binding"
+            },
+            "designerId": "b24e1488-74b5-495f-bf26-9af3056bc791"
         },
         {
             "type": "Ext.form.field.Number",

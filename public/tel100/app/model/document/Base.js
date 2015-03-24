@@ -42,6 +42,10 @@ Ext.define('Tel100.model.document.Base', {
       name: 'original_date'
     },
     {
+      type: 'date',
+      name: 'due_date'
+    },
+    {
       name: 'my_status'
     },
     {

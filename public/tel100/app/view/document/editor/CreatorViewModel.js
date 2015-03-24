@@ -54,7 +54,7 @@ Ext.define('Tel100.view.document.editor.CreatorViewModel', {
       if (!get('hasDraftMotion')) { return true; }
       // checking subject/body
       if (!get('hasSubject')) { return true; }
-      if (!get('hasBody')) { return true; }
+      // if (!get('hasBody')) { return true; }
       // send is open
       return false;
     }
