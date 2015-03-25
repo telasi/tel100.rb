@@ -10,6 +10,9 @@
         "designer|userClassName": "document.Relation",
         "height": null,
         "layout": "fit",
+        "requires": [
+            "Tel100.view.document.Search"
+        ],
         "title": [
             "{i18n.document.relation.relations} ({relationCount})"
         ],
@@ -76,7 +79,34 @@
                 "type": "plus"
             },
             "name": "MyTool1",
-            "designerId": "25d91077-7aef-4c8e-8d19-3a013357b993"
+            "designerId": "25d91077-7aef-4c8e-8d19-3a013357b993",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onAddRelation",
+                        "implHandler": [
+                            "if (!this.searchDialog) {",
+                            "  this.searchDialog = Ext.create('Tel100.view.document.Search', {",
+                            "    closeAction: 'hide',",
+                            "    modal: true,",
+                            "    maximizable: true",
+                            "  });",
+                            "}",
+                            "this.searchDialog.show();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onAddRelation",
+                    "designerId": "fef601a0-aaba-447c-a602-584be0d92933"
+                }
+            ]
         },
         {
             "type": "Ext.panel.Tool",

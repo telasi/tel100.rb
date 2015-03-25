@@ -31,8 +31,8 @@ Ext.define('Tel100.view.document.folder.Search', {
   viewModel: {
     type: 'documentfoldersearch'
   },
+  autoScroll: true,
   bodyPadding: 10,
-  title: 'My Form',
   url: '/api/documents/base/search',
 
   items: [

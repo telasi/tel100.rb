@@ -6,9 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "closeAction": "hide",
         "designer|userAlias": "documentsearch",
         "designer|userClassName": "document.Search",
         "height": 400,
+        "layout": "border",
         "title": [
             "{i18n.document.search.ui.search}"
         ],
@@ -20,5 +22,41 @@
     },
     "designerId": "039f705d-1b41-4f8f-9c98-b8a891e3d2eb",
     "viewControllerInstanceId": "72fc918e-68e2-420a-af96-394f5a4a21c3",
-    "viewModelInstanceId": "333b7a9e-c4b4-4121-969b-837af33a85e7"
+    "viewModelInstanceId": "333b7a9e-c4b4-4121-969b-837af33a85e7",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "search",
+                "layout|region": "west",
+                "layout|split": true,
+                "title": "",
+                "titleCollapse": false,
+                "width": 300
+            },
+            "name": "document.folder.search1",
+            "designerId": "a7df73a1-2b69-4453-983c-326fe3571f8c",
+            "masterInstanceId": "3281b413-350a-479e-b657-0f1bef619a39"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "grid",
+                "layout|region": "center"
+            },
+            "name": "document.grid.panel1",
+            "designerId": "de6cd784-09c8-4d26-90f5-9fd27a1dcdd7",
+            "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103"
+        }
+    ]
 }

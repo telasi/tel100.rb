@@ -22,13 +22,15 @@ Ext.define('Tel100.view.document.Relation', {
     'Ext.grid.Panel',
     'Ext.grid.column.Column',
     'Ext.grid.View',
-    'Ext.panel.Tool'
+    'Ext.panel.Tool',
+    'Tel100.view.document.Search'
   ],
 
   viewModel: {
     type: 'documentrelation'
   },
   layout: 'fit',
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.relation.relations} ({relationCount})'
@@ -50,12 +52,26 @@ Ext.define('Tel100.view.document.Relation', {
   tools: [
     {
       xtype: 'tool',
-      type: 'plus'
+      type: 'plus',
+      listeners: {
+        click: 'onAddRelation'
+      }
     },
     {
       xtype: 'tool',
       type: 'refresh'
     }
-  ]
+  ],
+
+  onAddRelation: function(tool, e, owner, eOpts) {
+    if (!this.searchDialog) {
+      this.searchDialog = Ext.create('Tel100.view.document.Search', {
+        closeAction: 'hide',
+        modal: true,
+        maximizable: true
+      });
+    }
+    this.searchDialog.show();
+  }
 
 });

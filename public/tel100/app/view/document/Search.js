@@ -18,7 +18,11 @@ Ext.define('Tel100.view.document.Search', {
   alias: 'widget.documentsearch',
 
   requires: [
-    'Tel100.view.document.SearchViewModel'
+    'Tel100.view.document.SearchViewModel',
+    'Tel100.view.document.folder.Search',
+    'Tel100.view.document.grid.Panel',
+    'Ext.form.Panel',
+    'Ext.grid.Panel'
   ],
 
   viewModel: {
@@ -26,9 +30,25 @@ Ext.define('Tel100.view.document.Search', {
   },
   height: 400,
   width: 800,
+  layout: 'border',
+  closeAction: 'hide',
 
   bind: {
     title: '{i18n.document.search.ui.search}'
-  }
+  },
+  items: [
+    {
+      xtype: 'documentfoldersearch',
+      region: 'west',
+      split: true,
+      width: 300,
+      title: '',
+      titleCollapse: false
+    },
+    {
+      xtype: 'documentgridpanel',
+      region: 'center'
+    }
+  ]
 
 });

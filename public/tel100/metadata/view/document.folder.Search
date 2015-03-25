@@ -6,11 +6,12 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoScroll": true,
         "bodyPadding": 10,
         "designer|userAlias": "documentfoldersearch",
         "designer|userClassName": "document.folder.Search",
         "height": null,
-        "title": "My Form",
+        "title": null,
         "url": "/api/documents/base/search",
         "width": null
     },
