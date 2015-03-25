@@ -32,9 +32,7 @@ Ext.application({
     'document.Comment',
     'folder.Document',
     'folder.Standard',
-    'document.File',
-    'hr.party',
-    'bs.Customer'
+    'document.File'
   ],
   stores: [
     'CustomFolders'

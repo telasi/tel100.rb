@@ -18,8 +18,10 @@ Ext.define('Tel100.view.document.folder.SearchViewController', {
   alias: 'controller.documentfoldersearch',
 
   onSearchButtonClick: function(button, e, eOpts) {
-    button.up().up().up().down('documentgridpanel').refresh({url: '/api/documents/base/search',
-    params: button.up('form').getForm().getValues()});
+    var view = this.getView();
+    var params = view.getForm().getValues();
+    var url = '/api/documents/base/search';
+    view.fireEvent('searchstart', url, params);
   },
 
   onResetButtonClick: function(button, e, eOpts) {

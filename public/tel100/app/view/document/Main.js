@@ -32,6 +32,7 @@ Ext.define('Tel100.view.document.Main', {
     type: 'documentmain'
   },
   layout: 'border',
+  defaultListenerScope: true,
 
   items: [
     {
@@ -92,13 +93,27 @@ Ext.define('Tel100.view.document.Main', {
                 selection: '{selection}'
               },
               listeners: {
-                itemdblclick: 'onGridDoubleClick'
+                itemdblclick: {
+                  fn: 'onGridDoubleClick',
+                  scope: 'controller'
+                }
               }
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  listeners: {
+    beforerender: 'onPanelBeforeRender'
+  },
+
+  onPanelBeforeRender: function(component, eOpts) {
+    var view = this;
+    var search = this.down('documentfoldersearch');
+    search.on('searchstart', function(url, params) {
+      view.down('documentgridpanel').refresh({url: url, params: params });
+    });
+  }
 
 });

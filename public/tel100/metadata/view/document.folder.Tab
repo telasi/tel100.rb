@@ -447,7 +447,7 @@
                     "{i18n.document.search.ui.search}"
                 ]
             },
-            "name": "document.folder.search",
+            "name": "document.folder.search1",
             "configAlternates": {
                 "title": "binding"
             },

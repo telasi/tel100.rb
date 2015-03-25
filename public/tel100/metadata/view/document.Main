@@ -27,13 +27,14 @@
             "codeClass": null,
             "userConfig": {
                 "collapsible": true,
+                "designer|displayName": "folders & search",
                 "layout|region": "west",
                 "layout|split": true,
                 "removePanelHeader": null,
                 "titleCollapse": null,
                 "width": 250
             },
-            "name": "document.folder.tab",
+            "name": "document.folder.tab3",
             "designerId": "4b3cd9d6-b437-4268-8d05-67138c82a2ff",
             "masterInstanceId": "c09758ae-9832-4db7-9ae8-b1c0009112a7"
         },
@@ -135,7 +136,7 @@
                                     "{selection}"
                                 ]
                             },
-                            "name": "document.grid.panel",
+                            "name": "document.grid.panel3",
                             "configAlternates": {
                                 "selection": "binding"
                             },
@@ -172,6 +173,28 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPanelBeforeRender",
+                "implHandler": [
+                    "var view = this;",
+                    "var search = this.down('documentfoldersearch');",
+                    "search.on('searchstart', function(url, params) {",
+                    "  view.down('documentgridpanel').refresh({url: url, params: params });",
+                    "});"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onPanelBeforeRender",
+            "designerId": "d86329d2-96b1-4bc7-9171-640aff239da2"
         }
     ]
 }
