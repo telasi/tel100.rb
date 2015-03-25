@@ -15,6 +15,39 @@
 
 Ext.define('Tel100.view.modules.HRViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.moduleshr'
+  alias: 'viewmodel.moduleshr',
+
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.proxy.Rest',
+    'Ext.data.field.Field'
+  ],
+
+  stores: {
+    vacationlist: {
+      autoLoad: true,
+      proxy: {
+        type: 'rest',
+        url: '/api/vacation/list'
+      },
+      fields: [
+        {
+          name: 'id'
+        },
+        {
+          name: 'from_date'
+        },
+        {
+          name: 'to_date'
+        },
+        {
+          name: 'full_name'
+        },
+        {
+          name: 'type_name'
+        }
+      ]
+    }
+  }
 
 });

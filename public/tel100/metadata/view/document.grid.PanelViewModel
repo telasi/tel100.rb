@@ -6,6 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{ selectionCriteria: null}"
+        ],
         "designer|userAlias": "documentgridpanel",
         "designer|userClassName": "document.grid.PanelViewModel"
     },

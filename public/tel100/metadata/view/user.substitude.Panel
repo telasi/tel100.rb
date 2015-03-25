@@ -1,0 +1,76 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "alignTarget": null,
+        "bodyPadding": 3,
+        "bodyStyle": [
+            "{\"background-color\":\"red\",",
+            "\"color\":\"white\",",
+            "\"text-align\": \"center\"}"
+        ],
+        "cls": "floating-substitude-top",
+        "designer|uiInterfaceName": "default",
+        "designer|userAlias": "usersubstitudepanel",
+        "designer|userClassName": "user.substitude.Panel",
+        "floating": true,
+        "header": false,
+        "height": 26,
+        "html": [
+            "asadasdasds"
+        ],
+        "layout": "border",
+        "margin": null,
+        "shadow": "drop",
+        "shadowOffset": 20,
+        "style": null,
+        "title": null,
+        "width": 500
+    },
+    "name": "MyPanel1",
+    "designerId": "d6532757-61b0-48a1-b7d2-b26929a4b62e",
+    "viewControllerInstanceId": "ca51d49a-98d7-4668-b82a-403f6ffa04d0",
+    "viewModelInstanceId": "7a82ceb8-1bb0-4fea-9059-b1c226813102",
+    "cn": [
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|region": "east",
+                "padding": 0,
+                "text": "X",
+                "width": 20
+            },
+            "name": "MyButton6",
+            "designerId": "7eba30a6-41d9-4c1b-9360-20e6f5aafeaa",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onButtonClick",
+                        "implHandler": [
+                            "button.up('panel').destroy();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onButtonClick",
+                    "designerId": "7d818949-3f84-4abd-883b-858d5f1eab59"
+                }
+            ]
+        }
+    ]
+}

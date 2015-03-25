@@ -41,5 +41,9 @@ module.exports = {
   properties: {
     ka: '<i class="fa fa-list-ul"></i> თვისებები',
     ru: '<i class="fa fa-list-ul"></i> Свойства'
+  },
+  pages : {
+    ka: 'გვერდები',
+    ru: 'страницы'
   }
 };

@@ -3,7 +3,9 @@ class HR::Vacation::Vacation < ActiveRecord::Base
   self.table_name  = 'hr_vacation'
   self.sequence_name = 'hr_vacation_seq'
   self.set_integer_columns :substitude_type, :confirmed
+  belongs_to :type, class_name: 'HR::Vacation::Type', foreign_key: 'vacation_type'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'userid'
+  belongs_to :sub_user, class_name: 'Sys::User', foreign_key: 'substitude'
 
   validate :correct_dates
   validate :date_not_intersect
@@ -19,6 +21,6 @@ class HR::Vacation::Vacation < ActiveRecord::Base
   end
 
   def self.get_substitudes(user)
-  	HR::Vacation::Vacation.confirmed.where("from_date <= sysdate and to_date >= sysdate and substitude = ?", user.id)
+  	HR::Vacation::Vacation.confirmed.where("from_date <= sysdate and to_date >= sysdate and substitude = ? and substitude_type <> 1", user.id)
   end
 end

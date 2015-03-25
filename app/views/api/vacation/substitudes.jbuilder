@@ -1,6 +1,6 @@
 json.array! @substitudes do |sub|
   json.id         			sub.id
-  json.userid 			sub.userid
+  json.userid 				sub.userid
   json.substitude_type      sub.substitude_type
   
   user = sub.user

@@ -1,0 +1,47 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "bs.Customer",
+        "schema": "tel100"
+    },
+    "name": "MyModel",
+    "designerId": "cffb783d-d6c0-4fa1-8bb6-2d078e69e3f5",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "extraParams": [
+                    "{ name: ''}"
+                ],
+                "url": "/api/bs/list"
+            },
+            "name": "MyRestProxy7",
+            "designerId": "f4b0eb5f-ff6b-4bba-9bc9-c6807ac2af72",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "rootProperty": "data"
+                    },
+                    "name": "MyJsonReader1",
+                    "designerId": "e40c43b3-a77e-4a6d-9120-46dbfbe8961e"
+                }
+            ]
+        }
+    ]
+}

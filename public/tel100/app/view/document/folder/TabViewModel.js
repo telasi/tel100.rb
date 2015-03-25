@@ -18,7 +18,9 @@ Ext.define('Tel100.view.document.folder.TabViewModel', {
   alias: 'viewmodel.documentfoldertab',
 
   requires: [
-    'Ext.data.Store'
+    'Ext.data.Store',
+    'Ext.data.proxy.Rest',
+    'Ext.data.field.Field'
   ],
 
   stores: {
@@ -28,6 +30,36 @@ Ext.define('Tel100.view.document.folder.TabViewModel', {
     standardfolders: {
       autoLoad: true,
       model: 'Tel100.model.folder.Standard'
+    },
+    substitudeStore: {
+      autoLoad: true,
+      proxy: {
+        type: 'rest',
+        url: '/api/vacation/substitudes'
+      },
+      fields: [
+        {
+          name: 'id'
+        },
+        {
+          name: 'substitude_type'
+        },
+        {
+          calculate: function(data) {
+            return data.first_name + " " + data.last_name;
+          },
+          name: 'name'
+        },
+        {
+          name: 'first_name'
+        },
+        {
+          name: 'last_name'
+        },
+        {
+          name: 'userid'
+        }
+      ]
     }
   }
 

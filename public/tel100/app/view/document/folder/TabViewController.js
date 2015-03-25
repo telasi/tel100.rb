@@ -29,6 +29,7 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
   onStandardGridpanelSelect: function(rowmodel, record, index, eOpts) {
     this.refreshDocuments({folderType: 'standard', folderId: record.id});
     this.getView().down('#customFolders').getSelectionModel().deselectAll();
+    this.getView().up().getViewModel().set('customfolderselection', null);
   },
 
   onGridpanelAfterRender: function(component, eOpts) {
@@ -47,6 +48,7 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
         var proto = Ext.dd.DropZone.prototype;
         return proto.dropAllowed;
       },
+
       onNodeDrop : function(target, dd, e, data){
         var customGrid = Ext.ComponentQuery.query('grid[itemId=customFolders]')[0];
         var view = customGrid.getView();
@@ -66,10 +68,28 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
   onCustomFoldersSelect: function(rowmodel, record, index, eOpts) {
     this.refreshDocuments({folderType: 'custom', folderId: record.id});
     this.getView().down('#standardFolders').getSelectionModel().deselectAll();
+    this.getView().up().getViewModel().set('customfolderselection', rowmodel.getSelection());
   },
 
   onCustomFoldersBeforeRender: function(component, eOpts) {
     Ext.getStore('CustomFolders').load();
+  },
+
+  onGridpanelCellClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    var me = this;
+    var vm = Ext.ComponentQuery.query('#main-viewport')[0].getViewModel();
+    vm.set('substitude',record);
+
+    if(Ext.ComponentQuery.query('usersubstitudepanel').length === 0){
+      var toppanel = Ext.create('Tel100.view.user.substitude.Panel',
+        { html: i18n.vacation.ui.substitude_mode.title + record.data.name });
+      toppanel.down('button').on('click',function(){
+        vm.set('substitude',null);
+        me.getView().up().down('documentgridpanel').refresh();
+      });
+      toppanel.show().alignTo(Ext.getBody(), 't-t');
+      this.getView().up().down('documentgridpanel').refresh();
+    }
   }
 
 });

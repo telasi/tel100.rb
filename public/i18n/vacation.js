@@ -1,8 +1,12 @@
 module.exports = {
   ui: {
-    button: {
+    title: {
       ka: 'შვებულება',
       ru: 'Отсутствие'
+    },
+    button: {
+      ka: 'ახალი',
+      ru: 'Новое'
     },
     save: {
       ka: 'შენაზვა',
@@ -11,6 +15,12 @@ module.exports = {
     cancel: {
       ka: 'გაუქმება',
       ru: 'Отмена'
+    },
+    substitude_mode: {
+      title: {
+        ka: 'თქვენ ათვალიერებთ დოკუმენტები: ',
+        ru: 'Вы просматриваете документы: '
+      }
     }
   },
   fields: {

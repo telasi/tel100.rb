@@ -21,8 +21,12 @@ Ext.define('Tel100.view.modules.HR', {
     'Tel100.view.modules.HRViewModel',
     'Tel100.view.modules.HRViewController',
     'Tel100.view.hr.tree.Panel',
+    'Ext.tab.Panel',
+    'Ext.tab.Tab',
     'Ext.toolbar.Toolbar',
-    'Ext.button.Button',
+    'Ext.grid.Panel',
+    'Ext.grid.column.Date',
+    'Ext.grid.View',
     'Ext.tree.Panel'
   ],
 
@@ -33,21 +37,87 @@ Ext.define('Tel100.view.modules.HR', {
 
   items: [
     {
-      xtype: 'toolbar',
+      xtype: 'tabpanel',
+      activeTab: 0,
       items: [
         {
-          xtype: 'button',
+          xtype: 'panel',
           bind: {
-            text: '{i18n.vacation.ui.button}'
+            title: '{i18n.vacation.ui.title}'
           },
-          listeners: {
-            click: 'onButtonClick'
-          }
+          dockedItems: [
+            {
+              xtype: 'toolbar',
+              dock: 'top',
+              items: [
+                {
+                  xtype: 'button',
+                  bind: {
+                    text: '{i18n.vacation.ui.button}'
+                  },
+                  listeners: {
+                    click: 'onButtonClick'
+                  }
+                }
+              ]
+            }
+          ],
+          items: [
+            {
+              xtype: 'gridpanel',
+              title: 'ისტორია',
+              bind: {
+                store: '{vacationlist}'
+              },
+              columns: [
+                {
+                  xtype: 'datecolumn',
+                  dataIndex: 'from_date',
+                  flex: 2,
+                  format: 'd/m/Y',
+                  bind: {
+                    text: '{i18n.vacation.fields.from}'
+                  }
+                },
+                {
+                  xtype: 'datecolumn',
+                  dataIndex: 'to_date',
+                  flex: 2,
+                  format: 'd/m/Y',
+                  bind: {
+                    text: '{i18n.vacation.fields.to}'
+                  }
+                },
+                {
+                  xtype: 'gridcolumn',
+                  dataIndex: 'type_name',
+                  flex: 10,
+                  bind: {
+                    text: '{i18n.vacation.fields.type}'
+                  }
+                },
+                {
+                  xtype: 'gridcolumn',
+                  dataIndex: 'full_name',
+                  flex: 10,
+                  bind: {
+                    text: '{i18n.vacation.fields.substitude}'
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          xtype: 'panel',
+          title: 'HR Structure',
+          items: [
+            {
+              xtype: 'hrtreepanel'
+            }
+          ]
         }
       ]
-    },
-    {
-      xtype: 'hrtreepanel'
     }
   ]
 

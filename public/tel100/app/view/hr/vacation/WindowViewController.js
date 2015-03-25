@@ -25,7 +25,7 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
     receiverDialog.on('selectioncomplete', function(receivers) {
       if (receivers.length > 0) {
         var substituder = receivers[0];
-        if (substituder.user_id !== undefined){
+        if (substituder.get('user_id') !== undefined){
           this.getView().down('form').getForm().findField('substitude').setValue(substituder.user_id);
           this.getView().down('form').getForm().findField('substitude_name').setValue(substituder.data.full_name);
         }
