@@ -20,7 +20,6 @@ Ext.define('Tel100.view.document.folder.Tab', {
   requires: [
     'Tel100.view.document.folder.TabViewModel',
     'Tel100.view.document.folder.TabViewController',
-    'Tel100.view.document.folder.Substitude',
     'Tel100.view.document.folder.Search',
     'Ext.tab.Tab',
     'Ext.grid.Panel',
@@ -51,7 +50,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
           region: 'north',
           itemId: 'standardFolders',
           header: false,
-          title: 'My Grid Panel',
+          sortableColumns: false,
           bind: {
             store: '{standardfolders}'
           },
@@ -64,6 +63,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
                 }
                 return record.data.icon + ' ' + value;
               },
+              sortable: false,
               dataIndex: 'name',
               flex: 1,
               bind: {
@@ -74,7 +74,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
           selModel: {
             selType: 'rowmodel',
             allowDeselect: true,
-            mode: 'MULTI'
+            mode: 'SINGLE'
           },
           listeners: {
             select: {
@@ -88,7 +88,6 @@ Ext.define('Tel100.view.document.folder.Tab', {
           region: 'north',
           itemId: 'customFolders',
           header: false,
-          title: 'My Grid Panel',
           store: 'CustomFolders',
           columns: [
             {
@@ -117,10 +116,27 @@ Ext.define('Tel100.view.document.folder.Tab', {
           }
         },
         {
-          xtype: 'documentfoldersubstitude',
+          xtype: 'gridpanel',
+          region: 'south',
           collapsible: true,
-          title: 'Substitute',
-          region: 'south'
+          title: 'Substitude',
+          hideHeaders: true,
+          bind: {
+            store: '{substitudeStore}'
+          },
+          columns: [
+            {
+              xtype: 'gridcolumn',
+              dataIndex: 'name',
+              flex: 1
+            }
+          ],
+          listeners: {
+            cellclick: {
+              fn: 'onGridpanelCellClick',
+              scope: 'controller'
+            }
+          }
         }
       ]
     },

@@ -4,7 +4,7 @@ class AddPartyTable < ActiveRecord::Migration
     execute <<-SQL
       create table PARTY_BASE (
         ID         number(10, 0) not null,
-        TYPE       varchar2(20 CHAR) not null,
+        ORG_TYPE   varchar2(20 CHAR) not null,
         IDENTITY	 varchar2(30 CHAR),
         NAME_KA    varchar2(200 CHAR),
         NAME_RU    varchar2(200 CHAR),
@@ -12,6 +12,9 @@ class AddPartyTable < ActiveRecord::Migration
         ADDRESS_KA varchar2(500 CHAR),
         ADDRESS_RU varchar2(500 CHAR),
         ADDRESS_EN varchar2(500 CHAR),
+        CONTACT_KA varchar2(200 CHAR),
+        CONTACT_RU varchar2(200 CHAR),
+        CONTACT_EN varchar2(200 CHAR),
         PHONES		 varchar2(100 CHAR),
         EMAIL      varchar2(50 CHAR),
         ACCOUNT    varchar2(50 CHAR),

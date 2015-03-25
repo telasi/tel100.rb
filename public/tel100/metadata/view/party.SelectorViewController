@@ -24,7 +24,7 @@
                 ],
                 "fn": "onAddParty",
                 "implHandler": [
-                    "var grid = this.getView().down('gridpanel');",
+                    "var grid = this.getView().getComponent('selectedParties');",
                     "grid.getStore().add(obj);"
                 ]
             },
@@ -44,7 +44,7 @@
                 ],
                 "fn": "onRemoveParty",
                 "implHandler": [
-                    "var grid = this.getView().down('gridpanel');",
+                    "var grid = this.getView().getComponent('selectedParties');",
                     "var store = grid.getStore();",
                     "store.remove(obj);"
                 ]

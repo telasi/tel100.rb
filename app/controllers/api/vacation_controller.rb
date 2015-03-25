@@ -23,4 +23,8 @@ class Api::VacationController < ApiController
   def substitudes
     @substitudes = HR::Vacation::Vacation.get_substitudes(current_user)
   end
+
+  def list
+    @list = HR::Vacation::Vacation.where(userid: current_user)
+  end
 end

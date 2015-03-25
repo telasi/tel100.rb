@@ -21,12 +21,15 @@ Ext.define('Tel100.view.party.Selector', {
     'Tel100.view.party.SelectorViewModel',
     'Tel100.view.party.SelectorViewController',
     'Tel100.view.hr.tree.Panel',
-    'Ext.toolbar.Toolbar',
-    'Ext.button.Button',
-    'Ext.toolbar.Spacer',
+    'Tel100.view.hr.party.Grid',
+    'Tel100.view.bs.customer.Panel',
+    'Ext.tab.Panel',
     'Ext.tree.Panel',
-    'Ext.resizer.Splitter',
+    'Ext.tab.Tab',
     'Ext.grid.Panel',
+    'Ext.toolbar.Toolbar',
+    'Ext.toolbar.Spacer',
+    'Ext.resizer.Splitter',
     'Ext.grid.View',
     'Ext.grid.column.Column',
     'Ext.panel.Tool'
@@ -36,8 +39,8 @@ Ext.define('Tel100.view.party.Selector', {
   viewModel: {
     type: 'partyselector'
   },
-  height: 400,
-  width: 800,
+  height: 600,
+  width: 950,
   autoDestroy: false,
   closeAction: 'hide',
   title: 'Select Party',
@@ -49,6 +52,96 @@ Ext.define('Tel100.view.party.Selector', {
     type: 'hbox',
     align: 'stretch'
   },
+  items: [
+    {
+      xtype: 'tabpanel',
+      flex: 1,
+      activeTab: 0,
+      items: [
+        {
+          xtype: 'hrtreepanel',
+          tools: [
+            {
+              type: 'plus',
+              handler: function() {
+                var tree = this.up('hrtreepanel');
+                var selection = tree.getSelection();
+                if (selection.length > 0) {
+                  var controller = this.up('partyselector').getController();
+                  controller.onAddParty(selection[0]);
+                }
+              }
+            }
+          ],
+          cls: 'panel-with-border',
+          listeners: {
+            celldblclick: 'onHRTreeDblClick'
+          }
+        },
+        {
+          xtype: 'hrpartygrid',
+          listeners: {
+            itemdblclick: 'onPartyGridpanelItemDblClick'
+          }
+        },
+        {
+          xtype: 'bscustomerpanel',
+          listeners: {
+            itemdblclick: 'onCustomerGridpanelItemDblClick'
+          }
+        }
+      ]
+    },
+    {
+      xtype: 'splitter',
+      width: 5
+    },
+    {
+      xtype: 'gridpanel',
+      cls: 'panel-with-border',
+      itemId: 'selectedParties',
+      width: 300,
+      bodyBorder: true,
+      hideHeaders: true,
+      bind: {
+        title: '{i18n.selector.selectedParties}',
+        store: '{parties}'
+      },
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            switch(record.get('ext_type')){
+              case 'hr.Employee':
+              if(record.toTreeHtml){
+                return record.toTreeHtml();
+              }
+              break;
+              case 'hr.Party':
+              return record.get('name_ka');
+              case 'hr.Customer':
+              return record.get('name');
+            }
+          },
+          dataIndex: 'name',
+          text: 'Name',
+          flex: 1
+        }
+      ],
+      listeners: {
+        celldblclick: 'onSelectedPartiesCellDblClick'
+      },
+      tools: [
+        {
+          xtype: 'tool',
+          type: 'minus',
+          listeners: {
+            click: 'onRemoveToolClick'
+          }
+        }
+      ]
+    }
+  ],
   dockedItems: [
     {
       xtype: 'toolbar',
@@ -80,68 +173,24 @@ Ext.define('Tel100.view.party.Selector', {
       ]
     }
   ],
-  items: [
-    {
-      xtype: 'hrtreepanel',
-      tools: [
-        {
-          type: 'plus',
-          handler: function() {
-            var tree = this.up('hrtreepanel');
-            var selection = tree.getSelection();
-            if (selection.length > 0) {
-              var controller = this.up('partyselector').getController();
-              controller.onAddParty(selection[0]);
-            }
-          }
-        }
-      ],
-      cls: 'panel-with-border',
-      flex: 1,
-      listeners: {
-        celldblclick: 'onHRTreeDblClick'
-      }
-    },
-    {
-      xtype: 'splitter',
-      width: 5
-    },
-    {
-      xtype: 'gridpanel',
-      cls: 'panel-with-border',
-      itemId: 'selectedParties',
-      width: 300,
-      bodyBorder: true,
-      hideHeaders: true,
-      bind: {
-        title: '{i18n.selector.selectedParties}',
-        store: '{parties}'
-      },
-      columns: [
-        {
-          xtype: 'gridcolumn',
-          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-            return record.toTreeHtml();
-          },
-          dataIndex: 'name',
-          text: 'Name',
-          flex: 1
-        }
-      ],
-      listeners: {
-        celldblclick: 'onSelectedPartiesCellDblClick'
-      },
-      tools: [
-        {
-          xtype: 'tool',
-          type: 'minus',
-          listeners: {
-            click: 'onRemoveToolClick'
-          }
-        }
-      ]
+
+  onHRTreeDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    if (record.get('ext_type') === 'hr.Employee' && record.get('has_user')) {
+      this.getController().onAddParty(record);
     }
-  ],
+  },
+
+  onPartyGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
+       if (record.get('ext_type') === 'hr.Party') {
+              this.getController().onAddParty(record);
+       }
+  },
+
+  onCustomerGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
+    if (record.get('ext_type') === 'hr.Customer') {
+          this.getController().onAddParty(record);
+    }
+  },
 
   onCancelClick: function(button, e, eOpts) {
     this.close();
@@ -155,12 +204,6 @@ Ext.define('Tel100.view.party.Selector', {
     this.fireEvent('selectioncomplete', data);
     store.removeAll();
     this.close();
-  },
-
-  onHRTreeDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
-    if (record.get('ext_type') === 'hr.Employee' && record.get('has_user')) {
-      this.getController().onAddParty(record);
-    }
   },
 
   onSelectedPartiesCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {

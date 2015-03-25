@@ -22,17 +22,22 @@ Ext.define('Tel100.view.document.MainViewModel', {
   ],
 
   data: {
-    selection: null
+    selection: null,
+    customfolderselection: null
   },
 
   formulas: {
     deleteDraftButtonDisabled: function(get) {
       var selection = get('selection');
-      if (selection) {
-        var status = selection.get('status');
-        return status !== helpers.document.status.DRAFT;
+      if (this.getData().customfolderselection){
+        return false;
       } else {
-        return true;
+        if (selection) {
+          var status = selection.get('status');
+          return status !== helpers.document.status.DRAFT;
+        } else {
+          return true;
+        }
       }
     }
   }

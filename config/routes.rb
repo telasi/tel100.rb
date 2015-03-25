@@ -36,22 +36,28 @@ Rails.application.routes.draw do
     end
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
+      get '/party/list', action: 'partylist'
+      post '/party/create', action: 'partycreate'
+    end
+    scope '/bs', controller: 'bs' do
+      get '/list', action: 'list'
     end
     scope 'vacation', controller: 'vacation' do
       get '/types', action: 'types'
       post '/create', action: 'create'
       get '/substitudes', action: 'substitudes'
+      get '/list', action: 'list'
     end
     scope 'folder', controller: 'folder' do
       get '/', action: 'index'
       get '/standard', action: 'standard'
       post '/', action: 'create'
-      delete '/:id', action: 'delete'
       post '/order', action: 'order'
       get '/document', action: 'document_index'
       post '/document/', action: 'document_create'
-      delete '/document', action: 'document_delete'
+      delete '/document/', action: 'document_delete'
       post '/search', action: 'search'
+      delete '/:id', action: 'delete'
     end
     namespace 'sys' do
       scope 'users', controller: 'users' do

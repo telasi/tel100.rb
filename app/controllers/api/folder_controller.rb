@@ -48,5 +48,7 @@ class Api::FolderController < ApiController
   end
 
   def document_delete
+    doc = Folder::Document.where(folder_id: params[:folder_id], doc_id: params[:doc_id]).first
+    doc.destroy if doc
   end
 end

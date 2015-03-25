@@ -1,0 +1,448 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "buttonAlign": "center",
+        "designer|userAlias": "hrpartyadd",
+        "designer|userClassName": "hr.party.Add",
+        "height": null,
+        "layout": "fit",
+        "modal": true,
+        "resizable": false,
+        "title": [
+            "{i18n.hr.party.newparty}"
+        ],
+        "width": 500
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "title": "binding",
+        "resizable": "boolean"
+    },
+    "designerId": "9538e1e5-eb9e-4baf-a4b3-6f0ac6170fb7",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "buttonAlign",
+            "type": "string"
+        }
+    ],
+    "viewControllerInstanceId": "410602a3-0901-4701-8b15-74b79a4dc4e9",
+    "viewModelInstanceId": "e6b84199-5834-4d8d-8a19-a600ef871205",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 0,
+                "buttonAlign": "center",
+                "container|align": "stretch",
+                "header": false,
+                "layout": "vbox",
+                "title": "My Form",
+                "url": "/api/hr/party/create"
+            },
+            "name": "MyForm2",
+            "designerId": "bb854e40-91a0-4d5c-a0f8-6cf150d6ec17",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "buttonAlign",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.tab.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "activeTab": 0,
+                        "tabPosition": null
+                    },
+                    "name": "MyTabPanel2",
+                    "designerId": "50a39c75-17ba-4fae-90e9-ad959d9b70ff",
+                    "cn": [
+                        {
+                            "type": "Ext.panel.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout": "form",
+                                "title": "KA"
+                            },
+                            "name": "MyPanel2",
+                            "designerId": "146aaedc-8225-4e8d-8600-78fd04486751",
+                            "cn": [
+                                {
+                                    "type": "Ext.tab.Tab",
+                                    "reference": {
+                                        "name": "tabConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "name": "TabConfig8",
+                                    "designerId": "a656107f-eef5-4588-ad00-6f63f344970a"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": [
+                                            "{i18n.hr.party.fields.name}"
+                                        ],
+                                        "name": "name_ka"
+                                    },
+                                    "name": "MyTextField10",
+                                    "configAlternates": {
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "9e91a5f0-4f74-4ecf-bf2f-0fc871014733"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": [
+                                            "{i18n.hr.party.fields.address}"
+                                        ],
+                                        "name": "address_ka"
+                                    },
+                                    "name": "MyTextField11",
+                                    "configAlternates": {
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "0187b637-296d-43c9-a081-4cfed26efda0"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": [
+                                            "{i18n.hr.party.fields.contact}"
+                                        ],
+                                        "name": "contact_ka"
+                                    },
+                                    "name": "MyTextField12",
+                                    "configAlternates": {
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "bde3bee4-77b2-4efb-aaa5-374771f53ac0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.panel.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout": "form",
+                                "title": "RU"
+                            },
+                            "name": "MyPanel4",
+                            "designerId": "a177b61d-3cbc-40b0-8f05-3ecf9d274da9",
+                            "cn": [
+                                {
+                                    "type": "Ext.tab.Tab",
+                                    "reference": {
+                                        "name": "tabConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "name": "TabConfig9",
+                                    "designerId": "4c4f7181-0405-42f8-bd30-065a16fdcc95"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": [
+                                            "{i18n.hr.party.fields.name}"
+                                        ],
+                                        "name": "name_ru"
+                                    },
+                                    "name": "MyTextField13",
+                                    "configAlternates": {
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "b8f84dfc-93e2-46af-99ae-44c631eb5efc"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": [
+                                            "{i18n.hr.party.fields.address}"
+                                        ],
+                                        "name": "address_ru"
+                                    },
+                                    "name": "MyTextField14",
+                                    "configAlternates": {
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "089d0271-001d-4709-891c-38a88741f01e"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": [
+                                            "{i18n.hr.party.fields.contact}"
+                                        ],
+                                        "name": "contact_ru"
+                                    },
+                                    "name": "MyTextField15",
+                                    "configAlternates": {
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "3274b07c-f2b2-4544-a2ec-0167e6d85c06"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.panel.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout": "form",
+                                "title": "EN"
+                            },
+                            "name": "MyPanel5",
+                            "designerId": "1989b24a-319d-44ac-9b3a-d2d932850c7b",
+                            "cn": [
+                                {
+                                    "type": "Ext.tab.Tab",
+                                    "reference": {
+                                        "name": "tabConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "name": "TabConfig10",
+                                    "designerId": "ada7b665-a3a7-45e4-88ad-6c66636adca2"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": [
+                                            "{i18n.hr.party.fields.name}"
+                                        ],
+                                        "name": "name_en"
+                                    },
+                                    "name": "MyTextField16",
+                                    "configAlternates": {
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "ba03fd50-f7d3-4151-8aef-97586f9f4eb5"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": [
+                                            "{i18n.hr.party.fields.address}"
+                                        ],
+                                        "name": "address_en"
+                                    },
+                                    "name": "MyTextField17",
+                                    "configAlternates": {
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "d3fcb4c4-6878-417e-bb8d-981eb1661ede"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": [
+                                            "{i18n.hr.party.fields.contact}"
+                                        ],
+                                        "name": "contact_en"
+                                    },
+                                    "name": "MyTextField18",
+                                    "configAlternates": {
+                                        "fieldLabel": "binding"
+                                    },
+                                    "designerId": "22177a44-3756-4015-a651-169620b071a1"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout": "form"
+                    },
+                    "name": "MyContainer3",
+                    "designerId": "bf532d4d-2f23-40cc-8979-3a8d1ff298eb",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": [
+                                    "{i18n.hr.party.fields.identity}"
+                                ],
+                                "name": "identity"
+                            },
+                            "name": "MyTextField9",
+                            "configAlternates": {
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "6fa88737-404b-409f-9fe4-425b31ca181a"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": [
+                                    "{i18n.hr.party.fields.phones}"
+                                ],
+                                "name": "phones"
+                            },
+                            "name": "MyTextField19",
+                            "configAlternates": {
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "d55786f9-fbaa-460c-a057-64c30f5eb40d"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Email",
+                                "name": "email"
+                            },
+                            "name": "MyTextField20",
+                            "designerId": "123dd22c-8889-4310-aaa7-25e4b0547d14"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "formBind": null,
+                        "margin": 5,
+                        "padding": null,
+                        "text": [
+                            "{i18n.ui.save}"
+                        ],
+                        "width": null
+                    },
+                    "name": "MyButton7",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "3437a395-d794-4552-b033-3396811e68c4",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonClick",
+                                "implHandler": [
+                                    "this.getView().down('form').submit({",
+                                    "  success: function(form, action) {",
+                                    "      Ext.Msg.alert('Success');",
+                                    "      form.owner.up('window').close();",
+                                    "    },",
+                                    "    failure: function(form, action) {",
+                                    "      Ext.Msg.alert('Error', action.result.error);",
+                                    "    }",
+                                    "});"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onButtonClick",
+                            "designerId": "c29ef60a-094c-434b-94cb-ba87c9d1d8b9"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

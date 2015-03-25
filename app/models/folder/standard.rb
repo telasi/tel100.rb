@@ -56,6 +56,7 @@ class Folder::Standard
    		when INBOX_READ
    			Document::User.where('document_user.status = ? AND is_new = ? AND user_id = ?', Document::Status::CURRENT, 0, user.id)
    		when INBOX_RESENT
+        Document::Motion.where('document_motion.parent_id IS NOT NULL and sender_user_id = ? ', user.id)
    		when SENT
    			Document::User.where('document_user.status = ? AND user_id = ?', Document::Status::SENT, user.id)
     end

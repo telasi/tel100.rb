@@ -1,0 +1,47 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "hr.party",
+        "schema": "tel100"
+    },
+    "name": "MyModel",
+    "designerId": "b5f73a09-073c-442c-a7cf-9b713e2672c3",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "extraParams": [
+                    "{ name : ''}"
+                ],
+                "url": "/api/hr/party/list"
+            },
+            "name": "MyRestProxy6",
+            "designerId": "b46929ed-df1a-4a5c-b3fc-eb865c92e8eb",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "rootProperty": "data"
+                    },
+                    "name": "MyJsonReader2",
+                    "designerId": "852dc392-b2db-40fd-a2fb-74936fad8689"
+                }
+            ]
+        }
+    ]
+}

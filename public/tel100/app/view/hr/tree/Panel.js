@@ -23,6 +23,7 @@ Ext.define('Tel100.view.hr.tree.Panel', {
     'Ext.tree.View',
     'Ext.tree.Column',
     'Ext.panel.Tool',
+    'Ext.toolbar.Toolbar',
     'Tel100.model.hr.Employee',
     'Tel100.model.hr.Organization'
   ],
@@ -72,6 +73,12 @@ Ext.define('Tel100.view.hr.tree.Panel', {
       listeners: {
         click: 'onRefresh'
       }
+    }
+  ],
+  dockedItems: [
+    {
+      xtype: 'toolbar',
+      dock: 'bottom'
     }
   ],
 

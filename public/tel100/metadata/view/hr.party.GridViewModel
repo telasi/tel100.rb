@@ -1,0 +1,31 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "hrpartygrid",
+        "designer|userClassName": "hr.party.GridViewModel"
+    },
+    "designerId": "7cf8718e-50ca-4ece-b95f-609d0477f4ae",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "party",
+                "model": "hr.party",
+                "name": "party",
+                "pageSize": 10
+            },
+            "name": "MyStore8",
+            "designerId": "9ccd2d90-0033-4d25-b559-5db46fa47ed6"
+        }
+    ]
+}

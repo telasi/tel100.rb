@@ -6,6 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            " {substitude: null}"
+        ],
         "designer|userAlias": "main",
         "designer|userClassName": "MainViewModel"
     },

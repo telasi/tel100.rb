@@ -32,7 +32,9 @@ Ext.application({
     'document.Comment',
     'folder.Document',
     'folder.Standard',
-    'document.File'
+    'document.File',
+    'hr.party',
+    'bs.Customer'
   ],
   stores: [
     'CustomFolders'
@@ -70,7 +72,6 @@ Ext.application({
     'document.motions.Panel',
     'document.motions.Properties',
     'document.file.Panel',
-    'document.folder.SubItem',
     'document.motions.AssigneePanel',
     'document.motions.SigneePanel',
     'document.motions.AuthorPanel',

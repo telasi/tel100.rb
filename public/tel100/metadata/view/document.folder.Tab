@@ -60,10 +60,11 @@
                         "height": null,
                         "itemId": "standardFolders",
                         "layout|region": "north",
+                        "sortableColumns": false,
                         "store": [
                             "{standardfolders}"
                         ],
-                        "title": "My Grid Panel"
+                        "title": null
                     },
                     "name": "MyGridPanel1",
                     "configAlternates": {
@@ -81,6 +82,7 @@
                             "userConfig": {
                                 "dataIndex": "name",
                                 "flex": 1,
+                                "sortable": false,
                                 "text": [
                                     "{i18n.document.folder.categories.a}"
                                 ]
@@ -140,7 +142,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "allowDeselect": true,
-                                "mode": "MULTI"
+                                "mode": "SINGLE"
                             },
                             "name": "MyRowSelectionModel1",
                             "designerId": "85dc2910-02c0-46d6-a2ac-96785cbff61e"
@@ -156,7 +158,8 @@
                                 "fn": "onStandardGridpanelSelect",
                                 "implHandler": [
                                     "this.refreshDocuments({folderType: 'standard', folderId: record.id});",
-                                    "this.getView().down('#customFolders').getSelectionModel().deselectAll();"
+                                    "this.getView().down('#customFolders').getSelectionModel().deselectAll();",
+                                    "this.getView().up().getViewModel().set('customfolderselection', null);"
                                 ],
                                 "name": "select",
                                 "scope": "me"
@@ -179,11 +182,22 @@
                         "height": null,
                         "itemId": "customFolders",
                         "layout|region": "north",
+                        "selection": null,
                         "store": "CustomFolders",
-                        "title": "My Grid Panel"
+                        "title": null
                     },
                     "name": "MyGridPanel2",
+                    "configAlternates": {
+                        "selection": "binding"
+                    },
                     "designerId": "723c0bce-106d-42d1-8613-bf532c91b22f",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "selection",
+                            "type": "string"
+                        }
+                    ],
                     "cn": [
                         {
                             "type": "Ext.grid.column.Column",
@@ -242,6 +256,7 @@
                                     "    var proto = Ext.dd.DropZone.prototype;",
                                     "    return proto.dropAllowed;",
                                     "  },",
+                                    "  ",
                                     "  onNodeDrop : function(target, dd, e, data){",
                                     "    var customGrid = Ext.ComponentQuery.query('grid[itemId=customFolders]')[0];",
                                     "    var view = customGrid.getView();",
@@ -274,7 +289,8 @@
                                 "fn": "onCustomFoldersSelect",
                                 "implHandler": [
                                     "this.refreshDocuments({folderType: 'custom', folderId: record.id});",
-                                    "this.getView().down('#standardFolders').getSelectionModel().deselectAll();"
+                                    "this.getView().down('#standardFolders').getSelectionModel().deselectAll();",
+                                    "this.getView().up().getViewModel().set('customfolderselection', rowmodel.getSelection());"
                                 ],
                                 "name": "select",
                                 "scope": "me"
@@ -303,7 +319,7 @@
                     ]
                 },
                 {
-                    "type": "linkedinstance",
+                    "type": "Ext.grid.Panel",
                     "reference": {
                         "name": "items",
                         "type": "array"
@@ -311,13 +327,79 @@
                     "codeClass": null,
                     "userConfig": {
                         "collapsible": true,
-                        "disabled": null,
+                        "designer|displayName": "substitudeList",
+                        "height": null,
+                        "hideHeaders": true,
                         "layout|region": "south",
-                        "title": "Substitute"
+                        "store": [
+                            "{substitudeStore}"
+                        ],
+                        "title": "Substitude"
                     },
-                    "name": "document.folder.substitude",
-                    "designerId": "91c9da6c-18a6-4210-884d-4500407a41ce",
-                    "masterInstanceId": "01a908bf-258b-416e-bb38-3d6268909ac4"
+                    "name": "MyGridPanel",
+                    "configAlternates": {
+                        "store": "binding"
+                    },
+                    "designerId": "c573a4a8-18e0-4fc1-9a83-152d320be3c9",
+                    "cn": [
+                        {
+                            "type": "Ext.grid.column.Column",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dataIndex": "name",
+                                "designer|displayName": "name",
+                                "flex": 1,
+                                "text": null
+                            },
+                            "name": "MyColumn9",
+                            "designerId": "5225b7a1-c0ca-4c61-9a1a-aa7994f155d6"
+                        },
+                        {
+                            "type": "Ext.grid.View",
+                            "reference": {
+                                "name": "viewConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyGridView2",
+                            "designerId": "f1553a7d-47d7-495f-b833-f898470f62dc"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onGridpanelCellClick",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "var vm = Ext.ComponentQuery.query('#main-viewport')[0].getViewModel();",
+                                    "vm.set('substitude',record);",
+                                    "",
+                                    "if(Ext.ComponentQuery.query('usersubstitudepanel').length === 0){",
+                                    " var toppanel = Ext.create('Tel100.view.user.substitude.Panel',",
+                                    "                           { html: i18n.vacation.ui.substitude_mode.title + record.data.name });",
+                                    "  toppanel.down('button').on('click',function(){",
+                                    "    vm.set('substitude',null);",
+                                    "    me.getView().up().down('documentgridpanel').refresh();",
+                                    "  });",
+                                    "  toppanel.show().alignTo(Ext.getBody(), 't-t');",
+                                    "  this.getView().up().down('documentgridpanel').refresh();",
+                                    "  }"
+                                ],
+                                "name": "cellclick",
+                                "scope": "me"
+                            },
+                            "name": "onGridpanelCellClick",
+                            "designerId": "8309e9b9-ec8d-4cd3-a58a-f62c31735aef"
+                        }
+                    ]
                 }
             ]
         },

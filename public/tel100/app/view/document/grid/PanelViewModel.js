@@ -23,6 +23,10 @@ Ext.define('Tel100.view.document.grid.PanelViewModel', {
     'Ext.data.reader.Json'
   ],
 
+  data: {
+    selectionCriteria: null
+  },
+
   stores: {
     documents: {
       autoLoad: true,
