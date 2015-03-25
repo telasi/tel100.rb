@@ -5,7 +5,7 @@ module.exports = {
       ru: '<i class="fa fa-filter"></i> Поиск'
     },
   },
-  folder: 'საქაალდე',
+  folder: 'საქაღალდე',
   type: 'სახეობა',
   direction: 'მიმართულება',
   subject: 'სათაური',
