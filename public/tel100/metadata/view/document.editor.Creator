@@ -367,19 +367,40 @@
                                         "fieldLabel": [
                                             "{i18n.document.base.body}"
                                         ],
+                                        "itemId": "documentBody",
                                         "labelAlign": "top",
                                         "layout|flex": 1,
                                         "padding": "0 5 5 5",
-                                        "value": [
-                                            "{document.body}"
-                                        ]
+                                        "value": null
                                     },
                                     "name": "MyHtmlEditor",
                                     "configAlternates": {
-                                        "value": "binding",
                                         "fieldLabel": "binding"
                                     },
-                                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27"
+                                    "designerId": "9085d59b-d1a6-437b-ad44-5531dfbc7f27",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onHtmleditorChange",
+                                                "implHandler": [
+                                                    "var view = field.up('documenteditorcreator');",
+                                                    "var vm = view.getViewModel();",
+                                                    "var document = vm.get('document');",
+                                                    "document.set('body', newValue);"
+                                                ],
+                                                "name": "change",
+                                                "scope": "me"
+                                            },
+                                            "name": "onHtmleditorChange",
+                                            "designerId": "71d72c13-2bbc-4fdd-b87f-44a368368b1e"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -416,7 +437,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general2",
+                                    "name": "document.editor.general",
                                     "configAlternates": {
                                         "title": "binding"
                                     },
@@ -447,7 +468,7 @@
                                     "userConfig": {
                                         "designer|displayName": "signees"
                                     },
-                                    "name": "document.motions.signeepanel2",
+                                    "name": "document.motions.signeepanel",
                                     "designerId": "6c040662-e5fb-49a6-9215-b4a251a4c73a",
                                     "masterInstanceId": "a6e4f453-aa9b-4c0e-8a45-45e445ca2504",
                                     "cn": [
@@ -486,7 +507,7 @@
                                     "userConfig": {
                                         "designer|displayName": "asignees"
                                     },
-                                    "name": "document.motions.assigneepanel2",
+                                    "name": "document.motions.assigneepanel",
                                     "designerId": "5b56765a-3219-46c0-94e7-73857f5db4fe",
                                     "masterInstanceId": "da24e6c3-26d6-4d2a-bedc-c822727570b4",
                                     "cn": [
@@ -525,7 +546,7 @@
                                     "userConfig": {
                                         "designer|displayName": "authors"
                                     },
-                                    "name": "document.motions.authorpanel2",
+                                    "name": "document.motions.authorpanel",
                                     "designerId": "9507dce8-8e97-4a00-8d9b-abcd88ae04f3",
                                     "masterInstanceId": "e3fa4671-a99b-4b98-adee-9628585fe14b",
                                     "cn": [
@@ -564,7 +585,7 @@
                                     "userConfig": {
                                         "designer|displayName": "files"
                                     },
-                                    "name": "document.file.panel2",
+                                    "name": "document.file.panel",
                                     "designerId": "fa5bcbd5-6feb-4cd1-af00-84c5dbfab0a3",
                                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                                 }
@@ -615,7 +636,7 @@
                                 "border": false,
                                 "designer|displayName": "receivers"
                             },
-                            "name": "document.motions.outpanel2",
+                            "name": "document.motions.outpanel",
                             "configAlternates": {
                                 "title": "binding"
                             },
@@ -677,6 +698,28 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "doc"
+                ],
+                "fn": "setDocument",
+                "implHandler": [
+                    "var bodyText = this.down('#documentBody');",
+                    "var vm = this.getViewModel();",
+                    "vm.set('document', doc);",
+                    "bodyText.setValue(doc.get('body'));"
+                ]
+            },
+            "name": "setDocument",
+            "designerId": "4836231f-b970-4f1f-b25b-d3419869b29d"
         }
     ]
 }

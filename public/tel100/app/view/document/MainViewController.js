@@ -97,7 +97,7 @@ Ext.define('Tel100.view.document.MainViewController', {
   openDraftDocument: function(tabs, document) {
     var title = i18n.document.base.ui.editDraftTitle;
     var editor = Tel100.view.document.editor.Creator.create({ title: title, closable: true });
-    editor.getViewModel().set('document', document);
+    editor.setDocument(document);
     editor.on('documentsent', function(document) {
       tabs.remove(editor);
       this.onRefresh();

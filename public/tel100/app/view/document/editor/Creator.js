@@ -136,11 +136,14 @@ Ext.define('Tel100.view.document.editor.Creator', {
                 {
                   xtype: 'htmleditor',
                   flex: 1,
+                  itemId: 'documentBody',
                   padding: '0 5 5 5',
                   labelAlign: 'top',
                   bind: {
-                    fieldLabel: '{i18n.document.base.body}',
-                    value: '{document.body}'
+                    fieldLabel: '{i18n.document.base.body}'
+                  },
+                  listeners: {
+                    change: 'onHtmleditorChange'
                   }
                 }
               ]
@@ -213,6 +216,13 @@ Ext.define('Tel100.view.document.editor.Creator', {
     }
   ],
 
+  onHtmleditorChange: function(field, newValue, oldValue, eOpts) {
+    var view = field.up('documenteditorcreator');
+    var vm = view.getViewModel();
+    var document = vm.get('document');
+    document.set('body', newValue);
+  },
+
   onSigneesChanged: function(panel, operation, item) {
     this.down('documentmotionsoutpanel').refresh();
   },
@@ -237,6 +247,13 @@ Ext.define('Tel100.view.document.editor.Creator', {
     signeesPanel.refresh();
     assigneesPanel.refresh();
     authorPanel.refresh();
+  },
+
+  setDocument: function(doc) {
+    var bodyText = this.down('#documentBody');
+    var vm = this.getViewModel();
+    vm.set('document', doc);
+    bodyText.setValue(doc.get('body'));
   }
 
 });
