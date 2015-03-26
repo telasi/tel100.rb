@@ -28,7 +28,11 @@ Ext.define('Tel100.view.document.MainViewController', {
     var customfolderselection = viewModel.get('customfolderselection');
     var selection = viewModel.get('selection');
     if (customfolderselection){
-        DeleteFromCustom(customfolderselection[0].id, selection.id);
+        var opts = {};
+        opts.method = 'DELETE';
+        opts.url = '/api/folder/document';
+        opts.params = { folder_id: customfolderselection[0].id, doc_id: selection.id };
+        Ext.Ajax.request(opts);
     } else {
       if (selection) {
         var status = selection.get('status');
@@ -118,14 +122,6 @@ Ext.define('Tel100.view.document.MainViewController', {
     editor.getViewModel().set('document', document);
     tabs.add(editor);
     tabs.setActiveTab(editor);
-  },
-
-  deleteFromCustom: function(folder_id, doc_id) {
-            var opts = {};
-            opts.method = 'DELETE';
-            opts.url = '/api/folder/document';
-            opts.params = { folder_id: folder_id, doc_id: doc_id };
-            Ext.Ajax.request(opts);
   },
 
   onGridDoubleClick: function(dataview, record, item, index, e, eOpts) {

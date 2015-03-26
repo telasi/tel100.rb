@@ -112,8 +112,7 @@ Ext.define('Tel100.view.document.Main', {
     var view = this;
     var search = this.down('documentfoldersearch');
     search.on('searchstart', function(url, params) {
-      view.down('documentgridpanel').getController().setStoreConfig({url: url, extraParams: params });
-      view.down('documentgridpanel').refresh();
+      view.down('documentgridpanel').refresh({url: url, params: params });
     });
   },
 

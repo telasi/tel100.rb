@@ -42,22 +42,6 @@
                     "designerId": "852dc392-b2db-40fd-a2fb-74936fad8689"
                 }
             ]
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "toHtml",
-                "implHandler": [
-                    "return ['<i class=\"fa fa-university\"></i>', this.get('name_ka')].join(' ');"
-                ]
-            },
-            "name": "toHtml",
-            "designerId": "f3d1e8e5-2df2-4d65-adc5-649d82e3b003"
         }
     ]
 }

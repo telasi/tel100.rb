@@ -111,8 +111,16 @@ Ext.define('Tel100.view.party.Selector', {
         {
           xtype: 'gridcolumn',
           renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-            if(record.toHtml){
-              return record.toHtml();
+            switch(record.get('ext_type')){
+              case 'hr.Employee':
+              if(record.toTreeHtml){
+                return record.toTreeHtml();
+              }
+              break;
+              case 'hr.Party':
+              return record.get('name_ka');
+              case 'hr.Customer':
+              return record.get('name');
             }
           },
           dataIndex: 'name',
@@ -179,7 +187,7 @@ Ext.define('Tel100.view.party.Selector', {
   },
 
   onCustomerGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
-    if (record.get('ext_type') === 'bs.Customer') {
+    if (record.get('ext_type') === 'hr.Customer') {
           this.getController().onAddParty(record);
     }
   },
@@ -190,7 +198,7 @@ Ext.define('Tel100.view.party.Selector', {
 
   onSelectClicked: function(button, e, eOpts) {
     var data = [];
-    var grid = this.getComponent('selectedParties');
+    var grid = this.down('gridpanel');
     var store = grid.getStore();
     store.each(function(item) { data.push(item); });
     this.fireEvent('selectioncomplete', data);

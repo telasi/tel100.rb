@@ -15,18 +15,5 @@
 
 Ext.define('Tel100.view.document.grid.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentgridpanel',
-
-  setStoreConfig: function(opts, values) {
-    var proxy = this.getStore('documents').getProxy();
-    proxy.setConfig(opts, values);
-
-    var subst = Ext.ComponentQuery.query('#main-viewport')[0].getViewModel().get('substitude');
-    if(subst){
-      proxy.setExtraParam('substitude', subst.get('id'));
-    } else {
-      proxy.setExtraParam('substitude', null);
-    }
-  }
-
+  alias: 'controller.documentgridpanel'
 });

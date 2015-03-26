@@ -34,10 +34,5 @@ Ext.define('Tel100.model.hr.Party', {
       type: 'json',
       rootProperty: 'data'
     }
-  },
-
-  toHtml: function() {
-    return ['<i class="fa fa-university"></i>', this.get('name_ka')].join(' ');
   }
-
 });

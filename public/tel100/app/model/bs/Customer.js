@@ -19,8 +19,7 @@ Ext.define('Tel100.model.bs.Customer', {
   requires: [
     'Tel100.model.Tel100',
     'Ext.data.proxy.Rest',
-    'Ext.data.reader.Json',
-    'Ext.data.field.Field'
+    'Ext.data.reader.Json'
   ],
 
   schema: 'tel100',
@@ -35,28 +34,5 @@ Ext.define('Tel100.model.bs.Customer', {
       type: 'json',
       rootProperty: 'data'
     }
-  },
-
-  fields: [
-    {
-      name: 'custkey'
-    },
-    {
-      name: 'name'
-    },
-    {
-      name: 'address'
-    },
-    {
-      name: 'taxid'
-    },
-    {
-      name: 'accnumb'
-    }
-  ],
-
-  toHtml: function() {
-    return ['<i class="fa fa-users"></i>', this.get('name')].join(' ');
   }
-
 });
