@@ -52,14 +52,14 @@ Ext.define('Tel100.view.document.Relation', {
   tools: [
     {
       xtype: 'tool',
+      type: 'refresh'
+    },
+    {
+      xtype: 'tool',
       type: 'plus',
       listeners: {
         click: 'onAddRelation'
       }
-    },
-    {
-      xtype: 'tool',
-      type: 'refresh'
     }
   ],
 

@@ -75,6 +75,20 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool4",
+            "designerId": "210b1ffb-06a3-4e01-bd95-f0fc681dfe89"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "designer|displayName": "add",
                 "type": "plus"
             },
@@ -116,20 +130,6 @@
                     "designerId": "fef601a0-aaba-447c-a602-584be0d92933"
                 }
             ]
-        },
-        {
-            "type": "Ext.panel.Tool",
-            "reference": {
-                "name": "tools",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|displayName": "refresh",
-                "type": "refresh"
-            },
-            "name": "MyTool4",
-            "designerId": "210b1ffb-06a3-4e01-bd95-f0fc681dfe89"
         }
     ]
 }

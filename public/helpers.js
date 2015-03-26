@@ -158,11 +158,21 @@ var file = {
   },
 };
 
+var relation = {
+  create: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/relations/create';
+    ajax.request(opts);
+  },
+};
+
 module.exports = {
   base: base,
   motion: motion,
   comment: comment,
-  file: file
+  file: file,
+  relation: relation
 };
 
 },{"../ajax":1}],3:[function(require,module,exports){
