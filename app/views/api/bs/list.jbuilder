@@ -5,7 +5,7 @@ json.data do
 	  json.address      customer.address
 	  json.taxid        customer.taxid
 	  json.accnumb      customer.accnumb
-	  json.ext_type     'hr.Customer'
+	  json.ext_type     'bs.Customer'
 	end
 end
 json.total	@total

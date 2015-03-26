@@ -1,3 +1,4 @@
 module.exports = {
-  document: require('./document')
+  document: require('./document'),
+  substitude: require('./substitude')
 };

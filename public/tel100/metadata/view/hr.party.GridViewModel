@@ -20,7 +20,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "party",
-                "model": "hr.party",
+                "model": "hr.Party",
                 "name": "party",
                 "pageSize": 10
             },

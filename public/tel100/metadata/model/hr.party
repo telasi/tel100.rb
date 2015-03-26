@@ -6,7 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "hr.party",
+        "designer|userClassName": "hr.Party",
         "schema": "tel100"
     },
     "name": "MyModel",

@@ -85,8 +85,8 @@
                         ],
                         "fn": "renderer",
                         "implHandler": [
-                            "if (record.toTreeHtml) {",
-                            "  return record.toTreeHtml();",
+                            "if (record.toHtml) {",
+                            "  return record.toHtml();",
                             "} else {",
                             "  return '<i class=\"fa fa-bolt\"></i> ' + i18n.application.telasi;",
                             "}"

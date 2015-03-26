@@ -177,16 +177,26 @@ module.exports = {
 
 },{"../ajax":1}],3:[function(require,module,exports){
 module.exports = {
-  document: require('./document')
+  document: require('./document'),
+  substitude: require('./substitude')
+};
+},{"./document":2,"./substitude":4}],4:[function(require,module,exports){
+var ajax = require('../ajax');
+
+var setSubstitude = function(substitude){
+  ajax.setExtraParams('substitude', substitude);
 };
 
-},{"./document":2}],4:[function(require,module,exports){
+module.exports = {
+  setSubstitude: setSubstitude
+};
+},{"../ajax":1}],5:[function(require,module,exports){
 module.exports = {
   status: require('./status'),
   role: require('./role')
 };
 
-},{"./role":5,"./status":6}],5:[function(require,module,exports){
+},{"./role":6,"./status":7}],6:[function(require,module,exports){
 module.exports = {
   OWNER:    'owner',
   CREATOR:  'creator',
@@ -195,7 +205,7 @@ module.exports = {
   ASSIGNEE: 'assignee'
 };
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var role = require('./role');
 
 var DRAFT = 0;
@@ -337,7 +347,7 @@ module.exports = {
   documentStatusRowClass: documentStatusRowClass
 };
 
-},{"./role":5}],7:[function(require,module,exports){
+},{"./role":6}],8:[function(require,module,exports){
 var currentLocale
   , ajax = require('./ajax')
   , preferences = require('./preferences')
@@ -364,7 +374,7 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":1,"./preferences":10}],8:[function(require,module,exports){
+},{"./ajax":1,"./preferences":11}],9:[function(require,module,exports){
 window.helpers = {
   ajax: require('./ajax'),
   'document': require('./document'),
@@ -375,7 +385,7 @@ window.helpers = {
   party: require('./party')
 };
 
-},{"./ajax":1,"./api":3,"./document":4,"./i18n":7,"./party":9,"./preferences":10,"./user":11}],9:[function(require,module,exports){
+},{"./ajax":1,"./api":3,"./document":5,"./i18n":8,"./party":10,"./preferences":11,"./user":12}],10:[function(require,module,exports){
 var partyDialog;
 
 var getPartyDialog = function(callback) {
@@ -401,7 +411,7 @@ module.exports = {
   getPartyDialog: getPartyDialog
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -432,7 +442,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -462,4 +472,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":1,"./i18n":7,"./preferences":10}]},{},[8]);
+},{"./ajax":1,"./i18n":8,"./preferences":11}]},{},[9]);

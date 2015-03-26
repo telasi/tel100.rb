@@ -9,5 +9,35 @@
         "designer|userAlias": "documentgridpanel",
         "designer|userClassName": "document.grid.PanelViewController"
     },
-    "designerId": "2d888ec8-f4e8-4c38-809e-56c158552170"
+    "designerId": "2d888ec8-f4e8-4c38-809e-56c158552170",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "opts",
+                    "values"
+                ],
+                "fn": "setStoreConfig",
+                "implHandler": [
+                    "var proxy = this.getStore('documents').getProxy();",
+                    "proxy.setConfig(opts, values);",
+                    "",
+                    "var subst = Ext.ComponentQuery.query('#main-viewport')[0].getViewModel().get('substitude');",
+                    "if(subst){",
+                    "  proxy.setExtraParam('substitude', subst.get('id'));",
+                    "} else {",
+                    "  proxy.setExtraParam('substitude', null);",
+                    "}"
+                ]
+            },
+            "name": "setStoreConfig",
+            "designerId": "c3d52ca9-fe2d-46e0-bc96-2dab95d4da61"
+        }
+    ]
 }

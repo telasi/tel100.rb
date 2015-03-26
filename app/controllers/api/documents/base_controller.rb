@@ -8,7 +8,7 @@ class Api::Documents::BaseController < ApiController
 
   def search
     user = current_user
-    user = Sys::User.find(HR::Vacation::Vacation.find(params['substitude']).userid) if params['substitude']
+    user = Sys::User.find(HR::Vacation::Vacation.find(params['substitude']).userid) if params['substitude'].present?
 
     @my_docs = Document::User.mydocs(user).joins(:document)
     @my_docs = doc_list('standard', params['folder'], params['substitude']) if params['folder'].present?
@@ -30,7 +30,7 @@ class Api::Documents::BaseController < ApiController
 
   def doc_list(folderType, folderId, substitude)
     user = current_user
-    user = Sys::User.find(HR::Vacation::Vacation.find(substitude).userid) if substitude
+    user = Sys::User.find(HR::Vacation::Vacation.find(substitude).userid) if substitude.present?
     case folderType
       when 'standard'
         Folder::Standard.docs(folderId, user)
