@@ -32,6 +32,7 @@ Ext.define('Tel100.view.document.Search', {
   width: 800,
   layout: 'border',
   closeAction: 'hide',
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.search.ui.search}'
@@ -39,16 +40,35 @@ Ext.define('Tel100.view.document.Search', {
   items: [
     {
       xtype: 'documentfoldersearch',
-      region: 'west',
-      split: true,
       width: 300,
       title: '',
-      titleCollapse: false
+      titleCollapse: false,
+      region: 'west',
+      split: true
     },
     {
       xtype: 'documentgridpanel',
-      region: 'center'
+      region: 'center',
+      listeners: {
+        itemdblclick: 'onGridpanelItemDblClick'
+      }
     }
-  ]
+  ],
+
+  onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
+    var parent = this.getParentDocument();
+    if (record.get('status') !== 0 && record.id !== parent.id) {
+      this.fireEvent('documentselected', record);
+      this.close();
+    }
+  },
+
+  getParentDocument: function() {
+    return this.getViewModel().get('document');
+  },
+
+  setParentDocument: function(doc) {
+    this.getViewModel().set('document', doc);
+  }
 
 });

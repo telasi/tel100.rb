@@ -71,6 +71,8 @@ Ext.define('Tel100.view.document.Relation', {
         maximizable: true
       });
     }
+    var vm = this.getViewModel();
+    this.searchDialog.setParentDocument(vm.get('document'));
     this.searchDialog.show();
   }
 

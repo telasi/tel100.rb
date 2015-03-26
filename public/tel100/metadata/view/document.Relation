@@ -98,6 +98,8 @@
                             "    maximizable: true",
                             "  });",
                             "}",
+                            "var vm = this.getViewModel();",
+                            "this.searchDialog.setParentDocument(vm.get('document'));",
                             "this.searchDialog.show();"
                         ],
                         "name": "click",

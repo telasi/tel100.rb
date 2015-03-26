@@ -39,7 +39,7 @@
                 "titleCollapse": false,
                 "width": 300
             },
-            "name": "document.folder.search1",
+            "name": "document.folder.search2",
             "designerId": "a7df73a1-2b69-4453-983c-326fe3571f8c",
             "masterInstanceId": "3281b413-350a-479e-b657-0f1bef619a39"
         },
@@ -54,9 +54,68 @@
                 "designer|displayName": "grid",
                 "layout|region": "center"
             },
-            "name": "document.grid.panel1",
+            "name": "document.grid.panel4",
             "designerId": "de6cd784-09c8-4d26-90f5-9fd27a1dcdd7",
-            "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103"
+            "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridpanelItemDblClick",
+                        "implHandler": [
+                            "var parent = this.getParentDocument();",
+                            "if (record.get('status') !== 0 && record.id !== parent.id) {",
+                            "  this.fireEvent('documentselected', record);",
+                            "  this.close();",
+                            "}"
+                        ],
+                        "name": "itemdblclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridpanelItemDblClick",
+                    "designerId": "32c23a69-6dbd-4666-9954-7bb56e57f8c9"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getParentDocument",
+                "implHandler": [
+                    "return this.getViewModel().get('document');"
+                ]
+            },
+            "name": "getParentDocument",
+            "designerId": "d5d5e34e-62d2-494f-8749-e1d17e019ff3"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "doc"
+                ],
+                "fn": "setParentDocument",
+                "implHandler": [
+                    "this.getViewModel().set('document', doc);"
+                ]
+            },
+            "name": "setParentDocument",
+            "designerId": "fd3f8c9d-e2bf-41d8-a02e-051ae631e214"
         }
     ]
 }
