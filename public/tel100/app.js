@@ -33,7 +33,7 @@ Ext.application({
     'folder.Document',
     'folder.Standard',
     'document.File',
-    'hr.Party',
+    'hr.party',
     'bs.Customer'
   ],
   stores: [

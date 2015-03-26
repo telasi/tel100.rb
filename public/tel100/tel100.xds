@@ -38,18 +38,6 @@
     "framework": "ext50",
     "viewOrderMap": {
         "view": [
-            "a10fda3b-9f25-4dee-be62-cd001e173117",
-            "9538e1e5-eb9e-4baf-a4b3-6f0ac6170fb7",
-            "07c20692-1bdc-46c9-ba9a-49ac94deb18f",
-            "410602a3-0901-4701-8b15-74b79a4dc4e9",
-            "7a82ceb8-1bb0-4fea-9059-b1c226813102",
-            "ca51d49a-98d7-4668-b82a-403f6ffa04d0",
-            "d6532757-61b0-48a1-b7d2-b26929a4b62e",
-            "e6b84199-5834-4d8d-8a19-a600ef871205",
-            "add98a47-ea0c-4c15-9fb9-63aee2799018",
-            "7ae184f7-c6b8-41ea-9444-7793a85e41b9",
-            "7cf8718e-50ca-4ece-b95f-609d0477f4ae",
-            "bf2ac3eb-ae14-4f77-bbf5-89188df482af",
             "97a6c433-033f-4338-baba-02016bc96f79",
             "7088dc9e-b5e0-4a55-a49b-30422ce13348",
             "aff49a9b-8ace-4060-9429-0aa8bb62e5cd",
@@ -166,15 +154,25 @@
             "4351ed5b-3b9a-4161-977e-7bf315d34a6c",
             "039f705d-1b41-4f8f-9c98-b8a891e3d2eb",
             "333b7a9e-c4b4-4121-969b-837af33a85e7",
-            "72fc918e-68e2-420a-af96-394f5a4a21c3"
+            "72fc918e-68e2-420a-af96-394f5a4a21c3",
+            "07c20692-1bdc-46c9-ba9a-49ac94deb18f",
+            "bf2ac3eb-ae14-4f77-bbf5-89188df482af",
+            "a10fda3b-9f25-4dee-be62-cd001e173117",
+            "9538e1e5-eb9e-4baf-a4b3-6f0ac6170fb7",
+            "410602a3-0901-4701-8b15-74b79a4dc4e9",
+            "e6b84199-5834-4d8d-8a19-a600ef871205",
+            "add98a47-ea0c-4c15-9fb9-63aee2799018",
+            "7ae184f7-c6b8-41ea-9444-7793a85e41b9",
+            "7cf8718e-50ca-4ece-b95f-609d0477f4ae",
+            "d6532757-61b0-48a1-b7d2-b26929a4b62e",
+            "ca51d49a-98d7-4668-b82a-403f6ffa04d0",
+            "7a82ceb8-1bb0-4fea-9059-b1c226813102"
         ],
         "store": [
             "f2f1d15c-aa1d-46bf-a1e0-d2092a7ecee2"
         ],
         "controller": [],
         "model": [
-            "b5f73a09-073c-442c-a7cf-9b713e2672c3",
-            "cffb783d-d6c0-4fa1-8bb6-2d078e69e3f5",
             "06222ca1-8290-49f9-b5b3-3f256c9e0ca4",
             "b5fb3de7-1056-41ad-99c7-8e38a4aba07d",
             "8e1ea4f4-f8a7-41f2-8ab5-d3b3017bb281",
@@ -189,7 +187,9 @@
             "d2df7497-4416-4a44-9da8-44d5f976710d",
             "40e043d7-4bb2-4c83-99c8-26c6ceb0ed70",
             "a943935a-5806-4d33-bde5-6a5906e75043",
-            "dcd02e16-f4a4-476b-8f1f-7958947be51b"
+            "dcd02e16-f4a4-476b-8f1f-7958947be51b",
+            "cffb783d-d6c0-4fa1-8bb6-2d078e69e3f5",
+            "b5f73a09-073c-442c-a7cf-9b713e2672c3"
         ],
         "resource": [
             "07083251-dd31-41ec-b832-49c43b90f87a",
@@ -198,6 +198,7 @@
             "c2778a78-bfd4-4779-b8a0-7dd25679b344"
         ],
         "app": [
+            "application",
             "application"
         ]
     }

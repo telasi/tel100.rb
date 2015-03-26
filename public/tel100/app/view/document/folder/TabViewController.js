@@ -18,7 +18,10 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
   alias: 'controller.documentfoldertab',
 
   refreshDocuments: function(opts) {
-    this.getView().up().down('documentgridpanel').refresh({params: opts});
+    var dg = this.getView().up().down('documentgridpanel');
+    var url = '/api/documents/base';
+    dg.getController().setStoreConfig({url: url, extraParams: opts});
+    dg.refresh();
   },
 
   onGearClick: function(button) {
