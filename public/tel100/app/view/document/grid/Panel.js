@@ -19,12 +19,14 @@ Ext.define('Tel100.view.document.grid.Panel', {
 
   requires: [
     'Tel100.view.document.grid.PanelViewModel',
+    'Tel100.view.document.grid.PanelViewController',
     'Ext.grid.View',
     'Ext.grid.plugin.DragDrop',
     'Ext.util.Point',
     'Ext.grid.column.Column'
   ],
 
+  controller: 'documentgridpanel',
   viewModel: {
     type: 'documentgridpanel'
   },
@@ -123,25 +125,8 @@ Ext.define('Tel100.view.document.grid.Panel', {
   ],
 
   refresh: function(opts) {
-    var selectionCriteria = this.getViewModel().get('selectionCriteria');
-    if (!opts){
-      opts = selectionCriteria;
-    } else {
-      this.getViewModel().set('selectionCriteria', opts);
-    }
     var grid = this;
     var store = grid.getStore();
-
-    // getting substitude info from main viewport
-    if (opts && opts.params) {
-      var subst = Ext.ComponentQuery.query('#main-viewport')[0].getViewModel().get('substitude');
-      if(subst){
-        opts.params.substitude = subst.get('id');
-      } else {
-        delete opts.params.substitude;
-      }
-    }
-
     store.load(opts);
   }
 

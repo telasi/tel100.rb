@@ -24,7 +24,7 @@ Ext.define('Tel100.view.hr.party.GridViewModel', {
   stores: {
     party: {
       pageSize: 10,
-      model: 'Tel100.model.hr.party'
+      model: 'Tel100.model.hr.Party'
     }
   }
 

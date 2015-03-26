@@ -55,7 +55,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "toTreeHtml",
+                "fn": "toHtml",
                 "implHandler": [
                     "var icon;",
                     "if (this.get('has_user')) {",
@@ -66,7 +66,7 @@
                     "return [icon, this.get('full_name')].join(' ');"
                 ]
             },
-            "name": "toTreeHtml",
+            "name": "toHtml",
             "designerId": "dab0e5ff-7792-4226-b2ad-ad6d74b2a2ab"
         }
     ]

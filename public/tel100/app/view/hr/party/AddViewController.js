@@ -20,7 +20,6 @@ Ext.define('Tel100.view.hr.party.AddViewController', {
   onButtonClick: function(button, e, eOpts) {
     this.getView().down('form').submit({
       success: function(form, action) {
-        Ext.Msg.alert('Success');
         form.owner.up('window').close();
       },
       failure: function(form, action) {

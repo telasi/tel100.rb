@@ -24,7 +24,10 @@
                 ],
                 "fn": "refreshDocuments",
                 "implHandler": [
-                    "this.getView().up().down('documentgridpanel').refresh({params: opts});"
+                    "var dg = this.getView().up().down('documentgridpanel');",
+                    "var url = '/api/documents/base';",
+                    "dg.getController().setStoreConfig({url: url, extraParams: opts});",
+                    "dg.refresh();"
                 ]
             },
             "name": "refreshDocuments",

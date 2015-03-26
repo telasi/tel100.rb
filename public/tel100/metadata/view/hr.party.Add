@@ -426,7 +426,6 @@
                                 "implHandler": [
                                     "this.getView().down('form').submit({",
                                     "  success: function(form, action) {",
-                                    "      Ext.Msg.alert('Success');",
                                     "      form.owner.up('window').close();",
                                     "    },",
                                     "    failure: function(form, action) {",

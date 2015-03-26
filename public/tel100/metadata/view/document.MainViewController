@@ -46,11 +46,7 @@
                     "var customfolderselection = viewModel.get('customfolderselection');",
                     "var selection = viewModel.get('selection');",
                     "if (customfolderselection){",
-                    "    var opts = {};",
-                    "    opts.method = 'DELETE';",
-                    "    opts.url = '/api/folder/document';",
-                    "    opts.params = { folder_id: customfolderselection[0].id, doc_id: selection.id };",
-                    "    Ext.Ajax.request(opts);",
+                    "    DeleteFromCustom(customfolderselection[0].id, selection.id);",
                     "} else {",
                     "  if (selection) {",
                     "    var status = selection.get('status');",
@@ -203,6 +199,30 @@
             },
             "name": "openCurrentDocument",
             "designerId": "31b6b030-e336-4996-8cdc-6ba39a20296b"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "folder_id",
+                    "doc_id"
+                ],
+                "fn": "deleteFromCustom",
+                "implHandler": [
+                    "        var opts = {};",
+                    "        opts.method = 'DELETE';",
+                    "        opts.url = '/api/folder/document';",
+                    "        opts.params = { folder_id: folder_id, doc_id: doc_id };",
+                    "        Ext.Ajax.request(opts);"
+                ]
+            },
+            "name": "deleteFromCustom",
+            "designerId": "5b68de0d-7b65-4fe4-97b5-1e66870c9187"
         }
     ]
 }

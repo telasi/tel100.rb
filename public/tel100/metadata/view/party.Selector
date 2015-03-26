@@ -66,7 +66,7 @@
                         ],
                         "width": null
                     },
-                    "name": "hr.tree.panel",
+                    "name": "hr.tree.panel2",
                     "configAlternates": {
                         "tools": "array"
                     },
@@ -186,7 +186,7 @@
                             "userConfig": {
                                 "fn": "onCustomerGridpanelItemDblClick",
                                 "implHandler": [
-                                    "if (record.get('ext_type') === 'hr.Customer') {",
+                                    "if (record.get('ext_type') === 'bs.Customer') {",
                                     "      this.getController().onAddParty(record);",
                                     "}"
                                 ],
@@ -298,7 +298,7 @@
                                 "fn": "onSelectClicked",
                                 "implHandler": [
                                     "var data = [];",
-                                    "var grid = this.down('gridpanel');",
+                                    "var grid = this.getComponent('selectedParties');",
                                     "var store = grid.getStore();",
                                     "store.each(function(item) { data.push(item); });",
                                     "this.fireEvent('selectioncomplete', data);",
@@ -407,16 +407,8 @@
                                 ],
                                 "fn": "renderer",
                                 "implHandler": [
-                                    "switch(record.get('ext_type')){",
-                                    "  case 'hr.Employee':",
-                                    "    if(record.toTreeHtml){",
-                                    "      return record.toTreeHtml();",
-                                    "    }",
-                                    "    break;",
-                                    "  case 'hr.Party':",
-                                    "    return record.get('name_ka');",
-                                    "  case 'hr.Customer':",
-                                    "    return record.get('name');",
+                                    "if(record.toHtml){",
+                                    "      return record.toHtml();",
                                     "}"
                                 ]
                             },

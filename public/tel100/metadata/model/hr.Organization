@@ -36,12 +36,12 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "toTreeHtml",
+                "fn": "toHtml",
                 "implHandler": [
-                    "return ['<i class=\"fa fa-bank\"></i>', this.get('name')].join(' ');"
+                    "return ['<span class=\"text-muted\"><i class=\"fa fa-bank\"></i></span>', this.get('name')].join(' ');"
                 ]
             },
-            "name": "toTreeHtml",
+            "name": "toHtml",
             "designerId": "b618a70f-42f2-4818-ba29-2e3a866c8d7d"
         }
     ]

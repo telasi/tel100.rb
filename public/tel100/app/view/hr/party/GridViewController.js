@@ -22,7 +22,6 @@ Ext.define('Tel100.view.hr.party.GridViewController', {
     var params = form.getValues();
     this.getStore('party').getProxy().setExtraParams(params);
 
-    //this.getStore('customer').load({ params: form.getValues() });
     var st = this.getStore('party');
     st.removeAll();
     st.currentPage = 1;
