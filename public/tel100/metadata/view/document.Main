@@ -227,6 +227,22 @@
             },
             "name": "onRefresh",
             "designerId": "26db3325-91d4-4b1c-8103-5432a6d6dcf4"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onDeleteDraft",
+                "implHandler": [
+                    "this.getController().onDeleteDraft();"
+                ]
+            },
+            "name": "onDeleteDraft",
+            "designerId": "c7cd4bef-6167-4b83-a1a1-52690831f9d2"
         }
     ]
 }

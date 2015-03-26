@@ -599,6 +599,9 @@
                 },
                 {
                     "id": "26db3325-91d4-4b1c-8103-5432a6d6dcf4"
+                },
+                {
+                    "id": "c7cd4bef-6167-4b83-a1a1-52690831f9d2"
                 }
             ]
         },
@@ -618,7 +621,6 @@
         },
         "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68": {
             "id": "f93b07bf-dd87-4dcd-8dd0-755e23bf7b68",
-            "expanded": false,
             "cn": [
                 {
                     "id": "d6742be9-d1c6-491c-bfeb-c5274be979cd"

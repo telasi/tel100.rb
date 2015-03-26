@@ -122,6 +122,10 @@ Ext.define('Tel100.view.document.Main', {
 
   onRefresh: function() {
     this.getController().onRefresh();
+  },
+
+  onDeleteDraft: function() {
+    this.getController().onDeleteDraft();
   }
 
 });

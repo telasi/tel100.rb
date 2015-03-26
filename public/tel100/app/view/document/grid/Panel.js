@@ -133,7 +133,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     var store = grid.getStore();
 
     // getting substitude info from main viewport
-    if (opts) {
+    if (opts && opts.params) {
       var subst = Ext.ComponentQuery.query('#main-viewport')[0].getViewModel().get('substitude');
       if(subst){
         opts.params.substitude = subst.get('id');
