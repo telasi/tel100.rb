@@ -14,5 +14,54 @@
         "designer|userAlias": "documentrelation",
         "designer|userClassName": "document.RelationViewModel"
     },
-    "designerId": "bfbabff8-dd78-46c2-ad79-5846374001fd"
+    "designerId": "bfbabff8-dd78-46c2-ad79-5846374001fd",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Base",
+                "name": "relations"
+            },
+            "name": "MyStore7",
+            "designerId": "6a94cee7-c356-493b-9550-e0684d0dbdd4",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  base_id: '{document.id}'",
+                            "}"
+                        ],
+                        "url": "/api/documents/relations"
+                    },
+                    "name": "MyAjaxProxy2",
+                    "designerId": "6f244c1a-76ef-49d5-88b5-161b8bd2d66b",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader2",
+                            "designerId": "994b666b-cdbd-4bd6-a649-522050f45894"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

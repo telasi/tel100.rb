@@ -35,9 +35,15 @@
             "codeClass": null,
             "userConfig": {
                 "hideHeaders": true,
+                "store": [
+                    "{relations}"
+                ],
                 "title": null
             },
             "name": "MyGridPanel2",
+            "configAlternates": {
+                "store": "binding"
+            },
             "designerId": "f8e3dcf5-2c66-479a-bd20-88ad77e420c3",
             "cn": [
                 {
@@ -53,7 +59,34 @@
                         "text": "document"
                     },
                     "name": "MyColumn1",
-                    "designerId": "d77679a9-449b-4cd8-8eb0-3a607062a320"
+                    "designerId": "d77679a9-449b-4cd8-8eb0-3a607062a320",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "return '<strong>' + value + '</strong> <span class=\"text-muted\">' + record.get('owner') + '</span>';"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "96f0970a-c32d-4de3-b4d3-d0f1cc9463d5"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.grid.View",
@@ -79,7 +112,27 @@
                 "type": "refresh"
             },
             "name": "MyTool4",
-            "designerId": "210b1ffb-06a3-4e01-bd95-f0fc681dfe89"
+            "designerId": "210b1ffb-06a3-4e01-bd95-f0fc681dfe89",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefresh",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefresh",
+                    "designerId": "24a798c7-dabc-47b4-a992-638f84587f91"
+                }
+            ]
         },
         {
             "type": "Ext.panel.Tool",
@@ -107,7 +160,7 @@
                         "implHandler": [
                             "var vm = this.getViewModel();",
                             "var doc = vm.get('document');",
-                            "//--------------------------------",
+                            "var view = this;",
                             "if (!this.searchDialog) {",
                             "  this.searchDialog = Ext.create('Tel100.view.document.Search', {",
                             "    closeAction: 'hide',",
@@ -115,11 +168,18 @@
                             "    maximizable: true",
                             "  });",
                             "",
-                            "  this.searchDialog.on('documentselected', function(doc) {",
-                            "    console.log('test', doc.id);",
+                            "  this.searchDialog.on('documentselected', function(related) {",
+                            "    helpers.api.document.relation.create({",
+                            "      params: {",
+                            "        base_id: doc.id,",
+                            "        related_id: related.id",
+                            "      },",
+                            "      success: function(params) {",
+                            "        view.refresh();",
+                            "      }",
+                            "    });",
                             "  });",
                             "}",
-                            "//--------------------------------",
                             "this.searchDialog.setParentDocument(doc);",
                             "this.searchDialog.show();"
                         ],
@@ -130,6 +190,23 @@
                     "designerId": "fef601a0-aaba-447c-a602-584be0d92933"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "var grid = this.down('gridpanel');",
+                    "grid.getStore().load();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "8e6d2d1e-4169-441f-a71f-4898a2c8ba5e"
         }
     ]
 }

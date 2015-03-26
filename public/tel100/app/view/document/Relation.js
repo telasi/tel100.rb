@@ -39,9 +39,15 @@ Ext.define('Tel100.view.document.Relation', {
     {
       xtype: 'gridpanel',
       hideHeaders: true,
+      bind: {
+        store: '{relations}'
+      },
       columns: [
         {
           xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            return '<strong>' + value + '</strong> <span class="text-muted">' + record.get('owner') + '</span>';
+          },
           dataIndex: 'docnumber',
           text: 'document',
           flex: 1
@@ -52,7 +58,10 @@ Ext.define('Tel100.view.document.Relation', {
   tools: [
     {
       xtype: 'tool',
-      type: 'refresh'
+      type: 'refresh',
+      listeners: {
+        click: 'onRefresh'
+      }
     },
     {
       xtype: 'tool',
@@ -63,10 +72,14 @@ Ext.define('Tel100.view.document.Relation', {
     }
   ],
 
+  onRefresh: function(tool, e, owner, eOpts) {
+    this.refresh();
+  },
+
   onAddRelation: function(tool, e, owner, eOpts) {
     var vm = this.getViewModel();
     var doc = vm.get('document');
-    //--------------------------------
+    var view = this;
     if (!this.searchDialog) {
       this.searchDialog = Ext.create('Tel100.view.document.Search', {
         closeAction: 'hide',
@@ -74,13 +87,25 @@ Ext.define('Tel100.view.document.Relation', {
         maximizable: true
       });
 
-      this.searchDialog.on('documentselected', function(doc) {
-        console.log('test', doc.id);
+      this.searchDialog.on('documentselected', function(related) {
+        helpers.api.document.relation.create({
+          params: {
+            base_id: doc.id,
+            related_id: related.id
+          },
+          success: function(params) {
+            view.refresh();
+          }
+        });
       });
     }
-    //--------------------------------
     this.searchDialog.setParentDocument(doc);
     this.searchDialog.show();
+  },
+
+  refresh: function() {
+    var grid = this.down('gridpanel');
+    grid.getStore().load();
   }
 
 });

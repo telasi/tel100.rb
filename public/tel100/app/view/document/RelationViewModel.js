@@ -17,8 +17,31 @@ Ext.define('Tel100.view.document.RelationViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.documentrelation',
 
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.proxy.Ajax',
+    'Ext.data.reader.Json'
+  ],
+
   data: {
     relationCount: 0
+  },
+
+  stores: {
+    relations: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Base',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          base_id: '{document.id}'
+        },
+        url: '/api/documents/relations',
+        reader: {
+          type: 'json'
+        }
+      }
+    }
   }
 
 });
