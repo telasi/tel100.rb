@@ -64,15 +64,22 @@ Ext.define('Tel100.view.document.Relation', {
   ],
 
   onAddRelation: function(tool, e, owner, eOpts) {
+    var vm = this.getViewModel();
+    var doc = vm.get('document');
+    //--------------------------------
     if (!this.searchDialog) {
       this.searchDialog = Ext.create('Tel100.view.document.Search', {
         closeAction: 'hide',
         modal: true,
         maximizable: true
       });
+
+      this.searchDialog.on('documentselected', function(doc) {
+        console.log('test', doc.id);
+      });
     }
-    var vm = this.getViewModel();
-    this.searchDialog.setParentDocument(vm.get('document'));
+    //--------------------------------
+    this.searchDialog.setParentDocument(doc);
     this.searchDialog.show();
   }
 
