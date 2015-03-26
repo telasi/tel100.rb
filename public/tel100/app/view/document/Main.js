@@ -114,6 +114,14 @@ Ext.define('Tel100.view.document.Main', {
     search.on('searchstart', function(url, params) {
       view.down('documentgridpanel').refresh({url: url, params: params });
     });
+  },
+
+  onNewDocument: function() {
+    this.getController().onNewDocument();
+  },
+
+  onRefresh: function() {
+    this.getController().onRefresh();
   }
 
 });

@@ -195,6 +195,38 @@
             },
             "name": "onPanelBeforeRender",
             "designerId": "d86329d2-96b1-4bc7-9171-640aff239da2"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onNewDocument",
+                "implHandler": [
+                    "this.getController().onNewDocument();"
+                ]
+            },
+            "name": "onNewDocument",
+            "designerId": "d4e7c44d-20c3-450a-a1a6-2d349f9c8d84"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onRefresh",
+                "implHandler": [
+                    "this.getController().onRefresh();"
+                ]
+            },
+            "name": "onRefresh",
+            "designerId": "26db3325-91d4-4b1c-8103-5432a6d6dcf4"
         }
     ]
 }
