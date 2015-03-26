@@ -94,10 +94,14 @@ Rails.application.routes.draw do
         post '/create', action: 'create'
       end
       scope 'files', controller: 'files' do
-        get    '/',       action: 'index'
+        get    '/',         action: 'index'
         get    '/download', action: 'download'
-        post   '/upload', action: 'upload'
-        delete '/delete', action: 'destroy'
+        post   '/upload',   action: 'upload'
+        delete '/delete',   action: 'destroy'
+      end
+      scope 'relations', controller: 'relations' do
+        get  '/',        action: 'index'
+        post '/create',  action: 'create'
       end
     end
   end
