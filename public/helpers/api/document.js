@@ -92,6 +92,13 @@ var relation = {
     opts.url = '/api/documents/relations/create';
     ajax.request(opts);
   },
+
+  delete: function(args) {
+    var opts = args || {};
+    opts.method = 'DELETE';
+    opts.url = '/api/documents/relations/delete';
+    ajax.request(opts);
+  },
 };
 
 module.exports = {
