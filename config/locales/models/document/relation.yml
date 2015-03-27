@@ -1,0 +1,5 @@
+ka:
+  models:
+    document_relations:
+      errors:
+        relation_exists: ეს საფუძველი უკვე დამატებულია.
