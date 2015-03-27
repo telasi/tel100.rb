@@ -7,4 +7,6 @@ module Folders
   STANDARD << Folder::Standard.new(4,2,'<i class="fa fa-envelope-o"></i>','წაკითხული', 'Прочитанные', 'Read', Folder::Standard::INBOX_READ)
   STANDARD << Folder::Standard.new(5,2,'<i class="fa fa-external-link"></i>','გადაგზავნილი', 'Пересланные', 'Resent', Folder::Standard::INBOX_RESENT)
   STANDARD << Folder::Standard.new(6,nil,'<i class="fa fa-reply"></i>','გაგზავნილი', 'Отправленные', 'Sent', Folder::Standard::SENT)
+  STANDARD << Folder::Standard.new(7,nil,'<i class="fa fa-check"></i>','დასრულებული', 'Завершенные', 'Completed', Folder::Standard::COMPLETED)
+  STANDARD << Folder::Standard.new(9,nil,'<i class="fa fa-times"></i>','გაუქმებული', 'Отмененные', 'Canceled', Folder::Standard::CANCELED)
 end

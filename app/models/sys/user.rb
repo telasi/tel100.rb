@@ -65,6 +65,14 @@ class Sys::User < ActiveRecord::Base
     user if (user and user.password == password)
   end
 
+  def self_or_sub(substitude)
+    if substitude.present?
+      Sys::User.find(HR::Vacation::Vacation.find(substitude).userid) 
+    else
+      self
+    end
+  end
+
   private
 
   def on_before_create

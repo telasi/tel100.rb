@@ -18,6 +18,7 @@ class ApiController < ActionController::Base
   def current_locale; params[:api_locale] || 'ka' end
   def current_user; @curruser ||= Sys::User.authenticate(params[:api_username], params[:api_password]) end
   def current_empl; current_user.employee if current_user.present? end
+  def current_substitude; params[:substitude] end
   def validate_login; raise 'not authorized' if current_user.blank? end
   def validate_locale; I18n.locale = current_locale end
 end
