@@ -41,7 +41,7 @@ Ext.define('Tel100.model.hr.Employee', {
     }
   ],
 
-  toTreeHtml: function() {
+  toHtml: function() {
     var icon;
     if (this.get('has_user')) {
         icon = '<span class="text-success"><i class="fa fa-user"></i></span>';

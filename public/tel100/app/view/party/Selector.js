@@ -111,16 +111,8 @@ Ext.define('Tel100.view.party.Selector', {
         {
           xtype: 'gridcolumn',
           renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-            switch(record.get('ext_type')){
-              case 'hr.Employee':
-              if(record.toTreeHtml){
-                return record.toTreeHtml();
-              }
-              break;
-              case 'hr.Party':
-              return record.get('name_ka');
-              case 'hr.Customer':
-              return record.get('name');
+            if(record.toTreeHtml){
+              return record.toHtml();
             }
           },
           dataIndex: 'name',
