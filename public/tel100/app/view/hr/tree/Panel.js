@@ -52,8 +52,8 @@ Ext.define('Tel100.view.hr.tree.Panel', {
     {
       xtype: 'treecolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        if (record.toTreeHtml) {
-          return record.toTreeHtml();
+        if (record.toHtml) {
+          return record.toHtml();
         } else {
           return '<i class="fa fa-bolt"></i> ' + i18n.application.telasi;
         }
