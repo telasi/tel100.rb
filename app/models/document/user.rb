@@ -43,6 +43,11 @@ class Document::User < ActiveRecord::Base
     end
   end
 
+  def self.filter_substitude_can_see(substitudeId)
+    vac = HR::Vacation::Vacation.where(userid: substitudeId, substitude: current_user.id)
+    Document::User.join(:document).where("document_base.docdate >= sysdate")
+  end
+
   protected
 
   def update_document_motions; motions.each { |motion| motion.update_attributes!(is_new: self.is_new) } end

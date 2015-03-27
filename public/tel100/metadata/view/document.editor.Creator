@@ -452,20 +452,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|displayName": "related"
-                                    },
-                                    "name": "document.relation.panel",
-                                    "designerId": "a984b060-8e0b-4d41-9f0a-f1835e0e015e",
-                                    "masterInstanceId": "f109941e-d70e-4dcf-96dd-cc8a778ba5f5"
-                                },
-                                {
-                                    "type": "linkedinstance",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
                                         "designer|displayName": "signees"
                                     },
                                     "name": "document.motions.signeepanel1",
@@ -636,7 +622,7 @@
                                 "border": false,
                                 "designer|displayName": "receivers"
                             },
-                            "name": "document.motions.outpanel3",
+                            "name": "document.motions.outpanel1",
                             "configAlternates": {
                                 "title": "binding"
                             },
