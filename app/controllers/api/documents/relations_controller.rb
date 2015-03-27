@@ -12,4 +12,9 @@ class Api::Documents::RelationsController < ApiController
     rel = Document::Relation.create(base: document, related: related)
     render json: { id: rel.id }
   end
+
+  def delete
+    Document::Relation.find(params[:id]).destroy
+    render json: { success: true }
+  end
 end
