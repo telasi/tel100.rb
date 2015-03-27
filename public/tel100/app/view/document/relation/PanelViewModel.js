@@ -29,6 +29,12 @@ Ext.define('Tel100.view.document.relation.PanelViewModel', {
 
   stores: {
     relations: {
+      listeners: {
+        load: function() {
+          this.viewModel.set('relationCount', this.getTotalCount());
+        },
+        
+      },
       autoLoad: true,
       model: 'Tel100.model.document.Base',
       proxy: {

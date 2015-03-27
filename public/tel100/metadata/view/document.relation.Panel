@@ -201,12 +201,36 @@
             "userConfig": {
                 "fn": "refresh",
                 "implHandler": [
-                    "var grid = this.down('gridpanel');",
+                    "var view = this;",
+                    "var grid = view.down('gridpanel');",
                     "grid.getStore().load();"
                 ]
             },
             "name": "refresh",
             "designerId": "8e6d2d1e-4169-441f-a71f-4898a2c8ba5e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initComponent",
+                "implHandler": [
+                    "this.callParent();",
+                    "var vm = this.getViewModel();",
+                    "// setting view model for the relations store",
+                    "vm.bind('{relations}', function(store) {",
+                    "  if (store) {",
+                    "    store.viewModel = this;",
+                    "  }",
+                    "});"
+                ]
+            },
+            "name": "initComponent",
+            "designerId": "bc3c75d1-f05c-4707-8053-58ef50e9d717"
         }
     ]
 }

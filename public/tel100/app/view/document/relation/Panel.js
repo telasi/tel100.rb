@@ -104,8 +104,20 @@ Ext.define('Tel100.view.document.relation.Panel', {
   },
 
   refresh: function() {
-    var grid = this.down('gridpanel');
+    var view = this;
+    var grid = view.down('gridpanel');
     grid.getStore().load();
+  },
+
+  initComponent: function() {
+    this.callParent();
+    var vm = this.getViewModel();
+    // setting view model for the relations store
+    vm.bind('{relations}', function(store) {
+      if (store) {
+        store.viewModel = this;
+      }
+    });
   }
 
 });

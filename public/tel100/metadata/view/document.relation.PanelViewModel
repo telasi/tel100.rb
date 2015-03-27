@@ -25,11 +25,28 @@
             "codeClass": null,
             "userConfig": {
                 "autoLoad": true,
+                "listeners": [
+                    "{",
+                    "  load: function() {",
+                    "    this.viewModel.set('relationCount', this.getTotalCount());",
+                    "  },",
+                    "}"
+                ],
                 "model": "document.Base",
                 "name": "relations"
             },
             "name": "MyStore7",
+            "configAlternates": {
+                "listeners": "object"
+            },
             "designerId": "6a94cee7-c356-493b-9550-e0684d0dbdd4",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "listeners",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "Ext.data.proxy.Ajax",
