@@ -80,18 +80,19 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
 
   onGridpanelCellClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     var me = this;
-    var vm = Ext.ComponentQuery.query('#main-viewport')[0].getViewModel();
-    vm.set('substitude',record);
+    helpers.api.substitude.setSubstitude(record.get('id'));
+    var dg = this.getView().up().down('documentgridpanel');
 
     if(Ext.ComponentQuery.query('usersubstitudepanel').length === 0){
       var toppanel = Ext.create('Tel100.view.user.substitude.Panel',
         { html: i18n.vacation.ui.substitude_mode.title + record.data.name });
       toppanel.down('button').on('click',function(){
-        vm.set('substitude',null);
-        me.getView().up().down('documentgridpanel').refresh();
+        helpers.api.substitude.setSubstitude(null);
+        dg.refresh();
       });
       toppanel.show().alignTo(Ext.getBody(), 't-t');
       this.getView().up().down('documentgridpanel').refresh();
+      dg.refresh();
     }
   }
 
