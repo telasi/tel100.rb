@@ -89,6 +89,35 @@
                     ]
                 },
                 {
+                    "type": "Ext.grid.column.Action",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "actions",
+                        "width": 24
+                    },
+                    "name": "MyActionColumn1",
+                    "designerId": "dbf2afe4-dcbd-4fea-a3f6-b97aabfcffaf",
+                    "cn": [
+                        {
+                            "type": "actioncolumnitem",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "icon": "/images/delete.gif"
+                            },
+                            "name": "MyActionColumnItem1",
+                            "designerId": "be2a6c3b-c7bf-4e79-b135-74a4e55c31e9"
+                        }
+                    ]
+                },
+                {
                     "type": "Ext.grid.View",
                     "reference": {
                         "name": "viewConfig",

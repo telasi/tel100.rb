@@ -20,7 +20,7 @@ Ext.define('Tel100.view.document.relation.Panel', {
   requires: [
     'Tel100.view.document.relation.PanelViewModel',
     'Ext.grid.Panel',
-    'Ext.grid.column.Column',
+    'Ext.grid.column.Action',
     'Ext.grid.View',
     'Ext.panel.Tool',
     'Tel100.view.document.Search'
@@ -51,6 +51,15 @@ Ext.define('Tel100.view.document.relation.Panel', {
           dataIndex: 'docnumber',
           text: 'document',
           flex: 1
+        },
+        {
+          xtype: 'actioncolumn',
+          width: 24,
+          items: [
+            {
+              icon: '/images/delete.gif'
+            }
+          ]
         }
       ]
     }
