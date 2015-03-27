@@ -1,5 +1,11 @@
 # -*- encoding : utf-8 -*-
 class HR::Vacation::Vacation < ActiveRecord::Base
+
+  #SUBSTITUDE_TYPE
+  VIEW_NONE = 1
+  VIEW_ALL  = 2
+  VIEW_NEW  = 3
+  
   self.table_name  = 'hr_vacation'
   self.sequence_name = 'hr_vacation_seq'
   self.set_integer_columns :substitude_type, :confirmed

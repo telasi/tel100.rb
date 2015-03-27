@@ -7,8 +7,10 @@ class Folder::Standard
   INBOX_READ = 3
   INBOX_RESENT = 4
   SENT = 5
+  COMPLETED = 6
+  CANCELED = 7
 
-  STANDARD_FOLDERS = [ DRAFT, INBOX_NONREAD, INBOX_READ, INBOX_RESENT, SENT ]
+  STANDARD_FOLDERS = [ DRAFT, INBOX_NONREAD, INBOX_READ, INBOX_RESENT, SENT, COMPLETED, CANCELED ]
 
   attr_accessor :id
   attr_accessor :parent_id
@@ -59,6 +61,10 @@ class Folder::Standard
         Document::Motion.where('document_motion.parent_id IS NOT NULL and sender_user_id = ? ', user.id)
    		when SENT
    			Document::User.where('document_user.status = ? AND user_id = ?', Document::Status::SENT, user.id)
+      when COMPLETED
+        Document::User.where('document_user.status = ? AND user_id = ?', Document::Status::COMPLETED, user.id)
+      when CANCELED
+        Document::User.where('document_user.status = ? AND user_id = ?', Document::Status::CANCELED, user.id)
     end
    end
 end

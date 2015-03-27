@@ -3,12 +3,11 @@ class Api::Documents::BaseController < ApiController
   before_filter :validate_login
 
   def index
-    @my_docs = doc_list(params[:folderType], params[:folderId], params[:substitude])
+    @my_docs = doc_list(params[:folderType], params[:folderId])
   end
 
   def search
-    user = current_user
-    user = Sys::User.find(HR::Vacation::Vacation.find(params['substitude']).userid) if params['substitude'].present?
+    user = current_user.self_or_sub(current_substitude)
 
     @my_docs = Document::User.mydocs(user).joins(:document)
     @my_docs = doc_list('standard', params['folder'], params['substitude']) if params['folder'].present?
@@ -28,9 +27,8 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.where("document_base.page_count" => params['page_count']) if params['page_count'].present?
   end
 
-  def doc_list(folderType, folderId, substitude)
-    user = current_user
-    user = Sys::User.find(HR::Vacation::Vacation.find(substitude).userid) if substitude.present?
+  def doc_list(folderType, folderId)
+    user = current_user.self_or_sub(current_substitude)
     case folderType
       when 'standard'
         Folder::Standard.docs(folderId, user)
@@ -38,7 +36,7 @@ class Api::Documents::BaseController < ApiController
         Folder::Document.docs(folderId)
       else 
         Document::User.mydocs(user)
-      end
+    end
   end
 
   def show
