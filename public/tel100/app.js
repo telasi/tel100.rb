@@ -75,7 +75,7 @@ Ext.application({
     'document.motions.AssigneePanel',
     'document.motions.SigneePanel',
     'document.motions.AuthorPanel',
-    'document.Relation',
+    'document.relation.Panel',
     'document.Search'
   ],
   name: 'Tel100',

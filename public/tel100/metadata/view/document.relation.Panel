@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documentrelation",
-        "designer|userClassName": "document.Relation",
+        "designer|userAlias": "documentrelationpanel",
+        "designer|userClassName": "document.relation.Panel",
         "height": null,
         "layout": "fit",
         "requires": [

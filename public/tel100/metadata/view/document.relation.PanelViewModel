@@ -11,8 +11,8 @@
             "  relationCount: 0",
             "}"
         ],
-        "designer|userAlias": "documentrelation",
-        "designer|userClassName": "document.RelationViewModel"
+        "designer|userAlias": "documentrelationpanel",
+        "designer|userClassName": "document.relation.PanelViewModel"
     },
     "designerId": "bfbabff8-dd78-46c2-ad79-5846374001fd",
     "cn": [

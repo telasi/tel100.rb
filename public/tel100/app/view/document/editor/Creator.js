@@ -21,7 +21,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
     'Tel100.view.document.editor.CreatorViewModel',
     'Tel100.view.document.editor.CreatorViewController',
     'Tel100.view.document.editor.General',
-    'Tel100.view.document.Relation',
+    'Tel100.view.document.relation.Panel',
     'Tel100.view.document.motions.SigneePanel',
     'Tel100.view.document.motions.AssigneePanel',
     'Tel100.view.document.motions.AuthorPanel',
@@ -166,7 +166,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
                   }
                 },
                 {
-                  xtype: 'documentrelation'
+                  xtype: 'documentrelationpanel'
                 },
                 {
                   xtype: 'documentmotionssigneepanel',
