@@ -110,10 +110,45 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "designer|displayName": "delete",
                                 "icon": "/images/delete.gif"
                             },
                             "name": "MyActionColumnItem1",
-                            "designerId": "be2a6c3b-c7bf-4e79-b135-74a4e55c31e9"
+                            "designerId": "be2a6c3b-c7bf-4e79-b135-74a4e55c31e9",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "view",
+                                            "rowIndex",
+                                            "colIndex",
+                                            "item",
+                                            "e",
+                                            "record",
+                                            "row"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "helpers.api.document.relation.delete({",
+                                            "  params: {",
+                                            "    id: record.id",
+                                            "  },",
+                                            "  success: function(params) {",
+                                            "    view.up('documentrelationpanel').refresh();",
+                                            "  }",
+                                            "});"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "6b5e4fa8-b65f-40c0-b7f3-c41676e23be0"
+                                }
+                            ]
                         }
                     ]
                 },

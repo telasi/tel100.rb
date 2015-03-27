@@ -57,6 +57,16 @@ Ext.define('Tel100.view.document.relation.Panel', {
           width: 24,
           items: [
             {
+              handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                helpers.api.document.relation.delete({
+                  params: {
+                    id: record.id
+                  },
+                  success: function(params) {
+                    view.up('documentrelationpanel').refresh();
+                  }
+                });
+              },
               icon: '/images/delete.gif'
             }
           ]
