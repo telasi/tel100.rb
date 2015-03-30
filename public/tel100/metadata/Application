@@ -20,7 +20,8 @@
             "folder.Standard",
             "document.File",
             "hr.Party",
-            "bs.Customer"
+            "bs.Customer",
+            "document.ResponseType"
         ],
         "name": "Tel100",
         "stores": [

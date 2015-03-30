@@ -34,7 +34,8 @@ Ext.application({
     'folder.Standard',
     'document.File',
     'hr.Party',
-    'bs.Customer'
+    'bs.Customer',
+    'document.ResponseType'
   ],
   stores: [
     'CustomFolders'
