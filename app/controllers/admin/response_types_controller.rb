@@ -32,6 +32,12 @@ class Admin::ResponseTypesController < AdminController
     end
   end
 
+  def destroy
+    type = Document::ResponseType.find(params[:id])
+    type.destroy
+    redirect_to admin_response_types_url
+  end
+
   protected
 
   def type_params
