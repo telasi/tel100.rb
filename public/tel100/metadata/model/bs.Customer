@@ -42,6 +42,87 @@
                     "designerId": "e40c43b3-a77e-4a6d-9120-46dbfbe8961e"
                 }
             ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id"
+            },
+            "name": "MyField12",
+            "designerId": "99b8ec50-21c9-4c74-b5eb-af440a4c949f"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name"
+            },
+            "name": "MyField13",
+            "designerId": "bd80396b-853f-4301-9bcd-4d7b42fbaee5"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "taxid"
+            },
+            "name": "MyField15",
+            "designerId": "92c0248a-4b17-4217-a2b8-bf348af5bf3b"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "address"
+            },
+            "name": "MyField16",
+            "designerId": "8ed5f075-5d5c-44c0-9bfc-dc530cb9da88"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "accnumb"
+            },
+            "name": "MyField17",
+            "designerId": "60176268-d1fd-4149-b8a5-425b701951cb"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "toHtml",
+                "implHandler": [
+                    "return ['<i class=\"fa fa-users\"></i>', this.get('name')].join(' ');"
+                ]
+            },
+            "name": "toHtml",
+            "designerId": "65a3beb0-bc1a-4eb5-95c9-0d0303604254"
         }
     ]
 }
