@@ -111,7 +111,7 @@ Ext.define('Tel100.view.party.Selector', {
         {
           xtype: 'gridcolumn',
           renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-            if(record.toTreeHtml){
+            if(record.toHtml){
               return record.toHtml();
             }
           },
