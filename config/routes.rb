@@ -31,6 +31,8 @@ Rails.application.routes.draw do
         get '/', action: 'index', as: 'response_types'
         get '/show/:id', action: 'show', as: 'response_type'
         match '/new', action: 'new', as: 'new_response_type', via: ['get', 'post']
+        match '/edit/:id', action: 'edit', as: 'edit_response_type', via: ['get', 'post']
+        delete '/delete/:id', action: 'destroy', as: 'delete_response_type'
       end
     end
   end

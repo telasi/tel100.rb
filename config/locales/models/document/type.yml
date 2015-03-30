@@ -2,7 +2,7 @@ ka:
   models:
     document_responsetype:
       name: დასახელება
-      typename: ტიპი
+      typename: კატეგორია
       ordering: დალაგება
       name_ka: დასახელება (ქარ.)
       name_ru: დასახელება (რუს.)
