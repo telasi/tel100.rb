@@ -15,10 +15,20 @@ class Admin::ResponseTypesController < AdminController
     if request.post?
       @type = Document::ResponseType.new(type_params)
       if @type.save
-        redirect_to admin_response_types_url
+        redirect_to admin_response_type_url(@type)
       end
     else
       @type = Document::ResponseType.new(ordering: 1)
+    end
+  end
+
+  def edit
+    @title = 'სახეობის რედაქტირება'
+    @type = Document::ResponseType.find(params[:id])
+    if request.post?
+      if @type.update_attributes(type_params)
+        redirect_to admin_response_type_url(@type)
+      end
     end
   end
 
