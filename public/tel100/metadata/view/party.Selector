@@ -54,7 +54,7 @@
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel1",
+                    "name": "hr.tree.panel",
                     "configAlternates": {
                         "tools": "array"
                     },
@@ -178,7 +178,7 @@
                             "userConfig": {
                                 "fn": "onCustomerGridpanelItemDblClick",
                                 "implHandler": [
-                                    "if (record.get('ext_type') === 'hr.Customer') {",
+                                    "if (record.get('ext_type') === 'bs.Customer') {",
                                     "      this.getController().onAddParty(record);",
                                     "}"
                                 ],
@@ -450,7 +450,7 @@
                             "userConfig": {
                                 "fn": "onRemoveToolClick",
                                 "implHandler": [
-                                    "var grid = this.down('gridpanel');",
+                                    "var grid = this.down('#selectedParties');",
                                     "var selection = grid.getSelection();",
                                     "if (selection.length > 0) {",
                                     "  this.getController().onRemoveParty(selection[0]);",

@@ -42,6 +42,126 @@
                     "designerId": "852dc392-b2db-40fd-a2fb-74936fad8689"
                 }
             ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id"
+            },
+            "name": "MyField18",
+            "designerId": "21141ff2-8416-4bca-a8be-e911b0542ccc"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name_ka"
+            },
+            "name": "MyField19",
+            "designerId": "92131905-a15b-4f30-89fd-e82fa8ab7e0a"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "address_ka"
+            },
+            "name": "MyField20",
+            "designerId": "5347abe7-b6df-4e78-8031-15206adcec0d"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "contact_ka"
+            },
+            "name": "MyField21",
+            "designerId": "e36cafc2-c0c8-4dd6-953d-52d4fe35198c"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "identity"
+            },
+            "name": "MyField22",
+            "designerId": "4513c67f-7f0d-4c40-80ca-5c6aa0f7b4f4"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "phones"
+            },
+            "name": "MyField23",
+            "designerId": "38bcef71-fd6b-451b-9b5f-ccb77213aa8f"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "email"
+            },
+            "name": "MyField24",
+            "designerId": "089f3695-76bb-486f-9e63-d628387a9a8a"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ext_type"
+            },
+            "name": "MyField25",
+            "designerId": "5e3874c8-50b3-4f85-bb42-9e2977a89df0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "toHtml",
+                "implHandler": [
+                    "return ['<i class=\"fa fa-university\"></i>', this.get('name_ka')].join(' ');"
+                ]
+            },
+            "name": "toHtml",
+            "designerId": "9d774221-b69d-4b96-8ff6-c0d148fd02dc"
         }
     ]
 }
