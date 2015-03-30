@@ -190,7 +190,7 @@ Ext.define('Tel100.view.party.Selector', {
 
   onSelectClicked: function(button, e, eOpts) {
     var data = [];
-    var grid = this.down('gridpanel');
+    var grid = this.down('#selectedParties');
     var store = grid.getStore();
     store.each(function(item) { data.push(item); });
     this.fireEvent('selectioncomplete', data);
