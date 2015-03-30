@@ -183,6 +183,54 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "designer|displayName": "responseTypes",
+                "model": "document.ResponseType",
+                "name": "responseTypes"
+            },
+            "name": "MyStore9",
+            "designerId": "dea07349-e774-47d5-8db1-b433ab1b4723",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  typekey: 1",
+                            "}"
+                        ],
+                        "url": "/api/documents/response_types"
+                    },
+                    "name": "MyAjaxProxy4",
+                    "designerId": "87ccf491-353b-446a-8d66-86f76a432867",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader4",
+                            "designerId": "87c3de03-73ca-4745-9e3d-eafbeba546d3"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

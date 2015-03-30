@@ -113,6 +113,20 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
     },
     {
       xtype: 'gridcolumn',
+      bind: {
+        text: '{i18n.document.motion.response_type}'
+      },
+      editor: {
+        xtype: 'combobox',
+        displayField: 'name',
+        valueField: 'id',
+        bind: {
+          store: '{responseTypes}'
+        }
+      }
+    },
+    {
+      xtype: 'gridcolumn',
       width: 200,
       sortable: false,
       dataIndex: 'motion_text',

@@ -261,6 +261,47 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "responseType",
+                "text": [
+                    "{i18n.document.motion.response_type}"
+                ]
+            },
+            "name": "MyColumn23",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "bd4ff75f-7de9-435f-9407-c895fe66e8e1",
+            "cn": [
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "editor",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "displayField": "name",
+                        "store": [
+                            "{responseTypes}"
+                        ],
+                        "valueField": "id"
+                    },
+                    "name": "MyComboBox3",
+                    "configAlternates": {
+                        "store": "binding"
+                    },
+                    "designerId": "9f22ec21-ac6d-4a78-859a-a6880534e863"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "dataIndex": "motion_text",
                 "designer|displayName": "motion_text",
                 "hideable": false,
