@@ -1,0 +1,6 @@
+ka:
+  models:
+    document_response_type:
+      order_by: დალაგება
+      typekey: ტიპი
+      name: დასახელება

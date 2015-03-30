@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="col-sm-4">
-    <h4 class="page-header">მომხმარებლები და როლები</h4>
+    <h4 class="page-header">მომხმარებლები</h4>
     <div>
       <%= link_to "მომხმარებლები <code>#{Sys::User.active.count}</code>".html_safe, admin_users_url, class: ['btn', 'btn-default'] %>
     </div>
@@ -19,7 +19,14 @@
   <div class="col-sm-4">
     <h4 class="page-header">დოკუმენტები</h4>
     <div>
-      <%= link_to "სახეობები <code>#{Document::Type.count}</code>".html_safe, admin_doctypes_url, class: ['btn', 'btn-default'] %>
+      <%= link_to "სახეობები <code>#{Document::Type.count}</code>".html_safe,
+        admin_doctypes_url,
+        class: ['btn', 'btn-default']
+      %>
+      <%= link_to "პასუხის სახეობები <code>#{Document::ResponseType.count}</code>".html_safe,
+        admin_response_types_url,
+        class: ['btn', 'btn-default']
+      %>
     </div>
   </div>
 </div>
