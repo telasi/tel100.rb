@@ -60,19 +60,6 @@ Ext.define('Tel100.view.party.Selector', {
       items: [
         {
           xtype: 'hrtreepanel',
-          tools: [
-            {
-              type: 'plus',
-              handler: function() {
-                var tree = this.up('hrtreepanel');
-                var selection = tree.getSelection();
-                if (selection.length > 0) {
-                  var controller = this.up('partyselector').getController();
-                  controller.onAddParty(selection[0]);
-                }
-              }
-            }
-          ],
           cls: 'panel-with-border',
           listeners: {
             celldblclick: 'onHRTreeDblClick'
@@ -167,9 +154,7 @@ Ext.define('Tel100.view.party.Selector', {
   ],
 
   onHRTreeDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
-    if (record.get('ext_type') === 'hr.Employee' && record.get('has_user')) {
-      this.getController().onAddParty(record);
-    }
+    this.getController().onAddParty(record);
   },
 
   onPartyGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {

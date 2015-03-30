@@ -51,19 +51,7 @@
                         "cls": "panel-with-border",
                         "designer|displayName": "hrstructure",
                         "store": null,
-                        "tools": [
-                            "[{",
-                            "  type: 'plus',",
-                            "  handler: function() {",
-                            "    var tree = this.up('hrtreepanel');",
-                            "    var selection = tree.getSelection();",
-                            "    if (selection.length > 0) {",
-                            "      var controller = this.up('partyselector').getController();",
-                            "      controller.onAddParty(selection[0]);",
-                            "    }",
-                            "  }",
-                            "}]"
-                        ],
+                        "tools": null,
                         "width": null
                     },
                     "name": "hr.tree.panel1",
@@ -90,9 +78,7 @@
                             "userConfig": {
                                 "fn": "onHRTreeDblClick",
                                 "implHandler": [
-                                    "if (record.get('ext_type') === 'hr.Employee' && record.get('has_user')) {",
-                                    "  this.getController().onAddParty(record);",
-                                    "}"
+                                    "this.getController().onAddParty(record);"
                                 ],
                                 "name": "celldblclick",
                                 "scope": "me"
