@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324115019) do
+ActiveRecord::Schema.define(version: 20150330073049) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -95,6 +95,16 @@ ActiveRecord::Schema.define(version: 20150324115019) do
     t.integer   "base_id",    limit: 10, precision: 10, scale: 0, null: false
     t.integer   "related_id", limit: 10, precision: 10, scale: 0, null: false
     t.timestamp "created_at", limit: 6,                           null: false
+  end
+
+  create_table "document_response_types", force: true do |t|
+    t.integer   "ordering",   limit: 5,  precision: 5, scale: 0, null: false
+    t.boolean   "typekey",               precision: 1, scale: 0, null: false
+    t.string    "name_ka",    limit: 50,                         null: false
+    t.string    "name_ru",    limit: 50
+    t.string    "name_en",    limit: 50
+    t.timestamp "created_at", limit: 6,                          null: false
+    t.timestamp "updated_at", limit: 6,                          null: false
   end
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
@@ -198,7 +208,7 @@ ActiveRecord::Schema.define(version: 20150324115019) do
   end
 
   create_table "party_base", force: true do |t|
-    t.string    "type",       limit: 20,  null: false
+    t.string    "org_type",   limit: 20,  null: false
     t.string    "identity",   limit: 30
     t.string    "name_ka",    limit: 200
     t.string    "name_ru",    limit: 200
@@ -206,6 +216,9 @@ ActiveRecord::Schema.define(version: 20150324115019) do
     t.string    "address_ka", limit: 500
     t.string    "address_ru", limit: 500
     t.string    "address_en", limit: 500
+    t.string    "contact_ka", limit: 200
+    t.string    "contact_ru", limit: 200
+    t.string    "contact_en", limit: 200
     t.string    "phones",     limit: 100
     t.string    "email",      limit: 50
     t.string    "account",    limit: 50
