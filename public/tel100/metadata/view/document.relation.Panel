@@ -35,6 +35,7 @@
             "codeClass": null,
             "userConfig": {
                 "hideHeaders": true,
+                "scroll": "vertical",
                 "store": [
                     "{relations}"
                 ],

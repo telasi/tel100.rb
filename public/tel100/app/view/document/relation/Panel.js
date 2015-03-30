@@ -39,6 +39,7 @@ Ext.define('Tel100.view.document.relation.Panel', {
     {
       xtype: 'gridpanel',
       hideHeaders: true,
+      scroll: 'vertical',
       bind: {
         store: '{relations}'
       },
