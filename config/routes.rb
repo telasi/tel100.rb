@@ -97,6 +97,9 @@ Rails.application.routes.draw do
         put    '/:id', action: 'update'
         delete '/:id', action: 'destroy'
       end
+      scope 'response_types', controller: 'response_types' do
+        get '/', action: 'index'
+      end
       scope 'comments', controller: 'comments' do
         post '/create', action: 'create'
       end
