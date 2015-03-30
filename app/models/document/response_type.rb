@@ -18,4 +18,8 @@ class Document::ResponseType < ActiveRecord::Base
   def self.response_types
     self.where(typekey: TYPEKEY_RESP)
   end
+
+  def typename
+    self.typekey == TYPEKEY_SEND ? 'გაგზავნისას' : 'პასუხისას'
+  end
 end

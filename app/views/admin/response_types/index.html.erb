@@ -8,8 +8,8 @@
 </ol>
 
 <%= table_for @types, model_name: 'Document::ResponseType' do |t|
-  t.text_field 'order_by', tag: 'code', width: 100, label: 'დალაგება'
-  t.text_field 'typekey', width: 100, label: 'ტიპი'
+  t.text_field 'ordering', tag: 'code', width: 100, label: 'დალაგება'
+  t.text_field 'typename', width: 120, label: 'ტიპი'
   t.text_field 'name', label: 'დასახელება'
   t.button_action admin_new_response_type_url, label: 'პასუხის ახალი სახეობა', icon: 'plus'
 end %>

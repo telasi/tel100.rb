@@ -16,4 +16,11 @@ module DocumentsHelper
     end
     texts.any? ? texts.join(' ') : '--'
   end
+
+  def document_response_types
+    {
+      Document::ResponseType::TYPEKEY_SEND => 'გაგზავნისას',
+      Document::ResponseType::TYPEKEY_RESP => 'პასუხისას',
+    }
+  end
 end
