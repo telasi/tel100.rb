@@ -1,8 +1,9 @@
 ka:
   models:
-    document_type:
+    document_responsetype:
       name: დასახელება
-      order_by: დალაგება
+      typename: ტიპი
+      ordering: დალაგება
       name_ka: დასახელება (ქარ.)
       name_ru: დასახელება (რუს.)
       name_en: დასახელება (ინგ.)
