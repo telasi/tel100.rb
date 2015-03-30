@@ -11,11 +11,11 @@ class Document::ResponseType < ActiveRecord::Base
   belongs_to :motion, class_name: 'Document::Motion', foreign_key: 'motion_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
 
-  def self.create(user, doc, motion, params)
-    if motion
-      motion.add_comment(user, params)
-    else
-      doc.add_comment(user, params)
-    end
+  def self.send_types
+    self.where(typekey: TYPEKEY_SEND)
+  end
+
+  def self.response_types
+    self.where(typekey: TYPEKEY_RESP)
   end
 end
