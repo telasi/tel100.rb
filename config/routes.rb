@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       end
       scope 'response_types', controller: 'response_types' do
         get '/', action: 'index', as: 'response_types'
+        get '/show/:id', action: 'show', as: 'response_type'
         match '/new', action: 'new', as: 'new_response_type', via: ['get', 'post']
       end
     end

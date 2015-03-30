@@ -5,6 +5,11 @@ class Admin::ResponseTypesController < AdminController
     @types = Document::ResponseType.order('typekey, ordering, id')
   end
 
+  def show
+    @title = 'პასუხის სახეობა'
+    @type = Document::ResponseType.find(params[:id])
+  end
+
   def new
     @title = 'ახალი სახეობა'
     if request.post?

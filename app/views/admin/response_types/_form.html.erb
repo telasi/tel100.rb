@@ -1,9 +1,9 @@
 <%= editor_for @type do |e|
-  e.required_combo_field 'typekey', collection: document_response_types, select2: false, label: 'ტიპი'
-  e.required_text_field 'ordering', label: 'დალაგება', autofocus: true
-  e.required_text_field 'name_ka', label: 'დასახელება (KA)'
-  e.text_field 'name_ru', label: 'დასახელება (RU)'
-  e.text_field 'name_en', label: 'დასახელება (EN)'
+  e.required_combo_field 'typekey', collection: document_response_types, select2: false, i18n: 'typename'
+  e.required_text_field 'ordering', autofocus: true
+  e.required_text_field 'name_ka'
+  e.text_field 'name_ru'
+  e.text_field 'name_en'
   e.submit 'მონაცემების შენახვა'
   e.button_action admin_response_types_url, label: ' გაუქმება', icon: 'remove'
 end %>

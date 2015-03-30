@@ -1,0 +1,19 @@
+<h1 class="page-header">
+  <%= @title %></code>
+</h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li><%= link_to 'პასუხის სახეობები', admin_response_types_url %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<%= viewer_for @type do |v|
+  #v.button_action admin_edit_user_url(id:@user.id), icon: 'pencil', label: 'შეცვლა'
+  #v.button_action admin_delete_user_url(id:@user.id), icon: 'trash', label: 'წაშლა', http_method: 'delete', confirm: 'ნამდვილად გინდათ წაშლა?'
+  v.required_text_field 'typename'
+  v.required_text_field 'ordering'
+  v.required_text_field 'name_ka'
+  v.text_field 'name_ru'
+  v.text_field 'name_en'
+end %>
