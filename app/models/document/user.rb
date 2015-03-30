@@ -10,7 +10,7 @@ class Document::User < ActiveRecord::Base
   before_save :update_document_motions
 
   def self.mydocs(user)
-    Document::User.where('document_user.status IN (?) AND user_id = ?', [CURRENT, CANCELED, COMPLETED], user.id)
+    Document::User.where('(document_user.status IN (?) OR (document_user.status IN (?) AND document_user.role=?)) AND user_id = ?', [CURRENT, CANCELED, COMPLETED], [DRAFT, CURRENT, CANCELED, COMPLETED], ROLE_OWNER, user.id)
   end
 
   def self.upsert!(doc, user, role, opts={})
