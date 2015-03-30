@@ -10,6 +10,7 @@ class AddDocumentUser < ActiveRecord::Migration
         -----
         IS_NEW       number(1, 0) default 1 not null,
         IS_CHANGED   number(1, 0) default 1 not null,
+        IS_FORWARDED number(1, 0) default 0 not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,

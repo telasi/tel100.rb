@@ -71,10 +71,12 @@ ActiveRecord::Schema.define(version: 20150330073049) do
     t.boolean   "is_new",                        precision: 1,  scale: 0, default: true,       null: false
     t.datetime  "due_date"
     t.integer   "ordering",         limit: 3,    precision: 3,  scale: 0, default: 999,        null: false
+    t.integer   "send_type_id",     limit: 5,    precision: 5,  scale: 0,                      null: false
     t.string    "motion_text",      limit: 1000
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",      limit: 50
+    t.integer   "resp_type_id",     limit: 5,    precision: 5,  scale: 0,                      null: false
     t.string    "response_text",    limit: 1000
     t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
     t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
@@ -121,14 +123,15 @@ ActiveRecord::Schema.define(version: 20150330073049) do
   end
 
   create_table "document_user", id: false, force: true do |t|
-    t.integer   "document_id", limit: 10, precision: 10, scale: 0,                 null: false
-    t.integer   "user_id",     limit: 10, precision: 10, scale: 0,                 null: false
-    t.string    "role",        limit: 10,                                          null: false
-    t.boolean   "status",                 precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_new",                 precision: 1,  scale: 0, default: true,  null: false
-    t.boolean   "is_changed",             precision: 1,  scale: 0, default: true,  null: false
-    t.timestamp "created_at",  limit: 6,                                           null: false
-    t.timestamp "updated_at",  limit: 6,                                           null: false
+    t.integer   "document_id",  limit: 10, precision: 10, scale: 0,                 null: false
+    t.integer   "user_id",      limit: 10, precision: 10, scale: 0,                 null: false
+    t.string    "role",         limit: 10,                                          null: false
+    t.boolean   "status",                  precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_new",                  precision: 1,  scale: 0, default: true,  null: false
+    t.boolean   "is_changed",              precision: 1,  scale: 0, default: true,  null: false
+    t.boolean   "is_forwarded",            precision: 1,  scale: 0, default: false, null: false
+    t.timestamp "created_at",   limit: 6,                                           null: false
+    t.timestamp "updated_at",   limit: 6,                                           null: false
   end
 
   create_table "folder_base", force: true do |t|
@@ -187,7 +190,8 @@ ActiveRecord::Schema.define(version: 20150330073049) do
     t.timestamp "updated_at",   limit: 6,                                            null: false
   end
 
-  create_table "hr_vacation", force: true do |t|
+  create_table "hr_vacation", id: false, force: true do |t|
+    t.integer   "id",              limit: 10, precision: 10, scale: 0, null: false
     t.integer   "userid",          limit: 10, precision: 10, scale: 0, null: false
     t.datetime  "from_date"
     t.datetime  "to_date"
@@ -198,8 +202,6 @@ ActiveRecord::Schema.define(version: 20150330073049) do
     t.timestamp "created_at",      limit: 6,                           null: false
     t.timestamp "updated_at",      limit: 6,                           null: false
   end
-
-  add_index "hr_vacation", ["substitude"], name: "hr_vacation_substitude_idx"
 
   create_table "hr_vacation_type", force: true do |t|
     t.string "name_ka", limit: 50
