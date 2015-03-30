@@ -42,7 +42,7 @@ class Document::Base < ActiveRecord::Base
 
     Document::Base.transaction do
       doc = Document::Base.create!(docparams)
-      Document::User.upsert!(doc, sender_user, ROLE_OWNER, { is_new: 0, status: CURRENT })
+      Document::User.upsert!(doc, sender_user, ROLE_OWNER, { is_new: 0, status: DRAFT })
       doc
     end
   end
