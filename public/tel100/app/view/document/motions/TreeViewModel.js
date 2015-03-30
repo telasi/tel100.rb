@@ -39,7 +39,7 @@ Ext.define('Tel100.view.document.motions.TreeViewModel', {
       proxy: {
         type: 'ajax',
         extraParams: {
-          document_id: 31
+          document_id: '{document.id}'
         },
         url: '/api/documents/motion/tree',
         reader: {

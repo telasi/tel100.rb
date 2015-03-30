@@ -48,7 +48,7 @@
                     "userConfig": {
                         "extraParams": [
                             "{",
-                            "  document_id: 31",
+                            "  document_id: '{document.id}'",
                             "}"
                         ],
                         "url": "/api/documents/motion/tree"
