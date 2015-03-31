@@ -117,12 +117,15 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
         return record.get('send_type_name');
       },
+      sortable: false,
       dataIndex: 'send_type_id',
+      hideable: false,
       bind: {
         text: '{i18n.document.motion.response_type}'
       },
       editor: {
         xtype: 'combobox',
+        editable: false,
         displayField: 'name',
         valueField: 'id',
         bind: {

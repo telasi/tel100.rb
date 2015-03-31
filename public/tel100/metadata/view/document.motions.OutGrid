@@ -263,6 +263,8 @@
             "userConfig": {
                 "dataIndex": "send_type_id",
                 "designer|displayName": "sendType",
+                "hideable": false,
+                "sortable": false,
                 "text": [
                     "{i18n.document.motion.response_type}"
                 ]
@@ -282,6 +284,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "displayField": "name",
+                        "editable": false,
                         "store": [
                             "{responseTypes}"
                         ],
