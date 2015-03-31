@@ -94,7 +94,7 @@ class Document::Motion < ActiveRecord::Base
     raise I18n.t('models.document_motion.errors.not_a_draft') unless self.draft?
     raise I18n.t('models.document_motion.errors.not_allowed') unless self.can_edit?(user)
     Document::Motion.transaction do
-      self.update_attributes(params.permit(:ordering, :due_date, :motion_text, :receiver_role))
+      self.update_attributes(params.permit(:ordering, :due_date, :motion_text, :receiver_role, :send_type_id))
       self.save!
     end
   end
