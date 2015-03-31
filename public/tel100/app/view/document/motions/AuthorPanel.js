@@ -86,6 +86,16 @@ Ext.define('Tel100.view.document.motions.AuthorPanel', {
         },
         {
           xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            return record.get('send_type_name');
+          },
+          dataIndex: 'send_type_id',
+          bind: {
+            text: '{i18n.document.motion.send_type}'
+          }
+        },
+        {
+          xtype: 'gridcolumn',
           draggable: false,
           width: 200,
           sortable: false,
