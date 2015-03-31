@@ -266,7 +266,7 @@
                 "hideable": false,
                 "sortable": false,
                 "text": [
-                    "{i18n.document.motion.response_type}"
+                    "{i18n.document.motion.send_type}"
                 ]
             },
             "name": "MyColumn23",

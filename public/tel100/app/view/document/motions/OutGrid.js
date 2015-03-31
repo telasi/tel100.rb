@@ -120,7 +120,7 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
       dataIndex: 'send_type_id',
       hideable: false,
       bind: {
-        text: '{i18n.document.motion.response_type}'
+        text: '{i18n.document.motion.send_type}'
       },
       editor: {
         xtype: 'combobox',

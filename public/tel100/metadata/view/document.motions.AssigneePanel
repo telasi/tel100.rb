@@ -199,6 +199,53 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "dataIndex": "send_type_id",
+                        "designer|displayName": "send_type",
+                        "text": [
+                            "{i18n.document.motion.send_type}"
+                        ]
+                    },
+                    "name": "MyColumn24",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "3378dcc8-29ab-4b26-90ed-898c8e393689",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "return record.get('send_type_name');"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "e72736a4-43d6-49fc-806d-b3f56d6a12eb"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
                         "dataIndex": "motion_text",
                         "designer|displayName": "motion_text",
                         "draggable": false,
