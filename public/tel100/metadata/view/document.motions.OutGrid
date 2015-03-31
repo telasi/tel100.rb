@@ -466,6 +466,25 @@
             },
             "name": "initComponent",
             "designerId": "079e37c6-9f9f-4f49-8975-4c64289aa53d"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelBeforeRender",
+                "implHandler": [
+                    "var store = this.getViewModel().getStore('responseTypes');",
+                    "store.load();"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onGridpanelBeforeRender",
+            "designerId": "44f8e6a6-65a4-42b3-bf90-18e3e89d390c"
         }
     ]
 }

@@ -39,7 +39,7 @@ Ext.define('Tel100.view.party.Selector', {
   viewModel: {
     type: 'partyselector'
   },
-  height: 600,
+  height: 500,
   width: 950,
   autoDestroy: false,
   closeAction: 'hide',
@@ -164,7 +164,7 @@ Ext.define('Tel100.view.party.Selector', {
   },
 
   onCustomerGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
-    if (record.get('ext_type') === 'bs.Customer') {
+    if (record.get('ext_type') === 'hr.Customer') {
           this.getController().onAddParty(record);
     }
   },
@@ -188,7 +188,7 @@ Ext.define('Tel100.view.party.Selector', {
   },
 
   onRemoveToolClick: function(tool, e, owner, eOpts) {
-    var grid = this.down('#selectedParties');
+    var grid = this.down('gridpanel');
     var selection = grid.getSelection();
     if (selection.length > 0) {
       this.getController().onRemoveParty(selection[0]);

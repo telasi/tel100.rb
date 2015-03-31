@@ -11,7 +11,7 @@
         "container|align": "stretch",
         "designer|userAlias": "partyselector",
         "designer|userClassName": "party.Selector",
-        "height": 600,
+        "height": 500,
         "layout": "hbox",
         "maximizable": true,
         "modal": true,
@@ -54,7 +54,7 @@
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel",
+                    "name": "hr.tree.panel2",
                     "configAlternates": {
                         "tools": "array"
                     },
@@ -108,7 +108,7 @@
                     "userConfig": {
                         "designer|displayName": "parties"
                     },
-                    "name": "hr.party.grid",
+                    "name": "hr.party.grid1",
                     "designerId": "67a77de5-f54d-4f43-946d-54f3c9f93a0d",
                     "masterInstanceId": "add98a47-ea0c-4c15-9fb9-63aee2799018",
                     "cn": [
@@ -154,7 +154,7 @@
                     "userConfig": {
                         "designer|displayName": "customers"
                     },
-                    "name": "bs.customer.panel",
+                    "name": "bs.customer.panel1",
                     "designerId": "d1f5ee8b-69b8-41d5-a6ba-99ce9e336b6a",
                     "masterInstanceId": "07c20692-1bdc-46c9-ba9a-49ac94deb18f",
                     "cn": [
@@ -178,7 +178,7 @@
                             "userConfig": {
                                 "fn": "onCustomerGridpanelItemDblClick",
                                 "implHandler": [
-                                    "if (record.get('ext_type') === 'bs.Customer') {",
+                                    "if (record.get('ext_type') === 'hr.Customer') {",
                                     "      this.getController().onAddParty(record);",
                                     "}"
                                 ],
@@ -450,7 +450,7 @@
                             "userConfig": {
                                 "fn": "onRemoveToolClick",
                                 "implHandler": [
-                                    "var grid = this.down('#selectedParties');",
+                                    "var grid = this.down('gridpanel');",
                                     "var selection = grid.getSelection();",
                                     "if (selection.length > 0) {",
                                     "  this.getController().onRemoveParty(selection[0]);",

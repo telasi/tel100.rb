@@ -38,6 +38,7 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
     'selection',
     'hasDraftMotion'
   ],
+  defaultListenerScope: true,
 
   bind: {
     store: '{motions}'
@@ -166,6 +167,14 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
       ptype: 'cellediting'
     }
   ],
+  listeners: {
+    beforerender: 'onGridpanelBeforeRender'
+  },
+
+  onGridpanelBeforeRender: function(component, eOpts) {
+    var store = this.getViewModel().getStore('responseTypes');
+    store.load();
+  },
 
   refresh: function() {
     var vm = this.getViewModel();
