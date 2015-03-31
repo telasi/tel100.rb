@@ -261,7 +261,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "responseType",
+                "dataIndex": "send_type_id",
+                "designer|displayName": "sendType",
                 "text": [
                     "{i18n.document.motion.response_type}"
                 ]
@@ -291,6 +292,31 @@
                         "store": "binding"
                     },
                     "designerId": "9f22ec21-ac6d-4a78-859a-a6880534e863"
+                },
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return record.get('send_type_name');"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "299b9dc4-c6fe-4de6-befe-0c7ea41c8a0f"
                 }
             ]
         },
