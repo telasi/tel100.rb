@@ -201,6 +201,8 @@
                     "userConfig": {
                         "dataIndex": "send_type_id",
                         "designer|displayName": "send_type",
+                        "hideable": false,
+                        "sortable": false,
                         "text": [
                             "{i18n.document.motion.send_type}"
                         ]
@@ -235,6 +237,27 @@
                             },
                             "name": "renderer",
                             "designerId": "137e30f3-9f5c-466f-8bcc-572ec4edc36b"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "displayField": "name",
+                                "editable": false,
+                                "store": [
+                                    "{responseTypes}"
+                                ],
+                                "valueField": "id"
+                            },
+                            "name": "MyComboBox6",
+                            "configAlternates": {
+                                "store": "binding"
+                            },
+                            "designerId": "5f6ef04d-594d-4c84-bce4-1b96ec063738"
                         }
                     ]
                 },
@@ -535,6 +558,7 @@
                     "      success: function() {",
                     "        motion.commit();",
                     "        view.fireEvent('datachanged', view, 'update', motion);",
+                    "        if (changes.send_type_id) { view.refresh(); }",
                     "      }.bind(this),",
                     "      failure: function(message) {",
                     "        motion.reject();",
