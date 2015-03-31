@@ -1040,6 +1040,7 @@
         },
         "832f7258-59e2-4085-8f40-bfc5c37587b2": {
             "id": "832f7258-59e2-4085-8f40-bfc5c37587b2",
+            "expanded": false,
             "cn": [
                 {
                     "id": "8594ac90-35e8-4a68-8622-8f1c261aab51",
@@ -1082,6 +1083,7 @@
                 },
                 {
                     "id": "bd4ff75f-7de9-435f-9407-c895fe66e8e1",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "9f22ec21-ac6d-4a78-859a-a6880534e863"
@@ -1110,9 +1112,6 @@
                     ]
                 },
                 {
-                    "id": "bb3c9af4-bc7a-40e8-8c03-bb3910fd6ed4"
-                },
-                {
                     "id": "3c9da59d-9945-4d94-822a-dbfc67ef6aff",
                     "expanded": false,
                     "cn": [
@@ -1125,10 +1124,10 @@
                     "id": "bfa49dbe-448d-4724-ba41-42537fd64ee2"
                 },
                 {
-                    "id": "079e37c6-9f9f-4f49-8975-4c64289aa53d"
+                    "id": "bb3c9af4-bc7a-40e8-8c03-bb3910fd6ed4"
                 },
                 {
-                    "id": "44f8e6a6-65a4-42b3-bf90-18e3e89d390c"
+                    "id": "079e37c6-9f9f-4f49-8975-4c64289aa53d"
                 }
             ]
         },
@@ -3267,15 +3266,16 @@
     "tabState": {
         "openTabs": [
             "8fd1c70a-465c-4cac-b890-164824e7df59",
-            "832f7258-59e2-4085-8f40-bfc5c37587b2"
+            "832f7258-59e2-4085-8f40-bfc5c37587b2",
+            "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "832f7258-59e2-4085-8f40-bfc5c37587b2",
-        "selectedInstance": "9f22ec21-ac6d-4a78-859a-a6880534e863"
+        "topInstance": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd",
+        "selectedInstance": "0929d72d-3a72-407c-804f-6e014f066a39"
     },
     "editMode": "code",
     "userSettings": {
