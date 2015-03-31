@@ -74,6 +74,7 @@ class Document::Motion < ActiveRecord::Base
       receiver: receiver,
       receiver_role: role,
       ordering: ordering,
+      send_type_id: params[:send_type_id],
       is_new: true
     })
   end
