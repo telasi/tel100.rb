@@ -23,6 +23,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
+    'Ext.form.field.ComboBox',
     'Ext.form.field.Date',
     'Ext.grid.plugin.CellEditing',
     'Ext.panel.Tool'
@@ -92,6 +93,15 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
           dataIndex: 'send_type_id',
           bind: {
             text: '{i18n.document.motion.send_type}'
+          },
+          editor: {
+            xtype: 'combobox',
+            editable: false,
+            displayField: 'name',
+            valueField: 'id',
+            bind: {
+              store: '{responseTypes}'
+            }
           }
         },
         {

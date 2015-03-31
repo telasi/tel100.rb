@@ -235,6 +235,27 @@
                             },
                             "name": "renderer",
                             "designerId": "e72736a4-43d6-49fc-806d-b3f56d6a12eb"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "displayField": "name",
+                                "editable": false,
+                                "store": [
+                                    "{responseTypes}"
+                                ],
+                                "valueField": "id"
+                            },
+                            "name": "MyComboBox5",
+                            "configAlternates": {
+                                "store": "binding"
+                            },
+                            "designerId": "5b962857-86c0-448e-a962-a6d64a8f8629"
                         }
                     ]
                 },
@@ -535,6 +556,9 @@
                     "      success: function() {",
                     "        motion.commit();",
                     "        view.fireEvent('datachanged', view, 'update', motion);",
+                    "        if (changes.send_type_id) {",
+                    "          view.refresh();",
+                    "        }",
                     "      }.bind(this),",
                     "      failure: function(message) {",
                     "        motion.reject();",
