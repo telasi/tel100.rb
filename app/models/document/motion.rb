@@ -19,6 +19,8 @@ class Document::Motion < ActiveRecord::Base
 
   belongs_to :document, class_name: 'Document::Base'
   belongs_to :parent, class_name: 'Document::Motion'
+  belongs_to :send_type, class_name: 'Document::ResponseType', foreign_key: 'send_type_id'
+  belongs_to :response_type, class_name: 'Document::ResponseType', foreign_key: 'resp_type_id'
   personalize 'receiver'
   personalize 'sender'
   personalize 'owner'

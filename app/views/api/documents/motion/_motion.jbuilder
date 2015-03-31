@@ -32,4 +32,12 @@ else
   json.received_at motion.received_at
   json.completed_at motion.completed_at
   json.updated_at motion.updated_at
+  if motion.send_type.present?
+    json.send_type_id motion.send_type.id
+    json.send_type_name motion.send_type.name
+  end
+  if motion.response_type.present?
+    json.resp_type_id motion.response_type.id
+    json.resp_type_name motion.response_type.name
+  end
 end
