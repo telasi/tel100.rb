@@ -128,7 +128,10 @@ Ext.define('Tel100.view.document.editor.Editor', {
               region: 'east',
               split: true,
               width: 400,
-              layout: 'accordion',
+              layout: {
+                type: 'accordion',
+                hideCollapseTool: true
+              },
               items: [
                 {
                   xtype: 'documenteditorgeneral',
