@@ -21,7 +21,7 @@ module.exports = {
   selectReceiver: 'ადრესატების არჩევა',
   sendMotions: '<i class="fa fa-send"></i> გაგზავნა',
   sendMotionsConfirm: 'ნამდვილად გინდათ ყველა დრაფტის დაგზავნა?',
-  tree: 'დოკუმენტის მოძრაობა',
+  tree: '<i class="fa fa-truck"></i> დოკუმენტის მოძრაობა',
   respond: '<i class="fa fa-comment"></i> კომენტარი ან შესრულება',
   properties: 'მოძრაობის თვისებები',
   general: 'ზოგადი',
