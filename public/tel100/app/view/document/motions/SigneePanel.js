@@ -23,6 +23,7 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
+    'Ext.form.field.ComboBox',
     'Ext.form.field.Date',
     'Ext.grid.plugin.CellEditing',
     'Ext.panel.Tool'
@@ -89,9 +90,20 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
           renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
             return record.get('send_type_name');
           },
+          sortable: false,
           dataIndex: 'send_type_id',
+          hideable: false,
           bind: {
             text: '{i18n.document.motion.send_type}'
+          },
+          editor: {
+            xtype: 'combobox',
+            editable: false,
+            displayField: 'name',
+            valueField: 'id',
+            bind: {
+              store: '{responseTypes}'
+            }
           }
         },
         {

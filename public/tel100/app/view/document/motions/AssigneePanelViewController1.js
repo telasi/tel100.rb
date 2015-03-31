@@ -70,6 +70,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController1', {
           success: function() {
             motion.commit();
             view.fireEvent('datachanged', view, 'update', motion);
+            if (changes.send_type_id) { view.refresh(); }
           }.bind(this),
           failure: function(message) {
             motion.reject();
