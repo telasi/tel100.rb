@@ -19,8 +19,7 @@ Ext.define('Tel100.model.hr.Party', {
   requires: [
     'Tel100.model.Tel100',
     'Ext.data.proxy.Rest',
-    'Ext.data.reader.Json',
-    'Ext.data.field.Field'
+    'Ext.data.reader.Json'
   ],
 
   schema: 'tel100',
@@ -35,37 +34,5 @@ Ext.define('Tel100.model.hr.Party', {
       type: 'json',
       rootProperty: 'data'
     }
-  },
-
-  fields: [
-    {
-      name: 'id'
-    },
-    {
-      name: 'name_ka'
-    },
-    {
-      name: 'address_ka'
-    },
-    {
-      name: 'contact_ka'
-    },
-    {
-      name: 'identity'
-    },
-    {
-      name: 'phones'
-    },
-    {
-      name: 'email'
-    },
-    {
-      name: 'ext_type'
-    }
-  ],
-
-  toHtml: function() {
-    return ['<i class="fa fa-university"></i>', this.get('name_ka')].join(' ');
   }
-
 });
