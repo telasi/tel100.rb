@@ -123,6 +123,9 @@ Ext.define('Tel100.view.document.grid.Panel', {
       }
     }
   ],
+  listeners: {
+    beforeitemcontextmenu: 'onGridpanelBeforeItemContextMenu'
+  },
 
   refresh: function(opts) {
     var grid = this;

@@ -286,6 +286,46 @@
             },
             "name": "refresh",
             "designerId": "a976af00-b3ba-4140-aeac-7b882965af99"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelBeforeItemContextMenu",
+                "implHandler": [
+                    "var document = record;",
+                    "var folderMenu = Ext.create('Ext.menu.Menu');",
+                    "var CustomFoldersStore = Ext.getStore('CustomFolders');",
+                    "CustomFoldersStore.each(function(record,id){",
+                    "  folderMenu.add({",
+                    "    text: record.get('name'),",
+                    "    handler: function(item){",
+                    "      var model = Ext.create('Tel100.model.folder.Document', { folder_id: record.id, doc_id: document.id });",
+                    "      model.save();",
+                    "    }",
+                    "  });",
+                    "});",
+                    "",
+                    "var gridMenu = Ext.create('Ext.menu.Menu', {",
+                    "    items: [{",
+                    "      text: i18n.document.folder.ui.move_to,",
+                    "      icon: '/images/move.png',",
+                    "      menu: folderMenu",
+                    "    }]",
+                    "  });",
+                    "",
+                    "  e.stopEvent();",
+                    "  gridMenu.showAt(e.getXY());"
+                ],
+                "name": "beforeitemcontextmenu",
+                "scope": "me"
+            },
+            "name": "onGridpanelBeforeItemContextMenu",
+            "designerId": "39e87ba3-3b58-4379-9074-a11bbc2ec174"
         }
     ]
 }

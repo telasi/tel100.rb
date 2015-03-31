@@ -114,6 +114,9 @@ Rails.application.routes.draw do
         post '/create',   action: 'create'
         delete '/delete', action: 'delete'
       end
+      scope 'print', controller: 'print' do
+        get '/card/:id', action: 'card'
+      end
     end
   end
 

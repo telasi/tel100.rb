@@ -28,7 +28,8 @@ Ext.define('Tel100.view.document.MainViewController', {
     var customfolderselection = viewModel.get('customfolderselection');
     var selection = viewModel.get('selection');
     if (customfolderselection){
-        DeleteFromCustom(customfolderselection[0].id, selection.id);
+        this.deleteFromCustom(customfolderselection[0].id, selection.id);
+        this.onRefresh();
     } else {
       if (selection) {
         var status = selection.get('status');

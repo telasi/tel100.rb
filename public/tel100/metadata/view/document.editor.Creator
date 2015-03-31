@@ -277,6 +277,66 @@
                                     ]
                                 },
                                 {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "card",
+                                        "itemId": null,
+                                        "layout|flex": null,
+                                        "text": [
+                                            "{i18n.document.base.ui.card}"
+                                        ]
+                                    },
+                                    "name": "MyButton7",
+                                    "configAlternates": {
+                                        "text": "binding"
+                                    },
+                                    "designerId": "d54f50cf-2af5-4b2e-bf76-e87130204eb8",
+                                    "cn": [
+                                        {
+                                            "type": "viewcontrollereventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onCardPrintClick",
+                                                "implHandler": [
+                                                    "var vm = this.getViewModel();",
+                                                    "var document = vm.get('document');",
+                                                    "var pdfwin = Ext.create('Ext.Window',{",
+                                                    "                title: i18n.document.base.ui.card,",
+                                                    "                width: '50%',",
+                                                    "                height: '80%',",
+                                                    "                layout:'anchor',",
+                                                    "                anchor:\"100% 100%\",",
+                                                    "                maximizable: true,",
+                                                    "                modal: true,",
+                                                    "                items: {",
+                                                    "                    xtype: 'component',",
+                                                    "                    autoEl: {",
+                                                    "                        style: 'height: 100%; width: 100%; border: none',",
+                                                    "                        html: '<iframe src=\"' + '/api/documents/print/card/' + document.id + '\" height=\"100%\", width=\"100%\" />'",
+                                                    "                    }",
+                                                    "                }",
+                                                    "            });",
+                                                    "",
+                                                    "     pdfwin.show();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "name": "onCardPrintClick",
+                                            "designerId": "5303428c-ce13-42de-b02d-a80c89db4597"
+                                        }
+                                    ]
+                                },
+                                {
                                     "type": "Ext.toolbar.Fill",
                                     "reference": {
                                         "name": "items",
@@ -437,7 +497,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general",
+                                    "name": "document.editor.general4",
                                     "configAlternates": {
                                         "title": "binding"
                                     },
@@ -454,7 +514,7 @@
                                     "userConfig": {
                                         "designer|displayName": "relations"
                                     },
-                                    "name": "document.relation.panel",
+                                    "name": "document.relation.panel1",
                                     "designerId": "eac06f86-7f18-4df4-b913-db1a9d3f9adc",
                                     "masterInstanceId": "f109941e-d70e-4dcf-96dd-cc8a778ba5f5"
                                 },
@@ -468,7 +528,7 @@
                                     "userConfig": {
                                         "designer|displayName": "signees"
                                     },
-                                    "name": "document.motions.signeepanel",
+                                    "name": "document.motions.signeepanel1",
                                     "designerId": "6c040662-e5fb-49a6-9215-b4a251a4c73a",
                                     "masterInstanceId": "a6e4f453-aa9b-4c0e-8a45-45e445ca2504",
                                     "cn": [
@@ -507,7 +567,7 @@
                                     "userConfig": {
                                         "designer|displayName": "asignees"
                                     },
-                                    "name": "document.motions.assigneepanel",
+                                    "name": "document.motions.assigneepanel1",
                                     "designerId": "5b56765a-3219-46c0-94e7-73857f5db4fe",
                                     "masterInstanceId": "da24e6c3-26d6-4d2a-bedc-c822727570b4",
                                     "cn": [
@@ -546,7 +606,7 @@
                                     "userConfig": {
                                         "designer|displayName": "authors"
                                     },
-                                    "name": "document.motions.authorpanel",
+                                    "name": "document.motions.authorpanel1",
                                     "designerId": "9507dce8-8e97-4a00-8d9b-abcd88ae04f3",
                                     "masterInstanceId": "e3fa4671-a99b-4b98-adee-9628585fe14b",
                                     "cn": [
@@ -585,7 +645,7 @@
                                     "userConfig": {
                                         "designer|displayName": "files"
                                     },
-                                    "name": "document.file.panel",
+                                    "name": "document.file.panel4",
                                     "designerId": "fa5bcbd5-6feb-4cd1-af00-84c5dbfab0a3",
                                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                                 }
@@ -636,7 +696,7 @@
                                 "border": false,
                                 "designer|displayName": "receivers"
                             },
-                            "name": "document.motions.outpanel",
+                            "name": "document.motions.outpanel4",
                             "configAlternates": {
                                 "title": "binding"
                             },

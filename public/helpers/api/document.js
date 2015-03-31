@@ -98,7 +98,16 @@ var relation = {
     opts.method = 'DELETE';
     opts.url = '/api/documents/relations/delete';
     ajax.request(opts);
-  },
+  }
+};
+
+var print = {
+  card: function(id, args){
+    var opts = args || {};
+    opts.method = 'GET';
+    opts.url = '/api/documents/print/card/' + id;
+    ajax.request(opts);
+  }
 };
 
 module.exports = {
@@ -106,5 +115,6 @@ module.exports = {
   motion: motion,
   comment: comment,
   file: file,
-  relation: relation
+  relation: relation,
+  print: print
 };
