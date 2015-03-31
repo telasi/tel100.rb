@@ -36,6 +36,10 @@ module.exports = {
       ka: '<i class="fa fa-send"></i> დოკუმენტის გაგზავნა',
       ru: '<i class="fa fa-send"></i> Послать документ'
     },
+    card: {
+      ka: '<i class="fa fa-newspaper-o"></i> ბარათი',
+      ru: '<i class="fa fa-newspaper-o"></i> Карточка'
+    },
     newDocumentTab: '<i class="fa fa-cog"></i> ახალი დოკუმენტი',
     contentTabTitle: '<i class="fa fa-file-text-o"></i> შინაარსი',
     motionsTabTitle: '<i class="fa fa-send"></i> მოძრაობები',
@@ -112,6 +116,10 @@ module.exports = {
     enter_name:{
       ka: 'შეიყვანეთ სახელი',
       ru: 'Введите имя'
+    },
+    move_to:{
+      ka: 'საქაღალდეში გადატანა',
+      ru: 'Перенос в папку'
     },
   },
   categories: {

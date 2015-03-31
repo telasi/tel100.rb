@@ -27,6 +27,40 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
     } else {
       proxy.setExtraParam('substitude', null);
     }
+  },
+
+  moveDocumentToFolder: function(id) {
+    debugger;
+    var model = Ext.create('Tel100.model.folder.Document',{
+          folder_id: id, doc_id: data.records[0].id
+        });
+        model.save();
+  },
+
+  onGridpanelBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
+    var document = record;
+    var folderMenu = Ext.create('Ext.menu.Menu');
+    var CustomFoldersStore = Ext.getStore('CustomFolders');
+    CustomFoldersStore.each(function(record,id){
+      folderMenu.add({
+        text: record.get('name'),
+        handler: function(item){
+          var model = Ext.create('Tel100.model.folder.Document', { folder_id: record.id, doc_id: document.id });
+          model.save();
+        }
+      });
+    });
+
+    var gridMenu = Ext.create('Ext.menu.Menu', {
+      items: [{
+        text: i18n.document.folder.ui.move_to,
+        icon: '/images/move.png',
+        menu: folderMenu
+      }]
+    });
+
+    e.stopEvent();
+    gridMenu.showAt(e.getXY());
   }
 
 });
