@@ -64,6 +64,7 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
       xtype: 'combobox',
       tpl: '<tpl for="."><div class="x-boundlist-item">{html_name}</div></tpl>',
       flex: 0,
+      itemId: 'result-types',
       editable: false,
       autoSelect: false,
       displayField: 'name',

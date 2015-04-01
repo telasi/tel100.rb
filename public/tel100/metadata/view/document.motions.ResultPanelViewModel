@@ -133,6 +133,27 @@
                             "designerId": "d2931157-6c42-4624-a98b-5047c087f31a"
                         }
                     ]
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onResponseTypesStoreLoad",
+                        "implHandler": [
+                            "var view = this.getView();",
+                            "var combo = view.down('#result-types');",
+                            "var val = store.getAt(0);",
+                            "combo.select(val);"
+                        ],
+                        "name": "load",
+                        "scope": "me"
+                    },
+                    "name": "onResponseTypesStoreLoad",
+                    "designerId": "5b52f6c9-ec33-4ee9-ab01-e55408dd4f3a"
                 }
             ]
         },

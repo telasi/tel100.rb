@@ -22,6 +22,13 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewController', {
     var combo = view.down('#in-motions');
     var val = store.getAt(0);
     combo.select(val);
+  },
+
+  onResponseTypesStoreLoad: function(store, records, successful, eOpts) {
+    var view = this.getView();
+    var combo = view.down('#result-types');
+    var val = store.getAt(0);
+    combo.select(val);
   }
 
 });

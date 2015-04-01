@@ -63,6 +63,9 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
         reader: {
           type: 'json'
         }
+      },
+      listeners: {
+        load: 'onResponseTypesStoreLoad'
       }
     }
   },
