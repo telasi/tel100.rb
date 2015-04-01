@@ -6,9 +6,12 @@
     },
     "codeClass": null,
     "userConfig": {
+        "container|align": "stretch",
+        "container|padding": 5,
         "designer|userAlias": "documentmotionsresultpanel",
         "designer|userClassName": "document.motions.ResultPanel",
         "height": null,
+        "layout": "vbox",
         "title": [
             "{i18n.document.motion.resultPaneTitle}"
         ],
@@ -20,5 +23,34 @@
     },
     "designerId": "2019cd14-1d56-44a4-89bb-838a2f7a8473",
     "viewControllerInstanceId": "ea16dfa8-b932-41c8-a1d8-f6b1029b2a71",
-    "viewModelInstanceId": "4c85bacc-59ef-42d9-8496-307832698d7b"
+    "viewModelInstanceId": "4c85bacc-59ef-42d9-8496-307832698d7b",
+    "cn": [
+        {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoSelect": false,
+                "designer|displayName": "in-motions",
+                "editable": false,
+                "fieldLabel": [
+                    "{i18n.document.comment.motion}"
+                ],
+                "itemId": "in-motions",
+                "store": [
+                    "{motions}"
+                ],
+                "valueField": "id"
+            },
+            "name": "MyComboBox8",
+            "configAlternates": {
+                "store": "binding",
+                "fieldLabel": "binding"
+            },
+            "designerId": "2b18ead4-d748-495c-9af4-d1ca548b23d5"
+        }
+    ]
 }

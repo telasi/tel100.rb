@@ -18,15 +18,36 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
   alias: 'widget.documentmotionsresultpanel',
 
   requires: [
-    'Tel100.view.document.motions.ResultPanelViewModel'
+    'Tel100.view.document.motions.ResultPanelViewModel',
+    'Tel100.view.document.motions.ResultPanelViewController',
+    'Ext.form.field.ComboBox'
   ],
 
+  controller: 'documentmotionsresultpanel',
   viewModel: {
     type: 'documentmotionsresultpanel'
   },
 
+  layout: {
+    type: 'vbox',
+    align: 'stretch',
+    padding: 5
+  },
   bind: {
     title: '{i18n.document.motion.resultPaneTitle}'
-  }
+  },
+  items: [
+    {
+      xtype: 'combobox',
+      itemId: 'in-motions',
+      editable: false,
+      autoSelect: false,
+      valueField: 'id',
+      bind: {
+        fieldLabel: '{i18n.document.comment.motion}',
+        store: '{motions}'
+      }
+    }
+  ]
 
 });

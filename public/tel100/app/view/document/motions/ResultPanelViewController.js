@@ -15,5 +15,13 @@
 
 Ext.define('Tel100.view.document.motions.ResultPanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentmotionsresultpanel'
+  alias: 'controller.documentmotionsresultpanel',
+
+  onMotionsStoreLoad: function(store, records, successful, eOpts) {
+    var view = this.getView();
+    var combo = view.down('#in-motions');
+    var val = store.getAt(0);
+    combo.select(val);
+  }
+
 });

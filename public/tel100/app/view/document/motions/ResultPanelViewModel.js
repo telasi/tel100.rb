@@ -15,6 +15,33 @@
 
 Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documentmotionsresultpanel'
+  alias: 'viewmodel.documentmotionsresultpanel',
+
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.proxy.Ajax',
+    'Ext.data.reader.Json'
+  ],
+
+  stores: {
+    motions: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Motion',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          mode: 'in',
+          document_id: '{document.id}'
+        },
+        url: '/api/documents/motion',
+        reader: {
+          type: 'json'
+        }
+      },
+      listeners: {
+        load: 'onMotionsStoreLoad'
+      }
+    }
+  }
 
 });
