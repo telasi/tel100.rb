@@ -35,6 +35,15 @@ Ext.define('Tel100.view.document.editor.General', {
 
   items: [
     {
+      xtype: 'textfield',
+      anchor: '100%',
+      editable: false,
+      bind: {
+        fieldLabel: '{i18n.document.base.sender}',
+        value: '{document.sender_name}'
+      }
+    },
+    {
       xtype: 'combobox',
       anchor: '100%',
       editable: false,

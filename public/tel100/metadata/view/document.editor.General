@@ -24,6 +24,31 @@
     "viewModelInstanceId": "78e4b3f1-6207-4071-931a-f4d7da273c9b",
     "cn": [
         {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "sender",
+                "editable": false,
+                "fieldLabel": [
+                    "{i18n.document.base.sender}"
+                ],
+                "layout|anchor": "100%",
+                "value": [
+                    "{document.sender_name}"
+                ]
+            },
+            "name": "MyTextField9",
+            "configAlternates": {
+                "fieldLabel": "binding",
+                "value": "binding"
+            },
+            "designerId": "6f8f476d-a540-4fc6-8717-9ac48ca20495"
+        },
+        {
             "type": "Ext.form.field.ComboBox",
             "reference": {
                 "name": "items",
