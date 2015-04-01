@@ -47,7 +47,37 @@
                         "url": "/api/documents/comments"
                     },
                     "name": "MyAjaxProxy5",
-                    "designerId": "d812cf30-4d40-4d68-8b4d-d11845cbc82e"
+                    "designerId": "d812cf30-4d40-4d68-8b4d-d11845cbc82e",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader5",
+                            "designerId": "dcc19dee-86a8-4a59-b549-c3fe4902517a"
+                        }
+                    ]
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onStoreLoad",
+                        "implHandler": [
+                            "// DON'T DELETE THIS. SENCHA BUG: see actual method in view!"
+                        ],
+                        "name": "load",
+                        "scope": "me"
+                    },
+                    "name": "onStoreLoad",
+                    "designerId": "bc8d36de-2dd9-4408-9003-4041961e5f22"
                 }
             ]
         }

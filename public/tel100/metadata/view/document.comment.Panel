@@ -250,6 +250,29 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "store",
+                    "records",
+                    "successful",
+                    "eOpts"
+                ],
+                "fn": "onStoreLoad",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "vm.set('commentCount', store.count());"
+                ]
+            },
+            "name": "onStoreLoad",
+            "designerId": "a504b9ec-ccd8-4d41-b117-8bb8f25b48f2"
         }
     ]
 }

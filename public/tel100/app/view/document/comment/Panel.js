@@ -19,12 +19,14 @@ Ext.define('Tel100.view.document.comment.Panel', {
 
   requires: [
     'Tel100.view.document.comment.PanelViewModel',
+    'Tel100.view.document.comment.PanelViewController',
     'Ext.panel.Tool',
     'Ext.grid.Panel',
     'Ext.grid.column.Column',
     'Ext.grid.View'
   ],
 
+  controller: 'documentcommentpanel',
   viewModel: {
     type: 'documentcommentpanel'
   },
@@ -113,6 +115,11 @@ Ext.define('Tel100.view.document.comment.Panel', {
 
   refresh: function() {
     this.down('gridpanel').getStore().load();
+  },
+
+  onStoreLoad: function(store, records, successful, eOpts) {
+    var vm = this.getViewModel();
+    vm.set('commentCount', store.count());
   }
 
 });

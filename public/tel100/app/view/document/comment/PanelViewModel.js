@@ -19,7 +19,8 @@ Ext.define('Tel100.view.document.comment.PanelViewModel', {
 
   requires: [
     'Ext.data.Store',
-    'Ext.data.proxy.Ajax'
+    'Ext.data.proxy.Ajax',
+    'Ext.data.reader.Json'
   ],
 
   data: {
@@ -35,7 +36,13 @@ Ext.define('Tel100.view.document.comment.PanelViewModel', {
         extraParams: {
           document_id: '{document.id}'
         },
-        url: '/api/documents/comments'
+        url: '/api/documents/comments',
+        reader: {
+          type: 'json'
+        }
+      },
+      listeners: {
+        load: 'onStoreLoad'
       }
     }
   }
