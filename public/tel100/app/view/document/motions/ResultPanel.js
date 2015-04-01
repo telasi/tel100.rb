@@ -61,12 +61,12 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
     {
       xtype: 'combobox',
       flex: 0,
-      fieldLabel: 'Label',
       editable: false,
       autoSelect: false,
       displayField: 'name',
       valueField: 'id',
       bind: {
+        fieldLabel: '{i18n.document.comment.result}',
         store: '{responseTypes}'
       }
     },

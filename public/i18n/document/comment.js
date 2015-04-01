@@ -1,5 +1,6 @@
 module.exports = {
   motion: 'მოძრაობა',
+  result: 'შედეგი',
   complete: 'დასრულება',
   action: 'მოქმედება',
   text: 'განმარტება',

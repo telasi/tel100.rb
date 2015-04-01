@@ -85,7 +85,9 @@
                 "autoSelect": false,
                 "displayField": "name",
                 "editable": false,
-                "fieldLabel": "Label",
+                "fieldLabel": [
+                    "{i18n.document.comment.result}"
+                ],
                 "layout|flex": 0,
                 "store": [
                     "{responseTypes}"
@@ -94,7 +96,8 @@
             },
             "name": "MyComboBox9",
             "configAlternates": {
-                "store": "binding"
+                "store": "binding",
+                "fieldLabel": "binding"
             },
             "designerId": "39082eca-96a2-4531-9ea5-35a726f9cde4"
         },

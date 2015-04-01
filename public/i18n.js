@@ -88,6 +88,7 @@ module.exports = {
 },{}],4:[function(require,module,exports){
 module.exports = {
   motion: 'მოძრაობა',
+  result: 'შედეგი',
   complete: 'დასრულება',
   action: 'მოქმედება',
   text: 'განმარტება',
