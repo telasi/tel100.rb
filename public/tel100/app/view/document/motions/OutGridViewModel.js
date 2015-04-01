@@ -98,7 +98,7 @@ Ext.define('Tel100.view.document.motions.OutGridViewModel', {
       proxy: {
         type: 'ajax',
         extraParams: {
-          typekey: 1
+          type: 'send'
         },
         url: '/api/documents/response_types',
         reader: {

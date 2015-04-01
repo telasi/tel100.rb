@@ -83,6 +83,7 @@
             "codeClass": null,
             "userConfig": {
                 "autoSelect": false,
+                "designer|displayName": "result",
                 "displayField": "name",
                 "editable": false,
                 "fieldLabel": [
@@ -92,6 +93,7 @@
                 "store": [
                     "{responseTypes}"
                 ],
+                "tpl": "<tpl for=\".\"><div class=\"x-boundlist-item\">{html_name}</div></tpl>",
                 "valueField": "id"
             },
             "name": "MyComboBox9",
@@ -99,59 +101,12 @@
                 "store": "binding",
                 "fieldLabel": "binding"
             },
-            "designerId": "39082eca-96a2-4531-9ea5-35a726f9cde4"
-        },
-        {
-            "type": "Ext.button.Segmented",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|displayName": "complete-type",
-                "layout|flex": 0
-            },
-            "name": "MySegmentedButton1",
-            "designerId": "29dd2637-37d2-45f6-bbf9-a049408d1f9a",
-            "cn": [
+            "designerId": "39082eca-96a2-4531-9ea5-35a726f9cde4",
+            "customConfigs": [
                 {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "completed",
-                        "text": [
-                            "{i18n.document.comment.completed}"
-                        ]
-                    },
-                    "name": "MyButton8",
-                    "configAlternates": {
-                        "text": "binding"
-                    },
-                    "designerId": "a3fc85e3-f856-49ae-a32a-a693249d0a12"
-                },
-                {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "canceled",
-                        "text": [
-                            "{i18n.document.comment.canceled}"
-                        ]
-                    },
-                    "name": "MyButton10",
-                    "configAlternates": {
-                        "text": "binding"
-                    },
-                    "designerId": "240348b3-26f5-40b8-846c-bad0108f1998"
+                    "group": "(Custom Properties)",
+                    "name": "tpl",
+                    "type": "string"
                 }
             ]
         }

@@ -106,7 +106,7 @@
                     "userConfig": {
                         "extraParams": [
                             "{",
-                            "  typekey: 2",
+                            "  type: 'response'",
                             "}"
                         ],
                         "url": "/api/documents/response_types"
