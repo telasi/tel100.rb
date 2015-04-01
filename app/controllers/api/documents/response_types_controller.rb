@@ -6,5 +6,6 @@ class Api::Documents::ResponseTypesController < ApiController
     else
       @types = Document::ResponseType.response_types
     end
+    @types = @types.order('category, ordering, id')
   end
 end
