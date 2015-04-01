@@ -67,7 +67,7 @@
             "userConfig": {
                 "fn": "refresh",
                 "implHandler": [
-                    "console.log('refreshing...');"
+                    "this.down('gridpanel').getStore().load();"
                 ]
             },
             "name": "refresh",
@@ -103,10 +103,45 @@
                     "userConfig": {
                         "designer|displayName": "status",
                         "text": null,
-                        "width": 24
+                        "width": 32
                     },
                     "name": "MyColumn16",
-                    "designerId": "30d8e7b5-1b3f-4b2c-bb48-2f1d6f9a484d"
+                    "designerId": "30d8e7b5-1b3f-4b2c-bb48-2f1d6f9a484d",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "var new_status = record.get('status');",
+                                    "var old_status = record.get('old_status');",
+                                    "if (new_status === old_status) {",
+                                    "  return '<i class=\"fa fa-comment text-muted\"></i>';",
+                                    "} else if (new_status > old_status) {",
+                                    "  return '<i class=\"fa fa-check\"></i>';",
+                                    "} else {",
+                                    "  return '<i class=\"fa fa-times\"></i>';",
+                                    "}"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "e2281be4-a101-4d9e-91fb-faccc1e8d3bb"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.grid.column.Column",

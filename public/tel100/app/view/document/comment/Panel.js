@@ -52,7 +52,18 @@ Ext.define('Tel100.view.document.comment.Panel', {
       columns: [
         {
           xtype: 'gridcolumn',
-          width: 24
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            var new_status = record.get('status');
+            var old_status = record.get('old_status');
+            if (new_status === old_status) {
+              return '<i class="fa fa-comment text-muted"></i>';
+            } else if (new_status > old_status) {
+              return '<i class="fa fa-check"></i>';
+            } else {
+              return '<i class="fa fa-times"></i>';
+            }
+          },
+          width: 32
         },
         {
           xtype: 'gridcolumn',
@@ -101,7 +112,7 @@ Ext.define('Tel100.view.document.comment.Panel', {
   },
 
   refresh: function() {
-    console.log('refreshing...');
+    this.down('gridpanel').getStore().load();
   }
 
 });
