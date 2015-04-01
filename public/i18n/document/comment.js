@@ -1,4 +1,5 @@
 module.exports = {
+  panelTitle: '<i class="fa fa-comments"></i> კომენტარები',
   motion: 'მოძრაობა',
   result: 'შედეგი',
   complete: 'დასრულება',

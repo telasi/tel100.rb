@@ -293,6 +293,20 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "designer|displayName": "comments"
+                                    },
+                                    "name": "document.comment.panel",
+                                    "designerId": "0f13dc00-2fce-457b-b67e-e9ca809ddb5e",
+                                    "masterInstanceId": "0203c17a-7c6e-4345-82da-ba8dd2a8dff2"
+                                },
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
                                         "designer|displayName": "motions"
                                     },
                                     "name": "document.motions.tree",

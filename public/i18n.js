@@ -87,6 +87,7 @@ module.exports = {
 
 },{}],4:[function(require,module,exports){
 module.exports = {
+  panelTitle: '<i class="fa fa-comments"></i> კომენტარები',
   motion: 'მოძრაობა',
   result: 'შედეგი',
   complete: 'დასრულება',

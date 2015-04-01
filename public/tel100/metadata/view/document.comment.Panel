@@ -1,0 +1,76 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentcommentpanel",
+        "designer|userClassName": "document.comment.Panel",
+        "height": null,
+        "title": [
+            "{i18n.document.comment.panelTitle} ({commentCount})"
+        ],
+        "width": null
+    },
+    "name": "MyPanel2",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "0203c17a-7c6e-4345-82da-ba8dd2a8dff2",
+    "viewControllerInstanceId": "366da41a-4e8c-44dd-a613-0f841d5d3f78",
+    "viewModelInstanceId": "74d4933a-9224-4375-b136-ec855f6cbf04",
+    "cn": [
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool1",
+            "designerId": "2cc19d6e-28be-4417-a779-473b2a317806",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onToolClick",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onToolClick",
+                    "designerId": "2bca3dc1-eb2e-4b72-a471-77c1c2afa70f"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "console.log('refreshing...');"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "bf912b55-cde3-44aa-bc96-66ba931d32d1"
+        }
+    ]
+}
