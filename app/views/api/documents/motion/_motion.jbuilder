@@ -45,15 +45,15 @@ else
   text = ''
   if motion.send_type.present?
     if motion.motion_text.present?
-      text = "#{document.sender}: #{motion.send_type.name} - #{motion.motion_text}"
+      text = "#{sender}: #{motion.send_type.name} - #{motion.motion_text}"
     else
-      text = "#{document.sender}: #{motion.send_type.name}"
+      text = "#{sender}: #{motion.send_type.name}"
     end
   else
     if motion.motion_text.present?
-      text = "#{document.sender}: #{motion.motion_text}"
+      text = "#{sender}: #{motion.motion_text}"
     else
-      text = "#{document.sender}"
+      text = "#{sender}"
     end
   end
   json.text text
