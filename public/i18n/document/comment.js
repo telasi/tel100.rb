@@ -12,5 +12,9 @@ module.exports = {
     comment: '<i class="fa fa-comment"></i> კომენტარი',
     confirm: '<i class="fa fa-check"></i> დადასტურება',
     cancel: '<i class="fa fa-times"></i> გაუქმება'
+  },
+  errors: {
+    text_required_title: 'ჩაწერეთ ტექსტი',
+    text_required: 'გთხოვთ ჩაწეროთ კომენტარის ტექსტი.'
   }
 };

@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoScroll": true,
         "container|align": "stretch",
         "container|padding": 5,
         "designer|userAlias": "documentmotionsresultpanel",
@@ -161,7 +162,7 @@
             "userConfig": {
                 "designer|displayName": "saveButton",
                 "layout|flex": null,
-                "margin": "0,0,0,100",
+                "margin": 8,
                 "text": [
                     "{saveLabel}"
                 ],
@@ -171,7 +172,48 @@
             "configAlternates": {
                 "text": "binding"
             },
-            "designerId": "ddb9c0d4-1250-46ca-ad96-cd274e844d86"
+            "designerId": "ddb9c0d4-1250-46ca-ad96-cd274e844d86",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onSaveClick",
+                        "implHandler": [
+                            "var view = this.getView();",
+                            "var vm = this.getViewModel();",
+                            "",
+                            "var params = {",
+                            "  motion_id: vm.get('motionId'),",
+                            "  is_result: vm.get('isResult'),",
+                            "  text: vm.get('text')",
+                            "};",
+                            "if (params.is_result) { params.category_id = vm.get('categoryId'); }",
+                            "if (typeof params.motion_id !== 'number') { params.motion_id = null; }",
+                            "",
+                            "if (!params.is_result && !params.text){",
+                            "  Ext.Msg.show({",
+                            "    title: i18n.document.comment.errors.text_required_title,",
+                            "    message: i18n.document.comment.errors.text_required,",
+                            "    buttons: Ext.Msg.OK,",
+                            "  });",
+                            "  return;",
+                            "}",
+                            "",
+                            "// debugger;",
+                            "console.log(params);"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onSaveClick",
+                    "designerId": "9a419f98-5591-4021-8bbb-92b75d121e8c"
+                }
+            ]
         }
     ]
 }

@@ -17,6 +17,31 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentmotionsresultpanel',
 
+  onSaveClick: function(button, e, eOpts) {
+    var view = this.getView();
+    var vm = this.getViewModel();
+
+    var params = {
+      motion_id: vm.get('motionId'),
+      is_result: vm.get('isResult'),
+      text: vm.get('text')
+    };
+    if (params.is_result) { params.category_id = vm.get('categoryId'); }
+    if (typeof params.motion_id !== 'number') { params.motion_id = null; }
+
+    if (!params.is_result && !params.text){
+      Ext.Msg.show({
+        title: i18n.document.comment.errors.text_required_title,
+        message: i18n.document.comment.errors.text_required,
+        buttons: Ext.Msg.OK,
+      });
+      return;
+    }
+
+    // debugger;
+    console.log(params);
+  },
+
   onMotionsStoreLoad: function(store, records, successful, eOpts) {
     var view = this.getView();
     var combo = view.down('#in-motions');

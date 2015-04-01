@@ -30,6 +30,7 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
   viewModel: {
     type: 'documentmotionsresultpanel'
   },
+  autoScroll: true,
 
   layout: {
     type: 'vbox',
@@ -86,10 +87,13 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
     },
     {
       xtype: 'button',
-      margin: '0,0,0,100',
+      margin: 8,
       width: 728,
       bind: {
         text: '{saveLabel}'
+      },
+      listeners: {
+        click: 'onSaveClick'
       }
     }
   ]
