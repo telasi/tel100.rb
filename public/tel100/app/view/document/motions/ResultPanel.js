@@ -20,7 +20,10 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
   requires: [
     'Tel100.view.document.motions.ResultPanelViewModel',
     'Tel100.view.document.motions.ResultPanelViewController',
-    'Ext.form.field.ComboBox'
+    'Ext.form.field.ComboBox',
+    'Ext.form.field.Checkbox',
+    'Ext.button.Segmented',
+    'Ext.button.Button'
   ],
 
   controller: 'documentmotionsresultpanel',
@@ -47,6 +50,41 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
         fieldLabel: '{i18n.document.comment.motion}',
         store: '{motions}'
       }
+    },
+    {
+      xtype: 'checkboxfield',
+      flex: 0,
+      bind: {
+        fieldLabel: '{i18n.document.comment.complete}'
+      }
+    },
+    {
+      xtype: 'combobox',
+      flex: 0,
+      fieldLabel: 'Label',
+      editable: false,
+      autoSelect: false,
+      displayField: 'name',
+      valueField: 'id',
+      bind: {
+        store: '{responseTypes}'
+      }
+    },
+    {
+      xtype: 'segmentedbutton',
+      flex: 0,
+      items: [
+        {
+          bind: {
+            text: '{i18n.document.comment.completed}'
+          }
+        },
+        {
+          bind: {
+            text: '{i18n.document.comment.canceled}'
+          }
+        }
+      ]
     }
   ]
 

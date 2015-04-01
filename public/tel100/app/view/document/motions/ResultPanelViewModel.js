@@ -41,6 +41,20 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
       listeners: {
         load: 'onMotionsStoreLoad'
       }
+    },
+    responseTypes: {
+      autoLoad: true,
+      model: 'Tel100.model.document.ResponseType',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          typekey: 1
+        },
+        url: '/api/documents/response_types',
+        reader: {
+          type: 'json'
+        }
+      }
     }
   }
 
