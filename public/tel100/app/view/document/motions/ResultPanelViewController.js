@@ -22,6 +22,7 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewController', {
     var vm = this.getViewModel();
 
     var params = {
+      document_id: vm.get('document').id,
       motion_id: vm.get('motionId'),
       is_result: vm.get('isResult'),
       text: vm.get('text')
@@ -38,8 +39,12 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewController', {
       return;
     }
 
-    // debugger;
-    console.log(params);
+    helpers.api.document.comment.create({
+      params: params,
+      success: function(data) {
+        debugger;
+      }
+    });
   },
 
   onMotionsStoreLoad: function(store, records, successful, eOpts) {
