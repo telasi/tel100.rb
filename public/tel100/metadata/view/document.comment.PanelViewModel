@@ -14,5 +14,42 @@
         "designer|userAlias": "documentcommentpanel",
         "designer|userClassName": "document.comment.PanelViewModel"
     },
-    "designerId": "74d4933a-9224-4375-b136-ec855f6cbf04"
+    "designerId": "74d4933a-9224-4375-b136-ec855f6cbf04",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Comment",
+                "name": "comments"
+            },
+            "name": "MyStore",
+            "designerId": "776e09f3-717d-4ea2-a6c0-ed05a915df56",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  document_id: '{document.id}'",
+                            "}"
+                        ],
+                        "url": "/api/documents/comments"
+                    },
+                    "name": "MyAjaxProxy5",
+                    "designerId": "d812cf30-4d40-4d68-8b4d-d11845cbc82e"
+                }
+            ]
+        }
+    ]
 }

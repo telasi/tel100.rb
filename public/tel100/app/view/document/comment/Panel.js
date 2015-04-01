@@ -19,12 +19,15 @@ Ext.define('Tel100.view.document.comment.Panel', {
 
   requires: [
     'Tel100.view.document.comment.PanelViewModel',
-    'Ext.panel.Tool'
+    'Ext.panel.Tool',
+    'Ext.grid.Panel',
+    'Ext.grid.column.Column'
   ],
 
   viewModel: {
     type: 'documentcommentpanel'
   },
+  layout: 'fit',
   defaultListenerScope: true,
 
   bind: {
@@ -37,6 +40,45 @@ Ext.define('Tel100.view.document.comment.Panel', {
       listeners: {
         click: 'onToolClick'
       }
+    }
+  ],
+  items: [
+    {
+      xtype: 'gridpanel',
+      bind: {
+        store: '{comments}'
+      },
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          width: 24
+        },
+        {
+          xtype: 'gridcolumn',
+          width: 125,
+          dataIndex: 'created_at',
+          formatter: 'date("d/m/Y H:i")',
+          bind: {
+            text: '{i18n.document.comment.date}'
+          }
+        },
+        {
+          xtype: 'gridcolumn',
+          width: 200,
+          dataIndex: 'user',
+          bind: {
+            text: '{i18n.document.comment.author}'
+          }
+        },
+        {
+          xtype: 'gridcolumn',
+          width: 400,
+          dataIndex: 'text',
+          bind: {
+            text: '{i18n.document.comment.text}'
+          }
+        }
+      ]
     }
   ],
 

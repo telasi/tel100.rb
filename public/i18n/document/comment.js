@@ -7,6 +7,8 @@ module.exports = {
   text: 'კომენტარი',
   completed: '<i class="fa fa-check"></i> შესრულებულია',
   canceled: '<i class="fa fa-times"></i> გაუქმებულია',
+  date: 'თარიღი',
+  author: 'მომხმარებელი',
   actions: {
     saveComment: '<i class="fa fa-comment"></i> კომენტარის დამატება',
     saveResult: '<i class="fa fa-save"></i> შედეგის დამახსოვრება',

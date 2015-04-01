@@ -9,6 +9,7 @@
         "designer|userAlias": "documentcommentpanel",
         "designer|userClassName": "document.comment.Panel",
         "height": null,
+        "layout": "fit",
         "title": [
             "{i18n.document.comment.panelTitle} ({commentCount})"
         ],
@@ -71,6 +72,107 @@
             },
             "name": "refresh",
             "designerId": "bf912b55-cde3-44aa-bc96-66ba931d32d1"
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "grid",
+                "store": [
+                    "{comments}"
+                ],
+                "title": null
+            },
+            "name": "MyGridPanel2",
+            "configAlternates": {
+                "store": "binding"
+            },
+            "designerId": "ff8db083-c1fe-4d59-ae1f-36fb6b35a051",
+            "cn": [
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "status",
+                        "text": null,
+                        "width": 24
+                    },
+                    "name": "MyColumn16",
+                    "designerId": "30d8e7b5-1b3f-4b2c-bb48-2f1d6f9a484d"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "created_at",
+                        "designer|displayName": "date",
+                        "formatter": "date(\"d/m/Y H:i\")",
+                        "text": [
+                            "{i18n.document.comment.date}"
+                        ],
+                        "width": 125
+                    },
+                    "name": "MyColumn17",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "c7cc80fc-8ca8-47f0-ae2b-7663b897b012"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "user",
+                        "designer|displayName": "author",
+                        "text": [
+                            "{i18n.document.comment.author}"
+                        ],
+                        "width": 200
+                    },
+                    "name": "MyColumn8",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "52baf8c6-cfd6-4e14-8439-1ddb4422e7e7"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "text",
+                        "designer|displayName": "text",
+                        "text": [
+                            "{i18n.document.comment.text}"
+                        ],
+                        "width": 400
+                    },
+                    "name": "MyColumn15",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "210b0fe8-9606-4000-ad29-84f0d8b4396f"
+                }
+            ]
         }
     ]
 }
