@@ -70,6 +70,7 @@
                 "fieldLabel": [
                     "{i18n.document.comment.complete}"
                 ],
+                "itemId": "is-complete",
                 "layout|flex": 0,
                 "value": [
                     "{isResult}"
@@ -140,6 +141,7 @@
                 "fieldLabel": [
                     "{i18n.document.comment.text}"
                 ],
+                "itemId": "comment-text",
                 "layout|flex": 0,
                 "value": [
                     "{text}"
@@ -205,10 +207,18 @@
                             "  return;",
                             "}",
                             "",
+                            "view.setLoading(true);",
+                            "",
                             "helpers.api.document.comment.create({",
                             "  params: params,",
                             "  success: function(data) {",
-                            "    debugger;",
+                            "    view.resetForm();",
+                            "    view.setLoading(false);",
+                            "    view.fireEvent('commentadded');",
+                            "  },",
+                            "  failure: function(error) {",
+                            "    view.setLoading(false);",
+                            "    console.error(error);",
                             "  }",
                             "});"
                         ],
@@ -219,6 +229,30 @@
                     "designerId": "9a419f98-5591-4021-8bbb-92b75d121e8c"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "resetForm",
+                "implHandler": [
+                    "var motionsCombo = this.down('#in-motions');",
+                    "var typeCombo = this.down('#result-types');",
+                    "var completeCheck = this.down('#is-complete');",
+                    "var textField = this.down('#comment-text');",
+                    "motionsCombo.select(motionsCombo.getStore().getAt(0));",
+                    "typeCombo.select(typeCombo.getStore().getAt(0));",
+                    "textField.setValue('');",
+                    "completeCheck.setValue(false);",
+                    ""
+                ]
+            },
+            "name": "resetForm",
+            "designerId": "7187a0d1-0590-411b-8468-2e8a37f7470b"
         }
     ]
 }

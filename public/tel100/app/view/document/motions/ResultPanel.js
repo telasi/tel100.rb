@@ -56,6 +56,7 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
     {
       xtype: 'checkboxfield',
       flex: 0,
+      itemId: 'is-complete',
       bind: {
         fieldLabel: '{i18n.document.comment.complete}',
         value: '{isResult}'
@@ -80,6 +81,7 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
     {
       xtype: 'textareafield',
       flex: 0,
+      itemId: 'comment-text',
       bind: {
         fieldLabel: '{i18n.document.comment.text}',
         value: '{text}'
@@ -96,6 +98,18 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
         click: 'onSaveClick'
       }
     }
-  ]
+  ],
+
+  resetForm: function() {
+    var motionsCombo = this.down('#in-motions');
+    var typeCombo = this.down('#result-types');
+    var completeCheck = this.down('#is-complete');
+    var textField = this.down('#comment-text');
+    motionsCombo.select(motionsCombo.getStore().getAt(0));
+    typeCombo.select(typeCombo.getStore().getAt(0));
+    textField.setValue('');
+    completeCheck.setValue(false);
+
+  }
 
 });

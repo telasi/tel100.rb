@@ -39,10 +39,18 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewController', {
       return;
     }
 
+    view.setLoading(true);
+
     helpers.api.document.comment.create({
       params: params,
       success: function(data) {
-        debugger;
+        view.resetForm();
+        view.setLoading(false);
+        view.fireEvent('commentadded');
+      },
+      failure: function(error) {
+        view.setLoading(false);
+        console.error(error);
       }
     });
   },
