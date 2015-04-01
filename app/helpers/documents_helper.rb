@@ -19,8 +19,9 @@ module DocumentsHelper
 
   def document_response_types
     {
-      Document::ResponseType::TYPEKEY_SEND => 'გაგზავნისას',
-      Document::ResponseType::TYPEKEY_RESP => 'პასუხისას',
+      Document::ResponseType::SEND => 'რეზოლუცია',
+      Document::ResponseType::COMPLETE => 'დასრულება',
+      Document::ResponseType::CANCEL => 'გაუქმება',
     }
   end
 end

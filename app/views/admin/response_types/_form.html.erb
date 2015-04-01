@@ -1,5 +1,5 @@
 <%= editor_for @type do |e|
-  e.required_combo_field 'typekey', collection: document_response_types, select2: false, i18n: 'typename'
+  e.required_combo_field 'category', collection: document_response_types, select2: false, i18n: 'typename'
   e.required_text_field 'ordering', autofocus: true
   e.required_text_field 'name_ka'
   e.text_field 'name_ru'

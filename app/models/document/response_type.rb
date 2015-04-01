@@ -22,7 +22,7 @@ class Document::ResponseType < ActiveRecord::Base
 
   def typename
     case self.category
-    when SEND then 'გაგზავნა'
+    when SEND then 'რეზოლუცია'
     when COMPLETE then 'დასრულება'
     when CANCEL then 'გაუქმება'
     end

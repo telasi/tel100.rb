@@ -2,7 +2,7 @@
 class Admin::ResponseTypesController < AdminController
   def index
     @title = 'პასუხის სახეობები'
-    @types = Document::ResponseType.order('typekey, ordering, id')
+    @types = Document::ResponseType.order('category, ordering, id')
   end
 
   def show
@@ -41,6 +41,6 @@ class Admin::ResponseTypesController < AdminController
   protected
 
   def type_params
-    params.require(:document_responsetype).permit(:name_ka, :name_ru, :name_en, :ordering, :typekey)
+    params.require(:document_responsetype).permit(:name_ka, :name_ru, :name_en, :ordering, :category)
   end
 end
