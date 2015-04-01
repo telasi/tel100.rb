@@ -6,6 +6,14 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  motionId: null,",
+            "  isResult: false,",
+            "  categoryId: null,",
+            "  text: null,",
+            "}"
+        ],
         "designer|userAlias": "documentmotionsresultpanel",
         "designer|userClassName": "document.motions.ResultPanelViewModel"
     },
@@ -125,6 +133,76 @@
                             "designerId": "d2931157-6c42-4624-a98b-5047c087f31a"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideComplete"
+            },
+            "name": "MyFormula",
+            "designerId": "fb6d4a2c-b1ac-404c-91d6-b4698fd720fc",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return !get('isResult');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "c418eb05-760b-409e-b9ae-ed25e25995ab"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "saveLabel"
+            },
+            "name": "MyFormula4",
+            "designerId": "0202a454-dd22-4679-9581-42dd4ad9c0b7",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return get('isResult') ?",
+                            "  i18n.document.comment.actions.saveResult :",
+                            "  i18n.document.comment.actions.saveComment;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "a0490f9c-2377-4310-a7e9-cf85a2d7d7a3"
                 }
             ]
         }

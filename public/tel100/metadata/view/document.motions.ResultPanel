@@ -43,12 +43,16 @@
                 "store": [
                     "{motions}"
                 ],
+                "value": [
+                    "{motionId}"
+                ],
                 "valueField": "id"
             },
             "name": "MyComboBox8",
             "configAlternates": {
                 "store": "binding",
-                "fieldLabel": "binding"
+                "fieldLabel": "binding",
+                "value": "binding"
             },
             "designerId": "2b18ead4-d748-495c-9af4-d1ca548b23d5"
         },
@@ -65,12 +69,16 @@
                 "fieldLabel": [
                     "{i18n.document.comment.complete}"
                 ],
-                "layout|flex": 0
+                "layout|flex": 0,
+                "value": [
+                    "{isResult}"
+                ]
             },
             "name": "MyCheckbox",
             "configAlternates": {
                 "boxLabel": "binding",
-                "fieldLabel": "binding"
+                "fieldLabel": "binding",
+                "value": "binding"
             },
             "designerId": "902cabc3-84aa-4a43-ad96-5c18b5a936f3"
         },
@@ -89,17 +97,25 @@
                 "fieldLabel": [
                     "{i18n.document.comment.result}"
                 ],
+                "hidden": [
+                    "{hideComplete}"
+                ],
                 "layout|flex": 0,
                 "store": [
                     "{responseTypes}"
                 ],
                 "tpl": "<tpl for=\".\"><div class=\"x-boundlist-item\">{html_name}</div></tpl>",
+                "value": [
+                    "{categoryId}"
+                ],
                 "valueField": "id"
             },
             "name": "MyComboBox9",
             "configAlternates": {
                 "store": "binding",
-                "fieldLabel": "binding"
+                "fieldLabel": "binding",
+                "hidden": "binding",
+                "value": "binding"
             },
             "designerId": "39082eca-96a2-4531-9ea5-35a726f9cde4",
             "customConfigs": [
@@ -109,6 +125,52 @@
                     "type": "string"
                 }
             ]
+        },
+        {
+            "type": "Ext.form.field.TextArea",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "text",
+                "fieldLabel": [
+                    "{i18n.document.comment.text}"
+                ],
+                "layout|flex": 0,
+                "value": [
+                    "{text}"
+                ]
+            },
+            "name": "MyTextArea",
+            "configAlternates": {
+                "fieldLabel": "binding",
+                "value": "binding"
+            },
+            "designerId": "ac251c25-f109-4cbf-b6fe-ebfb2508791a"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "saveButton",
+                "layout|flex": null,
+                "margin": "0,0,0,100",
+                "text": [
+                    "{saveLabel}"
+                ],
+                "width": 728
+            },
+            "name": "MyButton",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "ddb9c0d4-1250-46ca-ad96-cd274e844d86"
         }
     ]
 }

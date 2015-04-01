@@ -20,8 +20,17 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
   requires: [
     'Ext.data.Store',
     'Ext.data.proxy.Ajax',
-    'Ext.data.reader.Json'
+    'Ext.data.reader.Json',
+    'Ext.app.bind.Formula'
   ],
+
+  data: {
+    motionId: null,
+    isResult: false,
+    categoryId: null,
+    text: null,
+    
+  },
 
   stores: {
     motions: {
@@ -55,6 +64,16 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
           type: 'json'
         }
       }
+    }
+  },
+  formulas: {
+    hideComplete: function(get) {
+      return !get('isResult');
+    },
+    saveLabel: function(get) {
+      return get('isResult') ?
+      i18n.document.comment.actions.saveResult :
+      i18n.document.comment.actions.saveComment;
     }
   }
 

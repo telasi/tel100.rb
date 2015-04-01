@@ -21,7 +21,9 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
     'Tel100.view.document.motions.ResultPanelViewModel',
     'Tel100.view.document.motions.ResultPanelViewController',
     'Ext.form.field.ComboBox',
-    'Ext.form.field.Checkbox'
+    'Ext.form.field.Checkbox',
+    'Ext.form.field.TextArea',
+    'Ext.button.Button'
   ],
 
   controller: 'documentmotionsresultpanel',
@@ -46,6 +48,7 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
       valueField: 'id',
       bind: {
         fieldLabel: '{i18n.document.comment.motion}',
+        value: '{motionId}',
         store: '{motions}'
       }
     },
@@ -53,20 +56,39 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
       xtype: 'checkboxfield',
       flex: 0,
       bind: {
-        fieldLabel: '{i18n.document.comment.complete}'
+        fieldLabel: '{i18n.document.comment.complete}',
+        value: '{isResult}'
       }
     },
     {
       xtype: 'combobox',
-      flex: 0,
       tpl: '<tpl for="."><div class="x-boundlist-item">{html_name}</div></tpl>',
+      flex: 0,
       editable: false,
       autoSelect: false,
       displayField: 'name',
       valueField: 'id',
       bind: {
+        hidden: '{hideComplete}',
         fieldLabel: '{i18n.document.comment.result}',
+        value: '{categoryId}',
         store: '{responseTypes}'
+      }
+    },
+    {
+      xtype: 'textareafield',
+      flex: 0,
+      bind: {
+        fieldLabel: '{i18n.document.comment.text}',
+        value: '{text}'
+      }
+    },
+    {
+      xtype: 'button',
+      margin: '0,0,0,100',
+      width: 728,
+      bind: {
+        text: '{saveLabel}'
       }
     }
   ]
