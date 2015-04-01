@@ -107,9 +107,10 @@ class Document::Base < ActiveRecord::Base
     raise 'not your motion' if user != self.sender_user
     new_status = self.status
     if self.status == CURRENT
-      if params[:type] == Document::Comment::POSITIVE
+      type = Document::ResponseType.find(params[:category_id]) if params[:category_id].present?
+      if type.category == Document::ResponseType::COMPLETE
         new_status = COMPLETED
-      elsif params[:type] == Document::Comment::NEGATIVE
+      elsif type.category == Document::ResponseType::CANCEL
         new_status = CANCELED
       end
     end
@@ -120,7 +121,7 @@ class Document::Base < ActiveRecord::Base
         status: new_status, old_status: self.status, role: ROLE_OWNER,
         text: text)
       # S2: update document itself
-      if self.status != new_status # it's completed
+      if self.status != new_status
         self.completed_at = Time.now
         self.status = new_status
         self.save!
