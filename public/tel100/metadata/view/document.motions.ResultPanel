@@ -1,0 +1,24 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsresultpanel",
+        "designer|userClassName": "document.motions.ResultPanel",
+        "height": null,
+        "title": [
+            "{i18n.document.motion.resultPaneTitle}"
+        ],
+        "width": null
+    },
+    "name": "MyPanel5",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "2019cd14-1d56-44a4-89bb-838a2f7a8473",
+    "viewControllerInstanceId": "ea16dfa8-b932-41c8-a1d8-f6b1029b2a71",
+    "viewModelInstanceId": "4c85bacc-59ef-42d9-8496-307832698d7b"
+}

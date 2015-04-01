@@ -21,6 +21,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     'Tel100.view.document.editor.EditorViewModel',
     'Tel100.view.document.editor.EditorViewController',
     'Tel100.view.document.editor.General',
+    'Tel100.view.document.motions.ResultPanel',
     'Tel100.view.document.motions.Tree',
     'Tel100.view.document.file.Panel',
     'Tel100.view.document.motions.InPanel',
@@ -138,6 +139,9 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   bind: {
                     title: '{i18n.document.base.ui.generalTabTitle}'
                   }
+                },
+                {
+                  xtype: 'documentmotionsresultpanel'
                 },
                 {
                   xtype: 'documentmotionstree'

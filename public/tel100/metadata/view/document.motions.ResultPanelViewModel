@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsresultpanel",
+        "designer|userClassName": "document.motions.ResultPanelViewModel"
+    },
+    "designerId": "4c85bacc-59ef-42d9-8496-307832698d7b"
+}
