@@ -4,7 +4,7 @@ class AddResponseTypes < ActiveRecord::Migration
       create table DOCUMENT_RESPONSE_TYPES (
         ID number(5, 0) not null,
         ORDERING number(5, 0) not null,
-        TYPEKEY  number(1, 0) not null,
+        CATEGORY number(1, 0) not null,
         NAME_KA  varchar2(50) not null,
         NAME_RU  varchar2(50),
         NAME_EN  varchar2(50),
@@ -13,6 +13,10 @@ class AddResponseTypes < ActiveRecord::Migration
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint DOCRESPTYPE_PRIMARYKEY primary key ( ID ) enable
       )
+    SQL
+
+    execute <<-SQL
+      create unique index DOCRESPTYPE_ORDERCAT_IDX on DOCUMENT_RESPONSE_TYPES (CATEGORY, ORDERING)
     SQL
 
     execute <<-SQL
@@ -35,6 +39,7 @@ class AddResponseTypes < ActiveRecord::Migration
   def down
     execute "drop trigger  DOCRESPTYPE_BEFORE_INSERT"
     execute "drop sequence DOCRESPTYPE_SEQ"
+    execute "drop index    DOCRESPTYPE_ORDERCAT_IDX"
     execute "drop table    DOCUMENT_RESPONSE_TYPES"
   end
 end

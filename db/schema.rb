@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150330073049) do
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
     t.integer   "parent_id",         limit: 10,   precision: 10, scale: 0
-    t.integer   "type_id",           limit: 5,    precision: 5,  scale: 0,                   null: false
+    t.integer   "type_id",           limit: 5,    precision: 5,  scale: 0
     t.string    "direction",         limit: 20,                            default: "inner", null: false
     t.string    "subject",           limit: 1000
     t.string    "original_number",   limit: 50
@@ -71,12 +71,12 @@ ActiveRecord::Schema.define(version: 20150330073049) do
     t.boolean   "is_new",                        precision: 1,  scale: 0, default: true,       null: false
     t.datetime  "due_date"
     t.integer   "ordering",         limit: 3,    precision: 3,  scale: 0, default: 999,        null: false
-    t.integer   "send_type_id",     limit: 5,    precision: 5,  scale: 0,                      null: false
+    t.integer   "send_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "motion_text",      limit: 1000
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",      limit: 50
-    t.integer   "resp_type_id",     limit: 5,    precision: 5,  scale: 0,                      null: false
+    t.integer   "resp_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "response_text",    limit: 1000
     t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
     t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
@@ -101,13 +101,15 @@ ActiveRecord::Schema.define(version: 20150330073049) do
 
   create_table "document_response_types", force: true do |t|
     t.integer   "ordering",   limit: 5,  precision: 5, scale: 0, null: false
-    t.boolean   "typekey",               precision: 1, scale: 0, null: false
+    t.boolean   "category",              precision: 1, scale: 0, null: false
     t.string    "name_ka",    limit: 50,                         null: false
     t.string    "name_ru",    limit: 50
     t.string    "name_en",    limit: 50
     t.timestamp "created_at", limit: 6,                          null: false
     t.timestamp "updated_at", limit: 6,                          null: false
   end
+
+  add_index "document_response_types", ["category", "ordering"], name: "docresptype_ordercat_idx", unique: true
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
     t.text "body"
