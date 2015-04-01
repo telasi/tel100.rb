@@ -171,6 +171,48 @@
                         "text": "binding"
                     },
                     "designerId": "210b0fe8-9606-4000-ad29-84f0d8b4396f"
+                },
+                {
+                    "type": "Ext.grid.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyGridView4",
+                    "designerId": "c8e1b319-9898-4480-8e37-85ff5dc10c13",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "record",
+                                    "rowIndex",
+                                    "rowParams",
+                                    "store"
+                                ],
+                                "fn": "getRowClass",
+                                "implHandler": [
+                                    "var new_status = record.get('status');",
+                                    "var old_status = record.get('old_status');",
+                                    "if (new_status === old_status) {",
+                                    "  return '';",
+                                    "} else if (new_status > old_status) {",
+                                    "  return 'text-success';",
+                                    "} else {",
+                                    "  return 'text-danger';",
+                                    "}"
+                                ]
+                            },
+                            "name": "getRowClass",
+                            "designerId": "496f2742-9b92-4469-a575-cc673d5d12eb"
+                        }
+                    ]
                 }
             ]
         }

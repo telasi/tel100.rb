@@ -21,7 +21,8 @@ Ext.define('Tel100.view.document.comment.Panel', {
     'Tel100.view.document.comment.PanelViewModel',
     'Ext.panel.Tool',
     'Ext.grid.Panel',
-    'Ext.grid.column.Column'
+    'Ext.grid.column.Column',
+    'Ext.grid.View'
   ],
 
   viewModel: {
@@ -78,7 +79,20 @@ Ext.define('Tel100.view.document.comment.Panel', {
             text: '{i18n.document.comment.text}'
           }
         }
-      ]
+      ],
+      viewConfig: {
+        getRowClass: function(record, rowIndex, rowParams, store) {
+          var new_status = record.get('status');
+          var old_status = record.get('old_status');
+          if (new_status === old_status) {
+            return '';
+          } else if (new_status > old_status) {
+            return 'text-success';
+          } else {
+            return 'text-danger';
+          }
+        }
+      }
     }
   ],
 
