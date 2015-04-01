@@ -7,6 +7,7 @@ if motion.blank?
   json.motion_text document.subject
   json.created_at document.created_at
   json.updated_at document.updated_at
+  json.text "##{document.docnumber}: #{document.sender}"
 else
   json.id motion.id
   json.type 'motion'
@@ -40,4 +41,20 @@ else
     json.resp_type_id motion.response_type.id
     json.resp_type_name motion.response_type.name
   end
+  # text calculation
+  text = ''
+  if motion.send_type.present?
+    if motion.motion_text.present?
+      text = "#{document.sender}: #{motion.send_type.name} - #{motion.motion_text}"
+    else
+      text = "#{document.sender}: #{motion.send_type.name}"
+    end
+  else
+    if motion.motion_text.present?
+      text = "#{document.sender}: #{motion.motion_text}"
+    else
+      text = "#{document.sender}"
+    end
+  end
+  json.text text
 end
