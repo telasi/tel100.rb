@@ -5,8 +5,7 @@ class Folder::Document < ActiveRecord::Base
   belongs_to :folder, class_name: 'Folder::Base', foreign_key: 'folder_id'
 
   def self.docs(folder)
-  	Folder::Document.where('folder_id = ?', folder).map do |doc|
-  		doc.document_user
-  	end
+  	Document::User.joins("JOIN folder_documents ON folder_documents.doc_id = document_user.document_id 
+  						  and folder_documents.folder_id = #{folder}")
   end
 end

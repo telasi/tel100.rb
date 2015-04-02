@@ -28,6 +28,10 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.where("document_base.docnumber" => params['docnumber']) if params['docnumber'].present?
     @my_docs = @my_docs.where("document_base.subject LIKE ?", params['subject']+'%') if params['subject'].present?
     @my_docs = @my_docs.where("document_base.page_count" => params['page_count']) if params['page_count'].present?
+
+    @total = @my_docs.count
+    @my_docs = @my_docs.offset(params["start"]) if params["start"]
+    @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
   end
 
   def doc_list(folderType, folderId)
