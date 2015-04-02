@@ -62,6 +62,12 @@ module DefaultSchema
     Document::Type.create(id: 2, name_ka: 'ბრძანება', order_by: 2)
   end
 
+  def create_document_responsetypes
+    Document::ResponseType.create(ordering: 1, category: Document::ResponseType::SEND, name_ka: 'გასაცნობად')
+    Document::ResponseType.create(ordering: 1, category: Document::ResponseType::COMPLETE, name_ka: 'შევასრულე')
+    Document::ResponseType.create(ordering: 1, category: Document::ResponseType::CANCEL, name_ka: 'ვაუქმებ')
+  end
+
   module_function :create_organizations
   module_function :create_organization
   module_function :create_employees
@@ -69,6 +75,7 @@ module DefaultSchema
   module_function :create_users
   module_function :create_user
   module_function :create_document_types
+  module_function :create_document_responsetypes
 end
 
 def create_default_schema
@@ -76,4 +83,5 @@ def create_default_schema
   DefaultSchema.create_employees
   DefaultSchema.create_users
   DefaultSchema.create_document_types
+  DefaultSchema.create_document_responsetypes
 end

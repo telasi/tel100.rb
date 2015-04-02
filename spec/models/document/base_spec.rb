@@ -78,7 +78,9 @@ RSpec.describe Document::Base do
     expect(Document::User.where(document: doc).count).to eq(1)
   end
 
-  it 'can be sent' do
+  it 'can be manipulated' do
+    # 1. Sending document
+    #
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')
     doc = Document::Base.create_draft!(dimitri)
@@ -117,5 +119,29 @@ RSpec.describe Document::Base do
     expect(u2.changed?).to eq(true)
     expect(u2.forwarded?).to eq(false)
     expect(u2.status).to eq(Document::Status::CURRENT)
+
+    # 2. Receiver replies
+    cat = Document::ResponseType.where(category: Document::ResponseType::COMPLETE).first
+    motion.add_comment(shalva, { category_id: cat.id, text: 'i agree' })
+    # check motion
+    expect(Document::Motion.where(document: doc).count).to eq(1)
+    motion = Document::Motion.where(document: doc).first
+    expect(motion.status).to eq(Document::Status::COMPLETED)
+    expect(motion.sent_at).not_to be_nil
+    expect(motion.received_at).not_to be_nil
+    expect(motion.completed_at).not_to be_nil
+    expect(motion.response_type).to eq(cat)
+    expect(motion.response_text).to eq('i agree')
+    # check document users
+    expect(Document::User.where(document: doc).count).to eq(2)
+    u1 = Document::User.where(document: doc).first
+    u2 = Document::User.where(document: doc).last
+    expect(u1.user).to eq(dimitri)
+    expect(u1.status).to eq(Document::Status::CURRENT)
+    expect(u2.user).to eq(shalva)
+    expect(u2.new?).to eq(false)
+    expect(u2.changed?).to eq(false)
+    expect(u2.forwarded?).to eq(false)
+    expect(u2.status).to eq(Document::Status::COMPLETED)
   end
 end

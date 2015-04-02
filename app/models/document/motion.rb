@@ -134,9 +134,10 @@ class Document::Motion < ActiveRecord::Base
     raise 'not your motion' if user != self.receiver_user
     new_status = self.status
     if self.status == CURRENT
-      if params[:type] == Document::Comment::POSITIVE
+      type = Document::ResponseType.find(params[:category_id]) if params[:category_id].present?
+      if type.category == Document::ResponseType::COMPLETE
         new_status = COMPLETED
-      elsif params[:type] == Document::Comment::NEGATIVE
+      elsif type.category == Document::ResponseType::CANCEL
         new_status = CANCELED
       end
     end
@@ -151,9 +152,24 @@ class Document::Motion < ActiveRecord::Base
         self.completed_at = Time.now
         self.status = new_status
       end
+      self.response_type = type
       self.response_text = text
       self.save!
-      # S3: update upper motions
+      # S3: check Document::User for this user
+      docuser = Document::User.where(document: self.document, user: user).first
+      current_count = Document::Motion.where(document: self.document, receiver_user: user, status: CURRENT).count
+      if current_count > 0
+        docuser.update_attributes!({status: CURRENT, is_new: 0, is_changed: 0})
+      else
+        completed_count = Document::Motion.where(document: self.document, receiver_user: user, status: COMPLETED).count
+        # canceled_count = Document::Motion.where(document: self.document, receiver_user: user, status: CANCELED).count
+        if completed_count > 0
+          docuser.update_attributes!({status: COMPLETED, is_new: 0, is_changed: 0})
+        else
+          docuser.update_attributes!({status: CANCELED, is_new: 0, is_changed: 0})
+        end
+      end
+      # S4: update upper motions
       check_level_ups!
     end
   end
