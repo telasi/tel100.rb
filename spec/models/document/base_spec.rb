@@ -78,5 +78,44 @@ RSpec.describe Document::Base do
     expect(Document::User.where(document: doc).count).to eq(1)
   end
 
-  it 'can be sent'
+  it 'can be sent' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    shalva  = Sys::User.find_by_username('shalva')
+    doc = Document::Base.create_draft!(dimitri)
+    doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body' })
+    Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: shalva.employee.id,
+      receiver_role: 'assignee'
+    })
+    doc.reload
+    doc.send_draft!(dimitri)
+    # document properties
+    expect(doc.status).to eq(Document::Status::CURRENT)
+    expect(doc.sent_at).not_to be_nil
+    expect(doc.received_at).not_to be_nil
+    expect(doc.completed_at).to be_nil
+    # check motion
+    expect(Document::Motion.where(document: doc).count).to eq(1)
+    motion = Document::Motion.where(document: doc).first
+    expect(motion.status).to eq(Document::Status::CURRENT)
+    expect(motion.sent_at).not_to be_nil
+    expect(motion.received_at).not_to be_nil
+    expect(motion.completed_at).to be_nil
+    # check document users
+    expect(Document::User.where(document: doc).count).to eq(2)
+    u1 = Document::User.where(document: doc).first
+    u2 = Document::User.where(document: doc).last
+    expect(u1.user).to eq(dimitri)
+    expect(u1.new?).to eq(false)
+    expect(u1.changed?).to eq(false)
+    expect(u1.forwarded?).to eq(false)
+    expect(u1.status).to eq(Document::Status::CURRENT)
+    expect(u2.user).to eq(shalva)
+    expect(u2.new?).to eq(true)
+    expect(u2.changed?).to eq(true)
+    expect(u2.forwarded?).to eq(false)
+    expect(u2.status).to eq(Document::Status::CURRENT)
+  end
 end
