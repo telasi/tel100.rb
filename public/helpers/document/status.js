@@ -58,12 +58,12 @@ var statusDecoration = function(status, role, opts) {
   }
   iconStyleId = styleId;
 
-  // if (isNew) {
-  //   iconId = 'fa-circle';
-  //   iconStyleId = 'text-danger';
+  if (isNew) {
+    iconId = 'fa-circle';
+    iconStyleId = 'text-danger';
   // } else if (isChanged) {
   //   iconId = 'fa-circle';
-  // }
+  }
 
   return {
     text: textId,
