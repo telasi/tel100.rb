@@ -164,12 +164,14 @@ class Document::Motion < ActiveRecord::Base
         completed_count = Document::Motion.where(document: self.document, receiver_user: user, status: COMPLETED).count
         # canceled_count = Document::Motion.where(document: self.document, receiver_user: user, status: CANCELED).count
         if completed_count > 0
-          docuser.update_attributes!({status: COMPLETED, is_new: 0, is_changed: 0})
+          docuser.update_attributes!(status: COMPLETED, is_new: 0, is_changed: 0)
         else
-          docuser.update_attributes!({status: CANCELED, is_new: 0, is_changed: 0})
+          docuser.update_attributes!(status: CANCELED, is_new: 0, is_changed: 0)
         end
       end
-      # S4: update upper motions
+      # S4: mark other users unread
+      docuser.make_others_unread!
+      # S5: update upper motions
       check_level_ups!
     end
   end

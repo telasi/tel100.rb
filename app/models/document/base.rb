@@ -132,7 +132,8 @@ class Document::Base < ActiveRecord::Base
         self.save!
       end
       # S3: document_user updates
-      Document::User.upsert!(self, user, ROLE_OWNER, { status: new_status })
+      docuser = Document::User.upsert!(self, user, ROLE_OWNER, { status: new_status })
+      docuser.make_others_unread!
     end
   end
 end

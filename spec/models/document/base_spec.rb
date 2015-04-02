@@ -138,6 +138,8 @@ RSpec.describe Document::Base do
     u2 = Document::User.where(document: doc).last
     expect(u1.user).to eq(dimitri)
     expect(u1.status).to eq(Document::Status::CURRENT)
+    expect(u1.new?).to eq(false)
+    expect(u1.changed?).to eq(true)
     expect(u2.user).to eq(shalva)
     expect(u2.new?).to eq(false)
     expect(u2.changed?).to eq(false)

@@ -9,11 +9,11 @@ class Document::User < ActiveRecord::Base
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
   before_save :update_document_motions
 
-  MYDOC_STATS = [CURRENT, CANCELED, COMPLETED]
-  MYDOC_OWNER_STATS = [DRAFT, CURRENT, CANCELED, COMPLETED]
+  VISIBLE_STATS = [CURRENT, CANCELED, COMPLETED]
+  VISIBLE_OWNER_STATS = [DRAFT, CURRENT, CANCELED, COMPLETED]
 
   def self.mydocs(user)
-    Document::User.where('(document_user.status IN (?) OR (document_user.status IN (?) AND document_user.role=?)) AND user_id = ?', MYDOC_STATS, MYDOC_OWNER_STATS, ROLE_OWNER, user.id)
+    Document::User.where('(document_user.status IN (?) OR (document_user.status IN (?) AND document_user.role=?)) AND user_id = ?', VISIBLE_STATS, VISIBLE_OWNER_STATS, ROLE_OWNER, user.id)
   end
 
   def self.upsert!(doc, user, role, opts={})
@@ -30,6 +30,16 @@ class Document::User < ActiveRecord::Base
         is_new: is_new,
         is_changed: is_changed
       })
+      docuser
+    end
+  end
+
+  def make_others_unread!
+    docid  = self.document.id
+    userid = self.user.id
+    stats  = VISIBLE_STATS
+    Document::User.where('document_id=? AND user_id!=? AND status IN (?)', docid, userid, stats).each do |docuser|
+      docuser.update_attributes!(is_changed: 1)
     end
   end
 
