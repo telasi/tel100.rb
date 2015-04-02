@@ -104,6 +104,7 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     ref (1.0.5)
+    rqrcode (0.4.2)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -184,6 +185,7 @@ DEPENDENCIES
   prawn
   prawn_rails
   rails (= 4.1.6)
+  rqrcode
   rspec-rails (~> 3.0.0)
   ruby-oci8
   sass-rails (~> 4.0.3)
