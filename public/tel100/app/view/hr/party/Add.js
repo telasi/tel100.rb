@@ -67,6 +67,7 @@ Ext.define('Tel100.view.hr.party.Add', {
                 {
                   xtype: 'textfield',
                   name: 'name_ka',
+                  allowBlank: false,
                   bind: {
                     fieldLabel: '{i18n.hr.party.fields.name}'
                   }

@@ -58,7 +58,7 @@ class Folder::Standard
    		when INBOX_READ
    			Document::User.where('document_user.status = ? AND is_new = ? AND user_id = ?', Document::Status::CURRENT, 0, user.id)
    		when INBOX_RESENT
-        Document::User.where('document_user.status = ? AND user_id = ?', Document::Status::CURRENT, 0, user.id)
+        Document::User.where('is_forwarded = ? AND user_id = ?', 1, user.id)
    		when SENT
    			Document::User.where("document_user.role = 'owner' and document_user.status <> ? AND document_user.user_id = ?", Document::Status::DRAFT, user.id)
       when COMPLETED

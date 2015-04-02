@@ -106,6 +106,7 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "allowBlank": false,
                                         "fieldLabel": [
                                             "{i18n.hr.party.fields.name}"
                                         ],
