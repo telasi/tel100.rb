@@ -44,6 +44,7 @@
                 "store": [
                     "{motions}"
                 ],
+                "tpl": "<tpl for=\".\"><div class=\"x-boundlist-item\">{html_text}</div></tpl>",
                 "value": [
                     "{motionId}"
                 ],
@@ -55,7 +56,14 @@
                 "fieldLabel": "binding",
                 "value": "binding"
             },
-            "designerId": "2b18ead4-d748-495c-9af4-d1ca548b23d5"
+            "designerId": "2b18ead4-d748-495c-9af4-d1ca548b23d5",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "tpl",
+                    "type": "string"
+                }
+            ]
         },
         {
             "type": "Ext.form.field.Checkbox",

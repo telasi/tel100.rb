@@ -43,6 +43,7 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
   items: [
     {
       xtype: 'combobox',
+      tpl: '<tpl for="."><div class="x-boundlist-item">{html_text}</div></tpl>',
       itemId: 'in-motions',
       editable: false,
       autoSelect: false,
