@@ -45,7 +45,7 @@ end
 def properties(pdf)
   pdf.move_down 60
 
-  data = [ ["ნომერი:",    "#{@document.type_id}", ""],
+  data = [ ["ნომერი:",    "#{@document.docnumber}", ""],
            ["სახეობა:",    "#{@document.type.name}", ""],
            ["თარიღი:",    "#{@document.docdate}", ""],
            ["ვადა:",       "#{@document.due_date}", ""],
@@ -53,8 +53,8 @@ def properties(pdf)
            ["გვერდები:",   "#{@document.page_count}", ""],
            ["დანართი:",    "#{@document.additions_count}", ""],
            ["ინიციატორი:", "#{@document.sender.full_name}", "#{@document.sender.organization.chained_name}"],
-           ["ავტორი:",    "#{@document.owner.full_name} #{@document.owner}", "#{@document.owner.organization.chained_name}"],
-           ["ადრესატები:", "#{@document.owner.full_name} #{@document.owner}", "#{@document.owner.organization.chained_name}"],
+           ["ავტორი:",    "#{@document.owner.full_name}", "#{@document.owner.organization.chained_name}"],
+           ["ადრესატები:", "#{@document.owner.full_name}", "#{@document.owner.organization.chained_name}"],
            ["სათაური:",   "#{@document.subject}", ""]
          ]
   pdf.table(data, :cell_style => { :font => pdf.set_font_name('default'), :borders => [] }) do

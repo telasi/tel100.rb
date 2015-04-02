@@ -105,18 +105,6 @@ Ext.define('Tel100.view.document.editor.Creator', {
                   }
                 },
                 {
-                  xtype: 'button',
-                  bind: {
-                    text: '{i18n.document.base.ui.card}'
-                  },
-                  listeners: {
-                    click: {
-                      fn: 'onCardPrintClick',
-                      scope: 'controller'
-                    }
-                  }
-                },
-                {
                   xtype: 'tbfill'
                 }
               ]

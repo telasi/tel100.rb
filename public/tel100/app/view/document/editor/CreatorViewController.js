@@ -94,29 +94,6 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
   onSaveClick: function(button, e, eOpts) {
     var doc = this.getViewModel().get('document');
     this.onDocumentChange(doc);
-  },
-
-  onCardPrintClick: function(button, e, eOpts) {
-    var vm = this.getViewModel();
-    var document = vm.get('document');
-    var pdfwin = Ext.create('Ext.Window',{
-      title: i18n.document.base.ui.card,
-      width: '50%',
-      height: '80%',
-      layout:'anchor',
-      anchor:"100% 100%",
-      maximizable: true,
-      modal: true,
-      items: {
-        xtype: 'component',
-        autoEl: {
-          style: 'height: 100%; width: 100%; border: none',
-          html: '<iframe src="' + '/api/documents/print/card/' + document.id + '" height="100%", width="100%" />'
-        }
-      }
-    });
-
-    pdfwin.show();
   }
 
 });
