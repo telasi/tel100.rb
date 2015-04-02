@@ -1,3 +1,14 @@
+def statusify(object, text)
+  case object.status
+  when Document::Status::COMPLETED
+    "<span class=\"text-success\"><i class=\"fa fa-check\"></i>#{text}</span>"
+  when Document::Status::CANCELED
+    "<span class=\"text-danger\"><i class=\"fa fa-check\"></i>#{text}</span>"
+  else
+    "<span class=\"text-info\"><i class=\"fa fa-clock\"></i>#{text}</span>"
+  end
+end
+
 if motion.blank?
   json.document_id document.id
   json.type 'document'
@@ -10,7 +21,9 @@ if motion.blank?
   json.motion_text document.subject
   json.created_at document.created_at
   json.updated_at document.updated_at
-  json.text "##{document.docnumber}: #{document.sender}"
+  text = "##{document.docnumber}: #{document.sender}"
+  json.text text
+  json.html_text statusify(document, text)
 else
   json.id motion.id
   json.type 'motion'
@@ -60,4 +73,5 @@ else
     end
   end
   json.text text
+  json.html_text statusify(text, motion)
 end
