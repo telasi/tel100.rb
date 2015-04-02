@@ -61,6 +61,36 @@
             },
             "name": "moveDocumentToFolder",
             "designerId": "f5716c72-e371-4453-8560-dd8bbfaec28e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "component"
+                ],
+                "fn": "addPagingToolbar",
+                "implHandler": [
+                    "component.addDocked(new Ext.PagingToolbar({",
+                    "  displayInfo: true,",
+                    "  dock: 'bottom',",
+                    "  afterPageText: ' / {0}',",
+                    "  beforePageText: i18n.ui.page,",
+                    "  emptyMsg: i18n.ui.emptyMsg,",
+                    "  displayMsg : i18n.ui.displayMsg,",
+                    "  bind: {",
+                    "    store: '{documents}'",
+                    "  }",
+                    "})",
+                    ");"
+                ]
+            },
+            "name": "addPagingToolbar",
+            "designerId": "6d856c2e-17f9-4042-8e5c-b990d41b880a"
         }
     ]
 }

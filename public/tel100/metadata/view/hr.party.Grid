@@ -407,25 +407,32 @@
             ]
         },
         {
-            "type": "Ext.toolbar.Paging",
+            "type": "basiceventbinding",
             "reference": {
-                "name": "dockedItems",
+                "name": "listeners",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "afterPageText": "/ {0}",
-                "beforePageText": "გვერდები",
-                "dock": "bottom",
-                "store": [
-                    "{party}"
-                ]
+                "fn": "onGridpanelAfterRender",
+                "implHandler": [
+                    "component.addDocked(new Ext.PagingToolbar({",
+                    "  displayInfo: true,",
+                    "  dock: 'bottom',",
+                    "  afterPageText: ' / {0}',",
+                    "  beforePageText: i18n.ui.page,",
+                    "  emptyMsg: i18n.ui.emptyMsg,",
+                    "  displayMsg : i18n.ui.displayMsg,",
+                    "  bind: {",
+                    "    store: '{party}'",
+                    "  }",
+                    "}));"
+                ],
+                "name": "afterrender",
+                "scope": "me"
             },
-            "name": "MyPagingToolbar",
-            "configAlternates": {
-                "store": "binding"
-            },
-            "designerId": "dd49d58f-54f5-4d73-830f-68edec264414"
+            "name": "onGridpanelAfterRender",
+            "designerId": "36c6091d-fd64-46a1-815a-5c77a92a9c90"
         }
     ]
 }

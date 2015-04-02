@@ -497,7 +497,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general1",
+                                    "name": "document.editor.general4",
                                     "configAlternates": {
                                         "title": "binding"
                                     },
@@ -528,7 +528,7 @@
                                     "userConfig": {
                                         "designer|displayName": "signees"
                                     },
-                                    "name": "document.motions.signeepanel1",
+                                    "name": "document.motions.signeepanel3",
                                     "designerId": "6c040662-e5fb-49a6-9215-b4a251a4c73a",
                                     "masterInstanceId": "a6e4f453-aa9b-4c0e-8a45-45e445ca2504",
                                     "cn": [
@@ -567,7 +567,7 @@
                                     "userConfig": {
                                         "designer|displayName": "asignees"
                                     },
-                                    "name": "document.motions.assigneepanel1",
+                                    "name": "document.motions.assigneepanel3",
                                     "designerId": "5b56765a-3219-46c0-94e7-73857f5db4fe",
                                     "masterInstanceId": "da24e6c3-26d6-4d2a-bedc-c822727570b4",
                                     "cn": [
@@ -606,7 +606,7 @@
                                     "userConfig": {
                                         "designer|displayName": "authors"
                                     },
-                                    "name": "document.motions.authorpanel1",
+                                    "name": "document.motions.authorpanel3",
                                     "designerId": "9507dce8-8e97-4a00-8d9b-abcd88ae04f3",
                                     "masterInstanceId": "e3fa4671-a99b-4b98-adee-9628585fe14b",
                                     "cn": [
@@ -645,7 +645,7 @@
                                     "userConfig": {
                                         "designer|displayName": "files"
                                     },
-                                    "name": "document.file.panel1",
+                                    "name": "document.file.panel4",
                                     "designerId": "fa5bcbd5-6feb-4cd1-af00-84c5dbfab0a3",
                                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                                 }

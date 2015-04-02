@@ -326,6 +326,24 @@
             },
             "name": "onGridpanelBeforeItemContextMenu",
             "designerId": "39e87ba3-3b58-4379-9074-a11bbc2ec174"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelAfterRender",
+                "implHandler": [
+                    "this.getView().getController().addPagingToolbar(component);"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onGridpanelAfterRender",
+            "designerId": "e5d060ef-2898-4175-bb17-7530f0b828b7"
         }
     ]
 }

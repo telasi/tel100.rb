@@ -35,7 +35,8 @@ Ext.define('Tel100.view.document.grid.PanelViewModel', {
         type: 'ajax',
         url: '/api/documents/base',
         reader: {
-          type: 'json'
+          type: 'json',
+          rootProperty: 'data'
         }
       }
     }

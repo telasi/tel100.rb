@@ -37,6 +37,21 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
         model.save();
   },
 
+  addPagingToolbar: function(component) {
+    component.addDocked(new Ext.PagingToolbar({
+      displayInfo: true,
+      dock: 'bottom',
+      afterPageText: ' / {0}',
+      beforePageText: i18n.ui.page,
+      emptyMsg: i18n.ui.emptyMsg,
+      displayMsg : i18n.ui.displayMsg,
+      bind: {
+        store: '{documents}'
+      }
+    })
+    );
+  },
+
   onGridpanelBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
     var document = record;
     var folderMenu = Ext.create('Ext.menu.Menu');
@@ -61,6 +76,10 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
 
     e.stopEvent();
     gridMenu.showAt(e.getXY());
+  },
+
+  onGridpanelAfterRender: function(component, eOpts) {
+    this.getView().getController().addPagingToolbar(component);
   }
 
 });

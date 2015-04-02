@@ -1,4 +1,4 @@
-def default_font(pdf, size = 9); pdf.font('default', size) end
+def default_font(pdf, size = 9); pdf.change_font('default', size) end
 
 def month_name(month)
   case month
@@ -17,10 +17,78 @@ def month_name(month)
   end
 end
 
-def page1(pdf)
-  pdf.text 'sadasd', size: 20, align: :center
+def direction(dir)
+  case dir
+    when 'in' then 'შემოსული'
+    when 'inner' then 'შიდა'
+    when 'out' then 'გასული'
+  end
 end
 
-prawn_document(page_size: 'A4', margin: [50, 40]) do |pdf|
-  page1(pdf)
+def barcode(pdf)
+end
+
+def header(pdf)
+end
+
+def row(pdf, textsize, title, value, y)
+  title_x = 10
+  value_x = 100
+
+  pdf.change_font('default', textsize)
+  pdf.text_box title, :at => [title_x, y]
+  pdf.change_font('bold', textsize)
+  pdf.text_box value, :at => [value_x, y]
+  end
+
+def properties(pdf)
+  y = 700
+  deltaY = 15
+
+  row(pdf, 9, "ნომერი:", "#{@document.type_id}", y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "სახეობა:", "#{@document.type.name}", y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "თარიღი:", "#{@document.docdate}", y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "ვადა:", "#{@document.due_date}", y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "მიმართულება:", direction(@document.direction), y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "გვერდები:", "#{@document.page_count}", y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "დანართი:", "#{@document.additions_count}", y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "ინიციატორი:", "#{@document.sender.full_name} #{@document.sender}", y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "ავტორი:", "#{@document.owner.full_name} #{@document.owner}", y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "ადრესატები:", "#{@document.owner.full_name} #{@document.owner}", y)
+
+  y = y - deltaY
+
+  row(pdf, 9, "სათაური:", "#{@document.subject}", y)
+end
+
+prawn_document(page_size: 'A4', margin: [40, 40]) do |pdf|
+  default_font(pdf)
+  properties(pdf)
 end

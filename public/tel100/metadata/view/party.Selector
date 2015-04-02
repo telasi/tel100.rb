@@ -54,7 +54,7 @@
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel2",
+                    "name": "hr.tree.panel1",
                     "configAlternates": {
                         "tools": "array"
                     },
@@ -108,7 +108,7 @@
                     "userConfig": {
                         "designer|displayName": "parties"
                     },
-                    "name": "hr.party.grid1",
+                    "name": "hr.party.grid4",
                     "designerId": "67a77de5-f54d-4f43-946d-54f3c9f93a0d",
                     "masterInstanceId": "add98a47-ea0c-4c15-9fb9-63aee2799018",
                     "cn": [
@@ -154,7 +154,7 @@
                     "userConfig": {
                         "designer|displayName": "customers"
                     },
-                    "name": "bs.customer.panel1",
+                    "name": "bs.customer.panel4",
                     "designerId": "d1f5ee8b-69b8-41d5-a6ba-99ce9e336b6a",
                     "masterInstanceId": "07c20692-1bdc-46c9-ba9a-49ac94deb18f",
                     "cn": [
