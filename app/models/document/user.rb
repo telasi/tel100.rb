@@ -55,5 +55,8 @@ class Document::User < ActiveRecord::Base
 
   protected
 
-  def update_document_motions; motions.each { |motion| motion.update_attributes!(is_new: self.is_new) } end
+  def update_document_motions
+    ### XXX: do we need this?
+    motions.each { |motion| motion.update_attributes!(is_new: self.is_new) }
+  end
 end
