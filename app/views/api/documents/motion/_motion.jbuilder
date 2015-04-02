@@ -73,5 +73,5 @@ else
     end
   end
   json.text text
-  json.html_text statusify(text, motion)
+  json.html_text statusify(motion, text)
 end
