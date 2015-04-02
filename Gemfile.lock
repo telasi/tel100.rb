@@ -79,6 +79,7 @@ GEM
     prawn (2.0.1)
       pdf-core (~> 0.5.1)
       ttfunk (~> 1.4.0)
+    prawn-table (0.2.1)
     prawn_rails (0.0.11)
       prawn (>= 0.11.1)
       railties (>= 3.0.0)
@@ -183,6 +184,7 @@ DEPENDENCIES
   jquery-rails
   ka
   prawn
+  prawn-table
   prawn_rails
   rails (= 4.1.6)
   rqrcode
