@@ -4,13 +4,16 @@ class Document::User < ActiveRecord::Base
   include Document::Status
   self.table_name  = 'document_user'
   self.primary_keys = :user_id, :document_id
-  self.set_integer_columns :is_new, :is_changed, :status
+  self.set_integer_columns :is_new, :is_changed, :status, :is_forwarded
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
   before_save :update_document_motions
 
+  MYDOC_STATS = [CURRENT, CANCELED, COMPLETED]
+  MYDOC_OWNER_STATS = [DRAFT, CURRENT, CANCELED, COMPLETED]
+
   def self.mydocs(user)
-    Document::User.where('(document_user.status IN (?) OR (document_user.status IN (?) AND document_user.role=?)) AND user_id = ?', [CURRENT, CANCELED, COMPLETED], [DRAFT, CURRENT, CANCELED, COMPLETED], ROLE_OWNER, user.id)
+    Document::User.where('(document_user.status IN (?) OR (document_user.status IN (?) AND document_user.role=?)) AND user_id = ?', MYDOC_STATS, MYDOC_OWNER_STATS, ROLE_OWNER, user.id)
   end
 
   def self.upsert!(doc, user, role, opts={})
@@ -35,6 +38,8 @@ class Document::User < ActiveRecord::Base
   def changed?; self.is_changed == 1 end
   def new=(val); self.is_new = val ? 1 : 0 end
   def new?; self.is_new == 1 end
+  def forwarded?; self.is_forwarded == 1 end
+  def forwarded=(val); self.is_forwarded = val ? 1 : 0 end
 
   def read!
     Document::User.transaction do
