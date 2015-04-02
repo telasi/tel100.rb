@@ -1,3 +1,7 @@
+require 'barby'
+require 'barby/barcode/qr_code'
+require 'barby/outputter/prawn_outputter'
+
 def default_font(pdf, size = 9); pdf.change_font('default', size) end
 
 def month_name(month)
@@ -29,6 +33,13 @@ def barcode(pdf)
 end
 
 def header(pdf)
+end
+
+def barcode(pdf)
+  pdf.bounding_box [10,720], :width => 200 do
+    barcode = Barby::QrCode.new("#{@document.docnumber}")
+    barcode.annotate_pdf(pdf, :xdim => 3, :ydim => 3)
+  end
 end
 
 def row(pdf, textsize, title, value, y)
@@ -90,5 +101,6 @@ end
 
 prawn_document(page_size: 'A4', margin: [40, 40]) do |pdf|
   default_font(pdf)
+  barcode(pdf)
   properties(pdf)
 end
