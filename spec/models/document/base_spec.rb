@@ -6,6 +6,24 @@ RSpec.describe Document::Base do
     create_default_schema
   end
 
+  it 'should create empty draft' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    doc = Document::Base.create_draft!(dimitri)
+    expect(doc.id).not_to be_nil
+    expect(doc.docnumber).to be_nil
+    expect(doc.status).to eq(Document::Status::DRAFT)
+    expect(doc.direction).to eq('inner')
+    expect(doc.sender_user).to eq(dimitri)
+    expect(doc.sender.user).to eq(dimitri)
+    expect(doc.owner_user).to eq(dimitri)
+    expect(doc.owner.user).to eq(dimitri)
+    expect(doc.created_at).not_to be_nil
+    expect(doc.updated_at).not_to be_nil
+    expect(doc.sent_at).to be_nil
+    expect(doc.received_at).to be_nil
+    expect(doc.completed_at).to be_nil
+  end
+
   # it 'document numbering' do
   #   dimitri = Sys::User.find_by_username('dimitri')
   #   shalva  = Sys::User.find_by_username('shalva')
