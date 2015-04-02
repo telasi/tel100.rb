@@ -283,7 +283,33 @@
                                     },
                                     "name": "document.motions.resultpanel",
                                     "designerId": "8a203739-f111-40f4-80ec-92b30cc29f55",
-                                    "masterInstanceId": "2019cd14-1d56-44a4-89bb-838a2f7a8473"
+                                    "masterInstanceId": "2019cd14-1d56-44a4-89bb-838a2f7a8473",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "panel"
+                                                ],
+                                                "fn": "onPanelCommentadded",
+                                                "implHandler": [
+                                                    "var commentsPanel = this.down('documentcommentpanel');",
+                                                    "commentsPanel.refresh(function() {",
+                                                    "  commentsPanel.setCollapsed(false);",
+                                                    "});"
+                                                ],
+                                                "name": "commentadded",
+                                                "scope": "me"
+                                            },
+                                            "name": "onPanelCommentadded",
+                                            "designerId": "2dd77463-731d-4662-8385-27a287a072b2"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "linkedinstance",

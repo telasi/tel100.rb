@@ -40,6 +40,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     type: 'documenteditoreditor'
   },
   layout: 'border',
+  defaultListenerScope: true,
 
   items: [
     {
@@ -142,7 +143,10 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   }
                 },
                 {
-                  xtype: 'documentmotionsresultpanel'
+                  xtype: 'documentmotionsresultpanel',
+                  listeners: {
+                    commentadded: 'onPanelCommentadded'
+                  }
                 },
                 {
                   xtype: 'documentcommentpanel'
@@ -173,7 +177,10 @@ Ext.define('Tel100.view.document.editor.Editor', {
               border: false,
               flex: 1,
               listeners: {
-                motionchanged: 'onInMotionChanged'
+                motionchanged: {
+                  fn: 'onInMotionChanged',
+                  scope: 'controller'
+                }
               }
             },
             {
@@ -191,7 +198,17 @@ Ext.define('Tel100.view.document.editor.Editor', {
     }
   ],
   listeners: {
-    destroy: 'onDestroy'
+    destroy: {
+      fn: 'onDestroy',
+      scope: 'controller'
+    }
+  },
+
+  onPanelCommentadded: function(panel) {
+    var commentsPanel = this.down('documentcommentpanel');
+    commentsPanel.refresh(function() {
+      commentsPanel.setCollapsed(false);
+    });
   },
 
   initComponent: function() {

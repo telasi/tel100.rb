@@ -86,7 +86,7 @@ Ext.define('Tel100.view.document.comment.Panel', {
         },
         {
           xtype: 'gridcolumn',
-          width: 400,
+          width: 600,
           dataIndex: 'text',
           bind: {
             text: '{i18n.document.comment.text}'
@@ -113,8 +113,11 @@ Ext.define('Tel100.view.document.comment.Panel', {
     this.refresh();
   },
 
-  refresh: function() {
-    this.down('gridpanel').getStore().load();
+  refresh: function(callback) {
+    this.down('gridpanel').getStore().load({
+      scope: this,
+      callback: callback
+    });
   },
 
   onStoreLoad: function(store, records, successful, eOpts) {
