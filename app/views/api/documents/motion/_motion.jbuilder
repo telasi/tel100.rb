@@ -2,7 +2,10 @@ if motion.blank?
   json.document_id document.id
   json.type 'document'
   json.status document.status
-  json.sender "##{document.docnumber}: #{document.sender}"
+  sender = document.sender
+  sender_user = document.sender_user
+  json.sender_user { json.partial! 'api/sys/users/user', user: sender_user } if sender_user
+  json.sender { json.partial! 'api/documents/party', party: sender } if sender
   json.due_date document.due_date
   json.motion_text document.subject
   json.created_at document.created_at
