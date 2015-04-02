@@ -8,7 +8,7 @@ class Api::BsController < ApiController
     @customers = @customers.where("address LIKE N?", '%' + params['address'] +'%') if params['address'].present?
     @customers = @customers.where("taxid" => params['taxid']) if params['taxid'].present?
     @customers = @customers.where("accnumb" => params['accnumb']) if params['accnumb'].present?
-    @total = @customers.count / params["limit"].to_i if params["limit"]
+    @total = @customers.count
     @customers = @customers.offset(params["start"]) if params["start"]
     @customers = @customers.limit(params["limit"]) if params["limit"]
   end

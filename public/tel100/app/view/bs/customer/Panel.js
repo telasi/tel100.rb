@@ -24,14 +24,14 @@ Ext.define('Tel100.view.bs.customer.Panel', {
     'Ext.grid.View',
     'Ext.form.Panel',
     'Ext.form.field.Text',
-    'Ext.button.Button',
-    'Ext.toolbar.Paging'
+    'Ext.button.Button'
   ],
 
   controller: 'bscustomerpanel',
   viewModel: {
     type: 'bscustomerpanel'
   },
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.hr.customer.title}',
@@ -138,26 +138,37 @@ Ext.define('Tel100.view.bs.customer.Panel', {
                 text: '{i18n.document.search.ui.search}'
               },
               listeners: {
-                click: 'onButtonClick'
+                click: {
+                  fn: 'onButtonClick',
+                  scope: 'controller'
+                }
               }
             }
           ]
         }
       ]
-    },
-    {
-      xtype: 'pagingtoolbar',
-      dock: 'bottom',
-      afterPageText: '/ {0}',
-      beforePageText: 'გვერდები',
-      displayInfo: true,
-      bind: {
-        store: '{customer}'
-      }
     }
   ],
   listeners: {
-    resize: 'onGridpanelResize'
+    resize: {
+      fn: 'onGridpanelResize',
+      scope: 'controller'
+    },
+    afterrender: 'onGridpanelAfterRender'
+  },
+
+  onGridpanelAfterRender: function(component, eOpts) {
+    component.addDocked(new Ext.PagingToolbar({
+      displayInfo: true,
+      dock: 'bottom',
+      afterPageText: ' / {0}',
+      beforePageText: i18n.ui.page,
+      emptyMsg: i18n.ui.emptyMsg,
+      displayMsg : i18n.ui.displayMsg,
+      bind: {
+        store: '{customer}'
+      }
+    }));
   }
 
 });

@@ -24,8 +24,7 @@ Ext.define('Tel100.view.hr.party.Grid', {
     'Ext.grid.View',
     'Ext.form.Panel',
     'Ext.form.field.Text',
-    'Ext.button.Button',
-    'Ext.toolbar.Paging'
+    'Ext.button.Button'
   ],
 
   controller: 'hrpartygrid',
@@ -33,6 +32,7 @@ Ext.define('Tel100.view.hr.party.Grid', {
     type: 'hrpartygrid'
   },
   header: false,
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.hr.party.title}',
@@ -164,7 +164,10 @@ Ext.define('Tel100.view.hr.party.Grid', {
                 text: '{i18n.document.search.ui.search}'
               },
               listeners: {
-                click: 'onButtonClick1'
+                click: {
+                  fn: 'onButtonClick1',
+                  scope: 'controller'
+                }
               }
             },
             {
@@ -174,22 +177,33 @@ Ext.define('Tel100.view.hr.party.Grid', {
                 text: '{i18n.hr.party.add}'
               },
               listeners: {
-                click: 'onButtonClick'
+                click: {
+                  fn: 'onButtonClick',
+                  scope: 'controller'
+                }
               }
             }
           ]
         }
       ]
-    },
-    {
-      xtype: 'pagingtoolbar',
+    }
+  ],
+  listeners: {
+    afterrender: 'onGridpanelAfterRender'
+  },
+
+  onGridpanelAfterRender: function(component, eOpts) {
+    component.addDocked(new Ext.PagingToolbar({
+      displayInfo: true,
       dock: 'bottom',
-      afterPageText: '/ {0}',
-      beforePageText: 'გვერდები',
+      afterPageText: ' / {0}',
+      beforePageText: i18n.ui.page,
+      emptyMsg: i18n.ui.emptyMsg,
+      displayMsg : i18n.ui.displayMsg,
       bind: {
         store: '{party}'
       }
-    }
-  ]
+    }));
+  }
 
 });

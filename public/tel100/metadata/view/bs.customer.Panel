@@ -304,37 +304,6 @@
             ]
         },
         {
-            "type": "Ext.toolbar.Paging",
-            "reference": {
-                "name": "dockedItems",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "afterPageText": "/ {0}",
-                "beforePageText": "გვერდები",
-                "displayInfo": true,
-                "dock": "bottom",
-                "pageSize": null,
-                "store": [
-                    "{customer}"
-                ],
-                "width": null
-            },
-            "name": "MyPagingToolbar1",
-            "configAlternates": {
-                "store": "binding"
-            },
-            "designerId": "d60d49c9-3da9-4d61-bd88-82fee339afda",
-            "customConfigs": [
-                {
-                    "group": "(Custom Properties)",
-                    "name": "pageSize",
-                    "type": "string"
-                }
-            ]
-        },
-        {
             "type": "viewcontrollereventbinding",
             "reference": {
                 "name": "listeners",
@@ -351,6 +320,34 @@
             },
             "name": "onGridpanelResize",
             "designerId": "bb2426e2-d6d6-4317-aef1-155ef86398ed"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelAfterRender",
+                "implHandler": [
+                    "component.addDocked(new Ext.PagingToolbar({",
+                    "  displayInfo: true,",
+                    "  dock: 'bottom',",
+                    "  afterPageText: ' / {0}',",
+                    "  beforePageText: i18n.ui.page,",
+                    "  emptyMsg: i18n.ui.emptyMsg,",
+                    "  displayMsg : i18n.ui.displayMsg,",
+                    "  bind: {",
+                    "    store: '{customer}'",
+                    "  }",
+                    "}));"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onGridpanelAfterRender",
+            "designerId": "27e7748e-c553-43ed-8f01-33614b0e5d2f"
         }
     ]
 }

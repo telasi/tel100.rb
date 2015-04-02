@@ -4,6 +4,9 @@ class Api::Documents::BaseController < ApiController
 
   def index
     @my_docs = doc_list(params[:folderType], params[:folderId])
+    @total = @my_docs.count
+    @my_docs = @my_docs.offset(params["start"]) if params["start"]
+    @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
   end
 
   def search

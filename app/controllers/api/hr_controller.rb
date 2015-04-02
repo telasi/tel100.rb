@@ -24,7 +24,7 @@ class Api::HrController < ApiController
     @party = @party.where("identity" => params['identity']) if params['identity'].present?
     #@party = @party.where("phones LIKE N?", '%' + params['phones'] +'%') if params['phones'].present?
     #@party = @party.where("accnumb" => params['accnumb']) if params['accnumb'].present?
-    @total = @party.count / params["limit"].to_i if params["limit"]
+    @total = @party.count
     @party = @party.offset(params["start"]) if params["start"]
     @party = @party.limit(params["limit"]) if params["limit"]
   end
