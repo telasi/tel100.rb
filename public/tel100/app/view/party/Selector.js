@@ -164,7 +164,7 @@ Ext.define('Tel100.view.party.Selector', {
   },
 
   onCustomerGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
-    if (record.get('ext_type') === 'hr.Customer') {
+    if (record.get('ext_type') === 'bs.Customer') {
           this.getController().onAddParty(record);
     }
   },
