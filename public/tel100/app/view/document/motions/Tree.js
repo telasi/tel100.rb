@@ -19,11 +19,9 @@ Ext.define('Tel100.view.document.motions.Tree', {
 
   requires: [
     'Tel100.view.document.motions.TreeViewModel',
-    'Ext.toolbar.Toolbar',
-    'Ext.button.Button',
-    'Ext.toolbar.Spacer',
     'Ext.tree.View',
-    'Ext.tree.Column'
+    'Ext.tree.Column',
+    'Ext.panel.Tool'
   ],
 
   config: {
@@ -42,53 +40,13 @@ Ext.define('Tel100.view.document.motions.Tree', {
   rowLines: true,
   lines: false,
   useArrows: true,
+  defaultListenerScope: true,
 
   bind: {
     selection: '{selection}',
     title: '{i18n.document.motion.tree}',
     store: '{motions}'
   },
-  dockedItems: [
-    {
-      xtype: 'toolbar',
-      dock: 'top',
-      border: 0,
-      items: [
-        {
-          xtype: 'button',
-          handler: function(button, e) {
-            this.up('documentmotionstree').refresh();
-          },
-          bind: {
-            text: '{i18n.ui.refresh}'
-          }
-        },
-        {
-          xtype: 'tbspacer',
-          flex: 1
-        },
-        {
-          xtype: 'button',
-          handler: function(button, e) {
-            var tree = this.up('documentmotionstree');
-            var vm = tree.getViewModel();
-            var selection = vm.get('selection');
-            if (selection && selection.get('type') === 'motion') {
-              var dialog = Ext.create('Tel100.view.document.motions.Properties', {
-                modal: true
-              });
-              dialog.setMotion(selection);
-              dialog.show();
-            }
-          },
-          bind: {
-            disabled: '{disableProperties}',
-            text: '{i18n.ui.properties}'
-          }
-        }
-      ]
-    }
-  ],
   viewConfig: {
 
   },
@@ -121,6 +79,42 @@ Ext.define('Tel100.view.document.motions.Tree', {
       flex: 1
     }
   ],
+  tools: [
+    {
+      xtype: 'tool',
+      type: 'refresh',
+      listeners: {
+        click: 'onToolClick'
+      }
+    }
+  ],
+  listeners: {
+    beforecellcontextmenu: 'onTreepanelBeforeCellContextMenu'
+  },
+
+  onToolClick: function(tool, e, owner, eOpts) {
+    this.refresh();
+  },
+
+  onTreepanelBeforeCellContextMenu: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    if (record.get('type') === 'motion') {
+      var gridMenu = Ext.create('Ext.menu.Menu', {
+        items: [{
+          text: i18n.document.motion.properties,
+          icon: '/images/properties.png',
+          handler: function() {
+            var dialog = Ext.create('Tel100.view.document.motions.Properties', {
+              modal: true
+            });
+            dialog.setMotion(record);
+            dialog.show();
+          }
+        }]
+      });
+      e.stopEvent();
+      gridMenu.showAt(e.getXY());
+    }
+  },
 
   refresh: function() {
     var vm = this.getViewModel();

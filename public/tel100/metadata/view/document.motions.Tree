@@ -49,133 +49,6 @@
     "viewModelInstanceId": "c7ddb49e-bdb7-4beb-98cd-5bb56c49ce2c",
     "cn": [
         {
-            "type": "Ext.toolbar.Toolbar",
-            "reference": {
-                "name": "dockedItems",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "border": 0,
-                "designer|displayName": "toolbar",
-                "dock": "top"
-            },
-            "name": "MyToolbar2",
-            "designerId": "a51c1279-3ddb-420d-989e-38992e0ae19e",
-            "cn": [
-                {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "refresh",
-                        "layout|flex": null,
-                        "text": [
-                            "{i18n.ui.refresh}"
-                        ]
-                    },
-                    "name": "MyButton5",
-                    "configAlternates": {
-                        "text": "binding"
-                    },
-                    "designerId": "228f53ba-a920-465b-aaf3-8093a86e52f8",
-                    "cn": [
-                        {
-                            "type": "fixedfunction",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|params": [
-                                    "button",
-                                    "e"
-                                ],
-                                "fn": "handler",
-                                "implHandler": [
-                                    "this.up('documentmotionstree').refresh();"
-                                ]
-                            },
-                            "name": "handler",
-                            "designerId": "7bd33a53-b76b-4699-9b19-aaf7f1fa4cae"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.toolbar.Spacer",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "layout|flex": 1
-                    },
-                    "name": "MySpacer",
-                    "designerId": "08976b92-9aa4-4f36-998e-e52dddc8988e"
-                },
-                {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "properties",
-                        "disabled": [
-                            "{disableProperties}"
-                        ],
-                        "layout|flex": null,
-                        "text": [
-                            "{i18n.ui.properties}"
-                        ]
-                    },
-                    "name": "MyButton9",
-                    "configAlternates": {
-                        "text": "binding",
-                        "disabled": "binding"
-                    },
-                    "designerId": "8590ece3-2462-4d53-b3d6-65bdb6d7cfa5",
-                    "cn": [
-                        {
-                            "type": "fixedfunction",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|params": [
-                                    "button",
-                                    "e"
-                                ],
-                                "fn": "handler",
-                                "implHandler": [
-                                    "var tree = this.up('documentmotionstree');",
-                                    "var vm = tree.getViewModel();",
-                                    "var selection = vm.get('selection');",
-                                    "if (selection && selection.get('type') === 'motion') {",
-                                    "  var dialog = Ext.create('Tel100.view.document.motions.Properties', {",
-                                    "    modal: true",
-                                    "  });",
-                                    "  dialog.setMotion(selection);",
-                                    "  dialog.show();",
-                                    "}"
-                                ]
-                            },
-                            "name": "handler",
-                            "designerId": "c727c179-79da-4c16-b30c-852abce52b33"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "type": "Ext.tree.View",
             "reference": {
                 "name": "viewConfig",
@@ -265,6 +138,74 @@
             },
             "name": "refresh",
             "designerId": "6dca8fcb-8dd6-4ae2-b005-a8ba7a9571fd"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool2",
+            "designerId": "fd331b0b-42a4-4523-80a4-a064015cea91",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onToolClick",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onToolClick",
+                    "designerId": "ec7b4b9d-12f6-4c6a-ad98-54d44bc39dbc"
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onTreepanelBeforeCellContextMenu",
+                "implHandler": [
+                    "if (record.get('type') === 'motion') {",
+                    "  var gridMenu = Ext.create('Ext.menu.Menu', {",
+                    "    items: [{",
+                    "      text: i18n.document.motion.properties,",
+                    "      icon: '/images/properties.png',",
+                    "      handler: function() {",
+                    "        var dialog = Ext.create('Tel100.view.document.motions.Properties', {",
+                    "          modal: true",
+                    "        });",
+                    "        dialog.setMotion(record);",
+                    "        dialog.show();",
+                    "      }",
+                    "    }]",
+                    "  });",
+                    "  e.stopEvent();",
+                    "  gridMenu.showAt(e.getXY());",
+                    "}"
+                ],
+                "name": "beforecellcontextmenu",
+                "scope": "me"
+            },
+            "name": "onTreepanelBeforeCellContextMenu",
+            "designerId": "71925d4b-0693-44f0-b31f-47d0ad8ec910"
         }
     ]
 }
