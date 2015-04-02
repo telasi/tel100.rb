@@ -38,7 +38,13 @@ Ext.define('Tel100.view.document.grid.Panel', {
   viewConfig: {
     getRowClass: function(record, rowIndex, rowParams, store) {
       var status = record.get('my_status');
-      return helpers.document.status.documentStatusRowClass(status, record);
+      var statusClass = helpers.document.status.documentStatusRowClass(status, record);
+      var isChanged = record.get('is_changed');
+      if (isChanged) {
+        return statusClass + ' text-unread';
+      } else {
+        return statusClass;
+      }
     },
     plugins: [
       {
