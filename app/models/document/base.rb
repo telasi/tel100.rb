@@ -113,9 +113,9 @@ class Document::Base < ActiveRecord::Base
     new_status = self.status
     if self.status == CURRENT
       type = Document::ResponseType.find(params[:category_id]) if params[:category_id].present?
-      if type.category == Document::ResponseType::COMPLETE
+      if type and type.category == Document::ResponseType::COMPLETE
         new_status = COMPLETED
-      elsif type.category == Document::ResponseType::CANCEL
+      elsif type and type.category == Document::ResponseType::CANCEL
         new_status = CANCELED
       end
     end
