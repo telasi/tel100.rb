@@ -9,6 +9,7 @@ class HR::Organization < ActiveRecord::Base
   def self.active; HR::Organization.where(is_active: 1) end
   def saporg_number; self.saporg_id.to_s.rjust(8, '0') end
   def chain; self.parent ? self.parent.chain << self : [self] end
+  def chained_name; self.parent ? self.parent.chained_name + "\n" + self.name : self.name end
   def manager?; self.is_manager == 1 end
   def active?; self.is_active == 1 end
   def to_s; self.name end

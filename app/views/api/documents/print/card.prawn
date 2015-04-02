@@ -42,61 +42,27 @@ def barcode(pdf)
   end
 end
 
-def row(pdf, textsize, title, value, y)
-  title_x = 10
-  value_x = 100
-
-  pdf.change_font('default', textsize)
-  pdf.text_box title, :at => [title_x, y]
-  pdf.change_font('bold', textsize)
-  pdf.text_box value, :at => [value_x, y]
-  end
-
 def properties(pdf)
-  y = 700
-  deltaY = 15
+  pdf.move_down 60
 
-  row(pdf, 9, "ნომერი:", "#{@document.type_id}", y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "სახეობა:", "#{@document.type.name}", y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "თარიღი:", "#{@document.docdate}", y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "ვადა:", "#{@document.due_date}", y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "მიმართულება:", direction(@document.direction), y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "გვერდები:", "#{@document.page_count}", y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "დანართი:", "#{@document.additions_count}", y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "ინიციატორი:", "#{@document.sender.full_name} #{@document.sender}", y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "ავტორი:", "#{@document.owner.full_name} #{@document.owner}", y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "ადრესატები:", "#{@document.owner.full_name} #{@document.owner}", y)
-
-  y = y - deltaY
-
-  row(pdf, 9, "სათაური:", "#{@document.subject}", y)
+  data = [ ["ნომერი:",    "#{@document.type_id}", ""],
+           ["სახეობა:",    "#{@document.type.name}", ""],
+           ["თარიღი:",    "#{@document.docdate}", ""],
+           ["ვადა:",       "#{@document.due_date}", ""],
+           ["მიმართულება:", direction(@document.direction), ""],
+           ["გვერდები:",   "#{@document.page_count}", ""],
+           ["დანართი:",    "#{@document.additions_count}", ""],
+           ["ინიციატორი:", "#{@document.sender.full_name}", "#{@document.sender.organization.chained_name}"],
+           ["ავტორი:",    "#{@document.owner.full_name} #{@document.owner}", "#{@document.owner.organization.chained_name}"],
+           ["ადრესატები:", "#{@document.owner.full_name} #{@document.owner}", "#{@document.owner.organization.chained_name}"],
+           ["სათაური:",   "#{@document.subject}", ""]
+         ]
+  pdf.table(data, :cell_style => { :font => pdf.set_font_name('default'), :borders => [] }) do
+    column(0).style(:borders => [:right])
+    column(0).width = 80
+    column(1).width = 170
+    column(2).width = 260
+  end
 end
 
 prawn_document(page_size: 'A4', margin: [40, 40]) do |pdf|

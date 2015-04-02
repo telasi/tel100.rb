@@ -55,6 +55,7 @@ gem 'tzinfo-data'
 
 # pdf
 gem 'prawn'
+gem 'prawn-table'
 gem 'prawn_rails'
 gem 'barby'
 gem 'rqrcode'
