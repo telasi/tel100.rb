@@ -50,4 +50,33 @@ RSpec.describe Document::Base do
     expect(doc.subject).to eq('test subject')
     expect(doc.docdate).to eq(Date.today)
   end
+
+  it 'can add receivers' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    shalva  = Sys::User.find_by_username('shalva')
+    doc = Document::Base.create_draft!(dimitri)
+    Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: shalva.employee.id,
+      receiver_role: 'assignee'
+    })
+    doc.reload
+    expect(doc.motions.count).to eq(1)
+    motion = doc.motions.first
+    expect(motion.sender_user).to eq(dimitri)
+    expect(motion.receiver_user).to eq(shalva)
+    expect(motion.receiver).to eq(shalva.employee)
+    expect(motion.parent_id).to be_nil
+    expect(motion.status).to eq(Document::Status::DRAFT)
+    expect(motion.ordering).to eq(Document::Motion::ORDERING_ASIGNEE)
+    expect(motion.created_at).not_to be_nil
+    expect(motion.updated_at).not_to be_nil
+    expect(motion.sent_at).to be_nil
+    expect(motion.received_at).to be_nil
+    expect(motion.completed_at).to be_nil
+    expect(Document::User.where(document: doc).count).to eq(1)
+  end
+
+  it 'can be sent'
 end
