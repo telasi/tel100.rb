@@ -127,7 +127,7 @@
                         ],
                         "fn": "renderer",
                         "implHandler": [
-                            "if (value) {",
+                            "if (record.get('type') === 'motion') {",
                             "  return value;",
                             "} else {",
                             "  var vm = this.getViewModel();",

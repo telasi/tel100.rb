@@ -54,7 +54,7 @@ Ext.define('Tel100.view.document.motions.InGrid', {
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        if (value) {
+        if (record.get('type') === 'motion') {
           return value;
         } else {
           var vm = this.getViewModel();
