@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150330073049) do
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
     t.integer   "parent_id",         limit: 10,   precision: 10, scale: 0
-    t.integer   "type_id",           limit: 5,    precision: 5,  scale: 0
+    t.integer   "type_id",           limit: 5,    precision: 5,  scale: 0,                   null: false
     t.string    "direction",         limit: 20,                            default: "inner", null: false
     t.string    "subject",           limit: 1000
     t.string    "original_number",   limit: 50
