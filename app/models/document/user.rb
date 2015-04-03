@@ -19,10 +19,16 @@ class Document::User < ActiveRecord::Base
   def self.upsert!(doc, user, role, opts={})
     if user.present?
       params   = { document_id: doc.id, user_id: user.id }
-      docuser  = ( Document::User.where(params).first || Document::User.create!(params.merge(role: role)) )
+      docuser  = Document::User.where(params).first
+      if docuser.present?
+        created = false
+      else
+        docuser = Document::User.create!(params.merge(role: role))
+        created = true
+      end
       new_role = docuser.role
       new_role = role if Document::Role.compare(new_role, role) < 0
-      is_new   = opts[:is_new] || 1
+      is_new   = opts[:is_new] || (created ? 1 : 0)
       is_changed = opts[:is_changed] || is_new
       docuser.update_attributes!({
         role: new_role,
