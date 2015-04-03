@@ -67,8 +67,6 @@ Ext.application({
     'workarea.LocaleSelector',
     'Main',
     'document.motions.Tree',
-    'document.motions.ResponseDialog',
-    'document.motions.ResponsePanel',
     'document.folder.Config',
     'document.motions.Panel',
     'document.motions.Properties',
