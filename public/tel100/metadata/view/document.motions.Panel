@@ -89,6 +89,56 @@
                             "designerId": "a91a5f23-5563-4530-9005-3dfdcac3c494"
                         },
                         {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "receiver_name",
+                                "fieldLabel": [
+                                    "{i18n.document.motion.receiver}"
+                                ],
+                                "layout|flex": 0,
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.receiverName}"
+                                ]
+                            },
+                            "name": "MyTextField2",
+                            "configAlternates": {
+                                "value": "binding",
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "4983738b-fbfb-419e-9074-af094be48cf7"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "send_type_name",
+                                "editable": false,
+                                "fieldLabel": [
+                                    "{i18n.document.motion.send_type}"
+                                ],
+                                "layout|flex": null,
+                                "value": [
+                                    "{motion.send_type_name}"
+                                ]
+                            },
+                            "name": "MyTextField5",
+                            "configAlternates": {
+                                "value": "binding",
+                                "fieldLabel": "binding"
+                            },
+                            "designerId": "fa54fc4b-7c7c-4bff-b34f-1ff2f746a8c2"
+                        },
+                        {
                             "type": "Ext.form.field.TextArea",
                             "reference": {
                                 "name": "items",
@@ -195,31 +245,6 @@
                             ]
                         },
                         {
-                            "type": "Ext.form.field.Text",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "receiver_name",
-                                "fieldLabel": [
-                                    "{i18n.document.motion.receiver}"
-                                ],
-                                "layout|flex": 0,
-                                "readOnly": true,
-                                "value": [
-                                    "{motion.receiverName}"
-                                ]
-                            },
-                            "name": "MyTextField2",
-                            "configAlternates": {
-                                "value": "binding",
-                                "fieldLabel": "binding"
-                            },
-                            "designerId": "4983738b-fbfb-419e-9074-af094be48cf7"
-                        },
-                        {
                             "type": "Ext.form.field.TextArea",
                             "reference": {
                                 "name": "items",
@@ -255,6 +280,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "autoScroll": true,
                         "bodyPadding": 5,
                         "container|align": "stretch",
                         "defaults": [
@@ -310,6 +336,48 @@
                                 "fieldLabel": "binding"
                             },
                             "designerId": "6cebe6f5-fce9-430c-bfbf-ed69102235a3"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "updated_at",
+                                "fieldLabel": [
+                                    "<i class=\"fa fa-edit\"></i> {i18n.document.motion.updated_at}"
+                                ],
+                                "format": "d/m/Y H:i:s",
+                                "layout|flex": null,
+                                "readOnly": true,
+                                "value": [
+                                    "{motion.updated_at}"
+                                ]
+                            },
+                            "name": "MyDateField7",
+                            "configAlternates": {
+                                "fieldLabel": "binding",
+                                "value": "binding"
+                            },
+                            "designerId": "b5f1a30b-8d41-415d-b949-aad5337823ef"
+                        },
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "separator",
+                                "height": 25,
+                                "layout|flex": null,
+                                "text": null
+                            },
+                            "name": "MyLabel",
+                            "designerId": "ee39fefd-e419-4190-b87d-ced8b60ffbbe"
                         },
                         {
                             "type": "Ext.form.field.Date",
@@ -385,31 +453,6 @@
                                 "value": "binding"
                             },
                             "designerId": "dc45eb58-0e11-452d-b092-f3f36c587cf7"
-                        },
-                        {
-                            "type": "Ext.form.field.Date",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "updated_at",
-                                "fieldLabel": [
-                                    "<i class=\"fa fa-edit\"></i> {i18n.document.motion.updated_at}"
-                                ],
-                                "format": "d/m/Y H:i:s",
-                                "readOnly": true,
-                                "value": [
-                                    "{motion.updated_at}"
-                                ]
-                            },
-                            "name": "MyDateField7",
-                            "configAlternates": {
-                                "fieldLabel": "binding",
-                                "value": "binding"
-                            },
-                            "designerId": "b5f1a30b-8d41-415d-b949-aad5337823ef"
                         }
                     ]
                 }

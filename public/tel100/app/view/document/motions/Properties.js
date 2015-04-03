@@ -26,7 +26,7 @@ Ext.define('Tel100.view.document.motions.Properties', {
   viewModel: {
     type: 'documentmotionsproperties'
   },
-  height: 350,
+  height: 390,
   width: 550,
   layout: 'fit',
 

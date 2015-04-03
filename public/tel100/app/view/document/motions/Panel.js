@@ -23,7 +23,8 @@ Ext.define('Tel100.view.document.motions.Panel', {
     'Ext.tab.Tab',
     'Ext.form.field.TextArea',
     'Ext.form.field.Date',
-    'Ext.form.field.Display'
+    'Ext.form.field.Display',
+    'Ext.form.Label'
   ],
 
   viewModel: {
@@ -55,6 +56,23 @@ Ext.define('Tel100.view.document.motions.Panel', {
               bind: {
                 fieldLabel: '{i18n.document.motion.sender}',
                 value: '{motion.senderName}'
+              }
+            },
+            {
+              xtype: 'textfield',
+              flex: 0,
+              readOnly: true,
+              bind: {
+                fieldLabel: '{i18n.document.motion.receiver}',
+                value: '{motion.receiverName}'
+              }
+            },
+            {
+              xtype: 'textfield',
+              editable: false,
+              bind: {
+                fieldLabel: '{i18n.document.motion.send_type}',
+                value: '{motion.send_type_name}'
               }
             },
             {
@@ -93,15 +111,6 @@ Ext.define('Tel100.view.document.motions.Panel', {
               }
             },
             {
-              xtype: 'textfield',
-              flex: 0,
-              readOnly: true,
-              bind: {
-                fieldLabel: '{i18n.document.motion.receiver}',
-                value: '{motion.receiverName}'
-              }
-            },
-            {
               xtype: 'textareafield',
               readOnly: true,
               bind: {
@@ -113,6 +122,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
         },
         {
           xtype: 'panel',
+          autoScroll: true,
           defaults: {
             labelWidth: 150,
             // labelAlign: 'right'
@@ -140,6 +150,19 @@ Ext.define('Tel100.view.document.motions.Panel', {
               readOnly: true,
               format: 'd/m/Y H:i:s',
               bind: {
+                fieldLabel: '<i class="fa fa-edit"></i> {i18n.document.motion.updated_at}',
+                value: '{motion.updated_at}'
+              }
+            },
+            {
+              xtype: 'label',
+              height: 25
+            },
+            {
+              xtype: 'datefield',
+              readOnly: true,
+              format: 'd/m/Y H:i:s',
+              bind: {
                 fieldLabel: '<i class="fa fa-send"></i> {i18n.document.motion.sent_at}',
                 value: '{motion.sent_at}'
               }
@@ -160,15 +183,6 @@ Ext.define('Tel100.view.document.motions.Panel', {
               bind: {
                 fieldLabel: '<i class="fa fa-check"></i> {i18n.document.motion.completed_at}',
                 value: '{motion.completed_at}'
-              }
-            },
-            {
-              xtype: 'datefield',
-              readOnly: true,
-              format: 'd/m/Y H:i:s',
-              bind: {
-                fieldLabel: '<i class="fa fa-edit"></i> {i18n.document.motion.updated_at}',
-                value: '{motion.updated_at}'
               }
             }
           ]
