@@ -121,6 +121,7 @@ RSpec.describe Document::Base do
     expect(u2.status).to eq(Document::Status::CURRENT)
 
     # 2. Receiver replies
+    #
     cat = Document::ResponseType.where(category: Document::ResponseType::COMPLETE).first
     motion.add_comment(shalva, { category_id: cat.id, text: 'i agree' })
     # check motion
@@ -143,6 +144,23 @@ RSpec.describe Document::Base do
     expect(u2.user).to eq(shalva)
     expect(u2.new?).to eq(false)
     expect(u2.changed?).to eq(false)
+    expect(u2.forwarded?).to eq(false)
+    expect(u2.status).to eq(Document::Status::COMPLETED)
+
+    # 3. Sender complete
+    #
+    doc.reload
+    doc.add_comment(dimitri, { category_id: cat.id, text: 'document is closed' })
+    expect(Document::User.where(document: doc).count).to eq(2)
+    u1 = Document::User.where(document: doc).first
+    u2 = Document::User.where(document: doc).last
+    expect(u1.user).to eq(dimitri)
+    expect(u1.status).to eq(Document::Status::COMPLETED)
+    expect(u1.new?).to eq(false)
+    expect(u1.changed?).to eq(false)
+    expect(u2.user).to eq(shalva)
+    expect(u2.new?).to eq(false)
+    expect(u2.changed?).to eq(true)
     expect(u2.forwarded?).to eq(false)
     expect(u2.status).to eq(Document::Status::COMPLETED)
   end
