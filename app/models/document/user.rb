@@ -4,7 +4,10 @@ class Document::User < ActiveRecord::Base
   include Document::Status
   self.table_name  = 'document_user'
   self.primary_keys = :user_id, :document_id
-  self.set_integer_columns :is_new, :is_changed, :status, :is_forwarded
+  self.set_integer_columns :is_new, :is_changed
+  self.set_integer_columns :is_forwarded, :is_sent, :is_received
+  self.set_integer_columns :is_current, :is_canceled, :is_completed
+  self.set_integer_columns :as_owner, :as_assignee, :as_author, :as_singee
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
   before_save :update_document_motions
@@ -54,7 +57,16 @@ class Document::User < ActiveRecord::Base
 
   def forwarded?; self.is_forwarded == 1 end
   def sent?; self.is_sent == 1 end
+  def received?; self.is_received == 1 end
 
+  def current?; self.is_current == 1 end
+  def canceled?; self.is_canceled == 1 end
+  def completed?; self.is_completed == 1 end
+
+  def owner?; self.as_owner > 0 end
+  def singee?; self.as_singee > 0 end
+  def author?; self.as_author > 0 end
+  def assignee?; self.as_assignee > 0 end
 
   def read!
     Document::User.transaction do
