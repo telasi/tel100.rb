@@ -162,7 +162,37 @@
                                 "fieldLabel": "binding",
                                 "value": "binding"
                             },
-                            "designerId": "c1550349-4d70-4ddb-9ed1-3e545ac643cf"
+                            "designerId": "c1550349-4d70-4ddb-9ed1-3e545ac643cf",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "value",
+                                            "displayField"
+                                        ],
+                                        "fn": "renderer",
+                                        "implHandler": [
+                                            "var view = displayField.up('documentmotionspanel');",
+                                            "var vm = view.getViewModel();",
+                                            "var motion = vm.get('motion');",
+                                            "var responseType = motion && motion.get('resp_type_name');",
+                                            "if (responseType) {",
+                                            "  return value + ' - ' + responseType;",
+                                            "} else {",
+                                            "  return value;",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "renderer",
+                                    "designerId": "32f15d6e-f2a5-4ccb-a310-0f3f1f6962b2"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.form.field.Text",

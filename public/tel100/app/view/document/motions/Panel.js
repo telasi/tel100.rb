@@ -76,6 +76,17 @@ Ext.define('Tel100.view.document.motions.Panel', {
             },
             {
               xtype: 'displayfield',
+              renderer: function(value, displayField) {
+                var view = displayField.up('documentmotionspanel');
+                var vm = view.getViewModel();
+                var motion = vm.get('motion');
+                var responseType = motion && motion.get('resp_type_name');
+                if (responseType) {
+                  return value + ' - ' + responseType;
+                } else {
+                  return value;
+                }
+              },
               bind: {
                 fieldLabel: '{i18n.document.motion.status}',
                 value: '{motion.statusFull}'
