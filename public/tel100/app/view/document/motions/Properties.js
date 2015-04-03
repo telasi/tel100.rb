@@ -31,7 +31,7 @@ Ext.define('Tel100.view.document.motions.Properties', {
   layout: 'fit',
 
   bind: {
-    title: '{i18n.document.motion.properties}'
+    title: '<i class="fa fa-truck"></i> {i18n.document.motion.properties}'
   },
   items: [
     {

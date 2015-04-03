@@ -23,10 +23,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
     'Ext.tab.Tab',
     'Ext.form.field.TextArea',
     'Ext.form.field.Date',
-    'Ext.form.field.Display',
-    'Ext.grid.Panel',
-    'Ext.grid.View',
-    'Ext.grid.column.Date'
+    'Ext.form.field.Display'
   ],
 
   viewModel: {
@@ -48,7 +45,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
             align: 'stretch'
           },
           bind: {
-            title: '{i18n.document.motion.general}'
+            title: '<i class="fa fa-send"></i> {i18n.document.motion.general}'
           },
           items: [
             {
@@ -111,7 +108,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
             align: 'stretch'
           },
           bind: {
-            title: '{i18n.document.motion.times}'
+            title: '<i class="fa fa-calendar"></i> {i18n.document.motion.times}'
           },
           items: [
             {
@@ -158,38 +155,6 @@ Ext.define('Tel100.view.document.motions.Panel', {
                 fieldLabel: '{i18n.document.motion.updated_at}',
                 value: '{motion.updated_at}'
               }
-            }
-          ]
-        },
-        {
-          xtype: 'panel',
-          layout: 'fit',
-          bind: {
-            title: '{i18n.document.motion.comments}'
-          },
-          items: [
-            {
-              xtype: 'gridpanel',
-              border: false,
-              columns: [
-                {
-                  xtype: 'gridcolumn',
-                  text: 'MyColumn18'
-                },
-                {
-                  xtype: 'datecolumn',
-                  dataIndex: 'date',
-                  text: 'Date'
-                },
-                {
-                  xtype: 'gridcolumn',
-                  text: 'MyColumn19'
-                },
-                {
-                  xtype: 'gridcolumn',
-                  text: 'MyColumn20'
-                }
-              ]
             }
           ]
         }
