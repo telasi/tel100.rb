@@ -210,10 +210,35 @@ module.exports = {
 },{"../ajax":1}],5:[function(require,module,exports){
 module.exports = {
   status: require('./status'),
-  role: require('./role')
+  role: require('./role'),
+  motion: require('./motion')
 };
 
-},{"./role":6,"./status":7}],6:[function(require,module,exports){
+},{"./motion":6,"./role":7,"./status":8}],6:[function(require,module,exports){
+var motionDialog;
+
+var getPropertiesDialog = function(motion) {
+
+  // create party listener if not created yet
+  if (!motionDialog) {
+    motionDialog = Ext.create('Tel100.view.document.motions.Properties', {
+      closeAction: 'hide',
+      modal: true
+    });
+  }
+
+  motionDialog.setMotion(motion);
+
+  // return dialog to the user
+  return motionDialog;
+};
+
+
+module.exports = {
+  getPropertiesDialog: getPropertiesDialog
+};
+
+},{}],7:[function(require,module,exports){
 module.exports = {
   OWNER:    'owner',
   CREATOR:  'creator',
@@ -222,7 +247,7 @@ module.exports = {
   ASSIGNEE: 'assignee'
 };
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var role = require('./role');
 
 var DRAFT = 0;
@@ -364,7 +389,7 @@ module.exports = {
   documentStatusRowClass: documentStatusRowClass
 };
 
-},{"./role":6}],8:[function(require,module,exports){
+},{"./role":7}],9:[function(require,module,exports){
 var currentLocale
   , ajax = require('./ajax')
   , preferences = require('./preferences')
@@ -391,7 +416,7 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":1,"./preferences":11}],9:[function(require,module,exports){
+},{"./ajax":1,"./preferences":12}],10:[function(require,module,exports){
 window.helpers = {
   ajax: require('./ajax'),
   'document': require('./document'),
@@ -402,7 +427,7 @@ window.helpers = {
   party: require('./party')
 };
 
-},{"./ajax":1,"./api":3,"./document":5,"./i18n":8,"./party":10,"./preferences":11,"./user":12}],10:[function(require,module,exports){
+},{"./ajax":1,"./api":3,"./document":5,"./i18n":9,"./party":11,"./preferences":12,"./user":13}],11:[function(require,module,exports){
 var partyDialog;
 
 var getPartyDialog = function(callback) {
@@ -428,7 +453,7 @@ module.exports = {
   getPartyDialog: getPartyDialog
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -459,7 +484,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -489,4 +514,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":1,"./i18n":8,"./preferences":11}]},{},[9]);
+},{"./ajax":1,"./i18n":9,"./preferences":12}]},{},[10]);

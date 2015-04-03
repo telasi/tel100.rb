@@ -103,10 +103,7 @@ Ext.define('Tel100.view.document.motions.Tree', {
           text: i18n.document.motion.properties,
           icon: '/images/properties.png',
           handler: function() {
-            var dialog = Ext.create('Tel100.view.document.motions.Properties', {
-              modal: true
-            });
-            dialog.setMotion(record);
+            var dialog = helpers.document.motion.getPropertiesDialog(record);
             dialog.show();
           }
         }]
