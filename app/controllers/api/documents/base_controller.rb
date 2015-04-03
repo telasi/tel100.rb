@@ -40,7 +40,7 @@ class Api::Documents::BaseController < ApiController
       when 'standard'
         Folder::Standard.docs(folderId, user)
       when 'custom'
-        Folder::Document.docs(folderId)
+        Folder::Document.docs(folderId, user)
       else 
         Document::User.mydocs(user)
     end
