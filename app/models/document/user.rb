@@ -7,14 +7,15 @@ class Document::User < ActiveRecord::Base
   self.set_integer_columns :is_new, :is_changed
   self.set_integer_columns :is_forwarded, :is_sent, :is_received
   self.set_integer_columns :is_current, :is_canceled, :is_completed
-  self.set_integer_columns :as_owner, :as_assignee, :as_author, :as_singee
+  self.set_integer_columns :as_owner, :as_assignee, :as_author, :as_signee
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
   before_save :update_document_motions
 
-  VISIBLE_STATS = [CURRENT, CANCELED, COMPLETED]
-  VISIBLE_OWNER_STATS = [DRAFT, CURRENT, CANCELED, COMPLETED]
-
+  DOC_NONE = 0
+  DOC_CURRENT = 1
+  DOC_COMPLETE = 2
+  
   def self.mydocs(user)
     # Document::User.where('(document_user.status IN (?) OR (document_user.status IN (?) AND document_user.role=?)) AND user_id = ?', VISIBLE_STATS, VISIBLE_OWNER_STATS, ROLE_OWNER, user.id)
     Document::User
@@ -64,7 +65,7 @@ class Document::User < ActiveRecord::Base
   def completed?; self.is_completed == 1 end
 
   def owner?; self.as_owner > 0 end
-  def singee?; self.as_singee > 0 end
+  def signee?; self.as_signee > 0 end
   def author?; self.as_author > 0 end
   def assignee?; self.as_assignee > 0 end
 
@@ -73,6 +74,45 @@ class Document::User < ActiveRecord::Base
       self.update_columns(is_new: 0, is_changed: 0)
       self.update_document_motions
     end
+  end
+
+  def calculate!
+
+    # 0. main relation
+    rel = Document::Motion.where('document_id=? AND receiver_user_id=? AND status!=?', self.document_id, self.user_id, DRAFT)
+
+    # 1. owner user calculation
+    if self.user == self.document.owner_user
+      doc_status = self.document.status
+      doc_complete = ( doc_status == COMPLETED || doc_status == CANCELED )
+      self.as_owner = doc_complete ? DOC_COMPLETE : DOC_CURRENT
+      self.is_current = 1 if doc_status == CURRENT
+      self.is_canceled = 1 if doc_status == CANCELED
+      self.is_completed = 1 if doc_status == COMPLETED
+      self.is_sent = 1
+    end
+
+    # 2. assignee calculation
+    assignee_rel = rel.where(receiver_role: ROLE_ASSIGNEE)
+    if assignee_rel.any?
+      current_cnt = assignee_rel.where(status: CURRENT).count
+      completed_cnt = assignee_rel.where(status: COMPLETED).count
+      canceled_cnt = assignee_rel.where(status: CANCELED).count
+      if current_cnt > 0
+        self.as_assignee = DOC_CURRENT
+      else
+        self.as_assignee = DOC_COMPLETE
+      end
+      self.is_current = current_cnt > 0
+      self.is_canceled = canceled_cnt > 0
+      self.is_completed = completed_cnt > 0
+      self.is_received = 1
+    end
+
+    # 2. assignee calculation
+    # signee_rel = rel.where(receiver_role: ROLE_SIGNEE)
+
+    self.save!
   end
 
   def self.filter_substitude_can_see(substitudeId)

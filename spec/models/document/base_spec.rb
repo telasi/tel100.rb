@@ -29,14 +29,14 @@ RSpec.describe Document::Base do
     expect(doc_users.count).to eq(1)
     doc_user = doc_users.first
     expect(doc_user.user).to eq(dimitri)
-
     expect(doc_user.owner?).to eq(true)
     expect(doc_user.signee?).to eq(false)
     expect(doc_user.assignee?).to eq(false)
     expect(doc_user.author?).to eq(false)
-
-    # expect(doc_user.role).to eq(Document::Role::ROLE_OWNER)
-    # expect(doc_user.status).to eq(Document::Status::DRAFT)
+    expect(doc_user.as_owner).to eq(Document::User::DOC_CURRENT)
+    expect(doc_user.as_signee).to eq(Document::User::DOC_NONE)
+    expect(doc_user.as_assignee).to eq(Document::User::DOC_NONE)
+    expect(doc_user.as_author).to eq(Document::User::DOC_NONE)
     expect(doc_user.new?).to eq(false)
     expect(doc_user.changed?).to eq(false)
     expect(doc_user.forwarded?).to eq(false)

@@ -42,7 +42,8 @@ class Document::Base < ActiveRecord::Base
 
     Document::Base.transaction do
       doc = Document::Base.create!(docparams)
-      Document::User.upsert!(doc, sender_user, ROLE_OWNER, { is_new: 0, status: DRAFT })
+      docuser = Document::User.upsert!(doc, sender_user, ROLE_OWNER, { is_new: 0, status: DRAFT })
+      docuser.calculate!
       doc
     end
   end
@@ -135,6 +136,7 @@ class Document::Base < ActiveRecord::Base
       # S3: document_user updates
       docuser = Document::User.upsert!(self, user, ROLE_OWNER, { status: new_status, is_new: 0 })
       docuser.make_others_unread!
+      docuser.calculate!
     end
   end
 end
