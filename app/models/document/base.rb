@@ -85,15 +85,16 @@ class Document::Base < ActiveRecord::Base
     raise I18n.t('models.document_base.errors.empty_body') unless self.body.present?
     raise I18n.t('models.document_base.errors.no_motions') unless self.motions.any?
     Document::Base.transaction do
-      docuser = Document::User.where(document: self, user: user).first
-      self.status = docuser.status = CURRENT
+      # docuser = Document::User.where(document: self, user: user).first
+      # self.status = docuser.status = CURRENT
+      self.status = CURRENT
       self.docdate = Date.today if self.docdate.blank?
       self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate) if self.docnumber.blank?
       self.sent_at = self.received_at = Time.now
       self.motions.order('ordering ASC, id ASC').each do |motion|
         motion.send_draft!(user)
       end
-      docuser.save!
+      # docuser.save!
       self.save!
     end
   end

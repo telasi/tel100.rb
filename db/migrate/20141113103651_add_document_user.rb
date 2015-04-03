@@ -12,7 +12,7 @@ class AddDocumentUser < ActiveRecord::Migration
         IS_CHANGED   number(1, 0) default 1 not null,
         ----- send/receive
         IS_FORWARDED number(1, 0) default 0 not null,
-        IS_SENDED    number(1, 0) default 0 not null,
+        IS_SENT      number(1, 0) default 0 not null,
         IS_RECEIVED  number(1, 0) default 0 not null,
         ----- status
         IS_CURRENT   number(1, 0) default 0 not null,
@@ -31,7 +31,40 @@ class AddDocumentUser < ActiveRecord::Migration
     SQL
 
     execute <<-SQL
-      create unique index DOCUMENT_USER_FLAGS_IDX on DOCUMENT_USER (IS_NEW,IS_CHANGED,IS_FORWARDED,IS_SENDED,IS_RECEIVED,IS_CURRENT,IS_CANCELED,IS_COMPLETED,AS_OWNER,AS_ASSIGNEE,AS_SIGNEE,AS_AUTHOR)
+      create index DOCUMENT_USER_ISNEW_IDX on DOCUMENT_USER (IS_NEW)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ISCHANGED_IDX on DOCUMENT_USER (IS_CHANGED)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ISFORWARDED_IDX on DOCUMENT_USER (IS_FORWARDED)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ISSENT_IDX on DOCUMENT_USER (IS_SENT)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ISRECEIVED_IDX on DOCUMENT_USER (IS_RECEIVED)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ISCURRENT_IDX on DOCUMENT_USER (IS_CURRENT)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ISCANCELED_IDX on DOCUMENT_USER (IS_CANCELED)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ISCOMPLETED_IDX on DOCUMENT_USER (IS_COMPLETED)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ASOWNER_IDX on DOCUMENT_USER (AS_OWNER)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ASASSIGNEE_IDX on DOCUMENT_USER (AS_ASSIGNEE)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ASSIGNEE_IDX on DOCUMENT_USER (AS_SIGNEE)
+    SQL
+    execute <<-SQL
+      create index DOCUMENT_USER_ASAUTHOR_IDX on DOCUMENT_USER (AS_AUTHOR)
     SQL
 
     execute <<-SQL
@@ -40,7 +73,6 @@ class AddDocumentUser < ActiveRecord::Migration
   end
 
   def down
-    execute "drop index DOCUMENT_USER_FLAGS_IDX"
     execute "drop table DOCUMENT_USER"
   end
 end

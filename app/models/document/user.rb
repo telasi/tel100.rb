@@ -13,7 +13,8 @@ class Document::User < ActiveRecord::Base
   VISIBLE_OWNER_STATS = [DRAFT, CURRENT, CANCELED, COMPLETED]
 
   def self.mydocs(user)
-    Document::User.where('(document_user.status IN (?) OR (document_user.status IN (?) AND document_user.role=?)) AND user_id = ?', VISIBLE_STATS, VISIBLE_OWNER_STATS, ROLE_OWNER, user.id)
+    # Document::User.where('(document_user.status IN (?) OR (document_user.status IN (?) AND document_user.role=?)) AND user_id = ?', VISIBLE_STATS, VISIBLE_OWNER_STATS, ROLE_OWNER, user.id)
+    Document::User
   end
 
   def self.upsert!(doc, user, role, opts={})
@@ -23,16 +24,12 @@ class Document::User < ActiveRecord::Base
       if docuser.present?
         created = false
       else
-        docuser = Document::User.create!(params.merge(role: role))
+        docuser = Document::User.create!(params)
         created = true
       end
-      new_role = docuser.role
-      new_role = role if Document::Role.compare(new_role, role) < 0
       is_new   = opts[:is_new] || (created ? 1 : 0)
       is_changed = opts[:is_changed] || is_new
       docuser.update_attributes!({
-        role: new_role,
-        status: opts[:status] || doc.status,
         is_new: is_new,
         is_changed: is_changed
       })
@@ -43,19 +40,21 @@ class Document::User < ActiveRecord::Base
   def make_others_unread!
     docid  = self.document.id
     userid = self.user.id
-    stats  = VISIBLE_STATS
-    Document::User.where('document_id=? AND user_id!=? AND status IN (?)', docid, userid, stats).each do |docuser|
+    # stats  = VISIBLE_STATS
+    # Document::User.where('document_id=? AND user_id!=? AND status IN (?)', docid, userid, stats).each do |docuser|
+    Document::User.where('document_id=? AND user_id!=?', docid, userid).each do |docuser|
       docuser.update_attributes!(is_changed: 1)
     end
   end
 
   def motions; Document::Motion.where(document: self.document, receiver_user: self.user) end
-  def changed=(val); self.is_changed = val ? 1 : 0 end
+
   def changed?; self.is_changed == 1 end
-  def new=(val); self.is_new = val ? 1 : 0 end
   def new?; self.is_new == 1 end
+
   def forwarded?; self.is_forwarded == 1 end
-  def forwarded=(val); self.is_forwarded = val ? 1 : 0 end
+  def sent?; self.is_sent == 1 end
+
 
   def read!
     Document::User.transaction do
