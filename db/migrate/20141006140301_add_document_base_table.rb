@@ -31,12 +31,12 @@ class AddDocumentBaseTable < ActiveRecord::Migration
         MOTIONS_CANCELED  number(6, 0) default 0 not null,
         COMMENTS_TOTAL    number(6,0)  default 0 not null,
         -----
-        STATUS      number(1, 0) default 0 not null,
-        CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null, -- შექმნა (DRAFT)
+        STATUS       number(1, 0) default 0 not null,
+        CREATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null, -- შექმნა (DRAFT)
         SENT_AT      TIMESTAMP, -- გაგზავნა  (SENT / NOT_SENT)
         RECEIVED_AT  TIMESTAMP, -- მიღება    (CURRENT / NOT_RECEIVED)
         COMPLETED_AT TIMESTAMP, -- შესრულება (COMPLETED / CANCELED)
-        UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
+        UPDATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint DOCBASE_PRIMARYKEY primary key ( id ) enable
       )
     SQL

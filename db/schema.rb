@@ -127,14 +127,23 @@ ActiveRecord::Schema.define(version: 20150330073049) do
   create_table "document_user", id: false, force: true do |t|
     t.integer   "document_id",  limit: 10, precision: 10, scale: 0,                 null: false
     t.integer   "user_id",      limit: 10, precision: 10, scale: 0,                 null: false
-    t.string    "role",         limit: 10,                                          null: false
-    t.boolean   "status",                  precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_new",                  precision: 1,  scale: 0, default: true,  null: false
     t.boolean   "is_changed",              precision: 1,  scale: 0, default: true,  null: false
     t.boolean   "is_forwarded",            precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_sended",               precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_received",             precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_current",              precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_canceled",             precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_completed",            precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "as_owner",                precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "as_assignee",             precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "as_signee",               precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "as_author",               precision: 1,  scale: 0, default: false, null: false
     t.timestamp "created_at",   limit: 6,                                           null: false
     t.timestamp "updated_at",   limit: 6,                                           null: false
   end
+
+  add_index "document_user", ["is_new", "is_changed", "is_forwarded", "is_sended", "is_received", "is_current", "is_canceled", "is_completed", "as_owner", "as_assignee", "as_signee", "as_author"], name: "document_user_flags_idx", unique: true
 
   create_table "folder_base", force: true do |t|
     t.integer   "owner_id",    limit: 10,  precision: 10, scale: 0, null: false
