@@ -102,6 +102,10 @@ Ext.define('Tel100.view.document.motions.Panel', {
         },
         {
           xtype: 'panel',
+          defaults: {
+            labelWidth: 150,
+            // labelAlign: 'right'
+          },
           bodyPadding: 5,
           layout: {
             type: 'vbox',
@@ -116,7 +120,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
               readOnly: true,
               format: 'd/m/Y H:i:s',
               bind: {
-                fieldLabel: '{i18n.document.motion.created_at}',
+                fieldLabel: '<i class="fa fa-circle-o"></i> {i18n.document.motion.created_at}',
                 value: '{motion.created_at}'
               }
             },
@@ -125,7 +129,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
               readOnly: true,
               format: 'd/m/Y H:i:s',
               bind: {
-                fieldLabel: '{i18n.document.motion.sent_at}',
+                fieldLabel: '<i class="fa fa-send"></i> {i18n.document.motion.sent_at}',
                 value: '{motion.sent_at}'
               }
             },
@@ -134,7 +138,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
               readOnly: true,
               format: 'd/m/Y H:i:s',
               bind: {
-                fieldLabel: '{i18n.document.motion.received_at}',
+                fieldLabel: '<i class="fa fa-clock-o"></i> {i18n.document.motion.received_at}',
                 value: '{motion.received_at}'
               }
             },
@@ -143,7 +147,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
               readOnly: true,
               format: 'd/m/Y H:i:s',
               bind: {
-                fieldLabel: '{i18n.document.motion.completed_at}',
+                fieldLabel: '<i class="fa fa-check"></i> {i18n.document.motion.completed_at}',
                 value: '{motion.completed_at}'
               }
             },
@@ -152,7 +156,7 @@ Ext.define('Tel100.view.document.motions.Panel', {
               readOnly: true,
               format: 'd/m/Y H:i:s',
               bind: {
-                fieldLabel: '{i18n.document.motion.updated_at}',
+                fieldLabel: '<i class="fa fa-edit"></i> {i18n.document.motion.updated_at}',
                 value: '{motion.updated_at}'
               }
             }

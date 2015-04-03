@@ -227,7 +227,13 @@
                     "userConfig": {
                         "bodyPadding": 5,
                         "container|align": "stretch",
-                        "designer|displayName": "times",
+                        "defaults": [
+                            "{",
+                            "  labelWidth: 150,",
+                            "  // labelAlign: 'right'",
+                            "}"
+                        ],
+                        "designer|displayName": "dates",
                         "layout": "vbox",
                         "title": [
                             "<i class=\"fa fa-calendar\"></i> {i18n.document.motion.times}"
@@ -259,9 +265,10 @@
                             "userConfig": {
                                 "designer|displayName": "created_at",
                                 "fieldLabel": [
-                                    "{i18n.document.motion.created_at}"
+                                    "<i class=\"fa fa-circle-o\"></i> {i18n.document.motion.created_at}"
                                 ],
                                 "format": "d/m/Y H:i:s",
+                                "labelWidth": null,
                                 "readOnly": true,
                                 "value": [
                                     "{motion.created_at}"
@@ -284,7 +291,7 @@
                             "userConfig": {
                                 "designer|displayName": "sent_at",
                                 "fieldLabel": [
-                                    "{i18n.document.motion.sent_at}"
+                                    "<i class=\"fa fa-send\"></i> {i18n.document.motion.sent_at}"
                                 ],
                                 "format": "d/m/Y H:i:s",
                                 "readOnly": true,
@@ -309,7 +316,7 @@
                             "userConfig": {
                                 "designer|displayName": "received_at",
                                 "fieldLabel": [
-                                    "{i18n.document.motion.received_at}"
+                                    "<i class=\"fa fa-clock-o\"></i> {i18n.document.motion.received_at}"
                                 ],
                                 "format": "d/m/Y H:i:s",
                                 "readOnly": true,
@@ -334,7 +341,7 @@
                             "userConfig": {
                                 "designer|displayName": "completed_at",
                                 "fieldLabel": [
-                                    "{i18n.document.motion.completed_at}"
+                                    "<i class=\"fa fa-check\"></i> {i18n.document.motion.completed_at}"
                                 ],
                                 "format": "d/m/Y H:i:s",
                                 "readOnly": true,
@@ -359,7 +366,7 @@
                             "userConfig": {
                                 "designer|displayName": "updated_at",
                                 "fieldLabel": [
-                                    "{i18n.document.motion.updated_at}"
+                                    "<i class=\"fa fa-edit\"></i> {i18n.document.motion.updated_at}"
                                 ],
                                 "format": "d/m/Y H:i:s",
                                 "readOnly": true,
