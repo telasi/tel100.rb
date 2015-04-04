@@ -65,7 +65,7 @@ class Folder::Standard
    		when INBOX_READ
    			Document::User.where('document_user.is_received = 1 AND document_user.is_completed = ? AND is_new = ? AND user_id = ?', show_completed, 0, user.id)
    		when INBOX_RESENT
-        Document::User.where('is_forwarded = ? AND is_completed = ? AND user_id = ?', show_completed, 1, user.id)
+        Document::User.where('is_forwarded = ? AND is_completed = ? AND user_id = ?', 1, show_completed, user.id)
    		when SENT
    			Document::User.where("is_sent = 1 AND is_completed = ? AND document_user.user_id = ?", show_completed, user.id)
       when COMPLETED
