@@ -56,6 +56,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "standardFolders",
+                        "enableColumnHide": false,
+                        "enableColumnMove": false,
+                        "enableColumnResize": false,
                         "header": false,
                         "height": null,
                         "itemId": "standardFolders",
@@ -112,10 +115,14 @@
                                         ],
                                         "fn": "renderer",
                                         "implHandler": [
+                                            "var s;",
                                             "if(record.data.parent_id){",
-                                            " return '<span style=\"margin-left: 20px;\">' + record.data.icon + ' ' + value + '</span>'; ",
+                                            "  s = '<span style=\"float: left; margin-left: 20px;\">' + record.data.icon + ' ' + value + '</span>';",
+                                            "} else {",
+                                            "  s = record.data.icon + ' ' + value;  ",
                                             "}",
-                                            "return record.data.icon + ' ' + value;"
+                                            "",
+                                            "return s + '<span style=\"float:right;\">' + record.data.count + '</span>';"
                                         ]
                                     },
                                     "name": "renderer",
@@ -449,7 +456,7 @@
                     "{i18n.document.search.ui.search}"
                 ]
             },
-            "name": "document.folder.search",
+            "name": "document.folder.search7",
             "configAlternates": {
                 "title": "binding"
             },

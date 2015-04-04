@@ -64,6 +64,19 @@
             },
             "name": "MyField3",
             "designerId": "7e2e5593-d901-47f8-ae6b-be64c591dff5"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "count"
+            },
+            "name": "MyField31",
+            "designerId": "72d14b26-687b-4583-8d8e-e804b8f39644"
         }
     ]
 }

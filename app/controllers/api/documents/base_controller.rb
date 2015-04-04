@@ -13,7 +13,7 @@ class Api::Documents::BaseController < ApiController
     user = current_user.self_or_sub(current_substitude)
 
     @my_docs = Document::User.mydocs(user).joins(:document)
-    @my_docs = doc_list('standard', params['folder'], params['substitude']) if params['folder'].present?
+    @my_docs = doc_list('standard', 1, params['folder']) if params['folder'].present?
     @my_docs = @my_docs.joins(:document)
 
     if params['sender'].present?
@@ -34,11 +34,11 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
   end
 
-  def doc_list(folderType, folderId)
+  def doc_list(folderType, show_completed = 0, folderId)
     user = current_user.self_or_sub(current_substitude)
     case folderType
       when 'standard'
-        Folder::Standard.docs(folderId, user)
+        Folder::Standard.docs(folderId, show_completed, user)
       when 'custom'
         Folder::Document.docs(folderId, user)
       else 
