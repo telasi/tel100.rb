@@ -50,7 +50,7 @@
                         ],
                         "fn": "getRowClass",
                         "implHandler": [
-                            "var status = record.get('my_status');",
+                            "var status = record.get('status');",
                             "var statusClass = helpers.document.status.documentStatusRowClass(status, record);",
                             "var isChanged = record.get('is_changed');",
                             "if (isChanged) {",
@@ -102,31 +102,6 @@
                 "text": "binding"
             },
             "designerId": "a8664bdb-1c55-407d-90b4-f5a512cf09f7"
-        },
-        {
-            "type": "Ext.grid.column.Column",
-            "reference": {
-                "name": "columns",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "dataIndex": "myStatusName",
-                "defaultWidth": null,
-                "designer|displayName": "myStatus",
-                "lockable": true,
-                "locked": true,
-                "text": [
-                    "{i18n.document.base.my_status}"
-                ],
-                "weight": null,
-                "width": 130
-            },
-            "name": "MyColumn1",
-            "configAlternates": {
-                "text": "binding"
-            },
-            "designerId": "8b11c1b8-13e1-46f3-b0ba-9316bf2fffb4"
         },
         {
             "type": "Ext.grid.column.Column",

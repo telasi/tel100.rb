@@ -37,7 +37,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
   },
   viewConfig: {
     getRowClass: function(record, rowIndex, rowParams, store) {
-      var status = record.get('my_status');
+      var status = record.get('status');
       var statusClass = helpers.document.status.documentStatusRowClass(status, record);
       var isChanged = record.get('is_changed');
       if (isChanged) {
@@ -63,16 +63,6 @@ Ext.define('Tel100.view.document.grid.Panel', {
       locked: true,
       bind: {
         text: '{i18n.document.base.docnumber}'
-      }
-    },
-    {
-      xtype: 'gridcolumn',
-      width: 130,
-      dataIndex: 'myStatusName',
-      lockable: true,
-      locked: true,
-      bind: {
-        text: '{i18n.document.base.my_status}'
       }
     },
     {
