@@ -1,13 +1,23 @@
-# document::user properties
-json.my_status   mydoc.status
-json.my_role     mydoc.role
-json.is_new      mydoc.new?
-json.is_changed  mydoc.changed?
-
-# document::base properties
 doc = mydoc.document
-json.id          doc.id
-json.language    doc.language
+user = mydoc.user
+
+# ids
+json.id       doc.id
+json.user_id  mydoc.user.id
+# document::user properties
+json.is_new       mydoc.new?
+json.is_changed   mydoc.changed?
+json.is_sent      mydoc.sent?
+json.is_received  mydoc.received?
+json.is_forwarded mydoc.forwarded?
+json.is_current   mydoc.current?
+json.is_canceled  mydoc.canceled?
+json.is_completed mydoc.completed?
+json.as_owner     mydoc.as_owner
+json.as_assignee  mydoc.as_assignee
+json.as_signee    mydoc.as_signee
+json.as_author    mydoc.as_author
+# document::base properties
 json.parent_id   doc.parent_id
 json.type_id     doc.type_id ## XXX remove!!!
 json.type do
@@ -35,13 +45,13 @@ json.owner_id    doc.owner_id
 json.owner_type  doc.owner_type
 json.created_at  doc.created_at
 json.updated_at  doc.updated_at
-json.statuses [
-  doc.motions_completed,
-  doc.motions_canceled,
-  doc.motions_waiting,
-  doc.motions_total,
-  doc.comments_total
-]
 
 # რამდენი შესრულდა / არ შესრულდა HTML-ის სახით
-json.statuses_html document_statuses_html(doc)
+# json.statuses [
+#   doc.motions_completed,
+#   doc.motions_canceled,
+#   doc.motions_waiting,
+#   doc.motions_total,
+#   doc.comments_total
+# ]
+# json.statuses_html document_statuses_html(doc)

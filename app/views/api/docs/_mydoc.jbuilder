@@ -1,3 +1,4 @@
+# XXX: this template is not used
 # document::user properties
 json.my_status   mydoc.status
 json.my_role     mydoc.role
