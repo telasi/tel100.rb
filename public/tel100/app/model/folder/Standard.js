@@ -38,6 +38,9 @@ Ext.define('Tel100.model.folder.Standard', {
     },
     {
       name: 'id'
+    },
+    {
+      name: 'count'
     }
   ]
 });

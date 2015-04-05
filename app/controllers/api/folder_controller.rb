@@ -8,9 +8,9 @@ class Api::FolderController < ApiController
   end
 
   def standard
-    @folders = Folders::STANDARD
-    #foldersArray = Folders::STANDARD.map{ |i| i.to_hash }
-    #render json: array_to_tree(foldersArray)
+    @folders = Folders::STANDARD.map do |folder|
+      folder.to_hash(current_user)
+    end
   end
 
   def create

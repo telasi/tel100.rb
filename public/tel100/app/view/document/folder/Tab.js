@@ -50,6 +50,9 @@ Ext.define('Tel100.view.document.folder.Tab', {
           region: 'north',
           itemId: 'standardFolders',
           header: false,
+          enableColumnHide: false,
+          enableColumnMove: false,
+          enableColumnResize: false,
           sortableColumns: false,
           bind: {
             store: '{standardfolders}'
@@ -58,10 +61,14 @@ Ext.define('Tel100.view.document.folder.Tab', {
             {
               xtype: 'gridcolumn',
               renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                var s;
                 if(record.data.parent_id){
-                  return '<span style="margin-left: 20px;">' + record.data.icon + ' ' + value + '</span>';
+                  s = '<span style="float: left; margin-left: 20px;">' + record.data.icon + ' ' + value + '</span>';
+                } else {
+                  s = record.data.icon + ' ' + value;
                 }
-                return record.data.icon + ' ' + value;
+
+                return s + '<span style="float:right;">' + record.data.count + '</span>';
               },
               sortable: false,
               dataIndex: 'name',
