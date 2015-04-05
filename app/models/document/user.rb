@@ -82,10 +82,10 @@ class Document::User < ActiveRecord::Base
     self.is_current = self.is_canceled = self.is_completed = 0
     self.as_owner = self.as_assignee = self.as_signee = self.as_author = DOC_NONE
 
-    # 0. main relation
+    # 2. main relation
     rel = Document::Motion.where('document_id=? AND receiver_user_id=? AND status!=?', self.document_id, self.user_id, DRAFT)
 
-    # 1. owner user calculation
+    # 3. owner user calculation
     if self.user == self.document.owner_user
       doc_status = self.document.status
       doc_complete = ( doc_status == COMPLETED || doc_status == CANCELED )
@@ -96,7 +96,7 @@ class Document::User < ActiveRecord::Base
       self.is_sent = 1
     end
 
-    # 2. assignee calculation
+    # 4. assignee calculation
     assignee_rel = rel.where(receiver_role: ROLE_ASSIGNEE)
     if assignee_rel.any?
       current_cnt = assignee_rel.where(status: CURRENT).count
@@ -107,14 +107,45 @@ class Document::User < ActiveRecord::Base
       else
         self.as_assignee = DOC_COMPLETE
       end
-      self.is_current = current_cnt > 0
-      self.is_canceled = canceled_cnt > 0
-      self.is_completed = completed_cnt > 0
+      self.is_current = 1 if current_cnt > 0
+      self.is_canceled = 1 if canceled_cnt > 0
+      self.is_completed = 1 if completed_cnt > 0
       self.is_received = 1
     end
 
-    # 3. signee calculation
-    # signee_rel = rel.where(receiver_role: ROLE_SIGNEE)
+    # 5. signee calculation
+    signee_rel = rel.where(receiver_role: ROLE_SIGNEE)
+    if signee_rel.any?
+      current_cnt = signee_rel.where(status: CURRENT).count
+      completed_cnt = assignee_rel.where(status: COMPLETED).count
+      canceled_cnt = assignee_rel.where(status: CANCELED).count
+      if current_cnt > 0
+        self.as_signee = DOC_CURRENT
+      else
+        self.as_signee = DOC_COMPLETE
+      end
+      self.is_current = 1 if current_cnt > 0
+      self.is_canceled = 1 if canceled_cnt > 0
+      self.is_completed = 1 if completed_cnt > 0
+      self.is_received = 1
+    end
+
+    # 6. author calculation
+    author_rel = rel.where(receiver_role: ROLE_AUTHOR)
+    if author_rel.any?
+      current_cnt = signee_rel.where(status: CURRENT).count
+      completed_cnt = assignee_rel.where(status: COMPLETED).count
+      canceled_cnt = assignee_rel.where(status: CANCELED).count
+      if current_cnt > 0
+        self.as_author = DOC_CURRENT
+      else
+        self.as_author = DOC_COMPLETE
+      end
+      self.is_current = 1 if current_cnt > 0
+      self.is_canceled = 1 if canceled_cnt > 0
+      self.is_completed = 1 if completed_cnt > 0
+      self.is_received = 1
+    end
 
     self.save!
   end
