@@ -155,20 +155,9 @@ class Document::Motion < ActiveRecord::Base
       self.response_type = type
       self.response_text = text
       self.save!
-      # S3: check Document::User for this user
-      docuser = Document::User.where(document: self.document, user: user).first
-      current_count = Document::Motion.where(document: self.document, receiver_user: user, status: CURRENT).count
-      if current_count > 0
-        docuser.update_attributes!({status: CURRENT, is_new: 0, is_changed: 0})
-      else
-        completed_count = Document::Motion.where(document: self.document, receiver_user: user, status: COMPLETED).count
-        # canceled_count = Document::Motion.where(document: self.document, receiver_user: user, status: CANCELED).count
-        if completed_count > 0
-          # docuser.update_attributes!(status: COMPLETED, is_new: 0, is_changed: 0)
-        else
-          # docuser.update_attributes!(status: CANCELED, is_new: 0, is_changed: 0)
-        end
-      end
+      # S3: calculate Document::User
+      docuser = self.document.users.where(user: user).first
+      docuser.calculate!
       # S4: mark other users unread
       docuser.make_others_unread!
       # S5: update upper motions

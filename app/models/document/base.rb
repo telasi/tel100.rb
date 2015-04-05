@@ -16,6 +16,7 @@ class Document::Base < ActiveRecord::Base
   has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_many :comments, class_name: 'Document::Comment', foreign_key: 'document_id'
+  has_many :users, class_name: 'Document::User', foreign_key: 'document_id'
 
   def body; self.text.body if self.text.present? end
   def motions_waiting; self.motions_total - self.motions_completed - self.motions_canceled end
@@ -86,17 +87,13 @@ class Document::Base < ActiveRecord::Base
     raise I18n.t('models.document_base.errors.empty_body') unless self.body.present?
     raise I18n.t('models.document_base.errors.no_motions') unless self.motions.any?
     Document::Base.transaction do
-      # docuser = Document::User.where(document: self, user: user).first
-      # self.status = docuser.status = CURRENT
       self.status = CURRENT
       self.docdate = Date.today if self.docdate.blank?
       self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate) if self.docnumber.blank?
       self.sent_at = self.received_at = Time.now
-      self.motions.order('ordering ASC, id ASC').each do |motion|
-        motion.send_draft!(user)
-      end
-      # docuser.save!
       self.save!
+      self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)} 
+      self.users.each { |user| user.calculate! }
     end
   end
 

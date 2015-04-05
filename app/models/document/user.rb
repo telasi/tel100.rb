@@ -77,6 +77,10 @@ class Document::User < ActiveRecord::Base
   end
 
   def calculate!
+    # 1. reset the record
+    self.is_sent = self.is_received = self.is_forwarded = 0
+    self.is_current = self.is_canceled = self.is_completed = 0
+    self.as_owner = self.as_assignee = self.as_signee = self.as_author = DOC_NONE
 
     # 0. main relation
     rel = Document::Motion.where('document_id=? AND receiver_user_id=? AND status!=?', self.document_id, self.user_id, DRAFT)
@@ -109,7 +113,7 @@ class Document::User < ActiveRecord::Base
       self.is_received = 1
     end
 
-    # 2. assignee calculation
+    # 3. signee calculation
     # signee_rel = rel.where(receiver_role: ROLE_SIGNEE)
 
     self.save!

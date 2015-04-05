@@ -114,26 +114,44 @@ RSpec.describe Document::Base do
     # check document users
     expect(Document::User.where(document: doc).count).to eq(2)
     u1 = Document::User.where(document: doc).first
-    u2 = Document::User.where(document: doc).last
     expect(u1.user).to eq(dimitri)
     expect(u1.new?).to eq(false)
     expect(u1.changed?).to eq(false)
+    expect(u1.sent?).to eq(true)
+    expect(u1.received?).to eq(false)
     expect(u1.forwarded?).to eq(false)
-    # expect(u1.status).to eq(Document::Status::CURRENT)
+    expect(u1.current?).to eq(true)
+    expect(u1.canceled?).to eq(false)
+    expect(u1.completed?).to eq(false)
+    expect(u1.as_owner).to eq(Document::User::DOC_CURRENT)
+    expect(u1.as_signee).to eq(Document::User::DOC_NONE)
+    expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
+    expect(u1.as_author).to eq(Document::User::DOC_NONE)
+    u2 = Document::User.where(document: doc).last
     expect(u2.user).to eq(shalva)
     expect(u2.new?).to eq(true)
     expect(u2.changed?).to eq(true)
+    expect(u2.sent?).to eq(false)
+    expect(u2.received?).to eq(true)
     expect(u2.forwarded?).to eq(false)
-    # expect(u2.status).to eq(Document::Status::CURRENT)
+    expect(u2.current?).to eq(true)
+    expect(u2.canceled?).to eq(false)
+    expect(u2.completed?).to eq(false)
+    expect(u2.as_owner).to eq(Document::User::DOC_NONE)
+    expect(u2.as_signee).to eq(Document::User::DOC_NONE)
+    expect(u2.as_assignee).to eq(Document::User::DOC_CURRENT)
+    expect(u2.as_author).to eq(Document::User::DOC_NONE)
 
     # 2. Receiver replies
     #
     cat = Document::ResponseType.where(category: Document::ResponseType::COMPLETE).first
+    Document::User.where(document: doc, user: shalva).first.read!
     motion.add_comment(shalva, { category_id: cat.id, text: 'i agree' })
     # check motion
     expect(Document::Motion.where(document: doc).count).to eq(1)
     motion = Document::Motion.where(document: doc).first
     expect(motion.status).to eq(Document::Status::COMPLETED)
+    expect(motion.receiver_user).to eq(shalva)
     expect(motion.sent_at).not_to be_nil
     expect(motion.received_at).not_to be_nil
     expect(motion.completed_at).not_to be_nil
@@ -142,16 +160,33 @@ RSpec.describe Document::Base do
     # check document users
     expect(Document::User.where(document: doc).count).to eq(2)
     u1 = Document::User.where(document: doc).first
-    u2 = Document::User.where(document: doc).last
     expect(u1.user).to eq(dimitri)
-    # expect(u1.status).to eq(Document::Status::CURRENT)
     expect(u1.new?).to eq(false)
     expect(u1.changed?).to eq(true)
+    expect(u1.sent?).to eq(true)
+    expect(u1.received?).to eq(false)
+    expect(u1.forwarded?).to eq(false)
+    expect(u1.current?).to eq(true)
+    expect(u1.canceled?).to eq(false)
+    expect(u1.completed?).to eq(false)
+    expect(u1.as_owner).to eq(Document::User::DOC_CURRENT)
+    expect(u1.as_signee).to eq(Document::User::DOC_NONE)
+    expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
+    expect(u1.as_author).to eq(Document::User::DOC_NONE)
+    u2 = Document::User.where(document: doc).last
     expect(u2.user).to eq(shalva)
-    # expect(u2.new?).to eq(false) XXX
-    # expect(u2.changed?).to eq(false) XXX
+    expect(u2.new?).to eq(false)
+    expect(u2.changed?).to eq(false)
+    expect(u2.sent?).to eq(false)
+    expect(u2.received?).to eq(true)
     expect(u2.forwarded?).to eq(false)
-    # expect(u2.status).to eq(Document::Status::COMPLETED)
+    expect(u2.current?).to eq(false)
+    expect(u2.canceled?).to eq(false)
+    expect(u2.completed?).to eq(true)
+    expect(u2.as_owner).to eq(Document::User::DOC_NONE)
+    expect(u2.as_signee).to eq(Document::User::DOC_NONE)
+    expect(u2.as_assignee).to eq(Document::User::DOC_COMPLETE)
+    expect(u2.as_author).to eq(Document::User::DOC_NONE)
 
     # 3. Sender complete
     #
@@ -159,15 +194,33 @@ RSpec.describe Document::Base do
     doc.add_comment(dimitri, { category_id: cat.id, text: 'document is closed' })
     expect(Document::User.where(document: doc).count).to eq(2)
     u1 = Document::User.where(document: doc).first
-    u2 = Document::User.where(document: doc).last
     expect(u1.user).to eq(dimitri)
-    # expect(u1.status).to eq(Document::Status::COMPLETED)
     expect(u1.new?).to eq(false)
     expect(u1.changed?).to eq(false)
+    expect(u1.sent?).to eq(true)
+    expect(u1.received?).to eq(false)
+    expect(u1.forwarded?).to eq(false)
+    expect(u1.current?).to eq(false)
+    expect(u1.canceled?).to eq(false)
+    expect(u1.completed?).to eq(true)
+    expect(u1.as_owner).to eq(Document::User::DOC_COMPLETE)
+    expect(u1.as_signee).to eq(Document::User::DOC_NONE)
+    expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
+    expect(u1.as_author).to eq(Document::User::DOC_NONE)
+
+    u2 = Document::User.where(document: doc).last
     expect(u2.user).to eq(shalva)
-    # expect(u2.new?).to eq(false) XXX
+    expect(u2.new?).to eq(false)
     expect(u2.changed?).to eq(true)
+    expect(u2.sent?).to eq(false)
+    expect(u2.received?).to eq(true)
     expect(u2.forwarded?).to eq(false)
-    # expect(u2.status).to eq(Document::Status::COMPLETED)
+    expect(u2.current?).to eq(false)
+    expect(u2.canceled?).to eq(false)
+    expect(u2.completed?).to eq(true)
+    expect(u2.as_owner).to eq(Document::User::DOC_NONE)
+    expect(u2.as_signee).to eq(Document::User::DOC_NONE)
+    expect(u2.as_assignee).to eq(Document::User::DOC_COMPLETE)
+    expect(u2.as_author).to eq(Document::User::DOC_NONE)
   end
 end
