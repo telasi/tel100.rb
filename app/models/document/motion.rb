@@ -122,11 +122,13 @@ class Document::Motion < ActiveRecord::Base
         self.status = CURRENT
         self.received_at = Time.now
       end
-      # setting Document::User
+      # create new Document::User
       Document::User.upsert!(self.document, self.receiver_user, self.receiver_role, { status: self.status })
     end
     # save motion data
     self.save!
+    # calculate this Document::User
+    self.document.users.where(user: user).first.calculate!
   end
 
   def add_comment(user, params)

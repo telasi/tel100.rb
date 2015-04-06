@@ -91,9 +91,10 @@ RSpec.describe Document::Base do
     #
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')
+    nino    = Sys::User.find_by_username('nino')
     doc = Document::Base.create_draft!(dimitri)
     doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body' })
-    Document::Motion.create_draft!(dimitri, {
+    motion1 = Document::Motion.create_draft!(dimitri, {
       document_id: doc.id,
       receiver_type: 'HR::Employee',
       receiver_id: shalva.employee.id,
@@ -108,14 +109,16 @@ RSpec.describe Document::Base do
     expect(doc.completed_at).to be_nil
     # check motion
     expect(Document::Motion.where(document: doc).count).to eq(1)
-    motion = Document::Motion.where(document: doc).first
-    expect(motion.status).to eq(Document::Status::CURRENT)
-    expect(motion.sent_at).not_to be_nil
-    expect(motion.received_at).not_to be_nil
-    expect(motion.completed_at).to be_nil
+    motion1.reload
+    expect(motion1.status).to eq(Document::Status::CURRENT)
+    expect(motion1.sender_user).to eq(dimitri)
+    expect(motion1.receiver_user).to eq(shalva)
+    expect(motion1.sent_at).not_to be_nil
+    expect(motion1.received_at).not_to be_nil
+    expect(motion1.completed_at).to be_nil
     # check document users
     expect(Document::User.where(document: doc).count).to eq(2)
-    u1 = Document::User.where(document: doc).first
+    u1 = Document::User.where(document: doc, user: dimitri).first
     expect(u1.user).to eq(dimitri)
     expect(u1.new?).to eq(false)
     expect(u1.changed?).to eq(false)
@@ -129,7 +132,7 @@ RSpec.describe Document::Base do
     expect(u1.as_signee).to eq(Document::User::DOC_NONE)
     expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
     expect(u1.as_author).to eq(Document::User::DOC_NONE)
-    u2 = Document::User.where(document: doc).last
+    u2 = Document::User.where(document: doc, user: shalva).first
     expect(u2.user).to eq(shalva)
     expect(u2.new?).to eq(true)
     expect(u2.changed?).to eq(true)
@@ -144,24 +147,42 @@ RSpec.describe Document::Base do
     expect(u2.as_assignee).to eq(Document::User::DOC_CURRENT)
     expect(u2.as_author).to eq(Document::User::DOC_NONE)
 
-    # 2. Receiver replies
+    # 2. Receiver forwards task
+    motion2 = Document::Motion.create_draft!(shalva, {
+      document_id: doc.id,
+      parent_id: motion1.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: nino.employee.id,
+      receiver_role: 'assignee'
+    })
+    expect(Document::User.where(document: doc).count).to eq(2)
+    motion1.send_draft_motions!(shalva)
+    expect(Document::User.where(document: doc).count).to eq(3)
+    expect(Document::Motion.where(document: doc).count).to eq(2)
+    motion1.reload ; motion2.reload
+    u1 = Document::User.where(document: doc, user: dimitri).first
+    u2 = Document::User.where(document: doc, user: shalva).first
+    u3 = Document::User.where(document: doc, user: nino).first
+    expect(motion2.parent).to eq(motion1)
+    expect(u2.forwarded?).to eq(true)
+
+    # 3. Receiver replies
     #
     cat = Document::ResponseType.where(category: Document::ResponseType::COMPLETE).first
     Document::User.where(document: doc, user: shalva).first.read!
-    motion.add_comment(shalva, { category_id: cat.id, text: 'i agree' })
+    motion1.add_comment(shalva, { category_id: cat.id, text: 'i agree' })
     # check motion
-    expect(Document::Motion.where(document: doc).count).to eq(1)
-    motion = Document::Motion.where(document: doc).first
-    expect(motion.status).to eq(Document::Status::COMPLETED)
-    expect(motion.receiver_user).to eq(shalva)
-    expect(motion.sent_at).not_to be_nil
-    expect(motion.received_at).not_to be_nil
-    expect(motion.completed_at).not_to be_nil
-    expect(motion.response_type).to eq(cat)
-    expect(motion.response_text).to eq('i agree')
+    motion1.reload
+    expect(motion1.status).to eq(Document::Status::COMPLETED)
+    expect(motion1.receiver_user).to eq(shalva)
+    expect(motion1.sent_at).not_to be_nil
+    expect(motion1.received_at).not_to be_nil
+    expect(motion1.completed_at).not_to be_nil
+    expect(motion1.response_type).to eq(cat)
+    expect(motion1.response_text).to eq('i agree')
     # check document users
-    expect(Document::User.where(document: doc).count).to eq(2)
-    u1 = Document::User.where(document: doc).first
+    expect(Document::User.where(document: doc).count).to eq(3)
+    u1 = Document::User.where(document: doc, user: dimitri).first
     expect(u1.user).to eq(dimitri)
     expect(u1.new?).to eq(false)
     expect(u1.changed?).to eq(true)
@@ -175,13 +196,13 @@ RSpec.describe Document::Base do
     expect(u1.as_signee).to eq(Document::User::DOC_NONE)
     expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
     expect(u1.as_author).to eq(Document::User::DOC_NONE)
-    u2 = Document::User.where(document: doc).last
+    u2 = Document::User.where(document: doc, user: shalva).first
     expect(u2.user).to eq(shalva)
     expect(u2.new?).to eq(false)
     expect(u2.changed?).to eq(false)
     expect(u2.sent?).to eq(false)
     expect(u2.received?).to eq(true)
-    expect(u2.forwarded?).to eq(false)
+    expect(u2.forwarded?).to eq(true)
     expect(u2.current?).to eq(false)
     expect(u2.canceled?).to eq(false)
     expect(u2.completed?).to eq(true)
@@ -190,12 +211,12 @@ RSpec.describe Document::Base do
     expect(u2.as_assignee).to eq(Document::User::DOC_COMPLETE)
     expect(u2.as_author).to eq(Document::User::DOC_NONE)
 
-    # 3. Sender complete
+    # 4. Sender complete
     #
     doc.reload
     doc.add_comment(dimitri, { category_id: cat.id, text: 'document is closed' })
-    expect(Document::User.where(document: doc).count).to eq(2)
-    u1 = Document::User.where(document: doc).first
+    expect(Document::User.where(document: doc).count).to eq(3)
+    u1 = Document::User.where(document: doc, user: dimitri).first
     expect(u1.user).to eq(dimitri)
     expect(u1.new?).to eq(false)
     expect(u1.changed?).to eq(false)
@@ -209,14 +230,13 @@ RSpec.describe Document::Base do
     expect(u1.as_signee).to eq(Document::User::DOC_NONE)
     expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
     expect(u1.as_author).to eq(Document::User::DOC_NONE)
-
-    u2 = Document::User.where(document: doc).last
+    u2 = Document::User.where(document: doc, user: shalva).first
     expect(u2.user).to eq(shalva)
     expect(u2.new?).to eq(false)
     expect(u2.changed?).to eq(true)
     expect(u2.sent?).to eq(false)
     expect(u2.received?).to eq(true)
-    expect(u2.forwarded?).to eq(false)
+    expect(u2.forwarded?).to eq(true)
     expect(u2.current?).to eq(false)
     expect(u2.canceled?).to eq(false)
     expect(u2.completed?).to eq(true)

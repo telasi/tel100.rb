@@ -146,6 +146,10 @@ class Document::User < ActiveRecord::Base
       self.is_received = 1
     end
 
+    # 7. checking is_forwarded
+    forwarded_count = Document::Motion.where('document_id=? AND sender_user_id=? AND status!=? AND parent_id IS NOT NULL', self.document_id, self.user_id, DRAFT).count
+    self.is_forwarded = 1 if forwarded_count > 0
+
     self.save!
   end
 
