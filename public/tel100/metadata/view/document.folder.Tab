@@ -59,8 +59,8 @@
                         "enableColumnHide": false,
                         "enableColumnMove": false,
                         "enableColumnResize": false,
-                        "header": false,
                         "height": null,
+                        "hideHeaders": true,
                         "itemId": "standardFolders",
                         "layout|region": "north",
                         "sortableColumns": false,
@@ -85,6 +85,7 @@
                             "userConfig": {
                                 "dataIndex": "name",
                                 "flex": 1,
+                                "items": null,
                                 "sortable": false,
                                 "text": [
                                     "{i18n.document.folder.categories.a}"
@@ -92,9 +93,23 @@
                             },
                             "name": "MyColumn12",
                             "configAlternates": {
-                                "text": "binding"
+                                "text": "binding",
+                                "tools": "object",
+                                "items": "object"
                             },
                             "designerId": "20d431bc-b79f-4fd8-b61c-0723923b2f0c",
+                            "customConfigs": [
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "tools",
+                                    "type": "string"
+                                },
+                                {
+                                    "group": "(Custom Properties)",
+                                    "name": "items",
+                                    "type": "string"
+                                }
+                            ],
                             "cn": [
                                 {
                                     "type": "fixedfunction",
@@ -173,6 +188,131 @@
                             },
                             "name": "onStandardGridpanelSelect",
                             "designerId": "06a447e9-cc88-4c52-acef-2aba2878a6f6"
+                        },
+                        {
+                            "type": "Ext.toolbar.Toolbar",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dock": "top"
+                            },
+                            "name": "MyToolbar2",
+                            "designerId": "966bebd4-702c-47f6-a6f7-df5b0aaf8559",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": null,
+                                        "text": "<i class=\"fa fa-refresh\"></i>"
+                                    },
+                                    "name": "MyButton11",
+                                    "designerId": "e747fa6b-95e2-441f-a719-9a809c33a0ae",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onRefreshFoldersButtonClick",
+                                                "implHandler": [
+                                                    "this.getViewModel().getStore('standardfolders').reload();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "name": "onRefreshFoldersButtonClick",
+                                            "designerId": "d2151ea8-ba0c-4043-bff9-fbe0147c3e5d"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.toolbar.Fill",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": null
+                                    },
+                                    "name": "MyFill2",
+                                    "designerId": "caced38b-4943-4d25-96e5-cc144277e9ac"
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "enableToggle": true,
+                                        "layout|flex": null,
+                                        "text": "<span class=\"text-muted\"><i class=\"fa fa-check\"></i></span>"
+                                    },
+                                    "name": "MyButton12",
+                                    "designerId": "bbc785d0-05a8-4680-8f74-eb0ae01273a6"
+                                },
+                                {
+                                    "type": "Ext.toolbar.Separator",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": null
+                                    },
+                                    "name": "MySeparator",
+                                    "designerId": "d80a4723-e800-4f39-971f-550d4d55fdef"
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": null,
+                                        "text": "<span class=\"text-muted\"><i class=\"fa fa-cog\"></i></span>"
+                                    },
+                                    "name": "MyButton13",
+                                    "designerId": "054496b3-0bce-48df-9d45-0f1ce8d1c8c3",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onSetupFoldersButtonClick",
+                                                "implHandler": [
+                                                    "var configwindow = Ext.create('Tel100.view.document.folder.Config');",
+                                                    "                        configwindow.show();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "name": "onSetupFoldersButtonClick",
+                                            "designerId": "99cce085-b76d-4c21-bd6b-16f5beabdebd"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },
@@ -422,7 +562,7 @@
             "userConfig": {
                 "fn": "onTabpanelAfterRender",
                 "implHandler": [
-                    "var bar = component.tabBar;",
+                    "/* var bar = component.tabBar;",
                     "            bar.insert(2,[",
                     "                 {",
                     "                     xtype: 'component',",
@@ -436,7 +576,8 @@
                     "                    configwindow.show();",
                     "                  }",
                     "                }",
-                    "            ]);"
+                    "            ]);",
+                    "  */"
                 ],
                 "name": "afterrender",
                 "scope": "me"
@@ -456,7 +597,7 @@
                     "{i18n.document.search.ui.search}"
                 ]
             },
-            "name": "document.folder.search7",
+            "name": "document.folder.search11",
             "configAlternates": {
                 "title": "binding"
             },

@@ -26,6 +26,9 @@ Ext.define('Tel100.view.document.folder.Tab', {
     'Ext.grid.column.Column',
     'Ext.grid.View',
     'Ext.selection.RowModel',
+    'Ext.toolbar.Toolbar',
+    'Ext.toolbar.Fill',
+    'Ext.toolbar.Separator',
     'Ext.form.Panel'
   ],
 
@@ -49,10 +52,10 @@ Ext.define('Tel100.view.document.folder.Tab', {
           xtype: 'gridpanel',
           region: 'north',
           itemId: 'standardFolders',
-          header: false,
           enableColumnHide: false,
           enableColumnMove: false,
           enableColumnResize: false,
+          hideHeaders: true,
           sortableColumns: false,
           bind: {
             store: '{standardfolders}'
@@ -88,7 +91,40 @@ Ext.define('Tel100.view.document.folder.Tab', {
               fn: 'onStandardGridpanelSelect',
               scope: 'controller'
             }
-          }
+          },
+          dockedItems: [
+            {
+              xtype: 'toolbar',
+              dock: 'top',
+              items: [
+                {
+                  xtype: 'button',
+                  text: '<i class="fa fa-refresh"></i>',
+                  listeners: {
+                    click: 'onRefreshFoldersButtonClick'
+                  }
+                },
+                {
+                  xtype: 'tbfill'
+                },
+                {
+                  xtype: 'button',
+                  enableToggle: true,
+                  text: '<span class="text-muted"><i class="fa fa-check"></i></span>'
+                },
+                {
+                  xtype: 'tbseparator'
+                },
+                {
+                  xtype: 'button',
+                  text: '<span class="text-muted"><i class="fa fa-cog"></i></span>',
+                  listeners: {
+                    click: 'onSetupFoldersButtonClick'
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           xtype: 'gridpanel',
@@ -158,8 +194,17 @@ Ext.define('Tel100.view.document.folder.Tab', {
     afterrender: 'onTabpanelAfterRender'
   },
 
+  onRefreshFoldersButtonClick: function(button, e, eOpts) {
+    this.getViewModel().getStore('standardfolders').reload();
+  },
+
+  onSetupFoldersButtonClick: function(button, e, eOpts) {
+    var configwindow = Ext.create('Tel100.view.document.folder.Config');
+                            configwindow.show();
+  },
+
   onTabpanelAfterRender: function(component, eOpts) {
-    var bar = component.tabBar;
+    /* var bar = component.tabBar;
                 bar.insert(2,[
                      {
                          xtype: 'component',
@@ -174,6 +219,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
                       }
                     }
                 ]);
+      */
   }
 
 });

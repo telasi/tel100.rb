@@ -105,6 +105,38 @@ Ext.define('Tel100.view.document.folder.Search', {
       }
     },
     {
+      xtype: 'textfield',
+      anchor: '100%',
+      name: 'author',
+      bind: {
+        fieldLabel: '{i18n.document.search.author}'
+      }
+    },
+    {
+      xtype: 'textfield',
+      anchor: '100%',
+      name: 'assignee',
+      bind: {
+        fieldLabel: '{i18n.document.search.assignee}'
+      }
+    },
+    {
+      xtype: 'textfield',
+      anchor: '100%',
+      name: 'signee',
+      bind: {
+        fieldLabel: '{i18n.document.search.signee}'
+      }
+    },
+    {
+      xtype: 'textfield',
+      anchor: '100%',
+      name: 'customer',
+      bind: {
+        fieldLabel: '{i18n.document.search.customer}'
+      }
+    },
+    {
       xtype: 'spinnerfield',
       anchor: '100%',
       bind: {
