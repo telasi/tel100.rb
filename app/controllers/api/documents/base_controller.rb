@@ -53,7 +53,8 @@ class Api::Documents::BaseController < ApiController
 
   def create_draft
     doc = Document::Base.create_draft!(current_user)
-    render json: { id: doc.id }
+    @my_doc = Document::User.where(document: doc, user: current_user).first
+    render action: 'show'
   end
 
   def update_draft
