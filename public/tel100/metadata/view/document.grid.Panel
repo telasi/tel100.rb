@@ -248,6 +248,27 @@
             "designerId": "f5e30d37-07ec-434a-9035-a30f7cf46646"
         },
         {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "sender_name",
+                "designer|displayName": "sender_name",
+                "text": [
+                    "{i18n.document.base.sender_name}"
+                ],
+                "width": 200
+            },
+            "name": "MyColumn1",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "ab1ba3d3-5803-4c97-b706-1dfaba8ffaf1"
+        },
+        {
             "type": "basicfunction",
             "reference": {
                 "name": "items",

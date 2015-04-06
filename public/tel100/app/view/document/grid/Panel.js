@@ -117,6 +117,14 @@ Ext.define('Tel100.view.document.grid.Panel', {
       bind: {
         text: '{i18n.document.base.original_date}'
       }
+    },
+    {
+      xtype: 'gridcolumn',
+      width: 200,
+      dataIndex: 'sender_name',
+      bind: {
+        text: '{i18n.document.base.sender_name}'
+      }
     }
   ],
   listeners: {
