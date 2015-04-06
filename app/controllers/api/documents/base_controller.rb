@@ -20,7 +20,12 @@ class Api::Documents::BaseController < ApiController
       @employees = HR::Employee.find_by_name(params['sender'])
       @my_docs = @my_docs.where('document_base.sender_id IN (?)', @employees)
     end
-    
+
+    @my_docs = united_role_filter(@my_docs, params['author'], 'author') if params['author'].present?
+    @my_docs = united_role_filter(@my_docs, params['assignee'], 'assignee') if params['assignee'].present?
+    @my_docs = united_role_filter(@my_docs, params['signee'], 'signee') if params['signee'].present?
+
+    @my_docs = @my_docs.where("document_base.docyear" => params['docyear']) if params['docyear'].present?
     @my_docs = @my_docs.where("document_base.type_id" => params['type']) if params['type'].present?
     @my_docs = @my_docs.where("document_base.docdate >= ?", Date.strptime(params['docdate_from'], '%d/%m/%Y')) if params['docdate_from'].present?
     @my_docs = @my_docs.where("document_base.docdate <= ?", Date.strptime(params['docdate_to'], '%d/%m/%Y')) if params['docdate_to'].present?
@@ -73,5 +78,24 @@ class Api::Documents::BaseController < ApiController
     doc = Document::Base.find(params[:id])
     doc.send_draft!(current_user)
     render json: { success: true }
+  end
+
+  def united_role_filter(pdoc, search_string, role)
+    search_string = search_string.squish.tr(' ', '%')
+    @doc = pdoc.where("exists ( select document_id from document_motion 
+                                    where exists ( 
+                                      select id from 
+                                          (select 'HR::Employee' as class, id, TO_NCHAR(last_name_ka) as name  from hr_employees 
+                                                      where last_name_ka || first_name_ka ||  last_name_ru || first_name_ru || 
+                                                            last_name_en || first_name_en like N'%#{search_string}%'
+                                          union 
+                                          select 'HR::Party' as class, id, TO_NCHAR(name_ka) from party_base
+                                                      where name_ka || name_ru || name_en like N'%#{search_string}%'
+                                          ) b where b.class = document_motion.receiver_type and b.id = document_motion.receiver_id
+                                                and receiver_role = '#{role}'
+                                                and document_id = document_user.document_id ))");
+#                                          select 'BS::Customer' as class, custkey as id, TO_NCHAR(name) from customer 
+#                                                     where name like N'%#{search_string}%'
+#                                        union 
   end
 end
