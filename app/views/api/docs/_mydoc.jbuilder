@@ -35,13 +35,13 @@ json.owner_id    doc.owner_id
 json.owner_type  doc.owner_type
 json.created_at  doc.created_at
 json.updated_at  doc.updated_at
-json.statuses [
-  doc.motions_completed,
-  doc.motions_canceled,
-  doc.motions_waiting,
-  doc.motions_total,
-  doc.comments_total
-]
 
+# json.statuses [
+#   doc.motions_completed,
+#   doc.motions_canceled,
+#   doc.motions_waiting,
+#   doc.motions_total,
+#   doc.comments_total
+# ]
 # რამდენი შესრულდა / არ შესრულდა HTML-ის სახით
-json.statuses_html document_statuses_html(doc)
+# json.statuses_html document_statuses_html(doc)
