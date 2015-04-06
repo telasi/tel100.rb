@@ -17,6 +17,7 @@ class Document::Base < ActiveRecord::Base
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_many :comments, class_name: 'Document::Comment', foreign_key: 'document_id'
   has_many :users, class_name: 'Document::User', foreign_key: 'document_id'
+  before_save :on_before_save
 
   def body; self.text.body if self.text.present? end
   def motions_waiting; self.motions_total - self.motions_completed - self.motions_canceled end
@@ -135,5 +136,11 @@ class Document::Base < ActiveRecord::Base
       docuser.make_others_unread!
       docuser.calculate!
     end
+  end
+
+  private
+
+  def on_before_save
+    self.docyear = self.docdate.year if self.docdate
   end
 end

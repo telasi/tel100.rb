@@ -57,6 +57,7 @@ RSpec.describe Document::Base do
     expect(doc.status).to eq(Document::Status::DRAFT)
     expect(doc.subject).to eq('test subject')
     expect(doc.docdate).to eq(Date.today)
+    expect(doc.docyear).to eq(Date.today.year)
   end
 
   it 'can add receivers' do
