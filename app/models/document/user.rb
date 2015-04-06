@@ -15,10 +15,9 @@ class Document::User < ActiveRecord::Base
   DOC_NONE = 0
   DOC_CURRENT = 1
   DOC_COMPLETE = 2
-  
+
   def self.mydocs(user)
-    # Document::User.where('(document_user.status IN (?) OR (document_user.status IN (?) AND document_user.role=?)) AND user_id = ?', VISIBLE_STATS, VISIBLE_OWNER_STATS, ROLE_OWNER, user.id)
-    Document::User
+    Document::User.where(user: user)
   end
 
   def self.upsert!(doc, user, role, opts={})
