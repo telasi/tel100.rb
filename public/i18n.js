@@ -235,12 +235,16 @@ module.exports = {
   due_date: 'ვადა',
   sender: 'ინიციატორი',
   owner: 'მფლობელი',
+  author: 'ავტორი',
+  assignee: 'ადრესატი',
+  signee: 'ვიზატორი',
+  customer: 'აბონენტი',
   status: 'სტატუსი',
   from: 'დან',
   to: 'მდე',
   buttons: {
   	search: 'ძებნა',
-  	reset: 'წაშლა'
+  	reset: 'გასუფთავება'
   }
 };
 

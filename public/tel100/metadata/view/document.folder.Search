@@ -188,6 +188,86 @@
             "designerId": "e49e9afb-c593-4a73-9be9-e61c2f274888"
         },
         {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": [
+                    "{i18n.document.search.author}"
+                ],
+                "layout|anchor": "100%",
+                "name": "author"
+            },
+            "name": "MyTextField22",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
+            "designerId": "d982bcf3-6143-4d42-bda1-6693fb65dda4"
+        },
+        {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": [
+                    "{i18n.document.search.assignee}"
+                ],
+                "layout|anchor": "100%",
+                "name": "assignee"
+            },
+            "name": "MyTextField24",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
+            "designerId": "ba499818-ad23-4766-b790-4e6509d9df42"
+        },
+        {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": [
+                    "{i18n.document.search.signee}"
+                ],
+                "layout|anchor": "100%",
+                "name": "signee"
+            },
+            "name": "MyTextField23",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
+            "designerId": "20aba20f-4382-4eec-a456-ab5786104ba3"
+        },
+        {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": [
+                    "{i18n.document.search.customer}"
+                ],
+                "layout|anchor": "100%",
+                "name": "customer"
+            },
+            "name": "MyTextField25",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
+            "designerId": "ed64f561-f7ff-4d1e-b190-0da5ba0c2d7a"
+        },
+        {
             "type": "Ext.form.field.Spinner",
             "reference": {
                 "name": "items",
