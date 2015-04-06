@@ -93,7 +93,7 @@ class Document::User < ActiveRecord::Base
       self.is_current = 1 if doc_status == CURRENT
       self.is_canceled = 1 if doc_status == CANCELED
       self.is_completed = 1 if doc_status == COMPLETED
-      self.is_sent = 1
+      self.is_sent = 1 if doc_status != DRAFT
     end
 
     # 4. assignee calculation
