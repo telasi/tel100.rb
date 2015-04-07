@@ -113,6 +113,7 @@ Ext.define('Tel100.view.document.comment.Sign', {
   },
 
   onSaveButtonClick: function(button, e, eOpts) {
+    var view = this;
     var vm = this.getViewModel();
     var text = vm.get('text');
     var response_type = vm.get('response_type');
@@ -124,7 +125,8 @@ Ext.define('Tel100.view.document.comment.Sign', {
         response_type: response_type
       },
       success: function() {
-        console.log('SENT!');
+        view.fireEvent('signed');
+        view.close();
       }
     });
   },

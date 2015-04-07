@@ -173,6 +173,7 @@
                             "userConfig": {
                                 "fn": "onSaveButtonClick",
                                 "implHandler": [
+                                    "var view = this;",
                                     "var vm = this.getViewModel();",
                                     "var text = vm.get('text');",
                                     "var response_type = vm.get('response_type');",
@@ -184,7 +185,8 @@
                                     "    response_type: response_type",
                                     "  },",
                                     "  success: function() {",
-                                    "    console.log('SENT!');",
+                                    "    view.fireEvent('signed');",
+                                    "    view.close();",
                                     "  }",
                                     "});"
                                 ],
