@@ -88,6 +88,7 @@ Ext.define('Tel100.view.hr.tree.Panel', {
         },
         {
           xtype: 'textfield',
+          itemId: 'searchField',
           fieldLabel: 'Label',
           hideLabel: true
         },

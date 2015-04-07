@@ -30,7 +30,22 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
   },
 
   onSearchButtonClick: function(button, e, eOpts) {
+    var view = this.getView();
+    view.collapseAll();
+    var searchValue = view.down('textfield').getValue();
+    var rn = view.getRootNode();
 
+    var found = rn.findChildBy(function(child){
+      var text = child.get('full_name');
+      if(text){
+        return (text.indexOf(searchValue) != -1);
+      }
+    }, this, true);
+
+    if(found){
+      view.expandPath(found.getPath());
+      view.getSelectionModel().select(found);
+    }
   }
 
 });
