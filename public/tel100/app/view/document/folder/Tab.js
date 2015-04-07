@@ -90,7 +90,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
             mode: 'SINGLE'
           },
           listeners: {
-            select: {
+            itemclick: {
               fn: 'onStandardGridpanelSelect',
               scope: 'controller'
             }
