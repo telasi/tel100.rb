@@ -61,7 +61,8 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewModel', {
       proxy: {
         type: 'ajax',
         extraParams: {
-          type: 'send'
+          type: 'send',
+          role: 'assignee'
         },
         url: '/api/documents/response_types',
         reader: {

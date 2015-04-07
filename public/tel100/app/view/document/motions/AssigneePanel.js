@@ -90,6 +90,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
           renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
             return record.get('send_type_name');
           },
+          defaultWidth: 150,
           dataIndex: 'send_type_id',
           bind: {
             text: '{i18n.document.motion.send_type}'

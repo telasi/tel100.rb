@@ -200,6 +200,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "dataIndex": "send_type_id",
+                        "defaultWidth": 150,
                         "designer|displayName": "send_type",
                         "text": [
                             "{i18n.document.motion.send_type}"

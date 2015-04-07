@@ -127,7 +127,8 @@
                     "userConfig": {
                         "extraParams": [
                             "{",
-                            "  type: 'send'",
+                            "  type: 'send',",
+                            "  role: 'assignee'",
                             "}"
                         ],
                         "url": "/api/documents/response_types"
