@@ -40,7 +40,13 @@ Ext.define('Tel100.view.document.Main', {
       width: 250,
       collapsible: true,
       region: 'west',
-      split: true
+      split: true,
+      listeners: {
+        folderChosen: {
+          fn: 'onTabpanelFolderChosen',
+          scope: 'controller'
+        }
+      }
     },
     {
       xtype: 'tabpanel',
@@ -105,11 +111,7 @@ Ext.define('Tel100.view.document.Main', {
     }
   ],
   listeners: {
-    beforerender: 'onPanelBeforeRender',
-    folderChosen: {
-      fn: 'onPanelFolderChosen',
-      scope: 'controller'
-    }
+    beforerender: 'onPanelBeforeRender'
   },
 
   onPanelBeforeRender: function(component, eOpts) {

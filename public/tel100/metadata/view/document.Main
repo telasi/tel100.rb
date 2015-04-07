@@ -34,9 +34,32 @@
                 "titleCollapse": null,
                 "width": 250
             },
-            "name": "document.folder.tab",
+            "name": "document.folder.tab5",
             "designerId": "4b3cd9d6-b437-4268-8d05-67138c82a2ff",
-            "masterInstanceId": "c09758ae-9832-4db7-9ae8-b1c0009112a7"
+            "masterInstanceId": "c09758ae-9832-4db7-9ae8-b1c0009112a7",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "tabpanel"
+                        ],
+                        "fn": "onTabpanelFolderChosen",
+                        "implHandler": [
+                            "this.getView().getComponent('documentTabs').setActiveTab(0);"
+                        ],
+                        "name": "folderChosen",
+                        "scope": "me"
+                    },
+                    "name": "onTabpanelFolderChosen",
+                    "designerId": "293af611-3a75-4ae2-8029-d402f78d2b37"
+                }
+            ]
         },
         {
             "type": "Ext.tab.Panel",
@@ -136,7 +159,7 @@
                                     "{selection}"
                                 ]
                             },
-                            "name": "document.grid.panel",
+                            "name": "document.grid.panel2",
                             "configAlternates": {
                                 "selection": "binding"
                             },
@@ -244,27 +267,6 @@
             },
             "name": "onDeleteDraft",
             "designerId": "c7cd4bef-6167-4b83-a1a1-52690831f9d2"
-        },
-        {
-            "type": "viewcontrollereventbinding",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "panel"
-                ],
-                "fn": "onPanelFolderChosen",
-                "implHandler": [
-                    "this.getView().getComponent('documentTabs').setActiveTab(0);"
-                ],
-                "name": "folderChosen",
-                "scope": "me"
-            },
-            "name": "onPanelFolderChosen",
-            "designerId": "f706edf4-11d9-4f49-a856-584e2aad31c6"
         }
     ]
 }
