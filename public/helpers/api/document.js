@@ -108,6 +108,12 @@ var relation = {
   }
 };
 
+var responseType = {
+  send: 1,
+  complete: 2,
+  cancel: 3
+};
+
 var print = {
   card: function(id, args){
     var opts = args || {};
@@ -123,5 +129,6 @@ module.exports = {
   comment: comment,
   file: file,
   relation: relation,
+  responseType: responseType,
   print: print
 };
