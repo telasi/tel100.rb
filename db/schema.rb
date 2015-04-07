@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330073049) do
+ActiveRecord::Schema.define(version: 20150407203528) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -264,6 +264,13 @@ ActiveRecord::Schema.define(version: 20150330073049) do
     t.string    "account",       limit: 50
     t.timestamp "created_at",    limit: 6,                           null: false
     t.timestamp "updated_at",    limit: 6,                           null: false
+  end
+
+  create_table "party_favourites", force: true do |t|
+    t.integer   "user_id",     limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "person_id",   limit: 10, precision: 10, scale: 0, null: false
+    t.string    "person_type", limit: 50,                          null: false
+    t.timestamp "created_at",  limit: 6,                           null: false
   end
 
   create_table "users", force: true do |t|
