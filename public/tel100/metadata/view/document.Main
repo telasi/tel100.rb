@@ -34,7 +34,7 @@
                 "titleCollapse": null,
                 "width": 250
             },
-            "name": "document.folder.tab3",
+            "name": "document.folder.tab",
             "designerId": "4b3cd9d6-b437-4268-8d05-67138c82a2ff",
             "masterInstanceId": "c09758ae-9832-4db7-9ae8-b1c0009112a7"
         },
@@ -136,7 +136,7 @@
                                     "{selection}"
                                 ]
                             },
-                            "name": "document.grid.panel4",
+                            "name": "document.grid.panel",
                             "configAlternates": {
                                 "selection": "binding"
                             },
@@ -244,6 +244,27 @@
             },
             "name": "onDeleteDraft",
             "designerId": "c7cd4bef-6167-4b83-a1a1-52690831f9d2"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "panel"
+                ],
+                "fn": "onPanelFolderChosen",
+                "implHandler": [
+                    "this.getView().getComponent('documentTabs').setActiveTab(0);"
+                ],
+                "name": "folderChosen",
+                "scope": "me"
+            },
+            "name": "onPanelFolderChosen",
+            "designerId": "f706edf4-11d9-4f49-a856-584e2aad31c6"
         }
     ]
 }

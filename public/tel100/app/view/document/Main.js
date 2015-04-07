@@ -105,7 +105,11 @@ Ext.define('Tel100.view.document.Main', {
     }
   ],
   listeners: {
-    beforerender: 'onPanelBeforeRender'
+    beforerender: 'onPanelBeforeRender',
+    folderChosen: {
+      fn: 'onPanelFolderChosen',
+      scope: 'controller'
+    }
   },
 
   onPanelBeforeRender: function(component, eOpts) {

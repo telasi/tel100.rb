@@ -39,6 +39,7 @@ Ext.define('Tel100.view.document.folder.SearchViewController', {
     var params = view.getForm().getValues();
     var url = '/api/documents/base/search';
     view.fireEvent('searchstart', url, params);
+    view.up('documentmain').fireEvent('folderChosen');
   },
 
   onResetButtonClick: function(button, e, eOpts) {
