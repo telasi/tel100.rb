@@ -4,7 +4,7 @@ class AddResponseTypes < ActiveRecord::Migration
       create table DOCUMENT_RESPONSE_TYPES (
         ID number(6, 0) not null,
         ROLE     varchar2(15) not null,
-        DIRECTION varchar2(5) not null,
+        DIRECTION number(1,0) not null,
         ORDERING number(5, 0) not null,
         NAME_KA  varchar2(50) not null,
         NAME_RU  varchar2(50),
@@ -38,52 +38,52 @@ class AddResponseTypes < ActiveRecord::Migration
 
     # owner
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('owner', 'pos', 1, 'დასრულება')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('owner', 2, 1, 'დასრულება')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('owner', 'neg', 1, 'გაუქმება')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('owner', 3, 1, 'გაუქმება')
     SQL
 
     # author
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('author', 'snd', 1, 'ხელმოსაწერად')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('author', 1, 1, 'ხელმოსაწერად')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('author', 'pos', 1, 'ხელმოწერილი')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('author', 2, 1, 'ხელმოწერილი')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('author', 'neg', 1, 'ხელს არ ვაწერ')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('author', 3, 1, 'ხელს არ ვაწერ')
     SQL
 
     # signee
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('signee', 'snd', 1, 'დასავიზირებლად')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('signee', 1, 1, 'დასავიზირებლად')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('signee', 'pos', 1, 'დავიზირებული')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('signee', 2, 1, 'დავიზირებული')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('signee', 'neg', 1, 'არ ვავიზირებ')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('signee', 3, 1, 'არ ვავიზირებ')
     SQL
 
     # asignee
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'snd', 1, 'შესასრულებლად')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 1, 1, 'შესასრულებლად')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'snd', 1, 'გასაცნობად')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 1, 1, 'გასაცნობად')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'pos', 1, 'შევასრულე')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 2, 1, 'შევასრულე')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'pos', 1, 'გავეცანი')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 2, 1, 'გავეცანი')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'neg', 1, 'ვერ ვასრულებ')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 3, 1, 'ვერ ვასრულებ')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'neg', 1, 'არ მეხება')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 3, 1, 'არ მეხება')
     SQL
   end
 

@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20150330073049) do
 
   create_table "document_response_types", force: true do |t|
     t.string    "role",       limit: 15,                         null: false
-    t.string    "direction",  limit: 5,                          null: false
+    t.boolean   "direction",             precision: 1, scale: 0, null: false
     t.integer   "ordering",   limit: 5,  precision: 5, scale: 0, null: false
     t.string    "name_ka",    limit: 50,                         null: false
     t.string    "name_ru",    limit: 50
