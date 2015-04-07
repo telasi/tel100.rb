@@ -2137,6 +2137,9 @@
                     "id": "3a468900-e4fa-4322-ac0c-2bca77963669"
                 },
                 {
+                    "id": "7b70f0cc-0253-403d-909d-e1ef4ea08184"
+                },
+                {
                     "id": "e49e9afb-c593-4a73-9be9-e61c2f274888"
                 },
                 {
@@ -3487,9 +3490,7 @@
         }
     },
     "tabState": {
-        "openTabs": [
-            "c09758ae-9832-4db7-9ae8-b1c0009112a7"
-        ]
+        "openTabs": []
     },
     "canvasState": {
         "topInstance": null
