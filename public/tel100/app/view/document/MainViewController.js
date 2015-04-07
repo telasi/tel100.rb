@@ -116,12 +116,12 @@ Ext.define('Tel100.view.document.MainViewController', {
             Ext.Ajax.request(opts);
   },
 
-  onGridDoubleClick: function(dataview, record, item, index, e, eOpts) {
-    this.openDocument(record);
+  onTabpanelFolderChosen: function(tabpanel) {
+    this.getView().getComponent('documentTabs').setActiveTab(0);
   },
 
-  onPanelFolderChosen: function(panel) {
-    this.getView().getComponent('documentTabs').setActiveTab(0);
+  onGridDoubleClick: function(dataview, record, item, index, e, eOpts) {
+    this.openDocument(record);
   }
 
 });
