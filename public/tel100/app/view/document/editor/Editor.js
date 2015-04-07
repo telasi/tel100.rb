@@ -192,9 +192,10 @@ Ext.define('Tel100.view.document.editor.Editor', {
   },
 
   onSignDocument: function(button, e, eOpts) {
-    var dialog = Ext.create('Tel100.view.document.comment.Sign', {
-      modal: true
-    });
+    var vm = this.getViewModel();
+    var doc = vm.get('document');
+    var dialog = Ext.create('Tel100.view.document.comment.Sign', { modal: true });
+    dialog.getViewModel().set('document', doc);
     dialog.show();
   },
 

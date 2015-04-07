@@ -31,6 +31,7 @@ Ext.define('Tel100.view.document.comment.Sign', {
   },
   height: 250,
   width: 400,
+  defaultListenerScope: true,
 
   layout: {
     type: 'vbox',
@@ -47,15 +48,17 @@ Ext.define('Tel100.view.document.comment.Sign', {
         {
           itemId: 'sign',
           enableToggle: true,
+          pressed: true,
           bind: {
-            pressed: '{completePressed}',
             text: '{i18n.document.comment.actions.sign_ok}'
+          },
+          listeners: {
+            toggle: 'onSignToggle'
           }
         },
         {
           enableToggle: true,
           bind: {
-            pressed: '{cancelPressed}',
             text: '{i18n.document.comment.actions.sign_cancel}'
           }
         }
@@ -82,6 +85,9 @@ Ext.define('Tel100.view.document.comment.Sign', {
           xtype: 'button',
           bind: {
             text: '{i18n.ui.save}'
+          },
+          listeners: {
+            click: 'onSaveButtonClick'
           }
         },
         {
@@ -92,10 +98,39 @@ Ext.define('Tel100.view.document.comment.Sign', {
           xtype: 'button',
           bind: {
             text: '{i18n.ui.cancel}'
+          },
+          listeners: {
+            click: 'onCancelButtonClick'
           }
         }
       ]
     }
-  ]
+  ],
+
+  onSignToggle: function(button, pressed, eOpts) {
+    var vm = this.getViewModel();
+    vm.set('response_type', pressed ? helpers.api.document.responseType.complete : helpers.api.document.responseType.cancel);
+  },
+
+  onSaveButtonClick: function(button, e, eOpts) {
+    var vm = this.getViewModel();
+    var text = vm.get('text');
+    var response_type = vm.get('response_type');
+    var document_id = vm.get('document.id');
+    helpers.api.document.comment.sign({
+      params: {
+        document_id: document_id,
+        text: text,
+        response_type: response_type
+      },
+      success: function() {
+        console.log('SENT!');
+      }
+    });
+  },
+
+  onCancelButtonClick: function(button, e, eOpts) {
+    this.close();
+  }
 
 });

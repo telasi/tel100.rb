@@ -49,19 +49,37 @@
                         "designer|displayName": "sign",
                         "enableToggle": true,
                         "itemId": "sign",
-                        "pressed": [
-                            "{completePressed}"
-                        ],
+                        "pressed": true,
                         "text": [
                             "{i18n.document.comment.actions.sign_ok}"
                         ]
                     },
                     "name": "MyButton6",
                     "configAlternates": {
-                        "text": "binding",
-                        "pressed": "binding"
+                        "text": "binding"
                     },
-                    "designerId": "20442df0-52cd-47d6-adb6-0bcd24d486c3"
+                    "designerId": "20442df0-52cd-47d6-adb6-0bcd24d486c3",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSignToggle",
+                                "implHandler": [
+                                    "var vm = this.getViewModel();",
+                                    "vm.set('response_type', pressed ? helpers.api.document.responseType.complete : helpers.api.document.responseType.cancel);"
+                                ],
+                                "name": "toggle",
+                                "scope": "me"
+                            },
+                            "name": "onSignToggle",
+                            "designerId": "acb08022-4004-4528-b42d-366476a3dff2"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.button.Button",
@@ -73,17 +91,13 @@
                     "userConfig": {
                         "designer|displayName": "cancel",
                         "enableToggle": true,
-                        "pressed": [
-                            "{cancelPressed}"
-                        ],
                         "text": [
                             "{i18n.document.comment.actions.sign_cancel}"
                         ]
                     },
                     "name": "MyButton8",
                     "configAlternates": {
-                        "text": "binding",
-                        "pressed": "binding"
+                        "text": "binding"
                     },
                     "designerId": "3c27da98-6782-4d7e-93c8-6c21f3152417"
                 }
@@ -147,7 +161,40 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "3e279a07-eecf-4bd8-97cf-0969413f2ebf"
+                    "designerId": "3e279a07-eecf-4bd8-97cf-0969413f2ebf",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSaveButtonClick",
+                                "implHandler": [
+                                    "var vm = this.getViewModel();",
+                                    "var text = vm.get('text');",
+                                    "var response_type = vm.get('response_type');",
+                                    "var document_id = vm.get('document.id');",
+                                    "helpers.api.document.comment.sign({",
+                                    "  params: {",
+                                    "    document_id: document_id,",
+                                    "    text: text,",
+                                    "    response_type: response_type",
+                                    "  },",
+                                    "  success: function() {",
+                                    "    console.log('SENT!');",
+                                    "  }",
+                                    "});"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onSaveButtonClick",
+                            "designerId": "7358cac7-2b56-4a35-9391-604cbe85a082"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.toolbar.Spacer",
@@ -180,7 +227,27 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "f7e2abcf-e7ec-4744-a18a-0611108e7b0f"
+                    "designerId": "f7e2abcf-e7ec-4744-a18a-0611108e7b0f",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCancelButtonClick",
+                                "implHandler": [
+                                    "this.close();"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onCancelButtonClick",
+                            "designerId": "71495560-0c6b-4385-ac5a-98507b7aabde"
+                        }
+                    ]
                 }
             ]
         }
