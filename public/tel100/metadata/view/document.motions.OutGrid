@@ -283,7 +283,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "displayField": "name",
+                        "displayField": "html_name",
                         "editable": false,
                         "store": [
                             "{responseTypes}"

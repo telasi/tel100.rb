@@ -125,7 +125,7 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
       editor: {
         xtype: 'combobox',
         editable: false,
-        displayField: 'name',
+        displayField: 'html_name',
         valueField: 'id',
         bind: {
           store: '{responseTypes}'
