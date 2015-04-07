@@ -25,5 +25,6 @@ class Api::Documents::CommentsController < ApiController
         motion.add_comment!(user, params)
       end
     end
+    render json: { success: true }
   end
 end
