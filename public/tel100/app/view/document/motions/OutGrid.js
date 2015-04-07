@@ -116,6 +116,7 @@ Ext.define('Tel100.view.document.motions.OutGrid', {
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
         return record.get('send_type_name');
       },
+      width: 150,
       sortable: false,
       dataIndex: 'send_type_id',
       hideable: false,

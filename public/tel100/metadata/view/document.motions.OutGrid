@@ -262,12 +262,14 @@
             "codeClass": null,
             "userConfig": {
                 "dataIndex": "send_type_id",
+                "defaultWidth": null,
                 "designer|displayName": "sendType",
                 "hideable": false,
                 "sortable": false,
                 "text": [
                     "{i18n.document.motion.send_type}"
-                ]
+                ],
+                "width": 150
             },
             "name": "MyColumn23",
             "configAlternates": {
