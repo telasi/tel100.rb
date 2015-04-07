@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class SiteController < ApplicationController
   def index
-    render layout: 'extjs'
+    redirect_to '/tel100/index.html'
   end
 end
