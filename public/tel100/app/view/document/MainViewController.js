@@ -120,6 +120,10 @@ Ext.define('Tel100.view.document.MainViewController', {
     this.getView().getComponent('documentTabs').setActiveTab(0);
   },
 
+  onFoldersRefresh: function(tabpanel) {
+    this.onRefresh();
+  },
+
   onGridDoubleClick: function(dataview, record, item, index, e, eOpts) {
     this.openDocument(record);
   }

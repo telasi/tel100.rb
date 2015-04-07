@@ -29,11 +29,20 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
     configwindow.show();
   },
 
+  foldersRefresh: function() {
+    this.getViewModel().getStore('standardfolders').reload();
+  },
+
   onStandardGridpanelSelect: function(rowmodel, record, index, eOpts) {
     this.refreshDocuments({folderType: 'standard', folderId: record.id});
     this.getView().down('#customFolders').getSelectionModel().deselectAll();
     this.getView().up().getViewModel().set('customfolderselection', null);
     this.getView().fireEvent('folderChosen');
+  },
+
+  onRefreshFolderButtonClick: function(button, e, eOpts) {
+    this.foldersRefresh();
+    this.getView().fireEvent('foldersrefresh');
   },
 
   onGridpanelAfterRender: function(component, eOpts) {
@@ -96,6 +105,10 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
       this.getView().up().down('documentgridpanel').refresh();
       dg.refresh();
     }
+  },
+
+  onDocumentGridRefresh: function(tabpanel) {
+    this.foldersRefresh();
   }
 
 });

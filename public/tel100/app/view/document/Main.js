@@ -45,6 +45,10 @@ Ext.define('Tel100.view.document.Main', {
         folderChosen: {
           fn: 'onTabpanelFolderChosen',
           scope: 'controller'
+        },
+        foldersrefresh: {
+          fn: 'onFoldersRefresh',
+          scope: 'controller'
         }
       }
     },
@@ -129,6 +133,7 @@ Ext.define('Tel100.view.document.Main', {
 
   onRefresh: function() {
     this.getController().onRefresh();
+    this.down('documentfoldertab').fireEvent('documentgridrefresh');
   },
 
   onDeleteDraft: function() {

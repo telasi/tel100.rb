@@ -52,6 +52,22 @@
             },
             "name": "onGearClick",
             "designerId": "eb214370-3d70-4b74-8f45-a27884d9f1b1"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "foldersRefresh",
+                "implHandler": [
+                    "this.getViewModel().getStore('standardfolders').reload();"
+                ]
+            },
+            "name": "foldersRefresh",
+            "designerId": "ebbc7e20-5bd2-4ad3-b842-b6c83364042e"
         }
     ]
 }
