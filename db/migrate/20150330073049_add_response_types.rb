@@ -2,9 +2,10 @@ class AddResponseTypes < ActiveRecord::Migration
   def up
     execute <<-SQL
       create table DOCUMENT_RESPONSE_TYPES (
-        ID number(5, 0) not null,
+        ID number(6, 0) not null,
+        ROLE     varchar2(15) not null,
+        DIRECTION varchar2(5) not null,
         ORDERING number(5, 0) not null,
-        CATEGORY number(1, 0) not null,
         NAME_KA  varchar2(50) not null,
         NAME_RU  varchar2(50),
         NAME_EN  varchar2(50),
@@ -16,7 +17,7 @@ class AddResponseTypes < ActiveRecord::Migration
     SQL
 
     execute <<-SQL
-      create unique index DOCRESPTYPE_ORDERCAT_IDX on DOCUMENT_RESPONSE_TYPES (CATEGORY, ORDERING)
+      create index DOCRESPTYPE_ROLE_DIRCT_IDX on DOCUMENT_RESPONSE_TYPES (ROLE, DIRECTION,ORDERING)
     SQL
 
     execute <<-SQL
@@ -34,12 +35,62 @@ class AddResponseTypes < ActiveRecord::Migration
         END IF;
       END;
     SQL
+
+    # owner
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('owner', 'pos', 1, 'დასრულება')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('owner', 'neg', 1, 'გაუქმება')
+    SQL
+
+    # author
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('author', 'snd', 1, 'ხელმოსაწერად')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('author', 'pos', 1, 'ხელმოწერილი')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('author', 'neg', 1, 'ხელს არ ვაწერ')
+    SQL
+
+    # signee
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('signee', 'snd', 1, 'დასავიზირებლად')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('signee', 'pos', 1, 'დავიზირებული')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('signee', 'neg', 1, 'არ ვავიზირებ')
+    SQL
+
+    # asignee
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'snd', 1, 'შესასრულებლად')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'snd', 1, 'გასაცნობად')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'pos', 1, 'შევასრულე')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'pos', 1, 'გავეცანი')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'neg', 1, 'ვერ ვასრულებ')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 'neg', 1, 'არ მეხება')
+    SQL
   end
 
   def down
     execute "drop trigger  DOCRESPTYPE_BEFORE_INSERT"
     execute "drop sequence DOCRESPTYPE_SEQ"
-    execute "drop index    DOCRESPTYPE_ORDERCAT_IDX"
+    execute "drop index    DOCRESPTYPE_ROLE_DIRCT_IDX"
     execute "drop table    DOCUMENT_RESPONSE_TYPES"
   end
 end

@@ -100,8 +100,9 @@ ActiveRecord::Schema.define(version: 20150330073049) do
   end
 
   create_table "document_response_types", force: true do |t|
+    t.string    "role",       limit: 15,                         null: false
+    t.string    "direction",  limit: 5,                          null: false
     t.integer   "ordering",   limit: 5,  precision: 5, scale: 0, null: false
-    t.boolean   "category",              precision: 1, scale: 0, null: false
     t.string    "name_ka",    limit: 50,                         null: false
     t.string    "name_ru",    limit: 50
     t.string    "name_en",    limit: 50
@@ -109,7 +110,7 @@ ActiveRecord::Schema.define(version: 20150330073049) do
     t.timestamp "updated_at", limit: 6,                          null: false
   end
 
-  add_index "document_response_types", ["category", "ordering"], name: "docresptype_ordercat_idx", unique: true
+  add_index "document_response_types", ["role", "direction", "ordering"], name: "docresptype_role_dirct_idx"
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
     t.text "body"
