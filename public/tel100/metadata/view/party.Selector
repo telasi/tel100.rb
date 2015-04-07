@@ -50,13 +50,16 @@
                     "userConfig": {
                         "cls": "panel-with-border",
                         "designer|displayName": "hrstructure",
+                        "disabled": null,
+                        "hidden": null,
                         "store": null,
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel1",
+                    "name": "hr.tree.panel",
                     "configAlternates": {
-                        "tools": "array"
+                        "tools": "array",
+                        "hidden": "binding"
                     },
                     "designerId": "6a12a68e-57ff-41fd-ac90-cf41d8286ecf",
                     "customConfigs": [
@@ -93,7 +96,15 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "userConfig": {
+                                "hidden": [
+                                    "{hideHR}"
+                                ]
+                            },
                             "name": "TabConfig4",
+                            "configAlternates": {
+                                "hidden": "binding"
+                            },
                             "designerId": "099d04ff-d5cd-4669-b8a2-ef5ce3004940"
                         }
                     ]
@@ -106,9 +117,13 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": "parties"
+                        "designer|displayName": "parties",
+                        "hidden": null
                     },
-                    "name": "hr.party.grid4",
+                    "name": "hr.party.grid",
+                    "configAlternates": {
+                        "hidden": "binding"
+                    },
                     "designerId": "67a77de5-f54d-4f43-946d-54f3c9f93a0d",
                     "masterInstanceId": "add98a47-ea0c-4c15-9fb9-63aee2799018",
                     "cn": [
@@ -119,7 +134,15 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "userConfig": {
+                                "hidden": [
+                                    "{hideParty}"
+                                ]
+                            },
                             "name": "TabConfig6",
+                            "configAlternates": {
+                                "hidden": "binding"
+                            },
                             "designerId": "1795a981-af0f-45ef-9d4b-8831781dde67"
                         },
                         {
@@ -152,9 +175,13 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": "customers"
+                        "designer|displayName": "customers",
+                        "hidden": null
                     },
-                    "name": "bs.customer.panel4",
+                    "name": "bs.customer.panel",
+                    "configAlternates": {
+                        "hidden": "binding"
+                    },
                     "designerId": "d1f5ee8b-69b8-41d5-a6ba-99ce9e336b6a",
                     "masterInstanceId": "07c20692-1bdc-46c9-ba9a-49ac94deb18f",
                     "cn": [
@@ -165,7 +192,15 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "userConfig": {
+                                "hidden": [
+                                    "{hideCustomers}"
+                                ]
+                            },
                             "name": "TabConfig7",
+                            "configAlternates": {
+                                "hidden": "binding"
+                            },
                             "designerId": "d4d55ce1-a929-4618-8a8e-ac273ac3c502"
                         },
                         {
@@ -178,7 +213,7 @@
                             "userConfig": {
                                 "fn": "onCustomerGridpanelItemDblClick",
                                 "implHandler": [
-                                    "if (record.get('ext_type') === 'hr.Customer') {",
+                                    "if (record.get('ext_type') === 'bs.Customer') {",
                                     "      this.getController().onAddParty(record);",
                                     "}"
                                 ],

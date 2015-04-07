@@ -19,8 +19,11 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
 
   onSelectSubstitude: function(button, e, eOpts) {
     var receiverDialog = Ext.create('Tel100.view.party.Selector', {
-      title: i18n.document.motion.selectReceiver
+      title: i18n.document.motion.selectReceiver,
     });
+    var vm = receiverDialog.getViewModel();
+    vm.set('hideParty', true);
+    vm.set('hideCustomers', true);
     receiverDialog.show();
     receiverDialog.on('selectioncomplete', function(receivers) {
       if (receivers.length > 0) {

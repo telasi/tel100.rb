@@ -230,6 +230,7 @@ module.exports = {
   subject: 'სათაური',
   original_number: 'დედანის #',
   original_date: 'დედანის თარიღი',
+  docyear: 'წელი',
   docnumber: 'ნომერი',
   docdate: 'თარიღი',
   page_count: 'გვერდები',

@@ -168,6 +168,26 @@
             "designerId": "3a468900-e4fa-4322-ac0c-2bca77963669"
         },
         {
+            "type": "Ext.form.field.Spinner",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": [
+                    "{i18n.document.search.docyear}"
+                ],
+                "layout|anchor": "100%",
+                "name": "docyear"
+            },
+            "name": "MySpinnerField1",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
+            "designerId": "7b70f0cc-0253-403d-909d-e1ef4ea08184"
+        },
+        {
             "type": "Ext.form.field.Text",
             "reference": {
                 "name": "items",
