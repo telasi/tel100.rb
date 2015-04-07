@@ -145,6 +145,13 @@ var comment = {
     opts.method = 'POST';
     opts.url = '/api/documents/comments/create';
     ajax.request(opts);
+  },
+
+  sign: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/comments/sign';
+    ajax.request(opts);
   }
 };
 
