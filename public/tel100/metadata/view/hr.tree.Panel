@@ -191,10 +191,88 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "bottomToolbar",
                 "dock": "bottom"
             },
             "name": "MyToolbar1",
-            "designerId": "9d49711d-4151-43e8-ab28-d48377529fb0"
+            "designerId": "9d49711d-4151-43e8-ab28-d48377529fb0",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "text": "<i class=\"fa fa-backward\"></i>"
+                    },
+                    "name": "MyButton6",
+                    "designerId": "ae79d3ad-509f-4520-bc8c-457ad0a7758d"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "searchFields",
+                        "fieldLabel": "Label",
+                        "hideLabel": true,
+                        "layout|flex": null
+                    },
+                    "name": "MyTextField21",
+                    "designerId": "26977849-4cca-42a4-afc1-57635eca9b99"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "text": "<i class=\"fa fa-search\"></i>"
+                    },
+                    "name": "MyButton8",
+                    "designerId": "3accfd8a-fbef-456a-b403-947cb6699778",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSearchButtonClick",
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onSearchButtonClick",
+                            "designerId": "8b88e31d-a0f9-47a8-802e-f827f1bb6510"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "text": "<i class=\"fa fa-forward\"></i>"
+                    },
+                    "name": "MyButton10",
+                    "designerId": "a15d1bd6-5008-4a5c-ae40-45e0f349315f"
+                }
+            ]
         }
     ]
 }

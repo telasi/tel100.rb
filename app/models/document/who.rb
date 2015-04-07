@@ -12,6 +12,8 @@ module Document::Who
       type = opts[ "#{whom.to_s}_type".to_sym ]
       type = 'HR::Employee' if type == 'hr.Employee'
       type = 'HR::Organization' if type == 'hr.Organization'
+      type = 'HR::Party' if type == 'hr.Party'
+      type = 'BS::Customer' if type == 'bs.Customer'
 
       # neither id not type are defined
       return [ nil, nil ] if ( id.blank? or type.blank? )

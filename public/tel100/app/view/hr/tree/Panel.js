@@ -24,6 +24,8 @@ Ext.define('Tel100.view.hr.tree.Panel', {
     'Ext.tree.Column',
     'Ext.panel.Tool',
     'Ext.toolbar.Toolbar',
+    'Ext.button.Button',
+    'Ext.form.field.Text',
     'Tel100.model.hr.Employee',
     'Tel100.model.hr.Organization'
   ],
@@ -78,7 +80,29 @@ Ext.define('Tel100.view.hr.tree.Panel', {
   dockedItems: [
     {
       xtype: 'toolbar',
-      dock: 'bottom'
+      dock: 'bottom',
+      items: [
+        {
+          xtype: 'button',
+          text: '<i class="fa fa-backward"></i>'
+        },
+        {
+          xtype: 'textfield',
+          fieldLabel: 'Label',
+          hideLabel: true
+        },
+        {
+          xtype: 'button',
+          text: '<i class="fa fa-search"></i>',
+          listeners: {
+            click: 'onSearchButtonClick'
+          }
+        },
+        {
+          xtype: 'button',
+          text: '<i class="fa fa-forward"></i>'
+        }
+      ]
     }
   ],
 

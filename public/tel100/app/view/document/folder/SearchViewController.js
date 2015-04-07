@@ -17,6 +17,23 @@ Ext.define('Tel100.view.document.folder.SearchViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentfoldersearch',
 
+  onChoseCustomerButtonClick: function(button, e, eOpts) {
+    var receiverDialog = Ext.create('Tel100.view.party.Selector', {
+      title: i18n.document.search.choseCustomer
+    });
+    var vm = receiverDialog.getViewModel();
+    vm.set('hideHR', true);
+    vm.set('hideParty', true);
+    receiverDialog.down('tabpanel').setActiveTab(2);
+    receiverDialog.show();
+    receiverDialog.on('selectioncomplete', function(receivers) {
+      if (receivers.length > 0) {
+        var customer = receivers[0];
+        this.getView().getForm().setValues({customer: customer.get('custkey')});
+      }
+    }.bind(this));
+  },
+
   onSearchButtonClick: function(button, e, eOpts) {
     var view = this.getView();
     var params = view.getForm().getValues();

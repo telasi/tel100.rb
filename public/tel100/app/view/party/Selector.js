@@ -61,6 +61,9 @@ Ext.define('Tel100.view.party.Selector', {
         {
           xtype: 'hrtreepanel',
           cls: 'panel-with-border',
+          bind: {
+            hidden: '{hideHR}'
+          },
           listeners: {
             celldblclick: 'onHRTreeDblClick'
           },

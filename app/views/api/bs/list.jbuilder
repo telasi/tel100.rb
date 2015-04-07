@@ -1,5 +1,6 @@
 json.data do
 	json.array! @customers do |customer|
+	  json.id		    customer.custkey
 	  json.custkey		customer.custkey
 	  json.name         customer.name
 	  json.address      customer.address
