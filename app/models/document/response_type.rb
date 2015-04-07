@@ -31,4 +31,6 @@ class Document::ResponseType < ActiveRecord::Base
   def self.response_types
     Document::ResponseType.where('direction IN (?)', [ RESP_COMPLETE, RESP_CANCEL ])
   end
+
+  def to_s; self.name end
 end

@@ -32,6 +32,7 @@ class Document::Motion < ActiveRecord::Base
   def can_edit?(user); self.sender_user == user end
   def sender_name; (self.sender_user || self.sender).to_s end
   def receiver_name;  (self.receiver_user || self.receiver).to_s end
+  def current_status; self.response_type || self.send_type end
 
   def self.create_draft!(sender_user, params)
     document_id = params[:document_id] ; parent_id = params[:parent_id]
