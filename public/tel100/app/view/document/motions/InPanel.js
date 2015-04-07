@@ -28,7 +28,9 @@ Ext.define('Tel100.view.document.motions.InPanel', {
   viewModel: {
     type: 'documentmotionsinpanel'
   },
+  border: false,
   layout: 'fit',
+  bodyBorder: false,
 
   bind: {
     title: '{i18n.document.motion.inMotions}'

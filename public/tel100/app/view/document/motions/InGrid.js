@@ -33,6 +33,8 @@ Ext.define('Tel100.view.document.motions.InGrid', {
   publishes: [
     'selection'
   ],
+  border: false,
+  bodyBorder: false,
 
   bind: {
     selection: '{selection}',

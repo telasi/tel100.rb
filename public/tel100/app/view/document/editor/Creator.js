@@ -197,6 +197,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
           xtype: 'panel',
           border: false,
           layout: 'fit',
+          bodyBorder: false,
           bind: {
             title: '{i18n.document.base.ui.motionsTabTitle}'
           },

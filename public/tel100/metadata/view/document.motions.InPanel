@@ -6,6 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
+        "bodyBorder": false,
+        "border": false,
         "designer|userAlias": "documentmotionsinpanel",
         "designer|userClassName": "document.motions.InPanel",
         "height": null,

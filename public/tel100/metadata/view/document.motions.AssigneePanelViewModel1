@@ -101,54 +101,6 @@
                     "designerId": "d36913fd-c5a1-4b0d-a37a-4a7bd6a6c3be"
                 }
             ]
-        },
-        {
-            "type": "Ext.data.Store",
-            "reference": {
-                "name": "stores",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "autoLoad": true,
-                "designer|displayName": "responseTypes",
-                "model": "document.ResponseType",
-                "name": "responseTypes"
-            },
-            "name": "MyStore12",
-            "designerId": "8768b4a8-34b4-4447-aad3-7090b7a0ac6b",
-            "cn": [
-                {
-                    "type": "Ext.data.proxy.Ajax",
-                    "reference": {
-                        "name": "proxy",
-                        "type": "object"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "extraParams": [
-                            "{",
-                            "  type: 'send'",
-                            "}"
-                        ],
-                        "url": "/api/documents/response_types"
-                    },
-                    "name": "MyAjaxProxy4",
-                    "designerId": "e5a11c40-242c-4d51-9fa2-0c989a7da401",
-                    "cn": [
-                        {
-                            "type": "Ext.data.reader.Json",
-                            "reference": {
-                                "name": "reader",
-                                "type": "object"
-                            },
-                            "codeClass": null,
-                            "name": "MyJsonReader4",
-                            "designerId": "539569e6-8857-4db7-ab79-4f25b0729dd7"
-                        }
-                    ]
-                }
-            ]
         }
     ]
 }

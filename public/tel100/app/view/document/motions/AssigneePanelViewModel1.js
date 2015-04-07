@@ -54,20 +54,6 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewModel1', {
           type: 'json'
         }
       }
-    },
-    responseTypes: {
-      autoLoad: true,
-      model: 'Tel100.model.document.ResponseType',
-      proxy: {
-        type: 'ajax',
-        extraParams: {
-          type: 'send'
-        },
-        url: '/api/documents/response_types',
-        reader: {
-          type: 'json'
-        }
-      }
     }
   }
 
