@@ -27,6 +27,10 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
 
   onRefresh: function(tool, e, owner, eOpts) {
     this.getView().refresh();
+  },
+
+  onSearchButtonClick: function(button, e, eOpts) {
+
   }
 
 });

@@ -51,12 +51,14 @@
                         "cls": "panel-with-border",
                         "designer|displayName": "hrstructure",
                         "disabled": null,
-                        "hidden": null,
+                        "hidden": [
+                            "{hideHR}"
+                        ],
                         "store": null,
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel",
+                    "name": "hr.tree.panel5",
                     "configAlternates": {
                         "tools": "array",
                         "hidden": "binding"
@@ -120,7 +122,7 @@
                         "designer|displayName": "parties",
                         "hidden": null
                     },
-                    "name": "hr.party.grid",
+                    "name": "hr.party.grid3",
                     "configAlternates": {
                         "hidden": "binding"
                     },
@@ -178,7 +180,7 @@
                         "designer|displayName": "customers",
                         "hidden": null
                     },
-                    "name": "bs.customer.panel",
+                    "name": "bs.customer.panel3",
                     "configAlternates": {
                         "hidden": "binding"
                     },

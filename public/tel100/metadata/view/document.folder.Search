@@ -268,24 +268,94 @@
             "designerId": "20aba20f-4382-4eec-a456-ab5786104ba3"
         },
         {
-            "type": "Ext.form.field.Text",
+            "type": "Ext.form.FieldContainer",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
+                "container|align": "stretch",
                 "fieldLabel": [
                     "{i18n.document.search.customer}"
                 ],
-                "layout|anchor": "100%",
-                "name": "customer"
+                "height": null,
+                "layout": "hbox",
+                "layout|anchor": "100%"
             },
-            "name": "MyTextField25",
+            "name": "MyFieldContainer",
             "configAlternates": {
                 "fieldLabel": "binding"
             },
-            "designerId": "ed64f561-f7ff-4d1e-b190-0da5ba0c2d7a"
+            "designerId": "cfeda838-834c-4986-b622-3ca5a2bced42",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "layout|flex": 1,
+                        "name": "customer"
+                    },
+                    "name": "MyTextField25",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "ed64f561-f7ff-4d1e-b190-0da5ba0c2d7a"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "text": "...",
+                        "width": 25
+                    },
+                    "name": "MyButton",
+                    "designerId": "c44cfb21-4c75-40ee-baf1-f31807a58648",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onChoseCustomerButtonClick",
+                                "implHandler": [
+                                    "var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
+                                    "  title: i18n.document.search.choseCustomer",
+                                    "});",
+                                    "var vm = receiverDialog.getViewModel();",
+                                    "vm.set('hideHR', true);",
+                                    "vm.set('hideParty', true);",
+                                    "receiverDialog.down('tabpanel').setActiveTab(2);",
+                                    "receiverDialog.show();",
+                                    "receiverDialog.on('selectioncomplete', function(receivers) {",
+                                    "  if (receivers.length > 0) {",
+                                    "    var customer = receivers[0];",
+                                    "    this.getView().getForm().setValues({customer: customer.get('custkey')});",
+                                    "  }",
+                                    "}.bind(this));"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onChoseCustomerButtonClick",
+                            "designerId": "e280be32-32dc-4c96-921b-369958d9782b"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "type": "Ext.form.field.Spinner",

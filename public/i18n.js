@@ -240,13 +240,17 @@ module.exports = {
   author: 'ავტორი',
   assignee: 'ადრესატი',
   signee: 'ვიზატორი',
-  customer: 'აბონენტი',
+  customer: 'აბონენტის #',
   status: 'სტატუსი',
   from: 'დან',
   to: 'მდე',
   buttons: {
   	search: 'ძებნა',
   	reset: 'გასუფთავება'
+  },
+  choseCustomer: {
+    ka: 'აბონენტების არჩევა',
+    ru: 'Выбор абонента'
   }
 };
 

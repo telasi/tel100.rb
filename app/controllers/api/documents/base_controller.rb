@@ -25,6 +25,8 @@ class Api::Documents::BaseController < ApiController
     @my_docs = united_role_filter(@my_docs, params['assignee'], 'assignee') if params['assignee'].present?
     @my_docs = united_role_filter(@my_docs, params['signee'], 'signee') if params['signee'].present?
 
+    @my_docs = customer_filter(@my_docs, params['customer']) if params['customer'].present?
+
     @my_docs = @my_docs.where("document_base.docyear" => params['docyear']) if params['docyear'].present?
     @my_docs = @my_docs.where("document_base.type_id" => params['type']) if params['type'].present?
     @my_docs = @my_docs.where("document_base.docdate >= ?", Date.strptime(params['docdate_from'], '%d/%m/%Y')) if params['docdate_from'].present?
@@ -97,5 +99,15 @@ class Api::Documents::BaseController < ApiController
 #                                          select 'BS::Customer' as class, custkey as id, TO_NCHAR(name) from customer 
 #                                                     where name like N'%#{search_string}%'
 #                                        union 
+  end
+
+  def customer_filter(pdoc, customer)
+    @doc = pdoc.where("exists ( select document_id from document_motion 
+                                    where exists ( 
+                                        select id from 
+                                          ( select custkey as id from customer b where custkey = #{customer} ) b
+                                                 where 'BS::Customer' = document_motion.receiver_type 
+                                                   and b.id = document_motion.receiver_id
+                                                   and document_id = document_user.document_id ))");
   end
 end

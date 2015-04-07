@@ -22,9 +22,10 @@ Ext.define('Tel100.view.document.folder.Search', {
     'Tel100.view.document.folder.SearchViewController',
     'Ext.form.field.ComboBox',
     'Ext.form.field.Spinner',
+    'Ext.form.FieldContainer',
+    'Ext.button.Button',
     'Ext.form.FieldSet',
-    'Ext.form.field.Date',
-    'Ext.button.Button'
+    'Ext.form.field.Date'
   ],
 
   controller: 'documentfoldersearch',
@@ -137,12 +138,30 @@ Ext.define('Tel100.view.document.folder.Search', {
       }
     },
     {
-      xtype: 'textfield',
+      xtype: 'fieldcontainer',
       anchor: '100%',
-      name: 'customer',
+      layout: {
+        type: 'hbox',
+        align: 'stretch'
+      },
       bind: {
         fieldLabel: '{i18n.document.search.customer}'
-      }
+      },
+      items: [
+        {
+          xtype: 'textfield',
+          flex: 1,
+          name: 'customer'
+        },
+        {
+          xtype: 'button',
+          width: 25,
+          text: '...',
+          listeners: {
+            click: 'onChoseCustomerButtonClick'
+          }
+        }
+      ]
     },
     {
       xtype: 'spinnerfield',
