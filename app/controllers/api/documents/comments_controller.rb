@@ -15,4 +15,15 @@ class Api::Documents::CommentsController < ApiController
     Document::Comment.create(user, doc, motion, params)
     render json: { success: true }
   end
+
+  def sign
+    user = current_user
+    doc  = Document::Base.find(params[:document_id])
+    motions = doc.motions.where(status: CURRENT)
+    Document::Comment.transaction do
+      motions.each do |motion|
+        motion.add_comment!(user, params)
+      end
+    end
+  end
 end

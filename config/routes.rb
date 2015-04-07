@@ -103,6 +103,7 @@ Rails.application.routes.draw do
       scope 'comments', controller: 'comments' do
         get  '/', action: 'index'
         post '/create', action: 'create'
+        post '/sign', action: 'sign'
       end
       scope 'files', controller: 'files' do
         get    '/',         action: 'index'

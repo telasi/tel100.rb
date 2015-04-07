@@ -3,10 +3,6 @@ class Document::Comment < ActiveRecord::Base
   include Document::Role
   include Document::Status
 
-  NEUTRAL  = 'comment'
-  POSITIVE = 'confirm'
-  NEGATIVE = 'cancel'
-
   self.table_name  = 'document_comment'
   self.sequence_name = 'doccomment_seq'
   self.set_integer_columns :status, :old_status

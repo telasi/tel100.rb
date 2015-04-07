@@ -136,6 +136,12 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def add_comment(user, params)
+    Document::Comment.transaction do
+      self.add_comment!(user, params)
+    end
+  end
+
+  def add_comment!(user, params)
     raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
     raise 'not your motion' if user != self.receiver_user
     new_status = self.status
@@ -150,28 +156,26 @@ class Document::Motion < ActiveRecord::Base
         new_status = CANCELED
       end
     end
-    Document::Comment.transaction do
-      # S1: create comment
-      text = params[:text] if params[:text].present?
-      Document::Comment.create!(document: self.document, motion: self, user: user,
-        status: new_status, old_status: self.status, role: self.receiver_role,
-        text: text)
-      # S2: update motion
-      if self.status != new_status # it's completed
-        self.completed_at = Time.now
-        self.status = new_status
-      end
-      self.response_type = type
-      self.response_text = text
-      self.save!
-      # S3: calculate Document::User
-      docuser = self.document.users.where(user: user).first
-      docuser.calculate!
-      # S4: mark other users unread
-      docuser.make_others_unread!
-      # S5: update upper motions
-      check_level_ups!
+    # S1: create comment
+    text = params[:text] if params[:text].present?
+    Document::Comment.create!(document: self.document, motion: self, user: user,
+      status: new_status, old_status: self.status, role: self.receiver_role,
+      text: text)
+    # S2: update motion
+    if self.status != new_status # it's completed
+      self.completed_at = Time.now
+      self.status = new_status
     end
+    self.response_type = type
+    self.response_text = text
+    self.save!
+    # S3: calculate Document::User
+    docuser = self.document.users.where(user: user).first
+    docuser.calculate!
+    # S4: mark other users unread
+    docuser.make_others_unread!
+    # S5: update upper motions
+    check_level_ups!
   end
 
   def check_level_ups!
