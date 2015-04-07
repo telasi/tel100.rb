@@ -474,7 +474,8 @@
                             "var view = this.getView();",
                             "var params = view.getForm().getValues();",
                             "var url = '/api/documents/base/search';",
-                            "view.fireEvent('searchstart', url, params);"
+                            "view.fireEvent('searchstart', url, params);",
+                            "view.up('documentmain').fireEvent('folderChosen');"
                         ],
                         "name": "click",
                         "scope": "me"
