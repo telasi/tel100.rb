@@ -29,12 +29,12 @@ class Api::Documents::MotionController < ApiController
 
   def tree
     document = Document::Base.find(params[:document_id])
-    motionsArray = document.motions.order('ordering ASC, id ASC').map do |motion|
-      {
-        id: motion.id,
+    motionsArray = document.motions.where('status NOT IN (?)', [ DRAFT ]).order('ordering ASC, id ASC').map do |motion|
+      { id: motion.id,
         type: 'motion',
         parent_id: motion.parent_id,
         status: motion.status,
+        current_status: motion.current_status.to_s,
         ordering: motion.ordering,
         sender: motion.sender_name,
         receiver: motion.receiver_name

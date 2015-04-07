@@ -30,6 +30,7 @@ else
   json.parent_id motion.parent_id
   json.document_id motion.document_id
   json.status motion.status
+  json.current_status motion.current_status
   json.is_new motion.is_new
   json.due_date motion.due_date
   json.ordering motion.ordering

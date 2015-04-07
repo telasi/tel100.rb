@@ -71,7 +71,9 @@ Ext.define('Tel100.view.document.motions.Tree', {
           return statusDecorator(status, txt);
         } else {
           var status = record.get('status');
-          return statusDecorator(status, value);
+          var currentStatus = record.get('current_status');
+          var txt = '<strong>' + value + '</strong> &mdash; ' + currentStatus;
+          return statusDecorator(status, txt);
         }
       },
       dataIndex: 'receiver',
