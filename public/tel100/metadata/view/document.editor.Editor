@@ -160,10 +160,14 @@
                                     "userConfig": {
                                         "fn": "onSignDocument",
                                         "implHandler": [
-                                            "var vm = this.getViewModel();",
+                                            "var view = this;",
+                                            "var vm = view.getViewModel();",
                                             "var doc = vm.get('document');",
                                             "var dialog = Ext.create('Tel100.view.document.comment.Sign', { modal: true });",
                                             "dialog.getViewModel().set('document', doc);",
+                                            "dialog.on('signed', function() {",
+                                            "  view.refresh();",
+                                            "});",
                                             "dialog.show();"
                                         ],
                                         "name": "click",
@@ -304,7 +308,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general1",
+                                    "name": "document.editor.general2",
                                     "configAlternates": {
                                         "title": "binding",
                                         "readonly": "boolean"
@@ -322,7 +326,7 @@
                                     "userConfig": {
                                         "designer|displayName": "resultPane"
                                     },
-                                    "name": "document.motions.resultpanel",
+                                    "name": "document.motions.resultpanel1",
                                     "designerId": "8a203739-f111-40f4-80ec-92b30cc29f55",
                                     "masterInstanceId": "2019cd14-1d56-44a4-89bb-838a2f7a8473",
                                     "cn": [
@@ -362,7 +366,7 @@
                                     "userConfig": {
                                         "designer|displayName": "comments"
                                     },
-                                    "name": "document.comment.panel",
+                                    "name": "document.comment.panel1",
                                     "designerId": "0f13dc00-2fce-457b-b67e-e9ca809ddb5e",
                                     "masterInstanceId": "0203c17a-7c6e-4345-82da-ba8dd2a8dff2"
                                 },
@@ -374,9 +378,10 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|displayName": "motions"
+                                        "designer|displayName": "motions",
+                                        "itemId": null
                                     },
-                                    "name": "document.motions.tree",
+                                    "name": "document.motions.tree1",
                                     "designerId": "2eeacca2-a92c-45b2-a223-929269d20dbd",
                                     "masterInstanceId": "23c81566-c199-406f-8b0e-a0b49f286dd9"
                                 },
@@ -390,7 +395,7 @@
                                     "userConfig": {
                                         "designer|displayName": "files"
                                     },
-                                    "name": "document.file.panel1",
+                                    "name": "document.file.panel2",
                                     "designerId": "42827a7e-f66e-4467-8802-58a12e25162b",
                                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                                 }
@@ -441,7 +446,7 @@
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.inpanel",
+                            "name": "document.motions.inpanel1",
                             "designerId": "7a1fd724-1ec5-45fc-bb58-39815d4d9bac",
                             "masterInstanceId": "360c0d57-9834-48d9-9eb7-d6316da82b30",
                             "cn": [
@@ -500,7 +505,7 @@
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel1",
+                            "name": "document.motions.outpanel2",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }
@@ -545,6 +550,28 @@
             },
             "name": "onDestroy",
             "designerId": "c22d6f29-8e83-4d03-a542-42fd718f14a7"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "var doc = vm.get('document');",
+                    "doc.load();",
+                    "var commentsPanel = this.down('documentcommentpanel');",
+                    "var treePanel = this.down('documentmotionstree');",
+                    "commentsPanel.refresh();",
+                    "treePanel.refresh();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "2311bff7-7f7b-4e66-abc4-7ea54337a821"
         }
     ]
 }
