@@ -172,9 +172,8 @@ RSpec.describe Document::Base do
 
     # 3. Receiver replies
     #
-    cat = Document::ResponseType.where(category: Document::ResponseType::COMPLETE).first
     Document::User.where(document: doc, user: shalva).first.read!
-    motion1.add_comment(shalva, { category_id: cat.id, text: 'i agree' })
+    motion1.add_comment(shalva, { response_type: Document::ResponseType::RESP_COMPLETE, text: 'i agree' })
     # check motion
     motion1.reload
     expect(motion1.status).to eq(Document::Status::COMPLETED)
@@ -182,7 +181,8 @@ RSpec.describe Document::Base do
     expect(motion1.sent_at).not_to be_nil
     expect(motion1.received_at).not_to be_nil
     expect(motion1.completed_at).not_to be_nil
-    expect(motion1.response_type).to eq(cat)
+    expect(motion1.response_type).not_to be_nil
+    expect(motion1.response_type.positive?).to eq(true)
     expect(motion1.response_text).to eq('i agree')
     # check document users
     expect(Document::User.where(document: doc).count).to eq(3)
@@ -218,7 +218,7 @@ RSpec.describe Document::Base do
     # 4. Sender complete
     #
     doc.reload
-    doc.add_comment(dimitri, { category_id: cat.id, text: 'document is closed' })
+    doc.add_comment(dimitri, { response_type: Document::ResponseType::RESP_COMPLETE, text: 'document is closed' })
     expect(Document::User.where(document: doc).count).to eq(3)
     u1 = Document::User.where(document: doc, user: dimitri).first
     expect(u1.user).to eq(dimitri)

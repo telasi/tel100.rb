@@ -139,10 +139,13 @@ class Document::Motion < ActiveRecord::Base
     raise 'not your motion' if user != self.receiver_user
     new_status = self.status
     if self.status == CURRENT
-      type = Document::ResponseType.find(params[:category_id]) if params[:category_id].present?
-      if type and type.category == Document::ResponseType::COMPLETE
+      type = Document::ResponseType.find(params[:response_type_id]) if params[:response_type_id].present?
+      if type.blank? and params[:response_type].present?
+        type = Document::ResponseType.where(role: self.receiver_role, direction: params[:response_type]).order(:ordering).first
+      end
+      if type and type.positive?
         new_status = COMPLETED
-      elsif type and type.category == Document::ResponseType::CANCEL
+      elsif type and type.negative?
         new_status = CANCELED
       end
     end
