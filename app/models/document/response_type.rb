@@ -7,9 +7,14 @@ class Document::ResponseType < ActiveRecord::Base
   self.table_name  = 'DOCUMENT_RESPONSE_TYPES'
   self.sequence_name = 'DOCRESPTYPE_SEQ'
   self.localized_fields('name')
+  self.set_integer_columns :direction
 
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
+
+  def send?
+    self.direction == SEND
+  end
 
   def positive?
     self.direction == RESP_COMPLETE

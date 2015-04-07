@@ -6,7 +6,7 @@ RSpec.describe Document::Base do
     create_default_schema
   end
 
-  it 'should create empty draft with single receiver' do
+  it 'should create empty draft' do
     dimitri = Sys::User.find_by_username('dimitri')
     doc = Document::Base.create_draft!(dimitri)
     # testing document
@@ -85,6 +85,9 @@ RSpec.describe Document::Base do
     expect(motion.received_at).to be_nil
     expect(motion.completed_at).to be_nil
     expect(Document::User.where(document: doc).count).to eq(1)
+    expect(motion.send_type).not_to be_nil
+    expect(motion.send_type.role).to eq('assignee')
+    expect(motion.send_type.send?).to eq(true)
   end
 
   it 'can be manipulated' do
