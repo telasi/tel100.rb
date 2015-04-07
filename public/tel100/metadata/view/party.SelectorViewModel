@@ -6,6 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{hideParty: false,",
+            "hideHR: false,",
+            "hideCustomers: false}"
+        ],
         "designer|userAlias": "partyselector",
         "designer|userClassName": "party.SelectorViewModel"
     },

@@ -63,16 +63,34 @@ Ext.define('Tel100.view.party.Selector', {
           cls: 'panel-with-border',
           listeners: {
             celldblclick: 'onHRTreeDblClick'
+          },
+          tabConfig: {
+            xtype: 'tab',
+            bind: {
+              hidden: '{hideHR}'
+            }
           }
         },
         {
           xtype: 'hrpartygrid',
+          tabConfig: {
+            xtype: 'tab',
+            bind: {
+              hidden: '{hideParty}'
+            }
+          },
           listeners: {
             itemdblclick: 'onPartyGridpanelItemDblClick'
           }
         },
         {
           xtype: 'bscustomerpanel',
+          tabConfig: {
+            xtype: 'tab',
+            bind: {
+              hidden: '{hideCustomers}'
+            }
+          },
           listeners: {
             itemdblclick: 'onCustomerGridpanelItemDblClick'
           }
