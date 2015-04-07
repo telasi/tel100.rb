@@ -67,6 +67,16 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   scope: 'controller'
                 }
               }
+            },
+            {
+              xtype: 'button',
+              bind: {
+                hidden: '{hideSignButton}',
+                text: '{i18n.document.comment.actions.sign}'
+              },
+              listeners: {
+                click: 'onSignDocument'
+              }
             }
           ]
         }
@@ -152,7 +162,6 @@ Ext.define('Tel100.view.document.editor.Editor', {
           items: [
             {
               xtype: 'documentmotionsinpanel',
-              border: false,
               flex: 1,
               listeners: {
                 motionchanged: {
@@ -180,6 +189,13 @@ Ext.define('Tel100.view.document.editor.Editor', {
       fn: 'onDestroy',
       scope: 'controller'
     }
+  },
+
+  onSignDocument: function(button, e, eOpts) {
+    var dialog = Ext.create('Tel100.view.document.comment.Sign', {
+      modal: true
+    });
+    dialog.show();
   },
 
   onPanelCommentadded: function(panel) {

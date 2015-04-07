@@ -14,5 +14,41 @@
         "designer|userAlias": "documenteditoreditor",
         "designer|userClassName": "document.editor.EditorViewModel"
     },
-    "designerId": "478f1cf4-3904-4bc8-a97a-56853b2a53b0"
+    "designerId": "478f1cf4-3904-4bc8-a97a-56853b2a53b0",
+    "cn": [
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideSignButton"
+            },
+            "name": "MyFormula5",
+            "designerId": "baa85fb5-41a2-42d4-833b-6133cc968fe7",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return get('document.as_signee') !== 1;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "c1beb841-1788-4982-afff-cac457817dd6"
+                }
+            ]
+        }
+    ]
 }

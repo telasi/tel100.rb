@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentcommentsign",
+        "designer|userClassName": "document.comment.SignViewModel"
+    },
+    "designerId": "f5d95421-dbd0-4a91-9b44-7735dd249e9e"
+}

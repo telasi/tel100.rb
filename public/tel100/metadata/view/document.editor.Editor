@@ -74,7 +74,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "designer|displayName": "card",
+                                "designer|displayName": "printDocumentCard",
                                 "itemId": null,
                                 "layout|flex": null,
                                 "text": [
@@ -123,6 +123,53 @@
                                     },
                                     "name": "onCardPrintClick",
                                     "designerId": "5303428c-ce13-42de-b02d-a80c89db4597"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "signDocument",
+                                "hidden": [
+                                    "{hideSignButton}"
+                                ],
+                                "layout|flex": null,
+                                "text": [
+                                    "{i18n.document.comment.actions.sign}"
+                                ]
+                            },
+                            "name": "MyButton5",
+                            "configAlternates": {
+                                "text": "binding",
+                                "hidden": "binding"
+                            },
+                            "designerId": "cadbb552-9cc1-47d6-858e-dea9baf4f3c1",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onSignDocument",
+                                        "implHandler": [
+                                            "var dialog = Ext.create('Tel100.view.document.comment.Sign', {",
+                                            "  modal: true",
+                                            "});",
+                                            "dialog.show();"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onSignDocument",
+                                    "designerId": "f1c2ddc9-9afe-43a5-be42-761222bc6f39"
                                 }
                             ]
                         }
@@ -256,7 +303,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general",
+                                    "name": "document.editor.general1",
                                     "configAlternates": {
                                         "title": "binding",
                                         "readonly": "boolean"
@@ -342,7 +389,7 @@
                                     "userConfig": {
                                         "designer|displayName": "files"
                                     },
-                                    "name": "document.file.panel",
+                                    "name": "document.file.panel1",
                                     "designerId": "42827a7e-f66e-4467-8802-58a12e25162b",
                                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                                 }
@@ -390,7 +437,6 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "border": false,
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
@@ -453,7 +499,7 @@
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel",
+                            "name": "document.motions.outpanel1",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }

@@ -77,7 +77,8 @@ Ext.application({
     'document.relation.Panel',
     'document.Search',
     'document.motions.ResultPanel',
-    'document.comment.Panel'
+    'document.comment.Panel',
+    'document.comment.Sign'
   ],
   name: 'Tel100',
 

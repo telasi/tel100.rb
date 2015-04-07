@@ -14,7 +14,12 @@ module.exports = {
     saveResult: '<i class="fa fa-save"></i> შედეგის დამახსოვრება',
     comment: '<i class="fa fa-comment"></i> კომენტარი',
     confirm: '<i class="fa fa-check"></i> დადასტურება',
-    cancel: '<i class="fa fa-times"></i> გაუქმება'
+    cancel: '<i class="fa fa-times"></i> გაუქმება',
+    sign: '<i class="fa fa-edit"></i> ვიზირება',
+    sign_document: '<i class="fa fa-edit"></i> დოკუმენტის ვიზირება',
+    author: '<i class="fa fa-legal"></i> ხელმოწერა',
+    sign_ok: '<i class="fa fa-check"></i> ვავიზირებ',
+    sign_cancel: '<i class="fa fa-times"></i> არ ვავიზირებ',
   },
   errors: {
     text_required_title: 'ჩაწერეთ ტექსტი',

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentcommentsign",
+        "designer|userClassName": "document.comment.SignViewController"
+    },
+    "designerId": "9abc6758-c21a-4048-92fb-f4ef8d55450b"
+}

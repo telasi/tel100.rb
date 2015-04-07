@@ -1,0 +1,174 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|align": "stretch",
+        "container|padding": 5,
+        "designer|userAlias": "documentcommentsign",
+        "designer|userClassName": "document.comment.Sign",
+        "height": 250,
+        "layout": "vbox",
+        "title": [
+            "{i18n.document.comment.actions.sign_document}"
+        ],
+        "width": 400
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "87e2b664-354f-46bf-9e4a-b37aec351327",
+    "viewControllerInstanceId": "9abc6758-c21a-4048-92fb-f4ef8d55450b",
+    "viewModelInstanceId": "f5d95421-dbd0-4a91-9b44-7735dd249e9e",
+    "cn": [
+        {
+            "type": "Ext.button.Segmented",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout|flex": null
+            },
+            "name": "MySegmentedButton",
+            "designerId": "1b60da45-3328-4d6e-984c-eb238f8440b8",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "sign",
+                        "enableToggle": true,
+                        "pressed": true,
+                        "text": [
+                            "{i18n.document.comment.actions.sign_ok}"
+                        ]
+                    },
+                    "name": "MyButton6",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "20442df0-52cd-47d6-adb6-0bcd24d486c3"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "cancel",
+                        "text": [
+                            "{i18n.document.comment.actions.sign_cancel}"
+                        ]
+                    },
+                    "name": "MyButton8",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "3c27da98-6782-4d7e-93c8-6c21f3152417"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.field.TextArea",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "comment",
+                "fieldLabel": [
+                    "{i18n.document.comment.text}"
+                ],
+                "labelAlign": "top",
+                "layout|flex": 1
+            },
+            "name": "MyTextArea1",
+            "configAlternates": {
+                "fieldLabel": "binding"
+            },
+            "designerId": "1479dbe0-be24-4a1b-aa49-7f9245cafbd6"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dock": "bottom",
+                "layout|flex": 1
+            },
+            "name": "MyToolbar4",
+            "designerId": "1ba50bce-3af9-4117-892b-610b3e3d3917",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "save-button",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.save}"
+                        ]
+                    },
+                    "name": "MyButton14",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "3e279a07-eecf-4bd8-97cf-0969413f2ebf"
+                },
+                {
+                    "type": "Ext.toolbar.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 1
+                    },
+                    "name": "MySpacer1",
+                    "designerId": "ca4250bd-bfa1-499d-a34c-84a3e2696c45"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "cancel-button",
+                        "layout|flex": null,
+                        "text": [
+                            "{i18n.ui.cancel}"
+                        ]
+                    },
+                    "name": "MyButton15",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "f7e2abcf-e7ec-4744-a18a-0611108e7b0f"
+                }
+            ]
+        }
+    ]
+}
