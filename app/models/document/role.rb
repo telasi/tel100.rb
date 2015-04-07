@@ -1,12 +1,10 @@
 # -*- encoding : utf-8 -*-
 module Document::Role
-  # მფლობელი
+  # მფლობელი/ინიციატორი
   ROLE_OWNER    = 'owner'
-  # შემქმენლი/ინიციატორი
-  ROLE_CREATOR   = 'sender'
   # ავტორი
   ROLE_AUTHOR   = 'author'
-  # ხელმომწერი
+  # ვიზატორი
   ROLE_SIGNEE   = 'signee'
   # შემსრულებელი
   ROLE_ASSIGNEE = 'assignee'
