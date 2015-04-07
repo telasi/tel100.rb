@@ -33,7 +33,7 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
     this.getViewModel().getStore('standardfolders').reload();
   },
 
-  onStandardGridpanelSelect: function(rowmodel, record, index, eOpts) {
+  onStandardGridpanelSelect: function(dataview, record, item, index, e, eOpts) {
     this.refreshDocuments({folderType: 'standard', folderId: record.id});
     this.getView().down('#customFolders').getSelectionModel().deselectAll();
     this.getView().up().getViewModel().set('customfolderselection', null);
