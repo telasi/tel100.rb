@@ -220,22 +220,23 @@
                                     "designerId": "e747fa6b-95e2-441f-a719-9a809c33a0ae",
                                     "cn": [
                                         {
-                                            "type": "basiceventbinding",
+                                            "type": "viewcontrollereventbinding",
                                             "reference": {
                                                 "name": "listeners",
                                                 "type": "array"
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "fn": "onRefreshFoldersButtonClick",
+                                                "fn": "onRefreshFolderButtonClick",
                                                 "implHandler": [
-                                                    "this.getViewModel().getStore('standardfolders').reload();"
+                                                    "this.foldersRefresh();",
+                                                    "this.getView().fireEvent('foldersrefresh');"
                                                 ],
                                                 "name": "click",
                                                 "scope": "me"
                                             },
-                                            "name": "onRefreshFoldersButtonClick",
-                                            "designerId": "d2151ea8-ba0c-4043-bff9-fbe0147c3e5d"
+                                            "name": "onRefreshFolderButtonClick",
+                                            "designerId": "487cd754-60e4-46f3-9bcd-4a13063076d9"
                                         }
                                     ]
                                 },
@@ -623,6 +624,27 @@
             },
             "name": "onTabpanelAfterRender",
             "designerId": "d2176402-a966-40d6-8eb1-acd21eb729e6"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "tabpanel"
+                ],
+                "fn": "onDocumentGridRefresh",
+                "implHandler": [
+                    "this.foldersRefresh();"
+                ],
+                "name": "documentgridrefresh",
+                "scope": "me"
+            },
+            "name": "onDocumentGridRefresh",
+            "designerId": "123f9322-ac73-4eb0-8384-dcd1b36cd3a9"
         }
     ]
 }

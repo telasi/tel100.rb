@@ -104,7 +104,10 @@ Ext.define('Tel100.view.document.folder.Tab', {
                   xtype: 'button',
                   text: '<i class="fa fa-refresh"></i>',
                   listeners: {
-                    click: 'onRefreshFoldersButtonClick'
+                    click: {
+                      fn: 'onRefreshFolderButtonClick',
+                      scope: 'controller'
+                    }
                   }
                 },
                 {
@@ -199,11 +202,11 @@ Ext.define('Tel100.view.document.folder.Tab', {
     }
   ],
   listeners: {
-    afterrender: 'onTabpanelAfterRender'
-  },
-
-  onRefreshFoldersButtonClick: function(button, e, eOpts) {
-    this.getViewModel().getStore('standardfolders').reload();
+    afterrender: 'onTabpanelAfterRender',
+    documentgridrefresh: {
+      fn: 'onDocumentGridRefresh',
+      scope: 'controller'
+    }
   },
 
   onSetupFoldersButtonClick: function(button, e, eOpts) {

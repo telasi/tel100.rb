@@ -58,6 +58,27 @@
                     },
                     "name": "onTabpanelFolderChosen",
                     "designerId": "293af611-3a75-4ae2-8029-d402f78d2b37"
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "tabpanel"
+                        ],
+                        "fn": "onFoldersRefresh",
+                        "implHandler": [
+                            "this.onRefresh();"
+                        ],
+                        "name": "foldersrefresh",
+                        "scope": "me"
+                    },
+                    "name": "onFoldersRefresh",
+                    "designerId": "ee910133-4bd7-43c6-96e0-adc841f6f7c6"
                 }
             ]
         },
@@ -246,7 +267,8 @@
             "userConfig": {
                 "fn": "onRefresh",
                 "implHandler": [
-                    "this.getController().onRefresh();"
+                    "this.getController().onRefresh();",
+                    "this.down('documentfoldertab').fireEvent('documentgridrefresh');"
                 ]
             },
             "name": "onRefresh",
