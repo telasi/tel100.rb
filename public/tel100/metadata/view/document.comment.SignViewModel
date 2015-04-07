@@ -6,8 +6,84 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "{",
+            "  response_type: helpers.api.document.responseType.complete,",
+            "  text: ''",
+            "}"
+        ],
         "designer|userAlias": "documentcommentsign",
         "designer|userClassName": "document.comment.SignViewModel"
     },
-    "designerId": "f5d95421-dbd0-4a91-9b44-7735dd249e9e"
+    "designerId": "f5d95421-dbd0-4a91-9b44-7735dd249e9e",
+    "cn": [
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "completePressed"
+            },
+            "name": "MyFormula6",
+            "designerId": "cd7ea958-96d5-4f12-97f5-2f555dc15fd0",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return get('response_type') == helpers.api.document.responseType.complete;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "a2d888a1-a1b1-413a-b1a7-ac77b2f629d8"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "cancelPressed"
+            },
+            "name": "MyFormula7",
+            "designerId": "6c22ce20-a003-4be4-9865-72af22752b2c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return get('response_type') == helpers.api.document.responseType.cancel;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "aaedddf2-a9fe-4d1c-bd9d-675c5119d444"
+                }
+            ]
+        }
+    ]
 }

@@ -15,6 +15,24 @@
 
 Ext.define('Tel100.view.document.comment.SignViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documentcommentsign'
+  alias: 'viewmodel.documentcommentsign',
+
+  requires: [
+    'Ext.app.bind.Formula'
+  ],
+
+  data: {
+    response_type: helpers.api.document.responseType.complete,
+    text: ''
+  },
+
+  formulas: {
+    completePressed: function(get) {
+      return get('response_type') == helpers.api.document.responseType.complete;
+    },
+    cancelPressed: function(get) {
+      return get('response_type') == helpers.api.document.responseType.cancel;
+    }
+  }
 
 });

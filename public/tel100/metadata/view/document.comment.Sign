@@ -48,14 +48,18 @@
                     "userConfig": {
                         "designer|displayName": "sign",
                         "enableToggle": true,
-                        "pressed": true,
+                        "itemId": "sign",
+                        "pressed": [
+                            "{completePressed}"
+                        ],
                         "text": [
                             "{i18n.document.comment.actions.sign_ok}"
                         ]
                     },
                     "name": "MyButton6",
                     "configAlternates": {
-                        "text": "binding"
+                        "text": "binding",
+                        "pressed": "binding"
                     },
                     "designerId": "20442df0-52cd-47d6-adb6-0bcd24d486c3"
                 },
@@ -68,13 +72,18 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "cancel",
+                        "enableToggle": true,
+                        "pressed": [
+                            "{cancelPressed}"
+                        ],
                         "text": [
                             "{i18n.document.comment.actions.sign_cancel}"
                         ]
                     },
                     "name": "MyButton8",
                     "configAlternates": {
-                        "text": "binding"
+                        "text": "binding",
+                        "pressed": "binding"
                     },
                     "designerId": "3c27da98-6782-4d7e-93c8-6c21f3152417"
                 }
@@ -92,12 +101,17 @@
                 "fieldLabel": [
                     "{i18n.document.comment.text}"
                 ],
+                "itemId": "comment",
                 "labelAlign": "top",
-                "layout|flex": 1
+                "layout|flex": 1,
+                "value": [
+                    "{text}"
+                ]
             },
             "name": "MyTextArea1",
             "configAlternates": {
-                "fieldLabel": "binding"
+                "fieldLabel": "binding",
+                "value": "binding"
             },
             "designerId": "1479dbe0-be24-4a1b-aa49-7f9245cafbd6"
         },

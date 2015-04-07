@@ -45,14 +45,17 @@ Ext.define('Tel100.view.document.comment.Sign', {
       xtype: 'segmentedbutton',
       items: [
         {
+          itemId: 'sign',
           enableToggle: true,
-          pressed: true,
           bind: {
+            pressed: '{completePressed}',
             text: '{i18n.document.comment.actions.sign_ok}'
           }
         },
         {
+          enableToggle: true,
           bind: {
+            pressed: '{cancelPressed}',
             text: '{i18n.document.comment.actions.sign_cancel}'
           }
         }
@@ -61,9 +64,11 @@ Ext.define('Tel100.view.document.comment.Sign', {
     {
       xtype: 'textareafield',
       flex: 1,
+      itemId: 'comment',
       labelAlign: 'top',
       bind: {
-        fieldLabel: '{i18n.document.comment.text}'
+        fieldLabel: '{i18n.document.comment.text}',
+        value: '{text}'
       }
     }
   ],
