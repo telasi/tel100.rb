@@ -43,14 +43,17 @@ Ext.define('Tel100.view.document.folder.Tab', {
   items: [
     {
       xtype: 'panel',
-      layout: 'border',
+      layout: {
+        type: 'vbox',
+        align: 'stretch'
+      },
       bind: {
         title: '{i18n.document.folder.ui.folders}'
       },
       items: [
         {
           xtype: 'gridpanel',
-          region: 'north',
+          border: false,
           itemId: 'standardFolders',
           enableColumnHide: false,
           enableColumnMove: false,
@@ -128,14 +131,19 @@ Ext.define('Tel100.view.document.folder.Tab', {
         },
         {
           xtype: 'gridpanel',
-          region: 'north',
+          flex: 1,
+          border: false,
           itemId: 'customFolders',
           header: false,
+          title: 'TEST',
           store: 'CustomFolders',
           columns: [
             {
               xtype: 'gridcolumn',
+              enableColumnHide: false,
+              sortable: false,
               dataIndex: 'name',
+              hideable: false,
               tdCls: 'foldercls',
               flex: 1,
               bind: {
@@ -160,7 +168,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
         },
         {
           xtype: 'gridpanel',
-          region: 'south',
+          border: false,
           collapsible: true,
           title: 'Substitude',
           hideHeaders: true,
