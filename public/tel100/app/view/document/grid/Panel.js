@@ -34,6 +34,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
   enableColumnHide: false,
   enableColumnMove: false,
   sortableColumns: false,
+  defaultListenerScope: true,
 
   bind: {
     store: '{documents}'
@@ -144,8 +145,26 @@ Ext.define('Tel100.view.document.grid.Panel', {
     }
   ],
   listeners: {
-    beforeitemcontextmenu: 'onGridpanelBeforeItemContextMenu',
-    afterrender: 'onGridpanelAfterRender'
+    beforeitemcontextmenu: {
+      fn: 'onGridpanelBeforeItemContextMenu',
+      scope: 'controller'
+    },
+    afterrender: {
+      fn: 'onGridpanelAfterRender',
+      scope: 'controller'
+    },
+    celldblclick: 'onGridpanelCellDblClick'
+  },
+
+  onGridpanelCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    var actionIndex = 1; // index of sign column
+    if (cellIndex === actionIndex && record.get('as_signee') === 1) {
+      this.fireEvent('documentsign', record);
+    } else if (cellIndex === actionIndex && record.get('as_author') === 1) {
+      this.fireEvent('documentauthor', record);
+    } else {
+      this.fireEvent('documentopen', record);
+    }
   },
 
   refresh: function(opts) {

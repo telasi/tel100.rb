@@ -34,7 +34,7 @@
                 "titleCollapse": null,
                 "width": 250
             },
-            "name": "document.folder.tab5",
+            "name": "document.folder.tab",
             "designerId": "4b3cd9d6-b437-4268-8d05-67138c82a2ff",
             "masterInstanceId": "c09758ae-9832-4db7-9ae8-b1c0009112a7",
             "cn": [
@@ -180,7 +180,7 @@
                                     "{selection}"
                                 ]
                             },
-                            "name": "document.grid.panel2",
+                            "name": "document.grid.panel",
                             "configAlternates": {
                                 "selection": "binding"
                             },
@@ -195,22 +195,25 @@
                             "masterInstanceId": "c39280dd-4a3b-4f87-8455-6779b7ed7103",
                             "cn": [
                                 {
-                                    "type": "viewcontrollereventbinding",
+                                    "type": "basiceventbinding",
                                     "reference": {
                                         "name": "listeners",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "fn": "onGridDoubleClick",
-                                        "implHandler": [
-                                            "this.openDocument(record);"
+                                        "designer|params": [
+                                            "doc"
                                         ],
-                                        "name": "itemdblclick",
+                                        "fn": "onGridpanelDocumentopen",
+                                        "implHandler": [
+                                            "this.getController().openDocument(doc);"
+                                        ],
+                                        "name": "documentopen",
                                         "scope": "me"
                                     },
-                                    "name": "onGridDoubleClick",
-                                    "designerId": "f74a2f53-d3bf-4102-813c-8cb6b9d14367"
+                                    "name": "onGridpanelDocumentopen",
+                                    "designerId": "fcb0ddeb-3d3c-42cc-8f57-f08fd6812c4a"
                                 }
                             ]
                         }

@@ -399,6 +399,31 @@
             },
             "name": "onGridpanelAfterRender",
             "designerId": "e5d060ef-2898-4175-bb17-7530f0b828b7"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelCellDblClick",
+                "implHandler": [
+                    "var actionIndex = 1; // index of sign column",
+                    "if (cellIndex === actionIndex && record.get('as_signee') === 1) {",
+                    "  this.fireEvent('documentsign', record);",
+                    "} else if (cellIndex === actionIndex && record.get('as_author') === 1) {",
+                    "  this.fireEvent('documentauthor', record);",
+                    "} else {",
+                    "  this.fireEvent('documentopen', record);",
+                    "}"
+                ],
+                "name": "celldblclick",
+                "scope": "me"
+            },
+            "name": "onGridpanelCellDblClick",
+            "designerId": "ee66465d-a936-42c4-ba40-93f33f679540"
         }
     ]
 }

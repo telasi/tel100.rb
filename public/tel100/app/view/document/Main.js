@@ -103,10 +103,7 @@ Ext.define('Tel100.view.document.Main', {
                 selection: '{selection}'
               },
               listeners: {
-                itemdblclick: {
-                  fn: 'onGridDoubleClick',
-                  scope: 'controller'
-                }
+                documentopen: 'onGridpanelDocumentopen'
               }
             }
           ]
@@ -116,6 +113,10 @@ Ext.define('Tel100.view.document.Main', {
   ],
   listeners: {
     beforerender: 'onPanelBeforeRender'
+  },
+
+  onGridpanelDocumentopen: function(doc) {
+    this.getController().openDocument(doc);
   },
 
   onPanelBeforeRender: function(component, eOpts) {
