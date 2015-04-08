@@ -38,6 +38,10 @@ module.exports = {
     ka: 'ნამდვილად გინდათ წაშლა?',
     ru: 'Вы действительно хотите удалить?',
   },
+  print: {
+      ka: '<i class="fa fa-print"></i> ბეჭდვა',
+      ru: '<i class="fa fa-print"></i> Печать'
+  },
   properties: {
     ka: '<i class="fa fa-list-ul"></i> თვისებები',
     ru: '<i class="fa fa-list-ul"></i> Свойства'
@@ -57,5 +61,5 @@ module.exports = {
   displayMsg : {
     ka: 'ნაჩვენებია {0}-დან {1}-მდე. სულ {2}',
     ru: 'Показано с {0} по {1} стр. Всего {2}'
-  },
+  }
 };

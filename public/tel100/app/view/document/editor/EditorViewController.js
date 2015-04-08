@@ -20,24 +20,15 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
   onCardPrintClick: function(button, e, eOpts) {
     var vm = this.getViewModel();
     var document = vm.get('document');
-    var pdfwin = Ext.create('Ext.Window',{
-      title: i18n.document.base.ui.card,
-      width: '50%',
-      height: '80%',
-      layout:'anchor',
-      anchor:"100% 100%",
-      maximizable: true,
-      modal: true,
-      items: {
-        xtype: 'component',
-        autoEl: {
-          style: 'height: 100%; width: 100%; border: none',
-          html: '<iframe src="' + '/api/documents/print/card/' + document.id + '" height="100%", width="100%" />'
-        }
-      }
-    });
+    var url = '/api/documents/print/card/' + document.id;
+    helpers.api.document.print.showPDFwindow(url);
+  },
 
-    pdfwin.show();
+  onDocumentPrintClick: function(button, e, eOpts) {
+    var vm = this.getViewModel();
+    var document = vm.get('document');
+    var url = '/api/documents/print/document/' + document.id;
+    helpers.api.document.print.showPDFwindow(url);
   },
 
   onInMotionChanged: function(motion) {

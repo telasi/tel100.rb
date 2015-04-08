@@ -99,30 +99,58 @@
                                         "implHandler": [
                                             "var vm = this.getViewModel();",
                                             "var document = vm.get('document');",
-                                            "var pdfwin = Ext.create('Ext.Window',{",
-                                            "                title: i18n.document.base.ui.card,",
-                                            "                width: '50%',",
-                                            "                height: '80%',",
-                                            "                layout:'anchor',",
-                                            "                anchor:\"100% 100%\",",
-                                            "                maximizable: true,",
-                                            "                modal: true,",
-                                            "                items: {",
-                                            "                    xtype: 'component',",
-                                            "                    autoEl: {",
-                                            "                        style: 'height: 100%; width: 100%; border: none',",
-                                            "                        html: '<iframe src=\"' + '/api/documents/print/card/' + document.id + '\" height=\"100%\", width=\"100%\" />'",
-                                            "                    }",
-                                            "                }",
-                                            "            });",
-                                            "",
-                                            "     pdfwin.show();"
+                                            "var url = '/api/documents/print/card/' + document.id;",
+                                            "helpers.api.document.print.showPDFwindow(url);"
                                         ],
                                         "name": "click",
                                         "scope": "me"
                                     },
                                     "name": "onCardPrintClick",
                                     "designerId": "5303428c-ce13-42de-b02d-a80c89db4597"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "printDocument",
+                                "itemId": null,
+                                "layout|flex": null,
+                                "text": [
+                                    "{i18n.ui.print}"
+                                ]
+                            },
+                            "name": "MyButton6",
+                            "configAlternates": {
+                                "text": "binding"
+                            },
+                            "designerId": "cf239726-4c99-43a0-a5d1-5f2ef17d47fc",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onDocumentPrintClick",
+                                        "implHandler": [
+                                            "var vm = this.getViewModel();",
+                                            "    var document = vm.get('document');",
+                                            "    var url = '/api/documents/print/document/' + document.id;",
+                                            "    helpers.api.document.print.showPDFwindow(url);"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onDocumentPrintClick",
+                                    "designerId": "7ce76d35-8a4c-4cf0-b8d8-cbb01b9dfa47"
                                 }
                             ]
                         },

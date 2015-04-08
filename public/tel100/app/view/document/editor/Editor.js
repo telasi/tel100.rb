@@ -71,6 +71,18 @@ Ext.define('Tel100.view.document.editor.Editor', {
             {
               xtype: 'button',
               bind: {
+                text: '{i18n.ui.print}'
+              },
+              listeners: {
+                click: {
+                  fn: 'onDocumentPrintClick',
+                  scope: 'controller'
+                }
+              }
+            },
+            {
+              xtype: 'button',
+              bind: {
                 hidden: '{hideSignButton}',
                 text: '{i18n.document.comment.actions.sign}'
               },

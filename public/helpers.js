@@ -193,7 +193,29 @@ var print = {
     opts.method = 'GET';
     opts.url = '/api/documents/print/card/' + id;
     ajax.request(opts);
+  },
+
+  showPDFwindow: function(url) {
+    var pdfwin = Ext.create('Ext.Window',{
+        title: i18n.document.base.ui.card,
+        width: '50%',
+        height: '80%',
+        layout:'anchor',
+        anchor:"100% 100%",
+        maximizable: true,
+        modal: true,
+        items: {
+          xtype: 'component',
+          autoEl: {
+            style: 'height: 100%; width: 100%; border: none',
+            html: '<iframe src="' + url + '" height="100%", width="100%" />'
+          }
+        }
+      });
+
+    pdfwin.show();
   }
+
 };
 
 module.exports = {
