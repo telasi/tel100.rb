@@ -198,6 +198,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     var dialog = Ext.create('Tel100.view.document.comment.Sign', { modal: true });
     dialog.getViewModel().set('document', doc);
     dialog.on('signed', function() {
+      debugger;
       view.refresh();
     });
     dialog.show();
@@ -217,13 +218,17 @@ Ext.define('Tel100.view.document.editor.Editor', {
   },
 
   refresh: function() {
-    var vm = this.getViewModel();
+    var view = this;
+    var vm = view.getViewModel();
     var doc = vm.get('document');
-    doc.load();
-    var commentsPanel = this.down('documentcommentpanel');
-    var treePanel = this.down('documentmotionstree');
-    commentsPanel.refresh();
-    treePanel.refresh();
+    doc.load({
+      callback: function() {
+        var commentsPanel = view.down('documentcommentpanel');
+        var treePanel = view.down('documentmotionstree');
+        commentsPanel.refresh();
+        treePanel.refresh();
+      }
+    });
   }
 
 });
