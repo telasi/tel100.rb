@@ -54,24 +54,25 @@ class Folder::Standard
    end
 
    def self.docs(folderType, show_completed = 0, user)
+    docs = Document::User.mydocs(user)
    	case folderType.to_i
    		when DRAFT
-   		 	Document::User.joins("JOIN document_base on document_base.id = document_user.document_id AND
+   		 	docs.joins("JOIN document_base on document_base.id = document_user.document_id AND
                               document_base.status = 0 AND user_id = #{user.id}")
       when INBOX
-        Document::User.where('document_user.is_received = 1 AND document_user.is_completed = ? AND user_id = ?', show_completed, user.id)
+        docs.where('document_user.is_received = 1 AND document_user.is_completed = ? AND user_id = ?', show_completed, user.id)
    		when INBOX_NONREAD
-   			Document::User.where('document_user.is_received = 1 AND document_user.is_completed = ? AND is_new = ? AND user_id = ?', show_completed, 1, user.id)
+   			docs.where('document_user.is_received = 1 AND document_user.is_completed = ? AND is_new = ? AND user_id = ?', show_completed, 1, user.id)
    		when INBOX_READ
-   			Document::User.where('document_user.is_received = 1 AND document_user.is_completed = ? AND is_new = ? AND user_id = ?', show_completed, 0, user.id)
+   			docs.where('document_user.is_received = 1 AND document_user.is_completed = ? AND is_new = ? AND user_id = ?', show_completed, 0, user.id)
    		when INBOX_RESENT
-        Document::User.where('is_forwarded = ? AND is_completed = ? AND user_id = ?', 1, show_completed, user.id)
+        docs.where('is_forwarded = ? AND is_completed = ? AND user_id = ?', 1, show_completed, user.id)
    		when SENT
-   			Document::User.where("is_sent = 1 AND is_completed = ? AND document_user.user_id = ?", show_completed, user.id)
+   			docs.where("is_sent = 1 AND is_completed = ? AND document_user.user_id = ?", show_completed, user.id)
       when COMPLETED
-        Document::User.where('document_user.is_completed = 1 AND user_id = ?', user.id)
+        docs.where('document_user.is_completed = 1 AND user_id = ?', user.id)
       when CANCELED
-        Document::User.where('document_user.is_canceled = 1 AND user_id = ?', user.id)
+        docs.where('document_user.is_canceled = 1 AND user_id = ?', user.id)
     end
    end
 end
