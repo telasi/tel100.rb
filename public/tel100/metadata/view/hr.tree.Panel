@@ -198,20 +198,6 @@
             "designerId": "9d49711d-4151-43e8-ab28-d48377529fb0",
             "cn": [
                 {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "layout|flex": null,
-                        "text": "<i class=\"fa fa-backward\"></i>"
-                    },
-                    "name": "MyButton6",
-                    "designerId": "ae79d3ad-509f-4520-bc8c-457ad0a7758d"
-                },
-                {
                     "type": "Ext.form.field.Text",
                     "reference": {
                         "name": "items",
@@ -226,7 +212,29 @@
                         "layout|flex": null
                     },
                     "name": "MyTextField21",
-                    "designerId": "26977849-4cca-42a4-afc1-57635eca9b99"
+                    "designerId": "26977849-4cca-42a4-afc1-57635eca9b99",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSearchFieldChange",
+                                "implHandler": [
+                                    "   this.counter = 0;",
+                                    "   this.oldcounter = 0;",
+                                    "   this.getView().down('#nextbutton').setDisabled(true);"
+                                ],
+                                "name": "change",
+                                "scope": "me"
+                            },
+                            "name": "onSearchFieldChange",
+                            "designerId": "1c348ca2-fbeb-4564-afb4-89a8354fbdb2"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.button.Button",
@@ -252,22 +260,16 @@
                             "userConfig": {
                                 "fn": "onSearchButtonClick",
                                 "implHandler": [
-                                    "var view = this.getView();",
-                                    "view.collapseAll();",
-                                    "var searchValue = view.down('textfield').getValue();",
-                                    "var rn = view.getRootNode();",
+                                    "  var view = this.getView(),",
+                                    "      searchValue = view.down('textfield').getValue(),",
+                                    "      rn = view.getRootNode();",
                                     "",
-                                    "var found = rn.findChildBy(function(child){",
-                                    "  var text = child.get('full_name');",
-                                    "  if(text){",
-                                    "    return (text.indexOf(searchValue) != -1);",
-                                    "  }",
-                                    "}, this, true);",
+                                    "  this.counter = 0;",
+                                    "  this.oldcounter = 0;",
                                     "",
-                                    "if(found){",
-                                    "  view.expandPath(found.getPath());",
-                                    "  view.getSelectionModel().select(found);",
-                                    "}"
+                                    "  this.searchAndExpand(view, rn, searchValue);",
+                                    "",
+                                    "  this.getView().down('#nextbutton').setDisabled(false);"
                                 ],
                                 "name": "click",
                                 "scope": "me"
@@ -285,11 +287,40 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "disabled": true,
+                        "itemId": "nextbutton",
                         "layout|flex": null,
                         "text": "<i class=\"fa fa-forward\"></i>"
                     },
                     "name": "MyButton10",
-                    "designerId": "a15d1bd6-5008-4a5c-ae40-45e0f349315f"
+                    "designerId": "a15d1bd6-5008-4a5c-ae40-45e0f349315f",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onNextSearchButtonClick",
+                                "implHandler": [
+                                    "    var view = this.getView(),",
+                                    "        rn = view.getRootNode(),",
+                                    "        searchValue = view.down('textfield').getValue();",
+                                    "",
+                                    "    this.counter = 0;",
+                                    "    this.oldcounter++;",
+                                    "",
+                                    "    this.searchAndExpand(view, rn, searchValue, 1);"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onNextSearchButtonClick",
+                            "designerId": "4b94f847-aae6-4c74-bf93-7c5cd0ef354c"
+                        }
+                    ]
                 }
             ]
         }
