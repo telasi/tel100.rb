@@ -167,7 +167,8 @@ class Document::User < ActiveRecord::Base
   protected
 
   def update_document_motions
-    ### XXX: do we need this?
-    motions.each { |motion| motion.update_attributes!(is_new: self.is_new) }
+    if self.is_new_changed?
+      motions.each { |motion| motion.update_attributes!(is_new: self.is_new) }
+    end
   end
 end
