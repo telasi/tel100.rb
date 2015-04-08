@@ -17,6 +17,27 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.hrtreepanel',
 
+  searchAndExpand: function(view, rn, searchString, direction) {
+    var found = rn.findChildBy(function(child){
+
+      this.counter++;
+      if(this.counter <= this.oldcounter){return false;}
+
+      var text = child.get('full_name');
+      if(text){
+        return (text.indexOf(searchString) != -1);
+      }
+    }, this, true);
+
+    if(found){
+      this.oldcounter = this.counter;
+
+      view.collapseAll();
+      view.expandPath(found.getPath());
+      view.getSelectionModel().select(found);
+    }
+  },
+
   onTreepanelBeforeLoad: function(store, operation, eOpts) {
     this.getView().setLoading(true);
   },
@@ -29,23 +50,34 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
     this.getView().refresh();
   },
 
+  onSearchFieldChange: function(field, newValue, oldValue, eOpts) {
+    this.counter = 0;
+    this.oldcounter = 0;
+    this.getView().down('#nextbutton').setDisabled(true);
+  },
+
   onSearchButtonClick: function(button, e, eOpts) {
-    var view = this.getView();
-    view.collapseAll();
-    var searchValue = view.down('textfield').getValue();
-    var rn = view.getRootNode();
+    var view = this.getView(),
+      searchValue = view.down('textfield').getValue(),
+      rn = view.getRootNode();
 
-    var found = rn.findChildBy(function(child){
-      var text = child.get('full_name');
-      if(text){
-        return (text.indexOf(searchValue) != -1);
-      }
-    }, this, true);
+    this.counter = 0;
+    this.oldcounter = 0;
 
-    if(found){
-      view.expandPath(found.getPath());
-      view.getSelectionModel().select(found);
-    }
+    this.searchAndExpand(view, rn, searchValue);
+
+    this.getView().down('#nextbutton').setDisabled(false);
+  },
+
+  onNextSearchButtonClick: function(button, e, eOpts) {
+    var view = this.getView(),
+      rn = view.getRootNode(),
+      searchValue = view.down('textfield').getValue();
+
+    this.counter = 0;
+    this.oldcounter++;
+
+    this.searchAndExpand(view, rn, searchValue, 1);
   }
 
 });
