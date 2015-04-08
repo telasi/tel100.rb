@@ -66,6 +66,7 @@ module.exports = {
   my_status: 'ჩემი სტატუსი',
   in_fields: 'შემოსული წერილის პარამეტრები',
   sender_name: 'ინიციატორი',
+  actions: 'მოქმედება',
   statuses: {
     draft: 'დრაფტი',
     to_be_sent: 'გასაგზავნი',

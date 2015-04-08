@@ -111,6 +111,58 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "actions",
+                "lockable": true,
+                "locked": true,
+                "text": [
+                    "{i18n.document.base.actions}"
+                ]
+            },
+            "name": "MyColumn19",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "c4f11f25-40f0-4ae9-b70a-be7b9ba9f79c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "if (record.get('as_signee') === 1) {",
+                            "  return '<strong class=\"text-danger\">' + i18n.document.comment.actions.sign +'</strong>';",
+                            "} else if (record.get('as_author') === 1) {",
+                            "  return '<strong class=\"text-danger\">' + i18n.document.comment.actions.author +'</strong>';",
+                            "}"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "d5c53495-c6c5-4e23-9fb6-ed38519581da"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "dataIndex": "statusName",
                 "designer|displayName": "status",
                 "text": [

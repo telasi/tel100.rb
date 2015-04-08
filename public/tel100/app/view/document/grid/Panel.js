@@ -67,6 +67,21 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        if (record.get('as_signee') === 1) {
+          return '<strong class="text-danger">' + i18n.document.comment.actions.sign +'</strong>';
+        } else if (record.get('as_author') === 1) {
+          return '<strong class="text-danger">' + i18n.document.comment.actions.author +'</strong>';
+        }
+      },
+      lockable: true,
+      locked: true,
+      bind: {
+        text: '{i18n.document.base.actions}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
       width: 130,
       dataIndex: 'statusName',
       bind: {
