@@ -52,13 +52,15 @@ RSpec.describe Document::Base do
     doc = Document::Base.create_draft!(dimitri)
     doc.update_draft!(dimitri, {
       subject: 'test subject',
-      docdate: Date.today
+      docdate: Date.today,
+      body: 'some body'
     })
     doc.reload
     expect(doc.status).to eq(Document::Status::DRAFT)
     expect(doc.subject).to eq('test subject')
     expect(doc.docdate).to eq(Date.today)
     expect(doc.docyear).to eq(Date.today.year)
+    expect(doc.body).to eq('some body')
   end
 
   it 'can add receivers' do
