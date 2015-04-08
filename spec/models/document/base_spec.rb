@@ -270,16 +270,17 @@ RSpec.describe Document::Base do
       document_id: doc.id,
       receiver_type: 'HR::Employee',
       receiver_id: shalva.employee.id,
-      receiver_role: 'signee'
+      receiver_role: Document::Role::ROLE_SIGNEE
     })
     motion2 = Document::Motion.create_draft!(dimitri, {
       document_id: doc.id,
       receiver_type: 'HR::Employee',
       receiver_id: nino.employee.id,
-      receiver_role: 'signee'
+      receiver_role: Document::Role::ROLE_SIGNEE
     })
     expect(motion1.ordering).to eq(1)
     expect(motion2.ordering).to eq(2)
+    # sending to the first assignee
     doc.reload ; doc.send_draft!(dimitri)
     motion1.reload ; motion2.reload
     expect(motion1.new?).to eq(true)
@@ -314,5 +315,40 @@ RSpec.describe Document::Base do
     expect(u2.as_assignee).to eq(Document::User::DOC_NONE)
     expect(u2.as_signee).to eq(Document::User::DOC_NONE)
     expect(u2.as_author).to eq(Document::User::DOC_NONE)
+    # complete for the first receiver
+    motion1.add_comment(shalva, {
+      response_type: Document::ResponseType::RESP_COMPLETE,
+      text: 'completing the motion'
+    })
+    u1.read! ; motion1.reload ; motion2.reload ; u1.reload ; u2.reload
+    expect(motion1.status).to eq(Document::User::COMPLETED)
+    expect(motion2.status).to eq(Document::User::CURRENT)
+    expect(u1.new?).to eq(false)
+    expect(u1.changed?).to eq(false)
+    expect(u1.shown?).to eq(true)
+    expect(u1.forwarded?).to eq(false)
+    expect(u1.sent?).to eq(false)
+    expect(u1.received?).to eq(true)
+    expect(u1.current?).to eq(false)
+    expect(u1.completed?).to eq(true)
+    expect(u1.canceled?).to eq(false)
+    expect(u1.as_owner).to eq(Document::User::DOC_NONE)
+    expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
+    expect(u1.as_signee).to eq(Document::User::DOC_COMPLETE)
+    expect(u1.as_author).to eq(Document::User::DOC_NONE)
+    expect(u2.user).to eq(nino)
+    # expect(u2.new?).to eq(true)
+    # expect(u2.changed?).to eq(true)
+    expect(u2.shown?).to eq(true)
+    # expect(u2.forwarded?).to eq(false)
+    # expect(u2.sent?).to eq(false)
+    # expect(u2.received?).to eq(true)
+    # expect(u2.current?).to eq(true)
+    # expect(u2.completed?).to eq(false)
+    # expect(u2.canceled?).to eq(false)
+    # expect(u2.as_owner).to eq(Document::User::DOC_NONE)
+    # expect(u2.as_assignee).to eq(Document::User::DOC_NONE)
+    # expect(u2.as_signee).to eq(Document::User::DOC_COMPLETE)
+    # expect(u2.as_author).to eq(Document::User::DOC_NONE)
   end
 end

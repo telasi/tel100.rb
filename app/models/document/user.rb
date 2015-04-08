@@ -120,8 +120,8 @@ class Document::User < ActiveRecord::Base
     signee_rel = rel.where(receiver_role: ROLE_SIGNEE)
     if signee_rel.any?
       current_cnt = signee_rel.where(status: CURRENT).count
-      completed_cnt = assignee_rel.where(status: COMPLETED).count
-      canceled_cnt = assignee_rel.where(status: CANCELED).count
+      completed_cnt = signee_rel.where(status: COMPLETED).count
+      canceled_cnt = signee_rel.where(status: CANCELED).count
       if current_cnt > 0
         self.as_signee = DOC_CURRENT
       elsif completed_cnt + canceled_cnt > 0
@@ -138,9 +138,9 @@ class Document::User < ActiveRecord::Base
     # 6. author calculation
     author_rel = rel.where(receiver_role: ROLE_AUTHOR)
     if author_rel.any?
-      current_cnt = signee_rel.where(status: CURRENT).count
-      completed_cnt = assignee_rel.where(status: COMPLETED).count
-      canceled_cnt = assignee_rel.where(status: CANCELED).count
+      current_cnt = author_rel.where(status: CURRENT).count
+      completed_cnt = author_rel.where(status: COMPLETED).count
+      canceled_cnt = author_rel.where(status: CANCELED).count
       if current_cnt > 0
         self.as_author = DOC_CURRENT
       elsif completed_cnt + canceled_cnt > 0
