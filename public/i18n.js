@@ -30,7 +30,7 @@ module.exports = {
     deleteDraft: '<i class="fa fa-trash"></i> წაშლა',
     confirmDeleteDraft: 'დაადასტურეთ დოკუმენტის წაშლა',
     editDraftTitle: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
-    generalTabTitle: '<i class="fa fa-send"></i> ზოგადი თვისებები',
+    generalTabTitle: '<i class="fa fa-send"></i> ძირითადი თვისებები',
     receiversTabTitle: 'ადრესატები',
     send: {
       ka: '<i class="fa fa-send"></i> დოკუმენტის გაგზავნა',
@@ -399,8 +399,8 @@ module.exports = {
     ru: '<i class="fa fa-circle-o-notch fa-spin"></i> Сохраняется...'
   },
   cancel: {
-    ka: '<i class="fa fa-times"></i> გაუქმება',
-    ru: '<i class="fa fa-times"></i> Отмена'
+    ka: '<i class="fa fa-times"></i> დახურვა',
+    ru: '<i class="fa fa-times"></i> Закрыть'
   },
   refresh: {
     ka: '<i class="fa fa-refresh"></i> განახლება',

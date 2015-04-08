@@ -16,8 +16,8 @@ module.exports = {
     ru: '<i class="fa fa-circle-o-notch fa-spin"></i> Сохраняется...'
   },
   cancel: {
-    ka: '<i class="fa fa-times"></i> გაუქმება',
-    ru: '<i class="fa fa-times"></i> Отмена'
+    ka: '<i class="fa fa-times"></i> დახურვა',
+    ru: '<i class="fa fa-times"></i> Закрыть'
   },
   refresh: {
     ka: '<i class="fa fa-refresh"></i> განახლება',
