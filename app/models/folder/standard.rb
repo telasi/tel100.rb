@@ -60,19 +60,19 @@ class Folder::Standard
    		 	docs.joins("JOIN document_base on document_base.id = document_user.document_id AND
                               document_base.status = 0 AND user_id = #{user.id}")
       when INBOX
-        docs.where('document_user.is_received = 1 AND document_user.is_completed = ? AND user_id = ?', show_completed, user.id)
+        docs.where(is_received: 1, is_completed: show_completed)
    		when INBOX_NONREAD
-   			docs.where('document_user.is_received = 1 AND document_user.is_completed = ? AND is_new = ? AND user_id = ?', show_completed, 1, user.id)
+   			docs.where(is_received: 1, is_completed: show_completed, is_new: 1)
    		when INBOX_READ
-   			docs.where('document_user.is_received = 1 AND document_user.is_completed = ? AND is_new = ? AND user_id = ?', show_completed, 0, user.id)
+   			docs.where(is_received: 1, is_completed: show_completed, is_new: 0)
    		when INBOX_RESENT
-        docs.where('is_forwarded = ? AND is_completed = ? AND user_id = ?', 1, show_completed, user.id)
+        docs.where(is_forwarded: 1, is_completed: show_completed)
    		when SENT
-   			docs.where("is_sent = 1 AND is_completed = ? AND document_user.user_id = ?", show_completed, user.id)
+   			docs.where(is_sent: 1, is_completed: show_completed)
       when COMPLETED
-        docs.where('document_user.is_completed = 1 AND user_id = ?', user.id)
+        docs.where(is_completed: 1)
       when CANCELED
-        docs.where('document_user.is_canceled = 1 AND user_id = ?', user.id)
+        docs.where(is_canceled: 1)
     end
    end
 end
