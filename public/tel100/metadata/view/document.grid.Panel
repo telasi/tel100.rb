@@ -9,7 +9,10 @@
         "border": false,
         "designer|userAlias": "documentgridpanel",
         "designer|userClassName": "document.grid.Panel",
+        "enableColumnHide": false,
+        "enableColumnMove": false,
         "height": null,
+        "sortableColumns": false,
         "store": [
             "{documents}"
         ],
@@ -91,8 +94,7 @@
             "userConfig": {
                 "dataIndex": "docnumber",
                 "designer|displayName": "docnumber",
-                "lockable": true,
-                "locked": true,
+                "lockable": false,
                 "text": [
                     "{i18n.document.base.docnumber}"
                 ]
@@ -112,8 +114,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "actions",
-                "lockable": true,
-                "locked": true,
+                "lockable": false,
                 "text": [
                     "{i18n.document.base.actions}"
                 ]

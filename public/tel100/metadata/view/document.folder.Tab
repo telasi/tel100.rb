@@ -573,7 +573,7 @@
                     "{i18n.document.search.ui.search}"
                 ]
             },
-            "name": "document.folder.search8",
+            "name": "document.folder.search",
             "configAlternates": {
                 "title": "binding"
             },

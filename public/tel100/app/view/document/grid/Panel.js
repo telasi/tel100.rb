@@ -31,6 +31,9 @@ Ext.define('Tel100.view.document.grid.Panel', {
     type: 'documentgridpanel'
   },
   border: false,
+  enableColumnHide: false,
+  enableColumnMove: false,
+  sortableColumns: false,
 
   bind: {
     store: '{documents}'
@@ -59,8 +62,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     {
       xtype: 'gridcolumn',
       dataIndex: 'docnumber',
-      lockable: true,
-      locked: true,
+      lockable: false,
       bind: {
         text: '{i18n.document.base.docnumber}'
       }
@@ -74,8 +76,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
           return '<strong class="text-danger">' + i18n.document.comment.actions.author +'</strong>';
         }
       },
-      lockable: true,
-      locked: true,
+      lockable: false,
       bind: {
         text: '{i18n.document.base.actions}'
       }
