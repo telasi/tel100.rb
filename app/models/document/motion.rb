@@ -192,10 +192,11 @@ class Document::Motion < ActiveRecord::Base
   def cancel_ups!
     ups = Document::Motion.where(parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
     ups.each do |up|
-      Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: NOT_RECEIVED })
+      docuser = Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: NOT_RECEIVED })
       up.status = NOT_RECEIVED
       up.received_at = Time.now
       up.save!
+      docuser.calculate!
     end
   end
 
@@ -205,10 +206,11 @@ class Document::Motion < ActiveRecord::Base
       ordering = ups.minimum('ordering')
       ups = ups.where(ordering: ordering)
       ups.each do |up|
-        Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: CURRENT })
+        docuser = Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: CURRENT })
         up.status = CURRENT
         up.received_at = Time.now
         up.save!
+        docuser.calculate!
       end
     end
   end
