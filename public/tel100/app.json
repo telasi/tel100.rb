@@ -25,6 +25,10 @@
          "includeInBundle": true
       },
       {
+         "path": "/async.js",
+         "includeInBundle": true
+      },
+      {
          "path": "app.js",
          "bundle": true
       }

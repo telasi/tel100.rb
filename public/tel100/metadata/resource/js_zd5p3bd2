@@ -1,0 +1,15 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js_zd5p3bd2",
+        "includeInBundle": true,
+        "url": "/async.js"
+    },
+    "name": "js",
+    "designerId": "177cda33-b18c-45c8-97d5-0f2929970075"
+}
