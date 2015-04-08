@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20150407203528) do
     t.integer   "user_id",      limit: 10, precision: 10, scale: 0,                 null: false
     t.boolean   "is_new",                  precision: 1,  scale: 0, default: true,  null: false
     t.boolean   "is_changed",              precision: 1,  scale: 0, default: true,  null: false
+    t.boolean   "is_shown",                precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_forwarded",            precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_sent",                 precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_received",             precision: 1,  scale: 0, default: false, null: false
@@ -156,6 +157,7 @@ ActiveRecord::Schema.define(version: 20150407203528) do
   add_index "document_user", ["is_new"], name: "document_user_isnew_idx"
   add_index "document_user", ["is_received"], name: "document_user_isreceived_idx"
   add_index "document_user", ["is_sent"], name: "document_user_issent_idx"
+  add_index "document_user", ["is_shown"], name: "document_user_isshown_idx"
 
   create_table "folder_base", force: true do |t|
     t.integer   "owner_id",    limit: 10,  precision: 10, scale: 0, null: false

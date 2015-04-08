@@ -30,6 +30,18 @@ class AddDocumentType < ActiveRecord::Migration
         END IF;
       END;
     SQL
+
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, ORDER_BY) VALUES ('სამსახ.წერილი', 1)
+    SQL
+
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, ORDER_BY) VALUES ('ბრძანება', 2)
+    SQL
+
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, ORDER_BY) VALUES ('აქტი', 3)
+    SQL
   end
 
   def down

@@ -58,8 +58,8 @@ module DefaultSchema
   end
 
   def create_document_types
-    Document::Type.create(id: 1, name_ka: 'წერილი', order_by: 1)
-    Document::Type.create(id: 2, name_ka: 'ბრძანება', order_by: 2)
+    Document::Type.create(name_ka: 'წერილი', order_by: 1)
+    Document::Type.create(name_ka: 'ბრძანება', order_by: 2)
   end
 
   def create_response_types
