@@ -28,7 +28,7 @@ class Document::User < ActiveRecord::Base
         is_new = docuser.is_new
       else
         docuser = Document::User.create!(params)
-        is_new = 1
+        is_new = opts[:is_new] || 1
       end
       is_changed = opts[:is_changed] || is_new
       docuser.update_attributes!({
