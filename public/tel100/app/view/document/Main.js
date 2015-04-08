@@ -103,7 +103,8 @@ Ext.define('Tel100.view.document.Main', {
                 selection: '{selection}'
               },
               listeners: {
-                documentopen: 'onGridpanelDocumentopen'
+                documentopen: 'onGridpanelDocumentopen',
+                documentsign: 'onGridpanelDocumentsign'
               }
             }
           ]
@@ -117,6 +118,16 @@ Ext.define('Tel100.view.document.Main', {
 
   onGridpanelDocumentopen: function(doc) {
     this.getController().openDocument(doc);
+  },
+
+  onGridpanelDocumentsign: function(doc) {
+    var view = this;
+    var dialog = Ext.create('Tel100.view.document.comment.Sign', { modal: true });
+    dialog.getViewModel().set('document', doc);
+    dialog.on('signed', function() {
+      view.onRefresh();
+    });
+    dialog.show();
   },
 
   onPanelBeforeRender: function(component, eOpts) {

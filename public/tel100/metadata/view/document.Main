@@ -214,6 +214,33 @@
                                     },
                                     "name": "onGridpanelDocumentopen",
                                     "designerId": "fcb0ddeb-3d3c-42cc-8f57-f08fd6812c4a"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "doc"
+                                        ],
+                                        "fn": "onGridpanelDocumentsign",
+                                        "implHandler": [
+                                            "var view = this;",
+                                            "var dialog = Ext.create('Tel100.view.document.comment.Sign', { modal: true });",
+                                            "dialog.getViewModel().set('document', doc);",
+                                            "dialog.on('signed', function() {",
+                                            "  view.onRefresh();",
+                                            "});",
+                                            "dialog.show();"
+                                        ],
+                                        "name": "documentsign",
+                                        "scope": "me"
+                                    },
+                                    "name": "onGridpanelDocumentsign",
+                                    "designerId": "8a96a1cf-77f1-4d2d-a5ee-48a7a64ec980"
                                 }
                             ]
                         }
