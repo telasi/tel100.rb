@@ -51,10 +51,16 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
   },
 
   addReceivers: function(receivers) {
+    var cntrl = this;
     if (receivers) {
+      var tasks = [];
       for (var i = 0; i < receivers.length; i++) {
-        this.addReceiver( receivers[i]);
+        tasks.push((function(receiver) {
+          cntrl.addReceiver(receiver);
+        })(receivers[i]));
+        // this.addReceiver( receivers[i]);
       }
+
     }
   },
 

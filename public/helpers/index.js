@@ -7,3 +7,6 @@ window.helpers = {
   api: require('./api'),
   party: require('./party')
 };
+
+window.async = require('./async');
+
