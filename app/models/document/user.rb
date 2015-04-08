@@ -105,8 +105,10 @@ class Document::User < ActiveRecord::Base
       canceled_cnt = assignee_rel.where(status: CANCELED).count
       if current_cnt > 0
         self.as_assignee = DOC_CURRENT
-      else
+      elsif completed_cnt + canceled_cnt > 0
         self.as_assignee = DOC_COMPLETE
+      else
+        self.as_assignee = DOC_NONE
       end
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
@@ -122,8 +124,10 @@ class Document::User < ActiveRecord::Base
       canceled_cnt = assignee_rel.where(status: CANCELED).count
       if current_cnt > 0
         self.as_signee = DOC_CURRENT
-      else
+      elsif completed_cnt + canceled_cnt > 0
         self.as_signee = DOC_COMPLETE
+      else
+        self.as_signee = DOC_NONE
       end
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
@@ -139,8 +143,10 @@ class Document::User < ActiveRecord::Base
       canceled_cnt = assignee_rel.where(status: CANCELED).count
       if current_cnt > 0
         self.as_author = DOC_CURRENT
-      else
+      elsif completed_cnt + canceled_cnt > 0
         self.as_author = DOC_COMPLETE
+      else
+        self.as_author = DOC_NONE
       end
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0

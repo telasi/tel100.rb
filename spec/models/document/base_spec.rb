@@ -257,4 +257,62 @@ RSpec.describe Document::Base do
     expect(u2.as_assignee).to eq(Document::User::DOC_COMPLETE)
     expect(u2.as_author).to eq(Document::User::DOC_NONE)
   end
+
+  it 'send to more then one signee' do
+    # 1. Sending document
+    #
+    dimitri = Sys::User.find_by_username('dimitri')
+    shalva  = Sys::User.find_by_username('shalva')
+    nino    = Sys::User.find_by_username('nino')
+    doc = Document::Base.create_draft!(dimitri)
+    doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body' })
+    motion1 = Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: shalva.employee.id,
+      receiver_role: 'signee'
+    })
+    motion2 = Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: nino.employee.id,
+      receiver_role: 'signee'
+    })
+    expect(motion1.ordering).to eq(1)
+    expect(motion2.ordering).to eq(2)
+    doc.reload ; doc.send_draft!(dimitri)
+    motion1.reload ; motion2.reload
+    expect(motion1.new?).to eq(true)
+    expect(motion1.status).to eq(Document::Status::CURRENT)
+    expect(motion2.new?).to eq(true)
+    expect(motion2.status).to eq(Document::Status::SENT)
+    u1 = doc.users.where(user: shalva).first
+    u2 = doc.users.where(user: nino).first
+    expect(u1.new?).to eq(true)
+    expect(u1.changed?).to eq(true)
+    expect(u1.shown?).to eq(true)
+    expect(u1.forwarded?).to eq(false)
+    expect(u1.sent?).to eq(false)
+    expect(u1.received?).to eq(true)
+    expect(u1.current?).to eq(true)
+    expect(u1.completed?).to eq(false)
+    expect(u1.canceled?).to eq(false)
+    expect(u1.as_owner).to eq(Document::User::DOC_NONE)
+    expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
+    expect(u1.as_signee).to eq(Document::User::DOC_CURRENT)
+    expect(u1.as_author).to eq(Document::User::DOC_NONE)
+    expect(u2.new?).to eq(true)
+    expect(u2.changed?).to eq(true)
+    expect(u2.shown?).to eq(false)
+    expect(u2.forwarded?).to eq(false)
+    expect(u2.sent?).to eq(false)
+    expect(u2.received?).to eq(true)
+    expect(u2.current?).to eq(false)
+    expect(u2.completed?).to eq(false)
+    expect(u2.canceled?).to eq(false)
+    expect(u2.as_owner).to eq(Document::User::DOC_NONE)
+    expect(u2.as_assignee).to eq(Document::User::DOC_NONE)
+    expect(u2.as_signee).to eq(Document::User::DOC_NONE)
+    expect(u2.as_author).to eq(Document::User::DOC_NONE)
+  end
 end
