@@ -233,6 +233,26 @@
                             },
                             "name": "onSearchFieldChange",
                             "designerId": "1c348ca2-fbeb-4564-afb4-89a8354fbdb2"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSearchFieldSpecialkey",
+                                "implHandler": [
+                                    "if(e.getKey() == e.ENTER){",
+                                    " this.startSearch();",
+                                    "}"
+                                ],
+                                "name": "specialkey",
+                                "scope": "me"
+                            },
+                            "name": "onSearchFieldSpecialkey",
+                            "designerId": "3d4823a3-6686-433b-9cde-98c495fc68ec"
                         }
                     ]
                 },
@@ -260,16 +280,7 @@
                             "userConfig": {
                                 "fn": "onSearchButtonClick",
                                 "implHandler": [
-                                    "  var view = this.getView(),",
-                                    "      searchValue = view.down('textfield').getValue(),",
-                                    "      rn = view.getRootNode();",
-                                    "",
-                                    "  this.counter = 0;",
-                                    "  this.oldcounter = 0;",
-                                    "",
-                                    "  this.searchAndExpand(view, rn, searchValue);",
-                                    "",
-                                    "  this.getView().down('#nextbutton').setDisabled(false);"
+                                    "  this.startSearch();  "
                                 ],
                                 "name": "click",
                                 "scope": "me"
