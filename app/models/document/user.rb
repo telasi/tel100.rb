@@ -17,7 +17,7 @@ class Document::User < ActiveRecord::Base
   DOC_COMPLETE = 2
 
   def self.mydocs(user)
-    Document::User.where(user: user)
+    Document::User.where(user: user, is_shown: 1)
   end
 
   def self.upsert!(doc, user, role, opts={})
