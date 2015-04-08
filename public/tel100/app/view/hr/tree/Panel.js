@@ -88,7 +88,8 @@ Ext.define('Tel100.view.hr.tree.Panel', {
           fieldLabel: 'Label',
           hideLabel: true,
           listeners: {
-            change: 'onSearchFieldChange'
+            change: 'onSearchFieldChange',
+            specialkey: 'onSearchFieldSpecialkey'
           }
         },
         {

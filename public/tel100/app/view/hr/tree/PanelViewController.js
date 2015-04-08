@@ -38,6 +38,19 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
     }
   },
 
+  startSearch: function() {
+        var view = this.getView(),
+          searchValue = view.down('textfield').getValue(),
+          rn = view.getRootNode();
+
+        this.counter = 0;
+        this.oldcounter = 0;
+
+        this.searchAndExpand(view, rn, searchValue);
+
+        this.getView().down('#nextbutton').setDisabled(false);
+  },
+
   onTreepanelBeforeLoad: function(store, operation, eOpts) {
     this.getView().setLoading(true);
   },
@@ -56,17 +69,14 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
     this.getView().down('#nextbutton').setDisabled(true);
   },
 
+  onSearchFieldSpecialkey: function(field, e, eOpts) {
+    if(e.getKey() == e.ENTER){
+      this.startSearch();
+    }
+  },
+
   onSearchButtonClick: function(button, e, eOpts) {
-    var view = this.getView(),
-      searchValue = view.down('textfield').getValue(),
-      rn = view.getRootNode();
-
-    this.counter = 0;
-    this.oldcounter = 0;
-
-    this.searchAndExpand(view, rn, searchValue);
-
-    this.getView().down('#nextbutton').setDisabled(false);
+    this.startSearch();
   },
 
   onNextSearchButtonClick: function(button, e, eOpts) {

@@ -49,6 +49,31 @@
             },
             "name": "searchAndExpand",
             "designerId": "003d65f4-2461-4f5d-9d01-387b26375da7"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "startSearch",
+                "implHandler": [
+                    "    var view = this.getView(),",
+                    "      searchValue = view.down('textfield').getValue(),",
+                    "      rn = view.getRootNode();",
+                    "",
+                    "    this.counter = 0;",
+                    "    this.oldcounter = 0;",
+                    "",
+                    "    this.searchAndExpand(view, rn, searchValue);",
+                    "",
+                    "    this.getView().down('#nextbutton').setDisabled(false);"
+                ]
+            },
+            "name": "startSearch",
+            "designerId": "57beca59-4059-42bf-9afb-0111ab7d9d81"
         }
     ]
 }
