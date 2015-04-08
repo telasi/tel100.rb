@@ -39,6 +39,7 @@ RSpec.describe Document::Base do
     expect(doc_user.as_author).to eq(Document::User::DOC_NONE)
     expect(doc_user.new?).to eq(false)
     expect(doc_user.changed?).to eq(false)
+    expect(doc_user.shown?).to eq(true)
     expect(doc_user.sent?).to eq(false)
     expect(doc_user.received?).to eq(false)
     expect(doc_user.forwarded?).to eq(false)

@@ -78,7 +78,7 @@ class Document::User < ActiveRecord::Base
 
   def calculate!
     # 1. reset the record
-    self.is_sent = self.is_received = self.is_forwarded = 0
+    self.is_sent = self.is_received = self.is_forwarded = self.is_shown = 0
     self.is_current = self.is_canceled = self.is_completed = 0
     self.as_owner = self.as_assignee = self.as_signee = self.as_author = DOC_NONE
 
@@ -94,6 +94,7 @@ class Document::User < ActiveRecord::Base
       self.is_canceled = 1 if doc_status == CANCELED
       self.is_completed = 1 if doc_status == COMPLETED
       self.is_sent = 1 if doc_status != DRAFT
+      self.is_shown = 1
     end
 
     # 4. assignee calculation
@@ -150,6 +151,10 @@ class Document::User < ActiveRecord::Base
     # 7. checking is_forwarded
     forwarded_count = Document::Motion.where('document_id=? AND sender_user_id=? AND status!=? AND parent_id IS NOT NULL', self.document_id, self.user_id, DRAFT).count
     self.is_forwarded = 1 if forwarded_count > 0
+
+    # 8. checking is_shown for non-owners
+    not_draft_count = rel.where('status NOT IN (?)', [ SENT, NOT_SENT, NOT_RECEIVED ]).count
+    self.is_shown = 1 if not_draft_count > 0
 
     self.save!
   end
