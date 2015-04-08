@@ -127,6 +127,7 @@ RSpec.describe Document::Base do
     expect(u1.user).to eq(dimitri)
     expect(u1.new?).to eq(false)
     expect(u1.changed?).to eq(false)
+    expect(u1.shown?).to eq(true)
     expect(u1.sent?).to eq(true)
     expect(u1.received?).to eq(false)
     expect(u1.forwarded?).to eq(false)
@@ -141,6 +142,7 @@ RSpec.describe Document::Base do
     expect(u2.user).to eq(shalva)
     expect(u2.new?).to eq(true)
     expect(u2.changed?).to eq(true)
+    expect(u2.shown?).to eq(true)
     expect(u2.sent?).to eq(false)
     expect(u2.received?).to eq(true)
     expect(u2.forwarded?).to eq(false)
@@ -161,15 +163,20 @@ RSpec.describe Document::Base do
       receiver_role: 'assignee'
     })
     expect(Document::User.where(document: doc).count).to eq(2)
-    motion1.send_draft_motions!(shalva)
+    motion1.send_draft_motions!(shalva) # sending to nino
     expect(Document::User.where(document: doc).count).to eq(3)
     expect(Document::Motion.where(document: doc).count).to eq(2)
     motion1.reload ; motion2.reload
+    motion3 = Document::Motion.where(document: doc, receiver_user: nino).first
     u1 = Document::User.where(document: doc, user: dimitri).first
     u2 = Document::User.where(document: doc, user: shalva).first
     u3 = Document::User.where(document: doc, user: nino).first
     expect(motion2.parent).to eq(motion1)
+    expect(motion3.status).to eq(Document::Status::CURRENT)
     expect(u2.forwarded?).to eq(true)
+    expect(u1.shown?).to eq(true)
+    expect(u2.shown?).to eq(true)
+    expect(u3.shown?).to eq(true)
 
     # 3. Receiver replies
     #

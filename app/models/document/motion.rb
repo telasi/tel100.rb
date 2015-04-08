@@ -131,7 +131,8 @@ class Document::Motion < ActiveRecord::Base
     end
     # save motion data
     self.save!
-    # calculate this Document::User
+    # calculate related document users
+    self.document.users.where(user: self.receiver_user).first.calculate!
     self.document.users.where(user: user).first.calculate!
   end
 
