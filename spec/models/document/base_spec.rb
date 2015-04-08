@@ -336,9 +336,10 @@ RSpec.describe Document::Base do
     expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
     expect(u1.as_signee).to eq(Document::User::DOC_COMPLETE)
     expect(u1.as_author).to eq(Document::User::DOC_NONE)
+
     expect(u2.user).to eq(nino)
-    # expect(u2.new?).to eq(true)
-    # expect(u2.changed?).to eq(true)
+    expect(u2.new?).to eq(true)
+    expect(u2.changed?).to eq(true)
     expect(u2.shown?).to eq(true)
     expect(u2.forwarded?).to eq(false)
     expect(u2.sent?).to eq(false)

@@ -25,12 +25,11 @@ class Document::User < ActiveRecord::Base
       params   = { document_id: doc.id, user_id: user.id }
       docuser  = Document::User.where(params).first
       if docuser.present?
-        created = false
+        is_new = docuser.is_new
       else
         docuser = Document::User.create!(params)
-        created = true
+        is_new = 1
       end
-      is_new   = opts[:is_new] || (created ? 1 : 0)
       is_changed = opts[:is_changed] || is_new
       docuser.update_attributes!({
         is_new: is_new,
