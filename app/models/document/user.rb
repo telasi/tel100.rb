@@ -4,7 +4,7 @@ class Document::User < ActiveRecord::Base
   include Document::Status
   self.table_name  = 'document_user'
   self.primary_keys = :user_id, :document_id
-  self.set_integer_columns :is_new, :is_changed
+  self.set_integer_columns :is_new, :is_changed, :is_shown
   self.set_integer_columns :is_forwarded, :is_sent, :is_received
   self.set_integer_columns :is_current, :is_canceled, :is_completed
   self.set_integer_columns :as_owner, :as_assignee, :as_author, :as_signee
@@ -54,6 +54,7 @@ class Document::User < ActiveRecord::Base
 
   def changed?; self.is_changed == 1 end
   def new?; self.is_new == 1 end
+  def shown?; self.is_shown == 1 end
 
   def forwarded?; self.is_forwarded == 1 end
   def sent?; self.is_sent == 1 end
