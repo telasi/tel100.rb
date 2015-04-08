@@ -69,27 +69,27 @@ Ext.define('Tel100.view.document.comment.Panel', {
         },
         {
           xtype: 'gridcolumn',
-          width: 125,
-          dataIndex: 'created_at',
-          formatter: 'date("d/m/Y H:i")',
-          bind: {
-            text: '{i18n.document.comment.date}'
-          }
-        },
-        {
-          xtype: 'gridcolumn',
-          width: 200,
           dataIndex: 'user',
+          width: 150,
           bind: {
             text: '{i18n.document.comment.author}'
           }
         },
         {
           xtype: 'gridcolumn',
-          width: 600,
+          width: 200,
           dataIndex: 'text',
           bind: {
             text: '{i18n.document.comment.text}'
+          }
+        },
+        {
+          xtype: 'gridcolumn',
+          width: 125,
+          dataIndex: 'created_at',
+          formatter: 'date("d/m/Y H:i")',
+          bind: {
+            text: '{i18n.document.comment.date}'
           }
         }
       ],
