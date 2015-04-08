@@ -17,7 +17,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentmotionsassigneepanel',
 
-  addReceiver: function(receiver) {
+  addReceiver: function(receiver, callback) {
     var view = this.getView();
     var grid = view.getGrid();
     var vm = this.getViewModel();
@@ -43,6 +43,9 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
         var store = grid.getStore();
         store.add(motion);
         view.fireEvent('datachanged', view, 'add', motion);
+        if (callback) {
+          callback(null, motion);
+        }
       }.bind(this),
       failure: function(error) {
         console.error(error);
@@ -55,12 +58,14 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
     if (receivers) {
       var tasks = [];
       for (var i = 0; i < receivers.length; i++) {
-        tasks.push((function(receiver) {
-          cntrl.addReceiver(receiver);
-        })(receivers[i]));
-        // this.addReceiver( receivers[i]);
+        var t = (function(receiver) {
+          return function(callback) {
+            cntrl.addReceiver(receiver, callback);
+          }
+        })(receivers[i]);
+        tasks.push(t);
       }
-
+      async.series(tasks);
     }
   },
 

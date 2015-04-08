@@ -20,7 +20,8 @@
             "codeClass": null,
             "userConfig": {
                 "designer|params": [
-                    "receiver"
+                    "receiver",
+                    "callback"
                 ],
                 "fn": "addReceiver",
                 "implHandler": [
@@ -49,6 +50,9 @@
                     "    var store = grid.getStore();",
                     "    store.add(motion);",
                     "    view.fireEvent('datachanged', view, 'add', motion);",
+                    "    if (callback) {",
+                    "      callback(null, motion);",
+                    "    }",
                     "  }.bind(this),",
                     "  failure: function(error) {",
                     "    console.error(error);",
@@ -76,12 +80,14 @@
                     "if (receivers) {",
                     "  var tasks = [];",
                     "  for (var i = 0; i < receivers.length; i++) {",
-                    "    tasks.push((function(receiver) {",
-                    "      cntrl.addReceiver(receiver);",
-                    "    })(receivers[i]));",
-                    "    // this.addReceiver( receivers[i]);",
+                    "    var t = (function(receiver) {",
+                    "      return function(callback) {",
+                    "        cntrl.addReceiver(receiver, callback);",
+                    "      }",
+                    "    })(receivers[i]);",
+                    "    tasks.push(t);",
                     "  }",
-                    "  ",
+                    "  async.series(tasks);",
                     "}"
                 ]
             },
