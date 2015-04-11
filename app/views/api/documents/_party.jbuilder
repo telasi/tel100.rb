@@ -9,4 +9,12 @@ elsif party.is_a?(HR::Organization)
   json.id party.id
   json.name party.name.strip
   json.ext_type 'hr.Organization'
+elsif party.is_a?(HR::Party)
+  json.id party.id
+  json.name party.name_ka.strip
+  json.ext_type 'hr.Party'
+elsif party.is_a?(BS::Customer)
+  json.id party.id
+  json.name party.name.strip
+  json.ext_type 'bs.Customer'
 end

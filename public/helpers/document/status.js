@@ -108,6 +108,22 @@ var motionStatusIcon = function(status, motion) {
   ].join('');
 };
 
+var motionReceiverName = function(value, record){
+  var receiver = record.get('receiver');
+  if(!receiver){ return ""; };
+
+  switch(receiver.ext_type){
+    case 'hr.Employee':
+      return '<i class="fa fa-user"></i> ' + value;  
+    case 'hr.Organization':
+      return '<i class="fa fa-bank"></i> ' + value;
+    case 'hr.Party':
+      return '<i class="fa fa-building"></i> ' + value;
+    case 'bs.Customer':
+      return '<i class="fa fa-users"></i> ' + value;
+  }
+};
+
 var motionStatusRowClass = function(status, motion) {
   var role = motion.get('receiver_role');
   var decor = statusDecoration(status, role, { isMotion: true });
@@ -135,6 +151,7 @@ module.exports = {
   statusFormatted: statusFormatted,
   motionStatusFull: motionStatusFull,
   motionStatusIcon: motionStatusIcon,
+  motionReceiverName: motionReceiverName,
   motionStatusRowClass: motionStatusRowClass,
   documentStatusRowClass: documentStatusRowClass
 };

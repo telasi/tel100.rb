@@ -7,8 +7,8 @@ module.exports = {
   },
   party: {
   	title: {
-  		ka: '<i class="fa fa-university "></i> გარე ორგანიზაციები',
-  		ru: '<i class="fa fa-university "></i> Внешние огранизации'
+  		ka: '<i class="fa fa-building "></i> გარე ორგანიზაციები',
+  		ru: '<i class="fa fa-building "></i> Внешние огранизации'
   	},
   	fields: {
   		identity: {

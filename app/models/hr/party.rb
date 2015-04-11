@@ -1,7 +1,9 @@
 # -*- encoding : utf-8 -*-
 class HR::Party < ActiveRecord::Base
   self.table_name  = 'party_base'
-  self.sequence_name = 'party_seq'
+  self.sequence_name = 'party_base_seq'
+
+  def to_s; self.name_ka end
 
   validate :name_entered
 

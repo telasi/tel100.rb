@@ -178,12 +178,7 @@
                                 ],
                                 "fn": "renderer",
                                 "implHandler": [
-                                    "var receiver = record.get('receiver');",
-                                    "if (receiver && receiver.ext_type == 'hr.Organization') {",
-                                    "  return '<i class=\"fa fa-bank\"></i> ' + value;",
-                                    "} else {",
-                                    "  return '<i class=\"fa fa-user\"></i> ' + value;",
-                                    "}"
+                                    "return helpers.document.status.motionReceiverName(value, record);"
                                 ]
                             },
                             "name": "renderer",
