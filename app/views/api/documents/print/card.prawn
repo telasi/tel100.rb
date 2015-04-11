@@ -58,6 +58,11 @@ def properties(pdf)
     data += [[ index == 0 ? "ავტორები:" : "",    "#{author}", 
                author.respond_to?(:organization) ? author.organization.chained_name : ""]]
   end
+  @document.signees.each_with_index do |signee, index|
+    data += [[ index == 0 ? "ვიზატორები:" : "",    
+               "#{signee}", 
+               signee.respond_to?(:organization) ? signee.organization.chained_name : ""]]
+  end
   @document.assignees.each_with_index do |assignee, index|
     data += [[ index == 0 ? "ადრესატები:" : "",    
                "#{assignee}", 

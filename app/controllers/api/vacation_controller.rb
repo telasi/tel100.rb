@@ -6,13 +6,8 @@ class Api::VacationController < ApiController
   end
 
   def create
-    @vac = HR::Vacation::Vacation.new(params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type))
-    @vac.userid = current_user.id
-    if @vac.save
-     render json: { success: true }
-    else
-     render json: { success: false, message: @vac.errors.full_messages[0] }
-    end
+    HR::Vacation::Vacation.create_document(current_user, params)
+    render json: { success: true }
   end
 
   def types

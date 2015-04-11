@@ -58,7 +58,7 @@
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel5",
+                    "name": "hr.tree.panel",
                     "configAlternates": {
                         "tools": "array",
                         "hidden": "binding"
@@ -122,7 +122,7 @@
                         "designer|displayName": "parties",
                         "hidden": null
                     },
-                    "name": "hr.party.grid3",
+                    "name": "hr.party.grid",
                     "configAlternates": {
                         "hidden": "binding"
                     },
@@ -180,7 +180,7 @@
                         "designer|displayName": "customers",
                         "hidden": null
                     },
-                    "name": "bs.customer.panel3",
+                    "name": "bs.customer.panel",
                     "configAlternates": {
                         "hidden": "binding"
                     },

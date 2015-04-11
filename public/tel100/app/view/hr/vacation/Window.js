@@ -24,6 +24,7 @@ Ext.define('Tel100.view.hr.vacation.Window', {
     'Ext.form.field.ComboBox',
     'Ext.form.FieldContainer',
     'Ext.form.field.Date',
+    'Ext.form.Label',
     'Ext.form.field.Hidden',
     'Ext.button.Button',
     'Ext.form.field.TextArea'
@@ -33,9 +34,9 @@ Ext.define('Tel100.view.hr.vacation.Window', {
   viewModel: {
     type: 'hrvacationwindow'
   },
-  height: 324,
+  height: 550,
   resizable: false,
-  width: 471,
+  width: 700,
   autoDestroy: false,
   modal: true,
 
@@ -45,6 +46,9 @@ Ext.define('Tel100.view.hr.vacation.Window', {
   items: [
     {
       xtype: 'form',
+      defaults: {
+        labelWidth: 200
+      },
       bodyPadding: 10,
       header: false,
       title: 'My Form',
@@ -67,10 +71,12 @@ Ext.define('Tel100.view.hr.vacation.Window', {
         {
           xtype: 'fieldcontainer',
           height: 26,
-          fieldLabel: '',
           layout: {
             type: 'hbox',
             align: 'stretch'
+          },
+          bind: {
+            fieldLabel: '{i18n.vacation.fields.period}'
           },
           items: [
             {
@@ -79,22 +85,203 @@ Ext.define('Tel100.view.hr.vacation.Window', {
               margin: '0 10 0 0',
               name: 'from_date',
               allowBlank: false,
-              format: 'd/m/Y',
-              bind: {
-                fieldLabel: '{i18n.vacation.fields.from}'
-              }
+              format: 'd/m/Y'
             },
             {
               xtype: 'datefield',
               flex: 1,
               name: 'to_date',
               allowBlank: false,
-              format: 'd/m/Y',
-              bind: {
-                fieldLabel: '{i18n.vacation.fields.to}'
+              format: 'd/m/Y'
+            }
+          ]
+        },
+        {
+          xtype: 'label',
+          padding: '10 0 0 0',
+          bind: {
+            text: '{i18n.vacation.fields.signees}'
+          }
+        },
+        {
+          xtype: 'panel',
+          padding: '0 0 10 0',
+          header: false,
+          bind: {
+            title: '{i18n.vacation.fields.signees}'
+          }
+        },
+        {
+          xtype: 'fieldcontainer',
+          anchor: '100%',
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
+          bind: {
+            fieldLabel: '{i18n.vacation.fields.head_of_group}'
+          },
+          items: [
+            {
+              xtype: 'textfield',
+              flex: 1,
+              name: 'head_of_group_name'
+            },
+            {
+              xtype: 'hiddenfield',
+              flex: 1,
+              fieldLabel: 'Label',
+              name: 'head_of_group'
+            },
+            {
+              xtype: 'button',
+              itemId: 'head_of_group',
+              text: '...',
+              listeners: {
+                click: 'onSelectHeadOfGroupButtonClick'
               }
             }
           ]
+        },
+        {
+          xtype: 'fieldcontainer',
+          anchor: '100%',
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
+          bind: {
+            fieldLabel: '{i18n.vacation.fields.head_of_division}'
+          },
+          items: [
+            {
+              xtype: 'textfield',
+              flex: 1,
+              name: 'head_of_division_name'
+            },
+            {
+              xtype: 'hiddenfield',
+              flex: 1,
+              fieldLabel: 'Label',
+              name: 'head_of_division'
+            },
+            {
+              xtype: 'button',
+              itemId: 'head_of_division',
+              text: '...',
+              listeners: {
+                click: 'onSelectHeadOfDivisionButtonClick'
+              }
+            }
+          ]
+        },
+        {
+          xtype: 'fieldcontainer',
+          anchor: '100%',
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
+          bind: {
+            fieldLabel: '{i18n.vacation.fields.head_of_department}'
+          },
+          items: [
+            {
+              xtype: 'textfield',
+              flex: 1,
+              name: 'head_of_department_name'
+            },
+            {
+              xtype: 'hiddenfield',
+              flex: 1,
+              fieldLabel: 'Label',
+              name: 'head_of_department'
+            },
+            {
+              xtype: 'button',
+              itemId: 'head_of_department',
+              text: '...',
+              listeners: {
+                click: 'onSelectHeadOfDepartmentClick'
+              }
+            }
+          ]
+        },
+        {
+          xtype: 'fieldcontainer',
+          anchor: '100%',
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
+          bind: {
+            fieldLabel: '{i18n.vacation.fields.director}'
+          },
+          items: [
+            {
+              xtype: 'textfield',
+              flex: 1,
+              name: 'director_name'
+            },
+            {
+              xtype: 'hiddenfield',
+              flex: 1,
+              fieldLabel: 'Label',
+              name: 'director'
+            },
+            {
+              xtype: 'button',
+              itemId: 'director',
+              text: '...',
+              listeners: {
+                click: 'onSelectDirectorClick'
+              }
+            }
+          ]
+        },
+        {
+          xtype: 'fieldcontainer',
+          anchor: '100%',
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
+          bind: {
+            fieldLabel: '{i18n.vacation.fields.head_of_hr}'
+          },
+          items: [
+            {
+              xtype: 'textfield',
+              flex: 1,
+              name: 'head_of_hr_name'
+            },
+            {
+              xtype: 'hiddenfield',
+              flex: 1,
+              fieldLabel: 'Label',
+              name: 'head_of_hr'
+            },
+            {
+              xtype: 'button',
+              itemId: 'head_of_hr',
+              text: '...',
+              listeners: {
+                click: 'onSelectHeadOfHRClick'
+              }
+            }
+          ]
+        },
+        {
+          xtype: 'label',
+          margin: '10 0 0 0'
+        },
+        {
+          xtype: 'panel',
+          padding: '0 0 10 0',
+          header: false,
+          bind: {
+            title: '{i18n.vacation.fields.signees}'
+          }
         },
         {
           xtype: 'fieldcontainer',
@@ -109,7 +296,7 @@ Ext.define('Tel100.view.hr.vacation.Window', {
           items: [
             {
               xtype: 'textfield',
-              flex: 5,
+              flex: 1,
               id: 'substitude_name',
               name: 'substitude_name',
               editable: false
@@ -122,7 +309,7 @@ Ext.define('Tel100.view.hr.vacation.Window', {
             },
             {
               xtype: 'button',
-              flex: 1,
+              itemId: 'substitude',
               text: '...',
               listeners: {
                 click: 'onSelectSubstitude'

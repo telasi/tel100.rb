@@ -9,5 +9,41 @@
         "designer|userAlias": "hrvacationwindow",
         "designer|userClassName": "hr.vacation.WindowViewController"
     },
-    "designerId": "605118dc-a16c-4202-9040-76432286c4ba"
+    "designerId": "605118dc-a16c-4202-9040-76432286c4ba",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "button"
+                ],
+                "fn": "chosePerson",
+                "implHandler": [
+                    "    var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
+                    "      title: i18n.document.motion.selectReceiver,",
+                    "    });",
+                    "    var vm = receiverDialog.getViewModel();",
+                    "    vm.set('hideParty', true);",
+                    "    vm.set('hideCustomers', true);",
+                    "    receiverDialog.show();",
+                    "    receiverDialog.on('selectioncomplete', function(receivers) {",
+                    "      if (receivers.length > 0) {",
+                    "        var person = receivers[0];",
+                    "        if (person.get('id') !== undefined){",
+                    "          this.getView().down('form').getForm().findField(button.itemId).setValue(person.get('id'));",
+                    "          this.getView().down('form').getForm().findField(button.itemId+'_name').setValue(person.get('full_name'));",
+                    "        }",
+                    "      }",
+                    "    }.bind(this));"
+                ]
+            },
+            "name": "chosePerson",
+            "designerId": "57232258-87ef-4c43-99d9-15c4ca2f3215"
+        }
+    ]
 }

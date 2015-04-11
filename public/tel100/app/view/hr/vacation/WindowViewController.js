@@ -17,23 +17,47 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.hrvacationwindow',
 
+  chosePerson: function(button) {
+        var receiverDialog = Ext.create('Tel100.view.party.Selector', {
+          title: i18n.document.motion.selectReceiver,
+        });
+        var vm = receiverDialog.getViewModel();
+        vm.set('hideParty', true);
+        vm.set('hideCustomers', true);
+        receiverDialog.show();
+        receiverDialog.on('selectioncomplete', function(receivers) {
+          if (receivers.length > 0) {
+            var person = receivers[0];
+            if (person.get('id') !== undefined){
+              this.getView().down('form').getForm().findField(button.itemId).setValue(person.get('id'));
+              this.getView().down('form').getForm().findField(button.itemId+'_name').setValue(person.get('full_name'));
+            }
+          }
+        }.bind(this));
+  },
+
+  onSelectHeadOfGroupButtonClick: function(button, e, eOpts) {
+    this.chosePerson(button);
+  },
+
+  onSelectHeadOfDivisionButtonClick: function(button, e, eOpts) {
+    this.chosePerson(button);
+  },
+
+  onSelectHeadOfDepartmentClick: function(button, e, eOpts) {
+    this.chosePerson(button);
+  },
+
+  onSelectDirectorClick: function(button, e, eOpts) {
+    this.chosePerson(button);
+  },
+
+  onSelectHeadOfHRClick: function(button, e, eOpts) {
+    this.chosePerson(button);
+  },
+
   onSelectSubstitude: function(button, e, eOpts) {
-    var receiverDialog = Ext.create('Tel100.view.party.Selector', {
-      title: i18n.document.motion.selectReceiver,
-    });
-    var vm = receiverDialog.getViewModel();
-    vm.set('hideParty', true);
-    vm.set('hideCustomers', true);
-    receiverDialog.show();
-    receiverDialog.on('selectioncomplete', function(receivers) {
-      if (receivers.length > 0) {
-        var substituder = receivers[0];
-        if (substituder.get('user_id') !== undefined){
-          this.getView().down('form').getForm().findField('substitude').setValue(substituder.user_id);
-          this.getView().down('form').getForm().findField('substitude_name').setValue(substituder.data.full_name);
-        }
-      }
-    }.bind(this));
+    this.chosePerson(button);
   },
 
   onOKButtonClick: function(button, e, eOpts) {
@@ -45,7 +69,8 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
           //we have to close the window here!!
         },
         failure: function(form,action){
-          Ext.MessageBox.alert('Error',action.result.message);
+          debugger;
+          Ext.MessageBox.alert('Error',action.result.error);
         }});
       } else {
         Ext.Msg.alert('Invalid Data', 'Please correct form errors.');

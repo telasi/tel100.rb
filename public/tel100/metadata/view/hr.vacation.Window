@@ -9,7 +9,7 @@
         "autoDestroy": false,
         "designer|userAlias": "hrvacationwindow",
         "designer|userClassName": "hr.vacation.Window",
-        "height": 324,
+        "height": 550,
         "modal": true,
         "resizable": [
             "false",
@@ -18,7 +18,7 @@
         "title": [
             "{i18n.vacation.ui.button}"
         ],
-        "width": 471
+        "width": 700
     },
     "name": "MyWindow",
     "configAlternates": {
@@ -38,6 +38,9 @@
             "userConfig": {
                 "baseParams": null,
                 "bodyPadding": 10,
+                "defaults": [
+                    "{ labelWidth: 200}"
+                ],
                 "header": false,
                 "jsonSubmit": true,
                 "title": "My Form",
@@ -83,11 +86,17 @@
                     "codeClass": null,
                     "userConfig": {
                         "container|align": "stretch",
-                        "fieldLabel": "",
+                        "fieldLabel": [
+                            "{i18n.vacation.fields.period}"
+                        ],
                         "height": 26,
+                        "labelWidth": null,
                         "layout": "hbox"
                     },
                     "name": "MyFieldContainer",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
                     "designerId": "74f5ac2d-cc00-4993-9fba-fff98f59bf67",
                     "cn": [
                         {
@@ -100,9 +109,7 @@
                             "userConfig": {
                                 "allowBlank": false,
                                 "endDateField": null,
-                                "fieldLabel": [
-                                    "{i18n.vacation.fields.from}"
-                                ],
+                                "fieldLabel": null,
                                 "format": "d/m/Y",
                                 "id": null,
                                 "layout|flex": 1,
@@ -132,9 +139,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "allowBlank": false,
-                                "fieldLabel": [
-                                    "{i18n.vacation.fields.to}"
-                                ],
+                                "fieldLabel": null,
                                 "format": "d/m/Y",
                                 "id": null,
                                 "layout|flex": 1,
@@ -156,6 +161,537 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "padding": "10 0 0 0",
+                        "text": [
+                            "{i18n.vacation.fields.signees}"
+                        ]
+                    },
+                    "name": "MyLabel1",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "7cd0368c-7113-4394-bece-708934f5ec45"
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "header": false,
+                        "padding": "0 0 10 0",
+                        "title": [
+                            "{i18n.vacation.fields.signees}"
+                        ]
+                    },
+                    "name": "MyPanel4",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
+                    "designerId": "8294027e-7c50-49ff-96cb-3b2b816fd0e5"
+                },
+                {
+                    "type": "Ext.form.FieldContainer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "fieldLabel": [
+                            "{i18n.vacation.fields.head_of_group}"
+                        ],
+                        "height": null,
+                        "layout": "hbox",
+                        "layout|anchor": "100%"
+                    },
+                    "name": "MyFieldContainer3",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "ec9bdca3-3a1a-4ae9-ba88-59285718067a",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": null,
+                                "layout|flex": 1,
+                                "name": "head_of_group_name"
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "134a1706-c14e-43b9-966a-58f6c2d12a04"
+                        },
+                        {
+                            "type": "Ext.form.field.Hidden",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Label",
+                                "layout|flex": 1,
+                                "name": "head_of_group"
+                            },
+                            "name": "MyHiddenField1",
+                            "designerId": "26d86cb0-c6d1-4991-ab8e-bf756606baa9"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": null,
+                                "designer|displayName": "head_of_group",
+                                "itemId": "head_of_group",
+                                "layout|flex": null,
+                                "text": "..."
+                            },
+                            "name": "MyButton3",
+                            "designerId": "40b94908-f3a5-4c29-91bd-487c264de758",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onSelectHeadOfGroupButtonClick",
+                                        "implHandler": [
+                                            "this.chosePerson(button);"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onSelectHeadOfGroupButtonClick",
+                                    "designerId": "f40769c7-0913-4f02-84ab-e8ac983b9c13"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.FieldContainer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "fieldLabel": [
+                            "{i18n.vacation.fields.head_of_division}"
+                        ],
+                        "height": null,
+                        "layout": "hbox",
+                        "layout|anchor": "100%"
+                    },
+                    "name": "MyFieldContainer4",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "46cb3a18-f594-4d51-b5b5-43cd42e09807",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": null,
+                                "layout|flex": 1,
+                                "name": "head_of_division_name"
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "48676ced-ecc5-4bba-ab69-099d42c45e2c"
+                        },
+                        {
+                            "type": "Ext.form.field.Hidden",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Label",
+                                "layout|flex": 1,
+                                "name": "head_of_division"
+                            },
+                            "name": "MyHiddenField2",
+                            "designerId": "47d01bba-b7fa-468e-9c27-c0e83309adc6"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": null,
+                                "designer|displayName": "head_of_division",
+                                "itemId": "head_of_division",
+                                "layout|flex": null,
+                                "text": "..."
+                            },
+                            "name": "MyButton3",
+                            "designerId": "f8ffb5b7-58cd-4440-a35e-a9b715d87354",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onSelectHeadOfDivisionButtonClick",
+                                        "implHandler": [
+                                            "this.chosePerson(button);"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onSelectHeadOfDivisionButtonClick",
+                                    "designerId": "c3f4b64f-a757-46de-a8cb-a24ec5803725"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.FieldContainer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "fieldLabel": [
+                            "{i18n.vacation.fields.head_of_department}"
+                        ],
+                        "height": null,
+                        "layout": "hbox",
+                        "layout|anchor": "100%"
+                    },
+                    "name": "MyFieldContainer5",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "735d0891-15ef-4d80-80c0-088f0d5c614e",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": null,
+                                "layout|flex": 1,
+                                "name": "head_of_department_name"
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "9a490620-5d7f-42f2-89d3-0a19a624432c"
+                        },
+                        {
+                            "type": "Ext.form.field.Hidden",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Label",
+                                "layout|flex": 1,
+                                "name": "head_of_department"
+                            },
+                            "name": "MyHiddenField3",
+                            "designerId": "a42b3158-6cb4-425d-8a5c-0a8afc02d2e2"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": null,
+                                "designer|displayName": "head_of_department",
+                                "itemId": "head_of_department",
+                                "layout|flex": null,
+                                "text": "..."
+                            },
+                            "name": "MyButton3",
+                            "designerId": "1bd1b7d9-a19e-433f-b105-0f9f6922758c",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onSelectHeadOfDepartmentClick",
+                                        "implHandler": [
+                                            "this.chosePerson(button);"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onSelectHeadOfDepartmentClick",
+                                    "designerId": "d86c6d1c-16a6-4d1c-aa82-bc74a6158bbc"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.FieldContainer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "fieldLabel": [
+                            "{i18n.vacation.fields.director}"
+                        ],
+                        "height": null,
+                        "layout": "hbox",
+                        "layout|anchor": "100%"
+                    },
+                    "name": "MyFieldContainer6",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "7daadc85-1b43-49e7-aed0-ff7e1f606349",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": null,
+                                "layout|flex": 1,
+                                "name": "director_name"
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "f1b3a37f-03ff-4640-95d7-d3a30b160da7"
+                        },
+                        {
+                            "type": "Ext.form.field.Hidden",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Label",
+                                "layout|flex": 1,
+                                "name": "director"
+                            },
+                            "name": "MyHiddenField4",
+                            "designerId": "1a4454d8-ee9d-41f8-8828-63a922f291f9"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": null,
+                                "designer|displayName": "director",
+                                "itemId": "director",
+                                "layout|flex": null,
+                                "text": "..."
+                            },
+                            "name": "MyButton3",
+                            "designerId": "474c4d65-9b43-47db-a848-55ab4fdb275d",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onSelectDirectorClick",
+                                        "implHandler": [
+                                            "this.chosePerson(button);"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onSelectDirectorClick",
+                                    "designerId": "2f1eae7d-f60a-4091-9271-b8f972bd7628"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.FieldContainer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "fieldLabel": [
+                            "{i18n.vacation.fields.head_of_hr}"
+                        ],
+                        "height": null,
+                        "layout": "hbox",
+                        "layout|anchor": "100%"
+                    },
+                    "name": "MyFieldContainer7",
+                    "configAlternates": {
+                        "fieldLabel": "binding"
+                    },
+                    "designerId": "983d97ba-9072-47b0-9e2e-8d9228bbaed0",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": null,
+                                "layout|flex": 1,
+                                "name": "head_of_hr_name"
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "b449ad5e-06bd-4822-8692-e22486f4cd1b"
+                        },
+                        {
+                            "type": "Ext.form.field.Hidden",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Label",
+                                "layout|flex": 1,
+                                "name": "head_of_hr"
+                            },
+                            "name": "MyHiddenField5",
+                            "designerId": "0bf57621-274c-4f3c-b27b-a193840dd150"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": null,
+                                "designer|displayName": "head_of_hr",
+                                "itemId": "head_of_hr",
+                                "layout|flex": null,
+                                "text": "..."
+                            },
+                            "name": "MyButton3",
+                            "designerId": "802d2d42-219d-4873-9eec-d5ed5787e2cc",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onSelectHeadOfHRClick",
+                                        "implHandler": [
+                                            "this.chosePerson(button);"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onSelectHeadOfHRClick",
+                                    "designerId": "1ecd954a-4c4d-4c78-a858-d83be5605127"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "margin": "10 0 0 0",
+                        "text": null
+                    },
+                    "name": "MyLabel2",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "bca848da-b505-4c4b-a3e5-ae524d279585"
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "header": false,
+                        "padding": "0 0 10 0",
+                        "title": [
+                            "{i18n.vacation.fields.signees}"
+                        ]
+                    },
+                    "name": "MyPanel5",
+                    "configAlternates": {
+                        "title": "binding"
+                    },
+                    "designerId": "34c87e19-3a95-4257-aebb-64420eb2fd35"
                 },
                 {
                     "type": "Ext.form.FieldContainer",
@@ -189,7 +725,7 @@
                                 "editable": false,
                                 "fieldLabel": null,
                                 "id": "substitude_name",
-                                "layout|flex": 5,
+                                "layout|flex": 1,
                                 "name": "substitude_name"
                             },
                             "name": "MyTextField2",
@@ -222,7 +758,8 @@
                             "codeClass": null,
                             "userConfig": {
                                 "border": null,
-                                "layout|flex": 1,
+                                "itemId": "substitude",
+                                "layout|flex": null,
                                 "text": "..."
                             },
                             "name": "MyButton4",
@@ -238,22 +775,7 @@
                                     "userConfig": {
                                         "fn": "onSelectSubstitude",
                                         "implHandler": [
-                                            "var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
-                                            "  title: i18n.document.motion.selectReceiver,",
-                                            "});",
-                                            "var vm = receiverDialog.getViewModel();",
-                                            "vm.set('hideParty', true);",
-                                            "vm.set('hideCustomers', true);",
-                                            "receiverDialog.show();",
-                                            "receiverDialog.on('selectioncomplete', function(receivers) {",
-                                            "  if (receivers.length > 0) {",
-                                            "    var substituder = receivers[0];",
-                                            "    if (substituder.get('user_id') !== undefined){",
-                                            "     this.getView().down('form').getForm().findField('substitude').setValue(substituder.user_id);",
-                                            "     this.getView().down('form').getForm().findField('substitude_name').setValue(substituder.data.full_name);",
-                                            "    }",
-                                            "  }",
-                                            "}.bind(this));"
+                                            "this.chosePerson(button);"
                                         ],
                                         "name": "click",
                                         "scope": "me"
@@ -379,7 +901,8 @@
                                             "                            //we have to close the window here!!",
                                             "                  },",
                                             "         failure: function(form,action){",
-                                            "                    Ext.MessageBox.alert('Error',action.result.message);",
+                                            "           debugger;",
+                                            "                    Ext.MessageBox.alert('Error',action.result.error);",
                                             "         }});",
                                             "     } else {",
                                             "      Ext.Msg.alert('Invalid Data', 'Please correct form errors.');",
