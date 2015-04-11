@@ -85,7 +85,7 @@ class Document::Base < ActiveRecord::Base
     raise I18n.t('models.document_base.errors.no_privilege_to_send') unless user == self.owner_user
     raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
     raise I18n.t('models.document_base.errors.empty_subject') unless self.subject.present?
-    raise I18n.t('models.document_base.errors.empty_body') unless self.body.present?
+    #raise I18n.t('models.document_base.errors.empty_body') unless self.body.present?
     raise I18n.t('models.document_base.errors.no_motions') unless self.motions.any?
     Document::Base.transaction do
       self.status = CURRENT
@@ -138,6 +138,18 @@ class Document::Base < ActiveRecord::Base
       docuser = Document::User.upsert!(self, user, ROLE_OWNER, { status: new_status, is_new: 0 })
       docuser.make_others_unread!
       docuser.calculate!
+    end
+  end
+
+  def authors
+    self.motions.where(receiver_role: ROLE_AUTHOR).map do |m|
+      m.receiver_type.constantize.find(m.receiver_id)
+    end
+  end
+
+  def assignees 
+    self.motions.where(receiver_role: ROLE_ASSIGNEE).map do |m|
+      m.receiver_type.constantize.find(m.receiver_id)
     end
   end
 

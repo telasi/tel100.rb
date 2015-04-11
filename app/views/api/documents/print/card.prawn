@@ -52,11 +52,20 @@ def properties(pdf)
            ["მიმართულება:", direction(@document.direction), ""],
            ["გვერდები:",   "#{@document.page_count}", ""],
            ["დანართი:",    "#{@document.additions_count}", ""],
-           ["ინიციატორი:", "#{@document.sender.full_name}", "#{@document.sender.organization.chained_name}"],
-           ["ავტორი:",    "#{@document.owner.full_name}", "#{@document.owner.organization.chained_name}"],
-           ["ადრესატები:", "#{@document.owner.full_name}", "#{@document.owner.organization.chained_name}"],
-           ["სათაური:",   "#{@document.subject}", ""]
-         ]
+           ["ინიციატორი:", "#{@document.sender.full_name}", "#{@document.sender.organization.chained_name}"]]
+           
+  @document.authors.each_with_index do |author, index|
+    data += [[ index == 0 ? "ავტორები:" : "",    "#{author}", 
+               author.respond_to?(:organization) ? author.organization.chained_name : ""]]
+  end
+  @document.assignees.each_with_index do |assignee, index|
+    data += [[ index == 0 ? "ადრესატები:" : "",    
+               "#{assignee}", 
+               assignee.respond_to?(:organization) ? assignee.organization.chained_name : ""]]
+  end
+           
+  data += [["სათაური:",   "#{@document.subject}", ""]]
+
   pdf.table(data, :cell_style => { :font => pdf.set_font_name('default'), :borders => [] }) do
     column(0).style(:borders => [:right])
     column(0).width = 80
