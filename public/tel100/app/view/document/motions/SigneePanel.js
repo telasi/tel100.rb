@@ -68,12 +68,7 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
         {
           xtype: 'gridcolumn',
           renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-            var receiver = record.get('receiver');
-            if (receiver && receiver.ext_type == 'hr.Organization') {
-              return '<i class="fa fa-bank"></i> ' + value;
-            } else {
-              return '<i class="fa fa-user"></i> ' + value;
-            }
+            return helpers.document.status.motionReceiverName(value, record);
           },
           draggable: false,
           width: 200,
