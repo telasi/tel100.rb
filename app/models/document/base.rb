@@ -141,7 +141,15 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
-  def authors; self.motions.where(receiver_role: ROLE_AUTHOR).map{|m| m.receiver_type.constantize.find(m.receiver_id) }; end
+  def authors; 
+    motions = self.motions.where(receiver_role: ROLE_AUTHOR)
+    if motions.any?
+      motions.map{|m| m.receiver_type.constantize.find(m.receiver_id) }
+    else
+      [self.owner]
+    end
+  end
+
   def signees; self.motions.where(receiver_role: ROLE_SIGNEE).map{ |m| m.receiver_type.constantize.find(m.receiver_id) }; end
   def assignees; self.motions.where(receiver_role: ROLE_ASSIGNEE).map{ |m| m.receiver_type.constantize.find(m.receiver_id) }; end
 

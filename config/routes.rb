@@ -118,6 +118,7 @@ Rails.application.routes.draw do
       end
       scope 'print', controller: 'print' do
         get '/card/:id', action: 'card'
+        get '/document/:id', action: 'print'
       end
     end
   end
