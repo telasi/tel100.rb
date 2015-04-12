@@ -17,6 +17,14 @@ Ext.define('Tel100.view.document.folder.SearchViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentfoldersearch',
 
+  search: function() {
+        var view = this.getView();
+        var params = view.getForm().getValues();
+        var url = '/api/documents/base/search';
+        view.fireEvent('searchstart', url, params);
+        view.up().fireEvent('folderChosen');
+  },
+
   onChoseCustomerButtonClick: function(button, e, eOpts) {
     var receiverDialog = Ext.create('Tel100.view.party.Selector', {
       title: i18n.document.search.choseCustomer
@@ -35,15 +43,32 @@ Ext.define('Tel100.view.document.folder.SearchViewController', {
   },
 
   onSearchButtonClick: function(button, e, eOpts) {
-    var view = this.getView();
-    var params = view.getForm().getValues();
-    var url = '/api/documents/base/search';
-    view.fireEvent('searchstart', url, params);
-    view.up().fireEvent('folderChosen');
+    this.search();
   },
 
   onResetButtonClick: function(button, e, eOpts) {
     button.up('form').reset();
+  },
+
+  onSaveFilterButtonClick: function(button, e, eOpts) {
+    var values = Ext.encode(button.up('form').getForm().getValues());
+    Ext.MessageBox.prompt('Folder','Enter name', function(btn, text){
+      if(btn == 'ok'){
+        Ext.Ajax.request({
+          url: '/api/folder',
+          method: 'POST',
+          params: { name: text, folder_type: 1, form: values },
+          success: function(response){
+            var folderstore = Ext.getStore('CustomFolders');
+            folderstore.reload();
+          },
+          failure: function(response){
+            Ext.MessageBox.alert('error');
+          }
+        });
+        close();
+      }
+    });
   }
 
 });

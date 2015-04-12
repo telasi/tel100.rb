@@ -50,6 +50,9 @@ Ext.define('Tel100.view.document.folder.Config', {
       columns: [
         {
           xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            return helpers.api.folders.folderDecoration(record.get('folder_type'), record.get('name'));
+          },
           dataIndex: 'name',
           text: 'String',
           flex: 1

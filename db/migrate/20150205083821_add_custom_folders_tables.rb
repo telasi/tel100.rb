@@ -6,6 +6,7 @@ class AddCustomFoldersTables < ActiveRecord::Migration
         OWNER_ID     NUMBER(10,0) NOT NULL,
         NAME         VARCHAR2(100 CHAR),
         FOLDER_TYPE  VARCHAR2(50) NOT NULL,
+        FORM         VARCHAR2(1000),
         ORDER_BY     NUMBER(3,0),
         PARENT_ID		 NUMBER(10,0),
         CREATED_AT   TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,

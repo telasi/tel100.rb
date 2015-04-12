@@ -9,5 +9,27 @@
         "designer|userAlias": "documentfoldersearch",
         "designer|userClassName": "document.folder.SearchViewController"
     },
-    "designerId": "02e92488-2fea-485c-83d1-fa0aab8ee1b4"
+    "designerId": "02e92488-2fea-485c-83d1-fa0aab8ee1b4",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "search",
+                "implHandler": [
+                    "    var view = this.getView();",
+                    "    var params = view.getForm().getValues();",
+                    "    var url = '/api/documents/base/search';",
+                    "    view.fireEvent('searchstart', url, params);",
+                    "    view.up().fireEvent('folderChosen');"
+                ]
+            },
+            "name": "search",
+            "designerId": "e8bfbb03-0f3b-4663-b211-e0b257115bbc"
+        }
+    ]
 }

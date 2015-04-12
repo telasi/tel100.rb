@@ -1,4 +1,5 @@
 module.exports = {
   document: require('./document'),
-  substitude: require('./substitude')
+  substitude: require('./substitude'),
+  folders: require('./folders')
 };

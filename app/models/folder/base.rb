@@ -2,6 +2,7 @@
 class Folder::Base < ActiveRecord::Base
   self.table_name  = 'folder_base'
   self.sequence_name = 'folder_base_seq'
+  self.set_integer_columns :folder_type
 
   has_many :documents, class_name: 'Folder::Document', foreign_key: 'folder_id'
 

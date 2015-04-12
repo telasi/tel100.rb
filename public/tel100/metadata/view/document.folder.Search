@@ -471,11 +471,7 @@
                     "userConfig": {
                         "fn": "onSearchButtonClick",
                         "implHandler": [
-                            "var view = this.getView();",
-                            "var params = view.getForm().getValues();",
-                            "var url = '/api/documents/base/search';",
-                            "view.fireEvent('searchstart', url, params);",
-                            "view.up().fireEvent('folderChosen');"
+                            "this.search();"
                         ],
                         "name": "click",
                         "scope": "me"
@@ -522,6 +518,63 @@
                     },
                     "name": "onResetButtonClick",
                     "designerId": "dd961d8d-266e-4aac-8100-e59d104ab381"
+                }
+            ]
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "savefilter",
+                "text": [
+                    "{i18n.document.search.buttons.saveflter}"
+                ],
+                "width": "100%"
+            },
+            "name": "MyButton14",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "14978815-b870-49b4-ab93-0fdd38e08fd1",
+            "cn": [
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onSaveFilterButtonClick",
+                        "implHandler": [
+                            "var values = Ext.encode(button.up('form').getForm().getValues());",
+                            " Ext.MessageBox.prompt('Folder','Enter name', function(btn, text){",
+                            "  if(btn == 'ok'){",
+                            "    Ext.Ajax.request({",
+                            "      url: '/api/folder',",
+                            "      method: 'POST',",
+                            "      params: { name: text, folder_type: 1, form: values },",
+                            "      success: function(response){",
+                            "        var folderstore = Ext.getStore('CustomFolders');",
+                            "        folderstore.reload();",
+                            "      },",
+                            "      failure: function(response){",
+                            "        Ext.MessageBox.alert('error');",
+                            "      }",
+                            "    });",
+                            "    close();",
+                            "  }",
+                            "});"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onSaveFilterButtonClick",
+                    "designerId": "25ddf011-cda5-403f-9b27-407db4da6479"
                 }
             ]
         }

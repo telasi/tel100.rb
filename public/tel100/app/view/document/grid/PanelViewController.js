@@ -57,13 +57,15 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
     var folderMenu = Ext.create('Ext.menu.Menu');
     var CustomFoldersStore = Ext.getStore('CustomFolders');
     CustomFoldersStore.each(function(record,id){
-      folderMenu.add({
-        text: record.get('name'),
-        handler: function(item){
-          var model = Ext.create('Tel100.model.folder.Document', { folder_id: record.id, doc_id: document.id });
-          model.save();
-        }
-      });
+      if(record.get('folder_type') === 0){
+        folderMenu.add({
+          text: record.get('name'),
+          handler: function(item){
+            var model = Ext.create('Tel100.model.folder.Document', { folder_id: record.id, doc_id: document.id });
+            model.save();
+          }
+        });
+      }
     });
 
     var gridMenu = Ext.create('Ext.menu.Menu', {

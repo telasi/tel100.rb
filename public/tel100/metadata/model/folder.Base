@@ -84,6 +84,32 @@
                     "designerId": "5b3cb96b-d1bb-4e2b-bb0a-3eeb0d483575"
                 }
             ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "folder_type"
+            },
+            "name": "MyField5",
+            "designerId": "fd42a77d-6152-4b23-badb-32c520b155e5"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "form"
+            },
+            "name": "MyField6",
+            "designerId": "13e39fb9-de09-4600-a853-565bf4a117d6"
         }
     ]
 }

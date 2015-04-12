@@ -374,7 +374,34 @@
                             "configAlternates": {
                                 "text": "binding"
                             },
-                            "designerId": "b5af7482-42a3-48cf-827a-53fd9b4af74f"
+                            "designerId": "b5af7482-42a3-48cf-827a-53fd9b4af74f",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "value",
+                                            "metaData",
+                                            "record",
+                                            "rowIndex",
+                                            "colIndex",
+                                            "store",
+                                            "view"
+                                        ],
+                                        "fn": "renderer",
+                                        "implHandler": [
+                                            "return helpers.api.folders.folderDecoration(record.get('folder_type'), record.get('name'));"
+                                        ]
+                                    },
+                                    "name": "renderer",
+                                    "designerId": "41978f26-b38e-49e3-b963-ddf27dafbf84"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.grid.View",
@@ -408,10 +435,14 @@
                                     "  },",
                                     "",
                                     "  onNodeOver : function(target, dd, e, data){",
+                                    "    var customGrid = Ext.ComponentQuery.query('grid[itemId=customFolders]')[0];",
+                                    "        var view = customGrid.getView();",
+                                    "        var record = view.getRecord(target);",
+                                    "    ",
                                     "    var proto = Ext.dd.DropZone.prototype;",
-                                    "    return proto.dropAllowed;",
+                                    "    return record.get('folder_type') === 0 ? proto.dropAllowed : proto.dropNotAllowed;",
                                     "  },",
-                                    "  ",
+                                    "",
                                     "  onNodeDrop : function(target, dd, e, data){",
                                     "    var customGrid = Ext.ComponentQuery.query('grid[itemId=customFolders]')[0];",
                                     "    var view = customGrid.getView();",
@@ -443,7 +474,15 @@
                             "userConfig": {
                                 "fn": "onCustomFoldersSelect",
                                 "implHandler": [
-                                    "this.refreshDocuments({folderType: 'custom', folderId: record.id});",
+                                    "if(record.get('folder_type') === 0){",
+                                    "   this.refreshDocuments({folderType: 'custom', folderId: record.id});",
+                                    "} else {",
+                                    "  var view = this.getView();",
+                                    "  var searchform = view.down('documentfoldersearch');",
+                                    "  searchform.getForm().setValues(Ext.decode(record.get('form')));",
+                                    "  searchform.getController().search();",
+                                    "}",
+                                    "",
                                     "this.getView().down('#standardFolders').getSelectionModel().deselectAll();",
                                     "this.getView().up().getViewModel().set('customfolderselection', rowmodel.getSelection());"
                                 ],

@@ -214,6 +214,16 @@ Ext.define('Tel100.view.document.folder.Search', {
       listeners: {
         click: 'onResetButtonClick'
       }
+    },
+    {
+      xtype: 'button',
+      width: '100%',
+      bind: {
+        text: '{i18n.document.search.buttons.saveflter}'
+      },
+      listeners: {
+        click: 'onSaveFilterButtonClick'
+      }
     }
   ]
 

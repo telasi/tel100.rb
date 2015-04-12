@@ -24,7 +24,7 @@ Ext.define('Tel100.view.document.folder.ConfigViewController', {
         Ext.Ajax.request({
           url: '/api/folder',
           method: 'POST',
-          params: { name: text},
+          params: { name: text, folder_type: 0 },
           success: function(response){
             var folderstore = Ext.getStore('CustomFolders');
             folderstore.reload();

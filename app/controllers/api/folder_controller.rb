@@ -14,9 +14,8 @@ class Api::FolderController < ApiController
   end
 
   def create
-    @folder = Folder::Base.new(params.permit(:name))
+    @folder = Folder::Base.new(params.permit(:name, :folder_type, :form))
     @folder.owner_id = current_user.id
-    @folder.folder_type = 0
     if @folder.save
      render json: { success: true }
     else

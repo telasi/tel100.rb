@@ -58,8 +58,12 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
       },
 
       onNodeOver : function(target, dd, e, data){
+        var customGrid = Ext.ComponentQuery.query('grid[itemId=customFolders]')[0];
+        var view = customGrid.getView();
+        var record = view.getRecord(target);
+
         var proto = Ext.dd.DropZone.prototype;
-        return proto.dropAllowed;
+        return record.get('folder_type') === 0 ? proto.dropAllowed : proto.dropNotAllowed;
       },
 
       onNodeDrop : function(target, dd, e, data){
@@ -79,7 +83,15 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
   },
 
   onCustomFoldersSelect: function(rowmodel, record, index, eOpts) {
-    this.refreshDocuments({folderType: 'custom', folderId: record.id});
+    if(record.get('folder_type') === 0){
+      this.refreshDocuments({folderType: 'custom', folderId: record.id});
+    } else {
+      var view = this.getView();
+      var searchform = view.down('documentfoldersearch');
+      searchform.getForm().setValues(Ext.decode(record.get('form')));
+      searchform.getController().search();
+    }
+
     this.getView().down('#standardFolders').getSelectionModel().deselectAll();
     this.getView().up().getViewModel().set('customfolderselection', rowmodel.getSelection());
   },

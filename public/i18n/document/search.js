@@ -27,7 +27,8 @@ module.exports = {
   to: 'მდე',
   buttons: {
   	search: 'ძებნა',
-  	reset: 'გასუფთავება'
+  	reset: 'გასუფთავება',
+    savefilter: 'ფილტრის დამახსოვრება'
   },
   choseCustomer: {
     ka: 'აბონენტების არჩევა',

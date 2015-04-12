@@ -143,6 +143,9 @@ Ext.define('Tel100.view.document.folder.Tab', {
           columns: [
             {
               xtype: 'gridcolumn',
+              renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                return helpers.api.folders.folderDecoration(record.get('folder_type'), record.get('name'));
+              },
               enableColumnHide: false,
               sortable: false,
               dataIndex: 'name',
