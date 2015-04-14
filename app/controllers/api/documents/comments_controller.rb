@@ -19,7 +19,19 @@ class Api::Documents::CommentsController < ApiController
   def sign
     user = current_user
     doc  = Document::Base.find(params[:document_id])
-    motions = doc.motions.where(status: CURRENT)
+    motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: Document::ROLE_SIGNEE)
+    Document::Comment.transaction do
+      motions.each do |motion|
+        motion.add_comment!(user, params)
+      end
+    end
+    render json: { success: true }
+  end
+
+  def author
+    user = current_user
+    doc  = Document::Base.find(params[:document_id])
+    motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: Document::ROLE_ASSIGNEE)
     Document::Comment.transaction do
       motions.each do |motion|
         motion.add_comment!(user, params)

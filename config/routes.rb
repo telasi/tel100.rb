@@ -104,6 +104,7 @@ Rails.application.routes.draw do
         get  '/', action: 'index'
         post '/create', action: 'create'
         post '/sign', action: 'sign'
+        post '/author', action: 'author'
       end
       scope 'files', controller: 'files' do
         get    '/',         action: 'index'
