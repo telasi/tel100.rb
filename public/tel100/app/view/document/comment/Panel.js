@@ -69,8 +69,8 @@ Ext.define('Tel100.view.document.comment.Panel', {
         },
         {
           xtype: 'gridcolumn',
-          dataIndex: 'user',
           width: 150,
+          dataIndex: 'user',
           bind: {
             text: '{i18n.document.comment.author}'
           }

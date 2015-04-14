@@ -7,7 +7,6 @@
     "codeClass": null,
     "userConfig": {
         "bodyBorder": false,
-        "border": false,
         "designer|userAlias": "documentmotionsingrid",
         "designer|userClassName": "document.motions.InGrid",
         "height": null,
