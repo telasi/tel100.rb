@@ -41,6 +41,12 @@ Ext.define('Tel100.model.folder.Base', {
         return true;
       },
       name: 'custom'
+    },
+    {
+      name: 'folder_type'
+    },
+    {
+      name: 'form'
     }
   ]
 });
