@@ -64,7 +64,7 @@ class Folder::Standard
    		when INBOX_NONREAD
    			docs.where(is_received: 1, is_completed: show_completed, is_new: 1)
    		when INBOX_READ
-   			docs.where(is_received: 1, is_completed: show_completed, is_new: 0)
+   			docs.where(is_received: 1, is_completed: show_completed, is_new: 0, is_forwarded: 0)
    		when INBOX_RESENT
         docs.where(is_forwarded: 1, is_completed: show_completed)
    		when SENT
