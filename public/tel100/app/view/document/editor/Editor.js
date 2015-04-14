@@ -89,6 +89,16 @@ Ext.define('Tel100.view.document.editor.Editor', {
               listeners: {
                 click: 'onSignDocument'
               }
+            },
+            {
+              xtype: 'button',
+              bind: {
+                hidden: '{hideAuthorButton}',
+                text: '{i18n.document.comment.actions.author}'
+              },
+              listeners: {
+                click: 'onAuthorDocument'
+              }
             }
           ]
         }
@@ -210,6 +220,18 @@ Ext.define('Tel100.view.document.editor.Editor', {
     var dialog = Ext.create('Tel100.view.document.comment.Sign', { modal: true });
     dialog.getViewModel().set('document', doc);
     dialog.on('signed', function() {
+      view.refresh();
+    });
+    dialog.show();
+  },
+
+  onAuthorDocument: function(button, e, eOpts) {
+    var view = this;
+    var vm = view.getViewModel();
+    var doc = vm.get('document');
+    var dialog = Ext.create('Tel100.view.document.comment.Author', { modal: true });
+    dialog.getViewModel().set('document', doc);
+    dialog.on('authored', function() {
       view.refresh();
     });
     dialog.show();

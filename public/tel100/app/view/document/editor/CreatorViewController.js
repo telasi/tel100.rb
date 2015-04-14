@@ -74,10 +74,10 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
       if (!subject) {
         Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_subject);
         return;
-      } else if (!body) {
+      } /*else if (!body) {
         Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_body);
         return;
-      }
+      }*/
       vm.set('isSending', true);
       helpers.api.document.base.sendDraft(document.id, {
         success: function() {

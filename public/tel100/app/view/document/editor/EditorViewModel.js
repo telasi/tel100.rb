@@ -28,6 +28,9 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
   formulas: {
     hideSignButton: function(get) {
       return get('document.as_signee') !== 1;
+    },
+    hideAuthorButton: function(get) {
+      return get('document.as_author') !== 1;
     }
   }
 
