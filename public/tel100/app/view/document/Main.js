@@ -104,7 +104,8 @@ Ext.define('Tel100.view.document.Main', {
               },
               listeners: {
                 documentopen: 'onGridpanelDocumentopen',
-                documentsign: 'onGridpanelDocumentsign'
+                documentsign: 'onGridpanelDocumentsign',
+                documentauthor: 'onGridpanelDocumentauthor'
               }
             }
           ]
@@ -125,6 +126,16 @@ Ext.define('Tel100.view.document.Main', {
     var dialog = Ext.create('Tel100.view.document.comment.Sign', { modal: true });
     dialog.getViewModel().set('document', doc);
     dialog.on('signed', function() {
+      view.onRefresh();
+    });
+    dialog.show();
+  },
+
+  onGridpanelDocumentauthor: function(doc) {
+    var view = this;
+    var dialog = Ext.create('Tel100.view.document.comment.Author', { modal: true });
+    dialog.getViewModel().set('document', doc);
+    dialog.on('authored', function() {
       view.onRefresh();
     });
     dialog.show();

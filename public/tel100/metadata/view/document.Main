@@ -34,7 +34,7 @@
                 "titleCollapse": null,
                 "width": 250
             },
-            "name": "document.folder.tab",
+            "name": "document.folder.tab2",
             "designerId": "4b3cd9d6-b437-4268-8d05-67138c82a2ff",
             "masterInstanceId": "c09758ae-9832-4db7-9ae8-b1c0009112a7",
             "cn": [
@@ -180,7 +180,7 @@
                                     "{selection}"
                                 ]
                             },
-                            "name": "document.grid.panel",
+                            "name": "document.grid.panel2",
                             "configAlternates": {
                                 "selection": "binding"
                             },
@@ -241,6 +241,33 @@
                                     },
                                     "name": "onGridpanelDocumentsign",
                                     "designerId": "8a96a1cf-77f1-4d2d-a5ee-48a7a64ec980"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "doc"
+                                        ],
+                                        "fn": "onGridpanelDocumentauthor",
+                                        "implHandler": [
+                                            "var view = this;",
+                                            "var dialog = Ext.create('Tel100.view.document.comment.Author', { modal: true });",
+                                            "dialog.getViewModel().set('document', doc);",
+                                            "dialog.on('authored', function() {",
+                                            "  view.onRefresh();",
+                                            "});",
+                                            "dialog.show();"
+                                        ],
+                                        "name": "documentauthor",
+                                        "scope": "me"
+                                    },
+                                    "name": "onGridpanelDocumentauthor",
+                                    "designerId": "387c2600-32db-4355-9102-2081a741909f"
                                 }
                             ]
                         }

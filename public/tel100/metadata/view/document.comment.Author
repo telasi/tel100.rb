@@ -185,7 +185,7 @@
                                     "    response_type: response_type",
                                     "  },",
                                     "  success: function() {",
-                                    "    view.fireEvent('signed');",
+                                    "    view.fireEvent('authored');",
                                     "    view.close();",
                                     "  }",
                                     "});"

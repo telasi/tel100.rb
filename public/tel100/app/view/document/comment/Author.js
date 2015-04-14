@@ -125,7 +125,7 @@ Ext.define('Tel100.view.document.comment.Author', {
         response_type: response_type
       },
       success: function() {
-        view.fireEvent('signed');
+        view.fireEvent('authored');
         view.close();
       }
     });
