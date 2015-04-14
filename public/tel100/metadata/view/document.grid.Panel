@@ -164,6 +164,52 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|displayName": "my-status",
+                "text": [
+                    "{i18n.document.base.my_status}"
+                ]
+            },
+            "name": "MyColumn15",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "9993db88-7cb2-4e34-ad2d-319be3af1d11",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return '--';"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "52757390-ddcf-4052-924f-a6999c8458c2"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "dataIndex": "statusName",
                 "designer|displayName": "status",
                 "text": [

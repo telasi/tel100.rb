@@ -39,7 +39,7 @@ module.exports = {
   sender: 'ინიციატორი',
   owner: 'მფლობელი',
   status: 'სტატუსი',
-  my_status: 'ჩემი სტატუსი',
+  my_status: 'შესრულება',
   in_fields: 'შემოსული წერილის პარამეტრები',
   sender_name: 'ინიციატორი',
   actions: 'მოქმედება',

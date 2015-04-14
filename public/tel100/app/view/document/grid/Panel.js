@@ -84,6 +84,15 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return '--';
+      },
+      bind: {
+        text: '{i18n.document.base.my_status}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
       width: 130,
       dataIndex: 'statusName',
       bind: {
