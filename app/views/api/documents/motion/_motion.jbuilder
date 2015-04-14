@@ -3,7 +3,7 @@ def statusify(object, text)
   when Document::Status::COMPLETED
     "<span class=\"text-success\"><i class=\"fa fa-check\"></i> #{text}</span>"
   when Document::Status::CANCELED
-    "<span class=\"text-danger\"><i class=\"fa fa-check\"></i> #{text}</span>"
+    "<span class=\"text-danger\"><i class=\"fa fa-times\"></i> #{text}</span>"
   else
     "<span class=\"text-info\"><i class=\"fa fa-clock-o\"></i> #{text}</span>"
   end
