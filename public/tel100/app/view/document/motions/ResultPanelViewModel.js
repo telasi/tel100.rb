@@ -21,6 +21,7 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
     'Ext.data.Store',
     'Ext.data.proxy.Ajax',
     'Ext.data.reader.Json',
+    'Ext.util.Filter',
     'Ext.app.bind.Formula'
   ],
 
@@ -29,7 +30,7 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
     isResult: false,
     categoryId: null,
     text: null,
-    
+    selection: null
   },
 
   stores: {
@@ -66,11 +67,15 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
       },
       listeners: {
         load: 'onResponseTypesStoreLoad'
+      },
+      filters: {
+        property: 'role',
+        value: '{selection.receiver_role}'
       }
     }
   },
   formulas: {
-    hideComplete: function(get) {
+    hideResult: function(get) {
       return !get('isResult');
     },
     saveLabel: function(get) {

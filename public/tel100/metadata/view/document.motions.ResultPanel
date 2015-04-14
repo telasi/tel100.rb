@@ -41,6 +41,9 @@
                     "{i18n.document.comment.motion}"
                 ],
                 "itemId": "in-motions",
+                "selection": [
+                    "{selection}"
+                ],
                 "store": [
                     "{motions}"
                 ],
@@ -54,7 +57,8 @@
             "configAlternates": {
                 "store": "binding",
                 "fieldLabel": "binding",
-                "value": "binding"
+                "value": "binding",
+                "selection": "binding"
             },
             "designerId": "2b18ead4-d748-495c-9af4-d1ca548b23d5",
             "customConfigs": [
@@ -108,7 +112,7 @@
                     "{i18n.document.comment.result}"
                 ],
                 "hidden": [
-                    "{hideComplete}"
+                    "{hideResult}"
                 ],
                 "itemId": "result-types",
                 "layout|flex": 0,

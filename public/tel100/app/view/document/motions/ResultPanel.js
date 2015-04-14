@@ -51,7 +51,8 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
       bind: {
         fieldLabel: '{i18n.document.comment.motion}',
         value: '{motionId}',
-        store: '{motions}'
+        store: '{motions}',
+        selection: '{selection}'
       }
     },
     {
@@ -73,7 +74,7 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
       displayField: 'name',
       valueField: 'id',
       bind: {
-        hidden: '{hideComplete}',
+        hidden: '{hideResult}',
         fieldLabel: '{i18n.document.comment.result}',
         value: '{categoryId}',
         store: '{responseTypes}'

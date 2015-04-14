@@ -12,6 +12,7 @@
             "  isResult: false,",
             "  categoryId: null,",
             "  text: null,",
+            "  selection: null",
             "}"
         ],
         "designer|userAlias": "documentmotionsresultpanel",
@@ -154,6 +155,22 @@
                     },
                     "name": "onResponseTypesStoreLoad",
                     "designerId": "5b52f6c9-ec33-4ee9-ab01-e55408dd4f3a"
+                },
+                {
+                    "type": "Ext.util.Filter",
+                    "reference": {
+                        "name": "filters",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "property": "role",
+                        "value": [
+                            "'{selection.receiver_role}'"
+                        ]
+                    },
+                    "name": "MyFilter",
+                    "designerId": "2675d52a-605d-4e54-838b-908185afc82d"
                 }
             ]
         },
@@ -165,7 +182,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "hideComplete"
+                "name": "hideResult"
             },
             "name": "MyFormula",
             "designerId": "fb6d4a2c-b1ac-404c-91d6-b4698fd720fc",
