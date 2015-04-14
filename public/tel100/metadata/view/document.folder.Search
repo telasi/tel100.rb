@@ -369,7 +369,8 @@
                 "fieldLabel": [
                     "{i18n.document.search.page_count}"
                 ],
-                "layout|anchor": "100%"
+                "layout|anchor": "100%",
+                "name": "page_count"
             },
             "name": "MySpinnerField",
             "configAlternates": {
@@ -531,7 +532,7 @@
             "userConfig": {
                 "designer|displayName": "savefilter",
                 "text": [
-                    "{i18n.document.search.buttons.saveflter}"
+                    "{i18n.document.search.buttons.savefilter}"
                 ],
                 "width": "100%"
             },

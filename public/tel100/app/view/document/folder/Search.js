@@ -166,6 +166,7 @@ Ext.define('Tel100.view.document.folder.Search', {
     {
       xtype: 'spinnerfield',
       anchor: '100%',
+      name: 'page_count',
       bind: {
         fieldLabel: '{i18n.document.search.page_count}'
       }
@@ -219,7 +220,7 @@ Ext.define('Tel100.view.document.folder.Search', {
       xtype: 'button',
       width: '100%',
       bind: {
-        text: '{i18n.document.search.buttons.saveflter}'
+        text: '{i18n.document.search.buttons.savefilter}'
       },
       listeners: {
         click: 'onSaveFilterButtonClick'
