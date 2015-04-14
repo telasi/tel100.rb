@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Api::Documents::CommentsController < ApiController
   include Document::Status
+  include Document::Role
   before_filter :validate_login
 
   def index
@@ -19,7 +20,7 @@ class Api::Documents::CommentsController < ApiController
   def sign
     user = current_user
     doc  = Document::Base.find(params[:document_id])
-    motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: Document::ROLE_SIGNEE)
+    motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: ROLE_SIGNEE)
     Document::Comment.transaction do
       motions.each do |motion|
         motion.add_comment!(user, params)
@@ -31,7 +32,7 @@ class Api::Documents::CommentsController < ApiController
   def author
     user = current_user
     doc  = Document::Base.find(params[:document_id])
-    motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: Document::ROLE_ASSIGNEE)
+    motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: ROLE_AUTHOR)
     Document::Comment.transaction do
       motions.each do |motion|
         motion.add_comment!(user, params)
