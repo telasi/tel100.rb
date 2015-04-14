@@ -67,17 +67,25 @@ var motion = {
 };
 
 var comment = {
-  create: function(args) {
-    var opts = args || {};
-    opts.method = 'POST';
-    opts.url = '/api/documents/comments/create';
-    ajax.request(opts);
-  },
+  // XXX: different config
+  // create: function(args) {
+  //   var opts = args || {};
+  //   opts.method = 'POST';
+  //   opts.url = '/api/documents/comments/create';
+  //   ajax.request(opts);
+  // },
 
   sign: function(args) {
     var opts = args || {};
     opts.method = 'POST';
     opts.url = '/api/documents/comments/sign';
+    ajax.request(opts);
+  },
+
+  author: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/comments/author';
     ajax.request(opts);
   }
 };
