@@ -21,16 +21,24 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewController', {
     var view = this.getView();
     var vm = this.getViewModel();
 
-    var params = {
-      document_id: vm.get('document').id,
-      motion_id: vm.get('motionId'),
-      is_result: vm.get('isResult'),
-      text: vm.get('text')
-    };
-    if (params.is_result) { params.category_id = vm.get('categoryId'); }
-    if (typeof params.motion_id !== 'number') { params.motion_id = null; }
+    var docId = vm.get('document').id;
+    var motionId = vm.get('selection.id');
+    if (typeof motion_id !== 'number') { motion_id = null; }
+    var text = vm.get('text');
+    var isComplete = vm.get('isResult');
+    if (isComplete && vm.get('hideComplete')) { isComplete = false; }
+    var responseTypeId = null;
+    if (isComplete) { responseTypeId = vm.get('categoryId'); }
 
-    if (!params.is_result && !params.text){
+    var params = {
+      document_id: docId,
+      motion_id: motionId,
+      is_result: isComplete,
+      text: text,
+      response_type_id: responseTypeId
+    };
+
+    if (!params.is_result && !params.text) {
       Ext.Msg.show({
         title: i18n.document.comment.errors.text_required_title,
         message: i18n.document.comment.errors.text_required,

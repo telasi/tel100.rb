@@ -60,6 +60,7 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
       flex: 0,
       itemId: 'is-complete',
       bind: {
+        hidden: '{hideComplete}',
         fieldLabel: '{i18n.document.comment.complete}',
         value: '{isResult}'
       }
@@ -107,11 +108,11 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
     var typeCombo = this.down('#result-types');
     var completeCheck = this.down('#is-complete');
     var textField = this.down('#comment-text');
-    motionsCombo.select(motionsCombo.getStore().getAt(0));
+    // motionsCombo.select(motionsCombo.getStore().getAt(0));
+    motionsCombo.getStore().load();
     typeCombo.select(typeCombo.getStore().getAt(0));
     textField.setValue('');
     completeCheck.setValue(false);
-
   }
 
 });

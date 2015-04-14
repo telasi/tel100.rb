@@ -55,6 +55,10 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
     responseTypes: {
       autoLoad: true,
       model: 'Tel100.model.document.ResponseType',
+      filters: {
+        property: 'role',
+        value: '{selection.receiver_role}'
+      },
       proxy: {
         type: 'ajax',
         extraParams: {
@@ -67,16 +71,15 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
       },
       listeners: {
         load: 'onResponseTypesStoreLoad'
-      },
-      filters: {
-        property: 'role',
-        value: '{selection.receiver_role}'
       }
     }
   },
   formulas: {
     hideResult: function(get) {
       return !get('isResult');
+    },
+    hideComplete: function(get) {
+      return get('selection.status') !== helpers.document.status.CURRENT;
     },
     saveLabel: function(get) {
       return get('isResult') ?

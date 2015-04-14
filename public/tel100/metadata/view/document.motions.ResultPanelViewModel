@@ -106,6 +106,23 @@
             "designerId": "8d729648-e21c-46ac-ad9c-ef23f4758d8d",
             "cn": [
                 {
+                    "type": "Ext.util.Filter",
+                    "reference": {
+                        "name": "filters",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "role filter",
+                        "property": "role",
+                        "value": [
+                            "'{selection.receiver_role}'"
+                        ]
+                    },
+                    "name": "MyFilter",
+                    "designerId": "2675d52a-605d-4e54-838b-908185afc82d"
+                },
+                {
                     "type": "Ext.data.proxy.Ajax",
                     "reference": {
                         "name": "proxy",
@@ -155,22 +172,6 @@
                     },
                     "name": "onResponseTypesStoreLoad",
                     "designerId": "5b52f6c9-ec33-4ee9-ab01-e55408dd4f3a"
-                },
-                {
-                    "type": "Ext.util.Filter",
-                    "reference": {
-                        "name": "filters",
-                        "type": "object"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "property": "role",
-                        "value": [
-                            "'{selection.receiver_role}'"
-                        ]
-                    },
-                    "name": "MyFilter",
-                    "designerId": "2675d52a-605d-4e54-838b-908185afc82d"
                 }
             ]
         },
@@ -205,6 +206,40 @@
                     },
                     "name": "get",
                     "designerId": "c418eb05-760b-409e-b9ae-ed25e25995ab"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideComplete"
+            },
+            "name": "MyFormula5",
+            "designerId": "089ba021-094d-43d6-94f9-12d63910ac7d",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return get('selection.status') !== helpers.document.status.CURRENT;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "07228cf8-90c3-404e-a8c2-4a3b35e768c9"
                 }
             ]
         },

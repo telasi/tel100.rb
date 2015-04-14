@@ -205,13 +205,12 @@ var motion = {
 };
 
 var comment = {
-  // XXX: different config
-  // create: function(args) {
-  //   var opts = args || {};
-  //   opts.method = 'POST';
-  //   opts.url = '/api/documents/comments/create';
-  //   ajax.request(opts);
-  // },
+  create: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/comments/create';
+    ajax.request(opts);
+  },
 
   sign: function(args) {
     var opts = args || {};
