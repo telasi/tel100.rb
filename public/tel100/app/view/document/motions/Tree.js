@@ -38,6 +38,7 @@ Ext.define('Tel100.view.document.motions.Tree', {
   enableColumnHide: false,
   hideHeaders: true,
   rowLines: true,
+  scroll: 'vertical',
   lines: false,
   useArrows: true,
   defaultListenerScope: true,
@@ -67,16 +68,18 @@ Ext.define('Tel100.view.document.motions.Tree', {
           var vm = grid.getViewModel();
           var doc = vm.get('document');
           var status = doc.get('status');
-          var txt = '#<strong>' + doc.get('docnumber') + '</strong>: ' + doc.get('sender_name');
+          var roleName = i18n.document.role.creator;
+          var txt = '#<strong>' + doc.get('docnumber') + '</strong>: ' + doc.get('sender_name') + ', <span class="text-muted">' + roleName + '</span>';
           return statusDecorator(status, txt);
         } else {
           var status = record.get('status');
           var currentStatus = record.get('current_status');
           var txt;
+          var role = record.get('receiver_role');
           if (currentStatus === '' || currentStatus === '--') {
-            txt = '<strong>' + value + '</strong>';
+            txt = '<strong>' + value + '</strong>, <span class="text-muted">' + i18n.document.role[role] + '</span>';
           } else {
-            txt = '<strong>' + value + '</strong> &mdash; ' + currentStatus;
+            txt = '<strong>' + value + '</strong>, <span class="text-muted">' + i18n.document.role[role] + '</span> &mdash; ' + currentStatus;
           }
           return statusDecorator(status, txt);
         }
