@@ -10,6 +10,9 @@
         "designer|userClassName": "document.motions.SignaturesViewer",
         "height": null,
         "hideHeaders": true,
+        "store": [
+            "{signatures}"
+        ],
         "title": [
             "{i18n.document.motion.signatures} ({signatureCount})"
         ],
@@ -17,7 +20,8 @@
     },
     "name": "MyGridPanel1",
     "configAlternates": {
-        "title": "binding"
+        "title": "binding",
+        "store": "binding"
     },
     "designerId": "521c3b4a-dcf1-4cb0-bc78-4f19857aac2f",
     "viewControllerInstanceId": "d5f4c9b2-7be7-410f-abe6-f2b728496e6c",
@@ -31,7 +35,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "string",
+                "dataIndex": "name",
                 "flex": 1,
                 "text": "name"
             },

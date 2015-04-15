@@ -30,12 +30,13 @@ Ext.define('Tel100.view.document.motions.SignaturesViewer', {
   hideHeaders: true,
 
   bind: {
-    title: '{i18n.document.motion.signatures} ({signatureCount})'
+    title: '{i18n.document.motion.signatures} ({signatureCount})',
+    store: '{signatures}'
   },
   columns: [
     {
       xtype: 'gridcolumn',
-      dataIndex: 'string',
+      dataIndex: 'name',
       text: 'name',
       flex: 1
     }
