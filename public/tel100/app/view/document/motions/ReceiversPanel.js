@@ -19,11 +19,13 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
 
   requires: [
     'Tel100.view.document.motions.ReceiversPanelViewModel',
+    'Tel100.view.document.motions.ReceiversPanelViewController',
     'Ext.grid.column.Column',
     'Ext.grid.View',
     'Ext.panel.Tool'
   ],
 
+  controller: 'documentmotionsreceiverspanel',
   viewModel: {
     type: 'documentmotionsreceiverspanel'
   },
@@ -50,6 +52,11 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
       xtype: 'tool',
       type: 'refresh'
     }
-  ]
+  ],
+
+  onStoreLoad: function(store, records, successful, eOpts) {
+    var vm = this.getViewModel();
+    vm.set('receiverCount', this.getStore().count());
+  }
 
 });

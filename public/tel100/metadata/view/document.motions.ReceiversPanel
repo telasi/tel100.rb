@@ -79,6 +79,29 @@
             },
             "name": "MyTool4",
             "designerId": "71931ea5-4eda-48c9-bba9-32e7d660f666"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "store",
+                    "records",
+                    "successful",
+                    "eOpts"
+                ],
+                "fn": "onStoreLoad",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "vm.set('receiverCount', this.getStore().count());"
+                ]
+            },
+            "name": "onStoreLoad",
+            "designerId": "06ce921b-7c11-4804-a2f9-6978f2155b69"
         }
     ]
 }

@@ -15,5 +15,10 @@
 
 Ext.define('Tel100.view.document.motions.ReceiversPanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentmotionsreceiverspanel'
+  alias: 'controller.documentmotionsreceiverspanel',
+
+  onStoreLoad: function(store, records, successful, eOpts) {
+
+  }
+
 });
