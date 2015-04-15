@@ -46,6 +46,14 @@ Ext.define('Tel100.view.party.SelectorViewController', {
       favMenu.showAt(e.getXY());
   },
 
+  addFromFavourites: function(record) {
+    var obj = Ext.create('Tel100.model.party.Favourites',
+                        { id: record.get('person_id'),
+                         name: record.get('name'),
+                         person_type: record.get('person_type') });
+    this.onAddParty(obj);
+  },
+
   onFavouritesBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
     var rec = record;
     var favMenu = Ext.create('Ext.menu.Menu', {

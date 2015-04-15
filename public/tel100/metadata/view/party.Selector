@@ -50,7 +50,7 @@
                     "userConfig": {
                         "designer|displayName": "favourites"
                     },
-                    "name": "party.favourites",
+                    "name": "party.favourites1",
                     "designerId": "b159642e-b9b2-4df9-88c9-b2767a7efab2",
                     "masterInstanceId": "a45fbe8d-7059-415d-a0c9-11f96e92436a",
                     "cn": [
@@ -110,6 +110,24 @@
                             },
                             "name": "onFavouritesBeforeItemContextMenu",
                             "designerId": "e0e5fcc1-a994-4496-9602-366bd39c9ecf"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onFavouritesCellDblClick",
+                                "implHandler": [
+                                    "this.getController().addFromFavourites(record);"
+                                ],
+                                "name": "celldblclick",
+                                "scope": "me"
+                            },
+                            "name": "onFavouritesCellDblClick",
+                            "designerId": "f6a2a655-e630-44ba-a774-794fdf87f8f7"
                         }
                     ]
                 },
@@ -131,7 +149,7 @@
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel2",
+                    "name": "hr.tree.panel1",
                     "configAlternates": {
                         "tools": "array",
                         "hidden": "binding"

@@ -65,7 +65,8 @@ Ext.define('Tel100.view.party.Selector', {
             beforeitemcontextmenu: {
               fn: 'onFavouritesBeforeItemContextMenu',
               scope: 'controller'
-            }
+            },
+            celldblclick: 'onFavouritesCellDblClick'
           }
         },
         {
@@ -195,6 +196,10 @@ Ext.define('Tel100.view.party.Selector', {
       ]
     }
   ],
+
+  onFavouritesCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    this.getController().addFromFavourites(record);
+  },
 
   onHRTreeDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     this.getController().onAddParty(record);
