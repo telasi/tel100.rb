@@ -97,11 +97,31 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "new-receiver",
-                "type": "plus"
+                "designer|displayName": "refresh",
+                "type": "refresh"
             },
-            "name": "MyTool3",
-            "designerId": "596fa4b2-3eff-4101-a858-258f7da5b1d5"
+            "name": "MyTool4",
+            "designerId": "71931ea5-4eda-48c9-bba9-32e7d660f666",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefresh",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefresh",
+                    "designerId": "cf96e01f-dc48-47bf-b8cc-37ad4aa2ff50"
+                }
+            ]
         },
         {
             "type": "Ext.panel.Tool",
@@ -111,11 +131,11 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|displayName": "refresh",
-                "type": "refresh"
+                "designer|displayName": "new-receiver",
+                "type": "plus"
             },
-            "name": "MyTool4",
-            "designerId": "71931ea5-4eda-48c9-bba9-32e7d660f666"
+            "name": "MyTool3",
+            "designerId": "596fa4b2-3eff-4101-a858-258f7da5b1d5"
         },
         {
             "type": "basicfunction",
@@ -139,6 +159,22 @@
             },
             "name": "onStoreLoad",
             "designerId": "06ce921b-7c11-4804-a2f9-6978f2155b69"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "this.getStore().load();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "551c2120-770f-400c-afcc-c9aa0d4defce"
         }
     ]
 }

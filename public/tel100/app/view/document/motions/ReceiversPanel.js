@@ -30,6 +30,7 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
     type: 'documentmotionsreceiverspanel'
   },
   hideHeaders: true,
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.motion.receivers} ({receiverCount})',
@@ -59,17 +60,28 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
   tools: [
     {
       xtype: 'tool',
-      type: 'plus'
+      type: 'refresh',
+      listeners: {
+        click: 'onRefresh'
+      }
     },
     {
       xtype: 'tool',
-      type: 'refresh'
+      type: 'plus'
     }
   ],
+
+  onRefresh: function(tool, e, owner, eOpts) {
+    this.refresh();
+  },
 
   onStoreLoad: function(store, records, successful, eOpts) {
     var vm = this.getViewModel();
     vm.set('receiverCount', this.getStore().count());
+  },
+
+  refresh: function() {
+    this.getStore().load();
   }
 
 });
