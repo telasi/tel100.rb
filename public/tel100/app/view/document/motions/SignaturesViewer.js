@@ -28,6 +28,7 @@ Ext.define('Tel100.view.document.motions.SignaturesViewer', {
     type: 'documentmotionssignaturesviewer'
   },
   hideHeaders: true,
+  defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.motion.signatures} ({signatureCount})',
@@ -44,8 +45,19 @@ Ext.define('Tel100.view.document.motions.SignaturesViewer', {
   tools: [
     {
       xtype: 'tool',
-      type: 'refresh'
+      type: 'refresh',
+      listeners: {
+        click: 'onRefresh'
+      }
     }
-  ]
+  ],
+
+  onRefresh: function(tool, e, owner, eOpts) {
+    this.refresh();
+  },
+
+  refresh: function() {
+    this.getStore().load();
+  }
 
 });

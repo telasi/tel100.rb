@@ -64,7 +64,43 @@
                 "type": "refresh"
             },
             "name": "MyTool5",
-            "designerId": "7afd171d-0efe-4be1-addd-b32433cb8a2f"
+            "designerId": "7afd171d-0efe-4be1-addd-b32433cb8a2f",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onRefresh",
+                        "implHandler": [
+                            "this.refresh();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onRefresh",
+                    "designerId": "548eb245-1294-43cf-ad4d-8ee432c41a68"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refresh",
+                "implHandler": [
+                    "this.getStore().load();"
+                ]
+            },
+            "name": "refresh",
+            "designerId": "9a767514-5db8-4e99-ac48-5ac4abefa821"
         }
     ]
 }
