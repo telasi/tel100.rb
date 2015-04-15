@@ -1,0 +1,67 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{",
+            "  receiverCount: 0",
+            "}"
+        ],
+        "designer|userAlias": "documentmotionsreceiverspanel",
+        "designer|userClassName": "document.motions.ReceiversPanelViewModel"
+    },
+    "designerId": "d6022744-75fa-499a-bfdb-937ccb78bb5a",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Motion",
+                "name": "receivers"
+            },
+            "name": "MyStore3",
+            "designerId": "7916b294-e816-458e-92ae-2fafb937e5ee",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  document_id: '{document.id}'",
+                            "}"
+                        ],
+                        "url": "/api/documents/motion/assignees"
+                    },
+                    "name": "MyAjaxProxy6",
+                    "designerId": "f4b2fb5e-3905-4dc7-a22d-99f074809ab6",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader6",
+                            "designerId": "ded871c2-baad-4f1b-92f0-fcf5ee5e45c7"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

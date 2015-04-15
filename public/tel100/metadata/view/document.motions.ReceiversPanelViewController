@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documentmotionsreceiverpanel",
-        "designer|userClassName": "document.motions.ReceiverPanelViewController"
+        "designer|userAlias": "documentmotionsreceiverspanel",
+        "designer|userClassName": "document.motions.ReceiversPanelViewController"
     },
     "designerId": "0ad4d477-d0b8-443d-95dc-e77974369a6b"
 }

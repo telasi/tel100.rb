@@ -6,10 +6,13 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "documentmotionsreceiverpanel",
-        "designer|userClassName": "document.motions.ReceiverPanel",
+        "designer|userAlias": "documentmotionsreceiverspanel",
+        "designer|userClassName": "document.motions.ReceiversPanel",
         "height": null,
         "hideHeaders": true,
+        "store": [
+            "{receivers}"
+        ],
         "title": [
             "{i18n.document.motion.receivers} ({receiverCount})"
         ],
@@ -17,7 +20,8 @@
     },
     "name": "MyGridPanel",
     "configAlternates": {
-        "title": "binding"
+        "title": "binding",
+        "store": "binding"
     },
     "designerId": "9deb0cd5-6e1b-4f12-8333-cf5d5ab594b8",
     "viewControllerInstanceId": "0ad4d477-d0b8-443d-95dc-e77974369a6b",
@@ -31,9 +35,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "dataIndex": "string",
+                "dataIndex": "name",
                 "flex": 1,
-                "text": "Text"
+                "text": "name"
             },
             "name": "MyColumn9",
             "designerId": "092a15c0-a26f-404f-ba93-34432c64ddb5"

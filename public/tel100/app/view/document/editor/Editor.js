@@ -22,7 +22,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     'Tel100.view.document.editor.EditorViewController',
     'Tel100.view.document.editor.General',
     'Tel100.view.document.motions.SignaturesViewer',
-    'Tel100.view.document.motions.ReceiverPanel',
+    'Tel100.view.document.motions.ReceiversPanel',
     'Tel100.view.document.motions.Tree',
     'Tel100.view.document.motions.ResultPanel',
     'Tel100.view.document.comment.Panel',
@@ -159,7 +159,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   xtype: 'documentmotionssignaturesviewer'
                 },
                 {
-                  xtype: 'documentmotionsreceiverpanel'
+                  xtype: 'documentmotionsreceiverspanel'
                 },
                 {
                   xtype: 'documentmotionstree'
