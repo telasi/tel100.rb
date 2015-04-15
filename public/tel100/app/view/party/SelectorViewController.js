@@ -38,6 +38,9 @@ Ext.define('Tel100.view.party.SelectorViewController', {
             var model = Ext.create('Tel100.model.party.Favourites',
                                     { person_id: record.id, person_type: record.get('ext_type') });
             model.save();
+            var favpanel = Ext.ComponentQuery.query('partyfavourites')[0];
+            var store = favpanel.store;
+            store.reload();
           }
         }]
       });
@@ -61,9 +64,9 @@ Ext.define('Tel100.view.party.SelectorViewController', {
         text: i18n.hr.favourites.delete,
         icon: '/images/delete.png',
         handler: function(item){
-          debugger;
-          var store = grid.store;
-          var selection = grid.selection;
+          var favpanel = Ext.ComponentQuery.query('partyfavourites')[0];
+          var store = favpanel.store;
+          var selection = favpanel.selection;
           if (selection){
             Ext.Msg.show({
               title: i18n.ui.destroy,

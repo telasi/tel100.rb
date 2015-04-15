@@ -50,7 +50,7 @@
                     "userConfig": {
                         "designer|displayName": "favourites"
                     },
-                    "name": "party.favourites1",
+                    "name": "party.favourites3",
                     "designerId": "b159642e-b9b2-4df9-88c9-b2767a7efab2",
                     "masterInstanceId": "a45fbe8d-7059-415d-a0c9-11f96e92436a",
                     "cn": [
@@ -80,9 +80,9 @@
                                     "          text: i18n.hr.favourites.delete,",
                                     "          icon: '/images/delete.png',",
                                     "          handler: function(item){",
-                                    "            debugger;",
-                                    "            var store = grid.store;",
-                                    "            var selection = grid.selection;",
+                                    "            var favpanel = Ext.ComponentQuery.query('partyfavourites')[0];",
+                                    "            var store = favpanel.store;",
+                                    "            var selection = favpanel.selection;",
                                     "            if (selection){",
                                     "              Ext.Msg.show({",
                                     "                title: i18n.ui.destroy,",
@@ -149,7 +149,7 @@
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel1",
+                    "name": "hr.tree.panel3",
                     "configAlternates": {
                         "tools": "array",
                         "hidden": "binding"
@@ -233,7 +233,7 @@
                         "designer|displayName": "parties",
                         "hidden": null
                     },
-                    "name": "hr.party.grid1",
+                    "name": "hr.party.grid3",
                     "configAlternates": {
                         "hidden": "binding"
                     },
@@ -309,7 +309,7 @@
                         "designer|displayName": "customers",
                         "hidden": null
                     },
-                    "name": "bs.customer.panel1",
+                    "name": "bs.customer.panel3",
                     "configAlternates": {
                         "hidden": "binding"
                     },
