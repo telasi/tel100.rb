@@ -72,9 +72,9 @@ class Folder::Standard
    		when INBOX_SIGNEE
         docs.where('document_user.is_completed = ? and ( document_user.as_signee = 1 or document_user.as_author = 1)', show_completed)
       when INBOX_SIGNED
-        docs.where('document_user.as_signee = 2 or document_user.as_author = 2')
+        docs.where('document_user.as_signee = 2')
    		when SENT
-   			docs.where(is_sent: 1, is_completed: show_completed)
+   			docs.where('document_user.is_sent = 1 and document_user.is_completed = ? or document_user.as_author = 2', show_completed)
       when COMPLETED
         docs.where(is_completed: 1)
       when CANCELED
