@@ -1,0 +1,80 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsreceiverpanel",
+        "designer|userClassName": "document.motions.ReceiverPanel",
+        "height": null,
+        "hideHeaders": true,
+        "title": [
+            "{i18n.document.motion.receivers} ({receiverCount})"
+        ],
+        "width": null
+    },
+    "name": "MyGridPanel",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "9deb0cd5-6e1b-4f12-8333-cf5d5ab594b8",
+    "viewControllerInstanceId": "0ad4d477-d0b8-443d-95dc-e77974369a6b",
+    "viewModelInstanceId": "d6022744-75fa-499a-bfdb-937ccb78bb5a",
+    "cn": [
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "string",
+                "flex": 1,
+                "text": "Text"
+            },
+            "name": "MyColumn9",
+            "designerId": "092a15c0-a26f-404f-ba93-34432c64ddb5"
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView1",
+            "designerId": "c6b62373-68cb-4056-9189-5200980d45bc"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "new-receiver",
+                "type": "plus"
+            },
+            "name": "MyTool3",
+            "designerId": "596fa4b2-3eff-4101-a858-258f7da5b1d5"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool4",
+            "designerId": "71931ea5-4eda-48c9-bba9-32e7d660f666"
+        }
+    ]
+}

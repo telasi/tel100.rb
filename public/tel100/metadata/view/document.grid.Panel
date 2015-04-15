@@ -194,7 +194,11 @@
                         ],
                         "fn": "renderer",
                         "implHandler": [
-                            "return '--';"
+                            "if(record.get('is_received')) {",
+                            "  return '&rarr;';",
+                            "} else {",
+                            "  return '&larr;';",
+                            "}"
                         ]
                     },
                     "name": "renderer",

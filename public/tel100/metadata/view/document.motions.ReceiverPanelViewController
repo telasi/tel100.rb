@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsreceiverpanel",
+        "designer|userClassName": "document.motions.ReceiverPanelViewController"
+    },
+    "designerId": "0ad4d477-d0b8-443d-95dc-e77974369a6b"
+}
