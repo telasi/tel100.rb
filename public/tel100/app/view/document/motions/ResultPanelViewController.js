@@ -23,7 +23,7 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewController', {
 
     var docId = vm.get('document').id;
     var motionId = vm.get('selection.id');
-    if (typeof motion_id !== 'number') { motion_id = null; }
+    if (typeof motionId !== 'number') { motionId = null; }
     var text = vm.get('text');
     var isComplete = vm.get('isResult');
     if (isComplete && vm.get('hideComplete')) { isComplete = false; }
