@@ -72,7 +72,12 @@ Ext.define('Tel100.view.document.motions.Tree', {
         } else {
           var status = record.get('status');
           var currentStatus = record.get('current_status');
-          var txt = '<strong>' + value + '</strong> &mdash; ' + currentStatus;
+          var txt;
+          if (currentStatus === '' || currentStatus === '--') {
+            txt = '<strong>' + value + '</strong>';
+          } else {
+            txt = '<strong>' + value + '</strong> &mdash; ' + currentStatus;
+          }
           return statusDecorator(status, txt);
         }
       },
