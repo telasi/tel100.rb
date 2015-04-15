@@ -20,13 +20,14 @@ Ext.define('Tel100.view.party.Selector', {
   requires: [
     'Tel100.view.party.SelectorViewModel',
     'Tel100.view.party.SelectorViewController',
+    'Tel100.view.party.Favourites',
     'Tel100.view.hr.tree.Panel',
     'Tel100.view.hr.party.Grid',
     'Tel100.view.bs.customer.Panel',
     'Ext.tab.Panel',
-    'Ext.tree.Panel',
-    'Ext.tab.Tab',
     'Ext.grid.Panel',
+    'Ext.tab.Tab',
+    'Ext.tree.Panel',
     'Ext.toolbar.Toolbar',
     'Ext.toolbar.Spacer',
     'Ext.resizer.Splitter',
@@ -56,8 +57,17 @@ Ext.define('Tel100.view.party.Selector', {
     {
       xtype: 'tabpanel',
       flex: 1,
-      activeTab: 0,
+      activeTab: 1,
       items: [
+        {
+          xtype: 'partyfavourites',
+          listeners: {
+            beforeitemcontextmenu: {
+              fn: 'onFavouritesBeforeItemContextMenu',
+              scope: 'controller'
+            }
+          }
+        },
         {
           xtype: 'hrtreepanel',
           cls: 'panel-with-border',
@@ -65,7 +75,11 @@ Ext.define('Tel100.view.party.Selector', {
             hidden: '{hideHR}'
           },
           listeners: {
-            celldblclick: 'onHRTreeDblClick'
+            celldblclick: 'onHRTreeDblClick',
+            beforeitemcontextmenu: {
+              fn: 'onHRStructureBeforeItemContextMenu',
+              scope: 'controller'
+            }
           },
           tabConfig: {
             xtype: 'tab',
@@ -83,7 +97,11 @@ Ext.define('Tel100.view.party.Selector', {
             }
           },
           listeners: {
-            itemdblclick: 'onPartyGridpanelItemDblClick'
+            itemdblclick: 'onPartyGridpanelItemDblClick',
+            beforeitemcontextmenu: {
+              fn: 'onPartiesBeforeItemContextMenu',
+              scope: 'controller'
+            }
           }
         },
         {
@@ -95,7 +113,11 @@ Ext.define('Tel100.view.party.Selector', {
             }
           },
           listeners: {
-            itemdblclick: 'onCustomerGridpanelItemDblClick'
+            itemdblclick: 'onCustomerGridpanelItemDblClick',
+            beforeitemcontextmenu: {
+              fn: 'onCustomerBeforeItemContextMenu',
+              scope: 'controller'
+            }
           }
         }
       ]

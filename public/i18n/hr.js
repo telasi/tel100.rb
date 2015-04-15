@@ -56,5 +56,19 @@ module.exports = {
         ru: '# абонента'
       }
     }
+  },
+  favourites: {
+    title: {
+      ka: '<i class="fa fa-star"></i> ფავორიტები',
+      ru: '<i class="fa fa-star"></i> Фавориты'
+    },
+    add_to: {
+      ka: 'ფავორიტებში დამატება',
+      ru: 'Добавить в фавориты'
+    },
+    delete: {
+      ka: 'წაშლა',
+      ru: 'Удалить'
+    }
   }
 };

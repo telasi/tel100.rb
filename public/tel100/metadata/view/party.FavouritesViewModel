@@ -1,0 +1,30 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "partyfavourites",
+        "designer|userClassName": "party.FavouritesViewModel"
+    },
+    "designerId": "034add66-b9fe-4a6c-8aba-8728e22ba2ac",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "party.Favourites",
+                "name": "favourites"
+            },
+            "name": "MyStore2",
+            "designerId": "aabb5dc1-2531-4e3b-af28-31a70c0aa160"
+        }
+    ]
+}

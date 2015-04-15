@@ -21,7 +21,8 @@
             "document.File",
             "hr.Party",
             "bs.Customer",
-            "document.ResponseType"
+            "document.ResponseType",
+            "party.Favourites"
         ],
         "name": "Tel100",
         "stores": [
@@ -67,8 +68,10 @@
             "document.comment.Panel",
             "document.comment.Sign",
             "document.comment.Author",
-            "document.motions.ReceiversPanel",
-            "document.motions.SignaturesViewer"
+            "document.motions.ReceiverPanel",
+            "document.motions.SignaturesViewer",
+            "party.Favourites",
+            "hr.party.Grid"
         ]
     },
     "name": "Application",
