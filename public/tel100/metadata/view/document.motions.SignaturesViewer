@@ -40,7 +40,44 @@
                 "text": "name"
             },
             "name": "MyColumn18",
-            "designerId": "1df85a4a-4d0f-498d-a130-4b7b4ea889a9"
+            "designerId": "1df85a4a-4d0f-498d-a130-4b7b4ea889a9",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "var status = record.get('status');",
+                            "var decor = helpers.document.status.statusDecoration(status);",
+                            "var text = '<strong>' + value + '</strong>';",
+                            "var date = record.get('date');",
+                            "if (date) { text = text + ' &mdash; ' + date; }",
+                            "return [",
+                            "  '<span class=\"' + decor.style + '\">',",
+                            "  '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "  text,",
+                            "  '</span>'",
+                            "].join('');"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "4dd12660-a8a5-4a6c-bdb6-84d3cd84c707"
+                }
+            ]
         },
         {
             "type": "Ext.grid.View",
