@@ -40,7 +40,44 @@
                 "text": "name"
             },
             "name": "MyColumn9",
-            "designerId": "092a15c0-a26f-404f-ba93-34432c64ddb5"
+            "designerId": "092a15c0-a26f-404f-ba93-34432c64ddb5",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "var status = record.get('status');",
+                            "var decor = helpers.document.status.statusDecoration(status);",
+                            "var text = '<strong>' + value + '</strong>';",
+                            "var date = record.get('date');",
+                            "if (date) { text = text + ' &mdash; ' + date; }",
+                            "return [",
+                            "  '<span class=\"' + decor.style + '\">',",
+                            "  '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "  text,",
+                            "  '</span>'",
+                            "].join('');"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "86ec48c8-4ab6-4e25-a00d-9c34a77cd054"
+                }
+            ]
         },
         {
             "type": "Ext.grid.View",
