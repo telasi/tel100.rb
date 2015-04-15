@@ -143,6 +143,29 @@
             },
             "name": "refresh",
             "designerId": "9a767514-5db8-4e99-ac48-5ac4abefa821"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "store",
+                    "records",
+                    "successful",
+                    "eOpts"
+                ],
+                "fn": "onStoreLoad",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "vm.set('signatureCount', store.count());"
+                ]
+            },
+            "name": "onStoreLoad",
+            "designerId": "313e48cc-9dd4-44be-9bb7-2b0adc19318c"
         }
     ]
 }

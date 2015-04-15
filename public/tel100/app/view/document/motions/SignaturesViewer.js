@@ -78,6 +78,11 @@ Ext.define('Tel100.view.document.motions.SignaturesViewer', {
 
   refresh: function() {
     this.getStore().load();
+  },
+
+  onStoreLoad: function(store, records, successful, eOpts) {
+    var vm = this.getViewModel();
+    vm.set('signatureCount', store.count());
   }
 
 });

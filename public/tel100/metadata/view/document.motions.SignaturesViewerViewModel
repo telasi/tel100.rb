@@ -71,7 +71,7 @@
                     "userConfig": {
                         "fn": "onStoreLoad",
                         "implHandler": [
-                            "console.log('loaded');"
+                            "// XXX: actual implementation is in view"
                         ],
                         "name": "load",
                         "scope": "me"

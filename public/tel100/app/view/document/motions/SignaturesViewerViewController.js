@@ -18,7 +18,7 @@ Ext.define('Tel100.view.document.motions.SignaturesViewerViewController', {
   alias: 'controller.documentmotionssignaturesviewer',
 
   onStoreLoad: function(store, records, successful, eOpts) {
-    console.log('loaded');
+    // XXX: actual implementation is in view
   }
 
 });
