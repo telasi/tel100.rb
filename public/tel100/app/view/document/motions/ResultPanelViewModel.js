@@ -57,7 +57,7 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
       model: 'Tel100.model.document.ResponseType',
       filters: {
         property: 'role',
-        value: '{selection.receiver_role}'
+        value: '{receiverRole}'
       },
       proxy: {
         type: 'ajax',
@@ -85,6 +85,9 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
       return get('isResult') ?
       i18n.document.comment.actions.saveResult :
       i18n.document.comment.actions.saveComment;
+    },
+    receiverRole: function(get) {
+      return get('selection.receiver_role') || 'owner';
     }
   }
 

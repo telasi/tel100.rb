@@ -116,7 +116,7 @@
                         "designer|displayName": "role filter",
                         "property": "role",
                         "value": [
-                            "'{selection.receiver_role}'"
+                            "'{receiverRole}'"
                         ]
                     },
                     "name": "MyFilter",
@@ -276,6 +276,40 @@
                     },
                     "name": "get",
                     "designerId": "a0490f9c-2377-4310-a7e9-cf85a2d7d7a3"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "receiverRole"
+            },
+            "name": "MyFormula7",
+            "designerId": "edddd09d-1168-4af1-a731-b01c61afc24d",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return get('selection.receiver_role') || 'owner';"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "46ffc25c-fa07-4a73-933d-c8e5c967de7d"
                 }
             ]
         }
