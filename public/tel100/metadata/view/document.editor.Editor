@@ -299,9 +299,10 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "container|align": "stretch",
                                 "container|padding": null,
                                 "designer|displayName": "main",
-                                "layout": "border",
+                                "layout": "vbox",
                                 "layout|region": "center"
                             },
                             "name": "MyContainer1",
@@ -315,20 +316,68 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "autoScroll": true,
                                         "cls": "document-subject",
-                                        "designer|displayName": "subject",
+                                        "container|align": "stretch",
+                                        "container|padding": null,
+                                        "designer|displayName": "header",
                                         "height": null,
-                                        "html": [
-                                            "{document.subject}"
-                                        ],
-                                        "layout|region": "north",
+                                        "html": null,
+                                        "layout": "vbox",
                                         "margin": null
                                     },
                                     "name": "MyContainer4",
-                                    "configAlternates": {
-                                        "html": "binding"
-                                    },
-                                    "designerId": "fd642e95-ee63-4987-baa9-05d725945fa7"
+                                    "designerId": "fd642e95-ee63-4987-baa9-05d725945fa7",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.form.field.Display",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|displayName": "document",
+                                                "fieldLabel": [
+                                                    "{i18n.document.base.doc}"
+                                                ],
+                                                "layout|flex": null,
+                                                "value": [
+                                                    "<strong class=\"text-success\">{document.docnumber}</strong> <span class=\"text-muted\">{document.type.name}</span> &mdash; <strong>{document.sender_name}</strong>"
+                                                ]
+                                            },
+                                            "name": "MyDisplayField",
+                                            "configAlternates": {
+                                                "fieldLabel": "binding",
+                                                "value": "binding"
+                                            },
+                                            "designerId": "bbd52b9a-23e5-4570-989a-450bf3633edf"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Display",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|displayName": "subject",
+                                                "fieldLabel": [
+                                                    "{i18n.document.base.subject}"
+                                                ],
+                                                "layout|flex": 1,
+                                                "value": [
+                                                    "{document.subject}"
+                                                ]
+                                            },
+                                            "name": "MyDisplayField1",
+                                            "configAlternates": {
+                                                "fieldLabel": "binding",
+                                                "value": "binding"
+                                            },
+                                            "designerId": "399f1ba9-401c-4edf-ad72-d42d70cb9e02"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.container.Container",
@@ -343,8 +392,8 @@
                                         "html": [
                                             "{document.body}"
                                         ],
+                                        "layout|flex": 1,
                                         "layout|margins": null,
-                                        "layout|region": "center",
                                         "margin": null,
                                         "overflowX": null,
                                         "overflowY": "scroll"

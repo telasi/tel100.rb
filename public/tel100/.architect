@@ -1606,10 +1606,17 @@
                                 },
                                 {
                                     "id": "4e7d6269-7ce2-491f-b47c-fd8880fae8fc",
-                                    "expanded": false,
                                     "cn": [
                                         {
-                                            "id": "fd642e95-ee63-4987-baa9-05d725945fa7"
+                                            "id": "fd642e95-ee63-4987-baa9-05d725945fa7",
+                                            "cn": [
+                                                {
+                                                    "id": "bbd52b9a-23e5-4570-989a-450bf3633edf"
+                                                },
+                                                {
+                                                    "id": "399f1ba9-401c-4edf-ad72-d42d70cb9e02"
+                                                }
+                                            ]
                                         },
                                         {
                                             "id": "202382c5-c35b-4cf4-9714-00da706beef8"
@@ -1618,6 +1625,7 @@
                                 },
                                 {
                                     "id": "defe46f4-7969-4954-96dd-c88f5c09e96c",
+                                    "expanded": false,
                                     "cn": [
                                         {
                                             "id": "7e5cb190-a184-4bb0-8f56-8dee4db4bcd5"
@@ -3807,15 +3815,15 @@
     },
     "tabState": {
         "openTabs": [
-            "application"
+            "33bff602-b08f-4c74-8a04-4172e5eeb359"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "application",
-        "selectedInstance": "application"
+        "topInstance": "33bff602-b08f-4c74-8a04-4172e5eeb359",
+        "selectedInstance": "bbd52b9a-23e5-4570-989a-450bf3633edf"
     },
     "editMode": "code",
     "userSettings": {

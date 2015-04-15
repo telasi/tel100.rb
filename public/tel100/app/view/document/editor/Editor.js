@@ -32,6 +32,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     'Ext.tab.Panel',
     'Ext.toolbar.Toolbar',
     'Ext.tab.Tab',
+    'Ext.form.field.Display',
     'Ext.form.Panel',
     'Ext.grid.Panel',
     'Ext.tree.Panel',
@@ -118,19 +119,40 @@ Ext.define('Tel100.view.document.editor.Editor', {
             {
               xtype: 'container',
               region: 'center',
-              layout: 'border',
+              layout: {
+                type: 'vbox',
+                align: 'stretch'
+              },
               items: [
                 {
                   xtype: 'container',
-                  region: 'north',
+                  autoScroll: true,
                   cls: 'document-subject',
-                  bind: {
-                    html: '{document.subject}'
-                  }
+                  layout: {
+                    type: 'vbox',
+                    align: 'stretch'
+                  },
+                  items: [
+                    {
+                      xtype: 'displayfield',
+                      bind: {
+                        fieldLabel: '{i18n.document.base.doc}',
+                        value: '<strong class="text-success">{document.docnumber}</strong> <span class="text-muted">{document.type.name}</span> &mdash; <strong>{document.sender_name}</strong>'
+                      }
+                    },
+                    {
+                      xtype: 'displayfield',
+                      flex: 1,
+                      bind: {
+                        fieldLabel: '{i18n.document.base.subject}',
+                        value: '{document.subject}'
+                      }
+                    }
+                  ]
                 },
                 {
                   xtype: 'container',
-                  region: 'center',
+                  flex: 1,
                   cls: 'document-body',
                   overflowY: 'scroll',
                   bind: {
