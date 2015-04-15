@@ -81,10 +81,10 @@ Ext.application({
     'document.comment.Panel',
     'document.comment.Sign',
     'document.comment.Author',
-    'document.motions.ReceiverPanel',
     'document.motions.SignaturesViewer',
     'party.Favourites',
-    'hr.party.Grid'
+    'hr.party.Grid',
+    'document.motions.ReceiversPanel'
   ],
   name: 'Tel100',
 
