@@ -65,11 +65,13 @@ Ext.define('Tel100.view.document.comment.Panel', {
               return '<i class="fa fa-times"></i>';
             }
           },
-          width: 32
+          width: 32,
+          sortable: false
         },
         {
           xtype: 'gridcolumn',
           width: 150,
+          sortable: false,
           dataIndex: 'user',
           bind: {
             text: '{i18n.document.comment.author}'
@@ -78,6 +80,7 @@ Ext.define('Tel100.view.document.comment.Panel', {
         {
           xtype: 'gridcolumn',
           width: 200,
+          sortable: false,
           dataIndex: 'text',
           bind: {
             text: '{i18n.document.comment.text}'
@@ -86,6 +89,7 @@ Ext.define('Tel100.view.document.comment.Panel', {
         {
           xtype: 'gridcolumn',
           width: 125,
+          sortable: false,
           dataIndex: 'created_at',
           formatter: 'date("d/m/Y H:i")',
           bind: {
