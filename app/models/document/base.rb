@@ -112,7 +112,7 @@ class Document::Base < ActiveRecord::Base
     raise 'not your motion' if user != self.sender_user
     new_status = self.status
     if self.status == CURRENT
-      type = Document::ResponseType.find(params[:category_id]) if params[:category_id].present?
+      type = Document::ResponseType.find(params[:response_type_id]) if params[:response_type_id].present?
       if type.blank? and params[:response_type].present?
         type = Document::ResponseType.where(role: ROLE_OWNER, direction: params[:response_type]).order(:ordering).first
       end
