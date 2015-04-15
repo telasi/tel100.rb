@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Api::Documents::MotionController < ApiController
   include Document::Status
+  include Document::Role
   include TreeUtils
   before_filter :validate_login
 
@@ -41,6 +42,11 @@ class Api::Documents::MotionController < ApiController
       }
     end
     render json: array_to_tree(motionsArray)
+  end
+
+  def signatures
+    doc  = Document::Base.find(params[:document_id])
+    @motions = doc.motions.where('receiver_role IN (?)', [ROLE_SIGNEE, ROLE_AUTHOR]).order('id')
   end
 
   def create_draft

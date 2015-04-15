@@ -75,7 +75,7 @@ Rails.application.routes.draw do
       scope 'base', controller: 'base' do
         get    '/', action: 'index'
         get    '/search',       action: 'search'
-        get    '/:id', action: 'show'
+        get    '/:id',          action: 'show'
         post   '/create_draft', action: 'create_draft'
         put    '/update_draft', action: 'update_draft'
         delete '/delete_draft', action: 'delete_draft'
@@ -84,6 +84,7 @@ Rails.application.routes.draw do
       scope 'motion', controller: 'motion' do
         get    '/',                   action: 'index'
         get    '/tree',               action: 'tree'
+        get    '/signatures',         action: 'signatures'
         post   '/create_draft',       action: 'create_draft'
         put    '/update_draft',       action: 'update_draft'
         delete '/delete_draft',       action: 'delete_draft'
