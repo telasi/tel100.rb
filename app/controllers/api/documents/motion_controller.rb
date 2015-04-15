@@ -46,7 +46,12 @@ class Api::Documents::MotionController < ApiController
 
   def signatures
     doc  = Document::Base.find(params[:document_id])
-    @motions = doc.motions.where('receiver_role IN (?)', [ROLE_SIGNEE, ROLE_AUTHOR]).order('id')
+    @motions = doc.motions.where('receiver_role IN (?) and status IN (?)', [ROLE_SIGNEE, ROLE_AUTHOR], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED]).order('id')
+  end
+
+  def assignees
+    doc  = Document::Base.find(params[:document_id])
+    @motions = doc.motions.where('receiver_role IN (?) and status IN (?)', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED]).order('id')
   end
 
   def create_draft
