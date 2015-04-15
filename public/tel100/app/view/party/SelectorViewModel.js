@@ -21,12 +21,6 @@ Ext.define('Tel100.view.party.SelectorViewModel', {
     'Ext.data.Store'
   ],
 
-  data: {
-    hideParty: false,
-    hideHR: false,
-    hideCustomers: false
-  },
-
   stores: {
     parties: {
 

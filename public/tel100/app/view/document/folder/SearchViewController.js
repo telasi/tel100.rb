@@ -27,12 +27,15 @@ Ext.define('Tel100.view.document.folder.SearchViewController', {
 
   onChoseCustomerButtonClick: function(button, e, eOpts) {
     var receiverDialog = Ext.create('Tel100.view.party.Selector', {
-      title: i18n.document.search.choseCustomer
+      title: i18n.document.search.choseCustomer,
+      viewModel:{
+        data: {
+          hideHR: true,
+          hideParty: true,
+          hideCustomers: false
+        }
+      }
     });
-    var vm = receiverDialog.getViewModel();
-    vm.set('hideHR', true);
-    vm.set('hideParty', true);
-    receiverDialog.down('tabpanel').setActiveTab(2);
     receiverDialog.show();
     receiverDialog.on('selectioncomplete', function(receivers) {
       if (receivers.length > 0) {

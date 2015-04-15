@@ -333,12 +333,15 @@
                                 "fn": "onChoseCustomerButtonClick",
                                 "implHandler": [
                                     "var receiverDialog = Ext.create('Tel100.view.party.Selector', {",
-                                    "  title: i18n.document.search.choseCustomer",
+                                    "  title: i18n.document.search.choseCustomer,",
+                                    "  viewModel:{",
+                                    "    data: {",
+                                    "      hideHR: true,",
+                                    "      hideParty: true,",
+                                    "      hideCustomers: false",
+                                    "    }",
+                                    "  }",
                                     "});",
-                                    "var vm = receiverDialog.getViewModel();",
-                                    "vm.set('hideHR', true);",
-                                    "vm.set('hideParty', true);",
-                                    "receiverDialog.down('tabpanel').setActiveTab(2);",
                                     "receiverDialog.show();",
                                     "receiverDialog.on('selectioncomplete', function(receivers) {",
                                     "  if (receivers.length > 0) {",
@@ -531,6 +534,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "savefilter",
+                "formBind": true,
                 "text": [
                     "{i18n.document.search.buttons.savefilter}"
                 ],
@@ -538,7 +542,8 @@
             },
             "name": "MyButton14",
             "configAlternates": {
-                "text": "binding"
+                "text": "binding",
+                "disabled": "binding"
             },
             "designerId": "14978815-b870-49b4-ab93-0fdd38e08fd1",
             "cn": [
