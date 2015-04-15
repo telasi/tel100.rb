@@ -19,11 +19,13 @@ Ext.define('Tel100.view.document.motions.SignaturesViewer', {
 
   requires: [
     'Tel100.view.document.motions.SignaturesViewerViewModel',
+    'Tel100.view.document.motions.SignaturesViewerViewController',
     'Ext.grid.column.Column',
     'Ext.grid.View',
     'Ext.panel.Tool'
   ],
 
+  controller: 'documentmotionssignaturesviewer',
   viewModel: {
     type: 'documentmotionssignaturesviewer'
   },
@@ -41,6 +43,11 @@ Ext.define('Tel100.view.document.motions.SignaturesViewer', {
         var status = record.get('status');
         var decor = helpers.document.status.statusDecoration(status);
         var text = '<strong>' + value + '</strong>';
+        if (record.get('role') === 'author') {
+          text += ' <i class="fa fa-legal"></i>';
+        } else {
+          text += ' <i class="fa fa-edit"></i>';
+        }
         var date = record.get('date');
         if (date) { text = text + ' &mdash; ' + date; }
         return [

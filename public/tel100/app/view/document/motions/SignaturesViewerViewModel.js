@@ -40,6 +40,9 @@ Ext.define('Tel100.view.document.motions.SignaturesViewerViewModel', {
         reader: {
           type: 'json'
         }
+      },
+      listeners: {
+        load: 'onStoreLoad'
       }
     }
   }

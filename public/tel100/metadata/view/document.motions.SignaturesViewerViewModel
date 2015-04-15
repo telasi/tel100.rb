@@ -60,6 +60,24 @@
                             "designerId": "455961f1-9a0e-4047-be18-8b7a2f0a7427"
                         }
                     ]
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onStoreLoad",
+                        "implHandler": [
+                            "console.log('loaded');"
+                        ],
+                        "name": "load",
+                        "scope": "me"
+                    },
+                    "name": "onStoreLoad",
+                    "designerId": "e497cee3-9f5b-44cd-9cf6-041073b741b8"
                 }
             ]
         }
