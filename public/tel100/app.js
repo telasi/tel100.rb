@@ -35,7 +35,8 @@ Ext.application({
     'document.File',
     'hr.Party',
     'bs.Customer',
-    'document.ResponseType'
+    'document.ResponseType',
+    'party.Favourites'
   ],
   stores: [
     'CustomFolders'
@@ -80,8 +81,10 @@ Ext.application({
     'document.comment.Panel',
     'document.comment.Sign',
     'document.comment.Author',
-    'document.motions.ReceiversPanel',
-    'document.motions.SignaturesViewer'
+    'document.motions.ReceiverPanel',
+    'document.motions.SignaturesViewer',
+    'party.Favourites',
+    'hr.party.Grid'
   ],
   name: 'Tel100',
 

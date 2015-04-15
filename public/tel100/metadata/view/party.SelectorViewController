@@ -51,6 +51,43 @@
             },
             "name": "onRemoveParty",
             "designerId": "d2055c7d-b6a5-401d-9f28-0bd9832430e9"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "dataview",
+                    "record",
+                    "item",
+                    "index",
+                    "e"
+                ],
+                "fn": "contextMenu",
+                "implHandler": [
+                    "var me = this;",
+                    "var favMenu = Ext.create('Ext.menu.Menu', {",
+                    "    items: [{",
+                    "      text: i18n.hr.favourites.add_to,",
+                    "      icon: '/images/add.png',",
+                    "      handler: function(item){",
+                    "        var model = Ext.create('Tel100.model.party.Favourites',",
+                    "                                { person_id: record.id, person_type: record.get('ext_type') });",
+                    "        model.save();",
+                    "      }",
+                    "    }]",
+                    "  });",
+                    "",
+                    "  e.stopEvent();",
+                    "  favMenu.showAt(e.getXY());"
+                ]
+            },
+            "name": "contextMenu",
+            "designerId": "23c0d66f-00c6-4a8b-a185-caefc63e5526"
         }
     ]
 }

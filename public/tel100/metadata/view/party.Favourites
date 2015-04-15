@@ -1,0 +1,118 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "partyfavourites",
+        "designer|userClassName": "party.Favourites",
+        "height": null,
+        "store": [
+            "{favourites}"
+        ],
+        "title": [
+            "{i18n.hr.favourites.title}"
+        ],
+        "width": null
+    },
+    "name": "MyGridPanel1",
+    "configAlternates": {
+        "title": "binding",
+        "store": "binding"
+    },
+    "designerId": "a45fbe8d-7059-415d-a0c9-11f96e92436a",
+    "viewControllerInstanceId": "acf30c6a-c1c4-4ef4-9cc1-21ecb49acb0b",
+    "viewModelInstanceId": "034add66-b9fe-4a6c-8aba-8728e22ba2ac",
+    "cn": [
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "name",
+                "draggable": false,
+                "flex": 1,
+                "hideable": false,
+                "resizable": false,
+                "text": [
+                    "{i18n.hr.party.fields.name}"
+                ]
+            },
+            "name": "MyColumn9",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "c4844229-6922-4c6b-abf7-6578fc3c9336",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return helpers.party.favouriteDecoration(value, record);"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "5287b0ea-e2d7-44ea-9c2b-d52e52cd52c2"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView1",
+            "designerId": "1a45a6c1-cbb4-447f-b58e-e28ec5483ee6"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGridpanelAfterRender",
+                "implHandler": [
+                    "component.addDocked(new Ext.PagingToolbar({",
+                    "      displayInfo: true,",
+                    "      dock: 'bottom',",
+                    "      afterPageText: ' / {0}',",
+                    "      beforePageText: i18n.ui.page,",
+                    "      emptyMsg: i18n.ui.emptyMsg,",
+                    "      displayMsg : i18n.ui.displayMsg,",
+                    "      bind: {",
+                    "        store: '{favourites}'",
+                    "      }",
+                    "    }));"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "name": "onGridpanelAfterRender",
+            "designerId": "270b13bd-6a2c-446f-8f09-6fefab8e2bbf"
+        }
+    ]
+}

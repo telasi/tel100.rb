@@ -49,6 +49,10 @@ Rails.application.routes.draw do
     scope '/bs', controller: 'bs' do
       get '/list', action: 'list'
     end
+    scope '/party', controller: 'party' do
+      get '/favourites', action: 'favourites'
+      post '/favourites', action: 'favourites_create'
+    end
     scope 'vacation', controller: 'vacation' do
       get '/types', action: 'types'
       post '/create', action: 'create'

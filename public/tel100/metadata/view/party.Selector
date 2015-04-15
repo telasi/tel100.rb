@@ -34,12 +34,85 @@
             },
             "codeClass": null,
             "userConfig": {
-                "activeTab": 0,
+                "activeTab": 1,
                 "layout|flex": 1
             },
             "name": "MyTabPanel1",
             "designerId": "420aeb54-a8c8-4d3e-a1f0-6098ad9c5bb3",
             "cn": [
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "favourites"
+                    },
+                    "name": "party.favourites",
+                    "designerId": "b159642e-b9b2-4df9-88c9-b2767a7efab2",
+                    "masterInstanceId": "a45fbe8d-7059-415d-a0c9-11f96e92436a",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig",
+                            "designerId": "85aee4dd-4b5d-4fc0-9035-95ef41ec9c13"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onFavouritesBeforeItemContextMenu",
+                                "implHandler": [
+                                    "var rec = record;",
+                                    "var favMenu = Ext.create('Ext.menu.Menu', {",
+                                    "        items: [{",
+                                    "          text: i18n.hr.favourites.delete,",
+                                    "          icon: '/images/delete.png',",
+                                    "          handler: function(item){",
+                                    "            debugger;",
+                                    "            var store = grid.store;",
+                                    "            var selection = grid.selection;",
+                                    "            if (selection){",
+                                    "              Ext.Msg.show({",
+                                    "                title: i18n.ui.destroy,",
+                                    "                message: i18n.ui.destroyConfirm,",
+                                    "                buttons: Ext.Msg.YESNO,",
+                                    "                icon: Ext.Msg.QUESTION,",
+                                    "                fn: function(btn) {",
+                                    "                  if (btn === 'yes') {",
+                                    "                    store.remove(selection);",
+                                    "                    store.sync();",
+                                    "                    store.reload();",
+                                    "                  }",
+                                    "                 }",
+                                    "              });",
+                                    "}",
+                                    "          }",
+                                    "        }]",
+                                    "      });",
+                                    "",
+                                    "      e.stopEvent();",
+                                    "      favMenu.showAt(e.getXY());"
+                                ],
+                                "name": "beforeitemcontextmenu",
+                                "scope": "me"
+                            },
+                            "name": "onFavouritesBeforeItemContextMenu",
+                            "designerId": "e0e5fcc1-a994-4496-9602-366bd39c9ecf"
+                        }
+                    ]
+                },
                 {
                     "type": "linkedinstance",
                     "reference": {
@@ -58,7 +131,7 @@
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel",
+                    "name": "hr.tree.panel2",
                     "configAlternates": {
                         "tools": "array",
                         "hidden": "binding"
@@ -108,6 +181,26 @@
                                 "hidden": "binding"
                             },
                             "designerId": "099d04ff-d5cd-4669-b8a2-ef5ce3004940"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onHRStructureBeforeItemContextMenu",
+                                "implHandler": [
+                                    "if(record.get('ext_type') == 'hr.Employee'){",
+                                    "this.contextMenu(dataview, record, item, index, e);",
+                                    "}"
+                                ],
+                                "name": "beforeitemcontextmenu",
+                                "scope": "me"
+                            },
+                            "name": "onHRStructureBeforeItemContextMenu",
+                            "designerId": "13f94e96-220d-48d2-ac90-672394ad207a"
                         }
                     ]
                 },
@@ -122,7 +215,7 @@
                         "designer|displayName": "parties",
                         "hidden": null
                     },
-                    "name": "hr.party.grid",
+                    "name": "hr.party.grid1",
                     "configAlternates": {
                         "hidden": "binding"
                     },
@@ -166,6 +259,24 @@
                             },
                             "name": "onPartyGridpanelItemDblClick",
                             "designerId": "76532000-9ba8-41ca-921e-53628f269c9c"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onPartiesBeforeItemContextMenu",
+                                "implHandler": [
+                                    "this.contextMenu(dataview, record, item, index, e);"
+                                ],
+                                "name": "beforeitemcontextmenu",
+                                "scope": "me"
+                            },
+                            "name": "onPartiesBeforeItemContextMenu",
+                            "designerId": "08b315f8-1b87-495d-9152-ba289726e7b3"
                         }
                     ]
                 },
@@ -180,7 +291,7 @@
                         "designer|displayName": "customers",
                         "hidden": null
                     },
-                    "name": "bs.customer.panel",
+                    "name": "bs.customer.panel1",
                     "configAlternates": {
                         "hidden": "binding"
                     },
@@ -224,6 +335,24 @@
                             },
                             "name": "onCustomerGridpanelItemDblClick",
                             "designerId": "148c816c-428a-40c6-8f5e-188f185a9b1d"
+                        },
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCustomerBeforeItemContextMenu",
+                                "implHandler": [
+                                    "this.contextMenu(dataview, record, item, index, e);"
+                                ],
+                                "name": "beforeitemcontextmenu",
+                                "scope": "me"
+                            },
+                            "name": "onCustomerBeforeItemContextMenu",
+                            "designerId": "fc6f3eb5-0639-4626-a440-96accf28431e"
                         }
                     ]
                 }

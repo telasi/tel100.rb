@@ -1716,8 +1716,24 @@ var getPartyDialog = function(callback) {
   return partyDialog;
 };
 
+var favouriteDecoration = function(value, record){
+  var person_type = record.get('person_type');
+
+  switch(person_type){
+    case 'HR::Employee':
+      return '<i class="fa fa-user"></i> ' + value;  
+    case 'HR::Organization':
+      return '<i class="fa fa-bank"></i> ' + value;
+    case 'HR::Party':
+      return '<i class="fa fa-building"></i> ' + value;
+    case 'BS::Customer':
+      return '<i class="fa fa-users"></i> ' + value;
+  }
+};
+
 module.exports = {
-  getPartyDialog: getPartyDialog
+  getPartyDialog: getPartyDialog,
+  favouriteDecoration: favouriteDecoration
 };
 
 },{}],15:[function(require,module,exports){
