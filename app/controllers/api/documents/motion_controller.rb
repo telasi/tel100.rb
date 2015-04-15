@@ -38,7 +38,8 @@ class Api::Documents::MotionController < ApiController
         current_status: motion.current_status.to_s,
         ordering: motion.ordering,
         sender: motion.sender_name,
-        receiver: motion.receiver_name
+        receiver: motion.receiver_name,
+        receiver_role: motion.receiver_role
       }
     end
     render json: array_to_tree(motionsArray)
