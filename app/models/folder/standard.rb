@@ -6,9 +6,11 @@ class Folder::Standard
   INBOX_NONREAD = 2
   INBOX_READ = 3
   INBOX_RESENT = 4
-  SENT = 5
-  COMPLETED = 6
-  CANCELED = 7
+  INBOX_SIGNEE = 5
+  INBOX_AUTHOR = 6
+  SENT = 7
+  COMPLETED = 8
+  CANCELED = 9
 
   STANDARD_FOLDERS = [ DRAFT, INBOX_NONREAD, INBOX_READ, INBOX_RESENT, SENT, COMPLETED, CANCELED ]
 
@@ -65,8 +67,12 @@ class Folder::Standard
    			docs.where(is_received: 1, is_completed: show_completed, is_new: 1)
    		when INBOX_READ
    			docs.where(is_received: 1, is_completed: show_completed, is_new: 0, is_forwarded: 0)
-   		when INBOX_RESENT
+      when INBOX_RESENT
         docs.where(is_forwarded: 1, is_completed: show_completed)
+   		when INBOX_SIGNEE
+        docs.where(is_completed: show_completed, as_signee: 1)
+      when INBOX_AUTHOR
+        docs.where(is_completed: show_completed, as_author: 1)
    		when SENT
    			docs.where(is_sent: 1, is_completed: show_completed)
       when COMPLETED
