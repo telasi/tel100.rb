@@ -1,0 +1,66 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionssignaturesviewer",
+        "designer|userClassName": "document.motions.SignaturesViewer",
+        "height": null,
+        "hideHeaders": true,
+        "title": [
+            "{i18n.document.motion.signatures} ({signatureCount})"
+        ],
+        "width": null
+    },
+    "name": "MyGridPanel1",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "521c3b4a-dcf1-4cb0-bc78-4f19857aac2f",
+    "viewControllerInstanceId": "d5f4c9b2-7be7-410f-abe6-f2b728496e6c",
+    "viewModelInstanceId": "42138373-7f42-4159-9e53-8397b44280d0",
+    "cn": [
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "string",
+                "flex": 1,
+                "text": "name"
+            },
+            "name": "MyColumn18",
+            "designerId": "1df85a4a-4d0f-498d-a130-4b7b4ea889a9"
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView2",
+            "designerId": "ea6bdcc9-2b16-4b1c-b5ad-e54590ff3636"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "refresh",
+                "type": "refresh"
+            },
+            "name": "MyTool5",
+            "designerId": "7afd171d-0efe-4be1-addd-b32433cb8a2f"
+        }
+    ]
+}

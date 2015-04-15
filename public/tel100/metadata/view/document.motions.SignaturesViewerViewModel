@@ -1,0 +1,18 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{",
+            "  signatureCount: 0",
+            "}"
+        ],
+        "designer|userAlias": "documentmotionssignaturesviewer",
+        "designer|userClassName": "document.motions.SignaturesViewerViewModel"
+    },
+    "designerId": "42138373-7f42-4159-9e53-8397b44280d0"
+}

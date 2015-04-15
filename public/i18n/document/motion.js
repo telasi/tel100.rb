@@ -36,5 +36,6 @@ module.exports = {
   signees: '<i class="fa fa-edit"></i> ვიზატორები',
   authors: '<i class="fa fa-legal"></i> ავტორები',
   resultPaneTitle: '<i class="fa fa-check"></i> შედეგი და კომენტარი',
-  receivers: '<i class="fa fa-users"></i> ადრესატები'
+  receivers: '<i class="fa fa-users"></i> ადრესატები',
+  signatures: '<i class="fa fa-edit"></i> ვიზატორები'
 };

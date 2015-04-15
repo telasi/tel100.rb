@@ -21,19 +21,20 @@ Ext.define('Tel100.view.document.editor.Editor', {
     'Tel100.view.document.editor.EditorViewModel',
     'Tel100.view.document.editor.EditorViewController',
     'Tel100.view.document.editor.General',
+    'Tel100.view.document.motions.SignaturesViewer',
+    'Tel100.view.document.motions.ReceiverPanel',
+    'Tel100.view.document.motions.Tree',
     'Tel100.view.document.motions.ResultPanel',
     'Tel100.view.document.comment.Panel',
-    'Tel100.view.document.motions.Tree',
     'Tel100.view.document.file.Panel',
-    'Tel100.view.document.motions.ReceiverPanel',
     'Tel100.view.document.motions.InPanel',
     'Tel100.view.document.motions.OutPanel',
     'Ext.tab.Panel',
     'Ext.toolbar.Toolbar',
     'Ext.tab.Tab',
     'Ext.form.Panel',
-    'Ext.tree.Panel',
     'Ext.grid.Panel',
+    'Ext.tree.Panel',
     'Ext.resizer.Splitter'
   ],
 
@@ -155,6 +156,15 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   }
                 },
                 {
+                  xtype: 'documentmotionssignaturesviewer'
+                },
+                {
+                  xtype: 'documentmotionsreceiverpanel'
+                },
+                {
+                  xtype: 'documentmotionstree'
+                },
+                {
                   xtype: 'documentmotionsresultpanel',
                   listeners: {
                     commentadded: 'onPanelCommentadded'
@@ -164,13 +174,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   xtype: 'documentcommentpanel'
                 },
                 {
-                  xtype: 'documentmotionstree'
-                },
-                {
                   xtype: 'documentfilepanel'
-                },
-                {
-                  xtype: 'documentmotionsreceiverpanel'
                 }
               ]
             }

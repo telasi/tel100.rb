@@ -404,6 +404,49 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "designer|displayName": "signees"
+                                    },
+                                    "name": "document.motions.signaturesviewer",
+                                    "designerId": "b281d955-466c-4f22-9917-aa5d396f9c8a",
+                                    "masterInstanceId": "521c3b4a-dcf1-4cb0-bc78-4f19857aac2f"
+                                },
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "receivers"
+                                    },
+                                    "name": "document.motions.receiverpanel",
+                                    "designerId": "ec215852-e87f-4256-b02a-99d05eabd39f",
+                                    "masterInstanceId": "9deb0cd5-6e1b-4f12-8333-cf5d5ab594b8"
+                                },
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "motions",
+                                        "itemId": null
+                                    },
+                                    "name": "document.motions.tree",
+                                    "designerId": "2eeacca2-a92c-45b2-a223-929269d20dbd",
+                                    "masterInstanceId": "23c81566-c199-406f-8b0e-a0b49f286dd9"
+                                },
+                                {
+                                    "type": "linkedinstance",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
                                         "designer|displayName": "resultPane"
                                     },
                                     "name": "document.motions.resultpanel",
@@ -458,40 +501,11 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|displayName": "motions",
-                                        "itemId": null
-                                    },
-                                    "name": "document.motions.tree",
-                                    "designerId": "2eeacca2-a92c-45b2-a223-929269d20dbd",
-                                    "masterInstanceId": "23c81566-c199-406f-8b0e-a0b49f286dd9"
-                                },
-                                {
-                                    "type": "linkedinstance",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
                                         "designer|displayName": "files"
                                     },
                                     "name": "document.file.panel",
                                     "designerId": "42827a7e-f66e-4467-8802-58a12e25162b",
                                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
-                                },
-                                {
-                                    "type": "linkedinstance",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|displayName": "receivers"
-                                    },
-                                    "name": "document.motions.receiverpanel",
-                                    "designerId": "ec215852-e87f-4256-b02a-99d05eabd39f",
-                                    "masterInstanceId": "9deb0cd5-6e1b-4f12-8333-cf5d5ab594b8"
                                 }
                             ]
                         }

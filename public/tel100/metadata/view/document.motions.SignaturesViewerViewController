@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionssignaturesviewer",
+        "designer|userClassName": "document.motions.SignaturesViewerViewController"
+    },
+    "designerId": "d5f4c9b2-7be7-410f-abe6-f2b728496e6c"
+}
