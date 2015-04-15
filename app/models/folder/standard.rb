@@ -3,16 +3,16 @@ class Folder::Standard
 
   DRAFT = 0
   INBOX = 1
-  INBOX_NONREAD = 2
+  INBOX_UNREAD = 2
   INBOX_READ = 3
   INBOX_RESENT = 4
   INBOX_SIGNEE = 5
-  INBOX_AUTHOR = 6
+  INBOX_SIGNED = 6
   SENT = 7
   COMPLETED = 8
   CANCELED = 9
 
-  STANDARD_FOLDERS = [ DRAFT, INBOX_NONREAD, INBOX_READ, INBOX_RESENT, SENT, COMPLETED, CANCELED ]
+  STANDARD_FOLDERS = [ DRAFT, INBOX_UNREAD, INBOX_READ, INBOX_RESENT, SENT, COMPLETED, CANCELED ]
 
   attr_accessor :id
   attr_accessor :parent_id
@@ -63,16 +63,16 @@ class Folder::Standard
                               document_base.status = 0 AND user_id = #{user.id}")
       when INBOX
         docs.where(is_received: 1, is_completed: show_completed)
-   		when INBOX_NONREAD
+   		when INBOX_UNREAD
    			docs.where(is_received: 1, is_completed: show_completed, is_new: 1)
    		when INBOX_READ
    			docs.where(is_received: 1, is_completed: show_completed, is_new: 0, is_forwarded: 0)
       when INBOX_RESENT
         docs.where(is_forwarded: 1, is_completed: show_completed)
    		when INBOX_SIGNEE
-        docs.where(is_completed: show_completed, as_signee: 1)
-      when INBOX_AUTHOR
-        docs.where(is_completed: show_completed, as_author: 1)
+        docs.where('document_user.is_completed = ? and ( document_user.as_signee = 1 or document_user.as_author = 1)', show_completed)
+      when INBOX_SIGNED
+        docs.where('document_user.as_signee = 2 or document_user.as_author = 2')
    		when SENT
    			docs.where(is_sent: 1, is_completed: show_completed)
       when COMPLETED
