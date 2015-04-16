@@ -20,7 +20,7 @@ class Party::Favourites < ActiveRecord::Base
   private
 
   def already_exists
-  	errors.add(:person_id, 'Already exists') if Party::Favourites.where(person_id: self.person_id, person_type: convert(self.person_type)).first
+  	errors.add(:person_id, 'Already exists') if Party::Favourites.where(user_id: self.user_id, person_id: self.person_id, person_type: convert(self.person_type)).first
   end
 
   def convert(type)
