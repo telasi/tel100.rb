@@ -26,6 +26,9 @@ class Api::PartyController < ApiController
 
   def favourites
     @favourites = Party::Favourites.where(user: current_user)
+    @favourites = @favourites.where.not(person_type: 'HR::Employee') if params['hideHR'].present? and params['hideHR'] == "true"
+    @favourites = @favourites.where.not(person_type: 'HR::Party') if params['hideParty'].present? and params['hideParty'] == "true"
+    @favourites = @favourites.where.not(person_type: 'BS::Customer') if params['hideCustomers'].present? and params['hideCustomers'] == "true"
   end
 
   def favourites_create

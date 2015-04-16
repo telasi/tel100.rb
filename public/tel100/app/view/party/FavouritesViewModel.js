@@ -18,13 +18,17 @@ Ext.define('Tel100.view.party.FavouritesViewModel', {
   alias: 'viewmodel.partyfavourites',
 
   requires: [
-    'Ext.data.Store'
+    'Ext.data.Store',
+    'Tel100.view.party.FavouritesViewController'
   ],
 
   stores: {
     favourites: {
       autoLoad: true,
-      model: 'Tel100.model.party.Favourites'
+      model: 'Tel100.model.party.Favourites',
+      listeners: {
+        beforeload: 'onStoreBeforeLoad'
+      }
     }
   }
 

@@ -113,6 +113,30 @@
             },
             "name": "onGridpanelAfterRender",
             "designerId": "270b13bd-6a2c-446f-8f09-6fefab8e2bbf"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "store",
+                    "operation",
+                    "eOpts"
+                ],
+                "fn": "onStoreBeforeLoad",
+                "implHandler": [
+                    "var ps = this.up('partyselector');",
+                    "var vm = ps.getViewModel();",
+                    "var pr = store.getProxy();",
+                    "pr.setExtraParams({hideHR: vm.get('hideHR'), hideParty: vm.get('hideParty'), hideCustomers: vm.get('hideCustomers')});"
+                ]
+            },
+            "name": "onStoreBeforeLoad",
+            "designerId": "f4190427-f358-4288-9517-3ad64a49b70a"
         }
     ]
 }
