@@ -231,6 +231,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "editable": false,
                                 "fieldLabel": null,
                                 "layout|flex": 1,
                                 "name": "head_of_group_name"
@@ -322,6 +323,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "editable": false,
                                 "fieldLabel": null,
                                 "layout|flex": 1,
                                 "name": "head_of_division_name"
@@ -413,6 +415,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "editable": false,
                                 "fieldLabel": null,
                                 "layout|flex": 1,
                                 "name": "head_of_department_name"
@@ -504,6 +507,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "editable": false,
                                 "fieldLabel": null,
                                 "layout|flex": 1,
                                 "name": "director_name"
@@ -595,6 +599,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "editable": false,
                                 "fieldLabel": null,
                                 "layout|flex": 1,
                                 "name": "head_of_hr_name"

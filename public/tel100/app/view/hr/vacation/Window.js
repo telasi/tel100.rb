@@ -125,7 +125,8 @@ Ext.define('Tel100.view.hr.vacation.Window', {
             {
               xtype: 'textfield',
               flex: 1,
-              name: 'head_of_group_name'
+              name: 'head_of_group_name',
+              editable: false
             },
             {
               xtype: 'hiddenfield',
@@ -157,7 +158,8 @@ Ext.define('Tel100.view.hr.vacation.Window', {
             {
               xtype: 'textfield',
               flex: 1,
-              name: 'head_of_division_name'
+              name: 'head_of_division_name',
+              editable: false
             },
             {
               xtype: 'hiddenfield',
@@ -189,7 +191,8 @@ Ext.define('Tel100.view.hr.vacation.Window', {
             {
               xtype: 'textfield',
               flex: 1,
-              name: 'head_of_department_name'
+              name: 'head_of_department_name',
+              editable: false
             },
             {
               xtype: 'hiddenfield',
@@ -221,7 +224,8 @@ Ext.define('Tel100.view.hr.vacation.Window', {
             {
               xtype: 'textfield',
               flex: 1,
-              name: 'director_name'
+              name: 'director_name',
+              editable: false
             },
             {
               xtype: 'hiddenfield',
@@ -253,7 +257,8 @@ Ext.define('Tel100.view.hr.vacation.Window', {
             {
               xtype: 'textfield',
               flex: 1,
-              name: 'head_of_hr_name'
+              name: 'head_of_hr_name',
+              editable: false
             },
             {
               xtype: 'hiddenfield',

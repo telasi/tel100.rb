@@ -50,7 +50,7 @@
                     "userConfig": {
                         "designer|displayName": "favourites"
                     },
-                    "name": "party.favourites3",
+                    "name": "party.favourites5",
                     "designerId": "b159642e-b9b2-4df9-88c9-b2767a7efab2",
                     "masterInstanceId": "a45fbe8d-7059-415d-a0c9-11f96e92436a",
                     "cn": [
@@ -142,9 +142,7 @@
                         "cls": "panel-with-border",
                         "designer|displayName": "hrstructure",
                         "disabled": null,
-                        "hidden": [
-                            "{hideHR}"
-                        ],
+                        "hidden": null,
                         "store": null,
                         "tools": null,
                         "width": null
@@ -249,7 +247,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "hidden": [
-                                    "{hideParty}"
+                                    "{hidePartyTab}"
                                 ]
                             },
                             "name": "TabConfig6",

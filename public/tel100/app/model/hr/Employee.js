@@ -38,6 +38,12 @@ Ext.define('Tel100.model.hr.Employee', {
             return data.first_name + ' ' + data.last_name;
         },
       name: 'full_name'
+    },
+    {
+      calculate: function(data) {
+            return data.first_name + ' ' + data.last_name;
+        },
+      name: 'name'
     }
   ],
 
