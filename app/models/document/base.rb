@@ -145,7 +145,7 @@ class Document::Base < ActiveRecord::Base
     motions = self.motions.where(receiver_role: ROLE_AUTHOR)
     if motions.any?
       # motions.map{ |m| m.receiver_type.constantize.find(m.receiver_id) }
-      motions.map{ |x| m.receiver }
+      motions.map{ |m| m.receiver }
     else
       [ self.owner ]
     end
