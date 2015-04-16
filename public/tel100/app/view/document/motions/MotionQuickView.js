@@ -26,23 +26,21 @@ Ext.define('Tel100.view.document.motions.MotionQuickView', {
     type: 'documentmotionsmotionquickview'
   },
   autoScroll: true,
-  padding: 5,
+  layout: 'form',
 
-  layout: {
-    type: 'vbox',
-    align: 'stretch'
-  },
   items: [
     {
       xtype: 'displayfield',
-      style: 'height:inherit',
+      shrinkWrap: 2,
+      style: 'height: inherit',
       bind: {
         value: '{sender}'
       }
     },
     {
       xtype: 'displayfield',
-      style: 'height:inherit',
+      shrinkWrap: 2,
+      style: 'height: inherit',
       bind: {
         value: '{receiver}'
       }

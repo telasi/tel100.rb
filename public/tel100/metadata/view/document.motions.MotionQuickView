@@ -7,12 +7,11 @@
     "codeClass": null,
     "userConfig": {
         "autoScroll": true,
-        "container|align": "stretch",
         "designer|userAlias": "documentmotionsmotionquickview",
         "designer|userClassName": "document.motions.MotionQuickView",
         "height": null,
-        "layout": "vbox",
-        "padding": 5,
+        "layout": "form",
+        "padding": null,
         "width": null
     },
     "name": "MyContainer2",
@@ -65,8 +64,10 @@
             "userConfig": {
                 "designer|displayName": "sender",
                 "fieldLabel": null,
-                "layout|flex": null,
-                "style": "height:inherit",
+                "shrinkWrap": [
+                    "2"
+                ],
+                "style": "height: inherit",
                 "value": [
                     "{sender}"
                 ]
@@ -88,8 +89,10 @@
             "userConfig": {
                 "designer|displayName": "receiver",
                 "fieldLabel": null,
-                "layout|flex": null,
-                "style": "height:inherit",
+                "shrinkWrap": [
+                    "2"
+                ],
+                "style": "height: inherit",
                 "value": [
                     "{receiver}"
                 ]

@@ -70,8 +70,7 @@ Ext.define('Tel100.view.document.motions.TreeViewModel', {
       return !get('selection');
     },
     hideQuickProperties: function(get) {
-      var selection = get('selection');
-      return !selection || selection.get('type') !== 'motion';
+      return !get('selection');
     }
   }
 

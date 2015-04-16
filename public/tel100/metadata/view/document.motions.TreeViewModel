@@ -195,8 +195,7 @@
                         ],
                         "fn": "get",
                         "implHandler": [
-                            "var selection = get('selection');",
-                            "return !selection || selection.get('type') !== 'motion';"
+                            "return !get('selection');"
                         ]
                     },
                     "name": "get",
