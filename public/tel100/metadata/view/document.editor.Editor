@@ -318,11 +318,11 @@
                                     "userConfig": {
                                         "autoScroll": true,
                                         "cls": "document-subject",
-                                        "container|columns": 1,
+                                        "container|reserveScrollbar": null,
                                         "designer|displayName": "header",
                                         "height": null,
                                         "html": null,
-                                        "layout": "table",
+                                        "layout": "form",
                                         "layout|margins": "0",
                                         "margin": null,
                                         "resizable": false
@@ -345,7 +345,7 @@
                                                 "fieldLabel": [
                                                     "{i18n.document.base.doc}"
                                                 ],
-                                                "overflowY": "scroll",
+                                                "overflowY": null,
                                                 "value": [
                                                     "#<strong class=\"text-success\">{document.docnumber}</strong> <span class=\"text-muted\">{document.type.name}</span> &mdash; <strong>{document.sender_name}</strong>, <span class=\"text-danger\">{document.sent_at_f}</span>"
                                                 ],
@@ -359,7 +359,7 @@
                                             "designerId": "bbd52b9a-23e5-4570-989a-450bf3633edf"
                                         },
                                         {
-                                            "type": "Ext.form.field.Display",
+                                            "type": "Ext.form.field.Text",
                                             "reference": {
                                                 "name": "items",
                                                 "type": "array"
@@ -367,6 +367,7 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "designer|displayName": "subject",
+                                                "editable": false,
                                                 "fieldLabel": [
                                                     "{i18n.document.base.subject}"
                                                 ],
@@ -375,7 +376,7 @@
                                                 ],
                                                 "width": "100%"
                                             },
-                                            "name": "MyDisplayField1",
+                                            "name": "MyTextField3",
                                             "configAlternates": {
                                                 "fieldLabel": "binding",
                                                 "value": "binding"
