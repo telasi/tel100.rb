@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsmotionquickview",
+        "designer|userClassName": "document.motions.MotionQuickViewViewModel"
+    },
+    "designerId": "420fd80d-4159-4010-add3-5540a1a4ad9a"
+}

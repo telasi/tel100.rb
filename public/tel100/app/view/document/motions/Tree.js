@@ -19,6 +19,7 @@ Ext.define('Tel100.view.document.motions.Tree', {
 
   requires: [
     'Tel100.view.document.motions.TreeViewModel',
+    'Tel100.view.document.motions.MotionQuickView',
     'Ext.tree.View',
     'Ext.tree.Column',
     'Ext.panel.Tool'
@@ -101,6 +102,17 @@ Ext.define('Tel100.view.document.motions.Tree', {
   listeners: {
     beforecellcontextmenu: 'onTreepanelBeforeCellContextMenu'
   },
+  dockedItems: [
+    {
+      xtype: 'documentmotionsmotionquickview',
+      dock: 'bottom',
+      resizable: true,
+      style: 'background-color: #dfeaf2;',
+      bind: {
+        hidden: '{hideQuickProperties}'
+      }
+    }
+  ],
 
   onToolClick: function(tool, e, owner, eOpts) {
     this.refresh();

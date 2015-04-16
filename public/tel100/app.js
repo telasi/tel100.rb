@@ -84,7 +84,8 @@ Ext.application({
     'document.motions.SignaturesViewer',
     'party.Favourites',
     'hr.party.Grid',
-    'document.motions.ReceiversPanel'
+    'document.motions.ReceiversPanel',
+    'document.motions.MotionQuickView'
   ],
   name: 'Tel100',
 

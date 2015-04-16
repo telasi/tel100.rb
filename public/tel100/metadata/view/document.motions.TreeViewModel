@@ -168,6 +168,41 @@
                     "designerId": "aa77e3f8-ea98-468f-9f61-46e54e835d21"
                 }
             ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideQuickProperties"
+            },
+            "name": "MyFormula12",
+            "designerId": "ae4a5315-646f-45a2-83f4-13029b8f8549",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var selection = get('selection');",
+                            "return !selection || selection.get('type') !== 'motion';"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "ddc040a8-5075-4f1e-a7be-f55fabfa9aa5"
+                }
+            ]
         }
     ]
 }

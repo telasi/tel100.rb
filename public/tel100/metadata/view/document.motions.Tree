@@ -213,6 +213,31 @@
             },
             "name": "onTreepanelBeforeCellContextMenu",
             "designerId": "71925d4b-0693-44f0-b31f-47d0ad8ec910"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "quick-view",
+                "dock": "bottom",
+                "hidden": [
+                    "{hideQuickProperties}"
+                ],
+                "resizable": true,
+                "style": "background-color: #dfeaf2;"
+            },
+            "name": "document.motions.motionquickview",
+            "configAlternates": {
+                "style": "string",
+                "resizable": "boolean",
+                "hidden": "binding"
+            },
+            "designerId": "75b8b3f0-636f-4204-a173-8f11d725df5d",
+            "masterInstanceId": "302712b5-8738-47ea-a29b-537a3b07f716"
         }
     ]
 }

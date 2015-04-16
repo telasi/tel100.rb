@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsmotionquickview",
+        "designer|userClassName": "document.motions.MotionQuickViewViewController"
+    },
+    "designerId": "4ac21ed5-5416-4d4e-a6eb-92a4836003a4"
+}
