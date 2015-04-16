@@ -10,6 +10,7 @@
         "designer|userClassName": "document.editor.Editor",
         "height": null,
         "layout": "border",
+        "shrinkWrap": null,
         "width": null
     },
     "name": "MyContainer1",
@@ -309,7 +310,7 @@
                             "designerId": "4e7d6269-7ce2-491f-b47c-fd8880fae8fc",
                             "cn": [
                                 {
-                                    "type": "Ext.container.Container",
+                                    "type": "Ext.form.Panel",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
@@ -317,17 +318,18 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "autoScroll": true,
+                                        "border": false,
                                         "cls": "document-subject",
-                                        "container|reserveScrollbar": null,
+                                        "container|align": "stretch",
                                         "designer|displayName": "header",
                                         "height": null,
                                         "html": null,
-                                        "layout": "form",
+                                        "layout": "vbox",
                                         "layout|margins": "0",
                                         "margin": null,
                                         "resizable": false
                                     },
-                                    "name": "MyContainer4",
+                                    "name": "MyForm1",
                                     "configAlternates": {
                                         "resizable": "boolean"
                                     },
@@ -341,11 +343,16 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
+                                                "cls": null,
                                                 "designer|displayName": "document",
                                                 "fieldLabel": [
                                                     "{i18n.document.base.doc}"
                                                 ],
+                                                "fieldStyle": "height: inherit",
                                                 "overflowY": null,
+                                                "shrinkWrap": [
+                                                    "2"
+                                                ],
                                                 "value": [
                                                     "#<strong class=\"text-success\">{document.docnumber}</strong> <span class=\"text-muted\">{document.type.name}</span> &mdash; <strong>{document.sender_name}</strong>, <span class=\"text-danger\">{document.sent_at_f}</span>"
                                                 ],
@@ -357,6 +364,70 @@
                                                 "value": "binding"
                                             },
                                             "designerId": "bbd52b9a-23e5-4570-989a-450bf3633edf"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Display",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "cls": null,
+                                                "designer|displayName": "authors",
+                                                "fieldLabel": [
+                                                    "{i18n.document.base.authors}"
+                                                ],
+                                                "fieldStyle": "height: inherit",
+                                                "hidden": [
+                                                    "{hideAuthors}"
+                                                ],
+                                                "shrinkWrap": [
+                                                    "2"
+                                                ],
+                                                "value": [
+                                                    "{authors}"
+                                                ]
+                                            },
+                                            "name": "MyDisplayField1",
+                                            "configAlternates": {
+                                                "hidden": "binding",
+                                                "value": "binding",
+                                                "fieldLabel": "binding"
+                                            },
+                                            "designerId": "bec227c6-844b-4c6d-b5b2-f623a8ad46fd"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Display",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "cls": null,
+                                                "designer|displayName": "signees",
+                                                "fieldLabel": [
+                                                    "{i18n.document.base.signees}"
+                                                ],
+                                                "fieldStyle": "height: inherit",
+                                                "hidden": [
+                                                    "{hideSignees}"
+                                                ],
+                                                "shrinkWrap": [
+                                                    "2"
+                                                ],
+                                                "value": [
+                                                    "{signees}"
+                                                ]
+                                            },
+                                            "name": "MyDisplayField2",
+                                            "configAlternates": {
+                                                "fieldLabel": "binding",
+                                                "value": "binding",
+                                                "hidden": "binding"
+                                            },
+                                            "designerId": "1e7c2213-9ef9-4d83-8086-e4c0b5431eac"
                                         },
                                         {
                                             "type": "Ext.form.field.Text",

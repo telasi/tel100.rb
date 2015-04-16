@@ -31,6 +31,46 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
     },
     hideAuthorButton: function(get) {
       return get('document.as_author') !== 1;
+    },
+    hideAuthors: function(get) {
+      var authors = get('document.authors');
+      return !authors || authors.length === 0;
+    },
+    authors: function(get) {
+      var authors = get('document.authors');
+      var text = [];
+      for(var i = 0; i < authors.length; i++) {
+        var author = authors[i];
+        var decor = helpers.document.status.statusDecoration(author.status);
+        text.push([
+        '<span class="' + decor.style + '">',
+        '<i class="fa ' + decor.icon + '"></i> ',
+        author.author,
+        ( author.response ? ' &mdash; ' + author.response : '' ),
+        '</span>'
+        ].join(''));
+      }
+      return text.join('; ');
+    },
+    hideSignees: function(get) {
+      var signees = get('document.signees');
+      return !signees || signees.length === 0;
+    },
+    signees: function(get) {
+      var signees = get('document.signees');
+      var text = [];
+      for(var i = 0; i < signees.length; i++) {
+        var signee = signees[i];
+        var decor = helpers.document.status.statusDecoration(signee.status);
+        text.push([
+        '<span class="' + decor.style + '">',
+        '<i class="fa ' + decor.icon + '"></i> ',
+        signee.author,
+        ( signee.response ? ' &mdash; ' + signee.response : '' ),
+        '</span>'
+        ].join(''));
+      }
+      return text.join('; ');
     }
   }
 

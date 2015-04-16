@@ -32,9 +32,9 @@ Ext.define('Tel100.view.document.editor.Editor', {
     'Ext.tab.Panel',
     'Ext.toolbar.Toolbar',
     'Ext.tab.Tab',
+    'Ext.form.Panel',
     'Ext.form.field.Display',
     'Ext.form.field.Text',
-    'Ext.form.Panel',
     'Ext.grid.Panel',
     'Ext.tree.Panel',
     'Ext.resizer.Splitter'
@@ -126,19 +126,45 @@ Ext.define('Tel100.view.document.editor.Editor', {
               },
               items: [
                 {
-                  xtype: 'container',
+                  xtype: 'form',
                   margins: '0',
                   autoScroll: true,
+                  border: false,
                   cls: 'document-subject',
                   resizable: false,
-                  layout: 'form',
+                  layout: {
+                    type: 'vbox',
+                    align: 'stretch'
+                  },
                   items: [
                     {
                       xtype: 'displayfield',
+                      shrinkWrap: 2,
                       width: '100%',
+                      fieldStyle: 'height: inherit',
                       bind: {
                         fieldLabel: '{i18n.document.base.doc}',
                         value: '#<strong class="text-success">{document.docnumber}</strong> <span class="text-muted">{document.type.name}</span> &mdash; <strong>{document.sender_name}</strong>, <span class="text-danger">{document.sent_at_f}</span>'
+                      }
+                    },
+                    {
+                      xtype: 'displayfield',
+                      shrinkWrap: 2,
+                      fieldStyle: 'height: inherit',
+                      bind: {
+                        hidden: '{hideAuthors}',
+                        fieldLabel: '{i18n.document.base.authors}',
+                        value: '{authors}'
+                      }
+                    },
+                    {
+                      xtype: 'displayfield',
+                      shrinkWrap: 2,
+                      fieldStyle: 'height: inherit',
+                      bind: {
+                        hidden: '{hideSignees}',
+                        fieldLabel: '{i18n.document.base.signees}',
+                        value: '{signees}'
                       }
                     },
                     {

@@ -83,6 +83,170 @@
                     "designerId": "9d5d8af7-5405-40f7-ba73-3efdba466786"
                 }
             ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideAuthors"
+            },
+            "name": "MyFormula8",
+            "designerId": "15955ed0-aad2-404f-9159-b5524f50b842",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var authors = get('document.authors');",
+                            "return !authors || authors.length === 0;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "bce76a98-b82c-44e0-8c54-cea1cb8a4acd"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "authors"
+            },
+            "name": "MyFormula9",
+            "designerId": "c86db820-0f1a-4ed2-a582-7b088cd63b02",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var authors = get('document.authors');",
+                            "var text = [];",
+                            "for(var i = 0; i < authors.length; i++) {",
+                            "  var author = authors[i];",
+                            "  var decor = helpers.document.status.statusDecoration(author.status);",
+                            "  text.push([",
+                            "    '<span class=\"' + decor.style + '\">',",
+                            "    '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "    author.author,",
+                            "    ( author.response ? ' &mdash; ' + author.response : '' ),",
+                            "    '</span>'",
+                            "   ].join(''));",
+                            "}",
+                            "return text.join('; ');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "6179bcfe-0bff-400a-8e02-455342cc1f84"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideSignees"
+            },
+            "name": "MyFormula10",
+            "designerId": "f5a3d128-7da5-458c-9301-979d1853cd79",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var signees = get('document.signees');",
+                            "return !signees || signees.length === 0;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "ae2049d8-eddb-4235-bc8f-41361d18a835"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "signees"
+            },
+            "name": "MyFormula11",
+            "designerId": "9a636434-aaf6-4e67-b251-0eb412e026b0",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var signees = get('document.signees');",
+                            "var text = [];",
+                            "for(var i = 0; i < signees.length; i++) {",
+                            "  var signee = signees[i];",
+                            "  var decor = helpers.document.status.statusDecoration(signee.status);",
+                            "  text.push([",
+                            "    '<span class=\"' + decor.style + '\">',",
+                            "    '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "    signee.author,",
+                            "    ( signee.response ? ' &mdash; ' + signee.response : '' ),",
+                            "    '</span>'",
+                            "  ].join(''));",
+                            "}",
+                            "return text.join('; ');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "a16f39d7-9caf-4b0a-a5a1-a33888e09ace"
+                }
+            ]
         }
     ]
 }
