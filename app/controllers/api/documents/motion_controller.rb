@@ -39,6 +39,7 @@ class Api::Documents::MotionController < ApiController
         ordering: motion.ordering,
         sender: motion.sender_name,
         received_at: (motion.received_at.strftime('%d-%b-%Y %H:%M') if motion.received_at.present?),
+        receiver_role: motion.receiver_role,
         receiver: motion.receiver_name,
         send_type: motion.send_type.to_s,
         completed_at: (motion.completed_at.strftime('%d-%b-%Y %H:%M') if motion.completed_at.present?),
