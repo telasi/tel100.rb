@@ -227,6 +227,9 @@
                 "hidden": [
                     "{hideQuickProperties}"
                 ],
+                "motion": [
+                    "{selection}"
+                ],
                 "resizable": true,
                 "style": "background-color: #dfeaf2;"
             },
@@ -234,9 +237,17 @@
             "configAlternates": {
                 "style": "string",
                 "resizable": "boolean",
-                "hidden": "binding"
+                "hidden": "binding",
+                "motion": "binding"
             },
             "designerId": "75b8b3f0-636f-4204-a173-8f11d725df5d",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "motion",
+                    "type": "string"
+                }
+            ],
             "masterInstanceId": "302712b5-8738-47ea-a29b-537a3b07f716"
         }
     ]

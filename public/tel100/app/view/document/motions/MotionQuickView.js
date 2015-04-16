@@ -19,20 +19,42 @@ Ext.define('Tel100.view.document.motions.MotionQuickView', {
 
   requires: [
     'Tel100.view.document.motions.MotionQuickViewViewModel',
-    'Ext.form.Label'
+    'Ext.form.field.Display'
   ],
 
   viewModel: {
     type: 'documentmotionsmotionquickview'
   },
-  height: 100,
+  autoScroll: true,
   padding: 5,
 
+  layout: {
+    type: 'vbox',
+    align: 'stretch'
+  },
   items: [
     {
-      xtype: 'label',
-      text: 'My Label'
+      xtype: 'displayfield',
+      style: 'height:inherit',
+      bind: {
+        value: '{sender}'
+      }
+    },
+    {
+      xtype: 'displayfield',
+      style: 'height:inherit',
+      bind: {
+        value: '{receiver}'
+      }
     }
-  ]
+  ],
+
+  getMotion: function() {
+    this.getViewModel().get('motion');
+  },
+
+  setMotion: function(motion) {
+    this.getViewModel().set('motion', motion);
+  }
 
 });

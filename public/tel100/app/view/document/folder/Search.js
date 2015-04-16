@@ -218,6 +218,7 @@ Ext.define('Tel100.view.document.folder.Search', {
     },
     {
       xtype: 'button',
+      formBind: true,
       width: '100%',
       bind: {
         text: '{i18n.document.search.buttons.savefilter}'

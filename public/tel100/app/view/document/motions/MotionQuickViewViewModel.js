@@ -15,6 +15,40 @@
 
 Ext.define('Tel100.view.document.motions.MotionQuickViewViewModel', {
   extend: 'Ext.app.ViewModel',
-  alias: 'viewmodel.documentmotionsmotionquickview'
+  alias: 'viewmodel.documentmotionsmotionquickview',
+
+  requires: [
+    'Ext.app.bind.Formula'
+  ],
+
+  data: 'motion: null',
+
+  formulas: {
+    sender: function(get) {
+      var senderName = get('motion.sender');
+      var sendType = get('motion.send_type');
+      var receivedAt = get('motion.received_at');
+      return [
+      '<strong>' + senderName + '</strong>, ',
+      '<span class="text-muted">' + sendType + '</span> ',
+      '<span class="text-danger">' + receivedAt + '</span>'
+      ].join('');
+    },
+    receiver: function(get) {
+      var status = get('motion.status');
+      var decor = helpers.document.status.statusDecoration(status);
+      var receiverName = get('motion.receiver');
+      var responseType = get('motion.response_type');
+      var completedAt = get('motion.completed_at');
+      return [
+      '<span class="' + decor.style + '">',
+      '<i class="fa ' + decor.icon + '"></i> ',
+      '<strong>' + receiverName + '</strong>',
+      ( completedAt ? ', <span class="text-muted">' + responseType + '</span> ' : ''),
+      '<span class="text-danger">' + (completedAt || '') + '</span>',
+      '</span>'
+      ].join('');
+    }
+  }
 
 });

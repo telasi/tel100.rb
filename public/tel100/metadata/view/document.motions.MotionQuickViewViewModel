@@ -6,8 +6,100 @@
     },
     "codeClass": null,
     "userConfig": {
+        "data": [
+            "motion: null"
+        ],
         "designer|userAlias": "documentmotionsmotionquickview",
         "designer|userClassName": "document.motions.MotionQuickViewViewModel"
     },
-    "designerId": "420fd80d-4159-4010-add3-5540a1a4ad9a"
+    "designerId": "420fd80d-4159-4010-add3-5540a1a4ad9a",
+    "cn": [
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sender"
+            },
+            "name": "MyFormula13",
+            "designerId": "f9c40915-7217-494f-8f42-5eaa64cdff45",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var senderName = get('motion.sender');",
+                            "var sendType = get('motion.send_type');",
+                            "var receivedAt = get('motion.received_at');",
+                            "return [",
+                            "  '<strong>' + senderName + '</strong>, ',",
+                            "  '<span class=\"text-muted\">' + sendType + '</span> ',",
+                            "  '<span class=\"text-danger\">' + receivedAt + '</span>'",
+                            "].join('');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "39d3a16c-bab5-4abd-b6a3-77a8cfa8f478"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "receiver"
+            },
+            "name": "MyFormula14",
+            "designerId": "d74e938e-a282-406f-83e3-b981caa58525",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var status = get('motion.status');",
+                            "var decor = helpers.document.status.statusDecoration(status);",
+                            "var receiverName = get('motion.receiver');",
+                            "var responseType = get('motion.response_type');",
+                            "var completedAt = get('motion.completed_at');",
+                            "return [",
+                            "  '<span class=\"' + decor.style + '\">',",
+                            "  '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "  '<strong>' + receiverName + '</strong>',",
+                            "  ( completedAt ? ', <span class=\"text-muted\">' + responseType + '</span> ' : ''),",
+                            "  '<span class=\"text-danger\">' + (completedAt || '') + '</span>',",
+                            "  '</span>'",
+                            "].join('');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "54769e7e-7a9e-4ecf-bd6f-736ab52de25d"
+                }
+            ]
+        }
+    ]
 }

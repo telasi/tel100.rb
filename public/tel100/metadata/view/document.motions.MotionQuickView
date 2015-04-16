@@ -6,9 +6,12 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoScroll": true,
+        "container|align": "stretch",
         "designer|userAlias": "documentmotionsmotionquickview",
         "designer|userClassName": "document.motions.MotionQuickView",
-        "height": 100,
+        "height": null,
+        "layout": "vbox",
         "padding": 5,
         "width": null
     },
@@ -18,17 +21,85 @@
     "viewModelInstanceId": "420fd80d-4159-4010-add3-5540a1a4ad9a",
     "cn": [
         {
-            "type": "Ext.form.Label",
+            "type": "basicfunction",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "text": "My Label"
+                "fn": "getMotion",
+                "implHandler": [
+                    "this.getViewModel().get('motion');"
+                ]
             },
-            "name": "MyLabel",
-            "designerId": "e55b0c49-2920-4f5d-97ef-13a749acd445"
+            "name": "getMotion",
+            "designerId": "2b93542d-1a51-4b10-a6de-a3e4e995dd12"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "motion"
+                ],
+                "fn": "setMotion",
+                "implHandler": [
+                    "this.getViewModel().set('motion', motion);"
+                ]
+            },
+            "name": "setMotion",
+            "designerId": "6269f32c-b28d-4e8b-aaa7-11ef3610a46b"
+        },
+        {
+            "type": "Ext.form.field.Display",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "sender",
+                "fieldLabel": null,
+                "layout|flex": null,
+                "style": "height:inherit",
+                "value": [
+                    "{sender}"
+                ]
+            },
+            "name": "MyDisplayField3",
+            "configAlternates": {
+                "value": "binding",
+                "style": "string"
+            },
+            "designerId": "7e769e83-99d4-464d-a919-d6c629bd9f15"
+        },
+        {
+            "type": "Ext.form.field.Display",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "receiver",
+                "fieldLabel": null,
+                "layout|flex": null,
+                "style": "height:inherit",
+                "value": [
+                    "{receiver}"
+                ]
+            },
+            "name": "MyDisplayField4",
+            "configAlternates": {
+                "style": "string",
+                "value": "binding"
+            },
+            "designerId": "a470d7d1-b55e-4e26-b969-f7ac6fb01866"
         }
     ]
 }

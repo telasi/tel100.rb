@@ -109,7 +109,8 @@ Ext.define('Tel100.view.document.motions.Tree', {
       resizable: true,
       style: 'background-color: #dfeaf2;',
       bind: {
-        hidden: '{hideQuickProperties}'
+        hidden: '{hideQuickProperties}',
+        motion: '{selection}'
       }
     }
   ],
