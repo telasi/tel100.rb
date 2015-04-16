@@ -142,9 +142,8 @@ class Document::Base < ActiveRecord::Base
   end
 
   def authors;
-    motions = self.motions.where(receiver_role: ROLE_AUTHOR)
+    motions = self.author_motions
     if motions.any?
-      # motions.map{ |m| m.receiver_type.constantize.find(m.receiver_id) }
       motions.map{ |m| m.receiver }
     else
       [ self.owner ]
@@ -152,13 +151,23 @@ class Document::Base < ActiveRecord::Base
   end
 
   def signees
-    # self.motions.where(receiver_role: ROLE_SIGNEE).map{ |m| m.receiver_type.constantize.find(m.receiver_id) }
-    self.motions.where(receiver_role: ROLE_SIGNEE).map{ |m| m.receiver }
+    self.signee_motions.map{ |m| m.receiver }
   end
 
   def assignees
-    # self.motions.where(receiver_role: ROLE_ASSIGNEE).map{ |m| m.receiver_type.constantize.find(m.receiver_id) }
-    self.motions.where(receiver_role: ROLE_ASSIGNEE).map{ |m| m.receiver }
+    self.assignee_motions.map{ |m| m.receiver }
+  end
+
+  def author_motions
+    self.motions.where(receiver_role: ROLE_AUTHOR)
+  end
+
+  def signee_motions
+    self.motions.where(receiver_role: ROLE_SIGNEE)
+  end
+
+  def assignee_motions
+    self.motions.where(receiver_role: ROLE_ASSIGNEE)
   end
 
   private
