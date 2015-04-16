@@ -19,10 +19,12 @@ Ext.define('Tel100.view.party.Favourites', {
 
   requires: [
     'Tel100.view.party.FavouritesViewModel',
+    'Tel100.view.party.FavouritesViewController',
     'Ext.grid.column.Column',
     'Ext.grid.View'
   ],
 
+  controller: 'partyfavourites',
   viewModel: {
     type: 'partyfavourites'
   },
@@ -64,6 +66,13 @@ Ext.define('Tel100.view.party.Favourites', {
             store: '{favourites}'
           }
         }));
+  },
+
+  onStoreBeforeLoad: function(store, operation, eOpts) {
+    var ps = this.up('partyselector');
+    var vm = ps.getViewModel();
+    var pr = store.getProxy();
+    pr.setExtraParams({hideHR: vm.get('hideHR'), hideParty: vm.get('hideParty'), hideCustomers: vm.get('hideCustomers')});
   }
 
 });

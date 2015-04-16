@@ -15,5 +15,10 @@
 
 Ext.define('Tel100.view.party.FavouritesViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.partyfavourites'
+  alias: 'controller.partyfavourites',
+
+  onStoreBeforeLoad: function(store, operation, eOpts) {
+
+  }
+
 });
