@@ -54,3 +54,19 @@ json.updated_at_f doc.updated_at.strftime '%d-%b-%Y %H:%M'
 json.sent_at_f doc.sent_at.strftime '%d-%b-%Y %H:%M' if doc.sent_at.present?
 json.received_at_f doc.received_at.strftime '%d-%b-%Y %H:%M' if doc.received_at.present?
 json.completed_at_f doc.completed_at.strftime '%d-%b-%Y %H:%M' if doc.completed_at.present?
+# authors
+json.authors do
+  json.array! doc.author_motions do |motion|
+    json.status motion.status
+    json.author motion.receiver.to_s
+    json.response motion.response_type.to_s
+  end
+end
+# signees
+json.signees do
+  json.array! doc.signee_motions do |motion|
+    json.status motion.status
+    json.author motion.receiver.to_s
+    json.response motion.response_type.to_s
+  end
+end
