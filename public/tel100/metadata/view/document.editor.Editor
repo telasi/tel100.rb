@@ -318,15 +318,19 @@
                                     "userConfig": {
                                         "autoScroll": true,
                                         "cls": "document-subject",
-                                        "container|align": "stretch",
-                                        "container|padding": null,
+                                        "container|columns": 1,
                                         "designer|displayName": "header",
                                         "height": null,
                                         "html": null,
-                                        "layout": "vbox",
-                                        "margin": null
+                                        "layout": "table",
+                                        "layout|margins": "0",
+                                        "margin": null,
+                                        "resizable": false
                                     },
                                     "name": "MyContainer4",
+                                    "configAlternates": {
+                                        "resizable": "boolean"
+                                    },
                                     "designerId": "fd642e95-ee63-4987-baa9-05d725945fa7",
                                     "cn": [
                                         {
@@ -341,10 +345,11 @@
                                                 "fieldLabel": [
                                                     "{i18n.document.base.doc}"
                                                 ],
-                                                "layout|flex": null,
+                                                "overflowY": "scroll",
                                                 "value": [
-                                                    "<strong class=\"text-success\">{document.docnumber}</strong> <span class=\"text-muted\">{document.type.name}</span> &mdash; <strong>{document.sender_name}</strong>"
-                                                ]
+                                                    "#<strong class=\"text-success\">{document.docnumber}</strong> <span class=\"text-muted\">{document.type.name}</span> &mdash; <strong>{document.sender_name}</strong>, <span class=\"text-danger\">{document.sent_at_f}</span>"
+                                                ],
+                                                "width": "100%"
                                             },
                                             "name": "MyDisplayField",
                                             "configAlternates": {
@@ -365,10 +370,10 @@
                                                 "fieldLabel": [
                                                     "{i18n.document.base.subject}"
                                                 ],
-                                                "layout|flex": 1,
                                                 "value": [
                                                     "{document.subject}"
-                                                ]
+                                                ],
+                                                "width": "100%"
                                             },
                                             "name": "MyDisplayField1",
                                             "configAlternates": {
@@ -437,7 +442,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general1",
+                                    "name": "document.editor.general",
                                     "configAlternates": {
                                         "title": "binding",
                                         "readonly": "boolean"
@@ -484,7 +489,7 @@
                                         "designer|displayName": "motions",
                                         "itemId": null
                                     },
-                                    "name": "document.motions.tree1",
+                                    "name": "document.motions.tree",
                                     "designerId": "2eeacca2-a92c-45b2-a223-929269d20dbd",
                                     "masterInstanceId": "23c81566-c199-406f-8b0e-a0b49f286dd9"
                                 },
@@ -498,7 +503,7 @@
                                     "userConfig": {
                                         "designer|displayName": "resultPane"
                                     },
-                                    "name": "document.motions.resultpanel1",
+                                    "name": "document.motions.resultpanel",
                                     "designerId": "8a203739-f111-40f4-80ec-92b30cc29f55",
                                     "masterInstanceId": "2019cd14-1d56-44a4-89bb-838a2f7a8473",
                                     "cn": [
@@ -538,7 +543,7 @@
                                     "userConfig": {
                                         "designer|displayName": "comments"
                                     },
-                                    "name": "document.comment.panel1",
+                                    "name": "document.comment.panel",
                                     "designerId": "0f13dc00-2fce-457b-b67e-e9ca809ddb5e",
                                     "masterInstanceId": "0203c17a-7c6e-4345-82da-ba8dd2a8dff2"
                                 },
@@ -552,7 +557,7 @@
                                     "userConfig": {
                                         "designer|displayName": "files"
                                     },
-                                    "name": "document.file.panel1",
+                                    "name": "document.file.panel",
                                     "designerId": "42827a7e-f66e-4467-8802-58a12e25162b",
                                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                                 }
@@ -603,7 +608,7 @@
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.inpanel1",
+                            "name": "document.motions.inpanel",
                             "designerId": "7a1fd724-1ec5-45fc-bb58-39815d4d9bac",
                             "masterInstanceId": "360c0d57-9834-48d9-9eb7-d6316da82b30",
                             "cn": [
@@ -662,7 +667,7 @@
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel1",
+                            "name": "document.motions.outpanel",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }

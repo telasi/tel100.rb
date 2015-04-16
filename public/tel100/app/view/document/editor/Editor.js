@@ -126,23 +126,27 @@ Ext.define('Tel100.view.document.editor.Editor', {
               items: [
                 {
                   xtype: 'container',
+                  margins: '0',
                   autoScroll: true,
                   cls: 'document-subject',
+                  resizable: false,
                   layout: {
-                    type: 'vbox',
-                    align: 'stretch'
+                    type: 'table',
+                    columns: 1
                   },
                   items: [
                     {
                       xtype: 'displayfield',
+                      overflowY: 'scroll',
+                      width: '100%',
                       bind: {
                         fieldLabel: '{i18n.document.base.doc}',
-                        value: '<strong class="text-success">{document.docnumber}</strong> <span class="text-muted">{document.type.name}</span> &mdash; <strong>{document.sender_name}</strong>'
+                        value: '#<strong class="text-success">{document.docnumber}</strong> <span class="text-muted">{document.type.name}</span> &mdash; <strong>{document.sender_name}</strong>, <span class="text-danger">{document.sent_at_f}</span>'
                       }
                     },
                     {
                       xtype: 'displayfield',
-                      flex: 1,
+                      width: '100%',
                       bind: {
                         fieldLabel: '{i18n.document.base.subject}',
                         value: '{document.subject}'
