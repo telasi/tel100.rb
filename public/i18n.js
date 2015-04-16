@@ -54,6 +54,8 @@ module.exports = {
   body: 'შინაარსი',
   doc: 'დოკუმენტი ',
   subject_tooltip: 'ჩაწერეთ დოკუმენტის სათაური',
+  authors: 'ავტორები',
+  signees: 'ვიზატორები',
   original_number: 'დედანის #',
   original_date: 'დედანის თარიღი',
   docnumber: 'ნომერი',
