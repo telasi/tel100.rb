@@ -38,12 +38,23 @@ Ext.define('Tel100.view.party.SelectorViewController', {
             var model = Ext.create('Tel100.model.party.Favourites',
                                     { person_id: record.id, person_type: record.get('ext_type') });
             model.save();
+            var favpanel = Ext.ComponentQuery.query('partyfavourites')[0];
+            var store = favpanel.store;
+            store.reload();
           }
         }]
       });
 
       e.stopEvent();
       favMenu.showAt(e.getXY());
+  },
+
+  addFromFavourites: function(record) {
+    var obj = Ext.create('Tel100.model.party.Favourites',
+                        { id: record.get('person_id'),
+                         name: record.get('name'),
+                         person_type: record.get('person_type') });
+    this.onAddParty(obj);
   },
 
   onFavouritesBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
@@ -53,9 +64,9 @@ Ext.define('Tel100.view.party.SelectorViewController', {
         text: i18n.hr.favourites.delete,
         icon: '/images/delete.png',
         handler: function(item){
-          debugger;
-          var store = grid.store;
-          var selection = grid.selection;
+          var favpanel = Ext.ComponentQuery.query('partyfavourites')[0];
+          var store = favpanel.store;
+          var selection = favpanel.selection;
           if (selection){
             Ext.Msg.show({
               title: i18n.ui.destroy,

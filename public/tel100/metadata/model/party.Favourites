@@ -76,6 +76,56 @@
             },
             "name": "MyField35",
             "designerId": "2749066c-9dca-42f6-bcfc-aca7dd12e967"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ext_type"
+            },
+            "name": "MyField1",
+            "designerId": "96172eb6-b6c8-49d6-a0fb-3855b4fac413",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "data"
+                        ],
+                        "fn": "calculate",
+                        "implHandler": [
+                            "return helpers.party.convertTypeToExt(data.person_type);"
+                        ]
+                    },
+                    "name": "calculate",
+                    "designerId": "0a78782d-6766-47db-a99b-485e3709adea"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "toHtml",
+                "implHandler": [
+                    "return this.get('name');"
+                ]
+            },
+            "name": "toHtml",
+            "designerId": "67f87001-8e00-4442-abaa-6cd7633e6810"
         }
     ]
 }

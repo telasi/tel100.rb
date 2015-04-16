@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     scope '/party', controller: 'party' do
       get '/favourites', action: 'favourites'
       post '/favourites', action: 'favourites_create'
+      delete '/favourites/:id', action: 'favourites_delete'
     end
     scope 'vacation', controller: 'vacation' do
       get '/types', action: 'types'

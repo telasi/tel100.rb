@@ -34,7 +34,27 @@ var favouriteDecoration = function(value, record){
   }
 };
 
+var convertTypeToExt = function(type){
+  switch(type){
+    case 'HR::Employee':     return 'hr.Employee';
+    case 'HR::Organization': return 'hr.Organization';
+    case 'HR::Party':        return 'hr.Party';
+    case 'BS::Customer':     return 'bs.Customer';
+  }
+};
+
+var convertTypeToRuby = function(type){
+  switch(type){
+    case 'hr.Employee':     return 'HR::Employee';
+    case 'hr.Organization': return 'HR::Organization';
+    case 'hr.Party':        return 'HR::Party';
+    case 'bs.Customer':     return 'BS::Customer';
+  }
+};
+
 module.exports = {
   getPartyDialog: getPartyDialog,
-  favouriteDecoration: favouriteDecoration
+  favouriteDecoration: favouriteDecoration,
+  convertTypeToExt: convertTypeToExt,
+  convertTypeToRuby: convertTypeToRuby
 };

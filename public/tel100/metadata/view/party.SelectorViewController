@@ -78,6 +78,9 @@
                     "        var model = Ext.create('Tel100.model.party.Favourites',",
                     "                                { person_id: record.id, person_type: record.get('ext_type') });",
                     "        model.save();",
+                    "        var favpanel = Ext.ComponentQuery.query('partyfavourites')[0];",
+                    "        var store = favpanel.store;",
+                    "        store.reload();",
                     "      }",
                     "    }]",
                     "  });",
@@ -88,6 +91,29 @@
             },
             "name": "contextMenu",
             "designerId": "23c0d66f-00c6-4a8b-a185-caefc63e5526"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "record"
+                ],
+                "fn": "addFromFavourites",
+                "implHandler": [
+                    "var obj = Ext.create('Tel100.model.party.Favourites',",
+                    "                    { id: record.get('person_id'),",
+                    "                     name: record.get('name'),",
+                    "                     person_type: record.get('person_type') });",
+                    "this.onAddParty(obj);"
+                ]
+            },
+            "name": "addFromFavourites",
+            "designerId": "cef32a11-b00e-4496-9dca-3fa73aeeb931"
         }
     ]
 }

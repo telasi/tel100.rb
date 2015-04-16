@@ -41,6 +41,17 @@ Ext.define('Tel100.model.party.Favourites', {
     },
     {
       name: 'name'
+    },
+    {
+      calculate: function(data) {
+        return helpers.party.convertTypeToExt(data.person_type);
+      },
+      name: 'ext_type'
     }
-  ]
+  ],
+
+  toHtml: function() {
+    return this.get('name');
+  }
+
 });
