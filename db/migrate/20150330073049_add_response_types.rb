@@ -68,10 +68,13 @@ class AddResponseTypes < ActiveRecord::Migration
 
     # asignee
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 1, 1, 'შესასრულებლად')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 1, 1, '--')
     SQL
     execute <<-SQL
-      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 1, 1, 'გასაცნობად')
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 1, 2, 'შესასრულებლად')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 1, 3, 'გასაცნობად')
     SQL
     execute <<-SQL
       insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka) values ('assignee', 2, 1, 'შევასრულე')
