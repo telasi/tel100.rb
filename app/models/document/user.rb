@@ -92,11 +92,7 @@ class Document::User < ActiveRecord::Base
         self.as_owner = DOC_COMPLETED
         self.is_completed = 1
       elsif doc_status == CANCELED
-        if self.document.canceled_by == self.document.owner_user_id
-          self.as_owner = DOC_CANCELED
-        else
-          self.as_owner = DOC_CURRENT
-        end
+        self.as_owner = DOC_CANCELED
         self.is_canceled = 1
       elsif doc_status == CURRENT
         self.is_current = 1
