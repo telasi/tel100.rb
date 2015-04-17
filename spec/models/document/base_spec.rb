@@ -24,6 +24,7 @@ RSpec.describe Document::Base do
     expect(doc.received_at).to be_nil
     expect(doc.completed_at).to be_nil
     expect(doc.type).not_to be_nil
+    expect(doc.motions.length).to eq(0)
     # testing who receives this document
     doc_users = Document::User.where(document: doc)
     expect(doc_users.count).to eq(1)
