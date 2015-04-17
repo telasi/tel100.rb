@@ -43,12 +43,15 @@ def barcode(pdf)
 end
 
 def properties(pdf)
+  docdate = @document.docdate.strftime '%d-%b-%Y %H:%M' if @document.docdate.present?
+  due_date = @document.due_date.strftime '%d-%b-%Y %H:%M' if @document.due_date.present?
+
   pdf.move_down 60
 
   data = [ ["ნომერი:",    "#{@document.docnumber}", ""],
            ["სახეობა:",    "#{@document.type.name}", ""],
-           ["თარიღი:",    "#{@document.docdate}", ""],
-           ["ვადა:",       "#{@document.due_date}", ""],
+           ["თარიღი:",    "#{docdate}", ""],
+           ["ვადა:",       "#{due_date}", ""],
            ["მიმართულება:", direction(@document.direction), ""],
            ["გვერდები:",   "#{@document.page_count}", ""],
            ["დანართი:",    "#{@document.additions_count}", ""],
