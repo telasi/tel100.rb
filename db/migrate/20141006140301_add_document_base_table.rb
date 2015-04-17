@@ -32,6 +32,8 @@ class AddDocumentBaseTable < ActiveRecord::Migration
         COMMENTS_TOTAL    number(6,0)  default 0 not null,
         -----
         STATUS       number(1, 0) default 0 not null,
+        COMPLETED_BY number(10, 0),
+        CANCELED_BY  number(10, 0),
         CREATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null, -- შექმნა (DRAFT)
         SENT_AT      TIMESTAMP, -- გაგზავნა  (SENT / NOT_SENT)
         RECEIVED_AT  TIMESTAMP, -- მიღება    (CURRENT / NOT_RECEIVED)
