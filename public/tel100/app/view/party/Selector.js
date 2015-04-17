@@ -72,9 +72,6 @@ Ext.define('Tel100.view.party.Selector', {
         {
           xtype: 'hrtreepanel',
           cls: 'panel-with-border',
-          bind: {
-            hidden: '{hideHR}'
-          },
           listeners: {
             celldblclick: 'onHRTreeDblClick',
             beforeitemcontextmenu: {
@@ -236,7 +233,7 @@ Ext.define('Tel100.view.party.Selector', {
   },
 
   onRemoveToolClick: function(tool, e, owner, eOpts) {
-    var grid = this.down('gridpanel');
+    var grid = this.down('#selectedParties');
     var selection = grid.getSelection();
     if (selection.length > 0) {
       this.getController().onRemoveParty(selection[0]);

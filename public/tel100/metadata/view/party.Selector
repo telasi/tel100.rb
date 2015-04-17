@@ -50,7 +50,7 @@
                     "userConfig": {
                         "designer|displayName": "favourites"
                     },
-                    "name": "party.favourites3",
+                    "name": "party.favourites6",
                     "designerId": "b159642e-b9b2-4df9-88c9-b2767a7efab2",
                     "masterInstanceId": "a45fbe8d-7059-415d-a0c9-11f96e92436a",
                     "cn": [
@@ -142,14 +142,12 @@
                         "cls": "panel-with-border",
                         "designer|displayName": "hrstructure",
                         "disabled": null,
-                        "hidden": [
-                            "{hideHR}"
-                        ],
+                        "hidden": null,
                         "store": null,
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel3",
+                    "name": "hr.tree.panel5",
                     "configAlternates": {
                         "tools": "array",
                         "hidden": "binding"
@@ -233,7 +231,7 @@
                         "designer|displayName": "parties",
                         "hidden": null
                     },
-                    "name": "hr.party.grid3",
+                    "name": "hr.party.grid5",
                     "configAlternates": {
                         "hidden": "binding"
                     },
@@ -309,7 +307,7 @@
                         "designer|displayName": "customers",
                         "hidden": null
                     },
-                    "name": "bs.customer.panel3",
+                    "name": "bs.customer.panel5",
                     "configAlternates": {
                         "hidden": "binding"
                     },
@@ -634,7 +632,7 @@
                             "userConfig": {
                                 "fn": "onRemoveToolClick",
                                 "implHandler": [
-                                    "var grid = this.down('gridpanel');",
+                                    "var grid = this.down('#selectedParties');",
                                     "var selection = grid.getSelection();",
                                     "if (selection.length > 0) {",
                                     "  this.getController().onRemoveParty(selection[0]);",

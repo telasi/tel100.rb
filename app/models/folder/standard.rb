@@ -45,14 +45,10 @@ class Folder::Standard
     {
       name:      self.name,
       icon:      self.icon,
-      count:     self.docs(0, user).count,
+      count:      Folder::Standard.docs(self.folder_type, show_completed = 0, user).count,
       folder_type: self.folder_type,
       parent_id: self.parent_id
     }
-   end
-
-   def docs(show_completed = 0, user)
-    Folder::Standard.docs(self.folder_type, show_completed, user)
    end
 
    def self.docs(folderType, show_completed = 0, user)

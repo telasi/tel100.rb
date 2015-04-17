@@ -47,6 +47,13 @@ def title(pdf)
   pdf.text "#{@document.subject}", :align => :center, :size => 14
 end
 
+def header(pdf)
+  docdate = @document.docdate.strftime '%d-%b-%Y %H:%M' if @document.docdate.present?
+  pdf.text_box "ნომერი: #{@document.docnumber}" + "\n" +
+                "თარიღი: #{docdate}",
+      :at => [400, 760], :width => 150, :size => 8
+end
+
 def body(pdf)
  pdf.move_down 20
  pdf.text "#{@document.body}", :align => :justify, :size => 10
@@ -100,6 +107,7 @@ prawn_document(page_size: 'A4', margin: [40, 40]) do |pdf|
   default_font(pdf)
   barcode(pdf)
   title(pdf)
+  header(pdf)
   body(pdf)
   signature(pdf)
 end

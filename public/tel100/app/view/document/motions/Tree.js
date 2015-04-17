@@ -105,12 +105,12 @@ Ext.define('Tel100.view.document.motions.Tree', {
   dockedItems: [
     {
       xtype: 'documentmotionsmotionquickview',
-      dock: 'bottom',
       resizable: true,
       style: 'background-color: #dfeaf2;',
+      dock: 'bottom',
       bind: {
-        hidden: '{hideQuickProperties}',
-        motion: '{selection}'
+        motion: '{selection}',
+        hidden: '{hideQuickProperties}'
       }
     }
   ],
