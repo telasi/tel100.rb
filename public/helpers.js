@@ -1458,10 +1458,11 @@ module.exports = {
 module.exports = {
   status: require('./status'),
   role: require('./role'),
-  motion: require('./motion')
+  motion: require('./motion'),
+  user: require('./user')
 };
 
-},{"./motion":9,"./role":10,"./status":11}],9:[function(require,module,exports){
+},{"./motion":9,"./role":10,"./status":11,"./user":12}],9:[function(require,module,exports){
 var motionDialog;
 
 var getPropertiesDialog = function(motion) {
@@ -1654,6 +1655,14 @@ module.exports = {
 };
 
 },{"./role":10}],12:[function(require,module,exports){
+module.exports = {
+  NONE: 0,
+  CURRENT: 1,
+  COMPLETED: 2,
+  CANCELED: 3
+};
+
+},{}],13:[function(require,module,exports){
 var currentLocale
   , ajax = require('./ajax')
   , preferences = require('./preferences')
@@ -1680,7 +1689,7 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":2,"./preferences":15}],13:[function(require,module,exports){
+},{"./ajax":2,"./preferences":16}],14:[function(require,module,exports){
 window.helpers = {
   ajax: require('./ajax'),
   'document': require('./document'),
@@ -1694,7 +1703,7 @@ window.helpers = {
 window.async = require('./async');
 
 
-},{"./ajax":2,"./api":5,"./async":7,"./document":8,"./i18n":12,"./party":14,"./preferences":15,"./user":16}],14:[function(require,module,exports){
+},{"./ajax":2,"./api":5,"./async":7,"./document":8,"./i18n":13,"./party":15,"./preferences":16,"./user":17}],15:[function(require,module,exports){
 var partyDialog;
 
 var getPartyDialog = function(callback) {
@@ -1756,7 +1765,7 @@ module.exports = {
   convertTypeToRuby: convertTypeToRuby
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -1787,7 +1796,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -1817,4 +1826,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":2,"./i18n":12,"./preferences":15}]},{},[13]);
+},{"./ajax":2,"./i18n":13,"./preferences":16}]},{},[14]);
