@@ -1,5 +1,6 @@
 module.exports = {
   my_status: {
+    'any.none': 'დრაფტი',
     'owner.current': 'მიმდინარე',
     'owner.completed': 'დასრულებული',
     'owner.canceled': 'გაუქმებული',

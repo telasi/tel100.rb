@@ -282,6 +282,7 @@ module.exports = {
 },{}],13:[function(require,module,exports){
 module.exports = {
   my_status: {
+    'any.none': 'დრაფტი',
     'owner.current': 'მიმდინარე',
     'owner.completed': 'დასრულებული',
     'owner.canceled': 'გაუქმებული',
