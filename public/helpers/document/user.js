@@ -5,10 +5,10 @@ var NONE = 0
   ;
 
 var NAMES = {
-  NONE: 'none',
-  CURRENT: 'current',
-  COMPLETED: 'completed',
-  CANCELED: 'canceled'
+  0: 'none',
+  1: 'current',
+  2: 'completed',
+  3: 'canceled'
 };
 
 module.exports = {

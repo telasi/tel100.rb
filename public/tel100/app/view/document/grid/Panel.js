@@ -85,11 +85,18 @@ Ext.define('Tel100.view.document.grid.Panel', {
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        if(record.get('is_received')) {
-          return '&rarr;';
-        } else {
-          return '&larr;';
-        }
+        // if(record.get('is_received')) {
+        //   return '&rarr;';
+        // } else {
+        //   return '&larr;';
+        // }
+        var mystat = helpers.document.user.myStatus(record);
+        return [
+        '<span class="' + mystat.style + '">',
+        '<i class="fa ' + mystat.icon + '"></i> ',
+        mystat.name,
+        '</span>'
+        ].join('');
       },
       bind: {
         text: '{i18n.document.base.my_status}'

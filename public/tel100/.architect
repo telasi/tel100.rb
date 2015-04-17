@@ -3932,9 +3932,9 @@
     },
     "inspectorState": {
         "topInstance": "c39280dd-4a3b-4f87-8455-6779b7ed7103",
-        "selectedInstance": "9993db88-7cb2-4e34-ad2d-319be3af1d11"
+        "selectedInstance": "52757390-ddcf-4052-924f-a6999c8458c2"
     },
-    "editMode": "design",
+    "editMode": "code",
     "userSettings": {
         "no-cmd": false
     }
