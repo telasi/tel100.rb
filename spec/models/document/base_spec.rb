@@ -410,4 +410,36 @@ RSpec.describe Document::Base do
       doc.add_comment(dimitri, { response_type: Document::ResponseType::RESP_COMPLETE })
     }.to raise_error(RuntimeError)
   end
+
+  it 'should cancel document when not signed' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    shalva  = Sys::User.find_by_username('shalva')
+    nino    = Sys::User.find_by_username('nino')
+    temo    = Sys::User.find_by_username('temo')
+    doc = Document::Base.create_draft!(dimitri)
+    doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body' })
+    motion1 = Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: shalva.employee.id,
+      receiver_role: Document::Role::ROLE_SIGNEE
+    })
+    motion2 = Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: nino.employee.id,
+      receiver_role: Document::Role::ROLE_SIGNEE
+    })
+    doc.reload ; doc.send_draft!(dimitri)
+    motion1.reload ; motion2.reload
+    expect(motion1.ordering).to eq(1)
+    expect(motion2.ordering).to eq(2)
+    expect(motion1.status).to eq(Document::Status::CURRENT)
+    expect(motion2.status).to eq(Document::Status::SENT)
+    doc.add_comment(dimitri, { response_type: Document::ResponseType::RESP_CANCEL })
+    doc.reload ; motion1.reload ; motion2.reload
+    expect(motion1.status).to eq(Document::Status::NOT_RECEIVED)
+    expect(motion2.status).to eq(Document::Status::NOT_RECEIVED)
+    expect(doc.status).to eq(Document::Status::CANCELED)
+  end
 end

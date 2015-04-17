@@ -142,14 +142,14 @@ class Document::Base < ActiveRecord::Base
       docuser.make_others_unread!
       docuser.calculate!
       # S4: if document was canceled mark current motions as not received
-      # if self.status == CANCELED and status_updated
-      #   self.update_attributes!(status: CANCELED)
-      #   self.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
-      #     motion.update_attributes!(status: NOT_RECEIVED)
-      #     docuser = self.document.users.where(user: motion.receiver_user).first
-      #     docuser.calculate!
-      #   end
-      # end
+      if self.status == CANCELED and status_updated
+        self.update_attributes!(status: CANCELED)
+        self.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
+          motion.update_attributes!(status: NOT_RECEIVED)
+          docuser = self.users.where(user: motion.receiver_user).first
+          docuser.calculate!
+        end
+      end
     end
   end
 
