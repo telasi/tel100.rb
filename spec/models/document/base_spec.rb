@@ -357,8 +357,6 @@ RSpec.describe Document::Base do
   end
 
   it 'should cancel document when not signed' do
-    # 1. Sending document
-    #
     dimitri = Sys::User.find_by_username('dimitri')
     shalva  = Sys::User.find_by_username('shalva')
     nino    = Sys::User.find_by_username('nino')
@@ -406,6 +404,10 @@ RSpec.describe Document::Base do
     expect(doc.status).to eq(Document::Status::CANCELED)
     expect {
       motion2.add_comment(nino, { response_type: Document::ResponseType::RESP_COMPLETE })
+    }.to raise_error(RuntimeError)
+    doc.reload
+    expect {
+      doc.add_comment(dimitri, { response_type: Document::ResponseType::RESP_COMPLETE })
     }.to raise_error(RuntimeError)
   end
 end
