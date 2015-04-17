@@ -85,19 +85,19 @@ class AddDocumentUser < ActiveRecord::Migration
     SQL
 
     execute <<-SQL
-      COMMENT ON COLUMN DOCUMENT_USER.AS_OWNER IS '0: not owner; 1: has pending status as owner; 2: has resolved (completed/canceled) status as owner'
+      COMMENT ON COLUMN DOCUMENT_USER.AS_OWNER IS '0: not owner; 1: has pending status as owner; 2: has completed status as owner; 3: has canceled status as owner'
     SQL
 
     execute <<-SQL
-      COMMENT ON COLUMN DOCUMENT_USER.AS_AUTHOR IS '0: not author; 1: has pending status as author; 2: has resolved (completed/canceled) status as author'
+      COMMENT ON COLUMN DOCUMENT_USER.AS_AUTHOR IS '0: not author; 1: has pending status as author; 2: has completed status as author; 3: has canceled status as author'
     SQL
 
     execute <<-SQL
-      COMMENT ON COLUMN DOCUMENT_USER.AS_SIGNEE IS '0: not signee; 1: has pending status as signee; 2: has resolved (completed/canceled) status as signee'
+      COMMENT ON COLUMN DOCUMENT_USER.AS_SIGNEE IS '0: not signee; 1: has pending status as signee; 2: has completed status as signee; 3: has canceled status as signee'
     SQL
 
     execute <<-SQL
-      COMMENT ON COLUMN DOCUMENT_USER.AS_ASSIGNEE IS '0: not assignee; 1: has pending status as assignee; 2: has resolved (completed/canceled) status as assignee'
+      COMMENT ON COLUMN DOCUMENT_USER.AS_ASSIGNEE IS '0: not assignee; 1: has pending status as assignee; 2: has completed status as assignee; 3: has canceled status as assignee'
     SQL
   end
 

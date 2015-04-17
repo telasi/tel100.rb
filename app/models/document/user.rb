@@ -12,9 +12,10 @@ class Document::User < ActiveRecord::Base
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
   before_save :update_document_motions
 
-  DOC_NONE = 0
-  DOC_CURRENT = 1
-  DOC_COMPLETE = 2
+  DOC_NONE      = 0
+  DOC_CURRENT   = 1
+  DOC_COMPLETED = 2
+  DOC_CANCELED  = 3
 
   def self.mydocs(user)
     Document::User.where(user: user, is_shown: 1)
