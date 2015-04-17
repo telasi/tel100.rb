@@ -163,9 +163,11 @@ class Document::Motion < ActiveRecord::Base
       status: new_status, old_status: self.status, role: self.receiver_role,
       text: text)
     # S2: update motion
+    status_updated = false
     if self.status != new_status # it's completed
       self.completed_at = Time.now
       self.status = new_status
+      status_updated = true
     end
     self.response_type = type
     self.response_text = text
@@ -177,6 +179,15 @@ class Document::Motion < ActiveRecord::Base
     docuser.make_others_unread!
     # S5: update upper motions
     check_level_ups!
+    # S6: if motion was canceled mark others as not received
+    if self.status == CANCELED and status_updated
+      self.document.update_attributes!(status: CANCELED)
+      self.document.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
+        motion.update_attributes!(status: NOT_RECEIVED)
+        docuser = self.document.users.where(user: motion.receiver_user).first
+        docuser.calculate!
+      end
+    end
   end
 
   def check_level_ups!
