@@ -39,8 +39,6 @@ ActiveRecord::Schema.define(version: 20150407203528) do
     t.integer   "motions_canceled",  limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
     t.integer   "comments_total",    limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
     t.boolean   "status",                         precision: 1,  scale: 0, default: false,   null: false
-    t.integer   "completed_by",      limit: 10,   precision: 10, scale: 0
-    t.integer   "canceled_by",       limit: 10,   precision: 10, scale: 0
     t.timestamp "created_at",        limit: 6,                                               null: false
     t.timestamp "sent_at",           limit: 6
     t.timestamp "received_at",       limit: 6
