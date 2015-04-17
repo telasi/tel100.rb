@@ -222,7 +222,7 @@ RSpec.describe Document::Base do
     expect(u2.completed?).to eq(true)
     expect(u2.as_owner).to eq(Document::User::DOC_NONE)
     expect(u2.as_signee).to eq(Document::User::DOC_NONE)
-    expect(u2.as_assignee).to eq(Document::User::DOC_COMPLETE)
+    expect(u2.as_assignee).to eq(Document::User::DOC_COMPLETED)
     expect(u2.as_author).to eq(Document::User::DOC_NONE)
 
     # 4. Sender complete
@@ -240,7 +240,7 @@ RSpec.describe Document::Base do
     expect(u1.current?).to eq(false)
     expect(u1.canceled?).to eq(false)
     expect(u1.completed?).to eq(true)
-    expect(u1.as_owner).to eq(Document::User::DOC_COMPLETE)
+    expect(u1.as_owner).to eq(Document::User::DOC_COMPLETED)
     expect(u1.as_signee).to eq(Document::User::DOC_NONE)
     expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
     expect(u1.as_author).to eq(Document::User::DOC_NONE)
@@ -256,7 +256,7 @@ RSpec.describe Document::Base do
     expect(u2.completed?).to eq(true)
     expect(u2.as_owner).to eq(Document::User::DOC_NONE)
     expect(u2.as_signee).to eq(Document::User::DOC_NONE)
-    expect(u2.as_assignee).to eq(Document::User::DOC_COMPLETE)
+    expect(u2.as_assignee).to eq(Document::User::DOC_COMPLETED)
     expect(u2.as_author).to eq(Document::User::DOC_NONE)
   end
 
@@ -336,7 +336,7 @@ RSpec.describe Document::Base do
     expect(u1.canceled?).to eq(false)
     expect(u1.as_owner).to eq(Document::User::DOC_NONE)
     expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
-    expect(u1.as_signee).to eq(Document::User::DOC_COMPLETE)
+    expect(u1.as_signee).to eq(Document::User::DOC_COMPLETED)
     expect(u1.as_author).to eq(Document::User::DOC_NONE)
 
     expect(u2.user).to eq(nino)
