@@ -1714,7 +1714,8 @@ module.exports = {
     return {
       name: name,
       icon: icon,
-      style: style
+      style: style,
+      unread: record.get('is_new')
     };
   }
 };
