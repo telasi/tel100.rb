@@ -88,11 +88,19 @@ class Document::User < ActiveRecord::Base
     # 3. owner user calculation
     if self.user == self.document.owner_user
       doc_status = self.document.status
-      doc_complete = ( doc_status == COMPLETED || doc_status == CANCELED )
-      self.as_owner = doc_complete ? DOC_COMPLETE : DOC_CURRENT
-      self.is_current = 1 if doc_status == CURRENT
-      self.is_canceled = 1 if doc_status == CANCELED
-      self.is_completed = 1 if doc_status == COMPLETED
+      if doc_status == COMPLETED
+        self.as_owner = DOC_COMPLETED
+        self.is_completed = 1
+      elsif doc_status == CANCELED
+        self.as_owner = DOC_CANCELED
+        self.is_canceled = 1
+      elsif doc_status == CURRENT
+        self.is_current = 1
+        self.as_owner = DOC_CURRENT
+      else
+        # in fact DRAFT is current for owner
+        self.as_owner = DOC_CURRENT
+      end
       self.is_sent = 1 if doc_status != DRAFT
       self.is_shown = 1
     end
@@ -105,8 +113,10 @@ class Document::User < ActiveRecord::Base
       canceled_cnt = assignee_rel.where(status: CANCELED).count
       if current_cnt > 0
         self.as_assignee = DOC_CURRENT
-      elsif completed_cnt + canceled_cnt > 0
-        self.as_assignee = DOC_COMPLETE
+      elsif canceled_cnt > 0
+        self.as_assignee = DOC_CANCELED
+      elsif completed_cnt > 0
+        self.as_assignee = DOC_COMPLETED
       else
         self.as_assignee = DOC_NONE
       end
@@ -124,8 +134,10 @@ class Document::User < ActiveRecord::Base
       canceled_cnt = signee_rel.where(status: CANCELED).count
       if current_cnt > 0
         self.as_signee = DOC_CURRENT
-      elsif completed_cnt + canceled_cnt > 0
-        self.as_signee = DOC_COMPLETE
+      elsif canceled_cnt > 0
+        self.as_signee = DOC_CANCELED
+      elsif completed_cnt > 0
+        self.as_signee = DOC_COMPLETED
       else
         self.as_signee = DOC_NONE
       end
@@ -143,8 +155,10 @@ class Document::User < ActiveRecord::Base
       canceled_cnt = author_rel.where(status: CANCELED).count
       if current_cnt > 0
         self.as_author = DOC_CURRENT
-      elsif completed_cnt + canceled_cnt > 0
-        self.as_author = DOC_COMPLETE
+      elsif canceled_cnt > 0
+        self.as_author = DOC_CANCELED
+      elsif completed_cnt > 0
+        self.as_author = DOC_COMPLETED
       else
         self.as_author = DOC_NONE
       end
