@@ -374,6 +374,39 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "cls": null,
+                                                "designer|displayName": "signees",
+                                                "fieldLabel": [
+                                                    "{i18n.document.base.signees}"
+                                                ],
+                                                "fieldStyle": "height: inherit",
+                                                "hidden": [
+                                                    "{hideSignees}"
+                                                ],
+                                                "layout|flex": 1,
+                                                "shrinkWrap": [
+                                                    "2"
+                                                ],
+                                                "value": [
+                                                    "{signees}"
+                                                ]
+                                            },
+                                            "name": "MyDisplayField2",
+                                            "configAlternates": {
+                                                "fieldLabel": "binding",
+                                                "value": "binding",
+                                                "hidden": "binding"
+                                            },
+                                            "designerId": "1e7c2213-9ef9-4d83-8086-e4c0b5431eac"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Display",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "cls": null,
                                                 "designer|displayName": "authors",
                                                 "fieldLabel": [
                                                     "{i18n.document.base.authors}"
@@ -396,38 +429,6 @@
                                                 "fieldLabel": "binding"
                                             },
                                             "designerId": "bec227c6-844b-4c6d-b5b2-f623a8ad46fd"
-                                        },
-                                        {
-                                            "type": "Ext.form.field.Display",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "cls": null,
-                                                "designer|displayName": "signees",
-                                                "fieldLabel": [
-                                                    "{i18n.document.base.signees}"
-                                                ],
-                                                "fieldStyle": "height: inherit",
-                                                "hidden": [
-                                                    "{hideSignees}"
-                                                ],
-                                                "shrinkWrap": [
-                                                    "2"
-                                                ],
-                                                "value": [
-                                                    "{signees}"
-                                                ]
-                                            },
-                                            "name": "MyDisplayField2",
-                                            "configAlternates": {
-                                                "fieldLabel": "binding",
-                                                "value": "binding",
-                                                "hidden": "binding"
-                                            },
-                                            "designerId": "1e7c2213-9ef9-4d83-8086-e4c0b5431eac"
                                         },
                                         {
                                             "type": "Ext.form.field.Text",
