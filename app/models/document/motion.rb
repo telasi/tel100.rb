@@ -180,7 +180,9 @@ class Document::Motion < ActiveRecord::Base
     # S5: update upper motions
     check_level_ups!
     # S6: if motion was canceled mark others as not received
-    if self.status == CANCELED and status_updated
+    is_signature = [ROLE_SIGNEE, ROLE_AUTHOR].include?(self.receiver_role)
+    is_toplevel = self.parent_id.blank?
+    if self.status == CANCELED and status_updated and is_signature and is_toplevel
       self.document.update_attributes!(status: CANCELED)
       self.document.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
         motion.update_attributes!(status: NOT_RECEIVED)
