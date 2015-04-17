@@ -91,7 +91,7 @@ Ext.define('Tel100.view.party.Selector', {
           tabConfig: {
             xtype: 'tab',
             bind: {
-              hidden: '{hidePartyTab}'
+              hidden: '{hideParty}'
             }
           },
           listeners: {
@@ -233,7 +233,7 @@ Ext.define('Tel100.view.party.Selector', {
   },
 
   onRemoveToolClick: function(tool, e, owner, eOpts) {
-    var grid = this.down('gridpanel');
+    var grid = this.down('#selectedParties');
     var selection = grid.getSelection();
     if (selection.length > 0) {
       this.getController().onRemoveParty(selection[0]);
