@@ -7,5 +7,6 @@ module.exports = {
   type: require('./type'),
   role: require('./role'),
   file: require('./file'),
-  relation: require('./relation')
+  relation: require('./relation'),
+  user: require('./user')
 };
