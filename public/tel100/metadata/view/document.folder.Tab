@@ -395,7 +395,8 @@
                                         ],
                                         "fn": "renderer",
                                         "implHandler": [
-                                            "return helpers.api.folders.folderDecoration(record.get('folder_type'), record.get('name'));"
+                                            "var s = ( record.get('folder_type') === 0 ? '<span style=\"float:right;\">' + record.data.count + '</span>' : \"\");",
+                                            "return helpers.api.folders.folderDecoration(record.get('folder_type'), record.get('name')) + s;"
                                         ]
                                     },
                                     "name": "renderer",
@@ -612,7 +613,7 @@
                     "{i18n.document.search.ui.search}"
                 ]
             },
-            "name": "document.folder.search3",
+            "name": "document.folder.search",
             "configAlternates": {
                 "title": "binding"
             },

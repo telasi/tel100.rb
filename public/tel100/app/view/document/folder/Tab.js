@@ -144,7 +144,8 @@ Ext.define('Tel100.view.document.folder.Tab', {
             {
               xtype: 'gridcolumn',
               renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-                return helpers.api.folders.folderDecoration(record.get('folder_type'), record.get('name'));
+                var s = ( record.get('folder_type') === 0 ? '<span style="float:right;">' + record.data.count + '</span>' : "");
+                return helpers.api.folders.folderDecoration(record.get('folder_type'), record.get('name')) + s;
               },
               enableColumnHide: false,
               sortable: false,

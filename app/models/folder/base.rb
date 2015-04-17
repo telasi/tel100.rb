@@ -6,6 +6,16 @@ class Folder::Base < ActiveRecord::Base
 
   has_many :documents, class_name: 'Folder::Document', foreign_key: 'folder_id'
 
+  def to_hash(user)
+    {
+      id:        self.id,
+      name:      self.name,
+      count:     Folder::Base.joins(:documents).count,
+      folder_type: self.folder_type,
+      form: self.form
+    }
+  end
+
   def delete_folder
   	Folder::Base.transaction do
   	  self.documents.destroy_all
