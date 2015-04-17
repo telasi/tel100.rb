@@ -63,7 +63,8 @@
             "userConfig": {
                 "fn": "foldersRefresh",
                 "implHandler": [
-                    "this.getViewModel().getStore('standardfolders').reload();"
+                    "this.getViewModel().getStore('standardfolders').reload();",
+                    "Ext.getStore('CustomFolders').reload();"
                 ]
             },
             "name": "foldersRefresh",
