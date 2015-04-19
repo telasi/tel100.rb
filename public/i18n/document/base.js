@@ -32,6 +32,7 @@ module.exports = {
   subject_tooltip: 'ჩაწერეთ დოკუმენტის სათაური',
   authors: 'ავტორები',
   signees: 'ვიზატორები',
+  assignees: 'ადრესატები',
   original_number: 'დედანის #',
   original_date: 'დედანის თარიღი',
   docnumber: 'ნომერი',

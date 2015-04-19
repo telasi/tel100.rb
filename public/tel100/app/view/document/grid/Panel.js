@@ -143,6 +143,35 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        var text = [];
+        var tooltip = "";
+        for(var i = 0; i < value.length; i++) {
+          var assignee = value[i];
+          tooltip += assignee.author + "; ";
+          var decor = helpers.document.status.statusDecoration(assignee.status);
+          text.push([
+          '<span class="' + decor.style + '">',
+          '<i class="fa ' + decor.icon + '"></i> ',
+          assignee.author,
+          //( assignee.response ? ' &mdash; ' + assignee.response : '' ),
+          '</span>'
+          ].join(''));
+        }
+
+        metaData.tdAttr = 'data-qtip="' + tooltip + '"';
+        return text.join('; <br>');
+      },
+      maxHeight: 10,
+      width: 250,
+      cellWrap: true,
+      dataIndex: 'assignees',
+      bind: {
+        text: '{i18n.document.base.assignees}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
       dataIndex: 'original_number',
       bind: {
         text: '{i18n.document.base.original_number}'

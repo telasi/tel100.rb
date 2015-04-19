@@ -70,3 +70,11 @@ json.signees do
     json.response motion.response_type.to_s
   end
 end
+# assignees
+json.assignees do
+  json.array! doc.assignee_motions do |motion|
+    json.status motion.status
+    json.author motion.receiver.to_s
+    json.response motion.response_type.to_s
+  end
+end

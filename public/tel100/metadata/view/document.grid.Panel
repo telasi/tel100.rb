@@ -325,6 +325,73 @@
             },
             "codeClass": null,
             "userConfig": {
+                "cellWrap": true,
+                "dataIndex": "assignees",
+                "defaultWidth": null,
+                "designer|displayName": "assignees",
+                "maxHeight": 10,
+                "text": [
+                    "{i18n.document.base.assignees}"
+                ],
+                "width": 250
+            },
+            "name": "MyColumn24",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "706fa59a-88cb-42b8-960b-19f819995a4c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "var text = [];",
+                            "var tooltip = \"\";",
+                            "for(var i = 0; i < value.length; i++) {",
+                            "  var assignee = value[i];",
+                            "  tooltip += assignee.author + \"; \";",
+                            "  var decor = helpers.document.status.statusDecoration(assignee.status);",
+                            "  text.push([",
+                            "    '<span class=\"' + decor.style + '\">',",
+                            "    '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "    assignee.author,",
+                            "    //( assignee.response ? ' &mdash; ' + assignee.response : '' ),",
+                            "    '</span>'",
+                            "  ].join(''));",
+                            "}",
+                            "",
+                            "metaData.tdAttr = 'data-qtip=\"' + tooltip + '\"';",
+                            "return text.join('; <br>');"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "d0cc4b01-5cd4-41cd-b5a1-9803ab50fd45"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "dataIndex": "original_number",
                 "designer|displayName": "original_number",
                 "text": [
