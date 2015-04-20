@@ -46,6 +46,21 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewModel', {
       listeners: {
         load: 'onStoreLoad'
       }
+    },
+    outgoing: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Motion',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          document_id: '{document.id}',
+          parent_id: '{selection.id}'
+        },
+        url: '/api/documents/assignees_out',
+        reader: {
+          type: 'json'
+        }
+      }
     }
   }
 

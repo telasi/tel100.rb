@@ -21,8 +21,10 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     'Tel100.view.document.motions.AssigneeAddDialogViewModel',
     'Tel100.view.document.motions.AssigneeAddDialogViewController',
     'Ext.grid.Panel',
-    'Ext.grid.column.Column',
-    'Ext.grid.View'
+    'Ext.grid.View',
+    'Ext.grid.column.Number',
+    'Ext.grid.column.Date',
+    'Ext.grid.column.Boolean'
   ],
 
   controller: 'documentmotionsassigneeadddialog',
@@ -41,7 +43,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     {
       xtype: 'gridpanel',
       region: 'west',
-      resizable: true,
+      split: true,
       width: 200,
       bind: {
         selection: '{selection}',
@@ -50,11 +52,43 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
       columns: [
         {
           xtype: 'gridcolumn',
+          resizable: false,
+          sortable: false,
           dataIndex: 'html_text',
+          hideable: false,
           flex: 1,
           bind: {
             text: '{i18n.document.motion.incoming}'
           }
+        }
+      ]
+    },
+    {
+      xtype: 'gridpanel',
+      region: 'center',
+      bind: {
+        store: '{outgoing}'
+      },
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          dataIndex: 'string',
+          text: 'String'
+        },
+        {
+          xtype: 'numbercolumn',
+          dataIndex: 'number',
+          text: 'Number'
+        },
+        {
+          xtype: 'datecolumn',
+          dataIndex: 'date',
+          text: 'Date'
+        },
+        {
+          xtype: 'booleancolumn',
+          dataIndex: 'bool',
+          text: 'Boolean'
         }
       ]
     }
