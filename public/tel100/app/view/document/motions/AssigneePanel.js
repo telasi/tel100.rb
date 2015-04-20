@@ -138,7 +138,8 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
       },
       plugins: [
         {
-          ptype: 'cellediting'
+          ptype: 'cellediting',
+          clicksToEdit: 1
         }
       ]
     }

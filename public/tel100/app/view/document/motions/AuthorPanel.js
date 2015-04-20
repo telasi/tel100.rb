@@ -115,7 +115,8 @@ Ext.define('Tel100.view.document.motions.AuthorPanel', {
       },
       plugins: [
         {
-          ptype: 'cellediting'
+          ptype: 'cellediting',
+          clicksToEdit: 1
         }
       ]
     }

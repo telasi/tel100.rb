@@ -115,7 +115,8 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
       },
       plugins: [
         {
-          ptype: 'cellediting'
+          ptype: 'cellediting',
+          clicksToEdit: 1
         }
       ]
     }
