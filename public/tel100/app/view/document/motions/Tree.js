@@ -56,12 +56,15 @@ Ext.define('Tel100.view.document.motions.Tree', {
     {
       xtype: 'treecolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        var statusDecorator = function(status, text) {
+        var statusDecorator = function(status, isNew, text) {
           var decoration = helpers.document.status.statusDecoration(status);
-          return '<span class="' + decoration.style + '">' +
-          '<i class="fa ' + decoration.icon + '"></i> ' +
-          text +
-          '</span>';
+          var icon;
+          if (isNew) {
+            icon = '<i class="text-danger fa fa-circle"></i>';
+          } else {
+            icon = '<i class="fa ' + decoration.icon + '"></i>';
+          }
+          return '<span class="' + decoration.style + '">' + ' ' + icon + ' ' + text + '</span>';
         };
 
         if (record.get('root')) {
@@ -71,9 +74,10 @@ Ext.define('Tel100.view.document.motions.Tree', {
           var status = doc.get('status');
           var roleName = i18n.document.role.creator;
           var txt = '#<strong>' + doc.get('docnumber') + '</strong>: ' + doc.get('sender_name') + ', <span class="text-muted">' + roleName + '</span>';
-          return statusDecorator(status, txt);
+          return statusDecorator(status, false, txt);
         } else {
           var status = record.get('status');
+          var isNew = record.get('is_new');
           var currentStatus = record.get('current_status');
           var txt;
           var role = record.get('receiver_role');
@@ -82,7 +86,7 @@ Ext.define('Tel100.view.document.motions.Tree', {
           } else {
             txt = '<strong>' + value + '</strong>, <span class="text-muted">' + i18n.document.role[role] + '</span> &mdash; ' + currentStatus;
           }
-          return statusDecorator(status, txt);
+          return statusDecorator(status, isNew, txt);
         }
       },
       dataIndex: 'receiver',

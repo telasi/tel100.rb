@@ -3897,7 +3897,7 @@
             "id": "bc1df02f-ee0a-4c4f-8753-9e2796d66d5e"
         },
         "controller": true,
-        "resource": true,
+        "resource": false,
         "07083251-dd31-41ec-b832-49c43b90f87a": {
             "id": "07083251-dd31-41ec-b832-49c43b90f87a"
         },
@@ -3924,15 +3924,15 @@
     },
     "tabState": {
         "openTabs": [
-            "c39280dd-4a3b-4f87-8455-6779b7ed7103"
+            "23c81566-c199-406f-8b0e-a0b49f286dd9"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "c39280dd-4a3b-4f87-8455-6779b7ed7103",
-        "selectedInstance": "52757390-ddcf-4052-924f-a6999c8458c2"
+        "topInstance": "23c81566-c199-406f-8b0e-a0b49f286dd9",
+        "selectedInstance": "9dbd6a3c-4d49-4b11-897a-e0c1133aca7a"
     },
     "editMode": "code",
     "userSettings": {
