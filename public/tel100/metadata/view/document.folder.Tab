@@ -254,19 +254,46 @@
                                     "designerId": "caced38b-4943-4d25-96e5-cc144277e9ac"
                                 },
                                 {
-                                    "type": "Ext.button.Button",
+                                    "type": "Ext.button.Segmented",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "enableToggle": true,
-                                        "layout|flex": null,
-                                        "text": "<span class=\"text-muted\"><i class=\"fa fa-check\"></i></span>"
+                                        "layout|flex": null
                                     },
-                                    "name": "MyButton12",
-                                    "designerId": "bbc785d0-05a8-4680-8f74-eb0ae01273a6"
+                                    "name": "MySegmentedButton1",
+                                    "designerId": "97a04184-5324-47a4-b19b-5bec11595284",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.button.Button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "enableToggle": true,
+                                                "text": "<span class=\"text-muted\"><i class=\"fa fa-check\"></i></span>"
+                                            },
+                                            "name": "MyButton12",
+                                            "designerId": "bbc785d0-05a8-4680-8f74-eb0ae01273a6"
+                                        },
+                                        {
+                                            "type": "Ext.button.Button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "text": "MyButton"
+                                            },
+                                            "name": "MyButton6",
+                                            "designerId": "b515f7c3-50be-4a02-8656-1216719391eb"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.toolbar.Separator",
@@ -525,6 +552,9 @@
                         "collapsible": true,
                         "designer|displayName": "substitudeList",
                         "height": null,
+                        "hidden": [
+                            "{hideSubstitudeGrid}"
+                        ],
                         "hideHeaders": true,
                         "store": [
                             "{substitudeStore}"
@@ -533,7 +563,8 @@
                     },
                     "name": "MyGridPanel",
                     "configAlternates": {
-                        "store": "binding"
+                        "store": "binding",
+                        "hidden": "binding"
                     },
                     "designerId": "c573a4a8-18e0-4fc1-9a83-152d320be3c9",
                     "cn": [
@@ -613,7 +644,7 @@
                     "{i18n.document.search.ui.search}"
                 ]
             },
-            "name": "document.folder.search",
+            "name": "document.folder.search4",
             "configAlternates": {
                 "title": "binding"
             },
