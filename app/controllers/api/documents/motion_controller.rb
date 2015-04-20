@@ -60,6 +60,12 @@ class Api::Documents::MotionController < ApiController
     @motions = doc.motions.where('receiver_role IN (?) and status IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED], current_user.id).order('id')
   end
 
+  def assignees_out
+    doc = Document::Base.find(params[:document_id])
+    @motions = doc.motions.where('receiver_role IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], current_user.id).order('ordering, id')
+    render action: 'index'
+  end
+
   def create_draft
     @motion = Document::Motion.create_draft!(current_user, params)
   end

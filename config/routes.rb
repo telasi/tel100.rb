@@ -91,6 +91,7 @@ Rails.application.routes.draw do
         get    '/tree',               action: 'tree'
         get    '/signatures',         action: 'signatures'
         get    '/assignees',          action: 'assignees'
+        get    '/assignees_out',      action: 'assignees_out'
         post   '/create_draft',       action: 'create_draft'
         put    '/update_draft',       action: 'update_draft'
         delete '/delete_draft',       action: 'delete_draft'
