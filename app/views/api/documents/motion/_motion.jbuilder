@@ -59,8 +59,7 @@ else
     json.resp_type_name motion.response_type.name
   end
   # text calculation
-  text = ''
-  if motion.send_type.present?
+  if motion.send_type.present? and motion.send_type.name != '--'
     if motion.motion_text.present?
       text = "#{sender}: #{motion.send_type.name} - #{motion.motion_text}"
     else
