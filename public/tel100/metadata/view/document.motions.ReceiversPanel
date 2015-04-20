@@ -135,7 +135,32 @@
                 "type": "plus"
             },
             "name": "MyTool3",
-            "designerId": "596fa4b2-3eff-4101-a858-258f7da5b1d5"
+            "designerId": "596fa4b2-3eff-4101-a858-258f7da5b1d5",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onAddAssignee",
+                        "implHandler": [
+                            "var vm = this.getViewModel();",
+                            "var dialog = Ext.create('Tel100.view.document.motions.AssigneeAddDialog', {",
+                            "  modal: true,",
+                            "  document: vm.get('document')",
+                            "});",
+                            "dialog.show();"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "name": "onAddAssignee",
+                    "designerId": "5a1903c6-f945-4974-84db-b8cbb584e822"
+                }
+            ]
         },
         {
             "type": "basicfunction",

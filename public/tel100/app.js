@@ -85,7 +85,8 @@ Ext.application({
     'party.Favourites',
     'hr.party.Grid',
     'document.motions.ReceiversPanel',
-    'document.motions.MotionQuickView'
+    'document.motions.MotionQuickView',
+    'document.motions.AssigneeAddDialog'
   ],
   name: 'Tel100',
 

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsassigneeadddialog",
+        "designer|userClassName": "document.motions.AssigneeAddDialogViewController"
+    },
+    "designerId": "70f1c674-eeb0-4ee0-8594-c153ec393666"
+}

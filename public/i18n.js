@@ -211,6 +211,7 @@ module.exports = {
   completed_at: 'შესრულებულია',
   updated_at: 'ბოლო ცვლილება',
   assignees: '<i class="fa fa-user"></i> ადრესატები',
+  add_assignees: '<i class="fa fa-users"></i> ადრესატების დამატება',
   signees: '<i class="fa fa-edit"></i> ვიზატორები',
   authors: '<i class="fa fa-legal"></i> ავტორები',
   resultPaneTitle: '<i class="fa fa-check"></i> შედეგი და კომენტარი',

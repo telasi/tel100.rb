@@ -1,0 +1,64 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "documentmotionsassigneeadddialog",
+        "designer|userClassName": "document.motions.AssigneeAddDialog",
+        "height": 450,
+        "maximizable": true,
+        "title": [
+            "{i18n.document.motion.add_assignees}"
+        ],
+        "width": 750
+    },
+    "name": "MyWindow",
+    "configAlternates": {
+        "title": "binding"
+    },
+    "designerId": "85f5347b-1680-4e94-b521-9a6b52976e4a",
+    "viewControllerInstanceId": "70f1c674-eeb0-4ee0-8594-c153ec393666",
+    "viewModelInstanceId": "3359987d-9ed6-4f58-81bb-cc1cdfc1b3c5",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "doc"
+                ],
+                "fn": "setDocument",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "vm.set('document', doc);"
+                ]
+            },
+            "name": "setDocument",
+            "designerId": "7f8d0bb8-ab82-478b-a410-f67ce2cc0a34"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getDocument",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "return vm.get('document');"
+                ]
+            },
+            "name": "getDocument",
+            "designerId": "49b2951d-30ec-46e1-9fa8-fdf530959b14"
+        }
+    ]
+}

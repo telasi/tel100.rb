@@ -1,0 +1,18 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{",
+            "  document: null",
+            "}"
+        ],
+        "designer|userAlias": "documentmotionsassigneeadddialog",
+        "designer|userClassName": "document.motions.AssigneeAddDialogViewModel"
+    },
+    "designerId": "3359987d-9ed6-4f58-81bb-cc1cdfc1b3c5"
+}
