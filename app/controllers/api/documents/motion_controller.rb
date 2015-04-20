@@ -35,6 +35,7 @@ class Api::Documents::MotionController < ApiController
         type: 'motion',
         parent_id: motion.parent_id,
         status: motion.status,
+        is_new: motion.new?,
         current_status: motion.current_status.to_s,
         ordering: motion.ordering,
         sender: motion.sender_name,
