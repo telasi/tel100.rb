@@ -329,7 +329,7 @@
                 "dataIndex": "assignees",
                 "defaultWidth": null,
                 "designer|displayName": "assignees",
-                "maxHeight": 10,
+                "maxHeight": null,
                 "text": [
                     "{i18n.document.base.assignees}"
                 ],

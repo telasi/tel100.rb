@@ -162,7 +162,6 @@ Ext.define('Tel100.view.document.grid.Panel', {
         metaData.tdAttr = 'data-qtip="' + tooltip + '"';
         return text.join('; <br>');
       },
-      maxHeight: 10,
       width: 250,
       cellWrap: true,
       dataIndex: 'assignees',
