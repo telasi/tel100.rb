@@ -21,10 +21,11 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     'Tel100.view.document.motions.AssigneeAddDialogViewModel',
     'Tel100.view.document.motions.AssigneeAddDialogViewController',
     'Ext.grid.Panel',
+    'Ext.grid.column.Column',
     'Ext.grid.View',
-    'Ext.grid.column.Number',
-    'Ext.grid.column.Date',
-    'Ext.grid.column.Boolean'
+    'Ext.form.field.ComboBox',
+    'Ext.form.field.Date',
+    'Ext.grid.plugin.CellEditing'
   ],
 
   controller: 'documentmotionsassigneeadddialog',
@@ -44,6 +45,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
       xtype: 'gridpanel',
       region: 'west',
       split: true,
+      itemId: 'grid-in',
       width: 200,
       bind: {
         selection: '{selection}',
@@ -66,29 +68,89 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     {
       xtype: 'gridpanel',
       region: 'center',
+      itemId: 'grid-out',
       bind: {
         store: '{outgoing}'
       },
       columns: [
         {
           xtype: 'gridcolumn',
-          dataIndex: 'string',
-          text: 'String'
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            return helpers.document.status.motionStatusIcon(value, record);
+          },
+          resizable: false,
+          width: 28,
+          sortable: false,
+          dataIndex: 'status',
+          hideable: false
         },
         {
-          xtype: 'numbercolumn',
-          dataIndex: 'number',
-          text: 'Number'
+          xtype: 'gridcolumn',
+          width: 250,
+          sortable: false,
+          dataIndex: 'receiverName',
+          hideable: false,
+          bind: {
+            text: '{i18n.document.motion.receiver}'
+          }
         },
         {
-          xtype: 'datecolumn',
-          dataIndex: 'date',
-          text: 'Date'
+          xtype: 'gridcolumn',
+          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+            return record.get('send_type_name');
+          },
+          sortable: false,
+          dataIndex: 'send_type_id',
+          hideable: false,
+          bind: {
+            text: '{i18n.document.motion.send_type}'
+          },
+          editor: {
+            xtype: 'combobox',
+            displayField: 'html_name',
+            valueField: 'id',
+            bind: {
+              store: '{responseTypes}'
+            }
+          }
         },
         {
-          xtype: 'booleancolumn',
-          dataIndex: 'bool',
-          text: 'Boolean'
+          xtype: 'gridcolumn',
+          width: 200,
+          sortable: false,
+          dataIndex: 'motion_text',
+          hideable: false,
+          bind: {
+            text: '{i18n.document.motion.motion_text}'
+          },
+          editor: {
+            xtype: 'textfield'
+          }
+        },
+        {
+          xtype: 'gridcolumn',
+          sortable: false,
+          dataIndex: 'due_date',
+          formatter: 'date("d/m/Y")',
+          hideable: false,
+          bind: {
+            text: '{i18n.document.motion.due_date}'
+          },
+          editor: {
+            xtype: 'datefield',
+            format: 'd/m/Y'
+          }
+        }
+      ],
+      viewConfig: {
+        getRowClass: function(record, rowIndex, rowParams, store) {
+          var status = record.get('status');
+          return helpers.document.status.motionStatusRowClass(status, record);
+        }
+      },
+      plugins: [
+        {
+          ptype: 'cellediting'
         }
       ]
     }

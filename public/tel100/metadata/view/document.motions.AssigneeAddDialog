@@ -6,11 +6,15 @@
     },
     "codeClass": null,
     "userConfig": {
+        "defaultListenerScope": null,
         "designer|userAlias": "documentmotionsassigneeadddialog",
         "designer|userClassName": "document.motions.AssigneeAddDialog",
         "height": 450,
         "layout": "border",
         "maximizable": true,
+        "requires": [
+            "Ext.grid.plugin.CellEditing"
+        ],
         "title": [
             "{i18n.document.motion.add_assignees}"
         ],
@@ -70,6 +74,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "incoming-grid",
+                "itemId": "grid-in",
                 "layout|region": "west",
                 "layout|split": true,
                 "resizable": null,
@@ -141,6 +146,7 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "outgoing-grid",
+                "itemId": "grid-out",
                 "layout|region": "center",
                 "store": [
                     "{outgoing}"
@@ -161,53 +167,210 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "dataIndex": "string",
-                        "text": "String"
+                        "dataIndex": "status",
+                        "designer|displayName": "status",
+                        "hideable": false,
+                        "resizable": false,
+                        "sortable": false,
+                        "text": null,
+                        "width": 28
+                    },
+                    "name": "MyColumn21",
+                    "designerId": "459f2674-7ed9-4d4a-93e7-3a03be294110",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "return helpers.document.status.motionStatusIcon(value, record);"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "aa2d219e-9f99-4f97-a9f5-a39c2b4e702a"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "receiverName",
+                        "designer|displayName": "receiver",
+                        "hideable": false,
+                        "sortable": false,
+                        "text": [
+                            "{i18n.document.motion.receiver}"
+                        ],
+                        "width": 250
                     },
                     "name": "MyColumn20",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
                     "designerId": "daac2924-1d38-4784-be55-50d6ece478f2"
                 },
                 {
-                    "type": "Ext.grid.column.Number",
+                    "type": "Ext.grid.column.Column",
                     "reference": {
                         "name": "columns",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "dataIndex": "number",
-                        "text": "Number"
+                        "dataIndex": "send_type_id",
+                        "designer|displayName": "send_type",
+                        "hideable": false,
+                        "sortable": false,
+                        "text": [
+                            "{i18n.document.motion.send_type}"
+                        ]
                     },
-                    "name": "MyNumberColumn",
-                    "designerId": "8959ed30-d7e5-4fa2-9da8-1c0bfd1186d2"
+                    "name": "MyColumn22",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "ffd731b9-005d-45d5-8755-53f202b172c2",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "value",
+                                    "metaData",
+                                    "record",
+                                    "rowIndex",
+                                    "colIndex",
+                                    "store",
+                                    "view"
+                                ],
+                                "fn": "renderer",
+                                "implHandler": [
+                                    "return record.get('send_type_name');"
+                                ]
+                            },
+                            "name": "renderer",
+                            "designerId": "6a40db91-e348-4521-a4ae-ec086de3fb4a"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "",
+                                "displayField": "html_name",
+                                "store": [
+                                    "{responseTypes}"
+                                ],
+                                "valueField": "id"
+                            },
+                            "name": "MyComboBox2",
+                            "configAlternates": {
+                                "store": "binding"
+                            },
+                            "designerId": "2391a720-2cb3-4cd8-806f-76fc7d047788"
+                        }
+                    ]
                 },
                 {
-                    "type": "Ext.grid.column.Date",
+                    "type": "Ext.grid.column.Column",
                     "reference": {
                         "name": "columns",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "dataIndex": "date",
-                        "text": "Date"
+                        "dataIndex": "motion_text",
+                        "defaultWidth": null,
+                        "designer|displayName": "motion_text",
+                        "hideable": false,
+                        "sortable": false,
+                        "text": [
+                            "{i18n.document.motion.motion_text}"
+                        ],
+                        "width": 200
                     },
-                    "name": "MyDateColumn",
-                    "designerId": "6871a2cb-de5f-49c6-8fdb-4009f0b78305"
+                    "name": "MyColumn25",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "36ff866d-dae4-47fd-8557-f0dd45d7682c",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyTextField4",
+                            "designerId": "75864aa4-4acc-4eb6-8803-d2cf7d70ea0c"
+                        }
+                    ]
                 },
                 {
-                    "type": "Ext.grid.column.Boolean",
+                    "type": "Ext.grid.column.Column",
                     "reference": {
                         "name": "columns",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "dataIndex": "bool",
-                        "text": "Boolean"
+                        "dataIndex": "due_date",
+                        "designer|displayName": "due_date",
+                        "formatter": "date(\"d/m/Y\")",
+                        "hideable": false,
+                        "sortable": false,
+                        "text": [
+                            "{i18n.document.motion.due_date}"
+                        ]
                     },
-                    "name": "MyBooleanColumn",
-                    "designerId": "5519f32d-8c90-4f26-97e8-8ef988359d18"
+                    "name": "MyColumn26",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "6f8e2c16-96bd-4cb3-a5cc-d8ddec2d70bd",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "format": "d/m/Y"
+                            },
+                            "name": "MyDateField3",
+                            "designerId": "8b4065f7-fb4f-4d13-b8c7-6305e2fe4401"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.grid.View",
@@ -217,7 +380,42 @@
                     },
                     "codeClass": null,
                     "name": "MyGridView5",
-                    "designerId": "88c8cf72-e14e-4496-ad8d-9f04b50a83b2"
+                    "designerId": "88c8cf72-e14e-4496-ad8d-9f04b50a83b2",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "record",
+                                    "rowIndex",
+                                    "rowParams",
+                                    "store"
+                                ],
+                                "fn": "getRowClass",
+                                "implHandler": [
+                                    "var status = record.get('status');",
+                                    "return helpers.document.status.motionStatusRowClass(status, record);"
+                                ]
+                            },
+                            "name": "getRowClass",
+                            "designerId": "e03bb958-7a1d-468e-8758-f389086d2464"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.plugin.CellEditing",
+                    "reference": {
+                        "name": "plugins",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "name": "MyCellEditingPlugin2",
+                    "designerId": "92b8e7bf-8e63-4ebe-bc1c-7d953a13bfc2"
                 }
             ]
         }

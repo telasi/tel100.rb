@@ -20,7 +20,8 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewModel', {
   requires: [
     'Ext.data.Store',
     'Ext.data.proxy.Ajax',
-    'Ext.data.reader.Json'
+    'Ext.data.reader.Json',
+    'Ext.util.Filter'
   ],
 
   data: {
@@ -56,7 +57,26 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewModel', {
           document_id: '{document.id}',
           parent_id: '{selection.id}'
         },
-        url: '/api/documents/assignees_out',
+        url: '/api/documents/motion/assignees_out',
+        reader: {
+          type: 'json'
+        }
+      },
+      filters: {
+        property: 'parent_id',
+        value: '{selection.id}'
+      }
+    },
+    responseTypes: {
+      autoLoad: true,
+      model: 'Tel100.model.document.ResponseType',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          type: 'send',
+          role: 'assignee'
+        },
+        url: '/api/documents/response_types',
         reader: {
           type: 'json'
         }

@@ -113,7 +113,7 @@
                             "  parent_id: '{selection.id}'",
                             "}"
                         ],
-                        "url": "/api/documents/assignees_out"
+                        "url": "/api/documents/motion/assignees_out"
                     },
                     "name": "MyAjaxProxy8",
                     "designerId": "910d02b4-da97-4bae-b62b-d39c0f2feedf",
@@ -127,6 +127,71 @@
                             "codeClass": null,
                             "name": "MyJsonReader8",
                             "designerId": "e282125c-5a35-4dd1-b16b-3dad56b108d5"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.util.Filter",
+                    "reference": {
+                        "name": "filters",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "property": "parent_id",
+                        "value": [
+                            "'{selection.id}'"
+                        ]
+                    },
+                    "name": "MyFilter1",
+                    "designerId": "065fa49b-1410-46e9-a399-21291baf2acc"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "designer|displayName": "responseTypes",
+                "model": "document.ResponseType",
+                "name": "responseTypes"
+            },
+            "name": "MyStore8",
+            "designerId": "a33c0600-472c-4cd9-9949-7ef833c2e634",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  type: 'send',",
+                            "  role: 'assignee'",
+                            "}"
+                        ],
+                        "url": "/api/documents/response_types"
+                    },
+                    "name": "MyAjaxProxy4",
+                    "designerId": "f9b441e5-1348-4a56-b5b7-4b7272be6d92",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader4",
+                            "designerId": "8a4c9bf3-2779-4c70-b17e-fab58197ebf7"
                         }
                     ]
                 }
