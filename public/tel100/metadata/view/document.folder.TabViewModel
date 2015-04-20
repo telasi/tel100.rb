@@ -168,6 +168,40 @@
                     "designerId": "ca242c81-8d71-4689-aa2e-57d2a24400b2"
                 }
             ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideSubstitudeGrid"
+            },
+            "name": "MyFormula15",
+            "designerId": "b7f28ab1-e779-4cfa-88d0-b6f5b9ecce36",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "     return this.getStore('substitudeStore').loadCount === 0;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "f3caa17d-2532-4951-b000-d21a6c5a466f"
+                }
+            ]
         }
     ]
 }

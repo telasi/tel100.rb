@@ -28,6 +28,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
     'Ext.selection.RowModel',
     'Ext.toolbar.Toolbar',
     'Ext.toolbar.Fill',
+    'Ext.button.Segmented',
     'Ext.toolbar.Separator',
     'Ext.form.Panel'
   ],
@@ -114,9 +115,16 @@ Ext.define('Tel100.view.document.folder.Tab', {
                   xtype: 'tbfill'
                 },
                 {
-                  xtype: 'button',
-                  enableToggle: true,
-                  text: '<span class="text-muted"><i class="fa fa-check"></i></span>'
+                  xtype: 'segmentedbutton',
+                  items: [
+                    {
+                      enableToggle: true,
+                      text: '<span class="text-muted"><i class="fa fa-check"></i></span>'
+                    },
+                    {
+                      text: 'MyButton'
+                    }
+                  ]
                 },
                 {
                   xtype: 'tbseparator'
@@ -180,6 +188,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
           title: 'Substitude',
           hideHeaders: true,
           bind: {
+            hidden: '{hideSubstitudeGrid}',
             store: '{substitudeStore}'
           },
           columns: [
