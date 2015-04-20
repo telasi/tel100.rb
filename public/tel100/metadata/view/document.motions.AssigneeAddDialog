@@ -148,6 +148,9 @@
                 "designer|displayName": "outgoing-grid",
                 "itemId": "grid-out",
                 "layout|region": "center",
+                "selection": [
+                    "{outSelection}"
+                ],
                 "store": [
                     "{outgoing}"
                 ],
@@ -155,9 +158,17 @@
             },
             "name": "MyGridPanel3",
             "configAlternates": {
-                "store": "binding"
+                "store": "binding",
+                "selection": "binding"
             },
             "designerId": "39b665c0-f755-42fb-95dd-dc8a9ddd4609",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "selection",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "Ext.grid.column.Column",
@@ -285,6 +296,7 @@
                             "userConfig": {
                                 "designer|displayName": "",
                                 "displayField": "html_name",
+                                "editable": false,
                                 "store": [
                                     "{responseTypes}"
                                 ],
@@ -418,6 +430,87 @@
                     "designerId": "92b8e7bf-8e63-4ebe-bc1c-7d953a13bfc2"
                 }
             ]
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWindowBeforeRender",
+                "implHandler": [
+                    "var view = this.getView();",
+                    "var vm = this.getViewModel();",
+                    "",
+                    "// selection change",
+                    "var onChange = function(newVal, oldVal, binding) {",
+                    "  console.log('CHANGE!');",
+                    "  if (newVal) {",
+                    "    this.getView().fireEvent('motionchange', newVal);",
+                    "  }",
+                    "};",
+                    "var options = { deep: true };",
+                    "vm.bind('{outSelection}', onChange, this, options);"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "onWindowBeforeRender",
+            "designerId": "8a7410e8-6367-46a5-b037-7e309690908e"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "motion"
+                ],
+                "fn": "onOutgoingMotionChange",
+                "implHandler": [
+                    "if (motion.dirty) {",
+                    "  var view = this.getView();",
+                    "  var changes = motion.getChanges();",
+                    "  helpers.api.document.motion.updateDraft(motion.id, {",
+                    "    params: changes,",
+                    "    success: function() {",
+                    "      motion.commit();",
+                    "      view.fireEvent('datachanged', view, 'update', motion);",
+                    "      if(changes.send_type_id) { view.refreshOutgrid(); }",
+                    "    }.bind(this),",
+                    "    failure: function(message) {",
+                    "      motion.reject();",
+                    "      console.error(message);",
+                    "    }",
+                    "  });",
+                    "}"
+                ],
+                "name": "motionchange",
+                "scope": "me"
+            },
+            "name": "onOutgoingMotionChange",
+            "designerId": "dffab90b-a110-4424-a46b-05edf55ad3fc"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "refreshOutgrid",
+                "implHandler": [
+                    "this.down('#grid-out').getStore().load();"
+                ]
+            },
+            "name": "refreshOutgrid",
+            "designerId": "9ba59e11-7daa-4c18-94de-049187068984"
         }
     ]
 }

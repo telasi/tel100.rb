@@ -26,7 +26,8 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewModel', {
 
   data: {
     document: null,
-    selection: null
+    selection: null,
+    outSelection: null
   },
 
   stores: {

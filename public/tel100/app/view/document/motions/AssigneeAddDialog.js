@@ -70,6 +70,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
       region: 'center',
       itemId: 'grid-out',
       bind: {
+        selection: '{outSelection}',
         store: '{outgoing}'
       },
       columns: [
@@ -107,6 +108,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
           },
           editor: {
             xtype: 'combobox',
+            editable: false,
             displayField: 'html_name',
             valueField: 'id',
             bind: {
@@ -155,6 +157,10 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
       ]
     }
   ],
+  listeners: {
+    beforerender: 'onWindowBeforeRender',
+    motionchange: 'onOutgoingMotionChange'
+  },
 
   setDocument: function(doc) {
     var vm = this.getViewModel();
@@ -164,6 +170,10 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
   getDocument: function() {
     var vm = this.getViewModel();
     return vm.get('document');
+  },
+
+  refreshOutgrid: function() {
+    this.down('#grid-out').getStore().load();
   }
 
 });

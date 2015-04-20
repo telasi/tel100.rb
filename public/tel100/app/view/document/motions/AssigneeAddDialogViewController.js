@@ -17,6 +17,40 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentmotionsassigneeadddialog',
 
+  onWindowBeforeRender: function(component, eOpts) {
+    var view = this.getView();
+    var vm = this.getViewModel();
+
+    // selection change
+    var onChange = function(newVal, oldVal, binding) {
+      console.log('CHANGE!');
+      if (newVal) {
+        this.getView().fireEvent('motionchange', newVal);
+      }
+    };
+    var options = { deep: true };
+    vm.bind('{outSelection}', onChange, this, options);
+  },
+
+  onOutgoingMotionChange: function(motion) {
+    if (motion.dirty) {
+      var view = this.getView();
+      var changes = motion.getChanges();
+      helpers.api.document.motion.updateDraft(motion.id, {
+        params: changes,
+        success: function() {
+          motion.commit();
+          view.fireEvent('datachanged', view, 'update', motion);
+          if(changes.send_type_id) { view.refreshOutgrid(); }
+        }.bind(this),
+        failure: function(message) {
+          motion.reject();
+          console.error(message);
+        }
+      });
+    }
+  },
+
   onStoreLoad: function(store, records, successful, eOpts) {
     var vm = this.getViewModel();
     vm.set('selection', records[0]);

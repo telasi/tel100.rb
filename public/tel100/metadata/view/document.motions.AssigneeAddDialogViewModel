@@ -9,7 +9,8 @@
         "data": [
             "{",
             "  document: null,",
-            "  selection: null",
+            "  selection: null,",
+            "  outSelection: null",
             "}"
         ],
         "designer|userAlias": "documentmotionsassigneeadddialog",
