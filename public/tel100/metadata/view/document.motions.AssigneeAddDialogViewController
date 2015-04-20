@@ -9,5 +9,85 @@
         "designer|userAlias": "documentmotionsassigneeadddialog",
         "designer|userClassName": "document.motions.AssigneeAddDialogViewController"
     },
-    "designerId": "70f1c674-eeb0-4ee0-8594-c153ec393666"
+    "designerId": "70f1c674-eeb0-4ee0-8594-c153ec393666",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "receivers"
+                ],
+                "fn": "addReceivers",
+                "implHandler": [
+                    "var cntrl = this;",
+                    "if (receivers) {",
+                    "  var tasks = [];",
+                    "  for (var i = 0; i < receivers.length; i++) {",
+                    "    var t = (function(receiver) {",
+                    "      return function(callback) {",
+                    "        cntrl.addReceiver(receiver, callback);",
+                    "      };",
+                    "    })(receivers[i]);",
+                    "    tasks.push(t);",
+                    "  }",
+                    "  async.series(tasks);",
+                    "}"
+                ]
+            },
+            "name": "addReceivers",
+            "designerId": "9cb67db5-a029-4aad-8746-87c8754108c8"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "receiver",
+                    "callback"
+                ],
+                "fn": "addReceiver",
+                "implHandler": [
+                    "var view = this.getView();",
+                    "var vm = this.getViewModel();",
+                    "var extType = receiver.get('ext_type');",
+                    "var document = vm.get('document');",
+                    "var parentId = vm.get('parentId');",
+                    "var grid = view.down('#grid-out');",
+                    "",
+                    "helpers.api.document.motion.createDraft({",
+                    "  params: {",
+                    "    document_id: document.id,",
+                    "    parent_id: parentId,",
+                    "    receiver_id: receiver.id,",
+                    "    receiver_type: extType,",
+                    "    receiver_role: 'assignee'",
+                    "  },",
+                    "  success: function(motionData) {",
+                    "    var motion = Ext.create('Tel100.model.document.Motion', motionData);",
+                    "    var store = grid.getStore();",
+                    "    store.add(motion);",
+                    "    view.fireEvent('datachanged', view, 'add', motion);",
+                    "    if (callback) {",
+                    "      callback(null, motion);",
+                    "    }",
+                    "  }.bind(this),",
+                    "  failure: function(error) {",
+                    "    console.error(error);",
+                    "  }.bind(this)",
+                    "});"
+                ]
+            },
+            "name": "addReceiver",
+            "designerId": "a29aab28-c8cf-452e-be26-f3c059ef335f"
+        }
+    ]
 }

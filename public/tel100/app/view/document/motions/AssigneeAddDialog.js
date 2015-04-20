@@ -175,11 +175,15 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
       items: [
         {
           xtype: 'button',
+          handler: function(button, e) {
+            var view = this.up('documentmotionsassigneeadddialog');
+            var dialog = helpers.party.getPartyDialog(function(assignees) {
+              view.getController().addReceivers(assignees);
+            });
+            dialog.show();
+          },
           bind: {
             text: '{i18n.document.motion.actions.add_assignee}'
-          },
-          listeners: {
-            click: 'onAddAssigneeClick'
           }
         },
         {

@@ -552,22 +552,28 @@
                     "designerId": "49af3775-9cb5-41fb-9b3d-4e6133928b8c",
                     "cn": [
                         {
-                            "type": "viewcontrollereventbinding",
+                            "type": "fixedfunction",
                             "reference": {
-                                "name": "listeners",
+                                "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "fn": "onAddAssigneeClick",
-                                "implHandler": [
-                                    "console.log('adding assignee');"
+                                "designer|params": [
+                                    "button",
+                                    "e"
                                 ],
-                                "name": "click",
-                                "scope": "me"
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var view = this.up('documentmotionsassigneeadddialog');",
+                                    "var dialog = helpers.party.getPartyDialog(function(assignees) {",
+                                    "  view.getController().addReceivers(assignees);",
+                                    "});",
+                                    "dialog.show();"
+                                ]
                             },
-                            "name": "onAddAssigneeClick",
-                            "designerId": "6169ea0c-4d26-4d95-9dfd-23e7e3d6ccf9"
+                            "name": "handler",
+                            "designerId": "ed9fb518-794d-4adb-bf15-7f6ca084bf57"
                         }
                     ]
                 },
