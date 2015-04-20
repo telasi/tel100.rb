@@ -23,7 +23,6 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewController', {
 
     // selection change
     var onChange = function(newVal, oldVal, binding) {
-      console.log('CHANGE!');
       if (newVal) {
         this.getView().fireEvent('motionchange', newVal);
       }

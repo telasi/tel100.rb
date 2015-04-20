@@ -141,7 +141,7 @@
                     "userConfig": {
                         "property": "parent_id",
                         "value": [
-                            "'{selection.id}'"
+                            "'{parentId}'"
                         ]
                     },
                     "name": "MyFilter1",
@@ -195,6 +195,45 @@
                             "designerId": "8a4c9bf3-2779-4c70-b17e-fab58197ebf7"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "parentId"
+            },
+            "name": "MyFormula15",
+            "designerId": "1d1027c2-92f3-48cd-8145-f5e4f22b5dea",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var id = get('selection.id');",
+                            "if (typeof id === 'number') {",
+                            "  return id;",
+                            "} else {",
+                            "  return null;",
+                            "}"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "a4a1c7da-a76c-4d38-b553-12b90015d7bd"
                 }
             ]
         }

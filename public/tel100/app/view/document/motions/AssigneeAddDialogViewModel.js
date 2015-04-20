@@ -21,7 +21,8 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewModel', {
     'Ext.data.Store',
     'Ext.data.proxy.Ajax',
     'Ext.data.reader.Json',
-    'Ext.util.Filter'
+    'Ext.util.Filter',
+    'Ext.app.bind.Formula'
   ],
 
   data: {
@@ -65,7 +66,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewModel', {
       },
       filters: {
         property: 'parent_id',
-        value: '{selection.id}'
+        value: '{parentId}'
       }
     },
     responseTypes: {
@@ -81,6 +82,16 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewModel', {
         reader: {
           type: 'json'
         }
+      }
+    }
+  },
+  formulas: {
+    parentId: function(get) {
+      var id = get('selection.id');
+      if (typeof id === 'number') {
+        return id;
+      } else {
+        return null;
       }
     }
   }
