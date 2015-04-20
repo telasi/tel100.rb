@@ -88,6 +88,7 @@ RSpec.describe Document::Base do
     expect(motion.sent_at).to be_nil
     expect(motion.received_at).to be_nil
     expect(motion.completed_at).to be_nil
+    expect(motion.new?).to eq(true)
     expect(Document::User.where(document: doc).count).to eq(1)
     expect(motion.send_type).not_to be_nil
     expect(motion.send_type.role).to eq('assignee')
@@ -124,6 +125,7 @@ RSpec.describe Document::Base do
     expect(motion1.sent_at).not_to be_nil
     expect(motion1.received_at).not_to be_nil
     expect(motion1.completed_at).to be_nil
+    expect(motion1.new?).to eq(true)
     # check document users
     expect(Document::User.where(document: doc).count).to eq(2)
     u1 = Document::User.where(document: doc, user: dimitri).first
@@ -195,6 +197,7 @@ RSpec.describe Document::Base do
     expect(motion1.response_type).not_to be_nil
     expect(motion1.response_type.positive?).to eq(true)
     expect(motion1.response_text).to eq('i agree')
+    expect(motion1.new?).to eq(false)
     # check document users
     expect(Document::User.where(document: doc).count).to eq(3)
     u1 = Document::User.where(document: doc, user: dimitri).first
@@ -325,7 +328,9 @@ RSpec.describe Document::Base do
     })
     u1.read! ; motion1.reload ; motion2.reload ; u1.reload ; u2.reload
     expect(motion1.status).to eq(Document::User::COMPLETED)
+    expect(motion1.new?).to eq(false)
     expect(motion2.status).to eq(Document::User::CURRENT)
+    expect(motion2.new?).to eq(true)
     expect(u1.new?).to eq(false)
     expect(u1.changed?).to eq(false)
     expect(u1.shown?).to eq(true)

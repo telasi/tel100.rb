@@ -71,8 +71,9 @@ class Document::User < ActiveRecord::Base
 
   def read!
     Document::User.transaction do
-      self.update_columns(is_new: 0, is_changed: 0)
-      self.update_document_motions
+      self.is_new = 0
+      self.is_changed = 0
+      self.save!
     end
   end
 
