@@ -50,6 +50,10 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewController', {
     }
   },
 
+  onAddAssigneeClick: function(button, e, eOpts) {
+    console.log('adding assignee');
+  },
+
   onStoreLoad: function(store, records, successful, eOpts) {
     var vm = this.getViewModel();
     vm.set('selection', records[0]);

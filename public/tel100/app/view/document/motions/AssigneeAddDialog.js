@@ -25,7 +25,10 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     'Ext.grid.View',
     'Ext.form.field.ComboBox',
     'Ext.form.field.Date',
-    'Ext.grid.plugin.CellEditing'
+    'Ext.grid.plugin.CellEditing',
+    'Ext.toolbar.Toolbar',
+    'Ext.button.Button',
+    'Ext.toolbar.Spacer'
   ],
 
   controller: 'documentmotionsassigneeadddialog',
@@ -69,6 +72,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
       xtype: 'gridpanel',
       region: 'center',
       itemId: 'grid-out',
+      bodyBorder: false,
       bind: {
         selection: '{outSelection}',
         store: '{outgoing}'
@@ -152,7 +156,8 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
       },
       plugins: [
         {
-          ptype: 'cellediting'
+          ptype: 'cellediting',
+          clicksToEdit: 1
         }
       ]
     }
@@ -161,6 +166,35 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     beforerender: 'onWindowBeforeRender',
     motionchange: 'onOutgoingMotionChange'
   },
+  dockedItems: [
+    {
+      xtype: 'toolbar',
+      flex: 1,
+      dock: 'bottom',
+      autoScroll: true,
+      items: [
+        {
+          xtype: 'button',
+          bind: {
+            text: '{i18n.document.motion.actions.add_assignee}'
+          },
+          listeners: {
+            click: 'onAddAssigneeClick'
+          }
+        },
+        {
+          xtype: 'tbspacer',
+          flex: 1
+        },
+        {
+          xtype: 'button',
+          bind: {
+            text: '{i18n.document.motion.actions.send_assigness}'
+          }
+        }
+      ]
+    }
+  ],
 
   setDocument: function(doc) {
     var vm = this.getViewModel();

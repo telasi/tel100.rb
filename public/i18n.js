@@ -180,7 +180,9 @@ module.exports = {
   actions: {
     delete_signee: 'ვიზატორის წაშლა',
     delete_assignee: 'ადრესატის წაშლა',
-    delete_author: 'ავტორის წაშლა'
+    delete_author: 'ავტორის წაშლა',
+    add_assignee: '<span class="text-success"><i class="fa fa-plus"></i> ადრესატის დამატება</span>',
+    send_assigness: '<i class="fa fa-send"></i> ადრესატებზე დაგზავნა'
   },
   status: 'სტატუსი',
   ordering: 'ეტაპი',
