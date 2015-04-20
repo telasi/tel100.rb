@@ -17,8 +17,36 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.documentmotionsassigneeadddialog',
 
+  requires: [
+    'Ext.data.Store',
+    'Ext.data.proxy.Ajax',
+    'Ext.data.reader.Json'
+  ],
+
   data: {
-    document: null
+    document: null,
+    selection: null
+  },
+
+  stores: {
+    incoming: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Motion',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          document_id: '{document.id}',
+          mode: 'in'
+        },
+        url: '/api/documents/motion',
+        reader: {
+          type: 'json'
+        }
+      },
+      listeners: {
+        load: 'onStoreLoad'
+      }
+    }
   }
 
 });

@@ -8,11 +8,81 @@
     "userConfig": {
         "data": [
             "{",
-            "  document: null",
+            "  document: null,",
+            "  selection: null",
             "}"
         ],
         "designer|userAlias": "documentmotionsassigneeadddialog",
         "designer|userClassName": "document.motions.AssigneeAddDialogViewModel"
     },
-    "designerId": "3359987d-9ed6-4f58-81bb-cc1cdfc1b3c5"
+    "designerId": "3359987d-9ed6-4f58-81bb-cc1cdfc1b3c5",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Motion",
+                "name": "incoming"
+            },
+            "name": "MyStore5",
+            "designerId": "c617145f-d8a3-4244-9102-c7b5af6e33f0",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{",
+                            "  document_id: '{document.id}',",
+                            "  mode: 'in'",
+                            "}"
+                        ],
+                        "url": "/api/documents/motion"
+                    },
+                    "name": "MyAjaxProxy7",
+                    "designerId": "d80db0ed-5072-48fd-b606-7a8e67256268",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader7",
+                            "designerId": "7a6368d9-033e-45b9-9ce7-9ac745ee466c"
+                        }
+                    ]
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onStoreLoad",
+                        "implHandler": [
+                            "var vm = this.getViewModel();",
+                            "vm.set('selection', records[0]);"
+                        ],
+                        "name": "load",
+                        "scope": "me"
+                    },
+                    "name": "onStoreLoad",
+                    "designerId": "795c3b57-0705-442c-ad9c-384f6b77f782"
+                }
+            ]
+        }
+    ]
 }

@@ -15,5 +15,11 @@
 
 Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentmotionsassigneeadddialog'
+  alias: 'controller.documentmotionsassigneeadddialog',
+
+  onStoreLoad: function(store, records, successful, eOpts) {
+    var vm = this.getViewModel();
+    vm.set('selection', records[0]);
+  }
+
 });

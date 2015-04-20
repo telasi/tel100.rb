@@ -18,19 +18,47 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
   alias: 'widget.documentmotionsassigneeadddialog',
 
   requires: [
-    'Tel100.view.document.motions.AssigneeAddDialogViewModel'
+    'Tel100.view.document.motions.AssigneeAddDialogViewModel',
+    'Tel100.view.document.motions.AssigneeAddDialogViewController',
+    'Ext.grid.Panel',
+    'Ext.grid.column.Column',
+    'Ext.grid.View'
   ],
 
+  controller: 'documentmotionsassigneeadddialog',
   viewModel: {
     type: 'documentmotionsassigneeadddialog'
   },
   height: 450,
   width: 750,
+  layout: 'border',
   maximizable: true,
 
   bind: {
     title: '{i18n.document.motion.add_assignees}'
   },
+  items: [
+    {
+      xtype: 'gridpanel',
+      region: 'west',
+      resizable: true,
+      width: 200,
+      bind: {
+        selection: '{selection}',
+        store: '{incoming}'
+      },
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          dataIndex: 'html_text',
+          flex: 1,
+          bind: {
+            text: '{i18n.document.motion.incoming}'
+          }
+        }
+      ]
+    }
+  ],
 
   setDocument: function(doc) {
     var vm = this.getViewModel();

@@ -216,7 +216,8 @@ module.exports = {
   authors: '<i class="fa fa-legal"></i> ავტორები',
   resultPaneTitle: '<i class="fa fa-check"></i> შედეგი და კომენტარი',
   receivers: '<i class="fa fa-users"></i> ადრესატები',
-  signatures: '<i class="fa fa-edit"></i> ვიზატორები'
+  signatures: '<i class="fa fa-edit"></i> ვიზატორები',
+  incoming: 'შემომავალი'
 };
 
 },{}],9:[function(require,module,exports){

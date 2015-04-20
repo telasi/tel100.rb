@@ -82,8 +82,8 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
     var vm = this.getViewModel();
     var dialog = Ext.create('Tel100.view.document.motions.AssigneeAddDialog', {
       modal: true,
-      document: vm.get('document')
     });
+    dialog.setDocument(vm.get('document'));
     dialog.show();
   },
 
