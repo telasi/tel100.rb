@@ -54,9 +54,14 @@ json.updated_at_f doc.updated_at.localtime.strftime '%d-%b-%Y %H:%M'
 json.sent_at_f doc.sent_at.localtime.strftime '%d-%b-%Y %H:%M' if doc.sent_at.present?
 json.received_at_f doc.received_at.localtime.strftime '%d-%b-%Y %H:%M' if doc.received_at.present?
 json.completed_at_f doc.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if doc.completed_at.present?
+
+## parties in this task
+
+stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
+
 # authors
 json.authors do
-  json.array! doc.author_motions do |motion|
+  json.array! doc.author_motions.where('status IN (?)', stats).order('id ASC') do |motion|
     json.status motion.status
     json.author motion.receiver.to_s
     json.response motion.response_type.to_s
@@ -64,7 +69,7 @@ json.authors do
 end
 # signees
 json.signees do
-  json.array! doc.signee_motions do |motion|
+  json.array! doc.signee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
     json.status motion.status
     json.author motion.receiver.to_s
     json.response motion.response_type.to_s
@@ -72,7 +77,7 @@ json.signees do
 end
 # assignees
 json.assignees do
-  json.array! doc.assignee_motions do |motion|
+  json.array! doc.assignee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
     json.status motion.status
     json.author motion.receiver.to_s
     json.response motion.response_type.to_s
