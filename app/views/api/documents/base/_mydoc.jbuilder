@@ -49,11 +49,11 @@ json.updated_at doc.updated_at
 json.sent_at doc.sent_at
 json.received_at doc.received_at
 json.completed_at doc.completed_at
-json.created_at_f doc.created_at.strftime '%d-%b-%Y %H:%M'
-json.updated_at_f doc.updated_at.strftime '%d-%b-%Y %H:%M'
-json.sent_at_f doc.sent_at.strftime '%d-%b-%Y %H:%M' if doc.sent_at.present?
-json.received_at_f doc.received_at.strftime '%d-%b-%Y %H:%M' if doc.received_at.present?
-json.completed_at_f doc.completed_at.strftime '%d-%b-%Y %H:%M' if doc.completed_at.present?
+json.created_at_f doc.created_at.localtime.strftime '%d-%b-%Y %H:%M'
+json.updated_at_f doc.updated_at.localtime.strftime '%d-%b-%Y %H:%M'
+json.sent_at_f doc.sent_at.localtime.strftime '%d-%b-%Y %H:%M' if doc.sent_at.present?
+json.received_at_f doc.received_at.localtime.strftime '%d-%b-%Y %H:%M' if doc.received_at.present?
+json.completed_at_f doc.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if doc.completed_at.present?
 # authors
 json.authors do
   json.array! doc.author_motions do |motion|
