@@ -7,6 +7,7 @@ class Api::Documents::BaseController < ApiController
     @total = @my_docs.count
     @my_docs = @my_docs.offset(params["start"]) if params["start"]
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
+    @my_docs = @my_docs.order('document_id DESC')
   end
 
   def search
