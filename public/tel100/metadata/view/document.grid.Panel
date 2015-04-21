@@ -366,6 +366,112 @@
             },
             "codeClass": null,
             "userConfig": {
+                "cellWrap": true,
+                "dataIndex": "authors",
+                "defaultWidth": null,
+                "designer|displayName": "authors",
+                "hideable": false,
+                "maxHeight": null,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.base.authors}"
+                ],
+                "width": 200
+            },
+            "name": "MyColumn6",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "7d8da482-5cca-47c1-bdf0-2bf9bf58196c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return helpers.document.motion.formatReceivers(value, metaData);"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "68621449-1493-4625-a12f-ba74c10d2fa6"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cellWrap": true,
+                "dataIndex": "signees",
+                "defaultWidth": null,
+                "designer|displayName": "signees",
+                "hideable": false,
+                "maxHeight": null,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.base.signees}"
+                ],
+                "width": 200
+            },
+            "name": "MyColumn7",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "354e8c1a-0481-46b4-ab55-35fd8407ebb7",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return helpers.document.motion.formatReceivers(value, metaData);"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "5de84f3c-0a6f-41e3-b420-f5026d038d59"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "dataIndex": "subject",
                 "designer|displayName": "subject",
                 "hideable": false,
