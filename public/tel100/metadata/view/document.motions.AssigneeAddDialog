@@ -18,7 +18,7 @@
         "title": [
             "{i18n.document.motion.add_assignees}"
         ],
-        "width": 750
+        "width": 850
     },
     "name": "MyWindow",
     "configAlternates": {
@@ -232,7 +232,7 @@
                         "text": [
                             "{i18n.document.motion.receiver}"
                         ],
-                        "width": 250
+                        "width": 180
                     },
                     "name": "MyColumn20",
                     "configAlternates": {
@@ -432,6 +432,45 @@
                     },
                     "name": "MyCellEditingPlugin2",
                     "designerId": "92b8e7bf-8e63-4ebe-bc1c-7d953a13bfc2"
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "showOutMotionsContextMenu",
+                        "implHandler": [
+                            "if (record && record.get('status') === helpers.document.status.DRAFT) {",
+                            "  var ctrl = this;",
+                            "  var panel = ctrl.getView();",
+                            "  var gridMenu = Ext.create('Ext.menu.Menu', {",
+                            "    items: [{",
+                            "      text: i18n.document.motion.actions.delete_assignee,",
+                            "      icon: '/images/delete.png',",
+                            "      handler: function() {",
+                            "        var vm = ctrl.getViewModel();",
+                            "        var grid = panel.down('#grid-out');",
+                            "        helpers.api.document.motion.deleteDraft(record.id, {",
+                            "          success: function() {",
+                            "            grid.getStore().remove(record);",
+                            "            panel.fireEvent('datachanged', panel, 'delete');",
+                            "          }",
+                            "        });",
+                            "      }",
+                            "    }]",
+                            "  });",
+                            "  e.stopEvent();",
+                            "  gridMenu.showAt(e.getXY());",
+                            "}"
+                        ],
+                        "name": "beforecellcontextmenu",
+                        "scope": "me"
+                    },
+                    "name": "showOutMotionsContextMenu",
+                    "designerId": "93b290ec-9710-4069-a635-8b4ac97828e3"
                 }
             ]
         },

@@ -64,6 +64,31 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewController', {
     });
   },
 
+  showOutMotionsContextMenu: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    if (record && record.get('status') === helpers.document.status.DRAFT) {
+      var ctrl = this;
+      var panel = ctrl.getView();
+      var gridMenu = Ext.create('Ext.menu.Menu', {
+        items: [{
+          text: i18n.document.motion.actions.delete_assignee,
+          icon: '/images/delete.png',
+          handler: function() {
+            var vm = ctrl.getViewModel();
+            var grid = panel.down('#grid-out');
+            helpers.api.document.motion.deleteDraft(record.id, {
+              success: function() {
+                grid.getStore().remove(record);
+                panel.fireEvent('datachanged', panel, 'delete');
+              }
+            });
+          }
+        }]
+      });
+      e.stopEvent();
+      gridMenu.showAt(e.getXY());
+    }
+  },
+
   onWindowBeforeRender: function(component, eOpts) {
     var view = this.getView();
     var vm = this.getViewModel();

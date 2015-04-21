@@ -36,7 +36,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     type: 'documentmotionsassigneeadddialog'
   },
   height: 450,
-  width: 750,
+  width: 850,
   layout: 'border',
   maximizable: true,
 
@@ -91,7 +91,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
         },
         {
           xtype: 'gridcolumn',
-          width: 250,
+          width: 180,
           sortable: false,
           dataIndex: 'receiverName',
           hideable: false,
@@ -159,7 +159,10 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
           ptype: 'cellediting',
           clicksToEdit: 1
         }
-      ]
+      ],
+      listeners: {
+        beforecellcontextmenu: 'showOutMotionsContextMenu'
+      }
     }
   ],
   listeners: {
