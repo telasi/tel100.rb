@@ -148,6 +148,34 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return helpers.document.motion.formatReceivers(value, metaData);
+      },
+      width: 200,
+      sortable: false,
+      cellWrap: true,
+      dataIndex: 'authors',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.base.authors}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return helpers.document.motion.formatReceivers(value, metaData);
+      },
+      width: 200,
+      sortable: false,
+      cellWrap: true,
+      dataIndex: 'signees',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.base.signees}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
       width: 150,
       sortable: false,
       dataIndex: 'subject',
