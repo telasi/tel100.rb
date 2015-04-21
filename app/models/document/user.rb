@@ -51,6 +51,7 @@ class Document::User < ActiveRecord::Base
   end
 
   def motions; Document::Motion.where(document: self.document, receiver_user: self.user) end
+  def outgoing; Document::Motion.where(document: self.document, sender_user: self.user) end
 
   def changed?; self.is_changed == 1 end
   def new?; self.is_new == 1 end
