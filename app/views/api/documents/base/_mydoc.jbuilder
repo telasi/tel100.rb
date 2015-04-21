@@ -63,7 +63,7 @@ stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::N
 json.authors do
   json.array! doc.author_motions.where('status IN (?)', stats).order('id ASC') do |motion|
     json.status motion.status
-    json.author motion.receiver.to_s
+    json.name motion.receiver.to_s
     json.response motion.response_type.to_s
   end
 end
@@ -71,7 +71,7 @@ end
 json.signees do
   json.array! doc.signee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
     json.status motion.status
-    json.author motion.receiver.to_s
+    json.name motion.receiver.to_s
     json.response motion.response_type.to_s
   end
 end
@@ -79,7 +79,7 @@ end
 json.assignees do
   json.array! doc.assignee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
     json.status motion.status
-    json.author motion.receiver.to_s
+    json.name motion.receiver.to_s
     json.response motion.response_type.to_s
   end
 end
