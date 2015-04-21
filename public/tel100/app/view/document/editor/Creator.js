@@ -187,7 +187,8 @@ Ext.define('Tel100.view.document.editor.Creator', {
                   }
                 },
                 {
-                  xtype: 'documentfilepanel'
+                  xtype: 'documentfilepanel',
+                  itemId: 'files'
                 }
               ]
             }

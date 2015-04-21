@@ -20,6 +20,7 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
   onBeforeRender: function(component, eOpts) {
     var view = this.getView();
     var vm = this.getViewModel();
+
     // fire documentchange
     var onChange = function() {
       var doc = vm.get('document');
@@ -28,11 +29,15 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
     };
     var options = { deep: true };
     vm.bind('{document}', onChange, this, options);
-    //
-    var motionsPanel = view.down('documentmotionsoutpanel');
+
+    // var motionsPanel = view.down('documentmotionsoutpanel');
     // motionsPanel.getViewModel().bind('{hasDraftMotion}', function() {
     //   console.log('HERE!');
     // }, this);
+
+    // setting files as editable
+    var filesPanel = view.down('#files');
+    filesPanel.setEditable(true);
   },
 
   onDocumentChange: function(document) {
