@@ -85,6 +85,7 @@ class Document::Motion < ActiveRecord::Base
     })
   end
 
+  # XXX: do we need this method any more?
   def send_draft_motions!(user)
     raise I18n.t('models.document_motion.errors.no_privilege_to_send') unless user == self.receiver_user
     Document::Motion.transaction do

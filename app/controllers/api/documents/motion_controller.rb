@@ -84,11 +84,11 @@ class Api::Documents::MotionController < ApiController
 
   def send_draft_motions
     doc = Document::Base.find(params[:document_id])
-    parent_motion = Document::Motion.find(params[:parent_id]) if params[:parent_id].present?
-    if parent_motion.present?
-      parent_motion.send_draft_motions!(current_user)
-    else
-      doc.send_draft_motions!(current_user)
+    motions = doc.motions.where(status: DRAFT, sender_user_id: current_user.id)
+    Document::Motion.transaction do
+      motions.each do |motion|
+        motion.send_draft! current_user
+      end
     end
     render json: { success: true }
   end
