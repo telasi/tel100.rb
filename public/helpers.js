@@ -1518,7 +1518,7 @@ var formatReceivers = function(data, metaData) {
     metaData.tdAttr = 'data-qtip="' + tooltip.join('; ') + '"';
 
     if (countCurrent) { stats.push('<span class="label label-info"><i class="fa fa-clock-o"></i> ' + countCurrent + '</span>'); }
-    if (countCompleted) { stats.push('<span class="label label-success"><i class="fa fa-tick"></i> ' + countCompleted + '</span>'); }
+    if (countCompleted) { stats.push('<span class="label label-success"><i class="fa fa-check"></i> ' + countCompleted + '</span>'); }
     if (countCanceled) { stats.push('<span class="label label-danger"><i class="fa fa-times"></i> ' + countCanceled + '</span>'); }
 
     if (countCurrent + countCanceled + countCompleted) {
