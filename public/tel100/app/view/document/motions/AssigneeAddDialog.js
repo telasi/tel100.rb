@@ -195,6 +195,17 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
         },
         {
           xtype: 'button',
+          handler: function(button, e) {
+            var dialog = this.up('documentmotionsassigneeadddialog');
+            var vm = dialog.getViewModel();
+            var document = vm.get('document');
+            var documentId = document.id;
+            helpers.api.document.motion.sendDraft(documentId, null, {
+              success: function() {
+                dialog.refreshOutgrid();
+              }
+            });
+          },
           bind: {
             text: '{i18n.document.motion.actions.send_assigness}'
           }

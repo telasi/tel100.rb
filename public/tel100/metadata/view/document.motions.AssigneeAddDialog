@@ -637,6 +637,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "designer|displayName": "send_receivers",
                         "layout|flex": null,
                         "text": [
                             "{i18n.document.motion.actions.send_assigness}"
@@ -646,7 +647,37 @@
                     "configAlternates": {
                         "text": "binding"
                     },
-                    "designerId": "9a27106a-40db-4e5d-87ef-5878909f50f3"
+                    "designerId": "9a27106a-40db-4e5d-87ef-5878909f50f3",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var dialog = this.up('documentmotionsassigneeadddialog');",
+                                    "var vm = dialog.getViewModel();",
+                                    "var document = vm.get('document');",
+                                    "var documentId = document.id;",
+                                    "helpers.api.document.motion.sendDraft(documentId, null, {",
+                                    "  success: function() {",
+                                    "    dialog.refreshOutgrid();",
+                                    "  }",
+                                    "});"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "c5318068-ca3a-405a-a940-f83fd0840428"
+                        }
+                    ]
                 }
             ]
         }
