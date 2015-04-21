@@ -39,11 +39,11 @@ class Api::Documents::MotionController < ApiController
         current_status: motion.current_status.to_s,
         ordering: motion.ordering,
         sender: motion.sender_name,
-        received_at: (motion.received_at.strftime('%d-%b-%Y %H:%M') if motion.received_at.present?),
+        received_at: (motion.received_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.received_at.present?),
         receiver_role: motion.receiver_role,
         receiver: motion.receiver_name,
         send_type: motion.send_type.to_s,
-        completed_at: (motion.completed_at.strftime('%d-%b-%Y %H:%M') if motion.completed_at.present?),
+        completed_at: (motion.completed_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.completed_at.present?),
         response_type: motion.response_type.to_s
       }
     end
