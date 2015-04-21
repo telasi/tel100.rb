@@ -10,8 +10,8 @@ module.exports = {
     'signee.current': 'დასავიზირებელი',
     'signee.completed': 'დავიზირებული',
     'signee.canceled': 'დაუვიზირებელი',
-    'assignee.current': 'შესასრულებელი',
-    'assignee.completed': 'შესრულებული',
-    'assignee.canceled': 'შეუსრულებელი',
+    'assignee.current':   'მიღებული',
+    'assignee.completed': 'დასრულებული',
+    'assignee.canceled':  'უარყოფილი',
   }
 };
