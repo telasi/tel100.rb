@@ -62,7 +62,13 @@ Ext.define('Tel100.view.document.grid.Panel', {
   columns: [
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return [value, record.get('typeName')].join('<br>');
+      },
+      width: 100,
+      sortable: false,
       dataIndex: 'docnumber',
+      hideable: false,
       lockable: false,
       bind: {
         text: '{i18n.document.base.docnumber}'
@@ -85,6 +91,26 @@ Ext.define('Tel100.view.document.grid.Panel', {
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return [value, record.get('directionName')].join('<br>');
+      },
+      width: 130,
+      sortable: false,
+      dataIndex: 'statusName',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.base.status}<br>{i18n.document.base.direction}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        // date formatted
+        var dateFormatted;
+        if (value) {
+          dateFormatted = Ext.Date.format(value,"d/m/Y");
+        }
+
+        // status value
         var mystat = helpers.document.user.myStatus(record);
         var iconText;
         if (mystat.unread) {
@@ -92,53 +118,18 @@ Ext.define('Tel100.view.document.grid.Panel', {
         } else {
           iconText = '<i class="fa ' + mystat.icon + '"></i>';
         }
-        return [
-        '<span class="' + mystat.style + '">',
-        iconText + ' ',
-        mystat.name,
-        '</span>'
-        ].join('');
+        var myStatus =  ['<span class="' + mystat.style + '">',
+          iconText + ' ', mystat.name, '</span>'].join('');
+
+        // concat both fields
+        return [ myStatus, dateFormatted ].join('<br>');
       },
-      bind: {
-        text: '{i18n.document.base.my_status}'
-      }
-    },
-    {
-      xtype: 'gridcolumn',
-      width: 130,
-      dataIndex: 'statusName',
-      bind: {
-        text: '{i18n.document.base.status}'
-      }
-    },
-    {
-      xtype: 'gridcolumn',
+      width: 150,
+      sortable: false,
       dataIndex: 'docdate',
-      formatter: 'date("d/m/Y")',
+      hideable: false,
       bind: {
-        text: '{i18n.document.base.docdate}'
-      }
-    },
-    {
-      xtype: 'gridcolumn',
-      dataIndex: 'typeName',
-      bind: {
-        text: '{i18n.document.base.type}'
-      }
-    },
-    {
-      xtype: 'gridcolumn',
-      dataIndex: 'directionName',
-      bind: {
-        text: '{i18n.document.base.direction}'
-      }
-    },
-    {
-      xtype: 'gridcolumn',
-      width: 300,
-      dataIndex: 'subject',
-      bind: {
-        text: '{i18n.document.base.subject}'
+        text: '{i18n.document.base.my_status}<br>{i18n.document.base.docdate}'
       }
     },
     {
@@ -171,16 +162,30 @@ Ext.define('Tel100.view.document.grid.Panel', {
         //return '<div title="'+ tooltip + '" style="white-space: normal">' + text.join('; <br>') + '</div>';
         return text.join('; <br>');
       },
-      width: 250,
+      width: 200,
+      sortable: false,
       cellWrap: true,
       dataIndex: 'assignees',
+      hideable: false,
       bind: {
         text: '{i18n.document.base.assignees}'
       }
     },
     {
       xtype: 'gridcolumn',
+      width: 150,
+      sortable: false,
+      dataIndex: 'subject',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.base.subject}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
+      sortable: false,
       dataIndex: 'original_number',
+      hideable: false,
       bind: {
         text: '{i18n.document.base.original_number}'
       }
@@ -189,6 +194,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
       xtype: 'gridcolumn',
       dataIndex: 'original_date',
       formatter: 'date("d/m/Y")',
+      hideable: false,
       bind: {
         text: '{i18n.document.base.original_date}'
       }
@@ -196,7 +202,9 @@ Ext.define('Tel100.view.document.grid.Panel', {
     {
       xtype: 'gridcolumn',
       width: 200,
+      sortable: false,
       dataIndex: 'sender_name',
+      hideable: false,
       bind: {
         text: '{i18n.document.base.sender_name}'
       }
