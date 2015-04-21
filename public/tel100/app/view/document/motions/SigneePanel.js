@@ -23,6 +23,7 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Column',
+    'Ext.form.field.Number',
     'Ext.form.field.Date',
     'Ext.grid.plugin.CellEditing',
     'Ext.panel.Tool'
@@ -64,6 +65,21 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
           dataIndex: 'status',
           hideable: false,
           text: ''
+        },
+        {
+          xtype: 'gridcolumn',
+          width: 48,
+          sortable: false,
+          dataIndex: 'ordering',
+          hideable: false,
+          bind: {
+            text: '{i18n.document.motion.orderingShort}'
+          },
+          editor: {
+            xtype: 'numberfield',
+            maxValue: 999,
+            minValue: 1
+          }
         },
         {
           xtype: 'gridcolumn',

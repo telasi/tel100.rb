@@ -143,6 +143,45 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "dataIndex": "ordering",
+                        "designer|displayName": "ordering",
+                        "hideable": false,
+                        "sortable": false,
+                        "text": [
+                            "{i18n.document.motion.orderingShort}"
+                        ],
+                        "width": 48
+                    },
+                    "name": "MyColumn19",
+                    "configAlternates": {
+                        "text": "binding"
+                    },
+                    "designerId": "c4ad86a1-3ffe-4693-99c0-dde35220b27e",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Number",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "maxValue": 999,
+                                "minValue": 1
+                            },
+                            "name": "MyNumberField2",
+                            "designerId": "54aab052-f034-4413-b9a4-853b63d4b4b8"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
                         "dataIndex": "receiverName",
                         "designer|displayName": "assignee",
                         "draggable": false,
