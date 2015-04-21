@@ -69,6 +69,12 @@ class Document::Motion < ActiveRecord::Base
     # get send_type
     send_type = Document::ResponseType.find(params[:send_type_id]) if params[:send_type_id].present?
     send_type = Document::ResponseType.send_types.where(role: role).order(:ordering).first if send_type.blank?
+    # calculate is_new parameter
+    is_new = 1
+    if receiver_user
+      docuser = Document::User.where(document_id: document_id, user_id: receiver_user.id).first
+      is_new = docuser.is_new if docuser.present?
+    end
     # create this
     Document::Motion.create!({
       parent: parent,
@@ -81,7 +87,7 @@ class Document::Motion < ActiveRecord::Base
       receiver_role: role,
       ordering: ordering,
       send_type: send_type,
-      is_new: true
+      is_new: is_new
     })
   end
 
