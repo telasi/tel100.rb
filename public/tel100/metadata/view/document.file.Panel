@@ -34,9 +34,15 @@
             "userConfig": {
                 "border": 0,
                 "dock": "top",
+                "hidden": [
+                    "{notEditable}"
+                ],
                 "padding": null
             },
             "name": "MyToolbar1",
+            "configAlternates": {
+                "hidden": "binding"
+            },
             "designerId": "890f436d-768d-4a48-a63c-32ec3787be70",
             "cn": [
                 {
@@ -167,9 +173,15 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "actions",
+                        "hidden": [
+                            "{notEditable}"
+                        ],
                         "width": 24
                     },
                     "name": "MyActionColumn",
+                    "configAlternates": {
+                        "hidden": "binding"
+                    },
                     "designerId": "fbb875cb-5e04-4a38-8116-522d8a1ab237",
                     "cn": [
                         {
@@ -316,6 +328,43 @@
                     "designerId": "e842c041-6a2c-446a-9880-5aa1d8be0c24"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "editable"
+                ],
+                "fn": "setEditable",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "vm.set('editable', editable);"
+                ]
+            },
+            "name": "setEditable",
+            "designerId": "400ebb08-c8a3-48fd-b36e-a4c332bf916d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getEditable",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "return vm.get('editable');"
+                ]
+            },
+            "name": "getEditable",
+            "designerId": "dc201744-f4be-47f0-8a41-0ec1d4e7864b"
         }
     ]
 }

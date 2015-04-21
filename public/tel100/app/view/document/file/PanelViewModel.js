@@ -20,11 +20,13 @@ Ext.define('Tel100.view.document.file.PanelViewModel', {
   requires: [
     'Ext.data.Store',
     'Ext.data.proxy.Ajax',
-    'Ext.data.reader.Json'
+    'Ext.data.reader.Json',
+    'Ext.app.bind.Formula'
   ],
 
   data: {
-    fileCount: 0
+    fileCount: 0,
+    editable: false
   },
 
   stores: {
@@ -48,6 +50,11 @@ Ext.define('Tel100.view.document.file.PanelViewModel', {
           type: 'json'
         }
       }
+    }
+  },
+  formulas: {
+    notEditable: function(get) {
+      return !get('editable');
     }
   }
 

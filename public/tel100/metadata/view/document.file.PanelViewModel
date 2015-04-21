@@ -8,7 +8,8 @@
     "userConfig": {
         "data": [
             "{",
-            "fileCount: 0",
+            "  fileCount: 0,",
+            "  editable: false",
             "}"
         ],
         "designer|userAlias": "documentfilepanel",
@@ -79,6 +80,40 @@
                             "designerId": "f71408cd-795d-4232-a199-d871f737f1cf"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "notEditable"
+            },
+            "name": "MyFormula15",
+            "designerId": "7695f089-eb4a-486c-8a3a-7c4e3f7633b1",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return !get('editable');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "ad164c1e-9123-44a1-8f12-1024e74da442"
                 }
             ]
         }

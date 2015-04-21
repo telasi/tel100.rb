@@ -45,6 +45,9 @@ Ext.define('Tel100.view.document.file.Panel', {
       xtype: 'toolbar',
       dock: 'top',
       border: 0,
+      bind: {
+        hidden: '{notEditable}'
+      },
       items: [
         {
           xtype: 'form',
@@ -89,6 +92,9 @@ Ext.define('Tel100.view.document.file.Panel', {
         {
           xtype: 'actioncolumn',
           width: 24,
+          bind: {
+            hidden: '{notEditable}'
+          },
           items: [
             {
               handler: function(view, rowIndex, colIndex, item, e, record, row) {
@@ -141,6 +147,16 @@ Ext.define('Tel100.view.document.file.Panel', {
         store.viewModel = viewModel;
       }
     });
+  },
+
+  setEditable: function(editable) {
+    var vm = this.getViewModel();
+    vm.set('editable', editable);
+  },
+
+  getEditable: function() {
+    var vm = this.getViewModel();
+    return vm.get('editable');
   }
 
 });
