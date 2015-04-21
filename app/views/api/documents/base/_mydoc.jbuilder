@@ -62,24 +62,52 @@ stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::N
 # authors
 json.authors do
   json.array! doc.author_motions.where('status IN (?)', stats).order('id ASC') do |motion|
-    json.status motion.status
-    json.name motion.receiver.to_s
-    json.response motion.response_type.to_s
+    json.id        motion.id
+    json.status    motion.status
+    json.name      motion.receiver.to_s
+    json.response  motion.response_type.to_s
   end
 end
 # signees
 json.signees do
   json.array! doc.signee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
-    json.status motion.status
-    json.name motion.receiver.to_s
-    json.response motion.response_type.to_s
+    json.id        motion.id
+    json.status    motion.status
+    json.name      motion.receiver.to_s
+    json.response  motion.response_type.to_s
   end
 end
 # assignees
 json.assignees do
   json.array! doc.assignee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
-    json.status motion.status
-    json.name motion.receiver.to_s
-    json.response motion.response_type.to_s
+    json.id        motion.id
+    json.status    motion.status
+    json.name      motion.receiver.to_s
+    json.response  motion.response_type.to_s
+  end
+end
+
+# incoming/outgoing assignee_motions
+incoming = mydoc.motions.order('id ASC') # any status is OK
+json.incoming do
+  json.array! incoming do |motion|
+    json.id           motion.id
+    json.status       motion.status
+    json.name         motion.sender.to_s
+    json.sender_type  motion.sender_type.to_s
+    json.motion_text  motion.motion_text
+    json.due_date     motion.due_date
+  end
+end
+
+outgoing = mydoc.motions.order('id DESC') # any status is OK
+json.outgoing do
+  json.array! outgoing do |motion|
+    json.id             motion.id
+    json.status         motion.status
+    json.name           motion.receiver.to_s
+    json.receiver_type  motion.receiver_type.to_s
+    json.response_text  motion.response_text
+    json.due_date       motion.due_date
   end
 end
