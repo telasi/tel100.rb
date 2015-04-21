@@ -44,6 +44,7 @@ module.exports = {
   owner: 'მფლობელი',
   status: 'დოკ.სტატუსი',
   my_status: 'სტატუსი',
+  response: 'რეზოლუცია',
   in_fields: 'შემოსული წერილის პარამეტრები',
   sender_name: 'ინიციატორი',
   actions: 'მოქმედება',

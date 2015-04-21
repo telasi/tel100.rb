@@ -95,6 +95,7 @@ json.incoming do
     json.status       motion.status
     json.name         motion.sender.to_s
     json.sender_type  motion.sender_type.to_s
+    json.send_type    motion.send_type.to_s
     json.motion_text  motion.motion_text
     json.due_date     motion.due_date
   end
