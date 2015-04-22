@@ -344,6 +344,37 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "cls": null,
+                                                "designer|displayName": "authors",
+                                                "fieldLabel": [
+                                                    "{i18n.document.base.authors}"
+                                                ],
+                                                "fieldStyle": "height: inherit",
+                                                "hidden": null,
+                                                "layout|flex": 1,
+                                                "shrinkWrap": [
+                                                    "2"
+                                                ],
+                                                "value": [
+                                                    "{authors}"
+                                                ]
+                                            },
+                                            "name": "MyDisplayField1",
+                                            "configAlternates": {
+                                                "hidden": "binding",
+                                                "value": "binding",
+                                                "fieldLabel": "binding"
+                                            },
+                                            "designerId": "bec227c6-844b-4c6d-b5b2-f623a8ad46fd"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Display",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "cls": null,
                                                 "designer|displayName": "document",
                                                 "fieldLabel": [
                                                     "{i18n.document.base.doc}"
@@ -373,6 +404,7 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
+                                                "designer|displayName": "sender",
                                                 "fieldLabel": [
                                                     "{i18n.document.base.sender}"
                                                 ],
@@ -425,38 +457,6 @@
                                                 "hidden": "binding"
                                             },
                                             "designerId": "1e7c2213-9ef9-4d83-8086-e4c0b5431eac"
-                                        },
-                                        {
-                                            "type": "Ext.form.field.Display",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "cls": null,
-                                                "designer|displayName": "authors",
-                                                "fieldLabel": [
-                                                    "{i18n.document.base.authors}"
-                                                ],
-                                                "fieldStyle": "height: inherit",
-                                                "hidden": [
-                                                    "{hideAuthors}"
-                                                ],
-                                                "shrinkWrap": [
-                                                    "2"
-                                                ],
-                                                "value": [
-                                                    "{authors}"
-                                                ]
-                                            },
-                                            "name": "MyDisplayField1",
-                                            "configAlternates": {
-                                                "hidden": "binding",
-                                                "value": "binding",
-                                                "fieldLabel": "binding"
-                                            },
-                                            "designerId": "bec227c6-844b-4c6d-b5b2-f623a8ad46fd"
                                         },
                                         {
                                             "type": "Ext.form.field.Text",

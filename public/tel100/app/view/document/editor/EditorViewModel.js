@@ -32,25 +32,33 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
     hideAuthorButton: function(get) {
       return get('document.as_author') !== 1;
     },
-    hideAuthors: function(get) {
-      var authors = get('document.authors');
-      return !authors || authors.length === 0;
-    },
     authors: function(get) {
       var authors = get('document.authors');
       var text = [];
-      for(var i = 0; i < authors.length; i++) {
-        var author = authors[i];
-        var decor = helpers.document.status.statusDecoration(author.status);
-        text.push([
+      if (authors.length) {
+        for(var i = 0; i < authors.length; i++) {
+          var author = authors[i];
+          var decor = helpers.document.status.statusDecoration(author.status);
+          text.push([
+          '<span class="' + decor.style + '">',
+          '<i class="fa ' + decor.icon + '"></i> ',
+          author.name,
+          ( author.response ? ' &mdash; ' + author.response : '' ),
+          '</span>'
+          ].join(''));
+        }
+        return text.join('; ');
+      } else {
+        var status = get('document.status');
+        var decor = helpers.document.status.statusDecoration(status);
+        return [
+        '<strong class="text-success">' + i18n.document.base.sender + '</strong> &mdash; ',
         '<span class="' + decor.style + '">',
         '<i class="fa ' + decor.icon + '"></i> ',
-        author.name,
-        ( author.response ? ' &mdash; ' + author.response : '' ),
+        get('document.sender_name'),
         '</span>'
-        ].join(''));
+        ].join('');
       }
-      return text.join('; ');
     },
     hideSignees: function(get) {
       var signees = get('document.signees');

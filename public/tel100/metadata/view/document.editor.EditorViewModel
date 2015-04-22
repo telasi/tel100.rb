@@ -92,41 +92,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "hideAuthors"
-            },
-            "name": "MyFormula8",
-            "designerId": "15955ed0-aad2-404f-9159-b5524f50b842",
-            "cn": [
-                {
-                    "type": "fixedfunction",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|params": [
-                            "get"
-                        ],
-                        "fn": "get",
-                        "implHandler": [
-                            "var authors = get('document.authors');",
-                            "return !authors || authors.length === 0;"
-                        ]
-                    },
-                    "name": "get",
-                    "designerId": "bce76a98-b82c-44e0-8c54-cea1cb8a4acd"
-                }
-            ]
-        },
-        {
-            "type": "Ext.app.bind.Formula",
-            "reference": {
-                "name": "formulas",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "name": "authors"
             },
             "name": "MyFormula9",
@@ -147,18 +112,30 @@
                         "implHandler": [
                             "var authors = get('document.authors');",
                             "var text = [];",
-                            "for(var i = 0; i < authors.length; i++) {",
-                            "  var author = authors[i];",
-                            "  var decor = helpers.document.status.statusDecoration(author.status);",
-                            "  text.push([",
+                            "if (authors.length) {",
+                            "  for(var i = 0; i < authors.length; i++) {",
+                            "    var author = authors[i];",
+                            "    var decor = helpers.document.status.statusDecoration(author.status);",
+                            "    text.push([",
+                            "      '<span class=\"' + decor.style + '\">',",
+                            "      '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "      author.name,",
+                            "      ( author.response ? ' &mdash; ' + author.response : '' ),",
+                            "      '</span>'",
+                            "     ].join(''));",
+                            "  }",
+                            "  return text.join('; ');",
+                            "} else {",
+                            "  var status = get('document.status');",
+                            "  var decor = helpers.document.status.statusDecoration(status);",
+                            "  return [",
+                            "    '<strong class=\"text-success\">' + i18n.document.base.sender + '</strong> &mdash; ',",
                             "    '<span class=\"' + decor.style + '\">',",
                             "    '<i class=\"fa ' + decor.icon + '\"></i> ',",
-                            "    author.name,",
-                            "    ( author.response ? ' &mdash; ' + author.response : '' ),",
+                            "    get('document.sender_name'),",
                             "    '</span>'",
-                            "   ].join(''));",
-                            "}",
-                            "return text.join('; ');"
+                            "  ].join('');",
+                            "}"
                         ]
                     },
                     "name": "get",

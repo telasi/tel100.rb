@@ -139,6 +139,16 @@ Ext.define('Tel100.view.document.editor.Editor', {
                   items: [
                     {
                       xtype: 'displayfield',
+                      flex: 1,
+                      shrinkWrap: 2,
+                      fieldStyle: 'height: inherit',
+                      bind: {
+                        fieldLabel: '{i18n.document.base.authors}',
+                        value: '{authors}'
+                      }
+                    },
+                    {
+                      xtype: 'displayfield',
                       shrinkWrap: 2,
                       width: '100%',
                       fieldStyle: 'height: inherit',
@@ -166,16 +176,6 @@ Ext.define('Tel100.view.document.editor.Editor', {
                         hidden: '{hideSignees}',
                         fieldLabel: '{i18n.document.base.signees}',
                         value: '{signees}'
-                      }
-                    },
-                    {
-                      xtype: 'displayfield',
-                      shrinkWrap: 2,
-                      fieldStyle: 'height: inherit',
-                      bind: {
-                        hidden: '{hideAuthors}',
-                        fieldLabel: '{i18n.document.base.authors}',
-                        value: '{authors}'
                       }
                     },
                     {
