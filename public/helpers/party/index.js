@@ -1,4 +1,5 @@
 var partyDialog;
+var employeeTip;
 
 var getPartyDialog = function(callback) {
 
@@ -52,9 +53,27 @@ var convertTypeToRuby = function(type){
   }
 };
 
+var employeeTips = function(component) {
+  component.getEl().on('click', function(event, el) {
+    if (el && el.tagName === 'A') {
+      var html = el.attributes['data-html'].value;
+      if (html) {
+        html = decodeURIComponent(html);
+        if (!employeeTip) {
+          employeeTip = Ext.create('Ext.tip.ToolTip', { autoHide: false });
+        }
+        var rect = el.getBoundingClientRect();
+        employeeTip.setHtml(html);
+        employeeTip.showAt({ x: rect.left, y: rect.bottom });
+      }
+    }
+  });
+};
+
 module.exports = {
   getPartyDialog: getPartyDialog,
   favouriteDecoration: favouriteDecoration,
   convertTypeToExt: convertTypeToExt,
-  convertTypeToRuby: convertTypeToRuby
+  convertTypeToRuby: convertTypeToRuby,
+  employeeTips: employeeTips
 };
