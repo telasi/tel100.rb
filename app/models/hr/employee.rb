@@ -41,6 +41,16 @@ class HR::Employee < ActiveRecord::Base
     }
   end
 
+  def to_html
+    header = "<strong><code>#{self.person_number}</code> #{self.full_name}</strong>"
+    if self.organization.present?
+      details = self.organization.chain.map do |x|
+        "<span style=\"color: #666;\">#{x.name.strip}</span>"
+      end.join('; ')
+    end
+    "#{header} &mdash; #{details}"
+  end
+
   def self.find_by_name(name)
     name.split(' ').map do |phrase|
       HR::Employee.where("first_name_ka LIKE :phrase or first_name_ru LIKE :phrase or first_name_en LIKE :phrase or 

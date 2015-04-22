@@ -93,9 +93,7 @@ json.assignees do
     json.name      motion.receiver.to_s
     json.response  motion.response_type.to_s
     json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-    if motion.receiver.respond_to?('organization')
-      json.position  motion.receiver.organization.to_s
-    end
+    json.position  motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
   end
 end
 
@@ -106,6 +104,7 @@ json.incoming do
     json.id           motion.id
     json.status       motion.status
     json.name         motion.sender.to_s
+    json.sender_html  motion.sender.to_html if motion.sender.respond_to?('to_html')
     json.sender_type  motion.sender_type.to_s
     json.current_status motion.current_status.to_s
     json.motion_text  motion.motion_text
@@ -125,6 +124,7 @@ json.outgoing do
     json.status         motion.status
     json.name           motion.receiver.to_s
     json.receiver_type  motion.receiver_type.to_s
+    json.receiver_html  motion.receiver.to_html if motion.receiver.respond_to?('to_html')
     json.current_status   motion.current_status.to_s
     json.response_text  motion.response_text
     json.due_date       motion.due_date
