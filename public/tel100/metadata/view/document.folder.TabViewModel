@@ -7,7 +7,10 @@
     "codeClass": null,
     "userConfig": {
         "designer|userAlias": "documentfoldertab",
-        "designer|userClassName": "document.folder.TabViewModel"
+        "designer|userClassName": "document.folder.TabViewModel",
+        "requires": [
+            "Tel100.view.document.folder.TabViewController"
+        ]
     },
     "designerId": "ad723040-eb0c-4688-a8ff-985715261b4a",
     "cn": [
@@ -49,7 +52,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "autoLoad": true,
+                "autoLoad": false,
                 "name": "substitudeStore"
             },
             "name": "MyStore2",
@@ -195,7 +198,10 @@
                         ],
                         "fn": "get",
                         "implHandler": [
-                            "     return this.getStore('substitudeStore').loadCount === 0;"
+                            "this.getStore('substitudeStore').load(function(records, operation, success) {",
+                            "  return records.length === 0;",
+                            "});",
+                            "//return this.getStore('substitudeStore').loadCount === 0;"
                         ]
                     },
                     "name": "get",

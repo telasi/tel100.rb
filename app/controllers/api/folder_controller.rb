@@ -4,14 +4,16 @@ class Api::FolderController < ApiController
   before_filter :validate_login
 
   def index
-    @folders = Folder::Base.where(owner_id: current_user.id).order('ORDER_BY').map do |folder|
-      folder.to_hash(current_user)
+    user = current_user.self_or_sub(current_substitude)
+    @folders = Folder::Base.where(owner_id: user.id).order('ORDER_BY').map do |folder|
+      folder.to_hash(user)
     end
   end
 
   def standard
+    user = current_user.self_or_sub(current_substitude)
     @folders = Folders::STANDARD.map do |folder|
-      folder.to_hash(current_user)
+      folder.to_hash(user)
     end
   end
 
