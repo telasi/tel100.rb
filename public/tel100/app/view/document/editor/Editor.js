@@ -178,6 +178,12 @@ Ext.define('Tel100.view.document.editor.Editor', {
                         hidden: '{hideIncoming}',
                         fieldLabel: '{i18n.document.base.from}',
                         value: '{incoming}'
+                      },
+                      listeners: {
+                        afterrender: {
+                          fn: 'onDisplayfieldAfterRender',
+                          scope: 'controller'
+                        }
                       }
                     },
                     {

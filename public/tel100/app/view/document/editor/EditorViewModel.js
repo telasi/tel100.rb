@@ -107,10 +107,13 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         var decor = helpers.document.status.statusDecoration(status);
         var senderName = from.name;
         var currentStatus = from.current_status;
+        if (from.sender_html) {
+          var html = encodeURIComponent(from.sender_html);
+        }
         text.push([
         '<span class="' + decor.style + '">',
         '<i class="fa ' + decor.icon + '"></i> ',
-        senderName,
+        '<a data-html=' + html + '>' + senderName + '</a>',
         ( currentStatus && currentStatus !== '--' ? ' &mdash; ' + currentStatus : ''  ),
         '</span>',
         ( from.completed_at ? ' <span class="text-danger">' + from.completed_at + '</span>' : '' )

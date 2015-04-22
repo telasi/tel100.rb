@@ -31,6 +31,23 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
     helpers.api.document.print.showPDFwindow(url);
   },
 
+  onDisplayfieldAfterRender: function(component, eOpts) {
+    component.getEl().on('click', function(event, el) {
+      if (el && el.tagName === 'A') {
+        var html = decodeURIComponent(el.attributes['data-html'].value);
+        var tip = Ext.create('Ext.tip.ToolTip', {
+          html: html,
+          autoHide: false
+        });
+        var rect = el.getBoundingClientRect();
+        tip.showAt({
+          x: rect.left,
+          y: rect.bottom
+        });
+      }
+    });
+  },
+
   onInMotionChanged: function(motion) {
     var view = this.getView();
     var outPanel = view.down('documentmotionsoutpanel');
