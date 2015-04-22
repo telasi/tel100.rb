@@ -66,6 +66,7 @@ json.authors do
     json.status    motion.status
     json.name      motion.receiver.to_s
     json.response  motion.response_type.to_s
+    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     if motion.receiver.respond_to?('organization')
       json.position  motion.receiver.organization.to_s
     end
@@ -78,6 +79,7 @@ json.signees do
     json.status    motion.status
     json.name      motion.receiver.to_s
     json.response  motion.response_type.to_s
+    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     if motion.receiver.respond_to?('organization')
       json.position  motion.receiver.organization.to_s
     end
@@ -90,6 +92,7 @@ json.assignees do
     json.status    motion.status
     json.name      motion.receiver.to_s
     json.response  motion.response_type.to_s
+    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     if motion.receiver.respond_to?('organization')
       json.position  motion.receiver.organization.to_s
     end
@@ -107,6 +110,7 @@ json.incoming do
     json.send_type    motion.send_type.to_s
     json.motion_text  motion.motion_text
     json.due_date     motion.due_date
+    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     json.role         motion.receiver_role
   end
 end
@@ -121,6 +125,7 @@ json.outgoing do
     json.response_type  motion.response_type.to_s
     json.response_text  motion.response_text
     json.due_date       motion.due_date
+    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     json.role         motion.receiver_role
   end
 end
