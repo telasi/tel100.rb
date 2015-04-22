@@ -1528,10 +1528,47 @@ var formatReceivers = function(data, metaData) {
     return text.join('<br>');
   }
 
+var formatResponses = function(data, metaData) {
+    var text = [];
+    var tooltip = [];
+    var stats = [];
+    var count = 0;
+
+    for(var i = 0; i < data.length; i++) {
+      var motion = data[i];
+      var status = motion.status;
+      var motion_text = motion.send_type;
+      if(motion_text === '--'){continue;};
+      if(motion.due_date){ motion_text = [motion_text, '(', motion.due_date, ')'].join(''); };
+      tooltip.push(motion_text);
+      if(i < 2){
+        var decor = helpers.document.status.statusDecoration(status);
+        text.push([
+          '<span class="' + decor.style + '">',
+          '<i class="fa ' + decor.icon + '"></i> ',
+          motion.send_type,
+          '<br>',
+          motion.due_date,
+          '</span>'
+        ].join(''));
+      } else {
+        count++;
+      }
+    }
+
+    metaData.tdAttr = 'data-qtip="' + tooltip.join('; ') + '"';
+
+    if (count) {
+      text.push('კიდევ: ' + count);
+    }
+
+    return text.join('<br>');
+  }
 
 module.exports = {
   getPropertiesDialog: getPropertiesDialog,
-  formatReceivers: formatReceivers
+  formatReceivers: formatReceivers,
+  formatResponses: formatResponses
 };
 
 },{}],10:[function(require,module,exports){

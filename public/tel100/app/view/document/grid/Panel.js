@@ -176,6 +176,17 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return helpers.document.motion.formatResponses(value, metaData);
+      },
+      width: 200,
+      dataIndex: 'incoming',
+      bind: {
+        text: '{i18n.document.base.response}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
       width: 150,
       sortable: false,
       dataIndex: 'subject',

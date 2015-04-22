@@ -472,6 +472,55 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dataIndex": "incoming",
+                "defaultWidth": null,
+                "designer|displayName": "response",
+                "text": [
+                    "{i18n.document.base.response}"
+                ],
+                "width": 200
+            },
+            "name": "MyColumn12",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "045496f0-def0-45ac-ae0f-e074e552611b",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return helpers.document.motion.formatResponses(value, metaData);"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "661ad8b1-81d2-4aa2-b081-284a829f849a"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "dataIndex": "subject",
                 "designer|displayName": "subject",
                 "hideable": false,

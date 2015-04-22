@@ -46,6 +46,7 @@ class HR::Vacation::Vacation < ActiveRecord::Base
 
            motionParams = { 
             document: document,
+            parent: nil, 
             status: Document::Status::CURRENT,
             sender_user: user,
             sender: sender,
@@ -60,30 +61,11 @@ class HR::Vacation::Vacation < ActiveRecord::Base
 
           order = 0
 
-          if params[:head_of_group].present?
-            order += 1
-            add_motion_user(motionParams, params[:head_of_group].to_i, order)
-          end
-
-          if params[:head_of_division].present?
-            order += 1
-            add_motion_user(motionParams, params[:head_of_division].to_i, order)
-          end
-
-          if params[:head_of_department].present?
-            order += 1
-            add_motion_user(motionParams, params[:head_of_department].to_i, order)
-          end 
-
-          if params[:director].present?
-            order += 1
-            add_motion_user(motionParams, params[:director].to_i, order)
-          end    
-
-          if params[:head_of_hr].present?
-            order += 1
-            add_motion_user(motionParams, params[:head_of_hr].to_i, order)
-          end
+          parent = add_motion_user(motionParams, params[:head_of_group].to_i, nil) if params[:head_of_group].present?
+          parent = add_motion_user(motionParams, params[:head_of_division].to_i, parent) if params[:head_of_division].present?
+          parent = add_motion_user(motionParams, params[:head_of_department].to_i, parent) if params[:head_of_department].present?
+          parent = add_motion_user(motionParams, params[:director].to_i, parent) if params[:director].present?
+          parent = add_motion_user(motionParams, params[:head_of_hr].to_i, parent) if params[:head_of_hr].present?
 
         end
     end
@@ -103,17 +85,19 @@ class HR::Vacation::Vacation < ActiveRecord::Base
   	HR::Vacation::Vacation.confirmed.where("from_date <= sysdate and to_date >= sysdate and substitude = ? and substitude_type <> 1", user.id)
   end
 
-  def self.add_motion_user(mparam, signee, order)
-    order += 1
+  def self.add_motion_user(mparam, signee, parent)
     mparam[:receiver_id] = signee
     receiver_user, receiver = who_eval('receiver', mparam)
     mparam[:receiver_user] = receiver_user
     mparam[:receiver] = receiver
-    mparam[:ordering] = order
+    mparam[:ordering] = 1
+    mparam[:parent] = parent
     mparam[:receiver_type] = 'HR::Employee'
     motion = Document::Motion.create!( mparam ) 
     motion.save!
     docuser = Document::User.upsert!(motion.document, motion.receiver_user, motion.receiver_role, { status: motion.status })
     docuser.calculate! if docuser
+
+    motion
   end
 end
