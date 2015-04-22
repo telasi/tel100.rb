@@ -149,22 +149,13 @@ Ext.define('Tel100.view.document.editor.Editor', {
                     },
                     {
                       xtype: 'displayfield',
+                      flex: 1,
                       shrinkWrap: 2,
                       width: '100%',
                       fieldStyle: 'height: inherit',
                       bind: {
                         fieldLabel: '{i18n.document.base.doc}',
-                        value: '{docnumber}'
-                      }
-                    },
-                    {
-                      xtype: 'displayfield',
-                      shrinkWrap: 2,
-                      width: '100%',
-                      fieldStyle: 'height: inherit',
-                      bind: {
-                        fieldLabel: '{i18n.document.base.sender}',
-                        value: '<strong>{document.sender_name}</strong>, <span class="text-danger">{document.sent_at_f}</span>'
+                        value: '{docinfo}'
                       }
                     },
                     {
@@ -180,6 +171,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
                     },
                     {
                       xtype: 'textfield',
+                      flex: 1,
                       width: '100%',
                       editable: false,
                       bind: {

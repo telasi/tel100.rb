@@ -233,10 +233,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "docnumber"
+                "name": "docinfo"
             },
             "name": "MyFormula8",
-            "designerId": "209bf657-7fac-429d-a921-214a39411220",
+            "designerId": "78c851f1-aa72-4783-a01c-3c076664d8e1",
             "cn": [
                 {
                     "type": "fixedfunction",
@@ -255,17 +255,21 @@
                             "var typeName = get('document.type.name');",
                             "var status = get('document.status');",
                             "var decor = helpers.document.status.statusDecoration(status);",
+                            "var senderName = get('document.sender_name');",
+                            "var sentAt = get('document.sent_at_f');",
                             "return [",
                             "  '<span class=\"' + decor.style + '\">',",
                             "  '<i class=\"fa ' + decor.icon + '\"></i> ',",
                             "  '<strong>' + docnumber + '</strong>',",
                             "  '</span> ',",
-                            "  '<span class=\"text-muted\">' + typeName + '</span>'",
+                            "  '<span class=\"text-muted\">' + typeName + '</span> &mdash; ',",
+                            "  '<strong>' + senderName + '</strong>, ',",
+                            "  '<span class=\"text-danger\">' + sentAt + '</span>'",
                             "].join('');"
                         ]
                     },
                     "name": "get",
-                    "designerId": "6cfe2d9b-3f57-428f-a956-5e6e966594bf"
+                    "designerId": "e710b270-f308-4b52-a1b0-ca3c68aaa4c0"
                 }
             ]
         }

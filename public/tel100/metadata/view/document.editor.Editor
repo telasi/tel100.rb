@@ -375,17 +375,18 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "cls": null,
-                                                "designer|displayName": "docnumber",
+                                                "designer|displayName": "docinfo",
                                                 "fieldLabel": [
                                                     "{i18n.document.base.doc}"
                                                 ],
                                                 "fieldStyle": "height: inherit",
+                                                "layout|flex": 1,
                                                 "overflowY": null,
                                                 "shrinkWrap": [
                                                     "2"
                                                 ],
                                                 "value": [
-                                                    "{docnumber}"
+                                                    "{docinfo}"
                                                 ],
                                                 "width": "100%"
                                             },
@@ -395,35 +396,6 @@
                                                 "value": "binding"
                                             },
                                             "designerId": "bbd52b9a-23e5-4570-989a-450bf3633edf"
-                                        },
-                                        {
-                                            "type": "Ext.form.field.Display",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|displayName": "sender",
-                                                "fieldLabel": [
-                                                    "{i18n.document.base.sender}"
-                                                ],
-                                                "fieldStyle": "height: inherit",
-                                                "layout|flex": null,
-                                                "shrinkWrap": [
-                                                    "2"
-                                                ],
-                                                "value": [
-                                                    "<strong>{document.sender_name}</strong>, <span class=\"text-danger\">{document.sent_at_f}</span>"
-                                                ],
-                                                "width": "100%"
-                                            },
-                                            "name": "MyDisplayField5",
-                                            "configAlternates": {
-                                                "value": "binding",
-                                                "fieldLabel": "binding"
-                                            },
-                                            "designerId": "fefcd3b3-f626-42c6-aeb6-f8d1c168d6b7"
                                         },
                                         {
                                             "type": "Ext.form.field.Display",
@@ -471,6 +443,7 @@
                                                 "fieldLabel": [
                                                     "{i18n.document.base.subject}"
                                                 ],
+                                                "layout|flex": 1,
                                                 "value": [
                                                     "{document.subject}"
                                                 ],
