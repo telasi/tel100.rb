@@ -45,7 +45,7 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         text.push([
         '<span class="' + decor.style + '">',
         '<i class="fa ' + decor.icon + '"></i> ',
-        author.author,
+        author.name,
         ( author.response ? ' &mdash; ' + author.response : '' ),
         '</span>'
         ].join(''));
@@ -65,7 +65,7 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         text.push([
         '<span class="' + decor.style + '">',
         '<i class="fa ' + decor.icon + '"></i> ',
-        signee.author,
+        signee.name,
         ( signee.response ? ' &mdash; ' + signee.response : '' ),
         '</span>'
         ].join(''));
