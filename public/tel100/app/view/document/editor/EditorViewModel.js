@@ -139,8 +139,12 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         }
         var receiverName = to.name;
         var currentStatus = to.current_status;
+        if (to.receiver_html) {
+          var html = encodeURIComponent(to.receiver_html);
+        }
         text.push([
-        '<span class="' + decor.style + '">', icon, receiverName,
+        '<span class="' + decor.style + '">', icon,
+        '<a data-html="' + html + '">' + receiverName + '</a>',
         ( currentStatus && currentStatus !== '--' ? ' &mdash; ' + currentStatus : ''  ),
         '</span>',
         ( to.completed_at ? ' <span class="text-danger">' + to.completed_at + '</span>' : '' )

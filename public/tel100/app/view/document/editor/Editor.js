@@ -181,7 +181,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
                       },
                       listeners: {
                         afterrender: {
-                          fn: 'onDisplayfieldAfterRender',
+                          fn: 'onIncomingAfterRender',
                           scope: 'controller'
                         }
                       }
@@ -195,6 +195,12 @@ Ext.define('Tel100.view.document.editor.Editor', {
                         hidden: '{hideOutgoing}',
                         fieldLabel: '{i18n.document.base.to}',
                         value: '{outgoing}'
+                      },
+                      listeners: {
+                        afterrender: {
+                          fn: 'onOutgoingBeforeRender',
+                          scope: 'controller'
+                        }
                       }
                     },
                     {

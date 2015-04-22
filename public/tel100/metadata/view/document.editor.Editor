@@ -471,28 +471,14 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "fn": "onDisplayfieldAfterRender",
+                                                        "fn": "onIncomingAfterRender",
                                                         "implHandler": [
-                                                            "// component.getEl().on('click', function(event, el) {",
-                                                            "//   if (el && el.tagName === 'A') {",
-                                                            "//     var html = decodeURIComponent(el.attributes['data-html'].value);",
-                                                            "//     var tip = Ext.create('Ext.tip.ToolTip', {",
-                                                            "//       html: html,",
-                                                            "//       autoHide: false",
-                                                            "//     });",
-                                                            "//     var rect = el.getBoundingClientRect();",
-                                                            "//     tip.showAt({",
-                                                            "//       x: rect.left,",
-                                                            "//       y: rect.bottom",
-                                                            "//     });",
-                                                            "//   }",
-                                                            "// });",
                                                             "helpers.party.employeeTips(component);"
                                                         ],
                                                         "name": "afterrender",
                                                         "scope": "me"
                                                     },
-                                                    "name": "onDisplayfieldAfterRender",
+                                                    "name": "onIncomingAfterRender",
                                                     "designerId": "bd5849f7-e261-4245-995a-005d77adfdba"
                                                 }
                                             ]
@@ -528,7 +514,27 @@
                                                 "value": "binding",
                                                 "hidden": "binding"
                                             },
-                                            "designerId": "74686694-bd51-4000-8b18-e82b5a09fdb9"
+                                            "designerId": "74686694-bd51-4000-8b18-e82b5a09fdb9",
+                                            "cn": [
+                                                {
+                                                    "type": "viewcontrollereventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fn": "onOutgoingBeforeRender",
+                                                        "implHandler": [
+                                                            "helpers.party.employeeTips(component);"
+                                                        ],
+                                                        "name": "afterrender",
+                                                        "scope": "me"
+                                                    },
+                                                    "name": "onOutgoingBeforeRender",
+                                                    "designerId": "984c677d-947c-4aeb-878d-1fc567680bfe"
+                                                }
+                                            ]
                                         },
                                         {
                                             "type": "Ext.form.field.Text",
