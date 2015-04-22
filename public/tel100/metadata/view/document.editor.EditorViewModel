@@ -307,12 +307,12 @@
                             "  var status = from.status;",
                             "  var decor = helpers.document.status.statusDecoration(status);",
                             "  var senderName = from.name;",
-                            "  var sendType = from.send_type;",
+                            "  var currentStatus = from.current_status;",
                             "  text.push([",
                             "    '<span class=\"' + decor.style + '\">',",
                             "    '<i class=\"fa ' + decor.icon + '\"></i> ',",
                             "    senderName,",
-                            "    ( sendType && sendType !== '--' ? ' &mdash; ' + sendType : ''  ),",
+                            "    ( currentStatus && currentStatus !== '--' ? ' &mdash; ' + currentStatus : ''  ),",
                             "    '</span> ',",
                             "    ( from.completed_at ? '<span class=\"text-danger\">' + from.completed_at + '</span>' : '' )",
                             "  ].join(''));",
@@ -356,6 +356,91 @@
                     },
                     "name": "get",
                     "designerId": "53e1d345-4176-4633-b15f-d8f3ebef1805"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "outgoing"
+            },
+            "name": "MyFormula18",
+            "designerId": "fa15c3ce-43a5-40fd-96a9-7976b54e1501",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var outgoing = get('document.outgoing');",
+                            "var text = [];",
+                            "for (var i = 0; i < outgoing.length; i++) {",
+                            "  var to = outgoing[i];",
+                            "  var status = to.status;",
+                            "  var decor = helpers.document.status.statusDecoration(status);",
+                            "  var receiverName = to.name;",
+                            "  var currentStatus = to.current_status;",
+                            "  text.push([",
+                            "    '<span class=\"' + decor.style + '\">',",
+                            "    '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "    receiverName,",
+                            "    ( currentStatus && currentStatus !== '--' ? ' &mdash; ' + currentStatus : ''  ),",
+                            "    '</span> ',",
+                            "    ( to.completed_at ? '<span class=\"text-danger\">' + to.completed_at + '</span>' : '' )",
+                            "  ].join(''));",
+                            "}",
+                            "return text.join('; ');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "e9061516-3e2c-42fe-8ae5-0d0841404af8"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideOutgoing"
+            },
+            "name": "MyFormula19",
+            "designerId": "257b7313-eab6-4580-a716-330bd183f7ec",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return !get('document.outgoing').length;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "57294e74-9e86-462d-86ba-60bf4debd654"
                 }
             ]
         }

@@ -464,6 +464,39 @@
                                             "designerId": "c843e88b-b71b-463b-8135-50317822cb39"
                                         },
                                         {
+                                            "type": "Ext.form.field.Display",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "cls": null,
+                                                "designer|displayName": "outgoing",
+                                                "fieldLabel": [
+                                                    "{i18n.document.base.to}"
+                                                ],
+                                                "fieldStyle": "height: inherit",
+                                                "hidden": [
+                                                    "{hideOutgoing}"
+                                                ],
+                                                "layout|flex": 1,
+                                                "shrinkWrap": [
+                                                    "2"
+                                                ],
+                                                "value": [
+                                                    "{outgoing}"
+                                                ]
+                                            },
+                                            "name": "MyDisplayField6",
+                                            "configAlternates": {
+                                                "fieldLabel": "binding",
+                                                "value": "binding",
+                                                "hidden": "binding"
+                                            },
+                                            "designerId": "74686694-bd51-4000-8b18-e82b5a09fdb9"
+                                        },
+                                        {
                                             "type": "Ext.form.field.Text",
                                             "reference": {
                                                 "name": "items",

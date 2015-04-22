@@ -181,6 +181,17 @@ Ext.define('Tel100.view.document.editor.Editor', {
                       }
                     },
                     {
+                      xtype: 'displayfield',
+                      flex: 1,
+                      shrinkWrap: 2,
+                      fieldStyle: 'height: inherit',
+                      bind: {
+                        hidden: '{hideOutgoing}',
+                        fieldLabel: '{i18n.document.base.to}',
+                        value: '{outgoing}'
+                      }
+                    },
+                    {
                       xtype: 'textfield',
                       flex: 1,
                       width: '100%',

@@ -106,12 +106,12 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         var status = from.status;
         var decor = helpers.document.status.statusDecoration(status);
         var senderName = from.name;
-        var sendType = from.send_type;
+        var currentStatus = from.current_status;
         text.push([
         '<span class="' + decor.style + '">',
         '<i class="fa ' + decor.icon + '"></i> ',
         senderName,
-        ( sendType && sendType !== '--' ? ' &mdash; ' + sendType : ''  ),
+        ( currentStatus && currentStatus !== '--' ? ' &mdash; ' + currentStatus : ''  ),
         '</span> ',
         ( from.completed_at ? '<span class="text-danger">' + from.completed_at + '</span>' : '' )
         ].join(''));
@@ -120,6 +120,29 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
     },
     hideIncoming: function(get) {
       return !get('document.incoming').length;
+    },
+    outgoing: function(get) {
+      var outgoing = get('document.outgoing');
+      var text = [];
+      for (var i = 0; i < outgoing.length; i++) {
+        var to = outgoing[i];
+        var status = to.status;
+        var decor = helpers.document.status.statusDecoration(status);
+        var receiverName = to.name;
+        var currentStatus = to.current_status;
+        text.push([
+        '<span class="' + decor.style + '">',
+        '<i class="fa ' + decor.icon + '"></i> ',
+        receiverName,
+        ( currentStatus && currentStatus !== '--' ? ' &mdash; ' + currentStatus : ''  ),
+        '</span> ',
+        ( to.completed_at ? '<span class="text-danger">' + to.completed_at + '</span>' : '' )
+        ].join(''));
+      }
+      return text.join('; ');
+    },
+    hideOutgoing: function(get) {
+      return !get('document.outgoing').length;
     }
   }
 
