@@ -75,7 +75,8 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         '<i class="fa ' + decor.icon + '"></i> ',
         signee.name,
         ( signee.response ? ' &mdash; ' + signee.response : '' ),
-        '</span>'
+        '</span> ',
+        ( signee.completed_at ? '<span class="text-danger">' + signee.completed_at + '</span>' : '' )
         ].join(''));
       }
       return text.join('; ');
@@ -111,7 +112,8 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         '<i class="fa ' + decor.icon + '"></i> ',
         senderName,
         ( sendType && sendType !== '--' ? ' &mdash; ' + sendType : ''  ),
-        '</span>'
+        '</span> ',
+        ( from.completed_at ? '<span class="text-danger">' + from.completed_at + '</span>' : '' )
         ].join(''));
       }
       return text.join('; ');
