@@ -48,6 +48,8 @@ module.exports = {
   in_fields: 'შემოსული წერილის პარამეტრები',
   sender_name: 'ინიციატორი',
   actions: 'მოქმედება',
+  from: 'ვისგან',
+  to: 'ვის',
   statuses: {
     draft: 'დრაფტი',
     to_be_sent: 'გასაგზავნი',
