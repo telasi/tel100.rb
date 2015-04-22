@@ -107,25 +107,29 @@ json.incoming do
     json.status       motion.status
     json.name         motion.sender.to_s
     json.sender_type  motion.sender_type.to_s
-    json.send_type    motion.send_type.to_s
+    json.current_status motion.current_status.to_s
     json.motion_text  motion.motion_text
     json.due_date     motion.due_date
     json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     json.role         motion.receiver_role
+    json.is_new       motion.new?
   end
 end
 
-outgoing = mydoc.motions.order('id DESC') # any status is OK
+out_stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
+
+outgoing = mydoc.outgoing.where('status IN (?)', out_stats).order('id DESC') # any status is OK
 json.outgoing do
   json.array! outgoing do |motion|
     json.id             motion.id
     json.status         motion.status
     json.name           motion.receiver.to_s
     json.receiver_type  motion.receiver_type.to_s
-    json.response_type  motion.response_type.to_s
+    json.current_status   motion.current_status.to_s
     json.response_text  motion.response_text
     json.due_date       motion.due_date
-    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-    json.role         motion.receiver_role
+    json.completed_at   motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
+    json.role           motion.receiver_role
+    json.is_new         motion.new?
   end
 end
