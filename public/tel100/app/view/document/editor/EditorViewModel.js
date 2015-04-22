@@ -79,6 +79,19 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         ].join(''));
       }
       return text.join('; ');
+    },
+    docnumber: function(get) {
+      var docnumber = get('document.docnumber');
+      var typeName = get('document.type.name');
+      var status = get('document.status');
+      var decor = helpers.document.status.statusDecoration(status);
+      return [
+      '<span class="' + decor.style + '">',
+      '<i class="fa ' + decor.icon + '"></i> ',
+      '<strong>' + docnumber + '</strong>',
+      '</span> ',
+      '<span class="text-muted">' + typeName + '</span>'
+      ].join('');
     }
   }
 

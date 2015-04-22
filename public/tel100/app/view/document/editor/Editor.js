@@ -154,7 +154,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
                       fieldStyle: 'height: inherit',
                       bind: {
                         fieldLabel: '{i18n.document.base.doc}',
-                        value: '#<strong class="text-success">{document.docnumber}</strong> <span class="text-muted">{document.type.name}</span>'
+                        value: '{docnumber}'
                       }
                     },
                     {

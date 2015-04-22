@@ -224,6 +224,50 @@
                     "designerId": "a16f39d7-9caf-4b0a-a5a1-a33888e09ace"
                 }
             ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "docnumber"
+            },
+            "name": "MyFormula8",
+            "designerId": "209bf657-7fac-429d-a921-214a39411220",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var docnumber = get('document.docnumber');",
+                            "var typeName = get('document.type.name');",
+                            "var status = get('document.status');",
+                            "var decor = helpers.document.status.statusDecoration(status);",
+                            "return [",
+                            "  '<span class=\"' + decor.style + '\">',",
+                            "  '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "  '<strong>' + docnumber + '</strong>',",
+                            "  '</span> ',",
+                            "  '<span class=\"text-muted\">' + typeName + '</span>'",
+                            "].join('');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "6cfe2d9b-3f57-428f-a956-5e6e966594bf"
+                }
+            ]
         }
     ]
 }

@@ -375,7 +375,7 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "cls": null,
-                                                "designer|displayName": "document",
+                                                "designer|displayName": "docnumber",
                                                 "fieldLabel": [
                                                     "{i18n.document.base.doc}"
                                                 ],
@@ -385,7 +385,7 @@
                                                     "2"
                                                 ],
                                                 "value": [
-                                                    "#<strong class=\"text-success\">{document.docnumber}</strong> <span class=\"text-muted\">{document.type.name}</span>"
+                                                    "{docnumber}"
                                                 ],
                                                 "width": "100%"
                                             },
