@@ -96,6 +96,28 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
       '<strong>' + senderName + '</strong>, ',
       '<span class="text-danger">' + sentAt + '</span>'
       ].join('');
+    },
+    incoming: function(get) {
+      var incoming = get('document.incoming');
+      var text = [];
+      for (var i = 0; i < incoming.length; i++) {
+        var from = incoming[i];
+        var status = from.status;
+        var decor = helpers.document.status.statusDecoration(status);
+        var senderName = from.name;
+        var sendType = from.send_type;
+        text.push([
+        '<span class="' + decor.style + '">',
+        '<i class="fa ' + decor.icon + '"></i> ',
+        senderName,
+        ( sendType && sendType !== '--' ? ' &mdash; ' + sendType : ''  ),
+        '</span>'
+        ].join(''));
+      }
+      return text.join('; ');
+    },
+    hideIncoming: function(get) {
+      return !get('document.incoming').length;
     }
   }
 

@@ -272,6 +272,90 @@
                     "designerId": "e710b270-f308-4b52-a1b0-ca3c68aaa4c0"
                 }
             ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "incoming"
+            },
+            "name": "MyFormula16",
+            "designerId": "d1c7d926-0c5c-4374-9404-4b32355ef94c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "var incoming = get('document.incoming');",
+                            "var text = [];",
+                            "for (var i = 0; i < incoming.length; i++) {",
+                            "  var from = incoming[i];",
+                            "  var status = from.status;",
+                            "  var decor = helpers.document.status.statusDecoration(status);",
+                            "  var senderName = from.name;",
+                            "  var sendType = from.send_type;",
+                            "  text.push([",
+                            "    '<span class=\"' + decor.style + '\">',",
+                            "    '<i class=\"fa ' + decor.icon + '\"></i> ',",
+                            "    senderName,",
+                            "    ( sendType && sendType !== '--' ? ' &mdash; ' + sendType : ''  ),",
+                            "    '</span>'",
+                            "  ].join(''));",
+                            "}",
+                            "return text.join('; ');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "5613b730-0b40-4911-8c72-1d50b9dcd67a"
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hideIncoming"
+            },
+            "name": "MyFormula17",
+            "designerId": "b04f5529-2eb7-4af1-9230-8b1b5b09073c",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return !get('document.incoming').length;"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "53e1d345-4176-4633-b15f-d8f3ebef1805"
+                }
+            ]
         }
     ]
 }
