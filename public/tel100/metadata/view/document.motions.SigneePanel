@@ -143,6 +143,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "align": "right",
                         "dataIndex": "ordering",
                         "designer|displayName": "ordering",
                         "hideable": false,
