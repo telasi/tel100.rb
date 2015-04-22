@@ -1495,7 +1495,9 @@ var formatReceivers = function(data, metaData) {
     for(var i = 0; i < data.length; i++) {
       var person = data[i];
       var status = person.status;
-      tooltip.push(person.name);
+      var tooltipitem = person.name;
+      if(person.position){ tooltipitem = [tooltipitem, ' (' , person.position.trim(), ')'].join('')};
+      tooltip.push(tooltipitem);
       if(i < 2){
         var decor = helpers.document.status.statusDecoration(status);
         text.push([

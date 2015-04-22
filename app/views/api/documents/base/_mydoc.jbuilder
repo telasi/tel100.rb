@@ -57,7 +57,7 @@ json.completed_at_f doc.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if doc.
 
 ## parties in this task
 
-stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
+stats = [ Document::Status::DRAFT, Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
 
 # authors
 json.authors do
@@ -66,6 +66,9 @@ json.authors do
     json.status    motion.status
     json.name      motion.receiver.to_s
     json.response  motion.response_type.to_s
+    if motion.receiver.respond_to?('organization')
+      json.position  motion.receiver.organization.to_s
+    end
   end
 end
 # signees
@@ -75,6 +78,9 @@ json.signees do
     json.status    motion.status
     json.name      motion.receiver.to_s
     json.response  motion.response_type.to_s
+    if motion.receiver.respond_to?('organization')
+      json.position  motion.receiver.organization.to_s
+    end
   end
 end
 # assignees
@@ -84,6 +90,9 @@ json.assignees do
     json.status    motion.status
     json.name      motion.receiver.to_s
     json.response  motion.response_type.to_s
+    if motion.receiver.respond_to?('organization')
+      json.position  motion.receiver.organization.to_s
+    end
   end
 end
 
