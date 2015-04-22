@@ -2,40 +2,46 @@
 // shim for using process in browser
 
 var process = module.exports = {};
-var queue = [];
-var draining = false;
 
-function drainQueue() {
-    if (draining) {
-        return;
+process.nextTick = (function () {
+    var canSetImmediate = typeof window !== 'undefined'
+    && window.setImmediate;
+    var canPost = typeof window !== 'undefined'
+    && window.postMessage && window.addEventListener
+    ;
+
+    if (canSetImmediate) {
+        return function (f) { return window.setImmediate(f) };
     }
-    draining = true;
-    var currentQueue;
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        var i = -1;
-        while (++i < len) {
-            currentQueue[i]();
-        }
-        len = queue.length;
+
+    if (canPost) {
+        var queue = [];
+        window.addEventListener('message', function (ev) {
+            var source = ev.source;
+            if ((source === window || source === null) && ev.data === 'process-tick') {
+                ev.stopPropagation();
+                if (queue.length > 0) {
+                    var fn = queue.shift();
+                    fn();
+                }
+            }
+        }, true);
+
+        return function nextTick(fn) {
+            queue.push(fn);
+            window.postMessage('process-tick', '*');
+        };
     }
-    draining = false;
-}
-process.nextTick = function (fun) {
-    queue.push(fun);
-    if (!draining) {
-        setTimeout(drainQueue, 0);
-    }
-};
+
+    return function nextTick(fn) {
+        setTimeout(fn, 0);
+    };
+})();
 
 process.title = 'browser';
 process.browser = true;
 process.env = {};
 process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
 
 function noop() {}
 
@@ -49,14 +55,13 @@ process.emit = noop;
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
-};
+}
 
 // TODO(shtylman)
 process.cwd = function () { return '/' };
 process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
-process.umask = function() { return 0; };
 
 },{}],2:[function(require,module,exports){
 var errorMessage = function(error, title) {
@@ -1534,7 +1539,7 @@ var formatResponses = function(data, metaData) {
     for(var i = 0; i < data.length; i++) {
       var motion = data[i];
       var status = motion.status;
-      var motion_text = motion.send_type;
+      var motion_text = motion.current_status;
       if(motion_text === '--'){continue;};
       if(motion.due_date){ motion_text = [motion_text, '(', motion.due_date, ')'].join(''); };
       tooltip.push(motion_text);
@@ -1543,7 +1548,7 @@ var formatResponses = function(data, metaData) {
         text.push([
           '<span class="' + decor.style + '">',
           '<i class="fa ' + decor.icon + '"></i> ',
-          motion.send_type,
+          motion.current_status,
           '<br>',
           motion.due_date,
           '</span>'

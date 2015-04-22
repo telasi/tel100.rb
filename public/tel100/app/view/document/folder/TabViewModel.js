@@ -21,7 +21,8 @@ Ext.define('Tel100.view.document.folder.TabViewModel', {
     'Ext.data.Store',
     'Ext.data.proxy.Rest',
     'Ext.data.field.Field',
-    'Ext.app.bind.Formula'
+    'Ext.app.bind.Formula',
+    'Tel100.view.document.folder.TabViewController'
   ],
 
   stores: {
@@ -33,7 +34,7 @@ Ext.define('Tel100.view.document.folder.TabViewModel', {
       model: 'Tel100.model.folder.Standard'
     },
     substitudeStore: {
-      autoLoad: true,
+      autoLoad: false,
       proxy: {
         type: 'rest',
         url: '/api/vacation/substitudes'
@@ -65,7 +66,10 @@ Ext.define('Tel100.view.document.folder.TabViewModel', {
   },
   formulas: {
     hideSubstitudeGrid: function(get) {
-      return this.getStore('substitudeStore').loadCount === 0;
+      this.getStore('substitudeStore').load(function(records, operation, success) {
+        return records.length === 0;
+      });
+      //return this.getStore('substitudeStore').loadCount === 0;
     }
   }
 

@@ -28,7 +28,7 @@ class HR::Vacation::Vacation < ActiveRecord::Base
             docparams = {
               sender_user: user, sender: sender,
               owner_user: user, owner: sender,
-              direction: 'inner', status: Document::Status::CURRENT,
+              direction: 'inner', status: Document::Status::DRAFT,
               type: Document::Type.find(2),
               subject: 'შვებულება'
             }
@@ -47,7 +47,7 @@ class HR::Vacation::Vacation < ActiveRecord::Base
            motionParams = { 
             document: document,
             parent: nil, 
-            status: Document::Status::CURRENT,
+            status: Document::Status::DRAFT,
             sender_user: user,
             sender: sender,
             receiver_user: nil,
@@ -82,7 +82,7 @@ class HR::Vacation::Vacation < ActiveRecord::Base
   end
 
   def self.get_substitudes(user)
-  	HR::Vacation::Vacation.confirmed.where("from_date <= sysdate and to_date >= sysdate and substitude = ? and substitude_type <> 1", user.id)
+  	HR::Vacation::Vacation.confirmed.where("from_date <= sysdate and to_date >= sysdate and substitude = ? and substitude_type <> 1", user.employee.id)
   end
 
   def self.add_motion_user(mparam, signee, parent)

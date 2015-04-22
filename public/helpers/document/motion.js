@@ -74,7 +74,7 @@ var formatResponses = function(data, metaData) {
     for(var i = 0; i < data.length; i++) {
       var motion = data[i];
       var status = motion.status;
-      var motion_text = motion.send_type;
+      var motion_text = motion.current_status;
       if(motion_text === '--'){continue;};
       if(motion.due_date){ motion_text = [motion_text, '(', motion.due_date, ')'].join(''); };
       tooltip.push(motion_text);
@@ -83,7 +83,7 @@ var formatResponses = function(data, metaData) {
         text.push([
           '<span class="' + decor.style + '">',
           '<i class="fa ' + decor.icon + '"></i> ',
-          motion.send_type,
+          motion.current_status,
           '<br>',
           motion.due_date,
           '</span>'

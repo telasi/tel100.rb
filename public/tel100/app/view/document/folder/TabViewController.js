@@ -102,21 +102,25 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
   },
 
   onGridpanelCellClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+
     var me = this;
 
     if(Ext.ComponentQuery.query('usersubstitudepanel').length === 0){
       helpers.api.substitude.setSubstitude(record.get('id'));
       var dg = this.getView().up().down('documentgridpanel');
+      var me = this;
 
       var toppanel = Ext.create('Tel100.view.user.substitude.Panel',
         { html: i18n.vacation.ui.substitude_mode.title + record.data.name });
       toppanel.down('button').on('click',function(){
         helpers.api.substitude.setSubstitude(null);
         dg.refresh();
+        me.foldersRefresh();
       });
       toppanel.show().alignTo(Ext.getBody(), 't-t');
       this.getView().up().down('documentgridpanel').refresh();
       dg.refresh();
+      me.foldersRefresh();
     }
   },
 
