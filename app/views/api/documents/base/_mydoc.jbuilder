@@ -107,6 +107,7 @@ json.incoming do
     json.send_type    motion.send_type.to_s
     json.motion_text  motion.motion_text
     json.due_date     motion.due_date
+    json.role         motion.receiver_role
   end
 end
 
@@ -120,5 +121,6 @@ json.outgoing do
     json.response_type  motion.response_type.to_s
     json.response_text  motion.response_text
     json.due_date       motion.due_date
+    json.role         motion.receiver_role
   end
 end
