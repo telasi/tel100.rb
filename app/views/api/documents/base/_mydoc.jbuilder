@@ -77,14 +77,14 @@ end
 # signees
 json.signees do
   json.array! doc.signee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
-    json.id        motion.id
-    json.status    motion.status
-    json.name      motion.receiver.to_s
-    json.response  motion.response_type.to_s
+    json.id           motion.id
+    json.status       motion.status
+    json.name         motion.receiver.to_s
+    json.signee_id    motion.receiver_id
+    json.signee_type  motion.receiver_type
+    json.response     motion.response_type.to_s
     json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-    if motion.receiver.respond_to?('organization')
-      json.position  motion.receiver.organization.to_s
-    end
+    json.position  motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
   end
 end
 # assignees
