@@ -90,6 +90,8 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
       var status = get('document.status');
       var decor = helpers.document.status.statusDecoration(status);
       var senderName = get('document.sender_name');
+      var senderId = get('document.sender_id');
+      var senderType = get('document.sender_type');
       var sentAt = get('document.sent_at_f');
       return [
       '<span class="' + decor.style + '">',
@@ -97,7 +99,7 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
       '<strong>' + docnumber + '</strong>',
       '</span> ',
       '<span class="text-muted">' + typeName + '</span> &mdash; ',
-      '<strong>' + senderName + '</strong>, ',
+      '<strong><a data-id="' + senderId + '" data-class="' + senderType + '">' + senderName + '</a></strong>, ',
       '<span class="text-danger">' + sentAt + '</span>'
       ].join('');
     },
