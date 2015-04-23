@@ -95,6 +95,8 @@ json.assignees do
     json.id        motion.id
     json.status    motion.status
     json.name      motion.receiver.to_s
+    json.assignee_id    motion.receiver_id
+    json.assignee_type  motion.receiver_type
     json.response  motion.response_type.to_s
     json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     json.position  motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
