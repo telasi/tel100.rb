@@ -18,7 +18,12 @@ class Document::User < ActiveRecord::Base
   DOC_CANCELED  = 3
 
   def self.mydocs(user)
-    Document::User.where(user: user, is_shown: 1)
+    @docs = Document::User.where(user: user, is_shown: 1)
+    if user.current_substitude.present? and user.current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
+     @docs = @docs.where('document_user.created_at >= ?', user.current_substitude.from_date) 
+    else
+     @docs
+    end
   end
 
   def self.upsert!(doc, user, role, opts={})

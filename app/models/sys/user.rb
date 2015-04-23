@@ -36,6 +36,11 @@ class Sys::User < ActiveRecord::Base
     self.password_hash = @password
   end
 
+  def current_substitude; @current_substitude end
+  def current_substitude=(current_substitude)
+    @current_substitude = current_substitude
+  end
+
   def create_user
     Sys::User.transaction do
       self.save!
@@ -61,14 +66,6 @@ class Sys::User < ActiveRecord::Base
   def self.authenticate(userID, password)
     user = Sys::User.find_by_username(userID)
     user if (user and user.password == password)
-  end
-
-  def self_or_sub(substitude)
-    if substitude.present?
-      Sys::User.find(HR::Vacation::Vacation.find(substitude).userid) 
-    else
-      self
-    end
   end
 
   private
