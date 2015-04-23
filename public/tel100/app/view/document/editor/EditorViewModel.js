@@ -76,7 +76,7 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         text.push([
         '<span class="' + decor.style + '">',
         '<i class="fa ' + decor.icon + '"></i> ',
-        signee.name,
+        '<a data-id="' + signee.signee_id + '" data-class="' + signee.signee_type + '">' + signee.name + '</a>',
         ( signee.response ? ' &mdash; ' + signee.response : '' ),
         '</span> ',
         ( signee.completed_at ? '<span class="text-danger">' + signee.completed_at + '</span>' : '' )
