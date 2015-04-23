@@ -42,7 +42,7 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
           text.push([
           '<span class="' + decor.style + '">',
           '<i class="fa ' + decor.icon + '"></i> ',
-          author.name,
+          '<a data-id="' + author.author_id + '" data-class="' + author.author_type + '">' + author.name + '</a>',
           ( author.response ? ' &mdash; ' + author.response : '' ),
           '</span>'
           ].join(''));
@@ -51,11 +51,14 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
       } else {
         var status = get('document.status');
         var decor = helpers.document.status.statusDecoration(status);
+        var senderName = get('document.sender_name');
+        var senderId = get('document.sender_id');
+        var senderType = get('document.sender_type');
         return [
         '<strong class="text-success">' + i18n.document.base.sender + '</strong> &mdash; ',
         '<span class="' + decor.style + '">',
         '<i class="fa ' + decor.icon + '"></i> ',
-        get('document.sender_name'),
+        '<a data-id="' + senderId + '" data-class="' + senderType + '">' + senderName + '</a>',
         '</span>'
         ].join('');
       }

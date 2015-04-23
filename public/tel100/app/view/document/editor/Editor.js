@@ -140,6 +140,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
                     {
                       xtype: 'displayfield',
                       flex: 1,
+                      itemId: 'fldAuthors',
                       shrinkWrap: 2,
                       fieldStyle: 'height: inherit',
                       bind: {
@@ -150,6 +151,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
                     {
                       xtype: 'displayfield',
                       flex: 1,
+                      itemId: 'fldDocumentInfo',
                       shrinkWrap: 2,
                       width: '100%',
                       fieldStyle: 'height: inherit',
@@ -161,6 +163,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
                     {
                       xtype: 'displayfield',
                       flex: 1,
+                      itemId: 'fldSignees',
                       shrinkWrap: 2,
                       fieldStyle: 'height: inherit',
                       bind: {
@@ -172,35 +175,25 @@ Ext.define('Tel100.view.document.editor.Editor', {
                     {
                       xtype: 'displayfield',
                       flex: 1,
+                      itemId: 'fldIncoming',
                       shrinkWrap: 2,
                       fieldStyle: 'height: inherit',
                       bind: {
                         hidden: '{hideIncoming}',
                         fieldLabel: '{i18n.document.base.from}',
                         value: '{incoming}'
-                      },
-                      listeners: {
-                        afterrender: {
-                          fn: 'onIncomingAfterRender',
-                          scope: 'controller'
-                        }
                       }
                     },
                     {
                       xtype: 'displayfield',
                       flex: 1,
+                      itemId: 'fldOutgoing',
                       shrinkWrap: 2,
                       fieldStyle: 'height: inherit',
                       bind: {
                         hidden: '{hideOutgoing}',
                         fieldLabel: '{i18n.document.base.to}',
                         value: '{outgoing}'
-                      },
-                      listeners: {
-                        afterrender: {
-                          fn: 'onOutgoingBeforeRender',
-                          scope: 'controller'
-                        }
                       }
                     },
                     {
@@ -305,6 +298,10 @@ Ext.define('Tel100.view.document.editor.Editor', {
   listeners: {
     destroy: {
       fn: 'onDestroy',
+      scope: 'controller'
+    },
+    afterrender: {
+      fn: 'onContainerAfterRender',
       scope: 'controller'
     }
   },

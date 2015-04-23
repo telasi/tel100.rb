@@ -31,14 +31,6 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
     helpers.api.document.print.showPDFwindow(url);
   },
 
-  onIncomingAfterRender: function(component, eOpts) {
-    helpers.party.employeeTips(component);
-  },
-
-  onOutgoingBeforeRender: function(component, eOpts) {
-    helpers.party.employeeTips(component);
-  },
-
   onInMotionChanged: function(motion) {
     var view = this.getView();
     var outPanel = view.down('documentmotionsoutpanel');
@@ -54,6 +46,10 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
     if (component.commentsDialog) {
       component.commentsDialog.destroy();
     }
+  },
+
+  onContainerAfterRender: function(component, eOpts) {
+    helpers.party.employeeTips(component);
   }
 
 });
