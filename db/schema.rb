@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20150407203528) do
   create_table "document_user", id: false, force: true do |t|
     t.integer   "document_id",  limit: 10, precision: 10, scale: 0,                 null: false
     t.integer   "user_id",      limit: 10, precision: 10, scale: 0,                 null: false
+    t.datetime  "due_date"
     t.boolean   "is_new",                  precision: 1,  scale: 0, default: true,  null: false
     t.boolean   "is_changed",              precision: 1,  scale: 0, default: true,  null: false
     t.boolean   "is_shown",                precision: 1,  scale: 0, default: false, null: false
