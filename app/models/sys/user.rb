@@ -43,8 +43,6 @@ class Sys::User < ActiveRecord::Base
       empl.update_attributes!(user_id: self.id) if empl
       return true
     end
-  rescue
-    return false
   end
 
   def update_user(user_params)
