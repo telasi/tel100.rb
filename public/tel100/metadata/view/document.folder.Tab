@@ -559,12 +559,15 @@
                         "store": [
                             "{substitudeStore}"
                         ],
-                        "title": "Substitude"
+                        "title": [
+                            "{i18n.vacation.ui.grid_title}"
+                        ]
                     },
                     "name": "MyGridPanel",
                     "configAlternates": {
                         "store": "binding",
-                        "hidden": "binding"
+                        "hidden": "binding",
+                        "title": "binding"
                     },
                     "designerId": "c573a4a8-18e0-4fc1-9a83-152d320be3c9",
                     "cn": [

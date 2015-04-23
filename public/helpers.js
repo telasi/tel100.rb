@@ -1550,13 +1550,17 @@ var formatResponses = function(data, metaData) {
   var tooltip = [];
   var stats = [];
   var count = 0;
+  var datetext = '';
 
   for(var i = 0; i < data.length; i++) {
     var motion = data[i];
     var status = motion.status;
     var motion_text = motion.current_status;
     if(motion_text === '--'){continue;};
-    if(motion.due_date){ motion_text = [motion_text, '(', motion.due_date, ')'].join(''); };
+    if(motion.due_date){ 
+      datetext = Ext.Date.format(Ext.Date.parse(motion.due_date, "Y-m-d\\TH:i:s.u\\Z"), "d/m/Y")
+      motion_text = [motion_text, ' (', datetext, ')'].join(''); 
+    };
     tooltip.push(motion_text);
     if(i < 2){
       var decor = helpers.document.status.statusDecoration(status);
@@ -1565,7 +1569,7 @@ var formatResponses = function(data, metaData) {
         '<i class="fa ' + decor.icon + '"></i> ',
         motion.current_status,
         '<br>',
-        motion.due_date,
+        datetext,
         '</span>'
       ].join(''));
     } else {

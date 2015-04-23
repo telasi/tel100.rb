@@ -185,10 +185,10 @@ Ext.define('Tel100.view.document.folder.Tab', {
           xtype: 'gridpanel',
           border: false,
           collapsible: true,
-          title: 'Substitude',
           hideHeaders: true,
           bind: {
             hidden: '{hideSubstitudeGrid}',
+            title: '{i18n.vacation.ui.grid_title}',
             store: '{substitudeStore}'
           },
           columns: [
