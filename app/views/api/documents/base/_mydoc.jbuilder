@@ -57,7 +57,7 @@ json.completed_at_f doc.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if doc.
 
 ## parties in this task
 
-stats = [ Document::Status::DRAFT, Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
+stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
 
 # authors
 json.authors do

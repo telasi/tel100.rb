@@ -350,7 +350,7 @@
                         ],
                         "fn": "renderer",
                         "implHandler": [
-                            "return helpers.document.motion.formatReceivers(value, metaData);"
+                            "return helpers.document.motion.formatReceivers(value, metaData, { prefix: 'assignee' });"
                         ]
                     },
                     "name": "renderer",
@@ -456,7 +456,7 @@
                         ],
                         "fn": "renderer",
                         "implHandler": [
-                            "return helpers.document.motion.formatReceivers(value, metaData);"
+                            "return helpers.document.motion.formatReceivers(value, metaData, { prefix: 'signee' });"
                         ]
                     },
                     "name": "renderer",
