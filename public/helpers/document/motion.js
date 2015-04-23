@@ -19,7 +19,7 @@ var getPropertiesDialog = function(motion) {
 /**
  * This function is used for decorating receivers in document grid.
  */
-var formatReceivers = function(data, metaData) {
+var formatReceivers = function(data, metaData, opts) {
   var text = [];
   var tooltip = [];
   var stats = [];
@@ -27,6 +27,7 @@ var formatReceivers = function(data, metaData) {
   var countCompleted = 0;
   var countCanceled = 0;
   var countOthers = 0;
+  var prefix = opts && opts.prefix;
 
   for(var i = 0; i < data.length; i++) {
     var person = data[i];
@@ -36,10 +37,15 @@ var formatReceivers = function(data, metaData) {
     tooltip.push(tooltipitem);
     if(i < 2){
       var decor = helpers.document.status.statusDecoration(status);
+      var name;
+      if (prefix) {
+        name = '<a data-id="' + person[prefix + '_id'] + '" data-class="' + person[prefix + '_type'] + '">' + person.name + '</a>';
+      } else {
+        name = person.name;
+      }
       text.push([
         '<span class="' + decor.style + '">',
-        '<i class="fa ' + decor.icon + '"></i> ',
-        person.name,
+        '<i class="fa ' + decor.icon + '"></i> ', name,
         '</span>'
       ].join(''));
     } else {

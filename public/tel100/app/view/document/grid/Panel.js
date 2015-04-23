@@ -149,7 +149,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        return helpers.document.motion.formatReceivers(value, metaData);
+        return helpers.document.motion.formatReceivers(value, metaData, { prefix: 'author' });
       },
       width: 200,
       sortable: false,
