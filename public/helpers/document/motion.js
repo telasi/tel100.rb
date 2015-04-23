@@ -78,7 +78,6 @@ var formatResponses = function(data, metaData) {
       var motion_text = motion.current_status;
       if(motion_text === '--'){continue;};
       if(motion.due_date){ 
-        debugger;
         datetext = Ext.Date.format(Ext.Date.parse(motion.due_date, "Y-m-d\\TH:i:s.u\\Z"), "d/m/Y")
         motion_text = [motion_text, ' (', datetext, ')'].join(''); 
       };
