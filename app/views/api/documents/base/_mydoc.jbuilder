@@ -118,8 +118,8 @@ json.incoming do
 end
 
 out_stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
-
-outgoing = mydoc.outgoing.where('status IN (?)', out_stats).order('id DESC') # any status is OK
+out_roles = [ Document::Role::ROLE_ASSIGNEE ]
+outgoing = mydoc.outgoing.where('status IN (?) AND receiver_role IN (?)', out_stats, out_roles).order('id DESC') # any status is OK
 json.outgoing do
   json.array! outgoing do |motion|
     json.id             motion.id
