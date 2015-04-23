@@ -74,6 +74,7 @@ json.authors do
     end
   end
 end
+
 # signees
 json.signees do
   json.array! doc.signee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
@@ -87,6 +88,7 @@ json.signees do
     json.position  motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
   end
 end
+
 # assignees
 json.assignees do
   json.array! doc.assignee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
@@ -99,8 +101,8 @@ json.assignees do
   end
 end
 
-# incoming/outgoing assignee_motions
-incoming = mydoc.motions.order('id ASC') # any status is OK
+# incoming motions
+incoming = mydoc.motions.order('ordering ASC, id ASC') # any status is OK
 json.incoming do
   json.array! incoming do |motion|
     json.id           motion.id
@@ -117,9 +119,10 @@ json.incoming do
   end
 end
 
+# outgoing motions
 out_stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
 out_roles = [ Document::Role::ROLE_ASSIGNEE ]
-outgoing = mydoc.outgoing.where('status IN (?) AND receiver_role IN (?)', out_stats, out_roles).order('id DESC') # any status is OK
+outgoing = mydoc.outgoing.where('status IN (?) AND receiver_role IN (?)', out_stats, out_roles).order('ordering ASC, id DESC') # any status is OK
 json.outgoing do
   json.array! outgoing do |motion|
     json.id             motion.id
