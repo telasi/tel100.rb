@@ -1,3 +1,4 @@
+var partyApi = require('../api/party');
 var partyDialog;
 var employeeTip;
 
@@ -56,9 +57,15 @@ var convertTypeToRuby = function(type){
 var employeeTips = function(component) {
   component.getEl().on('click', function(event, el) {
     if (el && el.tagName === 'A') {
-      var html = el.attributes['data-html'].value;
-      if (html) {
-        html = decodeURIComponent(html);
+      var id = el.attributes['data-id'].value;
+      var className = el.attributes['data-class'].value;
+      if (id && className) {
+        partyApi.getInfo(id, className, {
+          success: function(data) {
+            employeeTip.setHtml(data.html);
+          }
+        });
+        html = '<i class="fa fa-circle-o-notch fa-spin"></i> loading...';
         if (!employeeTip) {
           employeeTip = Ext.create('Ext.tip.ToolTip', { autoHide: false });
         }

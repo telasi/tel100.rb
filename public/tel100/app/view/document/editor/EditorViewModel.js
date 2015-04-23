@@ -144,7 +144,7 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         }
         text.push([
         '<span class="' + decor.style + '">', icon,
-        '<a data-html="' + html + '">' + receiverName + '</a>',
+        '<a data-id="' + to.receiver_id + '" data-class="' + to.receiver_type + '">' + receiverName + '</a>',
         ( currentStatus && currentStatus !== '--' ? ' &mdash; ' + currentStatus : ''  ),
         '</span>',
         ( to.completed_at ? ' <span class="text-danger">' + to.completed_at + '</span>' : '' )
