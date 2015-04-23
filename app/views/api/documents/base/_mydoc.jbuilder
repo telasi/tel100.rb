@@ -104,8 +104,8 @@ json.incoming do
     json.id           motion.id
     json.status       motion.status
     json.name         motion.sender.to_s
-    json.sender_html  motion.sender.to_html if motion.sender.respond_to?('to_html')
-    json.sender_type  motion.sender_type.to_s
+    json.sender_id    motion.sender_id
+    json.sender_type  motion.sender_type
     json.current_status motion.current_status.to_s
     json.motion_text  motion.motion_text
     json.due_date     motion.due_date
@@ -123,9 +123,9 @@ json.outgoing do
     json.id             motion.id
     json.status         motion.status
     json.name           motion.receiver.to_s
-    json.receiver_type  motion.receiver_type.to_s
-    json.receiver_html  motion.receiver.to_html if motion.receiver.respond_to?('to_html')
-    json.current_status   motion.current_status.to_s
+    json.receiver_id    motion.receiver_id
+    json.receiver_type  motion.receiver_type
+    json.current_status motion.current_status.to_s
     json.response_text  motion.response_text
     json.due_date       motion.due_date
     json.completed_at   motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?

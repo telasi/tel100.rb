@@ -45,4 +45,13 @@ class Api::PartyController < ApiController
     Party::Favourites.find(params[:id]).delete
     render json: { success: true }
   end
+
+  def info
+    begin
+      object = params[:class_name].constantize.find params[:id]
+      render json: { success: true, html: object.to_html }
+    rescue
+      render json: { success: false, message: 'no info' }
+    end
+  end
 end
