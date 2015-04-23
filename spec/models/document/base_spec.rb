@@ -447,4 +447,47 @@ RSpec.describe Document::Base do
     expect(motion2.status).to eq(Document::Status::NOT_RECEIVED)
     expect(doc.status).to eq(Document::Status::CANCELED)
   end
+
+  it 'two signees on the same level and one on upper level' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    shalva  = Sys::User.find_by_username('shalva')
+    nino    = Sys::User.find_by_username('nino')
+    temo    = Sys::User.find_by_username('temo')
+    doc = Document::Base.create_draft!(dimitri)
+    doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body' })
+    motion1 = Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: shalva.employee.id,
+      receiver_role: Document::Role::ROLE_SIGNEE,
+      ordering: 1
+    })
+    motion2 = Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: nino.employee.id,
+      receiver_role: Document::Role::ROLE_SIGNEE,
+      ordering: 1
+    })
+    motion3 = Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: temo.employee.id,
+      receiver_role: Document::Role::ROLE_SIGNEE,
+      ordering: 2
+    })
+    doc.reload ; doc.send_draft!(dimitri)
+    motion1.reload ; motion2.reload ; motion3.reload
+    expect(motion1.ordering).to eq(1)
+    expect(motion1.status).to eq(Document::Status::CURRENT)
+    expect(motion2.ordering).to eq(1)
+    expect(motion2.status).to eq(Document::Status::CURRENT)
+    expect(motion3.ordering).to eq(2)
+    expect(motion3.status).to eq(Document::Status::SENT)
+    motion1.add_comment(shalva, { response_type: Document::ResponseType::RESP_COMPLETE })
+    doc.reload ; motion1.reload ; motion2.reload; motion3.reload
+    expect(motion1.status).to eq(Document::Status::COMPLETED)
+    expect(motion2.status).to eq(Document::Status::CURRENT)
+    expect(motion3.status).to eq(Document::Status::SENT)
+  end
 end
