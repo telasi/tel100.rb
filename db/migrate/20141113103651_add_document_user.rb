@@ -5,7 +5,9 @@ class AddDocumentUser < ActiveRecord::Migration
       create table DOCUMENT_USER (
         DOCUMENT_ID  number(10, 0) not null,
         USER_ID      number(10, 0) not null,
-        DUE_DATE     date,
+        ---------
+        HAS_DUE_DATE     number(1, 0) default 0 not null,
+        IS_OVER_DUE_DATE number(1, 0) default 0 not null,
         ----- read
         IS_NEW       number(1, 0) default 1 not null,
         IS_CHANGED   number(1, 0) default 1 not null,

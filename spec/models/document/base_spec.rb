@@ -102,14 +102,15 @@ RSpec.describe Document::Base do
     shalva  = Sys::User.find_by_username('shalva')
     nino    = Sys::User.find_by_username('nino')
     doc = Document::Base.create_draft!(dimitri)
-    doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body' })
-    due_date = Date.today + 2
+    doc_due_date = Date.today + 10
+    motion_due_date = Date.today + 5
+    doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body', due_date: doc_due_date })
     motion1 = Document::Motion.create_draft!(dimitri, {
       document_id: doc.id,
       receiver_type: 'HR::Employee',
       receiver_id: shalva.employee.id,
       receiver_role: 'assignee',
-      due_date: due_date
+      due_date: motion_due_date
     })
     doc.reload
     doc.send_draft!(dimitri)
@@ -127,7 +128,7 @@ RSpec.describe Document::Base do
     expect(motion1.sent_at).not_to be_nil
     expect(motion1.received_at).not_to be_nil
     expect(motion1.completed_at).to be_nil
-    expect(motion1.due_date).to eq(due_date)
+    expect(motion1.due_date).to eq(motion_due_date)
     expect(motion1.new?).to eq(true)
     # check document users
     expect(Document::User.where(document: doc).count).to eq(2)
@@ -146,6 +147,7 @@ RSpec.describe Document::Base do
     expect(u1.as_signee).to eq(Document::User::DOC_NONE)
     expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
     expect(u1.as_author).to eq(Document::User::DOC_NONE)
+    expect(u1.due_date).to eq(doc_due_date)
     u2 = Document::User.where(document: doc, user: shalva).first
     expect(u2.user).to eq(shalva)
     expect(u2.new?).to eq(true)
