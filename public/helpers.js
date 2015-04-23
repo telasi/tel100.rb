@@ -310,9 +310,25 @@ module.exports = {
 module.exports = {
   document: require('./document'),
   substitude: require('./substitude'),
-  folders: require('./folders')
+  folders: require('./folders'),
+  party: require('./party')
 };
-},{"./document":3,"./folders":4,"./substitude":6}],6:[function(require,module,exports){
+},{"./document":3,"./folders":4,"./party":6,"./substitude":7}],6:[function(require,module,exports){
+var ajax = require('../ajax');
+
+var getInfo = function(id, className, opts) {
+  var opts = opts || {};
+  opts.method = 'GET';
+  opts.url = '/api/party/info';
+  opts.params = { id: id, class_name: className };
+  ajax.request(opts);
+};
+
+module.exports = {
+  getInfo: getInfo
+};
+
+},{"../ajax":2}],7:[function(require,module,exports){
 var ajax = require('../ajax');
 
 var setSubstitude = function(substitude){
@@ -322,7 +338,7 @@ var setSubstitude = function(substitude){
 module.exports = {
   setSubstitude: setSubstitude
 };
-},{"../ajax":2}],7:[function(require,module,exports){
+},{"../ajax":2}],8:[function(require,module,exports){
 (function (process){
 /*!
  * async
@@ -1449,7 +1465,7 @@ module.exports = {
 }());
 
 }).call(this,require('_process'))
-},{"_process":1}],8:[function(require,module,exports){
+},{"_process":1}],9:[function(require,module,exports){
 module.exports = {
   status: require('./status'),
   role: require('./role'),
@@ -1457,7 +1473,7 @@ module.exports = {
   user: require('./user')
 };
 
-},{"./motion":9,"./role":10,"./status":11,"./user":12}],9:[function(require,module,exports){
+},{"./motion":10,"./role":11,"./status":12,"./user":13}],10:[function(require,module,exports){
 var motionDialog;
 
 var getPropertiesDialog = function(motion) {
@@ -1568,7 +1584,7 @@ module.exports = {
   formatResponses: formatResponses
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = {
   OWNER:    'owner',
   CREATOR:  'creator',
@@ -1577,7 +1593,7 @@ module.exports = {
   ASSIGNEE: 'assignee'
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var role = require('./role');
 
 var DRAFT = 0;
@@ -1736,7 +1752,7 @@ module.exports = {
   documentStatusRowClass: documentStatusRowClass
 };
 
-},{"./role":10}],12:[function(require,module,exports){
+},{"./role":11}],13:[function(require,module,exports){
 var NONE = 0
   , CURRENT = 1
   , COMPLETED = 2
@@ -1802,7 +1818,7 @@ module.exports = {
   }
 };
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 var currentLocale
   , ajax = require('./ajax')
   , preferences = require('./preferences')
@@ -1829,7 +1845,7 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":2,"./preferences":16}],14:[function(require,module,exports){
+},{"./ajax":2,"./preferences":17}],15:[function(require,module,exports){
 window.helpers = {
   ajax: require('./ajax'),
   'document': require('./document'),
@@ -1843,7 +1859,8 @@ window.helpers = {
 window.async = require('./async');
 
 
-},{"./ajax":2,"./api":5,"./async":7,"./document":8,"./i18n":13,"./party":15,"./preferences":16,"./user":17}],15:[function(require,module,exports){
+},{"./ajax":2,"./api":5,"./async":8,"./document":9,"./i18n":14,"./party":16,"./preferences":17,"./user":18}],16:[function(require,module,exports){
+var partyApi = require('../api/party');
 var partyDialog;
 var employeeTip;
 
@@ -1902,9 +1919,15 @@ var convertTypeToRuby = function(type){
 var employeeTips = function(component) {
   component.getEl().on('click', function(event, el) {
     if (el && el.tagName === 'A') {
-      var html = el.attributes['data-html'].value;
-      if (html) {
-        html = decodeURIComponent(html);
+      var id = el.attributes['data-id'].value;
+      var className = el.attributes['data-class'].value;
+      if (id && className) {
+        partyApi.getInfo(id, className, {
+          success: function(data) {
+            employeeTip.setHtml(data.html);
+          }
+        });
+        html = '<i class="fa fa-circle-o-notch fa-spin"></i> loading...';
         if (!employeeTip) {
           employeeTip = Ext.create('Ext.tip.ToolTip', { autoHide: false });
         }
@@ -1924,7 +1947,7 @@ module.exports = {
   employeeTips: employeeTips
 };
 
-},{}],16:[function(require,module,exports){
+},{"../api/party":6}],17:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -1955,7 +1978,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -1985,4 +2008,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":2,"./i18n":13,"./preferences":16}]},{},[14]);
+},{"./ajax":2,"./i18n":14,"./preferences":17}]},{},[15]);
