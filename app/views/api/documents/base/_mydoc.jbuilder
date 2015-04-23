@@ -64,6 +64,8 @@ json.authors do
   json.array! doc.author_motions.where('status IN (?)', stats).order('id ASC') do |motion|
     json.id        motion.id
     json.status    motion.status
+    json.author_id motion.receiver_id
+    json.author_type motion.receiver_type
     json.name      motion.receiver.to_s
     json.response  motion.response_type.to_s
     json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
