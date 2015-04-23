@@ -42,7 +42,8 @@ class HR::Employee < ActiveRecord::Base
   end
 
   def to_html
-    header = "<strong><code>#{self.person_number}</code> #{self.full_name}</strong>"
+    phone = "<code><i class=\"fa fa-phone\"></i> #{self.user.phone}</code> " if (self.user and self.user.phone.present?)
+    header = "<strong>#{phone}#{self.full_name}</strong>"
     if self.organization.present?
       details = self.organization.chain.map do |x|
         "<span style=\"color: #666;\">#{x.name.strip}</span>"
