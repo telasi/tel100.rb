@@ -87,7 +87,8 @@ class Document::Motion < ActiveRecord::Base
       receiver_role: role,
       ordering: ordering,
       send_type: send_type,
-      is_new: is_new
+      is_new: is_new,
+      due_date: params[:due_date]
     })
   end
 

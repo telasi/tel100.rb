@@ -103,11 +103,13 @@ RSpec.describe Document::Base do
     nino    = Sys::User.find_by_username('nino')
     doc = Document::Base.create_draft!(dimitri)
     doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body' })
+    due_date = Date.today + 2
     motion1 = Document::Motion.create_draft!(dimitri, {
       document_id: doc.id,
       receiver_type: 'HR::Employee',
       receiver_id: shalva.employee.id,
-      receiver_role: 'assignee'
+      receiver_role: 'assignee',
+      due_date: due_date
     })
     doc.reload
     doc.send_draft!(dimitri)
@@ -125,6 +127,7 @@ RSpec.describe Document::Base do
     expect(motion1.sent_at).not_to be_nil
     expect(motion1.received_at).not_to be_nil
     expect(motion1.completed_at).to be_nil
+    expect(motion1.due_date).to eq(due_date)
     expect(motion1.new?).to eq(true)
     # check document users
     expect(Document::User.where(document: doc).count).to eq(2)
