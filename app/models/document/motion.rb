@@ -221,16 +221,19 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def resend_ups!
-    ups = Document::Motion.where(parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
-    if ups.count > 0
-      ordering = ups.minimum('ordering')
-      ups = ups.where(ordering: ordering)
-      ups.each do |up|
-        docuser = Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: CURRENT })
-        up.status = CURRENT
-        up.received_at = Time.now
-        up.save!
-        docuser.calculate!
+    thisLevel = Document::Motion.where(parent_id: self.parent_id, status: CURRENT, ordering: self.ordering).count
+    if thisLevel == 0
+      ups = Document::Motion.where(parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
+      if ups.count > 0
+        ordering = ups.minimum('ordering')
+        ups = ups.where(ordering: ordering)
+        ups.each do |up|
+          docuser = Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: CURRENT })
+          up.status = CURRENT
+          up.received_at = Time.now
+          up.save!
+          docuser.calculate!
+        end
       end
     end
   end

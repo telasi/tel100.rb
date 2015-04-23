@@ -489,5 +489,10 @@ RSpec.describe Document::Base do
     expect(motion1.status).to eq(Document::Status::COMPLETED)
     expect(motion2.status).to eq(Document::Status::CURRENT)
     expect(motion3.status).to eq(Document::Status::SENT)
+    motion2.add_comment(nino, { response_type: Document::ResponseType::RESP_COMPLETE })
+    doc.reload ; motion1.reload ; motion2.reload; motion3.reload
+    expect(motion1.status).to eq(Document::Status::COMPLETED)
+    expect(motion2.status).to eq(Document::Status::COMPLETED)
+    expect(motion3.status).to eq(Document::Status::CURRENT)
   end
 end
