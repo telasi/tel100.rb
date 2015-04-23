@@ -99,7 +99,7 @@
                             "var statusDecorator = function(status, isNew, text) {",
                             "  var decoration = helpers.document.status.statusDecoration(status);",
                             "  var icon;",
-                            "  if (isNew) {",
+                            "  if (isNew && status === helpers.document.status.CURRENT) {",
                             "    icon = '<i class=\"text-danger fa fa-circle\"></i>';",
                             "  } else {",
                             "    icon = '<i class=\"fa ' + decoration.icon + '\"></i>';",
