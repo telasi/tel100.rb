@@ -11,8 +11,9 @@ class Folder::Standard
   SENT = 7
   COMPLETED = 8
   CANCELED = 9
+  ALL = 10
 
-  STANDARD_FOLDERS = [ DRAFT, INBOX_UNREAD, INBOX_READ, INBOX_RESENT, SENT, COMPLETED, CANCELED ]
+  STANDARD_FOLDERS = [ DRAFT, INBOX_UNREAD, INBOX_READ, INBOX_RESENT, SENT, COMPLETED, CANCELED, ALL ]
 
   attr_accessor :id
   attr_accessor :parent_id
@@ -75,6 +76,8 @@ class Folder::Standard
         docs.where('document_user.as_assignee IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED] )
       when CANCELED
         docs.where(as_assignee: Document::User::DOC_CANCELED)
+      when ALL
+        docs
     end
    end
 end

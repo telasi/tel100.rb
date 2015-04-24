@@ -10,5 +10,6 @@ module Folders
   STANDARD << Folder::Standard.new(7,nil,'<i class="fa fa-reply"></i>','გაგზავნილი', 'Отправленные', 'Sent', Folder::Standard::SENT)
   STANDARD << Folder::Standard.new(8,nil,'<i class="fa fa-check"></i>','დასრულებული', 'Завершенные', 'Completed', Folder::Standard::COMPLETED)
   STANDARD << Folder::Standard.new(9,nil,'<i class="fa fa-times"></i>','გაუქმებული', 'Отмененные', 'Canceled', Folder::Standard::CANCELED)
-  STANDARD << Folder::Standard.new(10,nil,'<i class="fa fa-circle-o"></i>','დრაფტ', 'Черновики', 'Draft', Folder::Standard::DRAFT)
+  STANDARD << Folder::Standard.new(10,nil,'<i class="fa fa-circle-o"></i>','დრაფტი', 'Черновики', 'Draft', Folder::Standard::DRAFT)
+  STANDARD << Folder::Standard.new(11,nil,'<i class="fa fa-circle-o"></i>','ყველა', 'Все', 'All', Folder::Standard::ALL)
 end
