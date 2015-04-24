@@ -43,12 +43,19 @@ Ext.define('Tel100.view.document.grid.Panel', {
     getRowClass: function(record, rowIndex, rowParams, store) {
       var status = record.get('status');
       var statusClass = helpers.document.status.documentStatusRowClass(status, record);
+
       var isChanged = record.get('is_changed');
       if (isChanged) {
-        return statusClass + ' text-unread';
-      } else {
-        return statusClass;
+        statusClass += ' text-unread';
       }
+
+      if (record.get('due_is_over')) {
+        statusClass += ' danger';
+      } else if (record.get('has_due_date')) {
+        statusClass += ' warning';
+      }
+
+      return statusClass;
     },
     plugins: [
       {

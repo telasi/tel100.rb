@@ -4,6 +4,7 @@ user = mydoc.user
 # ids
 json.id       doc.id
 json.user_id  mydoc.user.id
+
 # document::user properties
 json.is_new       mydoc.new?
 json.is_changed   mydoc.changed?
@@ -17,6 +18,10 @@ json.as_owner     mydoc.as_owner
 json.as_assignee  mydoc.as_assignee
 json.as_signee    mydoc.as_signee
 json.as_author    mydoc.as_author
+json.has_due_date mydoc.due_date?
+json.due_is_over  mydoc.due_is_over?
+json.current_due_date mydoc.current_due_date
+
 # document::base properties
 json.parent_id   doc.parent_id
 json.type_id     doc.type_id ## XXX remove!!!
