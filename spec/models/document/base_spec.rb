@@ -594,8 +594,17 @@ RSpec.describe Document::Base do
       expect(u3.current_due_date).to be_present
       expect(u3.due_is_over?).to eql(false)
 
-      # motion2.add_comment(nino, { response_type: Document::ResponseType::RESP_COMPLETE })
-
+      motion2.add_comment(nino, { response_type: Document::ResponseType::RESP_COMPLETE })
+      motion1.reload; motion2.reload; u1.reload; u2.reload; u3.reload
+      expect(u2.due_date?).to eq(true)
+      expect(u2.completed_over_due).to eq(1)
+      expect(u2.current_due_date).to be_nil
+      expect(u2.due_is_over?).to eql(true)
+      expect(motion2.due_is_over?).to eq(false)
+      expect(u3.due_date?).to eq(true)
+      expect(u3.completed_over_due).to eq(0)
+      expect(u3.current_due_date).to be_nil
+      expect(u3.due_is_over?).to eql(false)
     end
   end
 end
