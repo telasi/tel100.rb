@@ -7,6 +7,7 @@ class Document::User < ActiveRecord::Base
   self.set_integer_columns :is_new, :is_changed, :is_shown
   self.set_integer_columns :is_forwarded, :is_sent, :is_received
   self.set_integer_columns :is_current, :is_canceled, :is_completed
+  self.set_integer_columns :has_due_date, :completed_over_due
   self.set_integer_columns :as_owner, :as_assignee, :as_author, :as_signee
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
@@ -74,6 +75,15 @@ class Document::User < ActiveRecord::Base
   def signee?; self.as_signee > 0 end
   def author?; self.as_author > 0 end
   def assignee?; self.as_assignee > 0 end
+
+  def due_is_over?
+    return true if self.completed_over_due == 1 
+    if self.current_due_date.present?
+      self.current_due_date < Date.today
+    else
+      false
+    end
+  end
 
   def read!
     Document::User.transaction do
@@ -182,6 +192,25 @@ class Document::User < ActiveRecord::Base
     # 8. checking is_shown for non-owners
     not_draft_count = rel.where('status NOT IN (?)', [ SENT, NOT_SENT, NOT_RECEIVED ]).count
     self.is_shown = 1 if not_draft_count > 0
+
+    # 9. calculate due date status
+    current_due_date = nil ; has_due_date = 0 ; completed_over_due = 0
+    self.motions.each do |motion|
+      d = motion.effective_due_date
+      if motion.current?
+        if current_due_date.nil?
+          current_due_date = d
+        elsif d.present? and d < current_due_date
+          current_due_date = d
+        end
+      elsif motion.resolved? and motion.due_is_over?
+        completed_over_due = 1
+      end
+      has_due_date = 1 if d.present?
+    end
+    self.current_due_date = current_due_date
+    self.completed_over_due = completed_over_due
+    self.has_due_date = has_due_date
 
     self.save!
   end
