@@ -36,17 +36,19 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use debugger
-gem 'debugger', group: [:development, :test]
-
 gem 'ka'
 gem 'ruby-oci8'
 gem 'activerecord-oracle_enhanced-adapter'
 gem 'composite_primary_keys'
-gem 'rspec-rails', '~> 3.0.0', group: [:development, :test]
 gem 'forma', path: '../forma'
 gem 'will_paginate-bootstrap'
 gem 'select2-rails'
+
+group :development, :test do
+  gem 'debugger'
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'timecop'
+end
 
 # https://github.com/rails/jbuilder#faster-json-backends
 gem 'yajl-ruby'
