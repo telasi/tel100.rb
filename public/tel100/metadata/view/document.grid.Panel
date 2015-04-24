@@ -434,6 +434,29 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dataIndex": "subject",
+                "designer|displayName": "subject",
+                "hideable": false,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.base.subject}"
+                ],
+                "width": 150
+            },
+            "name": "MyColumn5",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "61fe5764-b6a7-49f4-928b-e5ce82974acd"
+        },
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "cellWrap": true,
                 "dataIndex": "signees",
                 "defaultWidth": null,
@@ -527,29 +550,6 @@
                     "designerId": "661ad8b1-81d2-4aa2-b081-284a829f849a"
                 }
             ]
-        },
-        {
-            "type": "Ext.grid.column.Column",
-            "reference": {
-                "name": "columns",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "dataIndex": "subject",
-                "designer|displayName": "subject",
-                "hideable": false,
-                "sortable": false,
-                "text": [
-                    "{i18n.document.base.subject}"
-                ],
-                "width": 150
-            },
-            "name": "MyColumn5",
-            "configAlternates": {
-                "text": "binding"
-            },
-            "designerId": "61fe5764-b6a7-49f4-928b-e5ce82974acd"
         },
         {
             "type": "Ext.grid.column.Column",

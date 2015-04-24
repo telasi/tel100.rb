@@ -177,6 +177,16 @@ Ext.define('Tel100.view.document.grid.Panel', {
     },
     {
       xtype: 'gridcolumn',
+      width: 150,
+      sortable: false,
+      dataIndex: 'subject',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.base.subject}'
+      }
+    },
+    {
+      xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
         return helpers.document.motion.formatReceivers(value, metaData, { prefix: 'signee' });
       },
@@ -198,16 +208,6 @@ Ext.define('Tel100.view.document.grid.Panel', {
       dataIndex: 'incoming',
       bind: {
         text: '{i18n.document.base.response}'
-      }
-    },
-    {
-      xtype: 'gridcolumn',
-      width: 150,
-      sortable: false,
-      dataIndex: 'subject',
-      hideable: false,
-      bind: {
-        text: '{i18n.document.base.subject}'
       }
     },
     {
