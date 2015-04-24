@@ -29,6 +29,8 @@ class Document::Motion < ActiveRecord::Base
   def new?; self.is_new == 1 end
   def can_destroy?; self.new? end
   def draft?; self.status == DRAFT end
+  def current?; self.status == CURRENT end
+  def resolved?; self.status == COMPLETED || self.status == CANCELED end
   def can_edit?(user); self.sender_user == user end
   def sender_name; (self.sender_user || self.sender).to_s end
   def receiver_name;  (self.receiver_user || self.receiver).to_s end
@@ -206,6 +208,17 @@ class Document::Motion < ActiveRecord::Base
     elsif self.status == COMPLETED
       resend_ups!
     end
+  end
+
+  def effective_due_date
+    self.due_date || self.document.due_date
+  end
+
+  def due_is_over?
+    dd = self.effective_due_date
+    return false if dd.blank?
+    cd = self.completed_at || Date.today
+    cd > dd
   end
 
   private
