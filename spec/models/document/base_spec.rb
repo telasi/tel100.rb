@@ -147,7 +147,7 @@ RSpec.describe Document::Base do
     expect(u1.as_signee).to eq(Document::User::DOC_NONE)
     expect(u1.as_assignee).to eq(Document::User::DOC_NONE)
     expect(u1.as_author).to eq(Document::User::DOC_NONE)
-    expect(u1.due_date).to eq(doc_due_date)
+    # expect(u1.due_date).to eq(doc_due_date)
     u2 = Document::User.where(document: doc, user: shalva).first
     expect(u2.user).to eq(shalva)
     expect(u2.new?).to eq(true)
@@ -177,16 +177,18 @@ RSpec.describe Document::Base do
     expect(Document::User.where(document: doc).count).to eq(3)
     expect(Document::Motion.where(document: doc).count).to eq(2)
     motion1.reload ; motion2.reload
-    motion3 = Document::Motion.where(document: doc, receiver_user: nino).first
+    # motion3 = Document::Motion.where(document: doc, receiver_user: nino).first
     u1 = Document::User.where(document: doc, user: dimitri).first
     u2 = Document::User.where(document: doc, user: shalva).first
     u3 = Document::User.where(document: doc, user: nino).first
     expect(motion2.parent).to eq(motion1)
-    expect(motion3.status).to eq(Document::Status::CURRENT)
+    expect(motion2.status).to eq(Document::Status::CURRENT)
     expect(u2.forwarded?).to eq(true)
     expect(u1.shown?).to eq(true)
     expect(u2.shown?).to eq(true)
     expect(u3.shown?).to eq(true)
+    expect(motion1.due_is_over?).to eq(false)
+    expect(motion2.due_is_over?).to eq(false)
 
     # 3. Receiver replies
     #
@@ -205,6 +207,7 @@ RSpec.describe Document::Base do
     expect(motion1.new?).to eq(false)
     # check document users
     expect(Document::User.where(document: doc).count).to eq(3)
+    expect(doc.motions.count).to eq(2)
     u1 = Document::User.where(document: doc, user: dimitri).first
     expect(u1.user).to eq(dimitri)
     expect(u1.new?).to eq(false)
@@ -499,5 +502,64 @@ RSpec.describe Document::Base do
     expect(motion1.status).to eq(Document::Status::COMPLETED)
     expect(motion2.status).to eq(Document::Status::COMPLETED)
     expect(motion3.status).to eq(Document::Status::CURRENT)
+  end
+
+  it 'testing due dates' do
+    dimitri = Sys::User.find_by_username('dimitri')
+    shalva  = Sys::User.find_by_username('shalva')
+    nino    = Sys::User.find_by_username('nino')
+
+    today = Date.today
+    dd1 = today + 10
+    dd2 = today + 5
+
+    doc = Document::Base.create_draft!(dimitri)
+    doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body', due_date: dd1 })
+
+    motion1 = Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: shalva.employee.id,
+      receiver_role: Document::Role::ROLE_SIGNEE,
+      due_date: dd2,
+      ordering: 1
+    })
+    motion2 = Document::Motion.create_draft!(dimitri, {
+      document_id: doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: nino.employee.id,
+      receiver_role: Document::Role::ROLE_SIGNEE,
+      ordering: 1
+    })
+
+    doc.reload ; doc.send_draft!(dimitri)
+    motion1.reload ; motion2.reload
+
+    u1 = Document::User.where(document: doc, user: dimitri).first
+    u2 = Document::User.where(document: doc, user: shalva).first
+    u3 = Document::User.where(document: doc, user: nino).first
+
+    expect(motion1.effective_due_date).to eq(dd2)
+    expect(motion1.due_is_over?).to eq(false)
+    expect(motion2.effective_due_date).to eq(dd1)
+    expect(motion2.due_is_over?).to eq(false)
+    expect(u1.has_due_date).to eq(0)
+    expect(u1.completed_over_due).to eq(0)
+    expect(u1.current_due_date).to be_nil
+    expect(u2.has_due_date).to eq(1)
+    expect(u2.completed_over_due).to eq(0)
+    expect(u2.current_due_date).to eq(dd2)
+    expect(u3.has_due_date).to eq(1)
+    expect(u3.completed_over_due).to eq(0)
+    expect(u3.current_due_date).to eq(dd1)
+    expect(u1.due_is_over?).to eq(false)
+    expect(u2.due_is_over?).to eq(false)
+    expect(u3.due_is_over?).to eq(false)
+
+    # expect(u1.completed_over_due).to eq(0)
+    # expect(u1.current_due_date).to be_nil
+
+    # motion1.add_comment(shalva, { response_type: Document::ResponseType::RESP_COMPLETE })
+    # motion2.add_comment(nino, { response_type: Document::ResponseType::RESP_COMPLETE })
   end
 end
