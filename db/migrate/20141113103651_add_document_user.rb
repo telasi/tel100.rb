@@ -6,8 +6,9 @@ class AddDocumentUser < ActiveRecord::Migration
         DOCUMENT_ID  number(10, 0) not null,
         USER_ID      number(10, 0) not null,
         ---------
-        HAS_DUE_DATE     number(1, 0) default 0 not null,
-        IS_OVER_DUE_DATE number(1, 0) default 0 not null,
+        HAS_DUE_DATE       number(1, 0) default 0 not null,
+        COMPLETED_OVER_DUE number(1, 0) default 0 not null,
+        CURRENT_DUE_DATE   date,
         ----- read
         IS_NEW       number(1, 0) default 1 not null,
         IS_CHANGED   number(1, 0) default 1 not null,
@@ -101,6 +102,14 @@ class AddDocumentUser < ActiveRecord::Migration
 
     execute <<-SQL
       COMMENT ON COLUMN DOCUMENT_USER.AS_ASSIGNEE IS '0: not assignee; 1: has pending status as assignee; 2: has completed status as assignee; 3: has canceled status as assignee'
+    SQL
+
+    execute <<-SQL
+      COMMENT ON COLUMN DOCUMENT_USER.COMPLETED_OVER_DUE IS 'if any motions were completed after due date'
+    SQL
+
+    execute <<-SQL
+      COMMENT ON COLUMN DOCUMENT_USER.CURRENT_DUE_DATE IS 'minimum due_date of current motions'
     SQL
   end
 

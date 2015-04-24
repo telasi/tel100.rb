@@ -126,25 +126,26 @@ ActiveRecord::Schema.define(version: 20150407203528) do
   end
 
   create_table "document_user", id: false, force: true do |t|
-    t.integer   "document_id",      limit: 10, precision: 10, scale: 0,                 null: false
-    t.integer   "user_id",          limit: 10, precision: 10, scale: 0,                 null: false
-    t.boolean   "has_due_date",                precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_over_due_date",            precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_new",                      precision: 1,  scale: 0, default: true,  null: false
-    t.boolean   "is_changed",                  precision: 1,  scale: 0, default: true,  null: false
-    t.boolean   "is_shown",                    precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_forwarded",                precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_sent",                     precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_received",                 precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_current",                  precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_canceled",                 precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "is_completed",                precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "as_owner",                    precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "as_assignee",                 precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "as_signee",                   precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "as_author",                   precision: 1,  scale: 0, default: false, null: false
-    t.timestamp "created_at",       limit: 6,                                           null: false
-    t.timestamp "updated_at",       limit: 6,                                           null: false
+    t.integer   "document_id",        limit: 10, precision: 10, scale: 0,                 null: false
+    t.integer   "user_id",            limit: 10, precision: 10, scale: 0,                 null: false
+    t.boolean   "has_due_date",                  precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "completed_over_due",            precision: 1,  scale: 0, default: false, null: false
+    t.datetime  "current_due_date"
+    t.boolean   "is_new",                        precision: 1,  scale: 0, default: true,  null: false
+    t.boolean   "is_changed",                    precision: 1,  scale: 0, default: true,  null: false
+    t.boolean   "is_shown",                      precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_forwarded",                  precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_sent",                       precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_received",                   precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_current",                    precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_canceled",                   precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "is_completed",                  precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "as_owner",                      precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "as_assignee",                   precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "as_signee",                     precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "as_author",                     precision: 1,  scale: 0, default: false, null: false
+    t.timestamp "created_at",         limit: 6,                                           null: false
+    t.timestamp "updated_at",         limit: 6,                                           null: false
   end
 
   add_index "document_user", ["as_assignee"], name: "document_user_asassignee_idx"
