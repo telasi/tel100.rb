@@ -76,8 +76,10 @@ class Document::User < ActiveRecord::Base
   def author?; self.as_author > 0 end
   def assignee?; self.as_assignee > 0 end
 
+  def due_date?; self.has_due_date == 1 end
+
   def due_is_over?
-    return true if self.completed_over_due == 1 
+    return true if self.completed_over_due == 1
     if self.current_due_date.present?
       self.current_due_date < Date.today
     else
