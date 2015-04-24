@@ -509,9 +509,8 @@ RSpec.describe Document::Base do
     shalva  = Sys::User.find_by_username('shalva')
     nino    = Sys::User.find_by_username('nino')
 
-    today = Date.today
-    dd1 = today + 10
-    dd2 = today + 5
+    dd1 = Date.today + 10
+    dd2 = Date.today + 5
 
     doc = Document::Base.create_draft!(dimitri)
     doc.update_draft!(dimitri, { subject: 'test subject', body: 'test body', due_date: dd1 })
@@ -555,6 +554,30 @@ RSpec.describe Document::Base do
     expect(u1.due_is_over?).to eq(false)
     expect(u2.due_is_over?).to eq(false)
     expect(u3.due_is_over?).to eq(false)
+
+    Timecop.travel Date.today + 6 do
+      expect(motion1.due_is_over?).to eq(true)
+      expect(motion2.due_is_over?).to eq(false)
+      expect(u1.due_is_over?).to eq(false)
+      expect(u2.due_is_over?).to eq(true)
+      expect(u3.due_is_over?).to eq(false)
+    end
+
+    Timecop.travel Date.today + 10 do
+      expect(motion1.due_is_over?).to eq(true)
+      expect(motion2.due_is_over?).to eq(false)
+      expect(u1.due_is_over?).to eq(false)
+      expect(u2.due_is_over?).to eq(true)
+      expect(u3.due_is_over?).to eq(false)
+    end
+
+    Timecop.travel Date.today + 15 do
+      expect(motion1.due_is_over?).to eq(true)
+      expect(motion2.due_is_over?).to eq(true)
+      expect(u1.due_is_over?).to eq(false)
+      expect(u2.due_is_over?).to eq(true)
+      expect(u3.due_is_over?).to eq(true)
+    end
 
     # expect(u1.completed_over_due).to eq(0)
     # expect(u1.current_due_date).to be_nil
