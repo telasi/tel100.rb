@@ -814,7 +814,6 @@
                 },
                 {
                     "id": "dcf8b3e6-a71b-4e00-90a6-cbca462fc78c",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "0bd19d7e-b380-427e-85e9-3c16b252c2f5"
@@ -823,6 +822,7 @@
                 },
                 {
                     "id": "ad00e170-b2c6-48d0-903f-6a00b5495f95",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "f4f21b69-2102-49ab-a4ac-7052cd870a4c"
@@ -831,6 +831,7 @@
                 },
                 {
                     "id": "706fa59a-88cb-42b8-960b-19f819995a4c",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "d0cc4b01-5cd4-41cd-b5a1-9803ab50fd45"
@@ -839,6 +840,7 @@
                 },
                 {
                     "id": "7d8da482-5cca-47c1-bdf0-2bf9bf58196c",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "68621449-1493-4625-a12f-ba74c10d2fa6"
@@ -847,6 +849,7 @@
                 },
                 {
                     "id": "354e8c1a-0481-46b4-ab55-35fd8407ebb7",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "5de84f3c-0a6f-41e3-b420-f5026d038d59"
@@ -855,6 +858,7 @@
                 },
                 {
                     "id": "045496f0-def0-45ac-ae0f-e074e552611b",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "661ad8b1-81d2-4aa2-b081-284a829f849a"
@@ -4048,7 +4052,7 @@
     },
     "inspectorState": {
         "topInstance": "c39280dd-4a3b-4f87-8455-6779b7ed7103",
-        "selectedInstance": "8f71b666-0e68-4332-8ff4-2e03e87bd615"
+        "selectedInstance": "0bd19d7e-b380-427e-85e9-3c16b252c2f5"
     },
     "editMode": "code",
     "userSettings": {

@@ -98,7 +98,15 @@ Ext.define('Tel100.view.document.grid.Panel', {
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        return [value, record.get('directionName')].join('<br>');
+        var text = [];
+        text.push(value); // status
+        var dueDate = record.get('current_due_date');
+        if (dueDate) {
+          text.push('<span class="text-warning"><i class="fa fa-warning"></i> <strong>' +
+          Ext.Date.format(new Date(dueDate), 'd/m/Y') + '</strong></span>');
+        }
+        text.push(record.get('directionName')); // direction
+        return text.join('<br>');
       },
       width: 130,
       sortable: false,
