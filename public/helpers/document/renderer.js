@@ -51,12 +51,22 @@ function renderMotion(record, opts) {
     if (typeof dueDate === 'string') {
       dueDate = new Date(dueDate);
     }
-    var dueClass = dueIsOver ? 'text-danger' : 'text-warning';
-    text = [ text,
-      ' <span class="', dueClass, '"><i class="fa fa-warning"></i>',
-      '<strong>', Ext.Date.format(dueDate, 'd/m/Y'),
-      '</strong></span>'
-    ].join('');
+    var dueIcon = 'fa-warning';
+    if (dueIsOver) {
+      dueIcon =  'fa-times-circle';
+    } else if (status == Status.COMPLETED) {
+      dueIcon = 'fa-check-circle';
+    } else if (status == Status.CANCELED) {
+      dueIcon = '';
+    }
+    var dueDateText = '<i class="fa ' + dueIcon + '"></i> <strong>' + Ext.Date.format(dueDate, 'd/m/Y') + '</strong>';
+    var dueClass = '';
+    if (dueIsOver) {
+      dueClass = 'text-danger';
+    } else if (status === Status.CURRENT) {
+      dueClass = 'text-warning'
+    }
+    text = [ text, ' <span class="', dueClass, '">', dueDateText, '</strong></span>' ].join('');
   }
 
   // statusify
