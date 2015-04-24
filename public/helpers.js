@@ -1470,10 +1470,11 @@ module.exports = {
   status: require('./status'),
   role: require('./role'),
   motion: require('./motion'),
-  user: require('./user')
+  user: require('./user'),
+  renderer: require('./renderer')
 };
 
-},{"./motion":10,"./role":11,"./status":12,"./user":13}],10:[function(require,module,exports){
+},{"./motion":10,"./renderer":11,"./role":12,"./status":13,"./user":14}],10:[function(require,module,exports){
 var motionDialog;
 
 var getPropertiesDialog = function(motion) {
@@ -1599,6 +1600,86 @@ module.exports = {
 };
 
 },{}],11:[function(require,module,exports){
+'use strict';
+
+var Status = require('./status');
+
+module.exports = {
+  renderMotion: renderMotion
+};
+
+function get(object, property) {
+  var hasGetter = (typeof object.get === 'function');
+  var getSingleProperty = function(object, prop) {
+    if (hasGetter) { return object.get(prop); }
+    return object[prop];
+  };
+  if (typeof property === 'string') {
+    return getSingleProperty(object, property);
+  } else {
+    for (var i = 0; i < property.length; i++) {
+      var val = getSingleProperty(object, property[i]);
+      if (val !== undefined) {
+        return val;
+      }
+    }
+  }
+};
+
+function renderMotion(record, opts) {
+  var opts = opts || {};
+  var as = opts.as === 'sender' ? 'sender' : 'receiver';
+
+  var id = get(record, as + '_id');
+  var type = get(record, as + '_type');
+  var name = get(record, [as + '_name', as, 'name']);
+  var dueDate = get(record, 'due_date');
+  var dueIsOver = get(record, 'due_is_over');
+  var status = get(record, 'status');
+  var decoration = Status.statusDecoration(status);
+  var isNew = get(record, 'is_new');
+  var currentStatus = get(record, 'current_status');
+
+  // name
+  var text = id ? ['<a href="#" data-id="',id,'" data-class="',type,'">',name,'</a>'].join('') : name;
+
+  // adding current status
+  if (currentStatus && currentStatus !== '--') {
+    text = [ text, ' &mdash; ', currentStatus ].join('');
+  }
+
+  // show dueDate
+  if (dueDate) {
+    if (typeof dueDate === 'string') {
+      dueDate = new Date(dueDate);
+    }
+    var dueClass = dueIsOver ? 'text-danger' : 'text-warning';
+    text = [ text,
+      ' <span class="', dueClass, '"><i class="fa fa-warning"></i>',
+      '<strong>', Ext.Date.format(dueDate, 'd/m/Y'),
+      '</strong></span>'
+    ].join('');
+  }
+
+  // statusify
+  var icon;
+  if (isNew && status === helpers.document.status.CURRENT) {
+    icon = '<i class="text-danger fa fa-circle"></i>';
+  } else {
+    icon = '<i class="fa ' + decoration.icon + '"></i>';
+  }
+  text = [ '<span class="', decoration.style, '">', icon, ' ', text, '</span>' ].join('');
+
+  // decorate with dueDate
+  if (dueDate) {
+    var dueClass = dueIsOver ? 'danger' : 'warning';
+    text = [ '<span class="', dueClass, '">', text, '</span>'].join('');
+  }
+
+  return text;
+};
+
+},{"./status":13}],12:[function(require,module,exports){
 module.exports = {
   OWNER:    'owner',
   CREATOR:  'creator',
@@ -1607,7 +1688,7 @@ module.exports = {
   ASSIGNEE: 'assignee'
 };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var role = require('./role');
 
 var DRAFT = 0;
@@ -1766,7 +1847,7 @@ module.exports = {
   documentStatusRowClass: documentStatusRowClass
 };
 
-},{"./role":11}],13:[function(require,module,exports){
+},{"./role":12}],14:[function(require,module,exports){
 var NONE = 0
   , CURRENT = 1
   , COMPLETED = 2
@@ -1832,7 +1913,7 @@ module.exports = {
   }
 };
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 var currentLocale
   , ajax = require('./ajax')
   , preferences = require('./preferences')
@@ -1859,7 +1940,7 @@ module.exports = {
   resetCurrentLocale: resetCurrentLocale
 };
 
-},{"./ajax":2,"./preferences":17}],15:[function(require,module,exports){
+},{"./ajax":2,"./preferences":18}],16:[function(require,module,exports){
 window.helpers = {
   ajax: require('./ajax'),
   'document': require('./document'),
@@ -1873,7 +1954,7 @@ window.helpers = {
 window.async = require('./async');
 
 
-},{"./ajax":2,"./api":5,"./async":8,"./document":9,"./i18n":14,"./party":16,"./preferences":17,"./user":18}],16:[function(require,module,exports){
+},{"./ajax":2,"./api":5,"./async":8,"./document":9,"./i18n":15,"./party":17,"./preferences":18,"./user":19}],17:[function(require,module,exports){
 var partyApi = require('../api/party');
 var partyDialog;
 var employeeTip;
@@ -1961,7 +2042,7 @@ module.exports = {
   employeeTips: employeeTips
 };
 
-},{"../api/party":6}],17:[function(require,module,exports){
+},{"../api/party":6}],18:[function(require,module,exports){
 var preferenceStore;
 
 var getStore = function() {
@@ -1992,7 +2073,7 @@ module.exports = {
   setValue: setValue
 };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 var currentUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
@@ -2022,4 +2103,4 @@ module.exports = {
   getCurrentUser: getCurrentUser
 };
 
-},{"./ajax":2,"./i18n":14,"./preferences":17}]},{},[15]);
+},{"./ajax":2,"./i18n":15,"./preferences":18}]},{},[16]);

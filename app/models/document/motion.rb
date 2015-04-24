@@ -210,9 +210,8 @@ class Document::Motion < ActiveRecord::Base
     end
   end
 
-  def effective_due_date
-    self.due_date || self.document.due_date
-  end
+  def effective_due_date; self.due_date || self.document.due_date end
+  def due_date?; self.effective_due_date.present? end
 
   def due_is_over?
     dd = self.effective_due_date

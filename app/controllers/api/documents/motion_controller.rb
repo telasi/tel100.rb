@@ -44,7 +44,11 @@ class Api::Documents::MotionController < ApiController
         receiver: motion.receiver_name,
         send_type: motion.send_type.to_s,
         completed_at: (motion.completed_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.completed_at.present?),
-        response_type: motion.response_type.to_s
+        response_type: motion.response_type.to_s,
+        due_date: motion.effective_due_date,
+        due_is_over: motion.due_is_over?,
+        receiver_id: motion.receiver_id,
+        receiver_type: motion.receiver_type
       }
     end
     render json: array_to_tree(motionsArray)

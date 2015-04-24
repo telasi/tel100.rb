@@ -76,17 +76,18 @@ Ext.define('Tel100.view.document.motions.Tree', {
           var txt = '#<strong>' + doc.get('docnumber') + '</strong>: ' + doc.get('sender_name') + ', <span class="text-muted">' + roleName + '</span>';
           return statusDecorator(status, false, txt);
         } else {
-          var status = record.get('status');
-          var isNew = record.get('is_new');
-          var currentStatus = record.get('current_status');
-          var txt;
-          var role = record.get('receiver_role');
-          if (currentStatus === '' || currentStatus === '--') {
-            txt = '<strong>' + value + '</strong>, <span class="text-muted">' + i18n.document.role[role] + '</span>';
-          } else {
-            txt = '<strong>' + value + '</strong>, <span class="text-muted">' + i18n.document.role[role] + '</span> &mdash; ' + currentStatus;
-          }
-          return statusDecorator(status, isNew, txt);
+          //   var status = record.get('status');
+          //   var isNew = record.get('is_new');
+          //   var currentStatus = record.get('current_status');
+          //   var txt;
+          //   var role = record.get('receiver_role');
+          //   if (currentStatus === '' || currentStatus === '--') {
+          //     txt = '<strong>' + value + '</strong>, <span class="text-muted">' + i18n.document.role[role] + '</span>';
+          //   } else {
+          //     txt = '<strong>' + value + '</strong>, <span class="text-muted">' + i18n.document.role[role] + '</span> &mdash; ' + currentStatus;
+          //   }
+          //   return statusDecorator(status, isNew, txt);
+          return helpers.document.renderer.renderMotion(record);
         }
       },
       dataIndex: 'receiver',
