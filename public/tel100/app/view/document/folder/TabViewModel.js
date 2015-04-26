@@ -21,7 +21,6 @@ Ext.define('Tel100.view.document.folder.TabViewModel', {
     'Ext.data.Store',
     'Ext.data.proxy.Rest',
     'Ext.data.field.Field',
-    'Ext.app.bind.Formula',
     'Tel100.view.document.folder.TabViewController'
   ],
 
@@ -62,14 +61,6 @@ Ext.define('Tel100.view.document.folder.TabViewModel', {
           name: 'userid'
         }
       ]
-    }
-  },
-  formulas: {
-    hideSubstitudeGrid: function(get) {
-      this.getStore('substitudeStore').load(function(records, operation, success) {
-        return records.length === 0;
-      });
-      //return this.getStore('substitudeStore').loadCount === 0;
     }
   }
 

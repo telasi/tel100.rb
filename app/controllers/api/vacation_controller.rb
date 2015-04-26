@@ -16,7 +16,7 @@ class Api::VacationController < ApiController
   end
 
   def substitudes
-    @substitudes = HR::Vacation::Vacation.get_substitudes(current_user)
+    @substitudes = HR::Vacation::Vacation.users_i_substitude(current_user)
   end
 
   def list

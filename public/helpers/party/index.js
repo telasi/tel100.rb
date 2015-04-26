@@ -77,10 +77,33 @@ var employeeTips = function(component) {
   });
 };
 
+var vacationDecorations = function(record){
+  return ['<span title="'+record.get('vac_text')+ '" class="text-muted"><i class="fa fa-pause"></i> ',
+         record.get('full_name'),
+         '</span> - ',
+         //'<span class="text-danger">'+ record.get('vac_text') + '</i></span> ',
+         '<span class="text-success"><i class="fa fa-user"></i> <a data-sub="' + record.get('sub_id') + '"> ',
+         i18n.hr.tree.substitude,
+         record.get('sub_name'),
+         '</a></span>']
+         .join('');
+};
+
+var vacationAction = function(component){
+  component.getEl().on('click', function(event, el) {
+    if (el && el.tagName === 'A') {
+      var sub_id = el.attributes['data-sub'].value;
+      component.fireEvent('startsearch', component, sub_id);
+    }
+  });
+};
+
 module.exports = {
   getPartyDialog: getPartyDialog,
   favouriteDecoration: favouriteDecoration,
   convertTypeToExt: convertTypeToExt,
   convertTypeToRuby: convertTypeToRuby,
-  employeeTips: employeeTips
+  employeeTips: employeeTips,
+  vacationDecorations: vacationDecorations,
+  vacationAction: vacationAction
 };

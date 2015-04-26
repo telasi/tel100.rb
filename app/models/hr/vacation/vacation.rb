@@ -71,20 +71,6 @@ class HR::Vacation::Vacation < ActiveRecord::Base
     end
   end
 
-  def self.confirmed; HR::Vacation::Vacation.where(confirmed: 1) end
-
-  def correct_dates
-  	errors.add(:to_date, 'Error in dates') if to_date < from_date
-  end
-
-  def date_not_intersect
-  	errors.add(:to_date, 'Date intersection') if HR::Vacation::Vacation.where("userid = ? and to_date > ? and from_date < ?", self.userid, self.from_date, self.to_date ).first
-  end
-
-  def self.get_substitudes(user)
-  	HR::Vacation::Vacation.confirmed.where("from_date <= sysdate and to_date >= sysdate and substitude = ? and substitude_type <> 1", user.employee.id)
-  end
-
   def self.add_motion_user(mparam, signee, parent)
     mparam[:receiver_id] = signee
     receiver_user, receiver = who_eval('receiver', mparam)
@@ -99,5 +85,24 @@ class HR::Vacation::Vacation < ActiveRecord::Base
     docuser.calculate! if docuser
 
     motion
+  end
+
+  def self.confirmed; HR::Vacation::Vacation.where(confirmed: 1) end
+  def self.current; HR::Vacation::Vacation.where("from_date <= sysdate and to_date >= sysdate") end
+
+  def correct_dates
+  	errors.add(:to_date, 'Error in dates') if to_date < from_date
+  end
+
+  def date_not_intersect
+  	errors.add(:to_date, 'Date intersection') if HR::Vacation::Vacation.where("userid = ? and to_date > ? and from_date < ?", self.userid, self.from_date, self.to_date ).first
+  end
+
+  def self.substitude_for_user(user_id)
+  	HR::Vacation::Vacation.confirmed.current.where("userid = ?", user_id).first if user_id
+  end
+
+  def self.users_i_substitude(user)
+    HR::Vacation::Vacation.confirmed.current.where("substitude = ? and substitude_type <> 1", user.employee.id)
   end
 end

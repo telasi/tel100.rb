@@ -66,7 +66,9 @@ Ext.define('Tel100.view.hr.tree.Panel', {
   ],
   listeners: {
     beforeload: 'onTreepanelBeforeLoad',
-    load: 'onTreepanelLoad'
+    load: 'onTreepanelLoad',
+    afterrender: 'onTreepanelAfterRender',
+    startsearch: 'onTreepanelStartsearch'
   },
   tools: [
     {

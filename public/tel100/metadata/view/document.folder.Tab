@@ -552,9 +552,7 @@
                         "collapsible": true,
                         "designer|displayName": "substitudeList",
                         "height": null,
-                        "hidden": [
-                            "{hideSubstitudeGrid}"
-                        ],
+                        "hidden": true,
                         "hideHeaders": true,
                         "store": [
                             "{substitudeStore}"
@@ -566,7 +564,6 @@
                     "name": "MyGridPanel",
                     "configAlternates": {
                         "store": "binding",
-                        "hidden": "binding",
                         "title": "binding"
                     },
                     "designerId": "c573a4a8-18e0-4fc1-9a83-152d320be3c9",

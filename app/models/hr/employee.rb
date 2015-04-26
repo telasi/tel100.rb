@@ -10,6 +10,7 @@ class HR::Employee < ActiveRecord::Base
   self.set_integer_columns :is_active, :employee_status_id
   belongs_to :organization, class_name: 'HR::Organization'
   has_one :user, class_name: 'Sys::User'
+  belongs_to :vacation, class_name: 'HR::Vacation::Vacation'
 
   def self.active; HR::Employee.where(is_active: 1) end
   def to_s; self.full_name end
@@ -17,9 +18,16 @@ class HR::Employee < ActiveRecord::Base
   def full_name; "#{first_name} #{last_name}" end
   def active?; self.is_active == 1 end
   def employee_status; I18n.t("models.hr_employee.employee_status_id.val#{self.employee_status_id}") end
+  def vacation; HR::Vacation::Vacation.substitude_for_user(self.user_id) end 
 
   def to_hash(opts = {})
     org = opts[:organization] || self.organization
+    if self.vacation
+      vacation_text = self.vacation.type.name
+      sub_id = self.vacation.substitude if self.vacation
+      subemployee = HR::Employee.find(self.vacation.substitude) if self.vacation
+      sub_name = subemployee.first_name + ' ' + subemployee.last_name if subemployee
+    end
     {
       id: self.id,
       is_active: self.active?,
@@ -35,6 +43,11 @@ class HR::Employee < ActiveRecord::Base
       priority: org.priority,
       created_at: self.created_at,
       updated_at: self.updated_at,
+      # vacation
+      vacation: self.vacation,
+      vac_text: vacation_text,
+      sub_id: sub_id, 
+      sub_name: sub_name, 
       # for hr.Tree
       parent_id: org.parent_id,
       ext_type: 'hr.Employee'

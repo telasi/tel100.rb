@@ -3,6 +3,10 @@ module.exports = {
     title: {
       ka: '<i class="fa fa-bolt"></i> სს თელასის სტრუქტურა',
       ru: '<i class="fa fa-bolt"></i> Структура АО Теласи'
+    },
+    substitude:{
+      ka: 'შემცვლელი: ',
+      ru: 'Заменяющий: '
     }
   },
   party: {

@@ -23,7 +23,8 @@
                     "view",
                     "rn",
                     "searchString",
-                    "direction"
+                    "field",
+                    "fn"
                 ],
                 "fn": "searchAndExpand",
                 "implHandler": [
@@ -32,9 +33,9 @@
                     "  this.counter++;",
                     "  if(this.counter <= this.oldcounter){return false;}",
                     "",
-                    "  var text = child.get('full_name');",
-                    "  if(text){",
-                    "    return (text.indexOf(searchString) != -1);",
+                    "  var childvalue = child.get(field);",
+                    "  if(childvalue){",
+                    "    return (fn(childvalue, searchString));",
                     "  }",
                     "}, this, true);",
                     "",
@@ -67,7 +68,7 @@
                     "    this.counter = 0;",
                     "    this.oldcounter = 0;",
                     "",
-                    "    this.searchAndExpand(view, rn, searchValue);",
+                    "    this.searchAndExpand(view, rn, searchValue, 'full_name', function(cv, sv) { return cv.indexOf(sv) != -1; });",
                     "",
                     "    this.getView().down('#nextbutton').setDisabled(false);"
                 ]

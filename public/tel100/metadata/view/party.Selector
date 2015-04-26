@@ -50,7 +50,7 @@
                     "userConfig": {
                         "designer|displayName": "favourites"
                     },
-                    "name": "party.favourites6",
+                    "name": "party.favourites",
                     "designerId": "b159642e-b9b2-4df9-88c9-b2767a7efab2",
                     "masterInstanceId": "a45fbe8d-7059-415d-a0c9-11f96e92436a",
                     "cn": [
@@ -147,7 +147,7 @@
                         "tools": null,
                         "width": null
                     },
-                    "name": "hr.tree.panel5",
+                    "name": "hr.tree.panel",
                     "configAlternates": {
                         "tools": "array",
                         "hidden": "binding"
@@ -231,7 +231,7 @@
                         "designer|displayName": "parties",
                         "hidden": null
                     },
-                    "name": "hr.party.grid5",
+                    "name": "hr.party.grid",
                     "configAlternates": {
                         "hidden": "binding"
                     },
@@ -307,7 +307,7 @@
                         "designer|displayName": "customers",
                         "hidden": null
                     },
-                    "name": "bs.customer.panel5",
+                    "name": "bs.customer.panel",
                     "configAlternates": {
                         "hidden": "binding"
                     },

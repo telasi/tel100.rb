@@ -44,17 +44,40 @@ Ext.define('Tel100.model.hr.Employee', {
             return data.first_name + ' ' + data.last_name;
         },
       name: 'name'
+    },
+    {
+      name: 'vacation'
+    },
+    {
+      calculate: function(data){
+       return !!data.vacation;
+      },
+      name: 'on_vacation'
+    },
+    {
+      name: 'vac_text'
+    },
+    {
+      name: 'sub_id'
+    },
+    {
+      name: 'sub_name'
     }
   ],
 
   toHtml: function() {
     var icon;
+    if(this.get('on_vacation')){
+      return helpers.party.vacationDecorations(this);
+    } else{
     if (this.get('has_user')) {
         icon = '<span class="text-success"><i class="fa fa-user"></i></span>';
     } else {
         icon = '<span class="text-danger"><i class="fa fa-circle"></i></span>';
     }
-    return [icon, this.get('full_name')].join(' ');
+      return [icon, this.get('full_name')].join(' ');
+    }
+
   }
 
 });
