@@ -78,7 +78,7 @@ var employeeTips = function(component) {
 };
 
 var vacationDecorations = function(record){
-  return ['<span title="'+record.get('vac_text')+ '" class="text-muted"><i class="fa fa-pause"></i> ',
+  return ['<span title="'+ i18n.hr.tree.absence_reason + record.get('vac_text')+ '" class="text-muted"><i class="fa fa-pause"></i> ',
          record.get('full_name'),
          '</span> - ',
          //'<span class="text-danger">'+ record.get('vac_text') + '</i></span> ',
