@@ -1,0 +1,122 @@
+{
+    "type": "Ext.grid.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": false,
+        "designer|userAlias": "documentrelationanswer",
+        "designer|userClassName": "document.relation.Answer",
+        "header": false,
+        "height": null,
+        "hidden": [
+            "{hideAnswers}"
+        ],
+        "store": [
+            "{answers}"
+        ],
+        "title": "My Grid Panel",
+        "width": null
+    },
+    "name": "MyGridPanel4",
+    "configAlternates": {
+        "store": "binding",
+        "hidden": "binding"
+    },
+    "designerId": "77658397-fc98-4f3b-b3bf-97a5d2fe3c77",
+    "viewControllerInstanceId": "ba8892d8-941e-46d1-8f06-1b2e2bfc04aa",
+    "viewModelInstanceId": "b3e3f757-40c7-4eb8-9750-8644eff75a71",
+    "cn": [
+        {
+            "type": "Ext.grid.column.Column",
+            "reference": {
+                "name": "columns",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dataIndex": "docnumber",
+                "designer|displayName": "document",
+                "draggable": false,
+                "flex": 1,
+                "hideable": false,
+                "resizable": false,
+                "sortable": false,
+                "text": [
+                    "{i18n.document.base.answers}"
+                ]
+            },
+            "name": "MyColumn25",
+            "configAlternates": {
+                "text": "binding"
+            },
+            "designerId": "30d16633-f0e4-4694-b506-ce0674a24070",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value",
+                            "metaData",
+                            "record",
+                            "rowIndex",
+                            "colIndex",
+                            "store",
+                            "view"
+                        ],
+                        "fn": "renderer",
+                        "implHandler": [
+                            "return [value,",
+                            "        ' ',",
+                            "        record.get('doctype'),",
+                            "        '</a>'].join('');"
+                        ]
+                    },
+                    "name": "renderer",
+                    "designerId": "5c3ff5e5-80eb-4986-a6b1-bbe3ecff022c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.View",
+            "reference": {
+                "name": "viewConfig",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyGridView7",
+            "designerId": "5924f14d-c45b-488a-b928-df92ef813ff6"
+        },
+        {
+            "type": "viewcontrollereventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onAnswersGridpanelCellDblClick",
+                "implHandler": [
+                    "var dm = this.getView().up('documentmain');",
+                    "var doc = Ext.create('Tel100.model.document.Base',{id: record.get('docid')});",
+                    "doc.load({",
+                    "  success: function(document){",
+                    "      dm.getController().openDocument(doc);",
+                    "  }",
+                    "});"
+                ],
+                "name": "celldblclick",
+                "scope": "me"
+            },
+            "name": "onAnswersGridpanelCellDblClick",
+            "designerId": "bcfa355d-47fe-4e1d-ab7e-5cc6a98fc749"
+        }
+    ]
+}

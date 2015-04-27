@@ -20,10 +20,12 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
   requires: [
     'Tel100.view.document.motions.ResultPanelViewModel',
     'Tel100.view.document.motions.ResultPanelViewController',
+    'Tel100.view.document.relation.Answer',
     'Ext.form.field.ComboBox',
     'Ext.form.field.Checkbox',
     'Ext.form.field.TextArea',
-    'Ext.button.Button'
+    'Ext.button.Button',
+    'Ext.grid.Panel'
   ],
 
   controller: 'documentmotionsresultpanel',
@@ -100,6 +102,10 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
       listeners: {
         click: 'onSaveClick'
       }
+    },
+    {
+      xtype: 'documentrelationanswer',
+      flex: 1
     }
   ],
 

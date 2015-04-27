@@ -75,6 +75,7 @@ class Document::Base < ActiveRecord::Base
     Document::Base.transaction do
       self.motions.destroy_all
       self.comments.destroy_all
+      Document::Relation.where(base_id: self.id).destroy_all
       self.text.destroy if self.text
       Document::User.where(document_id: self.id).destroy_all
       self.destroy

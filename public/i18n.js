@@ -74,6 +74,7 @@ module.exports = {
   actions: 'მოქმედება',
   from: 'ვისგან',
   to: 'ვის',
+  answers: 'პასუხები',
   statuses: {
     draft: 'დრაფტი',
     to_be_sent: 'გასაგზავნი',

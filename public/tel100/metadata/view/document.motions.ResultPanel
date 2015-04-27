@@ -277,6 +277,21 @@
             },
             "name": "resetForm",
             "designerId": "7187a0d1-0590-411b-8468-2e8a37f7470b"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "Answers",
+                "layout|flex": 1
+            },
+            "name": "document.relation.answer",
+            "designerId": "667d13d1-e414-4204-9bbe-d3416ff3dfb8",
+            "masterInstanceId": "77658397-fc98-4f3b-b3bf-97a5d2fe3c77"
         }
     ]
 }

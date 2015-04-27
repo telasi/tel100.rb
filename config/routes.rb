@@ -123,9 +123,10 @@ Rails.application.routes.draw do
         delete '/delete',   action: 'destroy'
       end
       scope 'relations', controller: 'relations' do
-        get  '/',         action: 'index'
-        post '/create',   action: 'create'
-        delete '/delete', action: 'delete'
+        get    '/',         action: 'index'
+        post   '/create',   action: 'create'
+        delete '/delete',   action: 'delete'
+        get    '/answer',      action: 'answer'
       end
       scope 'print', controller: 'print' do
         get '/card/:id', action: 'card'

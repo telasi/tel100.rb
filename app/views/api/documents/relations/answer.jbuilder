@@ -1,8 +1,8 @@
 json.array! @relations do |relation|
-  doc = relation.related
-  owner = doc.owner || doc.owner_user
+  doc = relation.base
   json.id        relation.id
+  json.docid     doc.id
   json.docnumber doc.docnumber
+  json.doctype   doc.type.name
   json.status    doc.status
-  json.owner     owner.full_name
 end

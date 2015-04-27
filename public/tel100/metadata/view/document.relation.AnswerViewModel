@@ -1,0 +1,82 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            " { hideAnswers: true}"
+        ],
+        "designer|userAlias": "documentrelationanswer",
+        "designer|userClassName": "document.relation.AnswerViewModel"
+    },
+    "designerId": "b3e3f757-40c7-4eb8-9750-8644eff75a71",
+    "cn": [
+        {
+            "type": "Ext.data.Store",
+            "reference": {
+                "name": "stores",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "model": "document.Base",
+                "name": "answers"
+            },
+            "name": "MyStore12",
+            "designerId": "d00752aa-5e97-40a6-9cce-5970da7eed0a",
+            "cn": [
+                {
+                    "type": "Ext.data.proxy.Ajax",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "extraParams": [
+                            "{ related_id: '{document.id}' }"
+                        ],
+                        "url": "/api/documents/relations/answer"
+                    },
+                    "name": "MyAjaxProxy7",
+                    "designerId": "28869121-ee05-4cfe-8878-d82a872fdac6",
+                    "cn": [
+                        {
+                            "type": "Ext.data.reader.Json",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyJsonReader7",
+                            "designerId": "0842c1bc-4d3f-42d6-8464-9ed0e701d27a"
+                        }
+                    ]
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onStoreLoad",
+                        "implHandler": [
+                            "var vm = this.getViewModel();",
+                            "vm.set('hideAnswers', !store.count());"
+                        ],
+                        "name": "load",
+                        "scope": "me"
+                    },
+                    "name": "onStoreLoad",
+                    "designerId": "836dabb2-9f49-4892-abab-a13adbfbeed8"
+                }
+            ]
+        }
+    ]
+}
