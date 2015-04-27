@@ -4,6 +4,10 @@ class Api::Documents::RelationsController < ApiController
     @relations = Document::Relation.where(base_id: params[:base_id]).order(:id)
   end
 
+  def answer
+    @relations = Document::Relation.where(related_id: params[:related_id]).order(:id)
+  end
+
   def create
     document = Document::Base.find(params[:base_id])
     related = Document::Base.find(params[:related_id])
