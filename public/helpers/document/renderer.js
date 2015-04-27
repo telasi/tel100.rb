@@ -81,6 +81,12 @@ function renderMotion(record, opts) {
   // decorate with dueDate
   if (dueDate) {
     var dueClass = dueIsOver ? 'danger' : 'warning';
+    // var dueClass = '';
+    // if (dueIsOver) {
+    //   dueClass = 'danger';
+    // } else if (status === Status.CURRENT) {
+    //   dueClass = 'warning'
+    // }
     text = [ '<span class="', dueClass, '">', text, '</span>'].join('');
   }
 

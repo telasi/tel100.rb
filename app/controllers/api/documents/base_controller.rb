@@ -12,7 +12,7 @@ class Api::Documents::BaseController < ApiController
 
   def search
     @my_docs = Document::User.mydocs(current_user_sub).joins(:document)
-    @my_docs = @my_docs.where('created_at >= ?', current_substitude.from_date) if current_substitude.present? and current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
+    @my_docs = @my_docs.where('document_user.created_at >= ?', current_substitude.from_date) if current_substitude.present? and current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
     @my_docs = doc_list('standard', 1, params['folder']) if params['folder'].present?
     @my_docs = @my_docs.joins(:document)
 
@@ -50,9 +50,9 @@ class Api::Documents::BaseController < ApiController
       else 
         Document::User.mydocs(current_user_sub)
     end
-    
+
     if current_substitude.present? and current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
-     @docs = @docs.where('created_at >= ?', current_substitude.from_date) 
+     @docs = @docs.where('document_user.created_at >= ?', current_substitude.from_date) 
     else
      @docs
     end
