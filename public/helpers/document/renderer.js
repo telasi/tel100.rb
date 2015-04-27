@@ -47,7 +47,7 @@ function renderMotion(record, opts) {
   }
 
   // show dueDate
-  if (dueDate && [Status.CURRENT,Status.CANCELED,Status.COMPLETED].indexOf(status) !== -1) {
+  if (dueDate) {
     if (typeof dueDate === 'string') {
       dueDate = new Date(dueDate);
     }
