@@ -202,7 +202,9 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
             var documentId = document.id;
             helpers.api.document.motion.sendDraft(documentId, null, {
               success: function() {
-                dialog.refreshOutgrid();
+                // dialog.refreshOutgrid();
+                dialog.fireEvent('motionssent', true);
+                dialog.close();
               }
             });
           },
