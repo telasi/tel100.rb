@@ -87,6 +87,15 @@ class Api::Documents::BaseController < ApiController
     render json: { success: true }
   end
 
+  def reply
+    sourcedoc = Document::Base.find(params[:sourceid])
+    newdoc = Document::Base.create_draft!(current_user)
+    newdoc.update_draft!(current_user, { subject: "Re: #{sourcedoc.subject}" })
+    rel = Document::Relation.create(base: newdoc, related: sourcedoc)
+    @my_doc = Document::User.where(document: newdoc, user: current_user).first
+    render action: 'show'
+  end
+
   def united_role_filter(pdoc, search_string, role)
     search_string = search_string.squish.tr(' ', '%')
     @doc = pdoc.where("exists ( select document_id from document_motion 

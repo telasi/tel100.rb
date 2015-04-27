@@ -120,6 +120,7 @@ module.exports = {
     author_document: '<i class="fa fa-legal"></i> დოკუმენტის ხელმოწერა',
     author_ok: '<i class="fa fa-check"></i> ვაწერ ხელს',
     author_cancel: '<i class="fa fa-times"></i> ხელს არ ვაწერ',
+    reply: '<i class="fa fa-reply"></i> პასუხი',
   },
   errors: {
     text_required_title: 'ჩაწერეთ ტექსტი',
