@@ -212,8 +212,8 @@ class Document::Motion < ActiveRecord::Base
 
   def effective_due_date
     due = self.due_date || self.document.due_date
-    if due.present? and self.self.received_at.present?
-      if due > self.received_at
+    if due.present? and self.received_at.present?
+      if (due + 1.day) < self.received_at
         if self.document.due_date.present? and self.document.due_date > self.received_at
           return self.document.due_date
         end
