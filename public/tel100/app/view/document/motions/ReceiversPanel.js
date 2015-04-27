@@ -40,17 +40,7 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        var status = record.get('status');
-        var decor = helpers.document.status.statusDecoration(status);
-        var text = '<strong>' + value + '</strong>';
-        var date = record.get('date');
-        if (date) { text = text + ' &mdash; ' + date; }
-        return [
-        '<span class="' + decor.style + '">',
-        '<i class="fa ' + decor.icon + '"></i> ',
-        text,
-        '</span>'
-        ].join('');
+        return helpers.document.renderer.renderMotion(record, { as: 'receiver' });
       },
       dataIndex: 'name',
       text: 'name',
