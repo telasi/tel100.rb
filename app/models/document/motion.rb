@@ -210,14 +210,17 @@ class Document::Motion < ActiveRecord::Base
     end
   end
 
-  def effective_due_date; self.due_date || self.document.due_date end
+  def effective_due_date
+    self.due_date || self.document.due_date
+  end
+
   def due_date?; self.effective_due_date.present? end
 
   def due_is_over?
-    dd = self.effective_due_date
-    return false if dd.blank?
-    cd = self.completed_at || Date.today
-    cd > dd
+    due = self.effective_due_date
+    return false if due.blank?
+    completed = self.completed_at || Date.today
+    completed > (due + 1.day)
   end
 
   private
