@@ -71,7 +71,7 @@ function renderMotion(record, opts) {
 
   // statusify
   var icon;
-  if (isNew && status === helpers.document.status.CURRENT) {
+  if (isNew && status === Status.CURRENT) {
     icon = '<i class="text-danger fa fa-circle"></i>';
   } else {
     icon = '<i class="fa ' + decoration.icon + '"></i>';
@@ -80,13 +80,12 @@ function renderMotion(record, opts) {
 
   // decorate with dueDate
   if (dueDate) {
-    var dueClass = dueIsOver ? 'danger' : 'warning';
-    // var dueClass = '';
-    // if (dueIsOver) {
-    //   dueClass = 'danger';
-    // } else if (status === Status.CURRENT) {
-    //   dueClass = 'warning'
-    // }
+    var dueClass = '';
+    if (dueIsOver) {
+      dueClass = 'danger';
+    } else if (status === Status.CURRENT) {
+      dueClass = 'warning';
+    }
     text = [ '<span class="', dueClass, '">', text, '</span>'].join('');
   }
 
