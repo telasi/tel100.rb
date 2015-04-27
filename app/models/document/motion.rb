@@ -8,7 +8,7 @@ class Document::Motion < ActiveRecord::Base
 
   ORDERING_SINGEE  = 1
   ORDERING_ASIGNEE = 500
-  ORDERING_AUTHOR  = 900
+  ORDERING_AUTHOR  = 250
 
   include Document::Personalize
   include Document::Status
