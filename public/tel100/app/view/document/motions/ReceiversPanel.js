@@ -79,12 +79,17 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
   },
 
   onAddAssignee: function(tool, e, owner, eOpts) {
+    var view = this;
     var vm = this.getViewModel();
     var dialog = Ext.create('Tel100.view.document.motions.AssigneeAddDialog', {
       modal: true,
     });
     dialog.setDocument(vm.get('document'));
     dialog.show();
+    dialog.on('motionssent', function() {
+      view.refresh();
+      vm.get('document').load();
+    });
   },
 
   onStoreLoad: function(store, records, successful, eOpts) {

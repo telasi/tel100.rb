@@ -17,21 +17,6 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenteditoreditor',
 
-  onReplyClick: function(button, e, eOpts) {
-    var vm = this.getViewModel();
-    var document = vm.get('document');
-
-    helpers.api.document.base.reply(document.id, {
-      success: function(data) {
-        debugger;
-        var doc = Ext.create('Tel100.model.document.Base', data);
-        var dm = this.getView().up('documentmain');
-        dm.getViewModel().set('selection', doc);
-        dm.getController().openDocument(doc);
-      }.bind(this)
-    });
-  },
-
   onCardPrintClick: function(button, e, eOpts) {
     var vm = this.getViewModel();
     var document = vm.get('document');

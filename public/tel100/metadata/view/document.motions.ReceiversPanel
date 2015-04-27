@@ -147,12 +147,17 @@
                     "userConfig": {
                         "fn": "onAddAssignee",
                         "implHandler": [
+                            "var view = this;",
                             "var vm = this.getViewModel();",
                             "var dialog = Ext.create('Tel100.view.document.motions.AssigneeAddDialog', {",
                             "  modal: true,",
                             "});",
                             "dialog.setDocument(vm.get('document'));",
-                            "dialog.show();"
+                            "dialog.show();",
+                            "dialog.on('motionssent', function() {",
+                            "  view.refresh();",
+                            "  vm.get('document').load();",
+                            "});"
                         ],
                         "name": "click",
                         "scope": "me"

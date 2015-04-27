@@ -64,18 +64,6 @@ Ext.define('Tel100.view.document.editor.Editor', {
             {
               xtype: 'button',
               bind: {
-                text: '{i18n.document.comment.actions.reply}'
-              },
-              listeners: {
-                click: {
-                  fn: 'onReplyClick',
-                  scope: 'controller'
-                }
-              }
-            },
-            {
-              xtype: 'button',
-              bind: {
                 text: '{i18n.document.base.ui.card}'
               },
               listeners: {
