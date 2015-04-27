@@ -31,25 +31,7 @@ class Api::Documents::MotionController < ApiController
   def tree
     document = Document::Base.find(params[:document_id])
     motionsArray = document.motions.where('status NOT IN (?)', [ DRAFT ]).order('ordering ASC, id ASC').map do |motion|
-      { id: motion.id,
-        type: 'motion',
-        parent_id: motion.parent_id,
-        status: motion.status,
-        is_new: motion.new?,
-        current_status: motion.current_status.to_s,
-        ordering: motion.ordering,
-        sender: motion.sender_name,
-        received_at: (motion.received_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.received_at.present?),
-        receiver_role: motion.receiver_role,
-        receiver: motion.receiver_name,
-        send_type: motion.send_type.to_s,
-        completed_at: (motion.completed_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.completed_at.present?),
-        response_type: motion.response_type.to_s,
-        due_date: motion.effective_due_date,
-        due_is_over: motion.due_is_over?,
-        receiver_id: motion.receiver_id,
-        receiver_type: motion.receiver_type
-      }
+      motion_data(motion)
     end
     render json: array_to_tree(motionsArray)
   end
@@ -61,7 +43,10 @@ class Api::Documents::MotionController < ApiController
 
   def assignees
     doc  = Document::Base.find(params[:document_id])
-    @motions = doc.motions.where('receiver_role IN (?) and status IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED], current_user.id).order('id')
+    motions = doc.motions.where('receiver_role IN (?) and status IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED], current_user.id).order('id')
+    render json: (motions.map do |motion|
+          motion_data(motion)
+        end)
   end
 
   def assignees_out
@@ -95,5 +80,28 @@ class Api::Documents::MotionController < ApiController
       end
     end
     render json: { success: true }
+  end
+
+  private
+
+  def motion_data(motion)
+    { id: motion.id,
+      type: 'motion',
+      parent_id: motion.parent_id,
+      status: motion.status,
+      is_new: motion.new?,
+      current_status: motion.current_status.to_s,
+      ordering: motion.ordering,
+      sender: motion.sender_name,
+      received_at: (motion.received_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.received_at.present?),
+      receiver_role: motion.receiver_role,
+      receiver: motion.receiver_name,
+      send_type: motion.send_type.to_s,
+      completed_at: (motion.completed_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.completed_at.present?),
+      response_type: motion.response_type.to_s,
+      due_date: motion.effective_due_date,
+      due_is_over: motion.due_is_over?,
+      receiver_id: motion.receiver_id,
+      receiver_type: motion.receiver_type }
   end
 end
