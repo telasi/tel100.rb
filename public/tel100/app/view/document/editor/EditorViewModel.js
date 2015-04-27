@@ -132,29 +132,33 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
     outgoing: function(get) {
       var outgoing = get('document.outgoing');
       var text = [];
-      for (var i = 0; i < outgoing.length; i++) {
-        var to = outgoing[i];
-        var status = to.status;
-        var decor = helpers.document.status.statusDecoration(status);
-        var icon;
-        if (to.is_new) {
-          icon = '<i class="fa fa-circle text-danger"></i> ';
-        } else {
-          icon = '<i class="fa ' + decor.icon + '"></i> ';
-        }
-        var receiverName = to.name;
-        var currentStatus = to.current_status;
-        if (to.receiver_html) {
-          var html = encodeURIComponent(to.receiver_html);
-        }
-        text.push([
-        '<span class="' + decor.style + '">', icon,
-        '<a data-id="' + to.receiver_id + '" data-class="' + to.receiver_type + '">' + receiverName + '</a>',
-        ( currentStatus && currentStatus !== '--' ? ' &mdash; ' + currentStatus : ''  ),
-        '</span>',
-        ( to.completed_at ? ' <span class="text-danger">' + to.completed_at + '</span>' : '' )
-        ].join(''));
+      /*for (var i = 0; i < outgoing.length; i++) {
+      var to = outgoing[i];
+      var status = to.status;
+      var decor = helpers.document.status.statusDecoration(status);
+      var icon;
+      if (to.is_new) {
+      icon = '<i class="fa fa-circle text-danger"></i> ';
+      } else {
+      icon = '<i class="fa ' + decor.icon + '"></i> ';
       }
+      var receiverName = to.name;
+      var currentStatus = to.current_status;
+      if (to.receiver_html) {
+      var html = encodeURIComponent(to.receiver_html);
+      }
+      text.push([
+      '<span class="' + decor.style + '">', icon,
+      '<a data-id="' + to.receiver_id + '" data-class="' + to.receiver_type + '">' + receiverName + '</a>',
+      ( currentStatus && currentStatus !== '--' ? ' &mdash; ' + currentStatus : ''  ),
+      '</span>',
+      ( to.completed_at ? ' <span class="text-danger">' + to.completed_at + '</span>' : '' )
+      ].join(''));
+      }
+      return text.join('; ');*/
+      outgoing.forEach(function(motion) {
+        text.push(helpers.document.renderer.renderMotion(motion, { as: 'receiver' }));
+      });
       return text.join('; ');
     },
     hideOutgoing: function(get) {

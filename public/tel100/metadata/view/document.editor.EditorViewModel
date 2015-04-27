@@ -395,7 +395,7 @@
                         "implHandler": [
                             "var outgoing = get('document.outgoing');",
                             "var text = [];",
-                            "for (var i = 0; i < outgoing.length; i++) {",
+                            "/*for (var i = 0; i < outgoing.length; i++) {",
                             "  var to = outgoing[i];",
                             "  var status = to.status;",
                             "  var decor = helpers.document.status.statusDecoration(status);",
@@ -418,6 +418,10 @@
                             "    ( to.completed_at ? ' <span class=\"text-danger\">' + to.completed_at + '</span>' : '' )",
                             "  ].join(''));",
                             "}",
+                            "return text.join('; ');*/",
+                            "outgoing.forEach(function(motion) {",
+                            "  text.push(helpers.document.renderer.renderMotion(motion, { as: 'receiver' }));",
+                            "});",
                             "return text.join('; ');"
                         ]
                     },
