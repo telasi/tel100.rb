@@ -34,19 +34,62 @@ function renderMotion(record, opts) {
   var dueDate = get(record, 'due_date');
   var dueIsOver = get(record, 'due_is_over');
   var status = get(record, 'status');
-  var decoration = Status.statusDecoration(status);
   var isNew = get(record, 'is_new');
   var currentStatus = get(record, 'current_status');
 
-  // name
-  var text = id ? ['<a href="#" data-id="',id,'" data-class="',type,'">',name,'</a>'].join('') : name;
+  // start with party name
+  var text = partyLink(id, type, name);
 
   // adding current status
-  if (currentStatus && currentStatus !== '--') {
-    text = [ text, ' &mdash; ', currentStatus ].join('');
+  var respType = responseTypeText(currentStatus);
+  if (respType) { text = [ text, ' &mdash; ', currentStatus ].join(''); }
+
+  // dueDate text
+  var dueText = dueDateText(dueDate, dueIsOver, status);
+  if (dueText) { text = [text, dueText].join(' '); }
+
+  // statusify
+  text = statusify(text, isNew, status);
+
+  // decorate with dueDate
+  if (dueDate) {
+    var dueClass = '';
+    if (dueIsOver) {
+      dueClass = 'danger';
+    } else if (status === Status.CURRENT) {
+      dueClass = 'warning';
+    }
+    text = [ '<span class="', dueClass, '">', text, '</span>'].join('');
   }
 
-  // show dueDate
+  return text;
+};
+
+function statusify(text, isNew, status) {
+  var icon;
+  var decoration = Status.statusDecoration(status);
+  if (isNew && status === Status.CURRENT) {
+    icon = '<i class="text-danger fa fa-circle"></i>';
+  } else {
+    icon = '<i class="fa ' + decoration.icon + '"></i>';
+  }
+  return [ '<span class="', decoration.style, '">', icon, ' ', text, '</span>' ].join('');
+};
+
+function responseTypeText(respType) {
+  if (!respType || respType === '--') { return null; }
+  return respType;
+};
+
+function partyLink(id, type, name) {
+  if (id) {
+    return ['<a href="#" data-id="',id,'" data-class="',type,'">',name,'</a>'].join('');
+  } else {
+    return name;
+  }
+};
+
+function dueDateText(dueDate, dueIsOver, status) {
   if (dueDate) {
     if (typeof dueDate === 'string') {
       dueDate = new Date(dueDate);
@@ -66,28 +109,6 @@ function renderMotion(record, opts) {
     } else if (status === Status.CURRENT) {
       dueClass = 'text-warning'
     }
-    text = [ text, ' <span class="', dueClass, '">', dueDateText, '</strong></span>' ].join('');
+    return [ ' <span class="', dueClass, '">', dueDateText, '</strong></span>' ].join('');
   }
-
-  // statusify
-  var icon;
-  if (isNew && status === Status.CURRENT) {
-    icon = '<i class="text-danger fa fa-circle"></i>';
-  } else {
-    icon = '<i class="fa ' + decoration.icon + '"></i>';
-  }
-  text = [ '<span class="', decoration.style, '">', icon, ' ', text, '</span>' ].join('');
-
-  // decorate with dueDate
-  if (dueDate) {
-    var dueClass = '';
-    if (dueIsOver) {
-      dueClass = 'danger';
-    } else if (status === Status.CURRENT) {
-      dueClass = 'warning';
-    }
-    text = [ '<span class="', dueClass, '">', text, '</span>'].join('');
-  }
-
-  return text;
 };
