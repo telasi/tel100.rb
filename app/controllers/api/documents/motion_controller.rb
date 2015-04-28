@@ -13,7 +13,11 @@ class Api::Documents::MotionController < ApiController
       rel = rel.where(sender_user: current_user)
       rel = rel.where(parent_id: (params[:parent_id].present? ? params[:parent_id] : nil))
     else
-      hasbase = true if current_user == @document.sender_user
+      if current_user == @document.sender_user
+        hasbase = true
+      else
+        hasbase = @document.author_motions.where(receiver_user: current_user).any?
+      end
       rel = rel.where(receiver_user: current_user)
       rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
     end
