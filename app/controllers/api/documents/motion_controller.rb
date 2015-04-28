@@ -16,7 +16,7 @@ class Api::Documents::MotionController < ApiController
       if current_user == @document.sender_user
         hasbase = true
       else
-        hasbase = @document.author_motions.where(receiver_user: current_user).any?
+        is_author = @document.author_motions.where(receiver_user: current_user).any?
       end
       rel = rel.where(receiver_user: current_user)
       rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
@@ -25,7 +25,13 @@ class Api::Documents::MotionController < ApiController
     rel = rel.where(receiver_role: params[:role]) if params[:role].present?
 
     motions = rel.order('ordering ASC, id ASC').to_a
-    @motions = hasbase ? [ nil ] + motions : motions
+    if hasbase
+      @motions = [ nil ] + motions
+    elsif is_author
+      @motions = motions + [ nil ]
+    else
+      @motions = motions
+    end
   end
 
   def show
