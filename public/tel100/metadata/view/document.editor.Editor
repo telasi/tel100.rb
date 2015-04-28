@@ -103,7 +103,6 @@
                                             "",
                                             "helpers.api.document.base.reply(document.id, {",
                                             "    success: function(data) {",
-                                            "      debugger;",
                                             "      var doc = Ext.create('Tel100.model.document.Base', data);",
                                             "      var dm = this.getView().up('documentmain');",
                                             "      dm.getViewModel().set('selection', doc);",
@@ -657,7 +656,7 @@
                                     "userConfig": {
                                         "designer|displayName": "signees"
                                     },
-                                    "name": "document.motions.signaturesviewer2",
+                                    "name": "document.motions.signaturesviewer5",
                                     "designerId": "b281d955-466c-4f22-9917-aa5d396f9c8a",
                                     "masterInstanceId": "521c3b4a-dcf1-4cb0-bc78-4f19857aac2f"
                                 },
@@ -671,7 +670,7 @@
                                     "userConfig": {
                                         "designer|displayName": "receivers"
                                     },
-                                    "name": "document.motions.receiverspanel2",
+                                    "name": "document.motions.receiverspanel7",
                                     "designerId": "ec215852-e87f-4256-b02a-99d05eabd39f",
                                     "masterInstanceId": "9deb0cd5-6e1b-4f12-8333-cf5d5ab594b8"
                                 },
@@ -686,7 +685,11 @@
                                         "designer|displayName": "motions",
                                         "itemId": null
                                     },
+<<<<<<< HEAD
                                     "name": "document.motions.tree2",
+=======
+                                    "name": "document.motions.tree7",
+>>>>>>> 0f8fc54f9705dbe58b9e37592f0df96ccc47221f
                                     "designerId": "2eeacca2-a92c-45b2-a223-929269d20dbd",
                                     "masterInstanceId": "23c81566-c199-406f-8b0e-a0b49f286dd9"
                                 },
@@ -740,7 +743,7 @@
                                     "userConfig": {
                                         "designer|displayName": "comments"
                                     },
-                                    "name": "document.comment.panel2",
+                                    "name": "document.comment.panel5",
                                     "designerId": "0f13dc00-2fce-457b-b67e-e9ca809ddb5e",
                                     "masterInstanceId": "0203c17a-7c6e-4345-82da-ba8dd2a8dff2"
                                 },
@@ -754,7 +757,7 @@
                                     "userConfig": {
                                         "designer|displayName": "files"
                                     },
-                                    "name": "document.file.panel2",
+                                    "name": "document.file.panel6",
                                     "designerId": "42827a7e-f66e-4467-8802-58a12e25162b",
                                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                                 }
@@ -805,7 +808,7 @@
                                 "designer|displayName": "in-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.inpanel2",
+                            "name": "document.motions.inpanel3",
                             "designerId": "7a1fd724-1ec5-45fc-bb58-39815d4d9bac",
                             "masterInstanceId": "360c0d57-9834-48d9-9eb7-d6316da82b30",
                             "cn": [
@@ -864,7 +867,7 @@
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel2",
+                            "name": "document.motions.outpanel6",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }

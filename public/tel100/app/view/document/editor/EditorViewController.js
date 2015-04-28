@@ -23,7 +23,6 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
 
     helpers.api.document.base.reply(document.id, {
       success: function(data) {
-        debugger;
         var doc = Ext.create('Tel100.model.document.Base', data);
         var dm = this.getView().up('documentmain');
         dm.getViewModel().set('selection', doc);
