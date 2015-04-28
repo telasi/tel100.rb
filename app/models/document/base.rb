@@ -110,7 +110,7 @@ class Document::Base < ActiveRecord::Base
 
   def add_comment(user, params)
     raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
-    raise 'not your motion' if user != self.sender_user
+    raise 'not your document' unless (self.owner?(user) || self.author?(user))
     # calculate new status
     new_status = self.status
     type = Document::ResponseType.find(params[:response_type_id]) if params[:response_type_id].present?
@@ -181,6 +181,16 @@ class Document::Base < ActiveRecord::Base
 
   def assignee_motions
     self.motions.where(receiver_role: ROLE_ASSIGNEE)
+  end
+
+  def author?(user)
+    return true if self.sender_user == user
+    return true if self.author_motions.where(receiver_user: user).any?
+    false
+  end
+
+  def owner?(user)
+    self.owner_user == user
   end
 
   private
