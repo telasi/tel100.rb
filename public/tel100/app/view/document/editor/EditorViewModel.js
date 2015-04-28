@@ -55,7 +55,7 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         var senderId = get('document.sender_id');
         var senderType = get('document.sender_type');
         return [
-        '<strong class="text-success">' + i18n.document.base.sender + '</strong> &mdash; ',
+        //     '<strong class="text-success">' + i18n.document.base.sender + '</strong> &mdash; ',
         '<span class="' + decor.style + '">',
         '<i class="fa ' + decor.icon + '"></i> ',
         '<a data-id="' + senderId + '" data-class="' + senderType + '">' + senderName + '</a>',

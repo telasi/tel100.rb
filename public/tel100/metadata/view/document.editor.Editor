@@ -639,7 +639,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general4",
+                                    "name": "document.editor.general2",
                                     "configAlternates": {
                                         "title": "binding",
                                         "readonly": "boolean"
@@ -686,7 +686,7 @@
                                         "designer|displayName": "motions",
                                         "itemId": null
                                     },
-                                    "name": "document.motions.tree4",
+                                    "name": "document.motions.tree2",
                                     "designerId": "2eeacca2-a92c-45b2-a223-929269d20dbd",
                                     "masterInstanceId": "23c81566-c199-406f-8b0e-a0b49f286dd9"
                                 },
@@ -700,7 +700,7 @@
                                     "userConfig": {
                                         "designer|displayName": "resultPane"
                                     },
-                                    "name": "document.motions.resultpanel2",
+                                    "name": "document.motions.resultpanel4",
                                     "designerId": "8a203739-f111-40f4-80ec-92b30cc29f55",
                                     "masterInstanceId": "2019cd14-1d56-44a4-89bb-838a2f7a8473",
                                     "cn": [
@@ -754,7 +754,7 @@
                                     "userConfig": {
                                         "designer|displayName": "files"
                                     },
-                                    "name": "document.file.panel4",
+                                    "name": "document.file.panel2",
                                     "designerId": "42827a7e-f66e-4467-8802-58a12e25162b",
                                     "masterInstanceId": "aff49a9b-8ace-4060-9429-0aa8bb62e5cd"
                                 }
@@ -864,7 +864,7 @@
                                 "designer|displayName": "out-motions",
                                 "layout|flex": 1
                             },
-                            "name": "document.motions.outpanel4",
+                            "name": "document.motions.outpanel2",
                             "designerId": "73fb3857-680b-47fe-b7a8-2fc3a7693222",
                             "masterInstanceId": "364dd2aa-daeb-4e9a-908b-ca6cf5a5a8bd"
                         }
