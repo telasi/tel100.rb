@@ -8,12 +8,13 @@ class Folder::Standard
   INBOX_RESENT = 4
   INBOX_SIGNEE = 5
   INBOX_SIGNED = 6
-  SENT = 7
-  COMPLETED = 8
-  CANCELED = 9
-  ALL = 10
+  CHANGED = 7
+  SENT = 8
+  COMPLETED = 9
+  CANCELED = 10
+  ALL = 11
 
-  STANDARD_FOLDERS = [ DRAFT, INBOX_UNREAD, INBOX_READ, INBOX_RESENT, SENT, COMPLETED, CANCELED, ALL ]
+  STANDARD_FOLDERS = [ DRAFT, INBOX_UNREAD, INBOX_READ, INBOX_RESENT, CHANGED, SENT, COMPLETED, CANCELED, ALL ]
 
   attr_accessor :id
   attr_accessor :parent_id
@@ -70,6 +71,8 @@ class Folder::Standard
         docs.where('document_user.is_completed = ? and ( document_user.as_signee = 1 or document_user.as_author = 1)', show_completed)
       when INBOX_SIGNED
         docs.where('document_user.as_signee IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED] )
+      when CHANGED
+        docs.where('document_user.is_changed = 1', show_completed)
    		when SENT
    			docs.where('document_user.is_sent = 1 and document_user.is_completed = ? or document_user.as_author = 2', show_completed)
       when COMPLETED
