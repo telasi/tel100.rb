@@ -7,3 +7,7 @@ browserify index.js -o ../i18n.js
 # compile helpers
 cd ../helpers
 browserify index.js -o ../helpers.js
+
+# compile tel100
+cd ../tel100
+node build.js

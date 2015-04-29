@@ -40,5 +40,5 @@ var code = allFiles.join('\n\n');
 var minCode = UglifyJS.minify(code, { fromString: true });
 fs.writeFileSync('./tel100.js', minCode.code);
 
-console.log(code.length);
-console.log(minCode.code.length);
+// console.log(code.length);
+// console.log(minCode.code.length);
