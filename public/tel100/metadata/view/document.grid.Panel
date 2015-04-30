@@ -134,7 +134,12 @@
                         ],
                         "fn": "renderer",
                         "implHandler": [
-                            "return [value, record.get('typeName')].join('<br>');"
+                            "var text = value;",
+                            "if(record.get('is_reply')){",
+                            "  text = ['<i class=\"fa fa-reply\"></i>', value].join(' ');",
+                            "}",
+                            "",
+                            "return [text, record.get('typeName')].join('<br>');"
                         ]
                     },
                     "name": "renderer",

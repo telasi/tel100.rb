@@ -48,6 +48,7 @@ json.sender_name doc.sender_name
 json.owner_user_id doc.owner_user_id
 json.owner_id    doc.owner_id
 json.owner_type  doc.owner_type
+json.is_reply    doc.is_reply?
 # dates
 json.created_at doc.created_at
 json.updated_at doc.updated_at

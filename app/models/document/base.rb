@@ -23,6 +23,7 @@ class Document::Base < ActiveRecord::Base
   def motions_waiting; self.motions_total - self.motions_completed - self.motions_canceled end
   def draft?; self.status == DRAFT end
   def sender_name; (self.sender_user || self.sender).to_s end
+  def is_reply?; Document::Relation.where(base_id: self.id).any? end
 
   def self.docnumber_eval(type, date)
     last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('id DESC').first

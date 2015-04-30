@@ -70,7 +70,12 @@ Ext.define('Tel100.view.document.grid.Panel', {
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        return [value, record.get('typeName')].join('<br>');
+        var text = value;
+        if(record.get('is_reply')){
+          text = ['<i class="fa fa-reply"></i>', value].join(' ');
+        }
+
+        return [text, record.get('typeName')].join('<br>');
       },
       width: 100,
       sortable: false,
