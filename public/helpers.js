@@ -2079,15 +2079,23 @@ var employeeTips = function(component) {
 };
 
 var vacationDecorations = function(record){
-  return ['<span title="'+ i18n.hr.tree.absence_reason + record.get('vac_text')+ '" class="text-muted"><i class="fa fa-pause"></i> ',
+
+  var text = ['<span title="'+ i18n.hr.tree.absence_reason + record.get('vac_text')+ '" class="text-muted"><i class="fa fa-pause"></i> ',
          record.get('full_name'),
-         '</span> - ',
-         //'<span class="text-danger">'+ record.get('vac_text') + '</i></span> ',
-         '<span class="text-success"><i class="fa fa-user"></i> <a data-sub="' + record.get('sub_id') + '"> ',
-         i18n.hr.tree.substitude,
-         record.get('sub_name'),
-         '</a></span>']
-         .join('');
+         '</span>'].join('');
+         
+  if (record.get('sub_id')){
+    text = [text,
+           ' - ',
+           //'<span class="text-danger">'+ record.get('vac_text') + '</i></span> ',
+           '<span class="text-success"><i class="fa fa-user"></i> <a data-sub="' + record.get('sub_id') + '"> ',
+           i18n.hr.tree.substitude,
+           record.get('sub_name'),
+           '</a></span>']
+           .join('');   
+  }
+         
+  return text;
 };
 
 var vacationAction = function(component){
