@@ -168,6 +168,30 @@
                     "codeClass": null,
                     "name": "MyGridView3",
                     "designerId": "ababc080-7eb4-423b-bce6-574023b7948c"
+                },
+                {
+                    "type": "viewcontrollereventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridpanelCellDblClick",
+                        "implHandler": [
+                            "var dm = this.getView().up('documentmain');",
+                            "var doc = Ext.create('Tel100.model.document.Base',{id: record.get('related_id')});",
+                            "doc.load({",
+                            "  success: function(document){",
+                            "      dm.getController().openDocument(doc);",
+                            "  }",
+                            "});"
+                        ],
+                        "name": "celldblclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridpanelCellDblClick",
+                    "designerId": "da636274-b1a6-44cb-9bb2-d7034660d90d"
                 }
             ]
         },
