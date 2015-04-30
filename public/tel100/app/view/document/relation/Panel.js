@@ -56,6 +56,9 @@ Ext.define('Tel100.view.document.relation.Panel', {
         {
           xtype: 'actioncolumn',
           width: 24,
+          bind: {
+            hidden: '{notEditable}'
+          },
           items: [
             {
               handler: function(view, rowIndex, colIndex, item, e, record, row) {
@@ -86,6 +89,9 @@ Ext.define('Tel100.view.document.relation.Panel', {
     {
       xtype: 'tool',
       type: 'plus',
+      bind: {
+        hidden: '{notEditable}'
+      },
       listeners: {
         click: 'onAddRelation'
       }
@@ -138,6 +144,11 @@ Ext.define('Tel100.view.document.relation.Panel', {
         store.viewModel = this;
       }
     });
+  },
+
+  setEditable: function(editable) {
+    var vm = this.getViewModel();
+    vm.set('editable', editable);
   }
 
 });

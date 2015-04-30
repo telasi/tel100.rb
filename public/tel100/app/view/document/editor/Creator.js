@@ -166,7 +166,8 @@ Ext.define('Tel100.view.document.editor.Creator', {
                   }
                 },
                 {
-                  xtype: 'documentrelationpanel'
+                  xtype: 'documentrelationpanel',
+                  itemId: 'relations'
                 },
                 {
                   xtype: 'documentmotionssigneepanel',

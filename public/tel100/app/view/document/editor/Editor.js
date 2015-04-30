@@ -27,6 +27,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     'Tel100.view.document.motions.ResultPanel',
     'Tel100.view.document.comment.Panel',
     'Tel100.view.document.file.Panel',
+    'Tel100.view.document.relation.Panel',
     'Tel100.view.document.motions.InPanel',
     'Tel100.view.document.motions.OutPanel',
     'Ext.tab.Panel',
@@ -267,6 +268,9 @@ Ext.define('Tel100.view.document.editor.Editor', {
                 },
                 {
                   xtype: 'documentfilepanel'
+                },
+                {
+                  xtype: 'documentrelationpanel'
                 }
               ]
             }

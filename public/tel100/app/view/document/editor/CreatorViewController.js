@@ -38,6 +38,10 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
     // setting files as editable
     var filesPanel = view.down('#files');
     filesPanel.setEditable(true);
+
+    // setting relations as editable
+    var relationPanel = view.down('#relations');
+    relationPanel.setEditable(true);
   },
 
   onDocumentChange: function(document) {

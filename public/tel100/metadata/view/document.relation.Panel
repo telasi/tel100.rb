@@ -98,9 +98,15 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "actions",
+                        "hidden": [
+                            "{notEditable}"
+                        ],
                         "width": 24
                     },
                     "name": "MyActionColumn1",
+                    "configAlternates": {
+                        "hidden": "binding"
+                    },
                     "designerId": "dbf2afe4-dcbd-4fea-a3f6-b97aabfcffaf",
                     "cn": [
                         {
@@ -208,10 +214,25 @@
             "codeClass": null,
             "userConfig": {
                 "designer|displayName": "add",
+                "disabled": null,
+                "hidden": [
+                    "{notEditable}"
+                ],
                 "type": "plus"
             },
             "name": "MyTool1",
+            "configAlternates": {
+                "disabled": "binding",
+                "hidden": "binding"
+            },
             "designerId": "25d91077-7aef-4c8e-8d19-3a013357b993",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "hidden",
+                    "type": "string"
+                }
+            ],
             "cn": [
                 {
                     "type": "basiceventbinding",
@@ -296,6 +317,26 @@
             },
             "name": "initComponent",
             "designerId": "bc3c75d1-f05c-4707-8053-58ef50e9d717"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "editable"
+                ],
+                "fn": "setEditable",
+                "implHandler": [
+                    "var vm = this.getViewModel();",
+                    "vm.set('editable', editable);"
+                ]
+            },
+            "name": "setEditable",
+            "designerId": "89b1a315-5d00-4b86-90ee-a7dd89fd25ec"
         }
     ]
 }

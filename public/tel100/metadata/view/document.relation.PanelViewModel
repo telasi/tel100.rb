@@ -8,7 +8,8 @@
     "userConfig": {
         "data": [
             "{",
-            "  relationCount: 0",
+            "  relationCount: 0,",
+            "  editable: false",
             "}"
         ],
         "designer|userAlias": "documentrelationpanel",
@@ -77,6 +78,40 @@
                             "designerId": "994b666b-cdbd-4bd6-a649-522050f45894"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.app.bind.Formula",
+            "reference": {
+                "name": "formulas",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "notEditable"
+            },
+            "name": "MyFormula20",
+            "designerId": "5bc2ec39-e13d-442e-ae6f-a18fd88b559d",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "get"
+                        ],
+                        "fn": "get",
+                        "implHandler": [
+                            "return !get('editable');"
+                        ]
+                    },
+                    "name": "get",
+                    "designerId": "bf6d26a1-0239-4c59-97f1-da22f6d7132b"
                 }
             ]
         }

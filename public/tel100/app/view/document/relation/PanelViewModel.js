@@ -20,11 +20,13 @@ Ext.define('Tel100.view.document.relation.PanelViewModel', {
   requires: [
     'Ext.data.Store',
     'Ext.data.proxy.Ajax',
-    'Ext.data.reader.Json'
+    'Ext.data.reader.Json',
+    'Ext.app.bind.Formula'
   ],
 
   data: {
-    relationCount: 0
+    relationCount: 0,
+    editable: false
   },
 
   stores: {
@@ -47,6 +49,11 @@ Ext.define('Tel100.view.document.relation.PanelViewModel', {
           type: 'json'
         }
       }
+    }
+  },
+  formulas: {
+    notEditable: function(get) {
+      return !get('editable');
     }
   }
 

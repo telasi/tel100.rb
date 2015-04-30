@@ -49,7 +49,11 @@
                     "",
                     "// setting files as editable",
                     "var filesPanel = view.down('#files');",
-                    "filesPanel.setEditable(true);"
+                    "filesPanel.setEditable(true);",
+                    "",
+                    "// setting relations as editable",
+                    "var relationPanel = view.down('#relations');",
+                    "relationPanel.setEditable(true);"
                 ],
                 "name": "beforerender",
                 "scope": "me"
@@ -442,7 +446,7 @@
                                             "{i18n.document.base.ui.generalTabTitle}"
                                         ]
                                     },
-                                    "name": "document.editor.general5",
+                                    "name": "document.editor.general1",
                                     "configAlternates": {
                                         "title": "binding"
                                     },
@@ -457,9 +461,10 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|displayName": "relations"
+                                        "designer|displayName": "relations",
+                                        "itemId": "relations"
                                     },
-                                    "name": "document.relation.panel4",
+                                    "name": "document.relation.panel1",
                                     "designerId": "eac06f86-7f18-4df4-b913-db1a9d3f9adc",
                                     "masterInstanceId": "f109941e-d70e-4dcf-96dd-cc8a778ba5f5"
                                 },
@@ -473,7 +478,7 @@
                                     "userConfig": {
                                         "designer|displayName": "signees"
                                     },
-                                    "name": "document.motions.signeepanel2",
+                                    "name": "document.motions.signeepanel",
                                     "designerId": "6c040662-e5fb-49a6-9215-b4a251a4c73a",
                                     "masterInstanceId": "a6e4f453-aa9b-4c0e-8a45-45e445ca2504",
                                     "cn": [
@@ -512,7 +517,7 @@
                                     "userConfig": {
                                         "designer|displayName": "asignees"
                                     },
-                                    "name": "document.motions.assigneepanel4",
+                                    "name": "document.motions.assigneepanel",
                                     "designerId": "5b56765a-3219-46c0-94e7-73857f5db4fe",
                                     "masterInstanceId": "da24e6c3-26d6-4d2a-bedc-c822727570b4",
                                     "cn": [
@@ -551,7 +556,7 @@
                                     "userConfig": {
                                         "designer|displayName": "authors"
                                     },
-                                    "name": "document.motions.authorpanel4",
+                                    "name": "document.motions.authorpanel",
                                     "designerId": "9507dce8-8e97-4a00-8d9b-abcd88ae04f3",
                                     "masterInstanceId": "e3fa4671-a99b-4b98-adee-9628585fe14b",
                                     "cn": [
@@ -591,7 +596,7 @@
                                         "designer|displayName": "files",
                                         "itemId": "files"
                                     },
-                                    "name": "document.file.panel5",
+                                    "name": "document.file.panel1",
                                     "configAlternates": {
                                         "editable": "boolean",
                                         "config": "object"
@@ -647,7 +652,7 @@
                                 "border": false,
                                 "designer|displayName": "receivers"
                             },
-                            "name": "document.motions.outpanel5",
+                            "name": "document.motions.outpanel1",
                             "configAlternates": {
                                 "title": "binding"
                             },
