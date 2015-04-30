@@ -19,6 +19,7 @@ Ext.define('Tel100.view.document.relation.Panel', {
 
   requires: [
     'Tel100.view.document.relation.PanelViewModel',
+    'Tel100.view.document.relation.PanelViewController',
     'Ext.grid.Panel',
     'Ext.grid.column.Action',
     'Ext.grid.View',
@@ -26,6 +27,7 @@ Ext.define('Tel100.view.document.relation.Panel', {
     'Tel100.view.document.Search'
   ],
 
+  controller: 'documentrelationpanel',
   viewModel: {
     type: 'documentrelationpanel'
   },
@@ -75,7 +77,13 @@ Ext.define('Tel100.view.document.relation.Panel', {
             }
           ]
         }
-      ]
+      ],
+      listeners: {
+        celldblclick: {
+          fn: 'onGridpanelCellDblClick',
+          scope: 'controller'
+        }
+      }
     }
   ],
   tools: [

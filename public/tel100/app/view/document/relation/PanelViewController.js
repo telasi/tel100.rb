@@ -15,5 +15,16 @@
 
 Ext.define('Tel100.view.document.relation.PanelViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.documentrelationpanel'
+  alias: 'controller.documentrelationpanel',
+
+  onGridpanelCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+    var dm = this.getView().up('documentmain');
+    var doc = Ext.create('Tel100.model.document.Base',{id: record.get('related_id')});
+    doc.load({
+      success: function(document){
+        dm.getController().openDocument(doc);
+      }
+    });
+  }
+
 });
