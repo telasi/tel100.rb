@@ -67,17 +67,24 @@ stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::N
 
 # authors
 json.authors do
-  json.array! doc.author_motions.where('status IN (?)', stats).order('id ASC') do |motion|
-    json.id        motion.id
-    json.status    motion.status
-    json.author_id motion.receiver_id
-    json.author_type motion.receiver_type
-    json.name      motion.receiver.to_s
-    json.response  motion.response_type.to_s
-    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-    if motion.receiver.respond_to?('organization')
-      json.position  motion.receiver.organization.to_s
-    end
+#  json.array! doc.author_motions.where('status IN (?)', stats).order('id ASC') do |motion|
+#    json.id        motion.id
+#    json.status    motion.status
+#    json.author_id motion.receiver_id
+#    json.author_type motion.receiver_type
+#    json.name      motion.receiver.to_s
+#    json.response  motion.response_type.to_s
+#    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
+#    if motion.receiver.respond_to?('organization')
+#      json.position  motion.receiver.organization.to_s
+#    end
+#  end
+  json.array! doc.authors do |author|
+    json.id           author.id
+    json.status       ''
+    json.author_id    author.id
+    json.author_type  'HR::Employee'
+    json.name         author.full_name
   end
 end
 
