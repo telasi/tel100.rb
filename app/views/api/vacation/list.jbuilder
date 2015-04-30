@@ -6,7 +6,7 @@ json.array! @list do |item|
   type = item.type
   json.type_name       type.name
 
-  sub_user = item.sub_user
+  sub_employee = item.sub_employee
 
-  json.full_name sub_user
+  json.full_name sub_employee.full_name
 end

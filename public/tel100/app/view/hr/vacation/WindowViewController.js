@@ -41,26 +41,6 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
     dialog.show();
   },
 
-  onSelectHeadOfGroupButtonClick: function(button, e, eOpts) {
-    this.chosePerson(button);
-  },
-
-  onSelectHeadOfDivisionButtonClick: function(button, e, eOpts) {
-    this.chosePerson(button);
-  },
-
-  onSelectHeadOfDepartmentClick: function(button, e, eOpts) {
-    this.chosePerson(button);
-  },
-
-  onSelectDirectorClick: function(button, e, eOpts) {
-    this.chosePerson(button);
-  },
-
-  onSelectHeadOfHRClick: function(button, e, eOpts) {
-    this.chosePerson(button);
-  },
-
   onSelectSubstitude: function(button, e, eOpts) {
     this.chosePerson(button);
   },
@@ -84,6 +64,26 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
 
   onCancelButtonClick: function(button, e, eOpts) {
     button.up('window').close();
+  },
+
+  onSelectHeadOfGroupButtonClick: function(button, e, eOpts) {
+    this.chosePerson(button);
+  },
+
+  onSelectHeadOfDivisionButtonClick: function(button, e, eOpts) {
+    this.chosePerson(button);
+  },
+
+  onSelectHeadOfDepartmentClick: function(button, e, eOpts) {
+    this.chosePerson(button);
+  },
+
+  onSelectDirectorClick: function(button, e, eOpts) {
+    this.chosePerson(button);
+  },
+
+  onSelectHeadOfHRClick: function(button, e, eOpts) {
+    this.chosePerson(button);
   }
 
 });

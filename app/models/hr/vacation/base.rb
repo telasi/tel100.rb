@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-class HR::Vacation::Vacation < ActiveRecord::Base
+class HR::Vacation::Base < ActiveRecord::Base
 
   include Document::Role
   include Document::Who
@@ -13,16 +13,52 @@ class HR::Vacation::Vacation < ActiveRecord::Base
   self.sequence_name = 'hr_vacation_seq'
   self.set_integer_columns :substitude_type, :confirmed
   belongs_to :type, class_name: 'HR::Vacation::Type', foreign_key: 'vacation_type'
-  belongs_to :user, class_name: 'Sys::User', foreign_key: 'userid'
-  belongs_to :sub_user, class_name: 'Sys::User', foreign_key: 'substitude'
+  belongs_to :employee, class_name: 'HR::Employee', foreign_key: 'employee_id'
+  belongs_to :sub_employee, class_name: 'HR::Employee', foreign_key: 'substitude'
 
   validate :correct_dates
   validate :date_not_intersect
 
+  def to_hash
+    sub_empl = sub_employee.id if self.substitude
+    full_name = sub_employee.full_name if self.substitude
+    {
+      vacation: self.id,
+      vac_text: self.type.name,
+      sub_id:   sub_empl,
+      sub_name: full_name
+    }
+  end
+
+  def self.create!(user, params)
+    vac = HR::Vacation::Base.new(params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type))
+    vac.confirmed = 1
+    vac.employee_id = user.employee.id
+    vac.person_id = user.employee.person_id
+    vac.sub_person_id = HR::Employee.find(params[:substitude]).person_id if params[:substitude].present?
+    vac.save
+    vac
+  end
+
+  def self.confirmed; HR::Vacation::Base.where(confirmed: 1) end
+  def self.current; HR::Vacation::Base.where("from_date <= sysdate and to_date >= sysdate") end
+
+  def self.substitude_for_employee(user)
+  	HR::Vacation::Base.confirmed.current.where("employeeid = ?", user.employee.id).first if ( user && user.employee )
+  end
+
+  def self.employees_i_substitude(user)
+    HR::Vacation::Base.confirmed.current.where("substitude = ? and substitude_type <> 1", user.employee.id)
+  end
+
   def self.create_document(user, params)
-      @vac = HR::Vacation::Vacation.new(params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type))
-      @vac.userid = user.id
+      @vac = HR::Vacation::Base.new(params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type))
+      @vac.confirmed = 1
+      @vac.employee_id = current_user.employee.id
+      @vac.person_id = current_user.employee.id
+      @vac.employee_id = current_user.employee.id
       if @vac.save
+=begin
         Document::Base.transaction do
            sender = whose_user(user)
             docparams = {
@@ -68,6 +104,7 @@ class HR::Vacation::Vacation < ActiveRecord::Base
           parent = add_motion_user(motionParams, params[:head_of_hr].to_i, parent) if params[:head_of_hr].present?
 
         end
+=end
     end
   end
 
@@ -87,22 +124,13 @@ class HR::Vacation::Vacation < ActiveRecord::Base
     motion
   end
 
-  def self.confirmed; HR::Vacation::Vacation.where(confirmed: 1) end
-  def self.current; HR::Vacation::Vacation.where("from_date <= sysdate and to_date >= sysdate") end
+  private
 
   def correct_dates
-  	errors.add(:to_date, 'Error in dates') if to_date < from_date
+    errors.add(:to_date, 'Error in dates') if to_date < from_date
   end
 
   def date_not_intersect
-  	errors.add(:to_date, 'Date intersection') if HR::Vacation::Vacation.where("userid = ? and to_date > ? and from_date < ?", self.userid, self.from_date, self.to_date ).first
-  end
-
-  def self.substitude_for_user(user_id)
-  	HR::Vacation::Vacation.confirmed.current.where("userid = ?", user_id).first if user_id
-  end
-
-  def self.users_i_substitude(user)
-    HR::Vacation::Vacation.confirmed.current.where("substitude = ? and substitude_type <> 1", user.employee.id)
+    errors.add(:to_date, 'Date intersection') if HR::Vacation::Base.where("employee_id = ? and to_date > ? and from_date < ?", self.employee_id, self.from_date, self.to_date ).first
   end
 end

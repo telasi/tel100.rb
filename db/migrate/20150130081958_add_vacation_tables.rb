@@ -29,11 +29,13 @@ class AddVacationTables < ActiveRecord::Migration
   	execute <<-SQL
       create table HR_VACATION (
         ID                          NUMBER(10,0) NOT NULL,
-        USERID                      NUMBER(10,0) NOT NULL,
+        EMPLOYEE_ID                 NUMBER(10,0) NOT NULL,
+        PERSON_ID                   NUMBER(10,0) NOT NULL,
         FROM_DATE                   DATE,
         TO_DATE                     DATE,
         VACATION_TYPE               NUMBER(3,0),
         SUBSTITUDE                  NUMBER(10,0),
+        SUB_PERSON_ID               NUMBER(10,0),
         SUBSTITUDE_TYPE             NUMBER(1,0),
         CONFIRMED                   NUMBER(1,0),
         created_at                  TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,

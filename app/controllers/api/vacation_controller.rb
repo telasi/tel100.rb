@@ -6,7 +6,7 @@ class Api::VacationController < ApiController
   end
 
   def create
-    HR::Vacation::Vacation.create_document(current_user, params)
+    HR::Vacation::Base.create!(current_user, params)
     render json: { success: true }
   end
 
@@ -16,10 +16,10 @@ class Api::VacationController < ApiController
   end
 
   def substitudes
-    @substitudes = HR::Vacation::Vacation.users_i_substitude(current_user)
+    @substitudes = HR::Vacation::Base.users_i_substitude(current_user)
   end
 
   def list
-    @list = HR::Vacation::Vacation.where(userid: current_user)
+    @list = HR::Vacation::Base.where(employee_id: current_user.employee.id)
   end
 end

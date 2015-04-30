@@ -5,10 +5,17 @@ class Api::HrController < ApiController
 
   def structure
     employees = HR::Employee.active.index_by{ |node| node['organization_id'] }
+    vacations = HR::Vacation::Base.confirmed.current.index_by{ |node| node['employee_id']}
     structureArray = HR::Organization.active.order(saporg_type: :desc).order(is_manager: :desc, priority: :asc).map do |org|
       if org.saporg_type == 'S'
         empl = employees[org.id]
-        empl.to_hash(organization: org) if empl
+        obj = empl.to_hash(organization: org) if empl
+        #add vacation fields
+        if empl
+          vac = vacations[empl.id]
+          obj.merge!(vac.to_hash) if vac
+        end
+        obj
       else
         org.to_hash
       end
