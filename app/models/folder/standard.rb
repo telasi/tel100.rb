@@ -78,7 +78,7 @@ class Folder::Standard
       when COMPLETED
         docs.where('document_user.as_assignee IN (?) or document_user.as_owner IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED], [Document::User::DOC_COMPLETED] )
       when CANCELED
-        docs.where('document_user.as_assignee IN (?) or document_user.as_owner IN (?)', [ Document::User::DOC_CANCELED ], [ Document::User::DOC_CANCELED ])
+        docs.where('document_user.as_owner IN (?)', [Document::User::DOC_CANCELED])
       when ALL
         docs
     end
