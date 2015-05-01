@@ -16,21 +16,18 @@
   <script src="/extjs/theme/ext-theme-neptune.js"></script>
   <link href="/extjs/theme/resources/ext-theme-neptune-all_01.css" rel="stylesheet">
   <link href="/tel100/tel100.css" rel="stylesheet">
-</head>
-<body>
-  <p>Loading. Please wait...</p>
-
+  <!-- start script -->
   <script>
     Ext.Loader.setConfig({ enabled: false });
     Ext.application({
-      stores: [
-        'CustomFolders'
-      ],
+      stores: [ 'CustomFolders' ],
       name: 'Tel100',
       launch: function() {
         Ext.create('Tel100.view.Main');
       }
     });
   </script>
+</head>
+<body>
 </body>
 </html>
