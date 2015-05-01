@@ -66,18 +66,12 @@ Ext.define('Tel100.model.hr.Employee', {
   ],
 
   toHtml: function() {
-    var icon;
-    if(this.get('on_vacation')){
+    if(this.get('on_vacation')) {
       return helpers.party.vacationDecorations(this);
-    } else{
-    if (this.get('has_user')) {
-        icon = '<span class="text-success"><i class="fa fa-user"></i></span>';
+    } else  if (this.get('has_user')) {
+      return '<span class="text-success"><i class="fa fa-user"></i> '+ this.get('full_name') +'</span>';
     } else {
-        icon = '<span class="text-danger"><i class="fa fa-circle"></i></span>';
+      return '<span class="text-muted"><i class="fa fa-user"></i> ' + this.get('full_name') + '</span>';
     }
-      return [icon, this.get('full_name')].join(' ');
-    }
-
   }
-
 });
