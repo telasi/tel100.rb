@@ -3,7 +3,7 @@
     "settings": {
         "cmd": {
             "cmdVersion": "",
-            "license": "commercial"
+            "license": "gpl"
         },
         "canvasControls": {
             "viewportSize": {
@@ -29,7 +29,8 @@
             "value": "webBuild",
             "display": "Build web app"
         },
-        "displayfield-ExtBox1-1126-inputEl": "a new version of the framework is available"
+        "displayfield-ExtBox1-1126-inputEl": "a new version of the framework is available",
+        "displayfield-ExtBox1-1206-inputEl": "a new version of the framework is available"
     },
     "xdsVersion": "3.2.0",
     "xdsBuild": 75,
