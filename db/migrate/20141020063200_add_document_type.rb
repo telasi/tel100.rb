@@ -32,15 +32,15 @@ class AddDocumentType < ActiveRecord::Migration
     SQL
 
     execute <<-SQL
-      insert into DOCUMENT_TYPE(NAME_KA, ORDER_BY) VALUES ('სამსახ.წერილი', 1)
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('სამსახ.წერილი', 'Служебное письмо', 1)
     SQL
 
     execute <<-SQL
-      insert into DOCUMENT_TYPE(NAME_KA, ORDER_BY) VALUES ('ბრძანება', 2)
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('ბრძანება', 'Приказ', 2)
     SQL
 
     execute <<-SQL
-      insert into DOCUMENT_TYPE(NAME_KA, ORDER_BY) VALUES ('აქტი', 3)
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('აქტი', 'Акт', 3)
     SQL
   end
 
