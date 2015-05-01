@@ -1,14 +1,13 @@
-// buttons
+/* buttons */
 
 .danger-button .x-btn-inner { color: #a94442; }
 .success-button .x-btn-inner { color: #3c763d; }
 
-//
 .x-panel.panel-with-border {
   border: 1px solid #157fcc;
 }
 
-// bootstrap sets border for legend, which is not desirable here
+/* bootstrap sets border for legend, which is not desirable here */
 
 legend.x-fieldset-header {
   border-bottom: none;
@@ -17,27 +16,27 @@ legend.x-fieldset-header {
 }
 
 
-// tree nodes without icons
+/* tree nodes without icons */
 
 .x-tree-noicon .x-tree-icon {
   display: none !important;
   margin-bottom: 8px !important;
 }
 
-// label
+/* label */
 
 label.x-component {
   font-weight: normal;
 }
 
-// white panel
+/* white panel */
 
 .white-panel {
   background-color: white;
 }
 
 
-// status styles
+/* status styles */
 
 tr.row-text-muted td.x-grid-cell .x-grid-cell-inner {
   color: #777;
@@ -60,7 +59,7 @@ tr.text-unread td.x-grid-cell .x-grid-cell-inner {
   font-weight: bold;
 }
 
-// document styles
+/* document styles */
 
 .document-subject {
   padding: 4px;
@@ -74,14 +73,14 @@ tr.text-unread td.x-grid-cell .x-grid-cell-inner {
   background-color: white;
 }
 
-// file upload
+/* file upload */
 
 .file-upload .x-form-text-file {
   display: none;
 }
 
 
-// links
+/* links */
 
 .x-form-display-field a {
   cursor: pointer;
