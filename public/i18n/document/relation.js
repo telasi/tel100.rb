@@ -1,3 +1,6 @@
 module.exports = {
-  relations: '<i class="fa fa-files-o"></i> საფუძვლები'
+  relations: {
+  	ka: '<i class="fa fa-files-o"></i> საფუძვლები',
+  	ru: '<i class="fa fa-files-o"></i> Основания'
+  }
 };

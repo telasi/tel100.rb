@@ -16,6 +16,10 @@ module.exports = {
       ka: 'გაუქმება',
       ru: 'Отмена'
     },
+    history: {
+      ka: 'ისტორია',
+      ru: 'История'
+    },
     substitude_mode: {
       title: {
         ka: 'თქვენ ათვალიერებთ დოკუმენტები: ',

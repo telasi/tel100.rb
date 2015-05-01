@@ -69,7 +69,7 @@ var formatReceivers = function(data, metaData, opts) {
   if (countOthers) stats.push('<span class="label label-warning"><i class="fa fa-circle-o"></i> ' + countOthers + '</span>');
 
   if (countCurrent + countCanceled + countCompleted + countOthers) {
-    text.push('კიდევ: ' + stats.join(' '));
+    text.push(i18n.ui.more + stats.join(' '));
   }
 
   return text.join('<br>');
@@ -110,7 +110,7 @@ var formatResponses = function(data, metaData) {
   metaData.tdAttr = 'data-qtip="' + tooltip.join('; ') + '"';
 
   if (count) {
-    text.push('კიდევ: ' + count);
+    text.push(i18n.ui.more + count);
   }
 
   return text.join('<br>');

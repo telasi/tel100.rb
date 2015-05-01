@@ -1,13 +1,37 @@
 module.exports = {
   ui: {
-    documents: '<i class="fa fa-files-o"></i> დოკუმენტები',
-    refresh: '<i class="fa fa-refresh"></i> განახლება',
-    newDocument: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
-    deleteDraft: '<i class="fa fa-trash"></i> წაშლა',
-    confirmDeleteDraft: 'დაადასტურეთ დოკუმენტის წაშლა',
-    editDraftTitle: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
-    generalTabTitle: '<i class="fa fa-send"></i> ძირითადი თვისებები',
-    receiversTabTitle: 'ადრესატები',
+    documents: {
+      ka: '<i class="fa fa-files-o"></i> დოკუმენტები',
+      ru: '<i class="fa fa-files-o"></i> Документы'
+    },
+    refresh: {
+      ka: '<i class="fa fa-refresh"></i> განახლება',
+      ru: '<i class="fa fa-refresh"></i> Обновление'
+    },
+    newDocument: {
+      ka: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
+      ru: '<i class="fa fa-plus"></i> Новый документ'
+    },
+    deleteDraft: {
+      ka: '<i class="fa fa-trash"></i> წაშლა',
+      ru: '<i class="fa fa-trash"></i> Удалить'
+    },
+    confirmDeleteDraft: {
+      ka: 'დაადასტურეთ დოკუმენტის წაშლა',
+      ru: 'Подтвердите удаление документа'
+    },
+    editDraftTitle: {
+      ka: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
+      ru: '<i class="fa fa-pencil"></i> Редактирование черновика'
+    },
+    generalTabTitle: {
+      ka: '<i class="fa fa-send"></i> ძირითადი თვისებები',
+      ru: '<i class="fa fa-send"></i> Основные свойства'
+    },
+    receiversTabTitle: {
+      ka: 'ადრესატები',
+      ru: 'Адресаты'
+    },
     send: {
       ka: '<i class="fa fa-send"></i> დოკუმენტის გაგზავნა',
       ru: '<i class="fa fa-send"></i> Послать документ'
@@ -16,57 +40,195 @@ module.exports = {
       ka: '<i class="fa fa-newspaper-o"></i> ბარათი',
       ru: '<i class="fa fa-newspaper-o"></i> Карточка'
     },
-    newDocumentTab: '<i class="fa fa-cog"></i> ახალი დოკუმენტი',
-    contentTabTitle: '<i class="fa fa-file-text-o"></i> შინაარსი',
-    motionsTabTitle: '<i class="fa fa-send"></i> მოძრაობები',
+    newDocumentTab: {
+      ka: '<i class="fa fa-cog"></i> ახალი დოკუმენტი',
+      ru: '<i class="fa fa-cog"></i> Новый документ'
+    },
+    contentTabTitle: {
+      ka: '<i class="fa fa-file-text-o"></i> შინაარსი',
+      ru: '<i class="fa fa-file-text-o"></i> Содержание'
+    },
+    motionsTabTitle: {
+      ka: '<i class="fa fa-send"></i> მოძრაობები',
+      ru: '<i class="fa fa-send"></i> Движения'
+    }
   },
   errors: {
-    empty_subject: 'ჩაწერეთ დოკუმენტის სათაური.',
-    empty_body: 'ჩაწერეთ დოკუმენტის შინაარსი.'
+    empty_subject: {
+      ka: 'ჩაწერეთ დოკუმენტის სათაური.',
+      ru: 'Заполните заголовок документа'
+    },
+    empty_body: {
+      ka: 'ჩაწერეთ დოკუმენტის შინაარსი.',
+      ru: 'Заполните содержание документа'
+    },
   },
-  type: 'სახეობა',
-  direction: 'მიმართულება',
-  subject: 'თემა',
-  body: 'შინაარსი',
-  doc: 'დოკუმენტი ',
-  subject_tooltip: 'ჩაწერეთ დოკუმენტის სათაური',
-  authors: 'ავტორები',
-  signees: 'ვიზატორები',
-  assignees: 'ადრესატები',
-  original_number: 'დედანის #',
-  original_date: 'დედანის თარიღი',
-  docnumber: 'ნომერი',
-  docdate: 'თარიღი',
-  page_count: 'გვერდები',
-  additions_count: 'დანართები',
-  due_date: 'ვადა',
-  sender: 'ინიციატორი',
-  owner: 'მფლობელი',
-  status: 'დოკ.სტატუსი',
-  my_status: 'სტატუსი',
-  response: 'რეზოლუცია',
-  in_fields: 'შემოსული წერილის პარამეტრები',
-  sender_name: 'ინიციატორი',
-  actions: 'მოქმედება',
-  from: 'ვისგან',
-  to: 'ვის',
-  answers: 'პასუხები',
+  type: {
+    ka: 'სახეობა',
+    ru: 'Вид'
+  },
+  direction: {
+    ka: 'მიმართულება',
+    ru: 'Направление'
+  },
+  subject: {
+    ka: 'თემა',
+    ru: 'Тема'
+  },
+  body: {
+    ka: 'შინაარსი',
+    ru: 'Содержание'
+  },
+  doc: {
+    ka: 'დოკუმენტი ',
+    ru: 'Документ'
+  },
+  subject_tooltip: {
+    ka: 'ჩაწერეთ დოკუმენტის სათაური',
+    ru: 'Заполните заголовок документа'
+  },
+  authors: {
+    ka: 'ავტორები',
+    ru: 'Авторы'
+  },
+  signees: {
+    ka: 'ვიზატორები',
+    ru: 'Визаторы'
+  },
+  assignees: {
+    ka: 'ადრესატები',
+    ru: 'Адресаты'
+  },
+  original_number: {
+    ka: 'დედანის #',
+    ru: '№ внешнего документа'
+  },
+  original_date: {
+    ka: 'დედანის თარიღი',
+    ru: 'Дата внешнего документа'
+  },
+  docnumber: {
+    ka: 'ნომერი',
+    ru: 'Номер'
+  },
+  docdate: {
+    ka: 'თარიღი',
+    ru: 'Дата'
+  },
+  page_count: {
+    ka: 'გვერდები',
+    ru: 'Страницы'
+  },
+  additions_count: { 
+    ka: 'დანართები',
+    ru: 'Приложения'
+  },
+  due_date: {
+    ka: 'ვადა',
+    ru: 'Срок'
+  },
+  sender: {
+    ka: 'ინიციატორი',
+    ru: 'Инициатор'
+  },
+  owner: {
+    ka: 'მფლობელი',
+    ru: 'Владелец'
+  },
+  status: {
+    ka: 'დოკ.სტატუსი',
+    ru: 'Статус документа'
+  },
+  my_status: {
+    ka: 'სტატუსი',
+    ru: 'Статус'
+  },
+  response: {
+    ka: 'რეზოლუცია',
+    ru: 'Резолюция'
+  },
+  in_fields: {
+    ka: 'შემოსული წერილის პარამეტრები',
+    ru: 'Параметры вх. документа'
+  },
+  sender_name: {
+    ka: 'ინიციატორი',
+    ru: 'Инициатор'
+  },
+  actions: {
+    ka: 'მოქმედება',
+    ru: 'Действие'
+  },
+  from: {
+    ka: 'ვისგან',
+    ru: 'От кого'
+  },
+  to: {
+    ka: 'ვის',
+    ru: 'Кому'
+  },
+  answers: {
+    ka: 'პასუხები',
+    ru: 'Ответы'
+  },
   statuses: {
-    draft: 'დრაფტი',
-    to_be_sent: 'გასაგზავნი',
-    to_be_signed: 'ხელმოსაწერი',
-    canceled: 'გაუქმებული',
-    not_signed: 'ხელმოუწერელი',
-    not_sent: 'გაუგზავნელი',
-    completed: 'შესრულებული',
-    signed: 'ხელმოწერილი',
-    current: 'მიმდინარე',
-    sent: 'გაგზავნილი',
-    not_received: 'მიუღებელი'
+    draft: {
+      ka: 'დრაფტი',
+      ru: 'Черновик'
+    },
+    to_be_sent: {
+      ka: 'გასაგზავნი',
+      ru: 'На отправку'
+    },
+    to_be_signed: {
+      ka: 'ხელმოსაწერი',
+      ru: 'На подпись'
+    },
+    canceled: {
+      ka: 'გაუქმებული',
+      ru: 'Отмененный'
+    },
+    not_signed: {
+      ka: 'ხელმოუწერელი',
+      ru: 'Не подписанный'
+    },
+    not_sent: {
+      ka: 'გაუგზავნელი',
+      ru: 'Не отправленный'
+    },
+    completed: {
+      ka: 'შესრულებული',
+      ru: 'Завершенный'
+    },
+    signed: {
+      ka: 'ხელმოწერილი',
+      ru: 'Подписанный'
+    },
+    current: {
+      ka: 'მიმდინარე',
+      ru: 'Текущий'
+    },
+    sent: {
+      ka: 'გაგზავნილი',
+      ru: 'Отправленный'
+    },
+    not_received: {
+      ka: 'მიუღებელი',
+      ru: 'Не полученный'
+    },
   },
   directions: {
-    in: 'შემოსული',
-    inner: 'შიდა',
-    out: 'გასული'
+    in: {
+      ka: 'შემოსული',
+      ru: 'Входящий'
+    },
+    inner: {
+      ka: 'შიდა',
+      ru: 'Внутренний'
+    },
+    out: {
+      ka: 'გასული',
+      ru: 'Исходящий'
+    }
   },
 };
