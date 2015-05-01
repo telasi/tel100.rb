@@ -12,9 +12,9 @@
   <link href="/build/font-awesome.min.css" rel="stylesheet">
   <!-- scripts -->
   <script src="/extjs/ext-all.js"></script>
-  <script src="/build/i18n.js?v=1430489398184"></script>  
-  <script src="/build/helpers.js?v=1430489398184"></script>
-  <script src="/build/tel100.js?v=1430489398184"></script>
+  <script src="/build/i18n.js?v={{ version }}"></script>  
+  <script src="/build/helpers.js?v={{ version }}"></script>
+  <script src="/build/tel100.js?v={{ version }}"></script>
   <!-- theme -->
   <script src="/extjs/theme/ext-theme-neptune.js"></script>
   <link href="/extjs/theme/resources/ext-theme-neptune-all_01.css" rel="stylesheet">

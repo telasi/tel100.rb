@@ -1,17 +1,18 @@
-var gulp = require('gulp')
-  // , shell = require('gulp-shell')
+var fs = require('fs')
+  , gulp = require('gulp')
+  , swig  = require('swig')
   , concat = require('gulp-concat')
   , uglify = require('gulp-uglify')
   , buffer = require('buffer')
   , browserify = require('gulp-browserify')
   , eventStream = require('event-stream');
 
-gulp.task('all', ['i18n.js', 'helpers.js', 'tel100.js']);
+gulp.task('all', ['i18n.js', 'helpers.js', 'tel100.js', 'index.html']);
 
 gulp.task('default', function () {
-  gulp.watch('./i18n/**/*.js', [ 'i18n.js' ]);
-  gulp.watch('./helpers/**/*.js', [ 'helpers.js' ]);
-  gulp.watch('./tel100/app/**/*.js', [ 'tel100.js' ]);
+  gulp.watch('./i18n/**/*.js', [ 'i18n.js', 'index.html' ]);
+  gulp.watch('./helpers/**/*.js', [ 'helpers.js', 'index.html' ]);
+  gulp.watch('./tel100/app/**/*.js', [ 'tel100.js', 'index.html' ]);
 });
 
 gulp.task('tel100.js', function() {
@@ -38,6 +39,13 @@ gulp.task('helpers.js', function() {
     .pipe(gulp.dest('./build'));
 });
 
+gulp.task('index.html', function() {
+  var indexHtml = swig.renderFile('index.swig', {
+    version: new Date().getTime()
+  });
+  fs.writeFileSync('index.html', indexHtml);
+});
+
 /**
  * This function removes ExtJS `requires` directives
  * from source files.
@@ -60,4 +68,4 @@ function removeRequireDirectives() {
   };
 
   return eventStream.map(transform);
-};
+}
