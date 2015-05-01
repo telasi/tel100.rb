@@ -142,8 +142,10 @@ class Document::Motion < ActiveRecord::Base
     # save motion data
     self.save!
     # calculate related document users
-    self.document.users.where(user: self.receiver_user).first.calculate!
-    self.document.users.where(user: user).first.calculate!
+    receiver_du = self.document.users.where(user: self.receiver_user).first
+    sender_du = self.document.users.where(user: user).first
+    receiver_du.calculate! if receiver_du.present?
+    sender_du.calculate! if sender_du.present?
   end
 
   def add_comment(user, params)
