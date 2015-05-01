@@ -1,7 +1,7 @@
 module.exports = {
   panelTitle: {
     ka: '<i class="fa fa-comments"></i> კომენტარები',
-    ru: ''
+    ru: '<i class="fa fa-comments"></i> Комментарии'
   },
   motion: {
     ka: 'მოძრაობა',
