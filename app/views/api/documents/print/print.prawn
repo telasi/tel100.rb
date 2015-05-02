@@ -49,8 +49,8 @@ end
 
 def header(pdf)
   docdate = @document.docdate.strftime '%d-%b-%Y %H:%M' if @document.docdate.present?
-  pdf.text_box "ნომერი: #{@document.docnumber}" + "\n" +
-                "თარიღი: #{docdate}",
+  pdf.text_box "#{I18n.t('views.document.print.number')} #{@document.docnumber}" + "\n" +
+                "#{I18n.t('views.document.print.date')} #{docdate}",
       :at => [400, 760], :width => 150, :size => 8
 end
 
