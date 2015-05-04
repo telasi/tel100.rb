@@ -1,1 +1,2186 @@
-!function t(e,n,r){function a(o,u){if(!n[o]){if(!e[o]){var s="function"==typeof require&&require;if(!u&&s)return s(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var c=n[o]={exports:{}};e[o][0].call(c.exports,function(t){var n=e[o][1][t];return a(n?n:t)},c,c.exports,t,e,n,r)}return n[o].exports}for(var i="function"==typeof require&&require,o=0;o<r.length;o++)a(r[o]);return a}({1:[function(t,e,n){var r=function(t,e){var n=e||i18n.errors.title;Ext.Msg.alert(n,t)},a=function(t){var e=t&&t.method||"GET",n=t&&t.url,a=t&&t.params,i=t&&t.view,o=t&&t.success,u=t&&t.failure;i&&i.setLoading(!0),Ext.Ajax.request({url:n,method:e,params:a,success:function(t){i&&i.setLoading(!1);var e=JSON.parse(t.responseText);e.success===!1?u?u(e.message||e.error):r(e.message||e.error):o&&o(e)},failure:function(t){i&&i.setLoading(!1),u?u(t):r("connection failure: try again latter.")}})},i=function(t,e){var n=Ext.Ajax.getExtraParams()||{};n[t]=e,Ext.Ajax.setExtraParams(n)};e.exports={request:a,setExtraParams:i}},{}],2:[function(t,e,n){var r=t("../ajax"),a={createDraft:function(t){var e=t||{};e.method="POST",e.url="/api/documents/base/create_draft",r.request(e)},updateDraft:function(t,e){var n=e||{};n.method="PUT",n.url="/api/documents/base/update_draft",n.params.id=t,r.request(n)},deleteDraft:function(t,e){var n=e||{};n.method="DELETE",n.url="/api/documents/base/delete_draft",n.params={id:t},r.request(n)},sendDraft:function(t,e){var n=e||{};n.method="POST",n.url="/api/documents/base/send_draft",n.params={id:t},r.request(n)},reply:function(t,e){var n=e||{};n.method="POST",n.url="/api/documents/base/reply",n.params={sourceid:t},r.request(n)}},i={createDraft:function(t){var e=t||{};e.method="POST",e.url="/api/documents/motion/create_draft",r.request(e)},updateDraft:function(t,e){var n=e||{};n.method="PUT",n.url="/api/documents/motion/update_draft",n.params.id=t,r.request(n)},deleteDraft:function(t,e){var n=e||{};n.method="DELETE",n.url="/api/documents/motion/delete_draft",n.params={id:t},r.request(n)},sendDraft:function(t,e,n){var a=n||{};a.method="POST",a.url="/api/documents/motion/send_draft_motions",a.params={document_id:t,parent_id:e},r.request(a)}},o={create:function(t){var e=t||{};e.method="POST",e.url="/api/documents/comments/create",r.request(e)},sign:function(t){var e=t||{};e.method="POST",e.url="/api/documents/comments/sign",r.request(e)},author:function(t){var e=t||{};e.method="POST",e.url="/api/documents/comments/author",r.request(e)}},u={"delete":function(t,e){var n=e||{};n.method="DELETE",n.url="/api/documents/files/delete",n.params={id:t},r.request(n)}},s={create:function(t){var e=t||{};e.method="POST",e.url="/api/documents/relations/create",r.request(e)},"delete":function(t){var e=t||{};e.method="DELETE",e.url="/api/documents/relations/delete",r.request(e)}},c={send:1,complete:2,cancel:3},f={card:function(t,e){var n=e||{};n.method="GET",n.url="/api/documents/print/card/"+t,r.request(n)},showPDFwindow:function(t){var e=Ext.create("Ext.Window",{title:i18n.document.base.ui.card,width:"50%",height:"80%",layout:"anchor",anchor:"100% 100%",maximizable:!0,modal:!0,items:{xtype:"component",autoEl:{style:"height: 100%; width: 100%; border: none",html:'<iframe src="'+t+'" height="100%", width="100%" />'}}});e.show()}};e.exports={base:a,motion:i,comment:o,file:u,relation:s,responseType:c,print:f}},{"../ajax":1}],3:[function(t,e,n){var r=function(t,e){switch(t){case 0:return['<i class="fa fa-folder-open-o"></i> ',e].join("");case 1:return['<i class="fa fa-filter"></i> ',e].join("")}};e.exports={folderDecoration:r}},{}],4:[function(t,e,n){e.exports={document:t("./document"),substitude:t("./substitude"),folders:t("./folders"),party:t("./party")}},{"./document":2,"./folders":3,"./party":5,"./substitude":6}],5:[function(t,e,n){var r=t("../ajax"),a=function(t,e,n){var n=n||{};n.method="GET",n.url="/api/party/info",n.params={id:t,class_name:e},r.request(n)};e.exports={getInfo:a}},{"../ajax":1}],6:[function(t,e,n){var r=t("../ajax"),a=function(t){r.setExtraParams("substitude",t)};e.exports={setSubstitude:a}},{"../ajax":1}],7:[function(t,e,n){(function(t){!function(){function n(t){var e=!1;return function(){if(e)throw new Error("Callback was already called.");e=!0,t.apply(r,arguments)}}var r,a,i={};r=this,null!=r&&(a=r.async),i.noConflict=function(){return r.async=a,i};var o=Object.prototype.toString,u=Array.isArray||function(t){return"[object Array]"===o.call(t)},s=function(t,e){for(var n=0;n<t.length;n+=1)e(t[n],n,t)},c=function(t,e){if(t.map)return t.map(e);var n=[];return s(t,function(t,r,a){n.push(e(t,r,a))}),n},f=function(t,e,n){return t.reduce?t.reduce(e,n):(s(t,function(t,r,a){n=e(n,t,r,a)}),n)},l=function(t){if(Object.keys)return Object.keys(t);var e=[];for(var n in t)t.hasOwnProperty(n)&&e.push(n);return e};"undefined"!=typeof t&&t.nextTick?(i.nextTick=t.nextTick,i.setImmediate="undefined"!=typeof setImmediate?function(t){setImmediate(t)}:i.nextTick):"function"==typeof setImmediate?(i.nextTick=function(t){setImmediate(t)},i.setImmediate=i.nextTick):(i.nextTick=function(t){setTimeout(t,0)},i.setImmediate=i.nextTick),i.each=function(t,e,r){function a(e){e?(r(e),r=function(){}):(i+=1,i>=t.length&&r())}if(r=r||function(){},!t.length)return r();var i=0;s(t,function(t){e(t,n(a))})},i.forEach=i.each,i.eachSeries=function(t,e,n){if(n=n||function(){},!t.length)return n();var r=0,a=function(){e(t[r],function(e){e?(n(e),n=function(){}):(r+=1,r>=t.length?n():a())})};a()},i.forEachSeries=i.eachSeries,i.eachLimit=function(t,e,n,r){var a=p(e);a.apply(null,[t,n,r])},i.forEachLimit=i.eachLimit;var p=function(t){return function(e,n,r){if(r=r||function(){},!e.length||0>=t)return r();var a=0,i=0,o=0;!function u(){if(a>=e.length)return r();for(;t>o&&i<e.length;)i+=1,o+=1,n(e[i-1],function(t){t?(r(t),r=function(){}):(a+=1,o-=1,a>=e.length?r():u())})}()}},d=function(t){return function(){var e=Array.prototype.slice.call(arguments);return t.apply(null,[i.each].concat(e))}},m=function(t,e){return function(){var n=Array.prototype.slice.call(arguments);return e.apply(null,[p(t)].concat(n))}},v=function(t){return function(){var e=Array.prototype.slice.call(arguments);return t.apply(null,[i.eachSeries].concat(e))}},h=function(t,e,n,r){if(e=c(e,function(t,e){return{index:e,value:t}}),r){var a=[];t(e,function(t,e){n(t.value,function(n,r){a[t.index]=r,e(n)})},function(t){r(t,a)})}else t(e,function(t,e){n(t.value,function(t){e(t)})})};i.map=d(h),i.mapSeries=v(h),i.mapLimit=function(t,e,n,r){return g(e)(t,n,r)};var g=function(t){return m(t,h)};i.reduce=function(t,e,n,r){i.eachSeries(t,function(t,r){n(e,t,function(t,n){e=n,r(t)})},function(t){r(t,e)})},i.inject=i.reduce,i.foldl=i.reduce,i.reduceRight=function(t,e,n,r){var a=c(t,function(t){return t}).reverse();i.reduce(a,e,n,r)},i.foldr=i.reduceRight;var y=function(t,e,n,r){var a=[];e=c(e,function(t,e){return{index:e,value:t}}),t(e,function(t,e){n(t.value,function(n){n&&a.push(t),e()})},function(t){r(c(a.sort(function(t,e){return t.index-e.index}),function(t){return t.value}))})};i.filter=d(y),i.filterSeries=v(y),i.select=i.filter,i.selectSeries=i.filterSeries;var x=function(t,e,n,r){var a=[];e=c(e,function(t,e){return{index:e,value:t}}),t(e,function(t,e){n(t.value,function(n){n||a.push(t),e()})},function(t){r(c(a.sort(function(t,e){return t.index-e.index}),function(t){return t.value}))})};i.reject=d(x),i.rejectSeries=v(x);var E=function(t,e,n,r){t(e,function(t,e){n(t,function(n){n?(r(t),r=function(){}):e()})},function(t){r()})};i.detect=d(E),i.detectSeries=v(E),i.some=function(t,e,n){i.each(t,function(t,r){e(t,function(t){t&&(n(!0),n=function(){}),r()})},function(t){n(!1)})},i.any=i.some,i.every=function(t,e,n){i.each(t,function(t,r){e(t,function(t){t||(n(!1),n=function(){}),r()})},function(t){n(!0)})},i.all=i.every,i.sortBy=function(t,e,n){i.map(t,function(t,n){e(t,function(e,r){e?n(e):n(null,{value:t,criteria:r})})},function(t,e){if(t)return n(t);var r=function(t,e){var n=t.criteria,r=e.criteria;return r>n?-1:n>r?1:0};n(null,c(e.sort(r),function(t){return t.value}))})},i.auto=function(t,e){e=e||function(){};var n=l(t),r=n.length;if(!r)return e();var a={},o=[],c=function(t){o.unshift(t)},p=function(t){for(var e=0;e<o.length;e+=1)if(o[e]===t)return void o.splice(e,1)},d=function(){r--,s(o.slice(0),function(t){t()})};c(function(){if(!r){var t=e;e=function(){},t(null,a)}}),s(n,function(n){var r=u(t[n])?t[n]:[t[n]],o=function(t){var r=Array.prototype.slice.call(arguments,1);if(r.length<=1&&(r=r[0]),t){var o={};s(l(a),function(t){o[t]=a[t]}),o[n]=r,e(t,o),e=function(){}}else a[n]=r,i.setImmediate(d)},m=r.slice(0,Math.abs(r.length-1))||[],v=function(){return f(m,function(t,e){return t&&a.hasOwnProperty(e)},!0)&&!a.hasOwnProperty(n)};if(v())r[r.length-1](o,a);else{var h=function(){v()&&(p(h),r[r.length-1](o,a))};c(h)}})},i.retry=function(t,e,n){var r=5,a=[];"function"==typeof t&&(n=e,e=t,t=r),t=parseInt(t,10)||r;var o=function(r,o){for(var u=function(t,e){return function(n){t(function(t,r){n(!t||e,{err:t,result:r})},o)}};t;)a.push(u(e,!(t-=1)));i.series(a,function(t,e){e=e[e.length-1],(r||n)(e.err,e.result)})};return n?o():o},i.waterfall=function(t,e){if(e=e||function(){},!u(t)){var n=new Error("First argument to waterfall must be an array of functions");return e(n)}if(!t.length)return e();var r=function(t){return function(n){if(n)e.apply(null,arguments),e=function(){};else{var a=Array.prototype.slice.call(arguments,1),o=t.next();a.push(o?r(o):e),i.setImmediate(function(){t.apply(null,a)})}}};r(i.iterator(t))()};var w=function(t,e,n){if(n=n||function(){},u(e))t.map(e,function(t,e){t&&t(function(t){var n=Array.prototype.slice.call(arguments,1);n.length<=1&&(n=n[0]),e.call(null,t,n)})},n);else{var r={};t.each(l(e),function(t,n){e[t](function(e){var a=Array.prototype.slice.call(arguments,1);a.length<=1&&(a=a[0]),r[t]=a,n(e)})},function(t){n(t,r)})}};i.parallel=function(t,e){w({map:i.map,each:i.each},t,e)},i.parallelLimit=function(t,e,n){w({map:g(e),each:p(e)},t,n)},i.series=function(t,e){if(e=e||function(){},u(t))i.mapSeries(t,function(t,e){t&&t(function(t){var n=Array.prototype.slice.call(arguments,1);n.length<=1&&(n=n[0]),e.call(null,t,n)})},e);else{var n={};i.eachSeries(l(t),function(e,r){t[e](function(t){var a=Array.prototype.slice.call(arguments,1);a.length<=1&&(a=a[0]),n[e]=a,r(t)})},function(t){e(t,n)})}},i.iterator=function(t){var e=function(n){var r=function(){return t.length&&t[n].apply(null,arguments),r.next()};return r.next=function(){return n<t.length-1?e(n+1):null},r};return e(0)},i.apply=function(t){var e=Array.prototype.slice.call(arguments,1);return function(){return t.apply(null,e.concat(Array.prototype.slice.call(arguments)))}};var b=function(t,e,n,r){var a=[];t(e,function(t,e){n(t,function(t,n){a=a.concat(n||[]),e(t)})},function(t){r(t,a)})};i.concat=d(b),i.concatSeries=v(b),i.whilst=function(t,e,n){t()?e(function(r){return r?n(r):void i.whilst(t,e,n)}):n()},i.doWhilst=function(t,e,n){t(function(r){if(r)return n(r);var a=Array.prototype.slice.call(arguments,1);e.apply(null,a)?i.doWhilst(t,e,n):n()})},i.until=function(t,e,n){t()?n():e(function(r){return r?n(r):void i.until(t,e,n)})},i.doUntil=function(t,e,n){t(function(r){if(r)return n(r);var a=Array.prototype.slice.call(arguments,1);e.apply(null,a)?n():i.doUntil(t,e,n)})},i.queue=function(t,e){function r(t,e,n,r){return t.started||(t.started=!0),u(e)||(e=[e]),0==e.length?i.setImmediate(function(){t.drain&&t.drain()}):void s(e,function(e){var a={data:e,callback:"function"==typeof r?r:null};n?t.tasks.unshift(a):t.tasks.push(a),t.saturated&&t.tasks.length===t.concurrency&&t.saturated(),i.setImmediate(t.process)})}void 0===e&&(e=1);var a=0,o={tasks:[],concurrency:e,saturated:null,empty:null,drain:null,started:!1,paused:!1,push:function(t,e){r(o,t,!1,e)},kill:function(){o.drain=null,o.tasks=[]},unshift:function(t,e){r(o,t,!0,e)},process:function(){if(!o.paused&&a<o.concurrency&&o.tasks.length){var e=o.tasks.shift();o.empty&&0===o.tasks.length&&o.empty(),a+=1;var r=function(){a-=1,e.callback&&e.callback.apply(e,arguments),o.drain&&o.tasks.length+a===0&&o.drain(),o.process()},i=n(r);t(e.data,i)}},length:function(){return o.tasks.length},running:function(){return a},idle:function(){return o.tasks.length+a===0},pause:function(){o.paused!==!0&&(o.paused=!0)},resume:function(){if(o.paused!==!1){o.paused=!1;for(var t=1;t<=o.concurrency;t++)i.setImmediate(o.process)}}};return o},i.priorityQueue=function(t,e){function n(t,e){return t.priority-e.priority}function r(t,e,n){for(var r=-1,a=t.length-1;a>r;){var i=r+(a-r+1>>>1);n(e,t[i])>=0?r=i:a=i-1}return r}function a(t,e,a,o){return t.started||(t.started=!0),u(e)||(e=[e]),0==e.length?i.setImmediate(function(){t.drain&&t.drain()}):void s(e,function(e){var u={data:e,priority:a,callback:"function"==typeof o?o:null};t.tasks.splice(r(t.tasks,u,n)+1,0,u),t.saturated&&t.tasks.length===t.concurrency&&t.saturated(),i.setImmediate(t.process)})}var o=i.queue(t,e);return o.push=function(t,e,n){a(o,t,e,n)},delete o.unshift,o},i.cargo=function(t,e){var n=!1,r=[],a={tasks:r,payload:e,saturated:null,empty:null,drain:null,drained:!0,push:function(t,n){u(t)||(t=[t]),s(t,function(t){r.push({data:t,callback:"function"==typeof n?n:null}),a.drained=!1,a.saturated&&r.length===e&&a.saturated()}),i.setImmediate(a.process)},process:function o(){if(!n){if(0===r.length)return a.drain&&!a.drained&&a.drain(),void(a.drained=!0);var i="number"==typeof e?r.splice(0,e):r.splice(0,r.length),u=c(i,function(t){return t.data});a.empty&&a.empty(),n=!0,t(u,function(){n=!1;var t=arguments;s(i,function(e){e.callback&&e.callback.apply(null,t)}),o()})}},length:function(){return r.length},running:function(){return n}};return a};var T=function(t){return function(e){var n=Array.prototype.slice.call(arguments,1);e.apply(null,n.concat([function(e){var n=Array.prototype.slice.call(arguments,1);"undefined"!=typeof console&&(e?console.error&&console.error(e):console[t]&&s(n,function(e){console[t](e)}))}]))}};i.log=T("log"),i.dir=T("dir"),i.memoize=function(t,e){var n={},r={};e=e||function(t){return t};var a=function(){var a=Array.prototype.slice.call(arguments),o=a.pop(),u=e.apply(null,a);u in n?i.nextTick(function(){o.apply(null,n[u])}):u in r?r[u].push(o):(r[u]=[o],t.apply(null,a.concat([function(){n[u]=arguments;var t=r[u];delete r[u];for(var e=0,a=t.length;a>e;e++)t[e].apply(null,arguments)}])))};return a.memo=n,a.unmemoized=t,a},i.unmemoize=function(t){return function(){return(t.unmemoized||t).apply(null,arguments)}},i.times=function(t,e,n){for(var r=[],a=0;t>a;a++)r.push(a);return i.map(r,e,n)},i.timesSeries=function(t,e,n){for(var r=[],a=0;t>a;a++)r.push(a);return i.mapSeries(r,e,n)},i.seq=function(){var t=arguments;return function(){var e=this,n=Array.prototype.slice.call(arguments),r=n.pop();i.reduce(t,n,function(t,n,r){n.apply(e,t.concat([function(){var t=arguments[0],e=Array.prototype.slice.call(arguments,1);r(t,e)}]))},function(t,n){r.apply(e,[t].concat(n))})}},i.compose=function(){return i.seq.apply(null,Array.prototype.reverse.call(arguments))};var _=function(t,e){var n=function(){var n=this,r=Array.prototype.slice.call(arguments),a=r.pop();return t(e,function(t,e){t.apply(n,r.concat([e]))},a)};if(arguments.length>2){var r=Array.prototype.slice.call(arguments,2);return n.apply(this,r)}return n};i.applyEach=d(_),i.applyEachSeries=v(_),i.forever=function(t,e){function n(r){if(r){if(e)return e(r);throw r}t(n)}n()},"undefined"!=typeof e&&e.exports?e.exports=i:"undefined"!=typeof define&&define.amd?define([],function(){return i}):r.async=i}()}).call(this,t("DF1urx"))},{DF1urx:19}],8:[function(t,e,n){e.exports={status:t("./status"),role:t("./role"),motion:t("./motion"),user:t("./user"),renderer:t("./renderer")}},{"./motion":9,"./renderer":10,"./role":11,"./status":12,"./user":13}],9:[function(t,e,n){var r,a=function(t){return r||(r=Ext.create("Tel100.view.document.motions.Properties",{closeAction:"hide",modal:!0})),r.setMotion(t),r},i=function(t,e,n){for(var r=[],a=[],i=[],o=0,u=0,s=0,c=0,f=n&&n.prefix,l=0;l<t.length;l++){var p=t[l],d=p.status,m=p.name;if(p.position&&(m=[m," (",p.position.trim(),")"].join("")),a.push(m),2>l){var v,h=helpers.document.status.statusDecoration(d);v=f?'<a data-id="'+p[f+"_id"]+'" data-class="'+p[f+"_type"]+'">'+p.name+"</a>":p.name,r.push(['<span class="'+h.style+'">','<i class="fa '+h.icon+'"></i> ',v,"</span>"].join(""))}else d===helpers.document.status.CURRENT?o+=1:d===helpers.document.status.COMPLETED?u+=1:d===helpers.document.status.CANCELED?s+=1:c+=1}return e.tdAttr='data-qtip="'+a.join("; ")+'"',o&&i.push('<span class="label label-info"><i class="fa fa-clock-o"></i> '+o+"</span>"),u&&i.push('<span class="label label-success"><i class="fa fa-check"></i> '+u+"</span>"),s&&i.push('<span class="label label-danger"><i class="fa fa-times"></i> '+s+"</span>"),c&&i.push('<span class="label label-warning"><i class="fa fa-circle-o"></i> '+c+"</span>"),o+s+u+c&&r.push(i18n.ui.more+i.join(" ")),r.join("<br>")},o=function(t,e){for(var n=[],r=[],a=0,i="",o=0;o<t.length;o++){var u=t[o],s=u.status,c=u.current_status;if("--"!==c)if(u.due_date&&(i=Ext.Date.format(Ext.Date.parse(u.due_date,"Y-m-d\\TH:i:s.u\\Z"),"d/m/Y"),c=[c," (",i,")"].join("")),r.push(c),2>o){var f=helpers.document.status.statusDecoration(s);n.push(['<span class="'+f.style+'">','<i class="fa '+f.icon+'"></i> ',u.current_status,"<br>",i,"</span>"].join(""))}else a++}return e.tdAttr='data-qtip="'+r.join("; ")+'"',a&&n.push(i18n.ui.more+a),n.join("<br>")};e.exports={getPropertiesDialog:a,formatReceivers:i,formatResponses:o}},{}],10:[function(t,e,n){"use strict";function r(t,e){var n="function"==typeof t.get,r=function(t,e){return n?t.get(e):t[e]};if("string"==typeof e)return r(t,e);for(var a=0;a<e.length;a++){var i=r(t,e[a]);if(void 0!==i)return i}}function a(t,e){var e=e||{},n="sender"===e.as?"sender":"receiver",a=r(t,n+"_id"),f=r(t,n+"_type"),l=r(t,[n+"_name",n,"name"]),p=r(t,"due_date"),d=r(t,"due_is_over"),m=r(t,"status"),v=r(t,"is_new"),h=r(t,"current_status"),g=u(a,f,l),y=o(h);y&&(g=[g," &mdash; ",h].join(""));var x=s(p,d,m);if(x&&(g=[g,x].join(" ")),g=i(g,v,m),p){var E="";d?E="danger":m===c.CURRENT&&(E="warning"),g=['<span class="',E,'">',g,"</span>"].join("")}return g}function i(t,e,n){var r,a=c.statusDecoration(n);return r=e&&n===c.CURRENT?'<i class="text-danger fa fa-circle"></i>':'<i class="fa '+a.icon+'"></i>',['<span class="',a.style,'">',r," ",t,"</span>"].join("")}function o(t){return t&&"--"!==t?t:null}function u(t,e,n){return t?['<a href="#" data-id="',t,'" data-class="',e,'">',n,"</a>"].join(""):n}function s(t,e,n){if(t){"string"==typeof t&&(t=new Date(t));var r="fa-warning";e?r="fa-times-circle":n==c.COMPLETED?r="fa-check-circle":n==c.CANCELED&&(r="");var a='<i class="fa '+r+'"></i> <strong>'+Ext.Date.format(t,"d/m/Y")+"</strong>",i="";return e?i="text-danger":n===c.CURRENT&&(i="text-warning"),[' <span class="',i,'">',a,"</strong></span>"].join("")}}var c=t("./status");e.exports={renderMotion:a}},{"./status":12}],11:[function(t,e,n){e.exports={OWNER:"owner",CREATOR:"creator",AUTHOR:"author",SIGNEE:"signee",ASSIGNEE:"assignee"}},{}],12:[function(t,e,n){var r=t("./role"),a=0,i=-1,o=1,u=2,s=-2,c=3,f=-3,l=r.OWNER,p=(r.CREATOR,r.AUTHOR),d=r.SIGNEE,m=r.ASSIGNEE,v=function(t,e,n){var r,m,v,h,g=n&&n.isMotion,y=n&&n.isNew,x=n&&n.isChanged;e=e||l;var E=e===p||e===d;return"undefined"==typeof g&&(g=!1),"undefined"==typeof y&&(y=!1),"undefined"==typeof x&&(x=!1),t===a?(r=g?E?"to_be_signed":"to_be_sent":"draft",m="fa-circle-o",v="text-muted"):t===o?(r="sent",m="fa-send-o",v="text-muted"):t===i?(r="not_sent",m="fa-frown-o",v="text-warning"):t===u?(r=E?"to_be_signed":"current",m="fa-clock-o",v="text-info"):t===s?(r="not_received",m="fa-ban",v="text-warning"):t===c?(r=E?"signed":"completed",m="fa-check",v="text-success"):t===f&&(r=E?"canceled":"not_signed",m="fa-times",v="text-danger"),h=v,y&&(m="fa-circle",h="text-danger"),{text:r,style:v,icon:m,iconStyle:h}},h=function(t,e,n){var r=v(t,e,n);if(r.text){var a=['<span class="',r.iconStyle,'">','<i class="fa ',r.icon,'"></i>',"</span>"].join("");return['<span class="',r.style,'">',a," ",i18n.document.base.statuses[r.text],"</span>"].join("")}return"???"},g=function(t,e){var n;return n=e.get?e.get("receiver_role"):e.receiver_role,h(t,n)},y=function(t,e){var n=e.get("receiver_role"),r=v(t,n,{isMotion:!0});return['<span class="',r.iconStyle,'">','<i class="fa ',r.icon,'"></i>',"</span>"].join("")},x=function(t,e){var n=e.get("receiver");if(!n)return"";switch(n.ext_type){case"hr.Employee":return'<i class="fa fa-user"></i> '+t;case"hr.Organization":return'<i class="fa fa-bank"></i> '+t;case"hr.Party":return'<i class="fa fa-building"></i> '+t;case"bs.Customer":return'<i class="fa fa-users"></i> '+t}},E=function(t,e){var n=e.get("receiver_role"),r=v(t,n,{isMotion:!0});return"row-"+r.iconStyle},w=function(t,e){var n=m,r=v(t,n,{isMotion:!1});return"row-"+r.iconStyle};e.exports={DRAFT:a,SENT:o,NOT_SENT:i,CURRENT:u,NOT_RECEIVED:s,COMPLETED:c,CANCELED:f,statusDecoration:v,statusFormatted:h,motionStatusFull:g,motionStatusIcon:y,motionReceiverName:x,motionStatusRowClass:E,documentStatusRowClass:w}},{"./role":11}],13:[function(t,e,n){var r=0,a=1,i=2,o=3,u={0:"none",1:"current",2:"completed",3:"canceled"};e.exports={NONE:r,CURRENT:a,COMPLETED:i,CANCELED:o,myStatus:function(t){var e,n,a=t.get("status")===helpers.document.status.DRAFT,s=t.get("as_owner"),c=t.get("as_author"),f=t.get("as_signee"),l=t.get("as_assignee");a?(e="any",n=0):s>r?(e="owner",n=s):c>r?(e="author",n=c):f>r?(e="signee",n=f):l>r&&(e="assignee",n=l);var p=e+"."+u[n],d=i18n.document.user.my_status[p],m="fa-clock-o",v="text-info";return n===r?(m="fa-circle-o",v="text-muted"):n===i?(m="fa-check",v="text-success"):n===o&&(m="fa-times",v="text-danger"),{name:d,icon:m,style:v,unread:t.get("is_new")}}}},{}],14:[function(t,e,n){window.helpers={ajax:t("./ajax"),document:t("./document"),i18n:t("./i18n"),preferences:t("./preferences"),user:t("./user"),api:t("./api"),party:t("./party")},window.async=t("./async")},{"./ajax":1,"./api":4,"./async":7,"./document":8,"./i18n":15,"./party":16,"./preferences":17,"./user":18}],15:[function(t,e,n){var r,a=t("./ajax"),i=t("./preferences"),o=function(){return r||i.getValue("locale","ka")},u=function(t){r=t,i.setValue("locale",t),a.setExtraParams("api_locale",t)},s=function(){var t=o();u(t)};e.exports={getCurrentLocale:o,setCurrentLocale:u,resetCurrentLocale:s}},{"./ajax":1,"./preferences":17}],16:[function(t,e,n){var r,a,i=t("../api/party"),o=function(t){return r||(r=Ext.create("Tel100.view.party.Selector",{title:i18n.document.motion.selectReceiver})),r.clearListeners(),r.on("selectioncomplete",t),r},u=function(t,e){var n=e.get("person_type");switch(n){case"HR::Employee":return'<i class="fa fa-user"></i> '+t;case"HR::Organization":return'<i class="fa fa-bank"></i> '+t;case"HR::Party":return'<i class="fa fa-building"></i> '+t;case"BS::Customer":return'<i class="fa fa-users"></i> '+t}},s=function(t){switch(t){case"HR::Employee":return"hr.Employee";case"HR::Organization":return"hr.Organization";case"HR::Party":return"hr.Party";case"BS::Customer":return"bs.Customer"}},c=function(t){switch(t){case"hr.Employee":return"HR::Employee";case"hr.Organization":return"HR::Organization";case"hr.Party":return"HR::Party";case"bs.Customer":return"BS::Customer"}},f=function(t){t.getEl().on("click",function(t,e){if(e&&"A"===e.tagName){var n=e.attributes["data-id"].value,r=e.attributes["data-class"].value;if(n&&r){i.getInfo(n,r,{success:function(t){a.setHtml(t.html)}}),html='<i class="fa fa-circle-o-notch fa-spin"></i> loading...',a||(a=Ext.create("Ext.tip.ToolTip",{autoHide:!1}));var o=e.getBoundingClientRect();a.setHtml(html),a.showAt({x:o.left,y:o.bottom})}}})},l=function(t){var e=['<span title="'+i18n.hr.tree.absence_reason+t.get("vac_text")+'" class="text-muted"><i class="fa fa-pause"></i> ',t.get("full_name"),"</span>"].join("");return t.get("sub_id")&&(e=[e," - ",'<span class="text-success"><i class="fa fa-user"></i> <a data-sub="'+t.get("sub_id")+'"> ',i18n.hr.tree.substitude,t.get("sub_name"),"</a></span>"].join("")),e},p=function(t){t.getEl().on("click",function(e,n){if(n&&"A"===n.tagName){var r=n.attributes["data-sub"].value;t.fireEvent("startsearch",t,r)}})};e.exports={getPartyDialog:o,favouriteDecoration:u,convertTypeToExt:s,convertTypeToRuby:c,employeeTips:f,vacationDecorations:l,vacationAction:p}},{"../api/party":5}],17:[function(t,e,n){var r,a=function(){return r||(r=new Ext.util.LocalStorage({id:"preferences"})),r},i=function(t,e){var n=a(),r=n.getItem(t);return r||"undefined"==typeof e||(r=e),r},o=function(t,e){var n=a();n.setItem(t,e)};e.exports={getValue:i,setValue:o}},{}],18:[function(t,e,n){var r,a=t("./ajax"),i=t("./i18n"),o=t("./preferences"),u=function(t,e){t&&e?(r=t,o.setValue("username",t.get("username")),a.setExtraParams("api_username",t.get("username")),a.setExtraParams("api_password",e),i.resetCurrentLocale()):(r=null,a.setExtraParams("api_username",null),a.setExtraParams("api_password",null))},s=function(){return r};e.exports={setCurrentUser:u,getCurrentUser:s}},{"./ajax":1,"./i18n":15,"./preferences":17}],19:[function(t,e,n){function r(){}var a=e.exports={};a.nextTick=function(){var t="undefined"!=typeof window&&window.setImmediate,e="undefined"!=typeof window&&window.postMessage&&window.addEventListener;if(t)return function(t){return window.setImmediate(t)};if(e){var n=[];return window.addEventListener("message",function(t){var e=t.source;if((e===window||null===e)&&"process-tick"===t.data&&(t.stopPropagation(),n.length>0)){var r=n.shift();r()}},!0),function(t){n.push(t),window.postMessage("process-tick","*")}}return function(t){setTimeout(t,0)}}(),a.title="browser",a.browser=!0,a.env={},a.argv=[],a.on=r,a.addListener=r,a.once=r,a.off=r,a.removeListener=r,a.removeAllListeners=r,a.emit=r,a.binding=function(t){throw new Error("process.binding is not supported")},a.cwd=function(){return"/"},a.chdir=function(t){throw new Error("process.chdir is not supported")}},{}]},{},[14]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var errorMessage = function(error, title) {
+  var titleText = title || i18n.errors.title;
+  Ext.Msg.alert(titleText, error);
+};
+
+var request = function(opts) {
+  var method  = (opts && opts.method) || 'GET';
+  var url     = opts && opts.url;
+  var params  = opts && opts.params;
+  var view    = opts && opts.view;
+  var success = opts && opts.success;
+  var failure = opts && opts.failure;
+
+  if (view) {
+    view.setLoading(true);
+  }
+
+  Ext.Ajax.request({
+    url: url,
+    method: method,
+    params: params,
+    success: function(response) {
+      if (view) { view.setLoading(false); }
+      var data = JSON.parse(response.responseText);
+      if (data.success === false) {
+        if (failure) {
+          failure(data.message || data.error);
+        } else {
+          errorMessage(data.message || data.error);
+        }
+      } else if (success) {
+        success(data);
+      }
+    },
+    failure: function(response) {
+      if (view) { view.setLoading(false); }
+      if (failure) {
+        failure(response);
+      } else {
+        errorMessage('connection failure: try again latter.');
+      }
+    },
+  });
+};
+
+// var loadModel = function(name, model, viewModel) {
+//   var view = viewModel.getView();
+//   view.setLoading(true);
+//   model.load({
+//     success: function(model, operation) {
+//       view.setLoading(false);
+//       viewModel.set(name, model);
+//     },
+//     failure: function(model, operation) {
+//       view.setLoading(false);
+//       errorMessage(operation.error.statusText || i18n_().errors.model_loading_error);
+//     },
+//   });
+// };
+
+var setExtraParams = function(key, value) {
+  var params = Ext.Ajax.getExtraParams() || {};
+  params[key] = value;
+  Ext.Ajax.setExtraParams(params);
+};
+
+module.exports = {
+  request: request,
+  setExtraParams: setExtraParams
+};
+
+},{}],2:[function(require,module,exports){
+var ajax = require('../ajax');
+
+var base = {
+  createDraft: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/base/create_draft';
+    ajax.request(opts);
+  },
+
+  updateDraft: function(id, args) {
+    var opts = args || {};
+    opts.method = 'PUT';
+    opts.url = '/api/documents/base/update_draft';
+    opts.params.id = id;
+    ajax.request(opts);
+  },
+
+  deleteDraft: function(id, args) {
+    var opts = args || {};
+    opts.method = 'DELETE';
+    opts.url = '/api/documents/base/delete_draft';
+    opts.params = { id: id };
+    ajax.request(opts);
+  },
+
+  sendDraft: function(id, args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/base/send_draft';
+    opts.params = { id: id };
+    ajax.request(opts);
+  },
+
+  reply: function(sourceid, args){
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/base/reply';
+    opts.params = { sourceid: sourceid };
+    ajax.request(opts);
+  }
+};
+
+var motion = {
+  createDraft: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/motion/create_draft';
+    ajax.request(opts);
+  },
+
+  updateDraft: function(id, args) {
+    var opts = args || {};
+    opts.method = 'PUT';
+    opts.url = '/api/documents/motion/update_draft';
+    opts.params.id = id;
+    ajax.request(opts);
+  },
+
+  deleteDraft: function(id, args) {
+    var opts = args || {};
+    opts.method = 'DELETE';
+    opts.url = '/api/documents/motion/delete_draft';
+    opts.params = { id: id };
+    ajax.request(opts);
+  },
+
+  sendDraft: function(documentId, parentId, args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/motion/send_draft_motions';
+    opts.params = { document_id: documentId, parent_id: parentId };
+    ajax.request(opts);
+  }
+};
+
+var comment = {
+  create: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/comments/create';
+    ajax.request(opts);
+  },
+
+  sign: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/comments/sign';
+    ajax.request(opts);
+  },
+
+  author: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/comments/author';
+    ajax.request(opts);
+  }
+};
+
+var file = {
+  delete: function(id, args) {
+    var opts = args || {};
+    opts.method = 'DELETE';
+    opts.url = '/api/documents/files/delete';
+    opts.params = { id: id };
+    ajax.request(opts);
+  },
+};
+
+var relation = {
+  create: function(args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/relations/create';
+    ajax.request(opts);
+  },
+
+  delete: function(args) {
+    var opts = args || {};
+    opts.method = 'DELETE';
+    opts.url = '/api/documents/relations/delete';
+    ajax.request(opts);
+  }
+};
+
+var responseType = {
+  send: 1,
+  complete: 2,
+  cancel: 3
+};
+
+var print = {
+  card: function(id, args){
+    var opts = args || {};
+    opts.method = 'GET';
+    opts.url = '/api/documents/print/card/' + id;
+    ajax.request(opts);
+  },
+
+  showPDFwindow: function(url) {
+    var pdfwin = Ext.create('Ext.Window',{
+        title: i18n.document.base.ui.card,
+        width: '50%',
+        height: '80%',
+        layout:'anchor',
+        anchor:"100% 100%",
+        maximizable: true,
+        modal: true,
+        items: {
+          xtype: 'component',
+          autoEl: {
+            style: 'height: 100%; width: 100%; border: none',
+            html: '<iframe src="' + url + '" height="100%", width="100%" />'
+          }
+        }
+      });
+
+    pdfwin.show();
+  }
+
+};
+
+module.exports = {
+  base: base,
+  motion: motion,
+  comment: comment,
+  file: file,
+  relation: relation,
+  responseType: responseType,
+  print: print
+};
+
+},{"../ajax":1}],3:[function(require,module,exports){
+var folderDecoration = function(folderType, name){
+  switch(folderType){
+  	case 0: return ['<i class="fa fa-folder-open-o"></i> ', name].join('');
+  	case 1: return ['<i class="fa fa-filter"></i> ', name].join('');
+  }
+};
+
+module.exports = {
+  folderDecoration: folderDecoration
+};
+},{}],4:[function(require,module,exports){
+module.exports = {
+  document: require('./document'),
+  substitude: require('./substitude'),
+  folders: require('./folders'),
+  party: require('./party')
+};
+},{"./document":2,"./folders":3,"./party":5,"./substitude":6}],5:[function(require,module,exports){
+var ajax = require('../ajax');
+
+var getInfo = function(id, className, opts) {
+  var opts = opts || {};
+  opts.method = 'GET';
+  opts.url = '/api/party/info';
+  opts.params = { id: id, class_name: className };
+  ajax.request(opts);
+};
+
+module.exports = {
+  getInfo: getInfo
+};
+
+},{"../ajax":1}],6:[function(require,module,exports){
+var ajax = require('../ajax');
+
+var setSubstitude = function(substitude){
+  ajax.setExtraParams('substitude', substitude);
+};
+
+module.exports = {
+  setSubstitude: setSubstitude
+};
+},{"../ajax":1}],7:[function(require,module,exports){
+(function (process){
+/*!
+ * async
+ * https://github.com/caolan/async
+ *
+ * Copyright 2010-2014 Caolan McMahon
+ * Released under the MIT license
+ */
+/*jshint onevar: false, indent:4 */
+/*global setImmediate: false, setTimeout: false, console: false */
+(function () {
+
+    var async = {};
+
+    // global on the server, window in the browser
+    var root, previous_async;
+
+    root = this;
+    if (root != null) {
+      previous_async = root.async;
+    }
+
+    async.noConflict = function () {
+        root.async = previous_async;
+        return async;
+    };
+
+    function only_once(fn) {
+        var called = false;
+        return function() {
+            if (called) throw new Error("Callback was already called.");
+            called = true;
+            fn.apply(root, arguments);
+        }
+    }
+
+    //// cross-browser compatiblity functions ////
+
+    var _toString = Object.prototype.toString;
+
+    var _isArray = Array.isArray || function (obj) {
+        return _toString.call(obj) === '[object Array]';
+    };
+
+    var _each = function (arr, iterator) {
+        for (var i = 0; i < arr.length; i += 1) {
+            iterator(arr[i], i, arr);
+        }
+    };
+
+    var _map = function (arr, iterator) {
+        if (arr.map) {
+            return arr.map(iterator);
+        }
+        var results = [];
+        _each(arr, function (x, i, a) {
+            results.push(iterator(x, i, a));
+        });
+        return results;
+    };
+
+    var _reduce = function (arr, iterator, memo) {
+        if (arr.reduce) {
+            return arr.reduce(iterator, memo);
+        }
+        _each(arr, function (x, i, a) {
+            memo = iterator(memo, x, i, a);
+        });
+        return memo;
+    };
+
+    var _keys = function (obj) {
+        if (Object.keys) {
+            return Object.keys(obj);
+        }
+        var keys = [];
+        for (var k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                keys.push(k);
+            }
+        }
+        return keys;
+    };
+
+    //// exported async module functions ////
+
+    //// nextTick implementation with browser-compatible fallback ////
+    if (typeof process === 'undefined' || !(process.nextTick)) {
+        if (typeof setImmediate === 'function') {
+            async.nextTick = function (fn) {
+                // not a direct alias for IE10 compatibility
+                setImmediate(fn);
+            };
+            async.setImmediate = async.nextTick;
+        }
+        else {
+            async.nextTick = function (fn) {
+                setTimeout(fn, 0);
+            };
+            async.setImmediate = async.nextTick;
+        }
+    }
+    else {
+        async.nextTick = process.nextTick;
+        if (typeof setImmediate !== 'undefined') {
+            async.setImmediate = function (fn) {
+              // not a direct alias for IE10 compatibility
+              setImmediate(fn);
+            };
+        }
+        else {
+            async.setImmediate = async.nextTick;
+        }
+    }
+
+    async.each = function (arr, iterator, callback) {
+        callback = callback || function () {};
+        if (!arr.length) {
+            return callback();
+        }
+        var completed = 0;
+        _each(arr, function (x) {
+            iterator(x, only_once(done) );
+        });
+        function done(err) {
+          if (err) {
+              callback(err);
+              callback = function () {};
+          }
+          else {
+              completed += 1;
+              if (completed >= arr.length) {
+                  callback();
+              }
+          }
+        }
+    };
+    async.forEach = async.each;
+
+    async.eachSeries = function (arr, iterator, callback) {
+        callback = callback || function () {};
+        if (!arr.length) {
+            return callback();
+        }
+        var completed = 0;
+        var iterate = function () {
+            iterator(arr[completed], function (err) {
+                if (err) {
+                    callback(err);
+                    callback = function () {};
+                }
+                else {
+                    completed += 1;
+                    if (completed >= arr.length) {
+                        callback();
+                    }
+                    else {
+                        iterate();
+                    }
+                }
+            });
+        };
+        iterate();
+    };
+    async.forEachSeries = async.eachSeries;
+
+    async.eachLimit = function (arr, limit, iterator, callback) {
+        var fn = _eachLimit(limit);
+        fn.apply(null, [arr, iterator, callback]);
+    };
+    async.forEachLimit = async.eachLimit;
+
+    var _eachLimit = function (limit) {
+
+        return function (arr, iterator, callback) {
+            callback = callback || function () {};
+            if (!arr.length || limit <= 0) {
+                return callback();
+            }
+            var completed = 0;
+            var started = 0;
+            var running = 0;
+
+            (function replenish () {
+                if (completed >= arr.length) {
+                    return callback();
+                }
+
+                while (running < limit && started < arr.length) {
+                    started += 1;
+                    running += 1;
+                    iterator(arr[started - 1], function (err) {
+                        if (err) {
+                            callback(err);
+                            callback = function () {};
+                        }
+                        else {
+                            completed += 1;
+                            running -= 1;
+                            if (completed >= arr.length) {
+                                callback();
+                            }
+                            else {
+                                replenish();
+                            }
+                        }
+                    });
+                }
+            })();
+        };
+    };
+
+
+    var doParallel = function (fn) {
+        return function () {
+            var args = Array.prototype.slice.call(arguments);
+            return fn.apply(null, [async.each].concat(args));
+        };
+    };
+    var doParallelLimit = function(limit, fn) {
+        return function () {
+            var args = Array.prototype.slice.call(arguments);
+            return fn.apply(null, [_eachLimit(limit)].concat(args));
+        };
+    };
+    var doSeries = function (fn) {
+        return function () {
+            var args = Array.prototype.slice.call(arguments);
+            return fn.apply(null, [async.eachSeries].concat(args));
+        };
+    };
+
+
+    var _asyncMap = function (eachfn, arr, iterator, callback) {
+        arr = _map(arr, function (x, i) {
+            return {index: i, value: x};
+        });
+        if (!callback) {
+            eachfn(arr, function (x, callback) {
+                iterator(x.value, function (err) {
+                    callback(err);
+                });
+            });
+        } else {
+            var results = [];
+            eachfn(arr, function (x, callback) {
+                iterator(x.value, function (err, v) {
+                    results[x.index] = v;
+                    callback(err);
+                });
+            }, function (err) {
+                callback(err, results);
+            });
+        }
+    };
+    async.map = doParallel(_asyncMap);
+    async.mapSeries = doSeries(_asyncMap);
+    async.mapLimit = function (arr, limit, iterator, callback) {
+        return _mapLimit(limit)(arr, iterator, callback);
+    };
+
+    var _mapLimit = function(limit) {
+        return doParallelLimit(limit, _asyncMap);
+    };
+
+    // reduce only has a series version, as doing reduce in parallel won't
+    // work in many situations.
+    async.reduce = function (arr, memo, iterator, callback) {
+        async.eachSeries(arr, function (x, callback) {
+            iterator(memo, x, function (err, v) {
+                memo = v;
+                callback(err);
+            });
+        }, function (err) {
+            callback(err, memo);
+        });
+    };
+    // inject alias
+    async.inject = async.reduce;
+    // foldl alias
+    async.foldl = async.reduce;
+
+    async.reduceRight = function (arr, memo, iterator, callback) {
+        var reversed = _map(arr, function (x) {
+            return x;
+        }).reverse();
+        async.reduce(reversed, memo, iterator, callback);
+    };
+    // foldr alias
+    async.foldr = async.reduceRight;
+
+    var _filter = function (eachfn, arr, iterator, callback) {
+        var results = [];
+        arr = _map(arr, function (x, i) {
+            return {index: i, value: x};
+        });
+        eachfn(arr, function (x, callback) {
+            iterator(x.value, function (v) {
+                if (v) {
+                    results.push(x);
+                }
+                callback();
+            });
+        }, function (err) {
+            callback(_map(results.sort(function (a, b) {
+                return a.index - b.index;
+            }), function (x) {
+                return x.value;
+            }));
+        });
+    };
+    async.filter = doParallel(_filter);
+    async.filterSeries = doSeries(_filter);
+    // select alias
+    async.select = async.filter;
+    async.selectSeries = async.filterSeries;
+
+    var _reject = function (eachfn, arr, iterator, callback) {
+        var results = [];
+        arr = _map(arr, function (x, i) {
+            return {index: i, value: x};
+        });
+        eachfn(arr, function (x, callback) {
+            iterator(x.value, function (v) {
+                if (!v) {
+                    results.push(x);
+                }
+                callback();
+            });
+        }, function (err) {
+            callback(_map(results.sort(function (a, b) {
+                return a.index - b.index;
+            }), function (x) {
+                return x.value;
+            }));
+        });
+    };
+    async.reject = doParallel(_reject);
+    async.rejectSeries = doSeries(_reject);
+
+    var _detect = function (eachfn, arr, iterator, main_callback) {
+        eachfn(arr, function (x, callback) {
+            iterator(x, function (result) {
+                if (result) {
+                    main_callback(x);
+                    main_callback = function () {};
+                }
+                else {
+                    callback();
+                }
+            });
+        }, function (err) {
+            main_callback();
+        });
+    };
+    async.detect = doParallel(_detect);
+    async.detectSeries = doSeries(_detect);
+
+    async.some = function (arr, iterator, main_callback) {
+        async.each(arr, function (x, callback) {
+            iterator(x, function (v) {
+                if (v) {
+                    main_callback(true);
+                    main_callback = function () {};
+                }
+                callback();
+            });
+        }, function (err) {
+            main_callback(false);
+        });
+    };
+    // any alias
+    async.any = async.some;
+
+    async.every = function (arr, iterator, main_callback) {
+        async.each(arr, function (x, callback) {
+            iterator(x, function (v) {
+                if (!v) {
+                    main_callback(false);
+                    main_callback = function () {};
+                }
+                callback();
+            });
+        }, function (err) {
+            main_callback(true);
+        });
+    };
+    // all alias
+    async.all = async.every;
+
+    async.sortBy = function (arr, iterator, callback) {
+        async.map(arr, function (x, callback) {
+            iterator(x, function (err, criteria) {
+                if (err) {
+                    callback(err);
+                }
+                else {
+                    callback(null, {value: x, criteria: criteria});
+                }
+            });
+        }, function (err, results) {
+            if (err) {
+                return callback(err);
+            }
+            else {
+                var fn = function (left, right) {
+                    var a = left.criteria, b = right.criteria;
+                    return a < b ? -1 : a > b ? 1 : 0;
+                };
+                callback(null, _map(results.sort(fn), function (x) {
+                    return x.value;
+                }));
+            }
+        });
+    };
+
+    async.auto = function (tasks, callback) {
+        callback = callback || function () {};
+        var keys = _keys(tasks);
+        var remainingTasks = keys.length
+        if (!remainingTasks) {
+            return callback();
+        }
+
+        var results = {};
+
+        var listeners = [];
+        var addListener = function (fn) {
+            listeners.unshift(fn);
+        };
+        var removeListener = function (fn) {
+            for (var i = 0; i < listeners.length; i += 1) {
+                if (listeners[i] === fn) {
+                    listeners.splice(i, 1);
+                    return;
+                }
+            }
+        };
+        var taskComplete = function () {
+            remainingTasks--
+            _each(listeners.slice(0), function (fn) {
+                fn();
+            });
+        };
+
+        addListener(function () {
+            if (!remainingTasks) {
+                var theCallback = callback;
+                // prevent final callback from calling itself if it errors
+                callback = function () {};
+
+                theCallback(null, results);
+            }
+        });
+
+        _each(keys, function (k) {
+            var task = _isArray(tasks[k]) ? tasks[k]: [tasks[k]];
+            var taskCallback = function (err) {
+                var args = Array.prototype.slice.call(arguments, 1);
+                if (args.length <= 1) {
+                    args = args[0];
+                }
+                if (err) {
+                    var safeResults = {};
+                    _each(_keys(results), function(rkey) {
+                        safeResults[rkey] = results[rkey];
+                    });
+                    safeResults[k] = args;
+                    callback(err, safeResults);
+                    // stop subsequent errors hitting callback multiple times
+                    callback = function () {};
+                }
+                else {
+                    results[k] = args;
+                    async.setImmediate(taskComplete);
+                }
+            };
+            var requires = task.slice(0, Math.abs(task.length - 1)) || [];
+            var ready = function () {
+                return _reduce(requires, function (a, x) {
+                    return (a && results.hasOwnProperty(x));
+                }, true) && !results.hasOwnProperty(k);
+            };
+            if (ready()) {
+                task[task.length - 1](taskCallback, results);
+            }
+            else {
+                var listener = function () {
+                    if (ready()) {
+                        removeListener(listener);
+                        task[task.length - 1](taskCallback, results);
+                    }
+                };
+                addListener(listener);
+            }
+        });
+    };
+
+    async.retry = function(times, task, callback) {
+        var DEFAULT_TIMES = 5;
+        var attempts = [];
+        // Use defaults if times not passed
+        if (typeof times === 'function') {
+            callback = task;
+            task = times;
+            times = DEFAULT_TIMES;
+        }
+        // Make sure times is a number
+        times = parseInt(times, 10) || DEFAULT_TIMES;
+        var wrappedTask = function(wrappedCallback, wrappedResults) {
+            var retryAttempt = function(task, finalAttempt) {
+                return function(seriesCallback) {
+                    task(function(err, result){
+                        seriesCallback(!err || finalAttempt, {err: err, result: result});
+                    }, wrappedResults);
+                };
+            };
+            while (times) {
+                attempts.push(retryAttempt(task, !(times-=1)));
+            }
+            async.series(attempts, function(done, data){
+                data = data[data.length - 1];
+                (wrappedCallback || callback)(data.err, data.result);
+            });
+        }
+        // If a callback is passed, run this as a controll flow
+        return callback ? wrappedTask() : wrappedTask
+    };
+
+    async.waterfall = function (tasks, callback) {
+        callback = callback || function () {};
+        if (!_isArray(tasks)) {
+          var err = new Error('First argument to waterfall must be an array of functions');
+          return callback(err);
+        }
+        if (!tasks.length) {
+            return callback();
+        }
+        var wrapIterator = function (iterator) {
+            return function (err) {
+                if (err) {
+                    callback.apply(null, arguments);
+                    callback = function () {};
+                }
+                else {
+                    var args = Array.prototype.slice.call(arguments, 1);
+                    var next = iterator.next();
+                    if (next) {
+                        args.push(wrapIterator(next));
+                    }
+                    else {
+                        args.push(callback);
+                    }
+                    async.setImmediate(function () {
+                        iterator.apply(null, args);
+                    });
+                }
+            };
+        };
+        wrapIterator(async.iterator(tasks))();
+    };
+
+    var _parallel = function(eachfn, tasks, callback) {
+        callback = callback || function () {};
+        if (_isArray(tasks)) {
+            eachfn.map(tasks, function (fn, callback) {
+                if (fn) {
+                    fn(function (err) {
+                        var args = Array.prototype.slice.call(arguments, 1);
+                        if (args.length <= 1) {
+                            args = args[0];
+                        }
+                        callback.call(null, err, args);
+                    });
+                }
+            }, callback);
+        }
+        else {
+            var results = {};
+            eachfn.each(_keys(tasks), function (k, callback) {
+                tasks[k](function (err) {
+                    var args = Array.prototype.slice.call(arguments, 1);
+                    if (args.length <= 1) {
+                        args = args[0];
+                    }
+                    results[k] = args;
+                    callback(err);
+                });
+            }, function (err) {
+                callback(err, results);
+            });
+        }
+    };
+
+    async.parallel = function (tasks, callback) {
+        _parallel({ map: async.map, each: async.each }, tasks, callback);
+    };
+
+    async.parallelLimit = function(tasks, limit, callback) {
+        _parallel({ map: _mapLimit(limit), each: _eachLimit(limit) }, tasks, callback);
+    };
+
+    async.series = function (tasks, callback) {
+        callback = callback || function () {};
+        if (_isArray(tasks)) {
+            async.mapSeries(tasks, function (fn, callback) {
+                if (fn) {
+                    fn(function (err) {
+                        var args = Array.prototype.slice.call(arguments, 1);
+                        if (args.length <= 1) {
+                            args = args[0];
+                        }
+                        callback.call(null, err, args);
+                    });
+                }
+            }, callback);
+        }
+        else {
+            var results = {};
+            async.eachSeries(_keys(tasks), function (k, callback) {
+                tasks[k](function (err) {
+                    var args = Array.prototype.slice.call(arguments, 1);
+                    if (args.length <= 1) {
+                        args = args[0];
+                    }
+                    results[k] = args;
+                    callback(err);
+                });
+            }, function (err) {
+                callback(err, results);
+            });
+        }
+    };
+
+    async.iterator = function (tasks) {
+        var makeCallback = function (index) {
+            var fn = function () {
+                if (tasks.length) {
+                    tasks[index].apply(null, arguments);
+                }
+                return fn.next();
+            };
+            fn.next = function () {
+                return (index < tasks.length - 1) ? makeCallback(index + 1): null;
+            };
+            return fn;
+        };
+        return makeCallback(0);
+    };
+
+    async.apply = function (fn) {
+        var args = Array.prototype.slice.call(arguments, 1);
+        return function () {
+            return fn.apply(
+                null, args.concat(Array.prototype.slice.call(arguments))
+            );
+        };
+    };
+
+    var _concat = function (eachfn, arr, fn, callback) {
+        var r = [];
+        eachfn(arr, function (x, cb) {
+            fn(x, function (err, y) {
+                r = r.concat(y || []);
+                cb(err);
+            });
+        }, function (err) {
+            callback(err, r);
+        });
+    };
+    async.concat = doParallel(_concat);
+    async.concatSeries = doSeries(_concat);
+
+    async.whilst = function (test, iterator, callback) {
+        if (test()) {
+            iterator(function (err) {
+                if (err) {
+                    return callback(err);
+                }
+                async.whilst(test, iterator, callback);
+            });
+        }
+        else {
+            callback();
+        }
+    };
+
+    async.doWhilst = function (iterator, test, callback) {
+        iterator(function (err) {
+            if (err) {
+                return callback(err);
+            }
+            var args = Array.prototype.slice.call(arguments, 1);
+            if (test.apply(null, args)) {
+                async.doWhilst(iterator, test, callback);
+            }
+            else {
+                callback();
+            }
+        });
+    };
+
+    async.until = function (test, iterator, callback) {
+        if (!test()) {
+            iterator(function (err) {
+                if (err) {
+                    return callback(err);
+                }
+                async.until(test, iterator, callback);
+            });
+        }
+        else {
+            callback();
+        }
+    };
+
+    async.doUntil = function (iterator, test, callback) {
+        iterator(function (err) {
+            if (err) {
+                return callback(err);
+            }
+            var args = Array.prototype.slice.call(arguments, 1);
+            if (!test.apply(null, args)) {
+                async.doUntil(iterator, test, callback);
+            }
+            else {
+                callback();
+            }
+        });
+    };
+
+    async.queue = function (worker, concurrency) {
+        if (concurrency === undefined) {
+            concurrency = 1;
+        }
+        function _insert(q, data, pos, callback) {
+          if (!q.started){
+            q.started = true;
+          }
+          if (!_isArray(data)) {
+              data = [data];
+          }
+          if(data.length == 0) {
+             // call drain immediately if there are no tasks
+             return async.setImmediate(function() {
+                 if (q.drain) {
+                     q.drain();
+                 }
+             });
+          }
+          _each(data, function(task) {
+              var item = {
+                  data: task,
+                  callback: typeof callback === 'function' ? callback : null
+              };
+
+              if (pos) {
+                q.tasks.unshift(item);
+              } else {
+                q.tasks.push(item);
+              }
+
+              if (q.saturated && q.tasks.length === q.concurrency) {
+                  q.saturated();
+              }
+              async.setImmediate(q.process);
+          });
+        }
+
+        var workers = 0;
+        var q = {
+            tasks: [],
+            concurrency: concurrency,
+            saturated: null,
+            empty: null,
+            drain: null,
+            started: false,
+            paused: false,
+            push: function (data, callback) {
+              _insert(q, data, false, callback);
+            },
+            kill: function () {
+              q.drain = null;
+              q.tasks = [];
+            },
+            unshift: function (data, callback) {
+              _insert(q, data, true, callback);
+            },
+            process: function () {
+                if (!q.paused && workers < q.concurrency && q.tasks.length) {
+                    var task = q.tasks.shift();
+                    if (q.empty && q.tasks.length === 0) {
+                        q.empty();
+                    }
+                    workers += 1;
+                    var next = function () {
+                        workers -= 1;
+                        if (task.callback) {
+                            task.callback.apply(task, arguments);
+                        }
+                        if (q.drain && q.tasks.length + workers === 0) {
+                            q.drain();
+                        }
+                        q.process();
+                    };
+                    var cb = only_once(next);
+                    worker(task.data, cb);
+                }
+            },
+            length: function () {
+                return q.tasks.length;
+            },
+            running: function () {
+                return workers;
+            },
+            idle: function() {
+                return q.tasks.length + workers === 0;
+            },
+            pause: function () {
+                if (q.paused === true) { return; }
+                q.paused = true;
+            },
+            resume: function () {
+                if (q.paused === false) { return; }
+                q.paused = false;
+                // Need to call q.process once per concurrent
+                // worker to preserve full concurrency after pause
+                for (var w = 1; w <= q.concurrency; w++) {
+                    async.setImmediate(q.process);
+                }
+            }
+        };
+        return q;
+    };
+
+    async.priorityQueue = function (worker, concurrency) {
+
+        function _compareTasks(a, b){
+          return a.priority - b.priority;
+        };
+
+        function _binarySearch(sequence, item, compare) {
+          var beg = -1,
+              end = sequence.length - 1;
+          while (beg < end) {
+            var mid = beg + ((end - beg + 1) >>> 1);
+            if (compare(item, sequence[mid]) >= 0) {
+              beg = mid;
+            } else {
+              end = mid - 1;
+            }
+          }
+          return beg;
+        }
+
+        function _insert(q, data, priority, callback) {
+          if (!q.started){
+            q.started = true;
+          }
+          if (!_isArray(data)) {
+              data = [data];
+          }
+          if(data.length == 0) {
+             // call drain immediately if there are no tasks
+             return async.setImmediate(function() {
+                 if (q.drain) {
+                     q.drain();
+                 }
+             });
+          }
+          _each(data, function(task) {
+              var item = {
+                  data: task,
+                  priority: priority,
+                  callback: typeof callback === 'function' ? callback : null
+              };
+
+              q.tasks.splice(_binarySearch(q.tasks, item, _compareTasks) + 1, 0, item);
+
+              if (q.saturated && q.tasks.length === q.concurrency) {
+                  q.saturated();
+              }
+              async.setImmediate(q.process);
+          });
+        }
+
+        // Start with a normal queue
+        var q = async.queue(worker, concurrency);
+
+        // Override push to accept second parameter representing priority
+        q.push = function (data, priority, callback) {
+          _insert(q, data, priority, callback);
+        };
+
+        // Remove unshift function
+        delete q.unshift;
+
+        return q;
+    };
+
+    async.cargo = function (worker, payload) {
+        var working     = false,
+            tasks       = [];
+
+        var cargo = {
+            tasks: tasks,
+            payload: payload,
+            saturated: null,
+            empty: null,
+            drain: null,
+            drained: true,
+            push: function (data, callback) {
+                if (!_isArray(data)) {
+                    data = [data];
+                }
+                _each(data, function(task) {
+                    tasks.push({
+                        data: task,
+                        callback: typeof callback === 'function' ? callback : null
+                    });
+                    cargo.drained = false;
+                    if (cargo.saturated && tasks.length === payload) {
+                        cargo.saturated();
+                    }
+                });
+                async.setImmediate(cargo.process);
+            },
+            process: function process() {
+                if (working) return;
+                if (tasks.length === 0) {
+                    if(cargo.drain && !cargo.drained) cargo.drain();
+                    cargo.drained = true;
+                    return;
+                }
+
+                var ts = typeof payload === 'number'
+                            ? tasks.splice(0, payload)
+                            : tasks.splice(0, tasks.length);
+
+                var ds = _map(ts, function (task) {
+                    return task.data;
+                });
+
+                if(cargo.empty) cargo.empty();
+                working = true;
+                worker(ds, function () {
+                    working = false;
+
+                    var args = arguments;
+                    _each(ts, function (data) {
+                        if (data.callback) {
+                            data.callback.apply(null, args);
+                        }
+                    });
+
+                    process();
+                });
+            },
+            length: function () {
+                return tasks.length;
+            },
+            running: function () {
+                return working;
+            }
+        };
+        return cargo;
+    };
+
+    var _console_fn = function (name) {
+        return function (fn) {
+            var args = Array.prototype.slice.call(arguments, 1);
+            fn.apply(null, args.concat([function (err) {
+                var args = Array.prototype.slice.call(arguments, 1);
+                if (typeof console !== 'undefined') {
+                    if (err) {
+                        if (console.error) {
+                            console.error(err);
+                        }
+                    }
+                    else if (console[name]) {
+                        _each(args, function (x) {
+                            console[name](x);
+                        });
+                    }
+                }
+            }]));
+        };
+    };
+    async.log = _console_fn('log');
+    async.dir = _console_fn('dir');
+    /*async.info = _console_fn('info');
+    async.warn = _console_fn('warn');
+    async.error = _console_fn('error');*/
+
+    async.memoize = function (fn, hasher) {
+        var memo = {};
+        var queues = {};
+        hasher = hasher || function (x) {
+            return x;
+        };
+        var memoized = function () {
+            var args = Array.prototype.slice.call(arguments);
+            var callback = args.pop();
+            var key = hasher.apply(null, args);
+            if (key in memo) {
+                async.nextTick(function () {
+                    callback.apply(null, memo[key]);
+                });
+            }
+            else if (key in queues) {
+                queues[key].push(callback);
+            }
+            else {
+                queues[key] = [callback];
+                fn.apply(null, args.concat([function () {
+                    memo[key] = arguments;
+                    var q = queues[key];
+                    delete queues[key];
+                    for (var i = 0, l = q.length; i < l; i++) {
+                      q[i].apply(null, arguments);
+                    }
+                }]));
+            }
+        };
+        memoized.memo = memo;
+        memoized.unmemoized = fn;
+        return memoized;
+    };
+
+    async.unmemoize = function (fn) {
+      return function () {
+        return (fn.unmemoized || fn).apply(null, arguments);
+      };
+    };
+
+    async.times = function (count, iterator, callback) {
+        var counter = [];
+        for (var i = 0; i < count; i++) {
+            counter.push(i);
+        }
+        return async.map(counter, iterator, callback);
+    };
+
+    async.timesSeries = function (count, iterator, callback) {
+        var counter = [];
+        for (var i = 0; i < count; i++) {
+            counter.push(i);
+        }
+        return async.mapSeries(counter, iterator, callback);
+    };
+
+    async.seq = function (/* functions... */) {
+        var fns = arguments;
+        return function () {
+            var that = this;
+            var args = Array.prototype.slice.call(arguments);
+            var callback = args.pop();
+            async.reduce(fns, args, function (newargs, fn, cb) {
+                fn.apply(that, newargs.concat([function () {
+                    var err = arguments[0];
+                    var nextargs = Array.prototype.slice.call(arguments, 1);
+                    cb(err, nextargs);
+                }]))
+            },
+            function (err, results) {
+                callback.apply(that, [err].concat(results));
+            });
+        };
+    };
+
+    async.compose = function (/* functions... */) {
+      return async.seq.apply(null, Array.prototype.reverse.call(arguments));
+    };
+
+    var _applyEach = function (eachfn, fns /*args...*/) {
+        var go = function () {
+            var that = this;
+            var args = Array.prototype.slice.call(arguments);
+            var callback = args.pop();
+            return eachfn(fns, function (fn, cb) {
+                fn.apply(that, args.concat([cb]));
+            },
+            callback);
+        };
+        if (arguments.length > 2) {
+            var args = Array.prototype.slice.call(arguments, 2);
+            return go.apply(this, args);
+        }
+        else {
+            return go;
+        }
+    };
+    async.applyEach = doParallel(_applyEach);
+    async.applyEachSeries = doSeries(_applyEach);
+
+    async.forever = function (fn, callback) {
+        function next(err) {
+            if (err) {
+                if (callback) {
+                    return callback(err);
+                }
+                throw err;
+            }
+            fn(next);
+        }
+        next();
+    };
+
+    // Node.js
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = async;
+    }
+    // AMD / RequireJS
+    else if (typeof define !== 'undefined' && define.amd) {
+        define([], function () {
+            return async;
+        });
+    }
+    // included directly via <script> tag
+    else {
+        root.async = async;
+    }
+
+}());
+
+}).call(this,require("DF1urx"))
+},{"DF1urx":19}],8:[function(require,module,exports){
+module.exports = {
+  status: require('./status'),
+  role: require('./role'),
+  motion: require('./motion'),
+  user: require('./user'),
+  renderer: require('./renderer')
+};
+
+},{"./motion":9,"./renderer":10,"./role":11,"./status":12,"./user":13}],9:[function(require,module,exports){
+var motionDialog;
+
+var getPropertiesDialog = function(motion) {
+
+  // create party listener if not created yet
+  if (!motionDialog) {
+    motionDialog = Ext.create('Tel100.view.document.motions.Properties', {
+      closeAction: 'hide',
+      modal: true
+    });
+  }
+
+  motionDialog.setMotion(motion);
+
+  // return dialog to the user
+  return motionDialog;
+};
+
+/**
+ * This function is used for decorating receivers in document grid.
+ */
+var formatReceivers = function(data, metaData, opts) {
+  var text = [];
+  var tooltip = [];
+  var stats = [];
+  var countCurrent = 0;
+  var countCompleted = 0;
+  var countCanceled = 0;
+  var countOthers = 0;
+  var prefix = opts && opts.prefix;
+
+  for(var i = 0; i < data.length; i++) {
+    var person = data[i];
+    var status = person.status;
+    var tooltipitem = person.name;
+    if(person.position){ tooltipitem = [tooltipitem, ' (' , person.position.trim(), ')'].join('')};
+    tooltip.push(tooltipitem);
+    if(i < 2){
+      var decor = helpers.document.status.statusDecoration(status);
+      var name;
+      if (prefix) {
+        name = '<a data-id="' + person[prefix + '_id'] + '" data-class="' + person[prefix + '_type'] + '">' + person.name + '</a>';
+      } else {
+        name = person.name;
+      }
+      text.push([
+        '<span class="' + decor.style + '">',
+        '<i class="fa ' + decor.icon + '"></i> ', name,
+        '</span>'
+      ].join(''));
+    } else {
+      if (status === helpers.document.status.CURRENT) {
+        countCurrent += 1;
+      } else if (status === helpers.document.status.COMPLETED) {
+        countCompleted += 1;
+      } else if (status === helpers.document.status.CANCELED) {
+        countCanceled += 1;
+      } else {
+        countOthers += 1;
+      }
+    }
+  }
+
+  metaData.tdAttr = 'data-qtip="' + tooltip.join('; ') + '"';
+
+  if (countCurrent) stats.push('<span class="label label-info"><i class="fa fa-clock-o"></i> ' + countCurrent + '</span>');
+  if (countCompleted) stats.push('<span class="label label-success"><i class="fa fa-check"></i> ' + countCompleted + '</span>');
+  if (countCanceled) stats.push('<span class="label label-danger"><i class="fa fa-times"></i> ' + countCanceled + '</span>');
+  if (countOthers) stats.push('<span class="label label-warning"><i class="fa fa-circle-o"></i> ' + countOthers + '</span>');
+
+  if (countCurrent + countCanceled + countCompleted + countOthers) {
+    text.push(i18n.ui.more + stats.join(' '));
+  }
+
+  return text.join('<br>');
+};
+
+var formatResponses = function(data, metaData) {
+  var text = [];
+  var tooltip = [];
+  var stats = [];
+  var count = 0;
+  var datetext = '';
+
+  for(var i = 0; i < data.length; i++) {
+    var motion = data[i];
+    var status = motion.status;
+    var motion_text = motion.current_status;
+    if(motion_text === '--'){continue;};
+    if(motion.due_date){ 
+      datetext = Ext.Date.format(Ext.Date.parse(motion.due_date, "Y-m-d\\TH:i:s.u\\Z"), "d/m/Y")
+      motion_text = [motion_text, ' (', datetext, ')'].join(''); 
+    };
+    tooltip.push(motion_text);
+    if(i < 2){
+      var decor = helpers.document.status.statusDecoration(status);
+      text.push([
+        '<span class="' + decor.style + '">',
+        '<i class="fa ' + decor.icon + '"></i> ',
+        motion.current_status,
+        '<br>',
+        datetext,
+        '</span>'
+      ].join(''));
+    } else {
+      count++;
+    }
+  }
+
+  metaData.tdAttr = 'data-qtip="' + tooltip.join('; ') + '"';
+
+  if (count) {
+    text.push(i18n.ui.more + count);
+  }
+
+  return text.join('<br>');
+};
+
+module.exports = {
+  getPropertiesDialog: getPropertiesDialog,
+  formatReceivers: formatReceivers,
+  formatResponses: formatResponses
+};
+
+},{}],10:[function(require,module,exports){
+'use strict';
+
+var Status = require('./status');
+
+module.exports = {
+  renderMotion: renderMotion
+};
+
+function get(object, property) {
+  var hasGetter = (typeof object.get === 'function');
+  var getSingleProperty = function(object, prop) {
+    if (hasGetter) { return object.get(prop); }
+    return object[prop];
+  };
+  if (typeof property === 'string') {
+    return getSingleProperty(object, property);
+  } else {
+    for (var i = 0; i < property.length; i++) {
+      var val = getSingleProperty(object, property[i]);
+      if (val !== undefined) {
+        return val;
+      }
+    }
+  }
+};
+
+function renderMotion(record, opts) {
+  var opts = opts || {};
+  var as = opts.as === 'sender' ? 'sender' : 'receiver';
+
+  var id = get(record, as + '_id');
+  var type = get(record, as + '_type');
+  var name = get(record, [as + '_name', as, 'name']);
+  var dueDate = get(record, 'due_date');
+  var dueIsOver = get(record, 'due_is_over');
+  var status = get(record, 'status');
+  var isNew = get(record, 'is_new');
+  var currentStatus = get(record, 'current_status');
+
+  // start with party name
+  var text = partyLink(id, type, name);
+
+  // adding current status
+  var respType = responseTypeText(currentStatus);
+  if (respType) { text = [ text, ' &mdash; ', currentStatus ].join(''); }
+
+  // dueDate text
+  var dueText = dueDateText(dueDate, dueIsOver, status);
+  if (dueText) { text = [text, dueText].join(' '); }
+
+  // statusify
+  text = statusify(text, isNew, status);
+
+  // decorate with dueDate
+  if (dueDate) {
+    var dueClass = '';
+    if (dueIsOver) {
+      dueClass = 'danger';
+    } else if (status === Status.CURRENT) {
+      dueClass = 'warning';
+    }
+    text = [ '<span class="', dueClass, '">', text, '</span>'].join('');
+  }
+
+  return text;
+};
+
+function statusify(text, isNew, status) {
+  var icon;
+  var decoration = Status.statusDecoration(status);
+  if (isNew && status === Status.CURRENT) {
+    icon = '<i class="text-danger fa fa-circle"></i>';
+  } else {
+    icon = '<i class="fa ' + decoration.icon + '"></i>';
+  }
+  return [ '<span class="', decoration.style, '">', icon, ' ', text, '</span>' ].join('');
+};
+
+function responseTypeText(respType) {
+  if (!respType || respType === '--') { return null; }
+  return respType;
+};
+
+function partyLink(id, type, name) {
+  if (id) {
+    return ['<a href="#" data-id="',id,'" data-class="',type,'">',name,'</a>'].join('');
+  } else {
+    return name;
+  }
+};
+
+function dueDateText(dueDate, dueIsOver, status) {
+  if (dueDate) {
+    if (typeof dueDate === 'string') {
+      dueDate = new Date(dueDate);
+    }
+    var dueIcon = 'fa-warning';
+    if (dueIsOver) {
+      dueIcon =  'fa-times-circle';
+    } else if (status == Status.COMPLETED) {
+      dueIcon = 'fa-check-circle';
+    } else if (status == Status.CANCELED) {
+      dueIcon = '';
+    }
+    var dueDateText = '<i class="fa ' + dueIcon + '"></i> <strong>' + Ext.Date.format(dueDate, 'd/m/Y') + '</strong>';
+    var dueClass = '';
+    if (dueIsOver) {
+      dueClass = 'text-danger';
+    } else if (status === Status.CURRENT) {
+      dueClass = 'text-warning'
+    }
+    return [ ' <span class="', dueClass, '">', dueDateText, '</strong></span>' ].join('');
+  }
+};
+
+},{"./status":12}],11:[function(require,module,exports){
+module.exports = {
+  OWNER:    'owner',
+  CREATOR:  'creator',
+  AUTHOR:   'author',
+  SIGNEE:   'signee',
+  ASSIGNEE: 'assignee'
+};
+
+},{}],12:[function(require,module,exports){
+var role = require('./role');
+
+var DRAFT = 0;
+var NOT_SENT = -1;
+var SENT = 1;
+var CURRENT = 2;
+var NOT_RECEIVED = -2;
+var COMPLETED = 3;
+var CANCELED = -3;
+
+var OWNER = role.OWNER;
+var CREATOR = role.CREATOR;
+var AUTHOR = role.AUTHOR;
+var SIGNEE = role.SIGNEE;
+var ASSIGNEE = role.ASSIGNEE;
+
+var statusDecoration = function(status, role, opts) {
+  var textId, iconId, styleId, iconStyleId;
+  var isMotion = opts && opts.isMotion;
+  var isNew = opts && opts.isNew;
+  var isChanged = opts && opts.isChanged;
+  role = role || OWNER;
+
+  var isSignee = (role === AUTHOR || role === SIGNEE);
+  if (typeof isMotion === 'undefined') { isMotion = false; }
+  if (typeof isNew === 'undefined') { isNew = false; }
+  if (typeof isChanged === 'undefined') { isChanged = false; }
+
+  if (status === DRAFT) {
+    if (isMotion) { textId = isSignee ? 'to_be_signed' : 'to_be_sent'; }
+    else { textId = 'draft'; }
+    iconId = 'fa-circle-o';
+    styleId = 'text-muted';
+  } else if (status === SENT) {
+    textId = 'sent';
+    iconId = 'fa-send-o';
+    styleId = 'text-muted';
+  } else if (status === NOT_SENT) {
+    textId = 'not_sent';
+    iconId = 'fa-frown-o';
+    styleId = 'text-warning';
+  } else if (status === CURRENT) {
+    textId = isSignee ? 'to_be_signed' : 'current';
+    iconId = 'fa-clock-o';
+    styleId = 'text-info';
+  } else if (status === NOT_RECEIVED) {
+    textId = 'not_received';
+    iconId = 'fa-ban';
+    styleId = 'text-warning';
+  } else if (status === COMPLETED) {
+    textId = isSignee ? 'signed' : 'completed';
+    iconId = 'fa-check';
+    styleId = 'text-success';
+  } else if (status === CANCELED) {
+    textId = isSignee ? 'canceled' : 'not_signed';
+    iconId = 'fa-times';
+    styleId = 'text-danger';
+  }
+  iconStyleId = styleId;
+
+  if (isNew) {
+    iconId = 'fa-circle';
+    iconStyleId = 'text-danger';
+  // } else if (isChanged) {
+  //   iconId = 'fa-circle';
+  }
+
+  return {
+    text: textId,
+    style: styleId,
+    icon: iconId,
+    iconStyle: iconStyleId
+  };
+};
+
+var statusFormatted = function(status, role, opts) {
+  var decor = statusDecoration(status, role, opts);
+  if (decor.text) {
+    var icon = [
+      '<span class="', decor.iconStyle, '">',
+      '<i class="fa ', decor.icon, '"></i>',
+      '</span>'
+    ].join('');
+    return [
+      '<span class="', decor.style, '">',
+      icon, ' ', i18n.document.base.statuses[decor.text],
+      '</span>'
+    ].join('');
+  } else {
+    return '???';
+  }
+};
+
+var motionStatusFull = function(status, motion) {
+  var role;
+  if (motion.get) { role = motion.get('receiver_role'); }
+  else { role = motion.receiver_role; }
+  return statusFormatted(status, role);
+};
+
+var motionStatusIcon = function(status, motion) {
+  var role = motion.get('receiver_role');
+  var decor = statusDecoration(status, role, { isMotion: true });
+  return [
+    '<span class="', decor.iconStyle, '">',
+    '<i class="fa ', decor.icon, '"></i>',
+    '</span>'
+  ].join('');
+};
+
+var motionReceiverName = function(value, record){
+  var receiver = record.get('receiver');
+  if(!receiver){ return ""; };
+
+  switch(receiver.ext_type){
+    case 'hr.Employee':
+      return '<i class="fa fa-user"></i> ' + value;  
+    case 'hr.Organization':
+      return '<i class="fa fa-bank"></i> ' + value;
+    case 'hr.Party':
+      return '<i class="fa fa-building"></i> ' + value;
+    case 'bs.Customer':
+      return '<i class="fa fa-users"></i> ' + value;
+  }
+};
+
+var motionStatusRowClass = function(status, motion) {
+  var role = motion.get('receiver_role');
+  var decor = statusDecoration(status, role, { isMotion: true });
+  return 'row-' + decor.iconStyle;
+};
+
+var documentStatusRowClass = function(status, document) {
+  var role = ASSIGNEE;
+  var decor = statusDecoration(status, role, { isMotion: false });
+  return 'row-' + decor.iconStyle;
+};
+
+module.exports = {
+  // constants
+  DRAFT: DRAFT,
+  SENT: SENT,
+  NOT_SENT: NOT_SENT,
+  CURRENT: CURRENT,
+  NOT_RECEIVED: NOT_RECEIVED,
+  COMPLETED: COMPLETED,
+  CANCELED: CANCELED,
+
+  // functions
+  statusDecoration: statusDecoration,
+  statusFormatted: statusFormatted,
+  motionStatusFull: motionStatusFull,
+  motionStatusIcon: motionStatusIcon,
+  motionReceiverName: motionReceiverName,
+  motionStatusRowClass: motionStatusRowClass,
+  documentStatusRowClass: documentStatusRowClass
+};
+
+},{"./role":11}],13:[function(require,module,exports){
+var NONE = 0
+  , CURRENT = 1
+  , COMPLETED = 2
+  , CANCELED = 3
+  ;
+
+var NAMES = {
+  0: 'none',
+  1: 'current',
+  2: 'completed',
+  3: 'canceled'
+};
+
+module.exports = {
+  NONE: NONE,
+  CURRENT: CURRENT,
+  COMPLETED: COMPLETED,
+  CANCELED: CANCELED,
+
+  myStatus: function(record) {
+    var isDraft = record.get('status') === helpers.document.status.DRAFT;
+    var asOwner = record.get('as_owner');
+    var asAuhtor = record.get('as_author');
+    var asSignee = record.get('as_signee');
+    var asAssignee = record.get('as_assignee');
+    var role, status;
+    if (isDraft) {
+      role = 'any';
+      status = 0;
+    } else if (asOwner > NONE) {
+      role = 'owner';
+      status = asOwner;
+    } else if (asAuhtor > NONE) {
+      role = 'author';
+      status = asAuhtor;
+    } else if (asSignee > NONE) {
+      role = 'signee';
+      status = asSignee;
+    } else if (asAssignee > NONE) {
+      role = 'assignee';
+      status = asAssignee;
+    }
+    var statusName = role + '.' + NAMES[status];
+    var name = i18n.document.user.my_status[statusName];
+    var icon = 'fa-clock-o';
+    var style = 'text-info';
+    if (status === NONE) {
+      icon = 'fa-circle-o';
+      style = 'text-muted';
+    } else if (status === COMPLETED) {
+      icon = 'fa-check';
+      style = 'text-success';
+    } else if (status === CANCELED) {
+      icon = 'fa-times';
+      style = 'text-danger';
+    }
+    return {
+      name: name,
+      icon: icon,
+      style: style,
+      unread: record.get('is_new')
+    };
+  }
+};
+
+},{}],14:[function(require,module,exports){
+window.helpers = {
+  ajax: require('./ajax'),
+  'document': require('./document'),
+  i18n: require('./i18n'),
+  preferences: require('./preferences'),
+  user: require('./user'),
+  api: require('./api'),
+  party: require('./party')
+};
+
+window.async = require('./async');
+
+
+},{"./ajax":1,"./api":4,"./async":7,"./document":8,"./i18n":15,"./party":16,"./preferences":17,"./user":18}],15:[function(require,module,exports){
+var currentLocale
+  , ajax = require('./ajax')
+  , preferences = require('./preferences')
+  ;
+
+var getCurrentLocale = function() {
+  return currentLocale || preferences.getValue('locale', 'ka');
+};
+
+var setCurrentLocale = function(locale) {
+  currentLocale = locale;
+  preferences.setValue('locale', locale);
+  ajax.setExtraParams('api_locale', locale);
+};
+
+var resetCurrentLocale = function() {
+  var locale = getCurrentLocale();
+  setCurrentLocale(locale);
+};
+
+module.exports = {
+  getCurrentLocale: getCurrentLocale,
+  setCurrentLocale: setCurrentLocale,
+  resetCurrentLocale: resetCurrentLocale
+};
+
+},{"./ajax":1,"./preferences":17}],16:[function(require,module,exports){
+var partyApi = require('../api/party');
+var partyDialog;
+var employeeTip;
+
+var getPartyDialog = function(callback) {
+
+  // create party listener if not created yet
+  if (!partyDialog) {
+    partyDialog = Ext.create('Tel100.view.party.Selector', {
+      title: i18n.document.motion.selectReceiver
+    });
+  }
+
+  // remove all listeners
+  partyDialog.clearListeners();
+
+  // adding new listener
+  partyDialog.on('selectioncomplete', callback);
+
+  // return dialog to the user
+  return partyDialog;
+};
+
+var favouriteDecoration = function(value, record){
+  var person_type = record.get('person_type');
+
+  switch(person_type){
+    case 'HR::Employee':
+      return '<i class="fa fa-user"></i> ' + value;  
+    case 'HR::Organization':
+      return '<i class="fa fa-bank"></i> ' + value;
+    case 'HR::Party':
+      return '<i class="fa fa-building"></i> ' + value;
+    case 'BS::Customer':
+      return '<i class="fa fa-users"></i> ' + value;
+  }
+};
+
+var convertTypeToExt = function(type){
+  switch(type){
+    case 'HR::Employee':     return 'hr.Employee';
+    case 'HR::Organization': return 'hr.Organization';
+    case 'HR::Party':        return 'hr.Party';
+    case 'BS::Customer':     return 'bs.Customer';
+  }
+};
+
+var convertTypeToRuby = function(type){
+  switch(type){
+    case 'hr.Employee':     return 'HR::Employee';
+    case 'hr.Organization': return 'HR::Organization';
+    case 'hr.Party':        return 'HR::Party';
+    case 'bs.Customer':     return 'BS::Customer';
+  }
+};
+
+var employeeTips = function(component) {
+  component.getEl().on('click', function(event, el) {
+    if (el && el.tagName === 'A') {
+      var id = el.attributes['data-id'].value;
+      var className = el.attributes['data-class'].value;
+      if (id && className) {
+        partyApi.getInfo(id, className, {
+          success: function(data) {
+            employeeTip.setHtml(data.html);
+          }
+        });
+        html = '<i class="fa fa-circle-o-notch fa-spin"></i> loading...';
+        if (!employeeTip) {
+          employeeTip = Ext.create('Ext.tip.ToolTip', { autoHide: false });
+        }
+        var rect = el.getBoundingClientRect();
+        employeeTip.setHtml(html);
+        employeeTip.showAt({ x: rect.left, y: rect.bottom });
+      }
+    }
+  });
+};
+
+var vacationDecorations = function(record){
+
+  var text = ['<span title="'+ i18n.hr.tree.absence_reason + record.get('vac_text')+ '" class="text-muted"><i class="fa fa-pause"></i> ',
+         record.get('full_name'),
+         '</span>'].join('');
+         
+  if (record.get('sub_id')){
+    text = [text,
+           ' - ',
+           //'<span class="text-danger">'+ record.get('vac_text') + '</i></span> ',
+           '<span class="text-success"><i class="fa fa-user"></i> <a data-sub="' + record.get('sub_id') + '"> ',
+           i18n.hr.tree.substitude,
+           record.get('sub_name'),
+           '</a></span>']
+           .join('');   
+  }
+         
+  return text;
+};
+
+var vacationAction = function(component){
+  component.getEl().on('click', function(event, el) {
+    if (el && el.tagName === 'A') {
+      var sub_id = el.attributes['data-sub'].value;
+      component.fireEvent('startsearch', component, sub_id);
+    }
+  });
+};
+
+module.exports = {
+  getPartyDialog: getPartyDialog,
+  favouriteDecoration: favouriteDecoration,
+  convertTypeToExt: convertTypeToExt,
+  convertTypeToRuby: convertTypeToRuby,
+  employeeTips: employeeTips,
+  vacationDecorations: vacationDecorations,
+  vacationAction: vacationAction
+};
+
+},{"../api/party":5}],17:[function(require,module,exports){
+var preferenceStore;
+
+var getStore = function() {
+  if (!preferenceStore) {
+    preferenceStore = new Ext.util.LocalStorage({
+      id: 'preferences'
+    });
+  }
+  return preferenceStore;
+};
+
+var getValue = function(key, defValue) {
+  var store = getStore();
+  var value = store.getItem(key);
+  if (!value && typeof defValue !== 'undefined') {
+    value = defValue;
+  }
+  return value;
+};
+
+var setValue = function(key, value) {
+  var store = getStore();
+  store.setItem(key, value);
+};
+
+module.exports = {
+  getValue: getValue,
+  setValue: setValue
+};
+
+},{}],18:[function(require,module,exports){
+var currentUser
+  , ajax = require('./ajax')
+  , i18n = require('./i18n')
+  , preferences = require('./preferences')
+  ;
+
+var setCurrentUser = function(user, password) {
+  if (user && password) {
+    currentUser = user;
+    preferences.setValue('username', user.get('username'));
+    ajax.setExtraParams('api_username', user.get('username'));
+    ajax.setExtraParams('api_password', password);
+    i18n.resetCurrentLocale();
+  } else {
+    currentUser = null;
+    ajax.setExtraParams('api_username', null);
+    ajax.setExtraParams('api_password', null);
+  }
+};
+
+var getCurrentUser = function() {
+  return currentUser;
+};
+
+module.exports = {
+  setCurrentUser: setCurrentUser,
+  getCurrentUser: getCurrentUser
+};
+
+},{"./ajax":1,"./i18n":15,"./preferences":17}],19:[function(require,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+
+process.nextTick = (function () {
+    var canSetImmediate = typeof window !== 'undefined'
+    && window.setImmediate;
+    var canPost = typeof window !== 'undefined'
+    && window.postMessage && window.addEventListener
+    ;
+
+    if (canSetImmediate) {
+        return function (f) { return window.setImmediate(f) };
+    }
+
+    if (canPost) {
+        var queue = [];
+        window.addEventListener('message', function (ev) {
+            var source = ev.source;
+            if ((source === window || source === null) && ev.data === 'process-tick') {
+                ev.stopPropagation();
+                if (queue.length > 0) {
+                    var fn = queue.shift();
+                    fn();
+                }
+            }
+        }, true);
+
+        return function nextTick(fn) {
+            queue.push(fn);
+            window.postMessage('process-tick', '*');
+        };
+    }
+
+    return function nextTick(fn) {
+        setTimeout(fn, 0);
+    };
+})();
+
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+}
+
+// TODO(shtylman)
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+
+},{}]},{},[14])

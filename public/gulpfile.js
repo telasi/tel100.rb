@@ -1,13 +1,30 @@
 var fs = require('fs')
   , gulp = require('gulp')
   , swig  = require('swig')
+  , gulpif = require('gulp-if')
   , concat = require('gulp-concat')
   , uglify = require('gulp-uglify')
   , buffer = require('buffer')
+  , minimist = require('minimist')
   , browserify = require('gulp-browserify')
   , eventStream = require('event-stream');
 
+var knownOptions = {
+  boolean: 'production',
+  default: { 'production': false }
+};
+
+var options = minimist(process.argv.slice(2), knownOptions);
+
+/**
+ * Task for building all targets.
+ */
+
 gulp.task('all', ['i18n.js', 'helpers.js', 'tel100.js', 'index.html']);
+
+/**
+ * 
+ */
 
 gulp.task('default', function () {
   gulp.watch('./i18n/**/*.js', [ 'i18n.js', 'index.html' ]);
@@ -19,7 +36,7 @@ gulp.task('tel100.js', function() {
   gulp.src('./tel100/app/**/*.js')
     .pipe(removeRequireDirectives())
     .pipe(concat('tel100.js'))
-    .pipe(uglify())
+    .pipe(gulpif(options.production, uglify()))
     .pipe(gulp.dest('./build'));
 });
 
@@ -27,7 +44,7 @@ gulp.task('i18n.js', function() {
   gulp.src('./i18n/index.js')
     .pipe(browserify())
     .pipe(concat('i18n.js'))
-    .pipe(uglify())
+    .pipe(gulpif(options.production, uglify()))
     .pipe(gulp.dest('./build'));
 });
 
@@ -35,7 +52,7 @@ gulp.task('helpers.js', function() {
   gulp.src('./helpers/index.js')
     .pipe(browserify())
     .pipe(concat('helpers.js'))
-    .pipe(uglify())
+    .pipe(gulpif(options.production, uglify()))
     .pipe(gulp.dest('./build'));
 });
 
