@@ -48,13 +48,24 @@ Ext.define('Tel100.view.document.comment.Panel', {
   items: [
     {
       xtype: 'gridpanel',
+      hideHeaders: true,
       bind: {
         store: '{comments}'
       },
-      columns: [
-        {
-          xtype: 'gridcolumn',
-          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+      columns: [{
+        xtype: 'gridcolumn',
+        renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+          var text = record.get('text');
+          if (text) {
+            text = '<p class="text-muted">' + text + '</p>'
+          }
+          return [
+            '<p>', statusIcon(), ' <strong>', record.get('user'), '</strong>, <span class="text-muted">',
+            Ext.Date.format(record.get('created_at'),'d/m/Y H:i'), '</span></p>',
+            text
+          ].join('');
+
+          function statusIcon() {
             var new_status = record.get('status');
             var old_status = record.get('old_status');
             if (new_status === old_status) {
@@ -64,39 +75,12 @@ Ext.define('Tel100.view.document.comment.Panel', {
             } else {
               return '<i class="fa fa-times"></i>';
             }
-          },
-          width: 32,
-          sortable: false
-        },
-        {
-          xtype: 'gridcolumn',
-          width: 150,
-          sortable: false,
-          dataIndex: 'user',
-          bind: {
-            text: '{i18n.document.comment.author}'
           }
         },
-        {
-          xtype: 'gridcolumn',
-          width: 200,
-          sortable: false,
-          dataIndex: 'text',
-          bind: {
-            text: '{i18n.document.comment.text}'
-          }
-        },
-        {
-          xtype: 'gridcolumn',
-          width: 125,
-          sortable: false,
-          dataIndex: 'created_at',
-          formatter: 'date("d/m/Y H:i")',
-          bind: {
-            text: '{i18n.document.comment.date}'
-          }
-        }
-      ],
+        flex: 1,
+        sortable: false,
+        hidable: false
+      }],
       viewConfig: {
         getRowClass: function(record, rowIndex, rowParams, store) {
           var new_status = record.get('status');
