@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <!--
   Don't edit this file manually! Generate it from index.swig!
 -->
