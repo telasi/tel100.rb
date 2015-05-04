@@ -15,8 +15,9 @@
 /log/*.log
 /tmp
 
-client/node_modules
-public/tel099
 Gemfile.lock
-/public/tel100/.architect
 /public/uploads
+/public/build/helpers.js
+/public/build/i18n.js
+/public/build/tel100.js
+/public/index.html
