@@ -1,0 +1,32 @@
+ka:
+  views:
+    document:
+      print:
+        number: "ნომერი:"
+        type: "სახეობა:"
+        date: "თარიღი:"
+        due_date: "ვადა:"
+        direction: "მიმართულება:"
+        pages: "გვერდები:"
+        attachment: "დანართი:"
+        owner: "ინიციატორი:"
+        authors: "ავტორები:"
+        signees: "ვიზატორები:"
+        assignees: "ადრესატები:"
+        subject: "სათაური:"
+ru:
+  views:
+    document:
+      print:
+        number: "Номер:"
+        type: "Вид:"
+        date: "Дата:"
+        due_date: "Срок:"
+        direction: "Направление:"
+        pages: "Страницы:"
+        attachment: "Внешний документ:"
+        owner: "Инициатор:"
+        authors: "Авторы:"
+        signees: "Визаторы:"
+        assignees: "Адресаты:"
+        subject: "Заголовок:"

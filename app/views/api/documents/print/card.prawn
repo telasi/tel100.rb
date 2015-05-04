@@ -21,14 +21,6 @@ def month_name(month)
   end
 end
 
-def direction(dir)
-  case dir
-    when 'in' then 'შემოსული'
-    when 'inner' then 'შიდა'
-    when 'out' then 'გასული'
-  end
-end
-
 def barcode(pdf)
 end
 
@@ -48,31 +40,31 @@ def properties(pdf)
 
   pdf.move_down 60
 
-  data = [ ["ნომერი:",    "#{@document.docnumber}", ""],
-           ["სახეობა:",    "#{@document.type.name}", ""],
-           ["თარიღი:",    "#{docdate}", ""],
-           ["ვადა:",       "#{due_date}", ""],
-           ["მიმართულება:", direction(@document.direction), ""],
-           ["გვერდები:",   "#{@document.page_count}", ""],
-           ["დანართი:",    "#{@document.additions_count}", ""],
-           ["ინიციატორი:", "#{@document.sender.full_name}", "#{@document.sender.organization.chained_name}"]]
+  data = [ [I18n.t("views.document.print.number"),     "#{@document.docnumber}", ""],
+           [I18n.t("views.document.print.type"),       "#{@document.type.name}", ""],
+           [I18n.t("views.document.print.date"),       "#{docdate}", ""],
+           [I18n.t("views.document.print.due_date"),   "#{due_date}", ""],
+           [I18n.t("views.document.print.direction"),  I18n.t("models.document_base.direction.#{@document.direction}"), ""],
+           [I18n.t("views.document.print.pages"),      "#{@document.page_count}", ""],
+           [I18n.t("views.document.print.attachment"), "#{@document.additions_count}", ""],
+           [I18n.t("views.document.print.owner"),      "#{@document.sender.full_name}", "#{@document.sender.organization.chained_name}"]]
            
   @document.authors.each_with_index do |author, index|
-    data += [[ index == 0 ? "ავტორები:" : "",    "#{author}", 
+    data += [[ index == 0 ? I18n.t("views.document.print.authors") : "",    "#{author}", 
                author.respond_to?(:organization) ? author.organization.chained_name : ""]]
   end
   @document.signees.each_with_index do |signee, index|
-    data += [[ index == 0 ? "ვიზატორები:" : "",    
+    data += [[ index == 0 ? I18n.t("views.document.print.signees") : "",    
                "#{signee}", 
                signee.respond_to?(:organization) ? signee.organization.chained_name : ""]]
   end
   @document.assignees.each_with_index do |assignee, index|
-    data += [[ index == 0 ? "ადრესატები:" : "",    
+    data += [[ index == 0 ? I18n.t("views.document.print.assignees") : "",    
                "#{assignee}", 
                assignee.respond_to?(:organization) ? assignee.organization.chained_name : ""]]
   end
            
-  data += [["სათაური:",   "#{@document.subject}", ""]]
+  data += [[I18n.t("views.document.print.subject"),   "#{@document.subject}", ""]]
 
   pdf.table(data, :cell_style => { :font => pdf.set_font_name('default'), :borders => [] }) do
     column(0).style(:borders => [:right])

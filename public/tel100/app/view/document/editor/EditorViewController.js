@@ -34,14 +34,14 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
   onCardPrintClick: function(button, e, eOpts) {
     var vm = this.getViewModel();
     var document = vm.get('document');
-    var url = '/api/documents/print/card/' + document.id;
+    var url = '/api/documents/print/card/' + document.id + '?lang=' + helpers.i18n.getCurrentLocale(); 
     helpers.api.document.print.showPDFwindow(url);
   },
 
   onDocumentPrintClick: function(button, e, eOpts) {
     var vm = this.getViewModel();
     var document = vm.get('document');
-    var url = '/api/documents/print/document/' + document.id;
+    var url = '/api/documents/print/document/' + document.id + '?lang=' + helpers.i18n.getCurrentLocale();
     helpers.api.document.print.showPDFwindow(url);
   },
 
