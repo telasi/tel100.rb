@@ -57,10 +57,10 @@ Ext.define('Tel100.view.document.comment.Panel', {
         renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
           var text = record.get('text');
           if (text) {
-            text = '<p class="text-muted">' + text + '</p>'
+            text = '<p class="text-muted" style="white-space:normal;margin: 4px 0;">' + text + '</p>'
           }
           return [
-            '<p>', statusIcon(), ' <strong>', record.get('user'), '</strong>, <span class="text-muted">',
+            '<p style="margin:0;">', statusIcon(), ' <strong>', record.get('user'), '</strong>, <span class="text-muted">',
             Ext.Date.format(record.get('created_at'),'d/m/Y H:i'), '</span></p>',
             text
           ].join('');
