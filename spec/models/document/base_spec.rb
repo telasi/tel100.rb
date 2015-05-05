@@ -610,3 +610,29 @@ RSpec.describe Document::Base do
     end
   end
 end
+
+RSpec.describe 'document with different sender and author' do
+  before(:example) do
+    create_default_schema
+    @dimitri = Sys::User.find_by_username('dimitri')
+    @shalva = Sys::User.find_by_username('shalva')
+    @doc = Document::Base.create_draft!(@dimitri)
+    @doc.update_draft!(@dimitri, { subject: 'test subject', body: 'test body' })
+    Document::Motion.create_draft!(@dimitri, { document_id: @doc.id, receiver_type: 'HR::Employee', receiver_id: @shalva.employee.id, receiver_role: 'author' })
+    @doc.send_draft!(@dimitri)
+    @doc.reload
+    @u1 = @doc.users.where(user: @dimitri).first
+    @u2 = @doc.users.where(user: @shalva).first
+    expect(@u1.as_owner).to eq(Document::User::DOC_CURRENT)
+    expect(@u2.as_author).to eq(Document::User::DOC_CURRENT)
+  end
+
+  it 'when author completes the document, owner has his document competed as well' do
+    expect(@doc.motions.count).to eq(1)
+    m1 = @doc.motions.first
+    m1.add_comment(@shalva, { response_type: Document::ResponseType::RESP_COMPLETE })
+    @u1.reload ; @u2.reload
+    expect(@u1.as_owner).to eq(Document::User::DOC_COMPLETED)
+    expect(@u2.as_author).to eq(Document::User::DOC_COMPLETED)
+  end
+end
