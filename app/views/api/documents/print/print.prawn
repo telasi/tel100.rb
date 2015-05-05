@@ -21,20 +21,6 @@ def month_name(month)
   end
 end
 
-def direction(dir)
-  case dir
-    when 'in' then 'შემოსული'
-    when 'inner' then 'შიდა'
-    when 'out' then 'გასული'
-  end
-end
-
-def barcode(pdf)
-end
-
-def header(pdf)
-end
-
 def barcode(pdf)
   pdf.bounding_box [10,720], :width => 200 do
     barcode = Barby::QrCode.new("#{@document.docnumber}")
@@ -43,7 +29,6 @@ def barcode(pdf)
 end
 
 def title(pdf)
-  pdf.move_down 40
   pdf.text "#{@document.subject}", :align => :center, :size => 14
 end
 
@@ -59,13 +44,17 @@ def body(pdf)
  pdf.text "#{@document.body}", :align => :justify, :size => 10
 end
 
-def signature(pdf)
+def authors(pdf)
  pdf.move_down 60
 
  data = [[]]
 
  @document.authors.each_with_index do |author, index|
-    data += [[ author.respond_to?(:organization) ? author.organization.chained_name : "", "", "#{author}" ]]
+    text = author.respond_to?(:organization) ? author.organization.chained_name : ""
+    text += "\n#{author}"
+    data += [[ text, "", "" ]]
+
+    #data += [[ text, "", "#{author}" ]]
  end
 
  pdf.table(data, :cell_style => { :font => pdf.set_font_name('default'), :borders => [] }) do
@@ -76,38 +65,25 @@ def signature(pdf)
   end
 end
 
-def properties(pdf)
-  pdf.move_down 60
+def assignees(pdf)
+ pdf.move_down 60
 
-  data = [ ["ნომერი:",    "#{@document.docnumber}", ""],
-           ["სახეობა:",    "#{@document.type.name}", ""],
-           ["თარიღი:",    "#{@document.docdate}", ""],
-           ["ვადა:",       "#{@document.due_date}", ""],
-           ["მიმართულება:", direction(@document.direction), ""],
-           ["გვერდები:",   "#{@document.page_count}", ""],
-           ["დანართი:",    "#{@document.additions_count}", ""],
-           ["ინიციატორი:", "#{@document.sender.full_name}", "#{@document.sender.organization.chained_name}"]]
+ text = "#{I18n.t('views.document.print.assignees')} "
 
+ text += @document.assignees.map{ |a| a.full_name }.join(', ')
 
-  @document.assignees.each do |assignee|
-    data += [["ადრესატები:",    "#{assignee.full_name}", "#{assignee.organization.chained_name}"]]
-  end
-           
-  data += [["სათაური:",   "#{@document.subject}", ""]]
-
-  pdf.table(data, :cell_style => { :font => pdf.set_font_name('default'), :borders => [] }) do
-    column(0).style(:borders => [:right])
-    column(0).width = 80
-    column(1).width = 170
-    column(2).width = 260
-  end
+ pdf.text text
 end
 
 prawn_document(page_size: 'A4', margin: [40, 40]) do |pdf|
   default_font(pdf)
   barcode(pdf)
-  title(pdf)
+
+  pdf.move_down 40
+
+  title(pdf) if params[:subject].present?
   header(pdf)
   body(pdf)
-  signature(pdf)
+  authors(pdf) if params[:author].present?
+  assignees(pdf) if params[:assignees].present?
 end

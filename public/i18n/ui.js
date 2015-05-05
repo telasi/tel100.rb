@@ -40,7 +40,25 @@ module.exports = {
   },
   print: {
       ka: '<i class="fa fa-print"></i> ბეჭდვა',
-      ru: '<i class="fa fa-print"></i> Печать'
+      ru: '<i class="fa fa-print"></i> Печать',
+  },
+  printParams:{
+    subject: {
+      ka: 'თემით',
+      ru: 'С заголовком'
+    },
+    signature: {
+      ka: 'ხელმოწერით',
+      ru: 'С подписью'
+    },
+    assignees: {
+      ka: 'ადრესატებით',
+      ru: 'С адресатами'
+    },
+    author: {
+      ka: 'ავტორით',
+      ru: 'С автором'
+    }
   },
   properties: {
     ka: '<i class="fa fa-list-ul"></i> თვისებები',
