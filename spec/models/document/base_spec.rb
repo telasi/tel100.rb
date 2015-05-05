@@ -555,7 +555,9 @@ RSpec.describe Document::Base do
     expect(u2.due_is_over?).to eq(false)
     expect(u3.due_is_over?).to eq(false)
 
-    Timecop.travel Date.today + 6 do
+    # XXX Timecop.travel Date.today + 6
+
+    Timecop.travel Date.today + 7 do
       expect(motion1.due_is_over?).to eq(true)
       expect(motion2.due_is_over?).to eq(false)
       expect(u1.due_is_over?).to eq(false)
