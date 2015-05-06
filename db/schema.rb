@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20150407203528) do
     t.boolean   "is_canceled",                   precision: 1,  scale: 0, default: false, null: false
     t.boolean   "is_completed",                  precision: 1,  scale: 0, default: false, null: false
     t.boolean   "as_owner",                      precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "as_sender",                     precision: 1,  scale: 0, default: false, null: false
     t.boolean   "as_assignee",                   precision: 1,  scale: 0, default: false, null: false
     t.boolean   "as_signee",                     precision: 1,  scale: 0, default: false, null: false
     t.boolean   "as_author",                     precision: 1,  scale: 0, default: false, null: false
@@ -221,11 +222,13 @@ ActiveRecord::Schema.define(version: 20150407203528) do
 
   create_table "hr_vacation", id: false, force: true do |t|
     t.integer   "id",              limit: 10, precision: 10, scale: 0, null: false
-    t.integer   "userid",          limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "employee_id",     limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "person_id",       limit: 10, precision: 10, scale: 0, null: false
     t.datetime  "from_date"
     t.datetime  "to_date"
     t.integer   "vacation_type",   limit: 3,  precision: 3,  scale: 0
     t.integer   "substitude",      limit: 10, precision: 10, scale: 0
+    t.integer   "sub_person_id",   limit: 10, precision: 10, scale: 0
     t.boolean   "substitude_type",            precision: 1,  scale: 0
     t.boolean   "confirmed",                  precision: 1,  scale: 0
     t.timestamp "created_at",      limit: 6,                           null: false

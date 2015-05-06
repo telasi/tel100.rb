@@ -40,7 +40,7 @@ RSpec.describe 'Document, Motions, and Users' do
       expect(du.sent?).to eq(false)
       expect(du.shown?).to eq(true)
       expect(du.as_owner).to eq(DOC_CURRENT)
-      # expect(du.as_sender).to eq(DOC_CURRENT)
+      expect(du.as_sender).to eq(DOC_CURRENT)
     end
   end
 end

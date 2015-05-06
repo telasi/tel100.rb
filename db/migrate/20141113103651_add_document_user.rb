@@ -23,6 +23,7 @@ class AddDocumentUser < ActiveRecord::Migration
         IS_COMPLETED number(1, 0) default 0 not null,
         ----- ownership
         AS_OWNER     number(1, 0) default 0 not null,
+        AS_SENDER    number(1, 0) default 0 not null,
         AS_ASSIGNEE  number(1, 0) default 0 not null,
         AS_SIGNEE    number(1, 0) default 0 not null,
         AS_AUTHOR    number(1, 0) default 0 not null,
@@ -90,6 +91,10 @@ class AddDocumentUser < ActiveRecord::Migration
 
     execute <<-SQL
       COMMENT ON COLUMN DOCUMENT_USER.AS_OWNER IS '0: not owner; 1: has pending status as owner; 2: has completed status as owner; 3: has canceled status as owner'
+    SQL
+
+    execute <<-SQL
+      COMMENT ON COLUMN DOCUMENT_USER.AS_SENDER IS '0: not sender; 1: has pending status as sender; 2: has completed status as sender; 3: has canceled status as sender'
     SQL
 
     execute <<-SQL

@@ -8,7 +8,7 @@ class Document::User < ActiveRecord::Base
   self.set_integer_columns :is_forwarded, :is_sent, :is_received
   self.set_integer_columns :is_current, :is_canceled, :is_completed
   self.set_integer_columns :has_due_date, :completed_over_due
-  self.set_integer_columns :as_owner, :as_assignee, :as_author, :as_signee
+  self.set_integer_columns :as_owner, :as_assignee, :as_author, :as_signee, :as_sender
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
   before_save :update_document_motions
@@ -91,16 +91,13 @@ class Document::User < ActiveRecord::Base
   end
 
   def calculate!
-    # 1. reset the record
     self.is_sent = self.is_received = self.is_forwarded = self.is_shown = 0
     self.is_current = self.is_canceled = self.is_completed = 0
-    self.as_owner = self.as_assignee = self.as_signee = self.as_author = DOC_NONE
+    self.as_owner = self.as_sender = self.as_assignee = self.as_signee = self.as_author = DOC_NONE
 
-    # 2. main relation
     rel = Document::Motion.where('document_id=? AND receiver_user_id=? AND status!=?', self.document_id, self.user_id, DRAFT)
-
-    # 3. owner user calculation
     calculate_owner
+    calculate_sender
 
     # 4. assignee calculation
     assignee_rel = rel.where(receiver_role: ROLE_ASSIGNEE)
@@ -228,6 +225,29 @@ class Document::User < ActiveRecord::Base
       end
       self.is_sent = 1 if doc_status != DRAFT
       self.is_shown = 1
+    end
+  end
+
+  def calculate_sender
+    rel = Document::Motion.where('document_id=? AND receiver_user_id=? AND status NOT IN (?)', self.document_id, self.user_id, [ DRAFT ])
+    sender_rel = rel.where(receiver_role: ROLE_SENDER)
+    if sender_rel.any?
+      current_cnt   = sender_rel.where(status: CURRENT).count
+      completed_cnt = sender_rel.where(status: COMPLETED).count
+      canceled_cnt  = sender_rel.where(status: CANCELED).count
+      if current_cnt > 0
+        self.as_sender = DOC_CURRENT
+      elsif canceled_cnt > 0
+        self.as_sender = DOC_CANCELED
+      elsif completed_cnt > 0
+        self.as_sender = DOC_COMPLETED
+      else
+        self.as_sender = DOC_NONE
+      end
+      self.is_sent = 1 unless self.document.draft?
+      self.is_current = 1 if current_cnt > 0
+      self.is_canceled = 1 if canceled_cnt > 0
+      self.is_completed = 1 if completed_cnt > 0
     end
   end
 end
