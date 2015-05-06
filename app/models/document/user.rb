@@ -220,17 +220,15 @@ class Document::User < ActiveRecord::Base
         self.is_current = 1
         self.as_owner = DOC_CURRENT
       else
-        # in fact DRAFT is current for owner
-        # self.as_owner = DOC_CURRENT
         self.as_owner = DOC_NONE
       end
       self.is_sent = 1 if doc_status != DRAFT
-      self.is_shown = 1
+      self.is_shown = 1 if self.as_owner != DOC_NONE
     end
   end
 
   def calculate_sender
-    rel = Document::Motion.where('document_id=? AND receiver_user_id=? AND status NOT IN (?)', self.document_id, self.user_id, [ DRAFT ])
+    rel = Document::Motion.where('document_id=? AND receiver_user_id=?', self.document_id, self.user_id)
     sender_rel = rel.where(receiver_role: ROLE_SENDER)
     if sender_rel.any?
       current_cnt   = sender_rel.where(status: CURRENT).count
@@ -249,6 +247,7 @@ class Document::User < ActiveRecord::Base
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
+      self.is_shown = 1 # sender always visible
     end
   end
 end

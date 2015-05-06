@@ -129,27 +129,58 @@ RSpec.describe 'Document, Motions, and Users' do
       @doc.reload
     end
 
-    it 'should have two motions' do
-      expect(@doc.motions.size).to eq(2)
-      m2 = @doc.motions.last
-      expect(m2.receiver_user).to eq(@shalva)
-      expect(m2.sender_user).to eq(@dimitri)
-      expect(m2.status).to eq(DRAFT)
+    context 'general properties' do
+      it 'doc owner should be changed' do
+        expect(@doc.owner_user).to eq(@shalva)
+      end
+
+      it 'should have two motions' do
+        expect(@doc.motions.size).to eq(2)
+        m2 = @doc.motions.last
+        expect(m2.receiver_user).to eq(@shalva)
+        expect(m2.sender_user).to eq(@dimitri)
+        expect(m2.status).to eq(DRAFT)
+      end
+ 
+      it 'should have two document::user' do
+        expect(@doc.users.count).to eq(2)
+        du2 = @doc.users.last
+        expect(du2.user).to eq(@shalva)
+        expect(du2.shown?).to eq(false)
+        expect(du2.due_date?).to eq(false)
+        expect(du2.new?).to eq(true)
+        expect(du2.changed?).to eq(true)
+        expect(du2.sent?).to eq(false)
+        expect(du2.shown?).to eq(false)
+        expect(du2.as_owner).to eq(DOC_NONE)
+        expect(du2.as_sender).to eq(DOC_NONE)
+        expect(du2.as_assignee).to eq(DOC_NONE)
+      end
     end
 
-    it 'should have two document::user' do
-      expect(@doc.users.count).to eq(2)
-      du2 = @doc.users.last
-      expect(du2.user).to eq(@shalva)
-      expect(du2.shown?).to eq(false)
-      expect(du2.due_date?).to eq(false)
-      expect(du2.new?).to eq(true)
-      expect(du2.changed?).to eq(true)
-      expect(du2.sent?).to eq(false)
-      expect(du2.shown?).to eq(false)
-      expect(du2.as_owner).to eq(DOC_NONE)
-      expect(du2.as_sender).to eq(DOC_NONE)
-      expect(du2.as_assignee).to eq(DOC_NONE)
+    context 'send document' do
+      before(:example) do
+        @doc.send_draft!(@dimitri)
+        @doc.reload
+      end
+
+      it 'both motions should be current' do
+        expect(@doc.motions.size).to eq(2)
+        m1 = @doc.motions.first
+        m2 = @doc.motions.last
+        expect(m1.status).to eq(CURRENT)
+        expect(m2.status).to eq(CURRENT)
+      end
+
+      it 'both users should have ' do
+        expect(@doc.users.size).to eq(2)
+        du1 = @doc.users.first
+        du2 = @doc.users.last
+        expect(du1.as_owner).to eq(DOC_NONE)
+        expect(du1.as_sender).to eq(DOC_CURRENT)
+        expect(du2.as_owner).to eq(DOC_CURRENT)
+        expect(du2.as_sender).to eq(DOC_NONE)
+      end
     end
   end
 end

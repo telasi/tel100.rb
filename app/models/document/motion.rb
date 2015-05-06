@@ -78,11 +78,16 @@ class Document::Motion < ActiveRecord::Base
       is_new = docuser.is_new if docuser.present?
     end
     # create motion
-    Document::Motion.create!({ parent: parent, document: document, status: DRAFT,
+    motion = Document::Motion.create!({ parent: parent, document: document, status: DRAFT,
       sender_user: sender_user, sender: sender, receiver_user: receiver_user,
       receiver: receiver, receiver_role: role, ordering: ordering, send_type: send_type,
       is_new: is_new, due_date: params[:due_date]
     })
+    # first author is an owner of the document as well
+    if role == ROLE_AUTHOR and document.owner_user == document.sender_user
+      document.owner_user = receiver_user
+      document.save!
+    end
     # create document::user
     if receiver_user
       du = Document::User.where(document: document, user: receiver_user).first

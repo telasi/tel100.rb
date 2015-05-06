@@ -83,7 +83,7 @@ class Document::Base < ActiveRecord::Base
   end
 
   def send_draft!(user)
-    raise I18n.t('models.document_base.errors.no_privilege_to_send') unless user == self.owner_user
+    raise I18n.t('models.document_base.errors.no_privilege_to_send') unless user == self.sender_user
     raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
     raise I18n.t('models.document_base.errors.empty_subject') unless self.subject.present?
     #raise I18n.t('models.document_base.errors.empty_body') unless self.body.present?
