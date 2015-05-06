@@ -7,6 +7,9 @@ RSpec.describe 'Document, Motions, and Users' do
   before(:example) do
     create_default_schema
     @dimitri = Sys::User.find_by_username('dimitri')
+    @shalva = Sys::User.find_by_username('shalva')
+    @nino = Sys::User.find_by_username('nino')
+    @temo = Sys::User.find_by_username('temo')
     @doc = Document::Base.create_draft!(@dimitri)
     @doc.update_draft!(@dimitri, { subject: 'test', body: 'test body' })
     @doc.reload
@@ -30,7 +33,7 @@ RSpec.describe 'Document, Motions, and Users' do
       expect(motion.receiver_role).to eq(ROLE_SENDER)
     end
 
-    it 'should have single document-user' do
+    it 'should have single document::user' do
       expect(@doc.users.count).to eq(1)
       du = @doc.users.first
       expect(du.user).to eq(@dimitri)
@@ -41,6 +44,41 @@ RSpec.describe 'Document, Motions, and Users' do
       expect(du.shown?).to eq(true)
       expect(du.as_owner).to eq(DOC_CURRENT)
       expect(du.as_sender).to eq(DOC_CURRENT)
+    end
+  end
+
+  context 'Adding single receiver and sending document' do
+    before(:example) do
+      Document::Motion.create_draft!(@dimitri, {
+        document_id: @doc.id,
+        receiver_type: 'HR::Employee',
+        receiver_id: @shalva.employee.id,
+        receiver_role: ROLE_ASSIGNEE
+      })
+      @doc.reload
+    end
+
+    it 'should have two motions' do
+      expect(@doc.motions.size).to eq(2)
+      m2 = @doc.motions.last
+      expect(m2.receiver_user).to eq(@shalva)
+      expect(m2.sender_user).to eq(@dimitri)
+      expect(m2.status).to eq(DRAFT)
+    end
+
+    it 'should have two document::user' do
+      expect(@doc.users.count).to eq(2)
+      du2 = @doc.users.last
+      expect(du2.user).to eq(@shalva)
+      expect(du2.shown?).to eq(false)
+      expect(du2.due_date?).to eq(false)
+      expect(du2.new?).to eq(true)
+      expect(du2.changed?).to eq(true)
+      expect(du2.sent?).to eq(false)
+      expect(du2.shown?).to eq(false)
+      expect(du2.as_owner).to eq(DOC_NONE)
+      expect(du2.as_sender).to eq(DOC_NONE)
+      expect(du2.as_assignee).to eq(DOC_NONE)
     end
   end
 end

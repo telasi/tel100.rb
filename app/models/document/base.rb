@@ -44,8 +44,8 @@ class Document::Base < ActiveRecord::Base
       motionparams = {document_id: doc.id, is_new: 0, ordering: 0, sender_user: sender_user, sender: sender,
         receiver_user: sender_user, receiver: sender, receiver_role: ROLE_SENDER, status: CURRENT,
         created_at: Time.now, sent_at: Time.now, received_at: Time.now}
-      Document::Motion.create(motionparams)
-      Document::User.create(document_id: doc.id, user_id: sender_user.id, is_new: 0, is_changed: 0, is_shown: 1).calculate!
+      Document::Motion.create!(motionparams)
+      Document::User.create!(document_id: doc.id, user_id: sender_user.id, is_new: 0, is_changed: 0).calculate!
       doc
     end
   end

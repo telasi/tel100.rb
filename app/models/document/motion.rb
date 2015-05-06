@@ -77,21 +77,20 @@ class Document::Motion < ActiveRecord::Base
       docuser = Document::User.where(document_id: document_id, user_id: receiver_user.id).first
       is_new = docuser.is_new if docuser.present?
     end
-    # create this
-    Document::Motion.create!({
-      parent: parent,
-      document: document,
-      status: DRAFT,
-      sender_user: sender_user,
-      sender: sender,
-      receiver_user: receiver_user,
-      receiver: receiver,
-      receiver_role: role,
-      ordering: ordering,
-      send_type: send_type,
-      is_new: is_new,
-      due_date: params[:due_date]
+    # create motion
+    Document::Motion.create!({ parent: parent, document: document, status: DRAFT,
+      sender_user: sender_user, sender: sender, receiver_user: receiver_user,
+      receiver: receiver, receiver_role: role, ordering: ordering, send_type: send_type,
+      is_new: is_new, due_date: params[:due_date]
     })
+    # create document::user
+    if receiver_user
+      du = Document::User.where(document: document, user: receiver_user).first
+      if du.blank?
+        du = Document::User.create!(document: document, user: receiver_user, is_new: 1, is_changed: 1)
+      end
+      du.calculate!
+    end
   end
 
   # XXX: do we need this method any more?
