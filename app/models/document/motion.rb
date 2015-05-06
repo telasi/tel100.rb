@@ -130,7 +130,7 @@ class Document::Motion < ActiveRecord::Base
     self.status = self.receiver_user.blank? ? NOT_SENT : SENT
     if self.status == SENT
       # try to make this motion current
-      lower = rel.where('ordering < ? AND status IN (?)', self.ordering, [SENT,CURRENT,NOT_RECEIVED,CANCELED]).count
+      lower = rel.where('ordering > 0 AND ordering < ? AND status IN (?)', self.ordering, [SENT,CURRENT,NOT_RECEIVED,CANCELED]).count
       if lower == 0
         self.status = CURRENT
         self.received_at = Time.now
