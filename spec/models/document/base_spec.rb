@@ -31,6 +31,7 @@ RSpec.describe 'Document, Motions, and Users' do
       expect(motion.new?).to eq(false)
       expect(motion.parent).to be_nil
       expect(motion.receiver_role).to eq(ROLE_SENDER)
+      expect(motion.status).to eq(DRAFT)
     end
 
     it 'should have single document::user' do
@@ -42,12 +43,12 @@ RSpec.describe 'Document, Motions, and Users' do
       expect(du.changed?).to eq(false)
       expect(du.sent?).to eq(false)
       expect(du.shown?).to eq(true)
-      expect(du.as_owner).to eq(DOC_CURRENT)
-      expect(du.as_sender).to eq(DOC_CURRENT)
+      expect(du.as_owner).to eq(DOC_NONE)
+      expect(du.as_sender).to eq(DOC_NONE)
     end
   end
 
-  context 'Adding single receiver and sending document' do
+  context 'Adding single receiver and send document' do
     before(:example) do
       Document::Motion.create_draft!(@dimitri, {
         document_id: @doc.id,

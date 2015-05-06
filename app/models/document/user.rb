@@ -221,7 +221,8 @@ class Document::User < ActiveRecord::Base
         self.as_owner = DOC_CURRENT
       else
         # in fact DRAFT is current for owner
-        self.as_owner = DOC_CURRENT
+        # self.as_owner = DOC_CURRENT
+        self.as_owner = DOC_NONE
       end
       self.is_sent = 1 if doc_status != DRAFT
       self.is_shown = 1
