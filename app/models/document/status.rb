@@ -1,5 +1,10 @@
 # -*- encoding : utf-8 -*-
 module Document::Status 
+  DOC_NONE      = 0
+  DOC_CURRENT   = 1
+  DOC_COMPLETED = 2
+  DOC_CANCELED  = 3
+
   DRAFT     = 0
   SENT      = 1
   NOT_SENT  = -1

@@ -13,11 +13,6 @@ class Document::User < ActiveRecord::Base
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
   before_save :update_document_motions
 
-  DOC_NONE      = 0
-  DOC_CURRENT   = 1
-  DOC_COMPLETED = 2
-  DOC_CANCELED  = 3
-
   def self.mydocs(user)
     @docs = Document::User.where(user: user, is_shown: 1)
     if user.current_substitude.present? and user.current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
@@ -105,24 +100,7 @@ class Document::User < ActiveRecord::Base
     rel = Document::Motion.where('document_id=? AND receiver_user_id=? AND status!=?', self.document_id, self.user_id, DRAFT)
 
     # 3. owner user calculation
-    if self.user == self.document.owner_user
-      doc_status = self.document.status
-      if doc_status == COMPLETED
-        self.as_owner = DOC_COMPLETED
-        self.is_completed = 1
-      elsif doc_status == CANCELED
-        self.as_owner = DOC_CANCELED
-        self.is_canceled = 1
-      elsif doc_status == CURRENT
-        self.is_current = 1
-        self.as_owner = DOC_CURRENT
-      else
-        # in fact DRAFT is current for owner
-        self.as_owner = DOC_CURRENT
-      end
-      self.is_sent = 1 if doc_status != DRAFT
-      self.is_shown = 1
-    end
+    calculate_owner
 
     # 4. assignee calculation
     assignee_rel = rel.where(receiver_role: ROLE_ASSIGNEE)
@@ -227,6 +205,29 @@ class Document::User < ActiveRecord::Base
   def update_document_motions
     if self.is_new_changed?
       motions.each { |motion| motion.update_attributes!(is_new: self.is_new) }
+    end
+  end
+
+  private
+
+  def calculate_owner
+    if self.user == self.document.owner_user
+      doc_status = self.document.status
+      if doc_status == COMPLETED
+        self.as_owner = DOC_COMPLETED
+        self.is_completed = 1
+      elsif doc_status == CANCELED
+        self.as_owner = DOC_CANCELED
+        self.is_canceled = 1
+      elsif doc_status == CURRENT
+        self.is_current = 1
+        self.as_owner = DOC_CURRENT
+      else
+        # in fact DRAFT is current for owner
+        self.as_owner = DOC_CURRENT
+      end
+      self.is_sent = 1 if doc_status != DRAFT
+      self.is_shown = 1
     end
   end
 end

@@ -36,17 +36,16 @@ class Document::Base < ActiveRecord::Base
     raise 'sender not defined' if sender_user.blank?
 
     sender = whose_user(sender_user)
-    docparams = {
-      sender_user: sender_user, sender: sender,
-      owner_user: sender_user, owner: sender,
-      direction: 'inner', status: DRAFT,
-      type: Document::Type.order('order_by').first
-    }
+    docparams = { sender_user: sender_user, sender: sender, owner_user: sender_user, owner: sender,
+      direction: 'inner', status: DRAFT, type: Document::Type.order('order_by').first }
 
     Document::Base.transaction do
       doc = Document::Base.create!(docparams)
-      docuser = Document::User.upsert!(doc, sender_user, ROLE_OWNER, { is_new: 0, status: DRAFT })
-      docuser.calculate!
+      motionparams = {document_id: doc.id, is_new: 0, ordering: 0, sender_user: sender_user, sender: sender,
+        receiver_user: sender_user, receiver: sender, receiver_role: ROLE_SENDER, status: CURRENT,
+        created_at: Time.now, sent_at: Time.now, received_at: Time.now}
+      Document::Motion.create(motionparams)
+      Document::User.create(document_id: doc.id, user_id: sender_user.id, is_new: 0, is_changed: 0, is_shown: 1).calculate!
       doc
     end
   end
