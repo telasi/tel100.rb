@@ -133,6 +133,10 @@ Rails.application.routes.draw do
         get '/document/:id', action: 'print'
       end
     end
+    scope 'sap', controller: 'sap' do
+      get '/sync', action: 'sync'
+      get '/hrupdate', action: 'hrupdate'
+    end
   end
 
   root controller: 'site', action: 'index'

@@ -22,7 +22,13 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
   ],
 
   data: {
-    document: null
+    document: null,
+    printParams: {
+      subject: false,
+      signature: false,
+      assignees: false,
+      author: false
+    }
   },
 
   formulas: {
