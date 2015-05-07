@@ -2,6 +2,7 @@
 require 'rails_helper'
 include Document::Role
 include Document::Status
+include Document::ResponseTypeDirection
 
 RSpec.describe 'Document, Motions, and Users' do
   before(:example) do
@@ -114,6 +115,59 @@ RSpec.describe 'Document, Motions, and Users' do
         expect(du1.as_owner).to eq(DOC_CURRENT)
         expect(du1.as_sender).to eq(DOC_CURRENT)
         expect(du2.as_assignee).to eq(DOC_CURRENT)
+      end
+
+      context 'assignee closes the task' do
+        before(:example) do
+          m2 = @doc.motions.last
+          m2.add_comment(@shalva, { response_type: RESP_COMPLETE, text: 'done' })
+          @doc.reload
+        end
+
+        it 'testing document properties' do
+          expect(@doc.status).to eq(CURRENT)
+        end
+
+        it 'testing motions' do
+          m1 = @doc.motions.first
+          m2 = @doc.motions.last
+          expect(m1.status).to eq(CURRENT)
+          expect(m2.status).to eq(COMPLETED)
+          expect(m2.completed_at).not_to be_blank
+        end
+
+        it 'testing assignee\'s document user' do
+          du2 = @doc.users.last
+          expect(du2.as_assignee).to eq(DOC_COMPLETED)
+          expect(du2.is_completed).to eq(1)
+        end
+
+        context 'owner closes the task' do
+          before(:example) do
+            m1 = @doc.motions.first
+            m1.add_comment(@dimitri, { response_type: RESP_COMPLETE, text: 'completed' })
+            @doc.reload
+          end
+
+          it 'testing document properties' do
+            expect(@doc.status).to eq(COMPLETED)
+          end
+
+          it 'testing motions' do
+            m1 = @doc.motions.first
+            m2 = @doc.motions.last
+            expect(m1.status).to eq(COMPLETED)
+            expect(m2.status).to eq(COMPLETED)
+            expect(m1.completed_at).not_to be_blank
+          end
+
+          it 'testing owner\'s document user' do
+            du1 = @doc.users.first
+            expect(du1.as_sender).to eq(DOC_COMPLETED)
+            expect(du1.as_owner).to eq(DOC_COMPLETED)
+            expect(du1.is_completed).to eq(1)
+          end
+        end
       end
     end
   end

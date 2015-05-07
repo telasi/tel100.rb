@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407203528) do
+ActiveRecord::Schema.define(version: 20150506100517) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -236,9 +236,9 @@ ActiveRecord::Schema.define(version: 20150407203528) do
   end
 
   create_table "hr_vacation_type", force: true do |t|
-    t.string "name_ka", limit: 50
-    t.string "name_ru", limit: 50
-    t.string "name_en", limit: 50
+    t.string "name_ka", limit: 100
+    t.string "name_ru", limit: 100
+    t.string "name_en", limit: 100
   end
 
   create_table "party_base", force: true do |t|
@@ -280,6 +280,62 @@ ActiveRecord::Schema.define(version: 20150407203528) do
     t.integer   "person_id",   limit: 10, precision: 10, scale: 0, null: false
     t.string    "person_type", limit: 50,                          null: false
     t.timestamp "created_at",  limit: 6,                           null: false
+  end
+
+  create_table "sap_organization_texts", id: false, force: true do |t|
+    t.integer  "objectid",   limit: 8,   precision: 8, scale: 0, null: false
+    t.string   "objecttype", limit: 1,                           null: false
+    t.datetime "begin_date",                                     null: false
+    t.datetime "end_date",                                       null: false
+    t.string   "language",   limit: 2,                           null: false
+    t.string   "name",       limit: 500
+  end
+
+  create_table "sap_organizations", id: false, force: true do |t|
+    t.integer  "objectid",   limit: 8,   precision: 8, scale: 0, null: false
+    t.string   "objecttype", limit: 1,                           null: false
+    t.datetime "begin_date",                                     null: false
+    t.datetime "end_date",                                       null: false
+    t.string   "language",   limit: 2,                           null: false
+    t.string   "short_name", limit: 200
+  end
+
+  create_table "sap_person_name", id: false, force: true do |t|
+    t.integer  "person_id",  limit: 8,   precision: 8, scale: 0, null: false
+    t.datetime "begin_date",                                     null: false
+    t.datetime "end_date",                                       null: false
+    t.string   "language",   limit: 2,                           null: false
+    t.string   "firstname",  limit: 100
+    t.string   "lastname",   limit: 100
+    t.string   "middlename", limit: 100
+    t.string   "gender",     limit: 1
+  end
+
+  create_table "sap_person_org", id: false, force: true do |t|
+    t.integer  "person_id",    limit: 8, precision: 8, scale: 0, null: false
+    t.datetime "begin_date",                                     null: false
+    t.datetime "end_date",                                       null: false
+    t.integer  "organization", limit: 8, precision: 8, scale: 0
+    t.integer  "shtat",        limit: 8, precision: 8, scale: 0
+  end
+
+  create_table "sap_persons", id: false, force: true do |t|
+    t.integer  "person_id",  limit: 8, precision: 8, scale: 0, null: false
+    t.datetime "begin_date",                                   null: false
+    t.datetime "end_date",                                     null: false
+    t.boolean  "status",               precision: 1, scale: 0
+  end
+
+  create_table "sap_relations", id: false, force: true do |t|
+    t.integer  "objectid",     limit: 8,  precision: 8, scale: 0, null: false
+    t.string   "objecttype",   limit: 1,                          null: false
+    t.datetime "begin_date",                                      null: false
+    t.datetime "end_date",                                        null: false
+    t.string   "relation",     limit: 4,                          null: false
+    t.string   "varyf",        limit: 10,                         null: false
+    t.string   "priority",     limit: 2
+    t.integer  "rel_obj_id",   limit: 8,  precision: 8, scale: 0, null: false
+    t.string   "rel_obj_type", limit: 1,                          null: false
   end
 
   create_table "users", force: true do |t|
