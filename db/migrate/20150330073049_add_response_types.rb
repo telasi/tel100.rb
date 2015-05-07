@@ -44,6 +44,14 @@ class AddResponseTypes < ActiveRecord::Migration
       insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka, name_ru) values ('owner', 3, 1, 'გაუქმება', 'Отмена')
     SQL
 
+    # sender
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka, name_ru) values ('sender', 2, 1, 'დასრულება', 'Завершение')
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka, name_ru) values ('sender', 3, 1, 'გაუქმება', 'Отмена')
+    SQL
+
     # author
     execute <<-SQL
       insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka, name_ru) values ('author', 1, 1, 'ხელმოსაწერად', 'На подпись')
