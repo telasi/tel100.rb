@@ -162,6 +162,7 @@ class Document::Motion < ActiveRecord::Base
     raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
     raise 'not your motion' if user != self.receiver_user
     new_status = self.status
+    doc = self.document
     if self.status == CURRENT
       type = Document::ResponseType.find(params[:response_type_id]) if params[:response_type_id].present?
       if type.blank? and params[:response_type].present?
@@ -175,7 +176,7 @@ class Document::Motion < ActiveRecord::Base
     end
     # S1: create comment
     text = params[:text] if params[:text].present?
-    Document::Comment.create!(document: self.document, motion: self, user: user,
+    Document::Comment.create!(document: doc, motion: self, user: user,
       status: new_status, old_status: self.status, role: self.receiver_role,
       text: text)
     # S2: update motion
@@ -184,12 +185,15 @@ class Document::Motion < ActiveRecord::Base
       self.completed_at = Time.now
       self.status = new_status
       status_updated = true
+      if (self.receiver_role == ROLE_SENDER or self.receiver_role == ROLE_AUTHOR) and doc.owner_user_id == self.receiver_user_id
+        doc.update_attributes!(status: new_status, completed_at: Time.now)
+      end
     end
     self.response_type = type
     self.response_text = text
     self.save!
     # S3: calculate Document::User
-    docuser = self.document.users.where(user: user).first
+    docuser = doc.users.where(user: user).first
     docuser.calculate!
     # S4: mark other users unread
     docuser.make_others_unread!
@@ -199,8 +203,7 @@ class Document::Motion < ActiveRecord::Base
     is_signature = [ROLE_SIGNEE, ROLE_AUTHOR].include?(self.receiver_role)
     is_toplevel = self.parent_id.blank?
     if self.status == CANCELED and status_updated and is_signature and is_toplevel
-      self.document.update_attributes!(status: CANCELED)
-      self.document.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
+      doc.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
         motion.update_attributes!(status: NOT_RECEIVED)
         docuser = self.document.users.where(user: motion.receiver_user).first
         docuser.calculate!
