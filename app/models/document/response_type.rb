@@ -1,8 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Document::ResponseType < ActiveRecord::Base
-  SEND          = 1
-  RESP_COMPLETE = 2
-  RESP_CANCEL   = 3
+  include Document::ResponseTypeDirection
 
   self.table_name  = 'DOCUMENT_RESPONSE_TYPES'
   self.sequence_name = 'DOCRESPTYPE_SEQ'
