@@ -7,7 +7,7 @@ class Api::Documents::MotionController < ApiController
 
   def index
     @document = Document::Base.find(params[:document_id])
-    rel = @document.motions
+    rel = @document.motions.where('receiver_role not in (?)', ROLE_SENDER)
 
     if params[:mode] == 'out'
       rel = rel.where(sender_user: current_user)
