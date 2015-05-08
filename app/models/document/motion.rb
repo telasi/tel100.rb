@@ -96,6 +96,8 @@ class Document::Motion < ActiveRecord::Base
       end
       du.calculate!
     end
+
+    return motion
   end
 
   # XXX: do we need this method any more?
