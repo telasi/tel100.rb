@@ -95,59 +95,19 @@ class Document::User < ActiveRecord::Base
     self.is_current = self.is_canceled = self.is_completed = 0
     self.as_owner = self.as_sender = self.as_assignee = self.as_signee = self.as_author = DOC_NONE
 
-    rel = Document::Motion.where('document_id=? AND receiver_user_id=? AND status!=?', self.document_id, self.user_id, DRAFT)
     calculate_owner
     calculate_sender
     calculate_assignee
+    calculate_signee
+    calculate_author
 
-    # 5. signee calculation
-    signee_rel = rel.where(receiver_role: ROLE_SIGNEE)
-    if signee_rel.any?
-      current_cnt = signee_rel.where(status: CURRENT).count
-      completed_cnt = signee_rel.where(status: COMPLETED).count
-      canceled_cnt = signee_rel.where(status: CANCELED).count
-      if current_cnt > 0
-        self.as_signee = DOC_CURRENT
-      elsif canceled_cnt > 0
-        self.as_signee = DOC_CANCELED
-      elsif completed_cnt > 0
-        self.as_signee = DOC_COMPLETED
-      else
-        self.as_signee = DOC_NONE
-      end
-      self.is_current = 1 if current_cnt > 0
-      self.is_canceled = 1 if canceled_cnt > 0
-      self.is_completed = 1 if completed_cnt > 0
-      self.is_received = 1
-    end
-
-    # 6. author calculation
-    author_rel = rel.where(receiver_role: ROLE_AUTHOR)
-    if author_rel.any?
-      current_cnt = author_rel.where(status: CURRENT).count
-      completed_cnt = author_rel.where(status: COMPLETED).count
-      canceled_cnt = author_rel.where(status: CANCELED).count
-      if current_cnt > 0
-        self.as_author = DOC_CURRENT
-      elsif canceled_cnt > 0
-        self.as_author = DOC_CANCELED
-      elsif completed_cnt > 0
-        self.as_author = DOC_COMPLETED
-      else
-        self.as_author = DOC_NONE
-      end
-      self.is_current = 1 if current_cnt > 0
-      self.is_canceled = 1 if canceled_cnt > 0
-      self.is_completed = 1 if completed_cnt > 0
-      self.is_received = 1
-    end
 
     # 7. checking is_forwarded
     forwarded_count = Document::Motion.where('document_id=? AND sender_user_id=? AND status!=? AND parent_id IS NOT NULL', self.document_id, self.user_id, DRAFT).count
     self.is_forwarded = 1 if forwarded_count > 0
 
     # 8. checking is_shown for non-owners
-    not_draft_count = rel.where('status NOT IN (?)', [ SENT, NOT_SENT, NOT_RECEIVED ]).count
+    not_draft_count = calc_rel.where('status NOT IN (?)', [ SENT, NOT_SENT, NOT_RECEIVED ]).count
     self.is_shown = 1 if not_draft_count > 0
 
     # 9. calculate due date status
@@ -236,8 +196,7 @@ class Document::User < ActiveRecord::Base
   end
 
   def calculate_assignee
-    rel = calc_rel
-    assignee_rel = rel.where(receiver_role: ROLE_ASSIGNEE)
+    assignee_rel = calc_rel.where(receiver_role: ROLE_ASSIGNEE)
     if assignee_rel.any?
       current_cnt = assignee_rel.where(status: CURRENT).count
       completed_cnt = assignee_rel.where(status: COMPLETED).count
@@ -250,6 +209,50 @@ class Document::User < ActiveRecord::Base
         self.as_assignee = DOC_COMPLETED
       else
         self.as_assignee = DOC_NONE
+      end
+      self.is_current = 1 if current_cnt > 0
+      self.is_canceled = 1 if canceled_cnt > 0
+      self.is_completed = 1 if completed_cnt > 0
+      self.is_received = 1
+    end
+  end
+
+  def calculate_signee
+    signee_rel = calc_rel.where(receiver_role: ROLE_SIGNEE)
+    if signee_rel.any?
+      current_cnt = signee_rel.where(status: CURRENT).count
+      completed_cnt = signee_rel.where(status: COMPLETED).count
+      canceled_cnt = signee_rel.where(status: CANCELED).count
+      if current_cnt > 0
+        self.as_signee = DOC_CURRENT
+      elsif canceled_cnt > 0
+        self.as_signee = DOC_CANCELED
+      elsif completed_cnt > 0
+        self.as_signee = DOC_COMPLETED
+      else
+        self.as_signee = DOC_NONE
+      end
+      self.is_current = 1 if current_cnt > 0
+      self.is_canceled = 1 if canceled_cnt > 0
+      self.is_completed = 1 if completed_cnt > 0
+      self.is_received = 1
+    end
+  end
+
+  def calculate_author
+    author_rel = calc_rel.where(receiver_role: ROLE_AUTHOR)
+    if author_rel.any?
+      current_cnt = author_rel.where(status: CURRENT).count
+      completed_cnt = author_rel.where(status: COMPLETED).count
+      canceled_cnt = author_rel.where(status: CANCELED).count
+      if current_cnt > 0
+        self.as_author = DOC_CURRENT
+      elsif canceled_cnt > 0
+        self.as_author = DOC_CANCELED
+      elsif completed_cnt > 0
+        self.as_author = DOC_COMPLETED
+      else
+        self.as_author = DOC_NONE
       end
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
