@@ -91,20 +91,18 @@ class Document::User < ActiveRecord::Base
   end
 
   def calculate!
+    # reseting flags
     self.is_sent = self.is_received = self.is_forwarded = self.is_shown = 0
     self.is_current = self.is_canceled = self.is_completed = 0
     self.as_owner = self.as_sender = self.as_assignee = self.as_signee = self.as_author = DOC_NONE
-
+    # calculate by roles
     calculate_owner
     calculate_sender
     calculate_assignee
     calculate_signee
     calculate_author
-
-
-    # 7. checking is_forwarded
-    forwarded_count = Document::Motion.where('document_id=? AND sender_user_id=? AND status!=? AND parent_id IS NOT NULL', self.document_id, self.user_id, DRAFT).count
-    self.is_forwarded = 1 if forwarded_count > 0
+    # calculate forwarded and is_shown flags
+    calculate_forwarded
 
     # 8. checking is_shown for non-owners
     not_draft_count = calc_rel.where('status NOT IN (?)', [ SENT, NOT_SENT, NOT_RECEIVED ]).count
@@ -259,5 +257,16 @@ class Document::User < ActiveRecord::Base
       self.is_completed = 1 if completed_cnt > 0
       self.is_received = 1
     end
+  end
+
+  def calculate_forwarded
+    conditions = [
+      'document_id=? AND sender_user_id=? AND status!=? AND parent_id IS NOT NULL',
+      self.document_id,
+      self.user_id,
+      DRAFT
+    ]
+    forwarded_count = Document::Motion.where(conditions).count
+    self.is_forwarded = 1 if forwarded_count > 0
   end
 end
