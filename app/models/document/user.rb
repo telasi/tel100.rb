@@ -103,30 +103,10 @@ class Document::User < ActiveRecord::Base
     calculate_author
     # calculate forwarded and is_shown flags
     calculate_forwarded
-
-    # 8. checking is_shown for non-owners
-    not_draft_count = calc_rel.where('status NOT IN (?)', [ SENT, NOT_SENT, NOT_RECEIVED ]).count
-    self.is_shown = 1 if not_draft_count > 0
-
-    # 9. calculate due date status
-    current_due_date = nil ; has_due_date = 0 ; completed_over_due = 0
-    self.motions.each do |motion|
-      d = motion.effective_due_date
-      if motion.current?
-        if current_due_date.nil?
-          current_due_date = d
-        elsif d.present? and d < current_due_date
-          current_due_date = d
-        end
-      elsif motion.resolved? and motion.due_is_over?
-        completed_over_due = 1
-      end
-      has_due_date = 1 if d.present?
-    end
-    self.current_due_date = current_due_date
-    self.completed_over_due = completed_over_due
-    self.has_due_date = has_due_date
-
+    calculate_shown
+    # calculate due date
+    calculate_due
+    # saving results
     self.save!
   end
 
@@ -268,5 +248,32 @@ class Document::User < ActiveRecord::Base
     ]
     forwarded_count = Document::Motion.where(conditions).count
     self.is_forwarded = 1 if forwarded_count > 0
+  end
+
+  def calculate_shown
+    not_draft_count = calc_rel.where('status NOT IN (?)', [ SENT, NOT_SENT, NOT_RECEIVED ]).count
+    if not_draft_count > 0
+      self.is_shown = 1
+    end
+  end
+
+  def calculate_due
+    current_due_date = nil ; has_due_date = 0 ; completed_over_due = 0
+    self.motions.each do |motion|
+      d = motion.effective_due_date
+      if motion.current?
+        if current_due_date.nil?
+          current_due_date = d
+        elsif d.present? and d < current_due_date
+          current_due_date = d
+        end
+      elsif motion.resolved? and motion.due_is_over?
+        completed_over_due = 1
+      end
+      has_due_date = 1 if d.present?
+    end
+    self.current_due_date = current_due_date
+    self.completed_over_due = completed_over_due
+    self.has_due_date = has_due_date
   end
 end
