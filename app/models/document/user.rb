@@ -98,27 +98,7 @@ class Document::User < ActiveRecord::Base
     rel = Document::Motion.where('document_id=? AND receiver_user_id=? AND status!=?', self.document_id, self.user_id, DRAFT)
     calculate_owner
     calculate_sender
-
-    # 4. assignee calculation
-    assignee_rel = rel.where(receiver_role: ROLE_ASSIGNEE)
-    if assignee_rel.any?
-      current_cnt = assignee_rel.where(status: CURRENT).count
-      completed_cnt = assignee_rel.where(status: COMPLETED).count
-      canceled_cnt = assignee_rel.where(status: CANCELED).count
-      if current_cnt > 0
-        self.as_assignee = DOC_CURRENT
-      elsif canceled_cnt > 0
-        self.as_assignee = DOC_CANCELED
-      elsif completed_cnt > 0
-        self.as_assignee = DOC_COMPLETED
-      else
-        self.as_assignee = DOC_NONE
-      end
-      self.is_current = 1 if current_cnt > 0
-      self.is_canceled = 1 if canceled_cnt > 0
-      self.is_completed = 1 if completed_cnt > 0
-      self.is_received = 1
-    end
+    calculate_assignee
 
     # 5. signee calculation
     signee_rel = rel.where(receiver_role: ROLE_SIGNEE)
@@ -199,6 +179,10 @@ class Document::User < ActiveRecord::Base
 
   protected
 
+  def calc_rel
+    Document::Motion.where('document_id = ? AND receiver_user_id = ? AND status != ?', self.document_id, self.user_id, DRAFT)
+  end
+
   def update_document_motions
     if self.is_new_changed?
       motions.each { |motion| motion.update_attributes!(is_new: self.is_new) }
@@ -248,6 +232,29 @@ class Document::User < ActiveRecord::Base
       self.is_canceled = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
       self.is_shown = 1 # sender always visible
+    end
+  end
+
+  def calculate_assignee
+    rel = calc_rel
+    assignee_rel = rel.where(receiver_role: ROLE_ASSIGNEE)
+    if assignee_rel.any?
+      current_cnt = assignee_rel.where(status: CURRENT).count
+      completed_cnt = assignee_rel.where(status: COMPLETED).count
+      canceled_cnt = assignee_rel.where(status: CANCELED).count
+      if current_cnt > 0
+        self.as_assignee = DOC_CURRENT
+      elsif canceled_cnt > 0
+        self.as_assignee = DOC_CANCELED
+      elsif completed_cnt > 0
+        self.as_assignee = DOC_COMPLETED
+      else
+        self.as_assignee = DOC_NONE
+      end
+      self.is_current = 1 if current_cnt > 0
+      self.is_canceled = 1 if canceled_cnt > 0
+      self.is_completed = 1 if completed_cnt > 0
+      self.is_received = 1
     end
   end
 end
