@@ -286,7 +286,7 @@ RSpec.describe 'Document, Motions, and Users' do
             expect(du1.as_owner).to  eq(DOC_NONE)
             expect(du1.as_sender).to eq(DOC_COMPLETED)
             expect(du2.as_owner).to  eq(DOC_COMPLETED)
-            expect(du2.as_author).to  eq(DOC_COMPLETED)
+            expect(du2.as_author).to eq(DOC_COMPLETED)
             expect(du2.as_sender).to eq(DOC_NONE)
           end
         end

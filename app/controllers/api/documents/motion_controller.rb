@@ -40,7 +40,7 @@ class Api::Documents::MotionController < ApiController
 
   def tree
     document = Document::Base.find(params[:document_id])
-    motionsArray = document.motions.where('status NOT IN (?)', [ DRAFT ]).order('ordering ASC, id ASC').map do |motion|
+    motionsArray = document.motions.where('status NOT IN (?) AND receiver_role NOT IN (?)', [ DRAFT ], [ ROLE_SENDER ]).order('ordering ASC, id ASC').map do |motion|
       motion_data(motion)
     end
     render json: array_to_tree(motionsArray)
