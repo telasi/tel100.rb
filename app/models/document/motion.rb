@@ -42,8 +42,8 @@ class Document::Motion < ActiveRecord::Base
     parent = Document::Motion.find(parent_id) if parent_id.present?
     # check user permission for this action
     is_receiver_user = ( parent.present? and sender_user == parent.receiver_user )
-    is_owner_user = ( parent.blank? and sender_user == document.owner_user )
-    raise I18n.t('models.document_motion.errors.no_privilege_to_add') unless is_receiver_user or is_owner_user
+    is_owner_user = ( parent.blank? and (sender_user == document.owner_user || sender_user == document.sender_user))
+    raise I18n.t('models.document_motion.errors.no_privilege_to_add') unless (is_receiver_user or is_owner_user)
     # sender/receiver information
     sender = whose_user(sender_user)
     receiver_user, receiver = who_eval('receiver', params)
