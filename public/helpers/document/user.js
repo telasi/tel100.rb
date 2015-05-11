@@ -23,6 +23,7 @@ module.exports = {
     var asAuhtor = record.get('as_author');
     var asSignee = record.get('as_signee');
     var asAssignee = record.get('as_assignee');
+    var asSender  = record.get('as_sender');
     var role, status;
     if (isDraft) {
       role = 'any';
@@ -39,6 +40,9 @@ module.exports = {
     } else if (asAssignee > NONE) {
       role = 'assignee';
       status = asAssignee;
+    } else if (asSender > NONE) {
+      role = 'sender';
+      status = asSender;
     }
     var statusName = role + '.' + NAMES[status];
     var name = i18n.document.user.my_status[statusName];

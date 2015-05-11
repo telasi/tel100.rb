@@ -46,9 +46,21 @@ module.exports = {
     },
     'assignee.completed': {
         ka: 'დასრულებული',
-        ru: ''
+        ru: 'Выполненый'
     },
     'assignee.canceled': {
+        ka: 'უარყოფილი',
+        ru: 'Отмененный'
+    },
+    'sender.current': {
+        ka: 'მიღებული',
+        ru: 'Принятый'
+    },
+    'sender.completed': {
+        ka: 'დასრულებული',
+        ru: 'Выполненый'
+    },
+    'sender.canceled': {
         ka: 'უარყოფილი',
         ru: 'Отмененный'
     }
