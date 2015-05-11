@@ -4,7 +4,39 @@ include Document::Role
 include Document::Status
 include Document::ResponseTypeDirection
 
-RSpec.describe 'Document, Motions, and Users' do
+RSpec.describe '1. Document with Author and Assignee' do
+  before(:example) do
+    create_default_schema
+    @dimitri = Sys::User.find_by_username('dimitri')
+    @shalva = Sys::User.find_by_username('shalva')
+    @nino = Sys::User.find_by_username('nino')
+    # document
+    @doc = Document::Base.create_draft!(@dimitri)
+    @doc.update_draft!(@dimitri, { subject: 'test', body: 'test body' })
+    # add author
+    Document::Motion.create_draft!(@dimitri, {
+      document_id: @doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: @shalva.employee.id,
+      receiver_role: ROLE_AUTHOR
+    })
+    # add assignee
+    Document::Motion.create_draft!(@dimitri, {
+      document_id: @doc.id,
+      receiver_type: 'HR::Employee',
+      receiver_id: @nino.employee.id,
+      receiver_role: ROLE_ASSIGNEE
+    })
+    @doc.reload
+  end
+
+  it 'testing main properties' do
+    expect(@doc.motions.size).to eq(3)
+    expect(@doc.users.size).to eq(3)
+  end
+end
+
+RSpec.describe '2. Document, Motions, and Users' do
   before(:example) do
     create_default_schema
     @dimitri = Sys::User.find_by_username('dimitri')
