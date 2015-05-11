@@ -15,6 +15,7 @@ json.is_current   mydoc.current?
 json.is_canceled  mydoc.canceled?
 json.is_completed mydoc.completed?
 json.as_owner     mydoc.as_owner
+json.as_sender    mydoc.as_sender
 json.as_assignee  mydoc.as_assignee
 json.as_signee    mydoc.as_signee
 json.as_author    mydoc.as_author
