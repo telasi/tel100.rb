@@ -58,62 +58,62 @@ class AddVacationTables < ActiveRecord::Migration
         END IF;
       END;
     SQL
-  end
 
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ბიულეტინი', 'Больничный')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ანაზღაურებადი შვებულება ორსულობის, მშობიარობის და ბავშვის მოვლის გამო', 'Оплачиваемый декрет')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('არაანაზღაურებადი შვებულება', 'Неоплачиваемый отпуск')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('არაანაზღაურებადი შვებულება ორსულობის, მშობიარობისა და ბავშვის მოვლის გამო', 'Неоплачиваемый декрет')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ანაზღაურებადი შვებულება', 'Оплачиваемый отпуск')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('სარეზერვო სამსახური', 'Резерв')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('სავალდებულო სამხედრო სამსახური', 'Служба в армии')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('სასწავლო შვებულება', 'Учебный отпуск')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('მივლინება', 'Командировка')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ანაზღაურებადი შვებულება ბავშვის აყვანის გამო', 'Отпуск по усыновлению')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('არაანაზღაურებადი შვებულება ბავშვის აყვანის გამო', 'Неоплачиваемый отпуск по усыновлению')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('დამატებითი შვებულება ბავშვის მოვლის გამო', 'Дополнительный отпуск по уходу за ребенком')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('დამატებითი ანაზღაურებადი შვებულება მძიმე პირობებში მუშაობაზე', 'Дополн. опл. отпуск за тяжелые и вредные условия')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('სწავლის დაწყების პირველი დღე', 'Первый день учебного года')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('დაოჯახება', 'Вступление в брак')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('შვილის დაბადება', 'Рождение ребенка')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ოჯახის წევრ. გარდაცვალება', 'Кончина члена семьи')
-  SQL
-  execute <<-SQL
-    insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ზეგანაკვეთური ნამუშევარი დროის კომპენსაცია', 'Компенсация сверх отработанного времени')
-  SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ბიულეტინი', 'Больничный')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ანაზღაურებადი შვებულება ორსულობის, მშობიარობის და ბავშვის მოვლის გამო', 'Оплачиваемый декрет')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('არაანაზღაურებადი შვებულება', 'Неоплачиваемый отпуск')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('არაანაზღაურებადი შვებულება ორსულობის, მშობიარობისა და ბავშვის მოვლის გამო', 'Неоплачиваемый декрет')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ანაზღაურებადი შვებულება', 'Оплачиваемый отпуск')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('სარეზერვო სამსახური', 'Резерв')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('სავალდებულო სამხედრო სამსახური', 'Служба в армии')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('სასწავლო შვებულება', 'Учебный отпуск')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('მივლინება', 'Командировка')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ანაზღაურებადი შვებულება ბავშვის აყვანის გამო', 'Отпуск по усыновлению')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('არაანაზღაურებადი შვებულება ბავშვის აყვანის გამო', 'Неоплачиваемый отпуск по усыновлению')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('დამატებითი შვებულება ბავშვის მოვლის გამო', 'Дополнительный отпуск по уходу за ребенком')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('დამატებითი ანაზღაურებადი შვებულება მძიმე პირობებში მუშაობაზე', 'Дополн. опл. отпуск за тяжелые и вредные условия')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('სწავლის დაწყების პირველი დღე', 'Первый день учебного года')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('დაოჯახება', 'Вступление в брак')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('შვილის დაბადება', 'Рождение ребенка')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ოჯახის წევრ. გარდაცვალება', 'Кончина члена семьи')
+    SQL
+    execute <<-SQL
+      insert into HR_VACATION_TYPE (NAME_KA, NAME_RU) values ('ზეგანაკვეთური ნამუშევარი დროის კომპენსაცია', 'Компенсация сверх отработанного времени')
+    SQL
+  end
 
   def down
     execute "drop sequence HR_VACATION_SEQ"
