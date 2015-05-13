@@ -225,8 +225,8 @@ RSpec.describe 'Document, Motions, and Users' do
 
         context 'owner closes the task' do
           before(:example) do
-            m1 = @doc.motions.first
-            m1.add_comment(@dimitri, { response_type: RESP_COMPLETE, text: 'completed' })
+            # m1 = @doc.motions.first
+            @doc.add_comment(@dimitri, { response_type: RESP_COMPLETE, text: 'completed' })
             @doc.reload
           end
 
@@ -347,6 +347,7 @@ RSpec.describe 'Document, Motions, and Users' do
           before(:example) do
             m2 = @doc.motions.last
             m2.add_comment(@shalva, { response_type: RESP_COMPLETE, text: 'done' })
+            @doc.add_comment(@shalva, { response_type: RESP_COMPLETE, text: 'done' })
             @doc.reload
           end
 

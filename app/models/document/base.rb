@@ -106,9 +106,15 @@ class Document::Base < ActiveRecord::Base
   end
 
   def add_comment(user, params)
-    if self.owner_user == user
+    is_owner = self.owner_user == user
+    is_sender = self.sender_user == user
+    if is_owner and is_sender
       add_document_comment(user, params)
-    elsif self.sender_user == user
+      motion = self.motions.where(receiver_user: user, parent_id: nil).first
+      return motion.add_comment(user, params) if motion.present?
+    elsif is_owner
+      add_document_comment(user, params)
+    elsif is_sender
       motion = self.motions.where(receiver_user: user, parent_id: nil).first
       return motion.add_comment(user, params) if motion.present?
     else
