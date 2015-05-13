@@ -3,9 +3,9 @@ class AddVacationTables < ActiveRecord::Migration
   	execute <<-SQL
       create table HR_VACATION_TYPE (
         ID       NUMBER(3,0) NOT NULL,
-        NAME_KA  VARCHAR2(50 CHAR),
-        NAME_RU  VARCHAR2(50 CHAR),
-        NAME_EN  VARCHAR2(50 CHAR),
+        NAME_KA  VARCHAR2(100 CHAR),
+        NAME_RU  VARCHAR2(100 CHAR),
+        NAME_EN  VARCHAR2(100 CHAR),
         CONSTRAINT hr_vacation_typeprimarykey PRIMARY KEY (id) enable
       )
     SQL
