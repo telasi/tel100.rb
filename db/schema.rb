@@ -236,9 +236,9 @@ ActiveRecord::Schema.define(version: 20150506100517) do
   end
 
   create_table "hr_vacation_type", force: true do |t|
-    t.string "name_ka", limit: 50
-    t.string "name_ru", limit: 50
-    t.string "name_en", limit: 50
+    t.string "name_ka", limit: 100
+    t.string "name_ru", limit: 100
+    t.string "name_en", limit: 100
   end
 
   create_table "party_base", force: true do |t|

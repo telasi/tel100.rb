@@ -48,6 +48,7 @@ group :development, :test do
   gem 'debugger'
   gem 'rspec-rails', '~> 3.0.0'
   gem 'timecop'
+  gem 'database_cleaner'
 end
 
 # https://github.com/rails/jbuilder#faster-json-backends
