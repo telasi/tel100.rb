@@ -259,7 +259,7 @@ class Document::Motion < ActiveRecord::Base
   def resend_ups!
     thisLevel = Document::Motion.where(parent_id: self.parent_id, status: CURRENT, ordering: self.ordering).count
     if thisLevel == 0
-      ups = Document::Motion.where('parent_id=? AND status IN (?)', self.parent_id, [SENT, CURRENT]).where('ordering > ?', self.ordering)
+      ups = Document::Motion.where(parent_id: self.parent_id).where('status IN (?) AND ordering > ?', [SENT, CURRENT], self.ordering)
       if ups.count > 0
         ordering = ups.minimum('ordering')
         ups = ups.where(ordering: ordering)

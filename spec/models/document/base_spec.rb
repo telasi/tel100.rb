@@ -62,20 +62,19 @@ RSpec.describe 'Document with Author and Assignee' do
     specify{ expect(@u3.shown?).to eq(false) }
   end
 
-  # context 'owner completes the motion' do
-  #   before(:all) do
-  #     debugger
-  #     @m2.add_comment(@shalva, { response_type: RESP_COMPLETE, text: 'done' })
-  #     [@doc, @m1, @m2, @m3, @u1, @u2, @u3].each{ |x| x.reload }
-  #   end
-  #   specify{ expect(@doc.status).to eq(CURRENT) }
-  #   specify{ expect(@m1.status).to eq(COMPLETED) }
-  #   specify{ expect(@m2.status).to eq(COMPLETED) }
-  #   specify{ expect(@m3.status).to eq(NONE) } #### ????
-  #   specify{ expect(@u1.shown?).to eq(true) }
-  #   specify{ expect(@u2.shown?).to eq(true) }
-  #   specify{ expect(@u3.shown?).to eq(false) } #### ???
-  # end
+  context 'owner completes the motion' do
+    before(:all) do
+      @m2.add_comment(@shalva, { response_type: RESP_COMPLETE, text: 'done' })
+      [@doc, @m1, @m2, @m3, @u1, @u2, @u3].each{ |x| x.reload }
+    end
+    specify{ expect(@doc.status).to eq(CURRENT) }
+    specify{ expect(@m1.status).to eq(COMPLETED) }
+    specify{ expect(@m2.status).to eq(COMPLETED) }
+    specify{ expect(@m3.status).to eq(CURRENT) }
+    specify{ expect(@u1.shown?).to eq(true) }
+    specify{ expect(@u2.shown?).to eq(true) }
+    specify{ expect(@u3.shown?).to eq(true) }
+  end
 end
 
 RSpec.describe 'Document, Motions, and Users' do
