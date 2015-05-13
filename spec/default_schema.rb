@@ -62,27 +62,6 @@ module DefaultSchema
     Document::Type.create(name_ka: 'ბრძანება', order_by: 2)
   end
 
-  # def create_response_types
-  #   # owner
-  #   Document::ResponseType.create(role: 'owner', direction: 2, ordering: 1, name_ka: 'დასრულება')
-  #   Document::ResponseType.create(role: 'owner', direction: 3, ordering: 1, name_ka: 'გაუქმება')
-  #   # author
-  #   Document::ResponseType.create(role: 'author', direction: 1, ordering: 1, name_ka: 'ხელმოსაწერად')
-  #   Document::ResponseType.create(role: 'author', direction: 2, ordering: 1, name_ka: 'ხელმოწერილი')
-  #   Document::ResponseType.create(role: 'author', direction: 3, ordering: 1, name_ka: 'ხელს არ ვაწერ')
-  #   # signee
-  #   Document::ResponseType.create(role: 'signee', direction: 1, ordering: 1, name_ka: 'დასავიზირებლად')
-  #   Document::ResponseType.create(role: 'signee', direction: 2, ordering: 1, name_ka: 'დავიზირებული')
-  #   Document::ResponseType.create(role: 'signee', direction: 3, ordering: 1, name_ka: 'არ ვავიზირებ')
-  #   # asignee
-  #   Document::ResponseType.create(role: 'assignee', direction: 1, ordering: 1, name_ka: 'შესასრულებლად')
-  #   Document::ResponseType.create(role: 'assignee', direction: 1, ordering: 2, name_ka: 'გასაცნობად')
-  #   Document::ResponseType.create(role: 'assignee', direction: 2, ordering: 1, name_ka: 'შევასრულე')
-  #   Document::ResponseType.create(role: 'assignee', direction: 2, ordering: 2, name_ka: 'გავეცანი')
-  #   Document::ResponseType.create(role: 'assignee', direction: 3, ordering: 1, name_ka: 'ვერ ვასრულებ')
-  #   Document::ResponseType.create(role: 'assignee', direction: 3, ordering: 2, name_ka: 'არ მეხება')
-  # end
-
   module_function :create_organizations
   module_function :create_organization
   module_function :create_employees
@@ -90,7 +69,6 @@ module DefaultSchema
   module_function :create_users
   module_function :create_user
   module_function :create_document_types
-  # module_function :create_response_types
 end
 
 def create_default_schema
@@ -98,5 +76,4 @@ def create_default_schema
   DefaultSchema.create_employees
   DefaultSchema.create_users
   DefaultSchema.create_document_types
-  # DefaultSchema.create_response_types
 end
