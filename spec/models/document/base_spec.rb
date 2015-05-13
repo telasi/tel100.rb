@@ -75,6 +75,14 @@ RSpec.describe 'Document with Author and Assignee' do
     specify{ expect(@u2.shown?).to eq(true) }
     specify{ expect(@u3.shown?).to eq(true) }
   end
+
+  context 'owner completes the document' do
+    before(:all) do
+      @doc.add_comment(@shalva, { response_type: RESP_COMPLETE, text: 'done' })
+      [@doc, @m1, @m2, @m3, @u1, @u2, @u3].each{ |x| x.reload }
+    end
+    specify{ expect(@doc.status).to eq(COMPLETED) }
+  end
 end
 
 RSpec.describe 'Document, Motions, and Users' do

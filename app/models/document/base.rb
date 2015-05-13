@@ -106,11 +106,14 @@ class Document::Base < ActiveRecord::Base
   end
 
   def add_comment(user, params)
-    if self.sender_user == user or self.owner_user == user
+    if self.owner_user == user
+      add_document_comment(user, params)
+    elsif self.sender_user == user
       motion = self.motions.where(receiver_user: user, parent_id: nil).first
       return motion.add_comment(user, params) if motion.present?
+    else
+      raise 'cannot add comment here'
     end
-    raise 'cannot add comment here'
   end
 
   def authors;
@@ -156,5 +159,50 @@ class Document::Base < ActiveRecord::Base
 
   def on_before_save
     self.docyear = self.docdate.year if self.docdate
+  end
+
+  def add_document_comment(user, params)
+    raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
+    # calculate new status
+    new_status = self.status
+    type = Document::ResponseType.find(params[:response_type_id]) if params[:response_type_id].present?
+    if type.blank? and params[:response_type].present?
+      type = Document::ResponseType.where(role: ROLE_OWNER, direction: params[:response_type]).order(:ordering).first
+    end
+    if type and type.positive?
+      new_status = COMPLETED
+    elsif type and type.negative?
+      new_status = CANCELED
+    end
+    # adding comment
+    Document::Comment.transaction do
+      # S1: create comment
+      text = params[:text] if params[:text].present?
+      Document::Comment.create!(document: self, motion: nil, user: user,
+        status: new_status, old_status: self.status, role: ROLE_OWNER,
+        text: text)
+      # S2: update document itself
+      status_updated = false
+      if self.status != new_status
+        raise 'cannot change status' if self.status == CANCELED
+        self.completed_at = Time.now
+        self.status = new_status
+        self.save!
+        status_updated = true
+      end
+      # S3: document_user updates
+      docuser = Document::User.upsert!(self, user, ROLE_OWNER, { status: new_status, is_new: 0 })
+      docuser.make_others_unread!
+      docuser.calculate!
+      # S4: if document was canceled mark current motions as not received
+      if self.status == CANCELED and status_updated
+        self.update_attributes!(status: CANCELED)
+        self.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
+          motion.update_attributes!(status: NOT_RECEIVED)
+          docuser = self.users.where(user: motion.receiver_user).first
+          docuser.calculate!
+        end
+      end
+    end
   end
 end
