@@ -4,15 +4,15 @@ include Document::Role
 include Document::Status
 include Document::ResponseTypeDirection
 
-RSpec.describe '1. Document with Author and Assignee' do
-  before(:example) do
+RSpec.describe 'Document with Author and Assignee' do
+  before(:all) do
     create_default_schema
     @dimitri = Sys::User.find_by_username('dimitri')
     @shalva = Sys::User.find_by_username('shalva')
     @nino = Sys::User.find_by_username('nino')
     # document
     @doc = Document::Base.create_draft!(@dimitri)
-    @doc.update_draft!(@dimitri, { subject: 'test', body: 'test body' })
+    @doc.update_draft!(@dimitri, { subject: 'test1', body: 'test body' })
     # add author
     Document::Motion.create_draft!(@dimitri, {
       document_id: @doc.id,
@@ -27,16 +27,58 @@ RSpec.describe '1. Document with Author and Assignee' do
       receiver_id: @nino.employee.id,
       receiver_role: ROLE_ASSIGNEE
     })
+    @doc.send_draft!(@dimitri)
     @doc.reload
-  end
-
-  it 'testing main properties' do
     expect(@doc.motions.size).to eq(3)
     expect(@doc.users.size).to eq(3)
+    @m1 = @doc.motions.where(receiver_user:@dimitri).first
+    @m2 = @doc.motions.where(receiver_user:@shalva).first
+    @m3 = @doc.motions.where(receiver_user:@nino).first
+    @u1 = @doc.users.where(user:@dimitri).first
+    @u2 = @doc.users.where(user:@shalva).first
+    @u3 = @doc.users.where(user:@nino).first
   end
+
+  specify{ expect(@doc.status).to eq(CURRENT) }
+  specify{ expect(@m1.status).to eq(CURRENT) }
+  specify{ expect(@m2.status).to eq(CURRENT) }
+  specify{ expect(@m3.status).to eq(SENT) }
+  specify{ expect(@u1.shown?).to eq(true) }
+  specify{ expect(@u2.shown?).to eq(true) }
+  specify{ expect(@u3.shown?).to eq(false) }
+
+  context 'sender completes task' do
+    before(:all) do
+      @doc.add_comment(@dimitri, { response_type: RESP_COMPLETE, text: 'done' })
+      [@doc, @m1, @m2, @m3, @u1, @u2, @u3].each{ |x| x.reload }
+    end
+
+    specify{ expect(@doc.status).to eq(CURRENT) }
+    specify{ expect(@m1.status).to eq(COMPLETED) }
+    specify{ expect(@m2.status).to eq(CURRENT) }
+    specify{ expect(@m3.status).to eq(SENT) }
+    specify{ expect(@u1.shown?).to eq(true) }
+    specify{ expect(@u2.shown?).to eq(true) }
+    specify{ expect(@u3.shown?).to eq(false) }
+  end
+
+  # context 'owner completes the motion' do
+  #   before(:all) do
+  #     debugger
+  #     @m2.add_comment(@shalva, { response_type: RESP_COMPLETE, text: 'done' })
+  #     [@doc, @m1, @m2, @m3, @u1, @u2, @u3].each{ |x| x.reload }
+  #   end
+  #   specify{ expect(@doc.status).to eq(CURRENT) }
+  #   specify{ expect(@m1.status).to eq(COMPLETED) }
+  #   specify{ expect(@m2.status).to eq(COMPLETED) }
+  #   specify{ expect(@m3.status).to eq(NONE) } #### ????
+  #   specify{ expect(@u1.shown?).to eq(true) }
+  #   specify{ expect(@u2.shown?).to eq(true) }
+  #   specify{ expect(@u3.shown?).to eq(false) } #### ???
+  # end
 end
 
-RSpec.describe '2. Document, Motions, and Users' do
+RSpec.describe 'Document, Motions, and Users' do
   before(:example) do
     create_default_schema
     @dimitri = Sys::User.find_by_username('dimitri')

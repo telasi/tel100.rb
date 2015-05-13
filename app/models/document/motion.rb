@@ -187,9 +187,9 @@ class Document::Motion < ActiveRecord::Base
       self.completed_at = Time.now
       self.status = new_status
       status_updated = true
-      if (self.receiver_role == ROLE_SENDER or self.receiver_role == ROLE_AUTHOR) and doc.owner_user_id == self.receiver_user_id
-        doc.update_attributes!(status: new_status, completed_at: Time.now)
-      end
+      # if (self.receiver_role == ROLE_SENDER or self.receiver_role == ROLE_AUTHOR) and doc.owner_user_id == self.receiver_user_id
+      #   doc.update_attributes!(status: new_status, completed_at: Time.now)
+      # end
     end
     self.response_type = type
     self.response_text = text
@@ -259,7 +259,7 @@ class Document::Motion < ActiveRecord::Base
   def resend_ups!
     thisLevel = Document::Motion.where(parent_id: self.parent_id, status: CURRENT, ordering: self.ordering).count
     if thisLevel == 0
-      ups = Document::Motion.where(parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
+      ups = Document::Motion.where('parent_id=? AND status IN (?)', self.parent_id, [SENT, CURRENT]).where('ordering > ?', self.ordering)
       if ups.count > 0
         ordering = ups.minimum('ordering')
         ups = ups.where(ordering: ordering)
