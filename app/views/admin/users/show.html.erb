@@ -21,3 +21,18 @@
     c.text_field 'full_name', url: ->(x){ admin_employee_url(id: x.id) }
   end
 end %>
+
+<% if @user.related.any? %>
+  <h3 class="page-header">
+    დაქვემდებარებული
+    <code><%= @user.related.count %></code>
+  </h3>
+  <table class="table table-bordered">
+    <% @user.related.each do |user| %>
+      <tr>
+        <td width="200"><code><%= user.username %></code></td>
+        <td><%= link_to user.full_name, admin_user_url(user) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
