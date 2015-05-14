@@ -11,7 +11,8 @@
 <%= viewer_for @type do |v|
   v.button_action admin_edit_response_type_url(id:@type.id), icon: 'pencil', label: 'შეცვლა'
   v.button_action admin_delete_response_type_url(id:@type.id), icon: 'trash', label: 'წაშლა', http_method: 'delete', confirm: 'ნამდვილად გინდათ წაშლა?'
-  v.required_text_field 'typename'
+  v.required_text_field 'role'
+  v.required_text_field 'direction_name'
   v.required_text_field 'ordering', tag: 'code'
   v.required_text_field 'name_ka'
   v.text_field 'name_ru'
