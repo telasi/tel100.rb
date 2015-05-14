@@ -30,5 +30,17 @@ class Document::ResponseType < ActiveRecord::Base
     Document::ResponseType.where('direction IN (?)', [ RESP_COMPLETE, RESP_CANCEL ])
   end
 
+  def direction_name
+    Document::ResponseType.direction_name(self.direction)
+  end
+
+  def self.direction_name(direction)
+    case direction
+    when SEND then 'გაგზავნა'
+    when RESP_COMPLETE then 'დასრულება'
+    when RESP_CANCEL then 'გაუქმება'
+    end
+  end
+
   def to_s; self.name end
 end
