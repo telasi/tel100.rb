@@ -31,7 +31,7 @@
     <i class="fa fa-user"></i>
     <code><%= empl.person_number %></code>
     <%= link_to empl.full_name, admin_employee_url(id: empl.id) %>
-    <% if empl.organization.manager? %>
+    <% if empl.organization and empl.organization.manager? %>
       &mdash; <strong class="text-success">მენეჯერი</strong>
     <% end %>
   </div>
