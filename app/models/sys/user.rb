@@ -8,6 +8,8 @@ class Sys::User < ActiveRecord::Base
   self.localized_fields('first_name', 'last_name')
   belongs_to :employee, class_name: 'HR::Employee'
   has_many :documents, class_name: 'Document::User', foreign_key: 'user_id'
+  has_many :relations, class_name: 'Sys::UserRelation'
+  has_many :related, class_name: 'Sys::User', through: :relations
 
   validates :username, uniqueness: { message: 'ეს მომხმარებელის სახელი დაკავებულია' }
   validates :username, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
