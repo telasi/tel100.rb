@@ -8,12 +8,18 @@ class Sys::UserRelation < ActiveRecord::Base
   # Generates related users for this user.
   def self.generate(user)
     Sys::UserRelation.where(user: user).destroy_all
-    return unless user.employee.present?
-    return unless user.employee.organization.manager?
-    org = user.employee.organization.parent
-    return unless org.present?
-    Sys::UserRelation.users(org).each do |u|
-      Sys::UserRelation.create(user: user, related: u) if u.id != user.id
+    if user.username == HR_SUPER_USER
+      Sys::User.all.each do |u|
+        Sys::UserRelation.create(user: user, related: u) if u.id != user.id
+      end
+    else
+      return unless user.employee.present?
+      return unless user.employee.organization.manager?
+      org = user.employee.organization.parent
+      return unless org.present?
+      Sys::UserRelation.users(org).each do |u|
+        Sys::UserRelation.create(user: user, related: u) if u.id != user.id
+      end
     end
   end
 
