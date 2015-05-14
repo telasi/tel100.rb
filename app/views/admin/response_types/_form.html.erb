@@ -1,5 +1,6 @@
 <%= editor_for @type do |e|
-  e.required_combo_field 'category', collection: document_response_types, select2: false, i18n: 'typename'
+  e.required_combo_field 'role', collection: { 'assignee' => 'assignee', 'author' => 'author', 'owner' => 'owner', 'sender' => 'sender', 'signee' => 'signee' }, select2: false
+  e.required_combo_field 'direction', collection: response_type_directions, select2: false, i18n: 'direction_name'
   e.required_text_field 'ordering', autofocus: true
   e.required_text_field 'name_ka'
   e.text_field 'name_ru'
