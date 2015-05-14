@@ -13,7 +13,7 @@ class Admin::HrController < AdminController
   def organization
     @organization = HR::Organization.find(params[:parent_id]) if params[:parent_id].present?
     @children = HR::Organization.where(parent: @organization)
-    @employees = HR::Employee.where(organization: @organization)
+    @employees = HR::Employee.where(organization: @organization, is_active: 1)
     @title = @organization.present? ? @organization.name : 'სს თელასი'
   end
 end
