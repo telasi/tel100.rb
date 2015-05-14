@@ -2,7 +2,7 @@
 class Admin::ResponseTypesController < AdminController
   def index
     @title = 'პასუხის სახეობები'
-    @types = Document::ResponseType.order('category, ordering, id')
+    @types = Document::ResponseType.order('role, direction, ordering, id')
   end
 
   def show
