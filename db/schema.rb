@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506100517) do
+ActiveRecord::Schema.define(version: 20150514055324) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -336,6 +336,11 @@ ActiveRecord::Schema.define(version: 20150506100517) do
     t.string   "priority",     limit: 2
     t.integer  "rel_obj_id",   limit: 8,  precision: 8, scale: 0, null: false
     t.string   "rel_obj_type", limit: 1,                          null: false
+  end
+
+  create_table "user_relations", id: false, force: true do |t|
+    t.integer "user_id",    limit: 10, precision: 10, scale: 0, null: false
+    t.integer "related_id", limit: 10, precision: 10, scale: 0, null: false
   end
 
   create_table "users", force: true do |t|
