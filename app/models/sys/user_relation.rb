@@ -13,13 +13,13 @@ class Sys::UserRelation < ActiveRecord::Base
     org = user.employee.organization.parent
     return unless org.present?
     Sys::UserRelation.users(org).each do |u|
-      Sys::UserRelation.create(user: user, related: u)
+      Sys::UserRelation.create(user: user, related: u) if u.id != user.id
     end
   end
 
   def self.users(org)
-    empoyees = HR::Employee.where(organization: org)
-    if empoyees.any?
+    employees = HR::Employee.where(organization: org)
+    if employees.any?
       (employees.map { |x| x.user }).compact
     else
       users = []
