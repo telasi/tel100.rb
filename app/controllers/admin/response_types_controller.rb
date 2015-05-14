@@ -41,6 +41,6 @@ class Admin::ResponseTypesController < AdminController
   protected
 
   def type_params
-    params.require(:document_responsetype).permit(:name_ka, :name_ru, :name_en, :ordering, :category)
+    params.require(:document_responsetype).permit(:name_ka, :name_ru, :name_en, :ordering, :role, :direction)
   end
 end
