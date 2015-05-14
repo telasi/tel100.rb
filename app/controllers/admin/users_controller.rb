@@ -34,6 +34,12 @@ class Admin::UsersController < AdminController
     redirect_to admin_users_url
   end
 
+  def generate_relations
+    user = Sys::User.find(params[:id])
+    Sys::UserRelation.generate(user)
+    redirect_to admin_user_url(user), notice: 'მომხმარებლის კავშირები გენერირებულია'
+  end
+
   private
 
   def user_params; params.require(:sys_user).permit(:username, :virtual_password, :email, :mobile, :phone, :employee_id, :is_active, :is_admin) end

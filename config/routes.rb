@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       match '/new', action: 'new', as: 'new_user', via: ['get', 'post']
       match '/edit/:id', action: 'edit', as: 'edit_user', via: ['get', 'post']
       delete '/delete/:id', action: 'destroy', as: 'delete_user'
+      post '/generate_relations/:id', action: 'generate_relations', as: 'generate_user_relations'
     end
     scope 'document' do
       scope 'types', controller: 'doctypes' do
