@@ -7,4 +7,8 @@ class Api::UserController < ApiController
       render json: { success: false, message: I18n.t('controllers.user.errors.illegal_username_and_password') }
     end
   end
+
+  def related
+    @related = current_user.related
+  end
 end

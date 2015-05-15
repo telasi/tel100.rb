@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   namespace 'api' do
     scope 'user', controller: 'user' do
       post '/login', action: 'login'
+      get '/related', action: 'related'
     end
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
