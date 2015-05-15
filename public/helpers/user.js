@@ -1,4 +1,5 @@
 var currentUser
+  , proxyUser
   , ajax = require('./ajax')
   , i18n = require('./i18n')
   , preferences = require('./preferences')
@@ -22,7 +23,22 @@ var getCurrentUser = function() {
   return currentUser;
 };
 
+var setProxyUser = function(userRec) {
+  if (userRec) {
+    proxyUser = userRec;
+    ajax.setExtraParams('api_proxyid', userRec.id);
+  } else {
+    proxyUser = null;
+    ajax.setExtraParams('api_proxyid', null);
+  }
+};
+
+var getProxyUser = function() {
+  return proxyUser;
+};
+
 module.exports = {
   setCurrentUser: setCurrentUser,
-  getCurrentUser: getCurrentUser
+  getCurrentUser: getCurrentUser,
+  getProxyUser: getProxyUser
 };
