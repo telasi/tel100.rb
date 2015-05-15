@@ -29,6 +29,9 @@ Ext.define('Tel100.view.user.box.Button', {
       xtype: 'menuitem',
       bind: {
         text: '{i18n.user.switch}'
+      },
+      listeners: {
+        click: 'onSwitch'
       }
     }, {
       xtype: 'menuseparator'
