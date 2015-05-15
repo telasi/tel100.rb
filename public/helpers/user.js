@@ -40,5 +40,6 @@ var getProxyUser = function() {
 module.exports = {
   setCurrentUser: setCurrentUser,
   getCurrentUser: getCurrentUser,
+  setProxyUser: setProxyUser,
   getProxyUser: getProxyUser
 };
