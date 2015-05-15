@@ -8,6 +8,10 @@ Ext.define('Tel100.view.user.box.ButtonViewController', {
 
   onSwitch: function(item, e, eOpts) {
     var dialog = Ext.create('Tel100.view.user.switch.Dialog', { modal: true });
+    dialog.on('switchuser', function(userRec) {
+      dialog.close();
+      console.log(userRec);
+    });
     dialog.show();
   }
 });

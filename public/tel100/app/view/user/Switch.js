@@ -2,7 +2,7 @@ Ext.define('Tel100.view.user.switch.Dialog', {
   extend: 'Ext.window.Window',
   alias: 'widget.userswitchdialog',
 
-  // controller: 'userswitchdialog',
+  controller: 'userswitchdialog',
   viewModel: {
     type: 'userswitchdialog'
   },
@@ -30,6 +30,9 @@ Ext.define('Tel100.view.user.switch.Dialog', {
     bind: {
       store: '{users}'
     },
+    listeners: {
+      'itemdblclick': 'onSwitchSelected'
+    }
   }]
 });
 
@@ -49,5 +52,14 @@ Ext.define('Tel100.view.user.switch.DialogViewModel', {
         }
       }
     }
+  }
+});
+
+Ext.define('Tel100.view.user.switch.DialogViewController', {
+  extend: 'Ext.app.ViewController',
+  alias: 'controller.userswitchdialog',
+
+  onSwitchSelected: function(grid, record, item, index, e, eOpts) {
+    grid.up('userswitchdialog').fireEvent('switchuser', record);
   }
 });
