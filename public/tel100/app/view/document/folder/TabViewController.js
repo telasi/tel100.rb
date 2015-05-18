@@ -32,7 +32,7 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
   },
 
   onGridpanelAfterRender: function(component, eOpts) {
-    component.dropZone = Ext.create('Ext.dd.DropZone', component.el,{
+    component.dropZone = Ext.create('Ext.dd.DropZone', component.el, {
       ddGroup: 'Grid2FolderDDGroup',
 
       getTargetFromEvent: function(e) {
@@ -65,6 +65,14 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
 
         return true;
       }
+    });
+
+    // refreshing document on user change
+
+    var ctrl = this;
+    var viewModel = this.getViewModel();
+    viewModel.bind('{proxyUser}', function() {
+      ctrl.foldersRefresh();
     });
   },
 
