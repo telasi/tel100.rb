@@ -62,8 +62,8 @@ class Api::Documents::BaseController < ApiController
   end
 
   def show
-    if can_read_document?
-      @my_doc = Document::User.where(document_id: params[:id], user: effective_user).first
+    @my_doc = Document::User.where(document_id: params[:id], user: effective_user).first
+    if can_read_document?(@my_doc.document)
       @my_doc.read! if can_change_read_property?
     else
       render json: { success: false, error: MSG_CANNOT_READ }
@@ -81,9 +81,8 @@ class Api::Documents::BaseController < ApiController
   end
 
   def update_draft
-    
-    if can_edit_document?
-      doc = Document::Base.find(params[:id])
+    doc = Document::Base.find(params[:id])
+    if can_edit_document?(doc)
       doc.update_draft!(current_user, params)
       render json: { success: true }
     else
@@ -92,8 +91,8 @@ class Api::Documents::BaseController < ApiController
   end
 
   def delete_draft
-    if can_edit_document?
-      doc = Document::Base.find(params[:id])
+    doc = Document::Base.find(params[:id])
+    if can_edit_document?(doc)
       doc.delete_draft!(current_user)
       render json: { success: true }
     else
@@ -102,8 +101,8 @@ class Api::Documents::BaseController < ApiController
   end
 
   def send_draft
-    if can_edit_document?
-      doc = Document::Base.find(params[:id])
+    doc = Document::Base.find(params[:id])
+    if can_edit_document?(doc)
       doc.send_draft!(current_user)
       render json: { success: true }
     else
@@ -112,8 +111,8 @@ class Api::Documents::BaseController < ApiController
   end
 
   def reply
-    if can_edit_document?
-      sourcedoc = Document::Base.find(params[:sourceid])
+    sourcedoc = Document::Base.find(params[:sourceid])
+    if can_edit_document?(sourcedoc)
       newdoc = Document::Base.create_draft!(current_user)
       newdoc.update_draft!(current_user, { subject: "Re: #{sourcedoc.subject}" })
       rel = Document::Relation.create(base: newdoc, related: sourcedoc)
