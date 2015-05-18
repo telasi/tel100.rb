@@ -60,7 +60,7 @@ class Api::Documents::BaseController < ApiController
   end
 
   def show
-    @my_doc = Document::User.where(document_id: params[:id], user: current_user).first
+    @my_doc = Document::User.where(document_id: params[:id], user: effective_user).first
     @my_doc.read!
   end
 
