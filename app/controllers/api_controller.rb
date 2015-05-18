@@ -21,18 +21,34 @@ class ApiController < ActionController::Base
   def validate_login; raise 'not authorized' if current_user.blank? end
   def validate_locale; I18n.locale = current_locale end
 
-  # current variables for Vacation
-    # current Vacation object
-    def current_substitude; HR::Vacation::Vacation.find(params[:substitude]) if params[:substitude].present? end
-    # current user or substitude if set
-    def current_user_sub; 
-      if current_substitude
-       user = Sys::User.find(current_substitude.userid)
-       user.current_substitude = current_substitude
-       user
-      else
-       current_user 
+  # Returns current "proxy user".
+  def current_proxy
+    unless @__proxy_initialized
+      proxy_id = params[:api_proxyid]
+      current_user = self.current_user
+      if proxy_id.present? and current_user
+        if UserRelation.where(user: user, related_id: proxy_id).any?
+          @__proxy = Sys::User.find(proxy_id) rescue nil
+        end
       end
+      @__proxy_initialized = true
     end
+    @__proxy
+  end
 
+## XXX
+
+  # current variables for Vacation
+  # current Vacation object
+  def current_substitude; HR::Vacation::Vacation.find(params[:substitude]) if params[:substitude].present? end
+  # current user or substitude if set
+  def current_user_sub; 
+    if current_substitude
+     user = Sys::User.find(current_substitude.userid)
+     user.current_substitude = current_substitude
+     user
+    else
+     current_user 
+    end
+  end
 end
