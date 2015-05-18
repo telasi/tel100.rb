@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Api::Documents::BaseController < ApiController
+  MSG_CANNOT_EDIT = 'You cannot edit this document.'
+  MSG_CANNOT_READ = 'You cannot read this document.'
   before_filter :validate_login
 
   def index
@@ -60,41 +62,66 @@ class Api::Documents::BaseController < ApiController
   end
 
   def show
-    @my_doc = Document::User.where(document_id: params[:id], user: effective_user).first
-    @my_doc.read!
+    if can_read_document?
+      @my_doc = Document::User.where(document_id: params[:id], user: effective_user).first
+      @my_doc.read! if can_change_read_property?
+    else
+      render json: { success: false, error: MSG_CANNOT_READ }
+    end
   end
 
   def create_draft
-    doc = Document::Base.create_draft!(current_user)
-    @my_doc = Document::User.where(document: doc, user: current_user).first
-    render action: 'show'
+    if can_edit_document?
+      doc = Document::Base.create_draft!(current_user)
+      @my_doc = Document::User.where(document: doc, user: current_user).first
+      render action: 'show'
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end
   end
 
   def update_draft
-    doc = Document::Base.find(params[:id])
-    doc.update_draft!(current_user, params)
-    render json: { success: true }
+    
+    if can_edit_document?
+      doc = Document::Base.find(params[:id])
+      doc.update_draft!(current_user, params)
+      render json: { success: true }
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end
   end
 
   def delete_draft
-    doc = Document::Base.find(params[:id])
-    doc.delete_draft!(current_user)
-    render json: { success: true }
+    if can_edit_document?
+      doc = Document::Base.find(params[:id])
+      doc.delete_draft!(current_user)
+      render json: { success: true }
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end
   end
 
   def send_draft
-    doc = Document::Base.find(params[:id])
-    doc.send_draft!(current_user)
-    render json: { success: true }
+    if can_edit_document?
+      doc = Document::Base.find(params[:id])
+      doc.send_draft!(current_user)
+      render json: { success: true }
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end
   end
 
   def reply
-    sourcedoc = Document::Base.find(params[:sourceid])
-    newdoc = Document::Base.create_draft!(current_user)
-    newdoc.update_draft!(current_user, { subject: "Re: #{sourcedoc.subject}" })
-    rel = Document::Relation.create(base: newdoc, related: sourcedoc)
-    @my_doc = Document::User.where(document: newdoc, user: current_user).first
-    render action: 'show'
+    if can_edit_document?
+      sourcedoc = Document::Base.find(params[:sourceid])
+      newdoc = Document::Base.create_draft!(current_user)
+      newdoc.update_draft!(current_user, { subject: "Re: #{sourcedoc.subject}" })
+      rel = Document::Relation.create(base: newdoc, related: sourcedoc)
+      @my_doc = Document::User.where(document: newdoc, user: current_user).first
+      render action: 'show'
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end
   end
 
   def united_role_filter(pdoc, search_string, role)
