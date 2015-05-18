@@ -2,12 +2,6 @@ Ext.define('Tel100.view.document.grid.PanelViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.documentgridpanel',
 
-  requires: [
-    'Ext.data.Store',
-    'Ext.data.proxy.Ajax',
-    'Ext.data.reader.Json'
-  ],
-
   data: {
     selectionCriteria: null
   },

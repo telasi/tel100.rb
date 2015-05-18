@@ -1,20 +1,12 @@
 Ext.define('Tel100.view.document.grid.Panel', {
   extend: 'Ext.grid.Panel',
   alias: 'widget.documentgridpanel',
-
-  requires: [
-    'Tel100.view.document.grid.PanelViewModel',
-    'Tel100.view.document.grid.PanelViewController',
-    'Ext.grid.View',
-    'Ext.grid.plugin.DragDrop',
-    'Ext.util.Point',
-    'Ext.grid.column.Column'
-  ],
-
   controller: 'documentgridpanel',
+
   viewModel: {
     type: 'documentgridpanel'
   },
+
   border: false,
   enableColumnHide: false,
   enableColumnMove: false,
@@ -24,6 +16,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
   bind: {
     store: '{documents}'
   },
+
   viewConfig: {
     getRowClass: function(record, rowIndex, rowParams, store) {
       var status = record.get('status');
@@ -51,6 +44,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
       }
     ]
   },
+
   columns: [
     {
       xtype: 'gridcolumn',
@@ -219,6 +213,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
       }
     }
   ],
+
   listeners: {
     beforeitemcontextmenu: {
       fn: 'onGridpanelBeforeItemContextMenu',
