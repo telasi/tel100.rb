@@ -164,7 +164,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
 
   onSetupFoldersButtonClick: function(button, e, eOpts) {
     var configwindow = Ext.create('Tel100.view.document.folder.Config');
-                            configwindow.show();
+    configwindow.show();
   },
 
   onTabpanelAfterRender: function(component, eOpts) {
