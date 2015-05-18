@@ -40,4 +40,25 @@ class ApiController < ActionController::Base
   def effective_user
     self.current_proxy || self.current_user
   end
+
+  #
+  # Can document's read status changed by given user?
+  #
+  def can_change_read_property?
+    self.current_user == self.effective_user
+  end
+
+  #
+  # Can read given document?
+  #
+  def can_read_document?
+    true
+  end
+
+  #
+  # Can edit given document?
+  #
+  def can_edit_document?
+    self.current_user == self.effective_user
+  end
 end
