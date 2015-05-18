@@ -35,20 +35,4 @@ class ApiController < ActionController::Base
     end
     @__proxy
   end
-
-## XXX
-
-  # current variables for Vacation
-  # current Vacation object
-  def current_substitude; HR::Vacation::Vacation.find(params[:substitude]) if params[:substitude].present? end
-  # current user or substitude if set
-  def current_user_sub; 
-    if current_substitude
-     user = Sys::User.find(current_substitude.userid)
-     user.current_substitude = current_substitude
-     user
-    else
-     current_user 
-    end
-  end
 end
