@@ -226,15 +226,6 @@ Ext.define('Tel100.view.document.grid.Panel', {
     celldblclick: 'onGridpanelCellDblClick'
   },
 
-  initComponent: function() {
-    var view = this;
-    var viewModel = this.getViewModel();
-    viewModel.bind('{proxyUser}', function(value) {
-      view.refresh();
-    });
-    this.callParent();
-  },
-
   onGridpanelCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     var actionIndex = 1; // index of sign column
     if (cellIndex === actionIndex && record.get('as_signee') === 1) {

@@ -66,8 +66,14 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
   },
 
   onGridpanelAfterRender: function(component, eOpts) {
-    this.getView().getController().addPagingToolbar(component);
-    helpers.party.employeeTips(component);
-  }
+    var view = this.getView();
+    var viewModel = this.getViewModel();
 
+    view.getController().addPagingToolbar(component);
+    helpers.party.employeeTips(component);
+
+    viewModel.bind('{proxyUser}', function() {
+      view.refresh();
+    });
+  }
 });
