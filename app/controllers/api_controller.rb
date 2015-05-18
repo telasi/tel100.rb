@@ -21,18 +21,23 @@ class ApiController < ActionController::Base
   def validate_login; raise 'not authorized' if current_user.blank? end
   def validate_locale; I18n.locale = current_locale end
 
-  # Returns current "proxy user".
+  # Returns current "proxy" user.
   def current_proxy
     unless @__proxy_initialized
       proxy_id = params[:api_proxyid]
       current_user = self.current_user
       if proxy_id.present? and current_user
-        if UserRelation.where(user: user, related_id: proxy_id).any?
+        if Sys::UserRelation.where(user: current_user, related_id: proxy_id).any?
           @__proxy = Sys::User.find(proxy_id) rescue nil
         end
       end
       @__proxy_initialized = true
     end
     @__proxy
+  end
+
+  # Who is "effective" user for most queries.
+  def effective_user
+    self.current_proxy || self.current_user
   end
 end

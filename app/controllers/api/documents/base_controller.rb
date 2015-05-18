@@ -11,7 +11,7 @@ class Api::Documents::BaseController < ApiController
   end
 
   def search
-    @my_docs = Document::User.mydocs(current_user_sub).joins(:document)
+    @my_docs = Document::User.mydocs(effective_user).joins(:document)
     @my_docs = @my_docs.where('document_user.created_at >= ?', current_substitude.from_date) if current_substitude.present? and current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
     @my_docs = doc_list('standard', 1, params['folder']) if params['folder'].present?
     @my_docs = @my_docs.joins(:document)
@@ -44,18 +44,19 @@ class Api::Documents::BaseController < ApiController
   def doc_list(folderType, show_completed = 0, folderId)
     @docs = case folderType
       when 'standard'
-        Folder::Standard.docs(folderId, show_completed, current_user_sub)
+        Folder::Standard.docs(folderId, show_completed, effective_user)
       when 'custom'
-        Folder::Document.docs(folderId, current_user_sub)
+        Folder::Document.docs(folderId, effective_user)
       else 
-        Document::User.mydocs(current_user_sub)
+        Document::User.mydocs(effective_user)
     end
 
-    if current_substitude.present? and current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
-     @docs = @docs.where('document_user.created_at >= ?', current_substitude.from_date) 
-    else
-     @docs
-    end
+    # if current_substitude.present? and current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
+    #  @docs = @docs.where('document_user.created_at >= ?', current_substitude.from_date) 
+    # else
+    #  @docs
+    # end
+    @docs
   end
 
   def show
