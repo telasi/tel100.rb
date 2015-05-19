@@ -32,15 +32,37 @@ class AddDocumentType < ActiveRecord::Migration
     SQL
 
     execute <<-SQL
-      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('სამსახ.წერილი', 'Служебное письмо', 1)
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('სამსახურეობრივი წერილი', 'Служебная карточка', 1)
     SQL
-
     execute <<-SQL
-      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('ბრძანება', 'Приказ', 2)
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('დავალება', 'Задание', 2)
     SQL
-
     execute <<-SQL
-      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('აქტი', 'Акт', 3)
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('ბრძანება', 'Приказ', 3)
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('განკარგულება', 'Постановление', 4)
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('განცხადება', 'Заявление', 4)
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('მოხსენებითი ბარათი', '', 4)
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('ოქმი', 'Заключение', 4)
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('შეტყობინება', '', 4)
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('ცნობა', '', 4)
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('წერილი', 'Письмо', 4)
+    SQL
+    execute <<-SQL
+      insert into DOCUMENT_TYPE(NAME_KA, NAME_RU, ORDER_BY) VALUES ('აქტი', 'Акт', 4)
     SQL
   end
 
