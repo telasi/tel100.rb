@@ -1,0 +1,5 @@
+ka:
+  models:
+    sys_userrelation:
+      role: მომხ.სახელი
+      related: დაკავშირებული

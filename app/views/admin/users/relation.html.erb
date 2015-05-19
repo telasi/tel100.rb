@@ -11,6 +11,6 @@
 
 <%= editor_for @relation do |e|
   e.combo_field :role, collection: Sys::UserRelation::RELATIONS, select2: false
-  e.combo_field :related_id, collection: Sys::User.all, empty: '--აარჩიეთ მომხმარებელი--'
+  e.combo_field :related_id, collection: Sys::User.all, empty: '--აარჩიეთ მომხმარებელი--', i18n: 'related'
   e.submit 'შენახვა'
 end %>
