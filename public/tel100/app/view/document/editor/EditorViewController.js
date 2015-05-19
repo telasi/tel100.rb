@@ -17,6 +17,25 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenteditoreditor',
 
+  onEditClick: function(button, e, eOpts) {
+    var vm = this.getViewModel();
+    var document = vm.get('document');
+    var title = [ i18n.document.comment.actions.edit,
+                  ': ',
+                  document.get('docnumber')].join('');
+
+    var editWindow = Ext.create('Tel100.view.document.editor.Modify', {
+      title: title,
+      viewModel: {
+        data: {
+          document: document
+        }
+      }
+    });
+
+    editWindow.show();
+  },
+
   onReplyClick: function(button, e, eOpts) {
     var vm = this.getViewModel();
     var document = vm.get('document');

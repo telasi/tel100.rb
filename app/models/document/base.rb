@@ -161,6 +161,87 @@ class Document::Base < ActiveRecord::Base
     self.owner_user == user
   end
 
+  def modify(params, user)
+    #check if changes were made
+    #dirty = false
+    #dirty = self.text.body != params[:body]
+
+    #Document::FileTemp.where(document: self).map do |f| 
+    #  if not Document::File.where(document: self, original_name: f.original_name, store_name: f.store_name, state: f.state, created_at: f.created_at).any?
+    #    dirty = true
+    #    break
+    #  end
+    #end
+
+    #return if not dirty
+
+    motions = JSON.parse(params[:motions])
+
+    Document::Base.transaction do
+      change = Document::Change.new(document_id: params[:id], user: user, created_at: Time.now)
+      change.save!
+
+      histext = Document::History::Text.new(document: self)
+      if self.text
+        histext.body = self.text.body
+      else
+        histext.body = ""
+      end
+      histext.change_no = change.id
+      histext.save!
+
+      text = self.text || Document::Text.new(document: self)
+      text.body = params[:body]
+      text.save!
+
+      Document::File.where(document: self).map do |f|
+        hisfile = Document::History::File.new(document: self, original_name: f.original_name, store_name: f.store_name, change_no: change.id)
+        hisfile.save!
+        f.delete
+      end
+
+      Document::FileTemp.where(document: self).map do |f|
+        if f.state == Document::Change::STATE_TEMP || f.state == Document::Change::STATE_CURRENT
+          newfile = Document::File.new(document: self, original_name: f.original_name, store_name: f.store_name)
+          newfile.save
+        end
+        f.delete
+      end
+      # motions
+
+      # save all motions to history table
+      self.assignee_motions.map do |m|
+        hismotion = Document::History::Motion.new(m.attributes.merge({id: nil}))
+        hismotion.change_no = change.id
+        hismotion.save!
+      end
+
+      # process motions
+      motions.each do |m|
+        if m["deleted"]
+          motion = Document::Motion.find(m["id"])
+          motion.delete
+        end
+        if m["temp"]
+          motion_params = {
+            document_id:    params[:id],
+            parent_id:      nil,
+            receiver_role:  ROLE_ASSIGNEE,
+            receiver_id:    m["receiver_id"],
+            receiver_type:  m["receiver_type"],
+            ordering:       nil,
+            send_type_id:   m["send_type_id"],
+            due_date:       m["due_date"]
+          }
+          motion = Document::Motion.create_draft!(user, motion_params)
+          motion.send_draft!(user)
+        end
+      end
+
+    end
+
+  end
+
   private
 
   def on_before_save

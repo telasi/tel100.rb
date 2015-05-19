@@ -96,6 +96,10 @@ module.exports = {
       ka: '<i class="fa fa-reply"></i> პასუხი',
       ru: '<i class="fa fa-reply"></i> Ответ'
     },
+    edit: {
+      ka: '<i class="fa fa-pencil"></i> რედაქტირება',
+      ru: '<i class="fa fa-pencil"></i> Редактирование'
+    }
   },
   errors: {
     text_required_title: {

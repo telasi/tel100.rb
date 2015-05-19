@@ -34,6 +34,18 @@ Ext.define('Tel100.view.document.editor.Editor', {
       }, {
         xtype: 'button',
         bind: {
+          text: '{i18n.document.comment.actions.edit}',
+          hidden: '{hideEditButton}'
+        },
+        listeners: {
+          click: {
+            fn: 'onEditClick',
+            scope: 'controller'
+          }
+        }
+      }, {
+        xtype: 'button',
+        bind: {
           text: '{i18n.document.base.ui.card}'
         },
         listeners: {

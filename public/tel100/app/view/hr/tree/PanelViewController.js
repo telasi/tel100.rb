@@ -40,13 +40,13 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
 
   startSearch: function() {
         var view = this.getView(),
-          searchValue = view.down('textfield').getValue(),
+          searchValue = view.down('textfield').getValue().toLowerCase(),
           rn = view.getRootNode();
 
         this.counter = 0;
         this.oldcounter = 0;
 
-        this.searchAndExpand(view, rn, searchValue, 'full_name', function(cv, sv) { return cv.indexOf(sv) != -1; });
+        this.searchAndExpand(view, rn, searchValue, 'full_name', function(cv, sv) { return cv.toLowerCase().indexOf(sv) != -1; });
 
         this.getView().down('#nextbutton').setDisabled(false);
   },
@@ -82,12 +82,12 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
   onNextSearchButtonClick: function(button, e, eOpts) {
     var view = this.getView(),
       rn = view.getRootNode(),
-      searchValue = view.down('textfield').getValue();
+      searchValue = view.down('textfield').getValue().toLowerCase();
 
     this.counter = 0;
     this.oldcounter++;
 
-    this.searchAndExpand(view, rn, searchValue, 'full_name', function(cv, sv) { return cv.indexOf(sv) != -1; });
+    this.searchAndExpand(view, rn, searchValue, 'full_name', function(cv, sv) { return cv.toLowerCase().indexOf(sv) != -1; });
   },
 
   onTreepanelAfterRender: function(component, eOpts) {

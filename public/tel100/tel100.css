@@ -54,6 +54,9 @@ tr.row-text-danger td.x-grid-cell .x-grid-cell-inner {
   color: #a94442;
 }
 
+tr.row-text-deleted td.x-grid-cell .x-grid-cell-inner {
+  text-decoration: line-through;
+}
 
 tr.text-unread td.x-grid-cell .x-grid-cell-inner {
   font-weight: bold;
