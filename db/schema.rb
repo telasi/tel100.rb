@@ -395,6 +395,7 @@ ActiveRecord::Schema.define(version: 20150518120901) do
   create_table "user_relations", id: false, force: true do |t|
     t.integer "user_id",    limit: 10, precision: 10, scale: 0, null: false
     t.integer "related_id", limit: 10, precision: 10, scale: 0, null: false
+    t.string  "role",       limit: 50,                          null: false
   end
 
   create_table "users", force: true do |t|
