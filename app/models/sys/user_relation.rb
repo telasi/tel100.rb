@@ -13,7 +13,7 @@ class Sys::UserRelation < ActiveRecord::Base
     Sys::UserRelation.where(user: user).destroy_all
     if user.username == HR_SUPER_USER
       Sys::User.all.each do |u|
-        Sys::UserRelation.create(user: user, related: u) if u.id != user.id
+        Sys::UserRelation.create(user: user, related: u, role: REL_HRTREE) if u.id != user.id
       end
     else
       return unless user.employee.present?
