@@ -42,5 +42,5 @@ class Admin::UsersController < AdminController
 
   private
 
-  def user_params; params.require(:sys_user).permit(:username, :virtual_password, :email, :mobile, :phone, :employee_id, :is_active, :is_admin) end
+  def user_params; params.require(:sys_user).permit(:username, :virtual_password, :email, :mobile, :phone, :employee_id, :is_active, :is_admin, :first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru) end
 end

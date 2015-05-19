@@ -16,3 +16,7 @@ ka:
       is_active_false: "მომხმარებელი პასიურია"
       created_at: რეგისტრაციის თარიღი
       updated_at: ბოლო ცლილების თარიღი
+      first_name_ka: სახელი
+      last_name_ka: გვარი
+      first_name_ru: Имя
+      last_name_ru: Фамилия
