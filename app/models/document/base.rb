@@ -219,7 +219,6 @@ class Document::Base < ActiveRecord::Base
       # process motions
       motions.each do |m|
         if m["deleted"]
-          debugger
           motion = Document::Motion.find(m["id"])
           motion.delete
         end
