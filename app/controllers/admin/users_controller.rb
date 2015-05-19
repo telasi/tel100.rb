@@ -47,10 +47,16 @@ class Admin::UsersController < AdminController
       @relation = Sys::UserRelation.new(params.require(:sys_userrelation).permit(:role, :related_id))
       @relation.user = @user
       @relation.save
-      redirect_to admin_user_url(@user), notice: 'მომხმარებლის კავშირები დამატებულია'
+      redirect_to admin_user_url(@user), notice: 'მომხმარებლის კავშირი დამატებულია'
     else
       @relation = Sys::UserRelation.new
     end
+  end
+
+  def destroy_relation
+    rel = Sys::UserRelation.find([params[:user_id], params[:related_id]])
+    rel.destroy
+    redirect_to admin_user_url(params[:user_id]), notice: 'მომხმარებლის კავშირი წაშლილია'
   end
 
   private
