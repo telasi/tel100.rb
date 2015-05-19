@@ -89,6 +89,7 @@ Rails.application.routes.draw do
         delete '/delete_draft', action: 'delete_draft'
         post   '/send_draft',   action: 'send_draft'
         post   '/reply',        action: 'reply'
+        post   '/edit',         action: 'edit'
       end
       scope 'motion', controller: 'motion' do
         get    '/',                   action: 'index'
@@ -124,6 +125,14 @@ Rails.application.routes.draw do
         post   '/upload',   action: 'upload'
         delete '/delete',   action: 'destroy'
       end
+      scope 'filestemp', controller: 'files' do
+        get   '/prepare/:id',  action: 'prepare'
+        get   '/purge/:id',    action: 'purge'
+        get    '/',            action: 'indextemp'
+        get    '/download',    action: 'downloadtemp'
+        post   '/upload',      action: 'uploadtemp'
+        delete '/delete',      action: 'destroytemp'
+      end
       scope 'relations', controller: 'relations' do
         get    '/',         action: 'index'
         post   '/create',   action: 'create'
@@ -133,6 +142,7 @@ Rails.application.routes.draw do
       scope 'print', controller: 'print' do
         get '/card/:id', action: 'card'
         get '/document/:id', action: 'print'
+        get '/sign/:id', action: 'sign'
       end
     end
     scope 'sap', controller: 'sap' do

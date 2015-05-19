@@ -22,6 +22,7 @@ json.as_author    mydoc.as_author
 json.has_due_date mydoc.due_date?
 json.due_is_over  mydoc.due_is_over?
 json.current_due_date mydoc.current_due_date
+json.is_editable  mydoc.is_editable?
 
 # document::base properties
 json.parent_id   doc.parent_id

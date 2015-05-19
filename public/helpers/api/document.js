@@ -39,6 +39,39 @@ var base = {
     opts.params = { sourceid: sourceid };
     ajax.request(opts);
   }
+
+};
+
+var edit = {
+  edit: function(id, args) {
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/base/edit';
+    opts.params.id = id;
+    ajax.request(opts);
+  },
+
+  prepare: function(id, args){
+    var opts = args || {};
+    opts.method = 'GET';
+    opts.url = '/api/documents/filestemp/prepare/' + id;
+    ajax.request(opts);
+  },
+
+  purge: function(id, args){
+    var opts = args || {};
+    opts.method = 'GET';
+    opts.url = '/api/documents/filestemp/purge/' + id;
+    ajax.request(opts);
+  },  
+
+  filedelete: function(id, args) {
+    var opts = args || {};
+    opts.method = 'DELETE';
+    opts.url = '/api/documents/filestemp/delete';
+    opts.params = { id: id };
+    ajax.request(opts);
+  }
 };
 
 var motion = {
@@ -167,5 +200,6 @@ module.exports = {
   file: file,
   relation: relation,
   responseType: responseType,
-  print: print
+  print: print,
+  edit: edit
 };

@@ -24,6 +24,10 @@ Ext.define('Tel100.model.document.File', {
     {
       type: 'date',
       name: 'created_at'
+    },
+    {
+      type: 'boolean',
+      name: 'deleted'
     }
   ]
 });

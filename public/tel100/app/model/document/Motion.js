@@ -86,6 +86,16 @@ Ext.define('Tel100.model.document.Motion', {
         return helpers.document.status.motionStatusFull(data.status, data);
       },
       name: 'statusFull'
+    },
+    {
+      type: 'boolean',
+      name: 'deleted'
+    },
+    {
+      calculate: function(data){
+        return data.deleted;
+      },
+      name: 'isDeleted'
     }
   ],
 

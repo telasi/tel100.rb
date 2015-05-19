@@ -123,6 +123,11 @@ class Api::Documents::BaseController < ApiController
     end
   end
 
+  def edit
+    doc = Document::Base.find(params[:id])
+    render json: { success: doc.modify(params, current_user) }
+  end
+
   def united_role_filter(pdoc, search_string, role)
     search_string = search_string.squish.tr(' ', '%')
     @doc = pdoc.where("exists ( select document_id from document_motion 
