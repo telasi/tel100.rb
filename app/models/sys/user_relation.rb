@@ -3,6 +3,8 @@ class Sys::UserRelation < ActiveRecord::Base
   REL_HRTREE = 'hrtree'
   REL_CANCELARIA = 'cancelaria'
 
+  RELATIONS = [ REL_HRTREE, REL_CANCELARIA ]
+
   self.table_name  = 'user_relations'
   self.primary_keys = :user_id, :related_id
   belongs_to :user, class_name: 'Sys::User'

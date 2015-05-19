@@ -40,6 +40,19 @@ class Admin::UsersController < AdminController
     redirect_to admin_user_url(user), notice: 'მომხმარებლის კავშირები გენერირებულია'
   end
 
+  def relation
+    @title = 'კავშირის დამატება'
+    @user = Sys::User.find(params[:id])
+    if request.post?
+      @relation = Sys::UserRelation.new(params.require(:sys_userrelation).permit(:role, :related_id))
+      @relation.user = @user
+      @relation.save
+      redirect_to admin_user_url(@user), notice: 'მომხმარებლის კავშირები დამატებულია'
+    else
+      @relation = Sys::UserRelation.new
+    end
+  end
+
   private
 
   def user_params; params.require(:sys_user).permit(:username, :virtual_password, :email, :mobile, :phone, :employee_id, :is_active, :is_admin, :first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru) end
