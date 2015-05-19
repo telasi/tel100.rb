@@ -1,5 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Sys::UserRelation < ActiveRecord::Base
+  REL_HRTREE = 'hrtree'
+  REL_CANCELARIA = 'cancelaria'
+
   self.table_name  = 'user_relations'
   self.primary_keys = :user_id, :related_id
   belongs_to :user, class_name: 'Sys::User'
@@ -18,7 +21,7 @@ class Sys::UserRelation < ActiveRecord::Base
       org = user.employee.organization.parent
       return unless org.present?
       Sys::UserRelation.users(org).each do |u|
-        Sys::UserRelation.create(user: user, related: u) if u.id != user.id
+        Sys::UserRelation.create(user: user, related: u, role: REL_HRTREE) if u.id != user.id
       end
     end
   end
