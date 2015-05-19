@@ -12,7 +12,7 @@ class Sys::UserRelation < ActiveRecord::Base
 
   # Generates related users for this user.
   def self.generate(user)
-    Sys::UserRelation.where(user: user).destroy_all
+    Sys::UserRelation.where(user: user, role: REL_HRTREE).destroy_all
     if user.username == HR_SUPER_USER
       Sys::User.all.each do |u|
         Sys::UserRelation.create(user: user, related: u, role: REL_HRTREE) if u.id != user.id
