@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 class Api::Documents::BaseController < ApiController
-  MSG_CANNOT_EDIT = 'You cannot edit this document.'
-  MSG_CANNOT_READ = 'You cannot read this document.'
   before_filter :validate_login
 
   def index

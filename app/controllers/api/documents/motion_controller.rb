@@ -66,30 +66,47 @@ class Api::Documents::MotionController < ApiController
   end
 
   def create_draft
-    @motion = Document::Motion.create_draft!(current_user, params)
+    doc = Document::Base.find(params[:document_id])
+    if can_edit_document?(doc)
+      @motion = Document::Motion.create_draft!(effective_user, params)
+    else
+      render json: { success: 'false', error: MSG_CANNOT_EDIT }
+    end
   end
 
   def update_draft
     motion = Document::Motion.find(params[:id])
-    motion.update_draft!(current_user, params)
-    render json: { success: true }
+    if can_edit_document?(motion.document)
+      motion.update_draft!(effective_user, params)
+      render json: { success: true }
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end
   end
 
   def delete_draft
     motion = Document::Motion.find(params[:id])
-    motion.delete_draft!(current_user)
-    render json: { success: true }
+    if can_edit_document?(motion.document)
+      motion.delete_draft!(effective_user)
+      render json: { success: true }
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end
   end
 
   def send_draft_motions
     doc = Document::Base.find(params[:document_id])
-    motions = doc.motions.where(status: DRAFT, sender_user_id: current_user.id)
-    Document::Motion.transaction do
-      motions.each do |motion|
-        motion.send_draft! current_user
+    if can_edit_document?(doc)
+      motions = doc.motions.where(status: DRAFT, sender_user_id: current_user.id)
+      Document::Motion.transaction do
+        motions.each do |motion|
+          motion.send_draft! effective_user
+        end
       end
+      render json: { success: true }
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
     end
-    render json: { success: true }
   end
 
   private
