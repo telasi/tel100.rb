@@ -162,20 +162,14 @@ class Document::Base < ActiveRecord::Base
   end
 
   def modify(params, user)
-    #check if changes were made
-    #dirty = false
-    #dirty = self.text.body != params[:body]
-
-    #Document::FileTemp.where(document: self).map do |f| 
-    #  if not Document::File.where(document: self, original_name: f.original_name, store_name: f.store_name, state: f.state, created_at: f.created_at).any?
-    #    dirty = true
-    #    break
-    #  end
-    #end
-
-    #return if not dirty
-
     motions = JSON.parse(params[:motions])
+
+    #check if changes were made
+    dirty = false
+    dirty = self.text.body != params[:body]
+    dirty ||= Document::FileTemp.where(document: self).where('state in (?)', [Document::Change::STATE_TEMP, Document::Change::STATE_DELETED]).any?
+    dirty ||= motions.empty?
+    return if not dirty
 
     Document::Base.transaction do
       change = Document::Change.new(document_id: params[:id], user: user, created_at: Time.now)
@@ -191,7 +185,7 @@ class Document::Base < ActiveRecord::Base
       histext.save!
 
       text = self.text || Document::Text.new(document: self)
-      text.body = params[:body]
+      text.body = params[:body] || self.text.body
       text.save!
 
       Document::File.where(document: self).map do |f|
@@ -239,6 +233,8 @@ class Document::Base < ActiveRecord::Base
       end
 
     end
+
+    reset_signees
 
   end
 
@@ -290,6 +286,17 @@ class Document::Base < ActiveRecord::Base
           docuser.calculate!
         end
       end
+    end
+  end
+
+  def reset_signees
+    self.signee_motions.map do |s|
+      s.status = CURRENT
+      s.resp_type_id = nil
+      s.save
+
+      receiver_du = s.document.users.where(user: s.receiver_user).first
+      receiver_du.calculate! if receiver_du.present?
     end
   end
 end
