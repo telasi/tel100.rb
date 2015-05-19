@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514055324) do
+ActiveRecord::Schema.define(version: 20150518120901) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 20150514055324) do
     t.timestamp "updated_at",        limit: 6,                                               null: false
   end
 
+  create_table "document_change", force: true do |t|
+    t.integer   "document_id", limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "user_id",     limit: 10, precision: 10, scale: 0, null: false
+    t.timestamp "created_at",  limit: 6,                           null: false
+  end
+
   create_table "document_comment", force: true do |t|
     t.integer   "document_id", limit: 10,   precision: 10, scale: 0, null: false
     t.integer   "motion_id",   limit: 10,   precision: 10, scale: 0
@@ -63,6 +69,22 @@ ActiveRecord::Schema.define(version: 20150514055324) do
     t.string    "original_name", limit: 500,                          null: false
     t.string    "store_name",    limit: 64,                           null: false
     t.timestamp "created_at",    limit: 6,                            null: false
+  end
+
+  create_table "document_file_history", force: true do |t|
+    t.integer   "document_id",   limit: 10,  precision: 10, scale: 0, null: false
+    t.string    "original_name", limit: 500,                          null: false
+    t.string    "store_name",    limit: 64,                           null: false
+    t.integer   "change_no",     limit: 10,  precision: 10, scale: 0
+    t.timestamp "created_at",    limit: 6,                            null: false
+  end
+
+  create_table "document_file_temp", force: true do |t|
+    t.integer   "document_id",   limit: 10,  precision: 10, scale: 0,                 null: false
+    t.string    "original_name", limit: 500,                                          null: false
+    t.string    "store_name",    limit: 64,                                           null: false
+    t.boolean   "state",                     precision: 1,  scale: 0, default: false, null: false
+    t.timestamp "created_at",    limit: 6,                                            null: false
   end
 
   create_table "document_motion", force: true do |t|
@@ -93,6 +115,32 @@ ActiveRecord::Schema.define(version: 20150514055324) do
   add_index "document_motion", ["document_id"], name: "docmotions_base_idx"
   add_index "document_motion", ["parent_id"], name: "docmotions_prnt_idx"
 
+  create_table "document_motion_history", force: true do |t|
+    t.integer   "parent_id",        limit: 12,   precision: 12, scale: 0
+    t.integer   "document_id",      limit: 10,   precision: 10, scale: 0,                      null: false
+    t.boolean   "is_new",                        precision: 1,  scale: 0, default: true,       null: false
+    t.datetime  "due_date"
+    t.integer   "ordering",         limit: 3,    precision: 3,  scale: 0, default: 999,        null: false
+    t.integer   "send_type_id",     limit: 5,    precision: 5,  scale: 0
+    t.string    "motion_text",      limit: 1000
+    t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
+    t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
+    t.string    "sender_type",      limit: 50
+    t.integer   "resp_type_id",     limit: 5,    precision: 5,  scale: 0
+    t.string    "response_text",    limit: 1000
+    t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
+    t.string    "receiver_type",    limit: 50
+    t.string    "receiver_role",    limit: 10,                            default: "assignee", null: false
+    t.boolean   "status",                        precision: 1,  scale: 0, default: false,      null: false
+    t.timestamp "created_at",       limit: 6,                                                  null: false
+    t.timestamp "sent_at",          limit: 6
+    t.timestamp "received_at",      limit: 6
+    t.timestamp "completed_at",     limit: 6
+    t.timestamp "updated_at",       limit: 6,                                                  null: false
+    t.integer   "change_no",        limit: 10,   precision: 10, scale: 0
+  end
+
   create_table "document_relation", force: true do |t|
     t.integer   "base_id",    limit: 10, precision: 10, scale: 0, null: false
     t.integer   "related_id", limit: 10, precision: 10, scale: 0, null: false
@@ -114,6 +162,12 @@ ActiveRecord::Schema.define(version: 20150514055324) do
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
     t.text "body"
+  end
+
+  create_table "document_text_history", force: true do |t|
+    t.integer "document_id", limit: 10, precision: 10, scale: 0, null: false
+    t.text    "body"
+    t.integer "change_no",   limit: 10, precision: 10, scale: 0
   end
 
   create_table "document_type", force: true do |t|
@@ -280,62 +334,6 @@ ActiveRecord::Schema.define(version: 20150514055324) do
     t.integer   "person_id",   limit: 10, precision: 10, scale: 0, null: false
     t.string    "person_type", limit: 50,                          null: false
     t.timestamp "created_at",  limit: 6,                           null: false
-  end
-
-  create_table "sap_organization_texts", id: false, force: true do |t|
-    t.integer  "objectid",   limit: 8,   precision: 8, scale: 0, null: false
-    t.string   "objecttype", limit: 1,                           null: false
-    t.datetime "begin_date",                                     null: false
-    t.datetime "end_date",                                       null: false
-    t.string   "language",   limit: 2,                           null: false
-    t.string   "name",       limit: 500
-  end
-
-  create_table "sap_organizations", id: false, force: true do |t|
-    t.integer  "objectid",   limit: 8,   precision: 8, scale: 0, null: false
-    t.string   "objecttype", limit: 1,                           null: false
-    t.datetime "begin_date",                                     null: false
-    t.datetime "end_date",                                       null: false
-    t.string   "language",   limit: 2,                           null: false
-    t.string   "short_name", limit: 200
-  end
-
-  create_table "sap_person_name", id: false, force: true do |t|
-    t.integer  "person_id",  limit: 8,   precision: 8, scale: 0, null: false
-    t.datetime "begin_date",                                     null: false
-    t.datetime "end_date",                                       null: false
-    t.string   "language",   limit: 2,                           null: false
-    t.string   "firstname",  limit: 100
-    t.string   "lastname",   limit: 100
-    t.string   "middlename", limit: 100
-    t.string   "gender",     limit: 1
-  end
-
-  create_table "sap_person_org", id: false, force: true do |t|
-    t.integer  "person_id",    limit: 8, precision: 8, scale: 0, null: false
-    t.datetime "begin_date",                                     null: false
-    t.datetime "end_date",                                       null: false
-    t.integer  "organization", limit: 8, precision: 8, scale: 0
-    t.integer  "shtat",        limit: 8, precision: 8, scale: 0
-  end
-
-  create_table "sap_persons", id: false, force: true do |t|
-    t.integer  "person_id",  limit: 8, precision: 8, scale: 0, null: false
-    t.datetime "begin_date",                                   null: false
-    t.datetime "end_date",                                     null: false
-    t.boolean  "status",               precision: 1, scale: 0
-  end
-
-  create_table "sap_relations", id: false, force: true do |t|
-    t.integer  "objectid",     limit: 8,  precision: 8, scale: 0, null: false
-    t.string   "objecttype",   limit: 1,                          null: false
-    t.datetime "begin_date",                                      null: false
-    t.datetime "end_date",                                        null: false
-    t.string   "relation",     limit: 4,                          null: false
-    t.string   "varyf",        limit: 10,                         null: false
-    t.string   "priority",     limit: 2
-    t.integer  "rel_obj_id",   limit: 8,  precision: 8, scale: 0, null: false
-    t.string   "rel_obj_type", limit: 1,                          null: false
   end
 
   create_table "user_relations", id: false, force: true do |t|
