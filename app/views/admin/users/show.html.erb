@@ -30,7 +30,7 @@ end %>
   </h3>
   <table class="table table-bordered">
     <% @user.relations.each do |rel|
-        user = rel.user %>
+        user = rel.related %>
       <tr>
         <td width="200"><code><%= user.username %></code></td>
         <td width="200"><code><%= rel.role %></code></td>
