@@ -159,7 +159,7 @@ class Document::Motion < ActiveRecord::Base
     sender_du.calculate! if sender_du.present?
   end
 
-  def add_comment(user, params)
+  def add_comment(user, params, effective_user=nil)
     Document::Comment.transaction do
       self.add_comment!(user, params)
     end

@@ -110,18 +110,18 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
-  def add_comment(user, params)
+  def add_comment(user, params, effective_user = nil)
     is_owner = self.owner_user == user
     is_sender = self.sender_user == user
     if is_owner and is_sender
-      add_document_comment(user, params)
+      add_document_comment(user, params, effective_user)
       motion = self.motions.where(receiver_user: user, parent_id: nil).first
-      return motion.add_comment(user, params) if motion.present?
+      return motion.add_comment(user, params, effective_user) if motion.present?
     elsif is_owner
-      add_document_comment(user, params)
+      add_document_comment(user, params, effective_user)
     elsif is_sender
       motion = self.motions.where(receiver_user: user, parent_id: nil).first
-      return motion.add_comment(user, params) if motion.present?
+      return motion.add_comment(user, params, effective_user) if motion.present?
     else
       raise 'cannot add comment here'
     end
@@ -249,7 +249,7 @@ class Document::Base < ActiveRecord::Base
     self.docyear = self.docdate.year if self.docdate
   end
 
-  def add_document_comment(user, params)
+  def add_document_comment(user, params, effective_user)
     raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
     # calculate new status
     new_status = self.status
