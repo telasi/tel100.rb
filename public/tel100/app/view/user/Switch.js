@@ -10,11 +10,13 @@ Ext.define('Tel100.view.user.switch.Dialog', {
   width: 500,
   height: 300,
   layout: 'fit',
+  padding: 5,
   bind: {
     title: '<i class="fa fa-user"></i> {i18n.user.switch}'
   },
   items: [{
     xtype: 'grid',
+    border: false,
     hideHeaders: true,
     columns: [{
       sortable: false,
@@ -27,9 +29,21 @@ Ext.define('Tel100.view.user.switch.Dialog', {
         ].join('');
       }
     }],
+
     bind: {
       store: '{users}'
     },
+
+    features: [{
+      ftype: 'grouping',
+      groupByText: 'role',
+      groupHeaderTpl: Ext.create('Ext.XTemplate', '{name:this.formatName}', {
+        formatName: function(name) {
+          return i18n.user.roles[name];
+        }
+      })
+    }],
+
     listeners: {
       'itemdblclick': 'onSwitchSelected'
     }
@@ -44,6 +58,8 @@ Ext.define('Tel100.view.user.switch.DialogViewModel', {
     users: {
       autoLoad: true,
       model: 'Tel100.model.User',
+      fields: [ 'id', 'role', 'email', 'mobile', 'phone', 'username', 'first_name', 'last_name' ],
+      groupField: 'role',
       proxy: {
         type: 'ajax',
         url: '/api/user/related',
