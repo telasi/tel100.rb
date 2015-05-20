@@ -12,7 +12,7 @@ Ext.define('Tel100.view.user.switch.Dialog', {
   layout: 'fit',
   padding: 5,
   bind: {
-    title: '<i class="fa fa-user"></i> {i18n.user.switch}'
+    title: '{i18n.user.ui.switch}'
   },
   items: [{
     xtype: 'grid',

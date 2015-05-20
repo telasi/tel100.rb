@@ -2,13 +2,6 @@ Ext.define('Tel100.view.user.box.Button', {
   extend: 'Ext.button.Button',
   alias: 'widget.userboxbutton',
 
-  requires: [
-    'Tel100.view.user.box.ButtonViewModel',
-    'Tel100.view.user.box.ButtonViewController',
-    'Ext.menu.Menu',
-    'Ext.menu.Separator'
-  ],
-
   controller: 'userboxbutton',
   viewModel: {
     type: 'userboxbutton'
@@ -28,7 +21,7 @@ Ext.define('Tel100.view.user.box.Button', {
     }, {
       xtype: 'menuitem',
       bind: {
-        text: '{i18n.user.switch}'
+        text: '{i18n.user.ui.switch}'
       },
       listeners: {
         click: 'onSwitch'
@@ -38,7 +31,7 @@ Ext.define('Tel100.view.user.box.Button', {
     }, {
       xtype: 'menuitem',
       bind: {
-        text: '{i18n.user.ui.logout}'
+        text: '{logouttext}'
       },
       listeners: {
         click: 'onLogout'

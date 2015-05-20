@@ -9,11 +9,6 @@ module.exports = {
     ru: 'Пароль'
   },
 
-  switch: {
-    ka: 'სხვა მომხმარებლად შესვლა',
-    ru: 'Вход под другим пользователем',
-  },
-
   ui: {
     login_title: {
       ka: '<i class="fa fa-user"></i> სისტემაში შესვლა',
@@ -28,8 +23,16 @@ module.exports = {
       ru: 'Профиль пользователя'
     },
     logout: {
-      ka: 'სისტემიდან გასვლა',
-      ru: 'Выход из системы'
+      ka: '<i class="fa fa-sign-out"></i> სისტემიდან გასვლა',
+      ru: '<i class="fa fa-sign-out"></i> Выход из системы'
+    },
+    leave_user: {
+      ka: '<i class="fa fa-user-times"></i> პირადში დაბრუნება',
+      ru: '<i class="fa fa-user-times"></i> Возвращение в личный'
+    },
+    switch: {
+      ka: '<i class="fa fa-user-secret"></i> სხვა მომხმარებლად შესვლა',
+      ru: '<i class="fa fa-user-secret"></i> Вход под другим пользователем',
     }
   },
 
