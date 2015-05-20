@@ -185,18 +185,14 @@ class Document::Motion < ActiveRecord::Base
     # S1: create comment
     text = params[:text] if params[:text].present?
     Document::Comment.create!(document: doc, motion: self,
-      user: user, actual_user: effective_user,
-      status: new_status, old_status: self.status, role: self.receiver_role,
-      text: text)
+      user: user, actual_user: effective_user, role: self.receiver_role,
+      status: new_status, old_status: self.status, text: text)
     # S2: update motion
     status_updated = false
     if self.status != new_status # it's completed
       self.completed_at = Time.now
       self.status = new_status
       status_updated = true
-      # if (self.receiver_role == ROLE_SENDER or self.receiver_role == ROLE_AUTHOR) and doc.owner_user_id == self.receiver_user_id
-      #   doc.update_attributes!(status: new_status, completed_at: Time.now)
-      # end
     end
     self.response_type = type
     self.response_text = text

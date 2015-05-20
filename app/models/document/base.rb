@@ -266,9 +266,9 @@ class Document::Base < ActiveRecord::Base
     Document::Comment.transaction do
       # S1: create comment
       text = params[:text] if params[:text].present?
-      Document::Comment.create!(document: self, motion: nil, user: user,
-        status: new_status, old_status: self.status, role: ROLE_OWNER,
-        text: text)
+      Document::Comment.create!(document: self, motion: nil,
+        user: user, actual_user: effective_user, role: ROLE_OWNER,
+        status: new_status, old_status: self.status, text: text)
       # S2: update document itself
       status_updated = false
       if self.status != new_status
