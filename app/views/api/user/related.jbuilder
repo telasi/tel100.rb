@@ -1,5 +1,7 @@
-json.array! @related do |user|
+json.array! @relations do |rel|
+  user = rel.related
   json.id          user.id
+  json.role        rel.role
   json.email       user.email
   json.mobile      user.mobile
   json.phone       user.phone

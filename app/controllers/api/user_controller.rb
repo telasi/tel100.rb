@@ -9,6 +9,6 @@ class Api::UserController < ApiController
   end
 
   def related
-    @related = current_user.related
+    @relations = current_user.relations
   end
 end
