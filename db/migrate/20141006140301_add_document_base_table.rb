@@ -19,17 +19,14 @@ class AddDocumentBaseTable < ActiveRecord::Migration
         DUE_DATE    date,
         ALARM_DATE  date,
         -----
-        SENDER_USER_ID number(10,0),
-        SENDER_ID      number(10,0),
-        SENDER_TYPE    varchar2(50 CHAR),
-        OWNER_USER_ID  number(10,0),
-        OWNER_ID       number(10,0),
-        OWNER_TYPE     varchar2(50 CHAR),
+        SENDER_USER_ID   number(10,0),
+        ACTUAL_SENDER_ID number(10,0),
+        SENDER_ID        number(10,0),
+        SENDER_TYPE      varchar2(50 CHAR),
         -----
-        MOTIONS_TOTAL     number(6, 0) default 0 not null,
-        MOTIONS_COMPLETED number(6, 0) default 0 not null,
-        MOTIONS_CANCELED  number(6, 0) default 0 not null,
-        COMMENTS_TOTAL    number(6,0)  default 0 not null,
+        OWNER_USER_ID    number(10,0),
+        OWNER_ID         number(10,0),
+        OWNER_TYPE       varchar2(50 CHAR),
         -----
         STATUS       number(1, 0) default 0 not null,
         CREATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null, -- შექმნა (DRAFT)

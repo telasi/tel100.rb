@@ -14,36 +14,33 @@
 ActiveRecord::Schema.define(version: 20150518120901) do
 
   create_table "document_base", force: true do |t|
-    t.string    "language",          limit: 2,                             default: "KA",    null: false
-    t.integer   "parent_id",         limit: 10,   precision: 10, scale: 0
-    t.integer   "type_id",           limit: 5,    precision: 5,  scale: 0,                   null: false
-    t.string    "direction",         limit: 20,                            default: "inner", null: false
-    t.string    "subject",           limit: 1000
-    t.string    "original_number",   limit: 50
+    t.string    "language",         limit: 2,                             default: "KA",    null: false
+    t.integer   "parent_id",        limit: 10,   precision: 10, scale: 0
+    t.integer   "type_id",          limit: 5,    precision: 5,  scale: 0,                   null: false
+    t.string    "direction",        limit: 20,                            default: "inner", null: false
+    t.string    "subject",          limit: 1000
+    t.string    "original_number",  limit: 50
     t.datetime  "original_date"
-    t.string    "docnumber",         limit: 20
+    t.string    "docnumber",        limit: 20
     t.datetime  "docdate"
-    t.integer   "docyear",           limit: 4,    precision: 4,  scale: 0
-    t.integer   "page_count",        limit: 6,    precision: 6,  scale: 0
-    t.integer   "additions_count",   limit: 6,    precision: 6,  scale: 0
+    t.integer   "docyear",          limit: 4,    precision: 4,  scale: 0
+    t.integer   "page_count",       limit: 6,    precision: 6,  scale: 0
+    t.integer   "additions_count",  limit: 6,    precision: 6,  scale: 0
     t.datetime  "due_date"
     t.datetime  "alarm_date"
-    t.integer   "sender_user_id",    limit: 10,   precision: 10, scale: 0
-    t.integer   "sender_id",         limit: 10,   precision: 10, scale: 0
-    t.string    "sender_type",       limit: 50
-    t.integer   "owner_user_id",     limit: 10,   precision: 10, scale: 0
-    t.integer   "owner_id",          limit: 10,   precision: 10, scale: 0
-    t.string    "owner_type",        limit: 50
-    t.integer   "motions_total",     limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
-    t.integer   "motions_completed", limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
-    t.integer   "motions_canceled",  limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
-    t.integer   "comments_total",    limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
-    t.boolean   "status",                         precision: 1,  scale: 0, default: false,   null: false
-    t.timestamp "created_at",        limit: 6,                                               null: false
-    t.timestamp "sent_at",           limit: 6
-    t.timestamp "received_at",       limit: 6
-    t.timestamp "completed_at",      limit: 6
-    t.timestamp "updated_at",        limit: 6,                                               null: false
+    t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
+    t.integer   "actual_sender_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
+    t.string    "sender_type",      limit: 50
+    t.integer   "owner_user_id",    limit: 10,   precision: 10, scale: 0
+    t.integer   "owner_id",         limit: 10,   precision: 10, scale: 0
+    t.string    "owner_type",       limit: 50
+    t.boolean   "status",                        precision: 1,  scale: 0, default: false,   null: false
+    t.timestamp "created_at",       limit: 6,                                               null: false
+    t.timestamp "sent_at",          limit: 6
+    t.timestamp "received_at",      limit: 6
+    t.timestamp "completed_at",     limit: 6
+    t.timestamp "updated_at",       limit: 6,                                               null: false
   end
 
   create_table "document_change", force: true do |t|
