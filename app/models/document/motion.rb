@@ -138,6 +138,7 @@ class Document::Motion < ActiveRecord::Base
     raise I18n.t('models.document_motion.errors.cannot_send_from_this_level') if upper > 0
     # sending this motion
     self.sent_at = Time.now
+    self.actual_sender = user
     self.status = self.receiver_user.blank? ? NOT_SENT : SENT
     if self.status == SENT
       # try to make this motion current

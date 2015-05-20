@@ -86,7 +86,6 @@ class Document::Base < ActiveRecord::Base
   end
 
   def send_draft!(user)
-    raise I18n.t('models.document_base.errors.no_privilege_to_send') unless user == self.sender_user
     raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
     raise I18n.t('models.document_base.errors.empty_subject') unless self.subject.present?
     raise I18n.t('models.document_base.errors.no_motions') unless self.motions.any?
@@ -95,6 +94,7 @@ class Document::Base < ActiveRecord::Base
       self.docdate = Date.today if self.docdate.blank?
       self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate) if self.docnumber.blank?
       self.sent_at = self.received_at = Time.now
+      self.actual_sender = user
       self.save!
       self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)} 
       self.users.each { |user| user.calculate! }
