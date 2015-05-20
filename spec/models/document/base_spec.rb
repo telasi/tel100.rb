@@ -12,6 +12,8 @@ RSpec.describe 'Document with Author and Assignee' do
     @shalva = Sys::User.find_by_username('shalva')
     @nino = Sys::User.find_by_username('nino')
     @doc = Document::Base.create_draft!(@dimitri)
+    expect(@doc.sender_user).to eq(@dimitri)
+    expect(@doc.actual_sender).to be_nil # not sent yet
     @doc.update_draft!(@dimitri, { subject: 'test1', body: 'test body' })
     # add author
     Document::Motion.create_draft!(@dimitri, {
@@ -37,7 +39,6 @@ RSpec.describe 'Document with Author and Assignee' do
     @u1 = @doc.users.where(user:@dimitri).first
     @u2 = @doc.users.where(user:@shalva).first
     @u3 = @doc.users.where(user:@nino).first
-    [@doc, @m1, @m2, @m3, @u1, @u2, @u3].each{ |x| x.reload }
   end
 
   specify{ expect(@doc.status).to eq(CURRENT) }
