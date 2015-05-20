@@ -49,7 +49,12 @@ RSpec.describe 'Document with Author and Assignee' do
   specify{ expect(@m1.actual_sender).to eq(@temo) }
 
   specify{ expect(@m2.status).to eq(CURRENT) }
+  specify{ expect(@m2.sender_user).to eq(@dimitri) }
+  specify{ expect(@m2.actual_sender).to eq(@temo) }
+
   specify{ expect(@m3.status).to eq(SENT) }
+  specify{ expect(@m3.sender_user).to eq(@dimitri) }
+  specify{ expect(@m3.actual_sender).to eq(@temo) }
 
   specify{ expect(@u1.shown?).to eq(true) }
   specify{ expect(@u2.shown?).to eq(true) }
