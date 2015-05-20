@@ -6,7 +6,7 @@ module Document::Personalize
 
   module ClassMethods
     def personalize(field)
-      belongs_to "#{field}_user".to_sym, class_name: 'Sys::User'
+      belongs_to "#{field}_user".to_sym, class_name: 'Sys::User', foreign_key: "#{field}_user_id"
       belongs_to field.to_sym, polymorphic: true
 
       self.send(:define_method, "#{field}_ext_name") do
