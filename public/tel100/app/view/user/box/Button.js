@@ -13,12 +13,12 @@ Ext.define('Tel100.view.user.box.Button', {
 
   menu: {
     xtype: 'menu',
-    items: [{
+    items: [/*{
       xtype: 'menuitem',
       bind: {
         text: '{i18n.user.ui.profile}'
       }
-    }, {
+    }, */{
       xtype: 'menuitem',
       bind: {
         text: '{i18n.user.ui.switch}'
