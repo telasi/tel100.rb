@@ -10,6 +10,7 @@ class Document::Base < ActiveRecord::Base
   self.set_integer_columns :status
 
   belongs_to :parent, class_name: 'Document::Base', foreign_key: 'parent_id'
+  belongs_to :actual_sender, class_name: 'Sys::User', foreign_key: 'actual_sender_id'
   personalize 'sender'
   personalize 'owner'
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
@@ -35,11 +36,15 @@ class Document::Base < ActiveRecord::Base
   def self.create_draft!(sender_user)
     raise 'sender not defined' if sender_user.blank?
     sender = whose_user(sender_user)
-    docparams = { sender_user: sender_user, sender: sender, owner_user: sender_user, owner: sender,
-      direction: 'inner', status: DRAFT, type: Document::Type.order('order_by').first }
+    docparams = { sender_user: sender_user, sender: sender,
+      owner_user: sender_user, owner: sender,
+      actual_sender: nil, # it's not sent yet
+      direction: 'inner', status: DRAFT,
+      type: Document::Type.order('order_by').first }
     Document::Base.transaction do
       doc = Document::Base.create!(docparams)
-      motionparams = {document_id: doc.id, is_new: 0, ordering: 0, sender_user: sender_user, sender: sender,
+      motionparams = { document_id: doc.id, is_new: 0, ordering: 0,
+        sender_user: sender_user, sender: sender, actual_sender: nil, # it's not sent yet
         receiver_user: sender_user, receiver: sender, receiver_role: ROLE_SENDER, status: DRAFT,
         created_at: Time.now, sent_at: Time.now, received_at: Time.now}
       Document::Motion.create!(motionparams)

@@ -21,8 +21,12 @@ class Document::Motion < ActiveRecord::Base
   belongs_to :parent, class_name: 'Document::Motion'
   belongs_to :send_type, class_name: 'Document::ResponseType', foreign_key: 'send_type_id'
   belongs_to :response_type, class_name: 'Document::ResponseType', foreign_key: 'resp_type_id'
+  belongs_to :actual_sender, class_name: 'Sys::User', foreign_key: 'actual_sender_id'
   personalize 'receiver'
   personalize 'sender'
+
+
+  ## XXX
   personalize 'owner'
 
   def new=(val); self.is_new = val ? 1 : 0 end
