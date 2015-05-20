@@ -8,9 +8,9 @@ RSpec.describe 'Document with Author and Assignee' do
   before(:all) do
     create_default_schema
     @dimitri = Sys::User.find_by_username('dimitri')
+    @temo = Sys::User.find_by_username('temo')
     @shalva = Sys::User.find_by_username('shalva')
     @nino = Sys::User.find_by_username('nino')
-    # document
     @doc = Document::Base.create_draft!(@dimitri)
     @doc.update_draft!(@dimitri, { subject: 'test1', body: 'test body' })
     # add author
@@ -40,6 +40,8 @@ RSpec.describe 'Document with Author and Assignee' do
   end
 
   specify{ expect(@doc.status).to eq(CURRENT) }
+  specify{ expect(@doc.sender_user).to eq(@dimitri) }
+  specify{ expect(@doc.actual_sender).to eq(nil) } # it's not sent yet
   specify{ expect(@m1.status).to eq(CURRENT) }
   specify{ expect(@m2.status).to eq(CURRENT) }
   specify{ expect(@m3.status).to eq(SENT) }
