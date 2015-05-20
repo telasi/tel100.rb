@@ -38,7 +38,7 @@ module.exports = {
 
   roles: {
     cancelaria: {
-      ka: 'კანცელარი',
+      ka: 'კანცელარია',
       ru: 'Канцелярия'
     },
     hrtree: {
