@@ -70,7 +70,7 @@ class Api::Documents::MotionController < ApiController
     if can_edit_document?(doc)
       @motion = Document::Motion.create_draft!(effective_user, params)
     else
-      render json: { success: 'false', error: MSG_CANNOT_EDIT }
+      render json: { success: false, error: MSG_CANNOT_EDIT }
     end
   end
 
