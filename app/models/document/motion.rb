@@ -22,6 +22,7 @@ class Document::Motion < ActiveRecord::Base
   belongs_to :send_type, class_name: 'Document::ResponseType', foreign_key: 'send_type_id'
   belongs_to :response_type, class_name: 'Document::ResponseType', foreign_key: 'resp_type_id'
   belongs_to :actual_sender, class_name: 'Sys::User', foreign_key: 'actual_sender_id'
+  belongs_to :last_receiver, class_name: 'Sys::User', foreign_key: 'last_receiver_id'
   personalize 'receiver'
   personalize 'sender'
 
@@ -161,11 +162,11 @@ class Document::Motion < ActiveRecord::Base
 
   def add_comment(user, params, effective_user=nil)
     Document::Comment.transaction do
-      self.add_comment!(user, params)
+      self.add_comment!(user, params, effective_user)
     end
   end
 
-  def add_comment!(user, params)
+  def add_comment!(user, params, effective_user=nil)
     raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
     raise 'not your motion' if user != self.receiver_user
     new_status = self.status
@@ -183,7 +184,8 @@ class Document::Motion < ActiveRecord::Base
     end
     # S1: create comment
     text = params[:text] if params[:text].present?
-    Document::Comment.create!(document: doc, motion: self, user: user,
+    Document::Comment.create!(document: doc, motion: self,
+      user: user, actual_user: effective_user,
       status: new_status, old_status: self.status, role: self.receiver_role,
       text: text)
     # S2: update motion
@@ -198,6 +200,7 @@ class Document::Motion < ActiveRecord::Base
     end
     self.response_type = type
     self.response_text = text
+    self.last_receiver = effective_user
     self.save!
     # S3: calculate Document::User
     docuser = doc.users.where(user: user).first

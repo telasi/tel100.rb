@@ -9,12 +9,5 @@ class Document::Comment < ActiveRecord::Base
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :motion, class_name: 'Document::Motion', foreign_key: 'motion_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
-
-  def self.create(user, doc, motion, params)
-    if motion
-      motion.add_comment(user, params)
-    else
-      doc.add_comment(user, params)
-    end
-  end
+  belongs_to :actual_user, class_name: 'Sys::User', foreign_key: 'actual_user_id'
 end

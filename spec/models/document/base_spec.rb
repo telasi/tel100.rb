@@ -63,12 +63,16 @@ RSpec.describe 'Document with Author and Assignee' do
 
   context 'sender completes task' do
     before(:all) do
-      @doc.add_comment(@dimitri, { response_type: RESP_COMPLETE, text: 'done' })
+      @doc.add_comment(@dimitri, { response_type: RESP_COMPLETE, text: 'done' }, @temo)
       [@doc, @m1, @m2, @m3, @u1, @u2, @u3].each{ |x| x.reload }
     end
 
     specify{ expect(@doc.status).to eq(CURRENT) }
+
     specify{ expect(@m1.status).to eq(COMPLETED) }
+    specify{ expect(@m1.receiver_user).to eq(@dimitri) }
+    specify{ expect(@m1.last_receiver).to eq(@temo) }
+
     specify{ expect(@m2.status).to eq(CURRENT) }
     specify{ expect(@m3.status).to eq(SENT) }
     specify{ expect(@u1.shown?).to eq(true) }
