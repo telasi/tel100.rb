@@ -108,6 +108,7 @@ class Document::User < ActiveRecord::Base
     calculate_shown
     calculate_sent
     calculate_current_completed_canceled
+    calculate_received
     # calculate due date
     calculate_due
     # saving results
@@ -192,7 +193,7 @@ class Document::User < ActiveRecord::Base
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
-      self.is_received = 1
+      # self.is_received = 1
     end
   end
 
@@ -214,7 +215,7 @@ class Document::User < ActiveRecord::Base
       self.is_current   = 1 if current_cnt > 0
       self.is_canceled  = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
-      self.is_received  = 1
+      # self.is_received  = 1
     end
   end
 
@@ -236,7 +237,7 @@ class Document::User < ActiveRecord::Base
       self.is_current   = 1 if current_cnt > 0
       self.is_canceled  = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
-      self.is_received  = 1
+      # self.is_received  = 1
     end
   end
 
@@ -303,5 +304,10 @@ class Document::User < ActiveRecord::Base
     else
       # only completed
     end
+  end
+
+  def calculate_received
+    is_received = (self.as_author == DOC_CURRENT or self.as_assignee == DOC_CURRENT or self.as_signee == DOC_CURRENT)
+    self.is_received = is_received ? 1 : 0
   end
 end
