@@ -160,13 +160,13 @@ class Document::Motion < ActiveRecord::Base
     sender_du.calculate! if sender_du.present?
   end
 
-  def add_comment(user, params, effective_user=nil)
+  def add_comment(user, params, actual_user=nil)
     Document::Comment.transaction do
-      self.add_comment!(user, params, effective_user)
+      self.add_comment!(user, params, actual_user)
     end
   end
 
-  def add_comment!(user, params, effective_user=nil)
+  def add_comment!(user, params, actual_user=nil)
     raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
     raise 'not your motion' if user != self.receiver_user
     new_status = self.status
@@ -185,7 +185,7 @@ class Document::Motion < ActiveRecord::Base
     # S1: create comment
     text = params[:text] if params[:text].present?
     Document::Comment.create!(document: doc, motion: self,
-      user: user, actual_user: effective_user, role: self.receiver_role,
+      user: user, actual_user: actual_user, role: self.receiver_role,
       status: new_status, old_status: self.status, text: text)
     # S2: update motion
     status_updated = false
@@ -196,7 +196,7 @@ class Document::Motion < ActiveRecord::Base
     end
     self.response_type = type
     self.response_text = text
-    self.last_receiver = effective_user
+    self.last_receiver = actual_user
     self.save!
     # S3: calculate Document::User
     docuser = doc.users.where(user: user).first
