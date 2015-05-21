@@ -55,10 +55,9 @@ class Folder::Standard
 
    def self.docs(folderType, show_completed = 0, user)
     docs = Document::User.mydocs(user)
-   	case folderType.to_i
-   		when DRAFT
-   		 	docs.joins("JOIN document_base on document_base.id = document_user.document_id AND
-                              document_base.status = 0 AND user_id = #{user.id}")
+    case folderType.to_i
+      when DRAFT
+        docs.joins("JOIN document_base on document_base.id = document_user.document_id AND document_base.status = 0 AND user_id = #{user.id}")
       when INBOX
         docs.where(is_received: 1, is_completed: show_completed)
    		when INBOX_UNREAD
@@ -67,18 +66,18 @@ class Folder::Standard
    			docs.where(is_received: 1, is_completed: show_completed, is_new: 0, is_forwarded: 0)
       when INBOX_RESENT
         docs.where(is_forwarded: 1, is_completed: show_completed)
-   		when INBOX_SIGNEE
+      when INBOX_SIGNEE
         docs.where('document_user.is_completed = ? and ( document_user.as_signee = 1 or document_user.as_author = 1)', show_completed)
       when INBOX_SIGNED
         docs.where('document_user.as_signee IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED] )
       when CHANGED
-        docs.where('document_user.is_changed = 1', show_completed)
+        docs.where(is_changed: 1)
    		when SENT
-   			docs.where('document_user.is_sent = 1 and document_user.is_completed = ? or document_user.as_author = 2', show_completed)
+        docs.where(is_sent: 1)
       when COMPLETED
         docs.where('document_user.as_assignee IN (?) or document_user.as_owner IN (?) or document_user.as_sender IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED], [Document::User::DOC_COMPLETED], [Document::User::DOC_COMPLETED] )
       when CANCELED
-        docs.where('document_user.as_owner IN (?)', [Document::User::DOC_CANCELED])
+        docs.where('document_user.as_owner IN (?)', [ Document::User::DOC_CANCELED ])
       when ALL
         docs
     end
