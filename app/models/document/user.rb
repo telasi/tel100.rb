@@ -147,7 +147,6 @@ class Document::User < ActiveRecord::Base
         self.as_owner = DOC_NONE
       end
       self.is_sent = 1 if doc_status != DRAFT
-      self.is_shown = 1 if self.as_owner != DOC_NONE
     end
   end
 

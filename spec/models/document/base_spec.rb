@@ -419,16 +419,28 @@ RSpec.describe 'Signee, Author' do
     @m1 = @doc.motions[0]
     @m2 = @doc.motions[1]
     @m3 = @doc.motions[2]
+    @u1 = @doc.users[0]
+    @u2 = @doc.users[1]
+    @u3 = @doc.users[2]
   end
 
   specify{ expect(@m1.status).to eq(CURRENT) }
   specify{ expect(@m2.status).to eq(CURRENT) }
   specify{ expect(@m3.status).to eq(SENT) }
 
+  specify{ expect(@u1.user).to eq(@dimitri) }
+  specify{ expect(@u1.shown?).to eq(true) }
+
+  specify{ expect(@u2.user).to eq(@nino) }
+  specify{ expect(@u2.shown?).to eq(true) }
+
+  specify{ expect(@u3.user).to eq(@shalva) }
+  specify{ expect(@u3.shown?).to eq(false) }
+
   context 'signee signs' do
     before(:all) do
       @m2.add_comment(@nino, { response_type: RESP_COMPLETE, text: 'signed' })
-      [@doc,@m1,@m2,@m3].each{|x| x.reload}
+      [ @doc, @m1, @m2, @m3, @u1, @u2, @u3 ].each{|x| x.reload}
     end
     specify{ expect(@m2.status).to eq(COMPLETED) }
     specify{ expect(@m3.status).to eq(CURRENT) }
