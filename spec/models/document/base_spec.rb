@@ -429,13 +429,16 @@ RSpec.describe 'Signee, Author' do
   specify{ expect(@m3.status).to eq(SENT) }
 
   specify{ expect(@u1.user).to eq(@dimitri) }
-  specify{ expect(@u1.shown?).to eq(true) }
-
   specify{ expect(@u2.user).to eq(@nino) }
-  specify{ expect(@u2.shown?).to eq(true) }
-
   specify{ expect(@u3.user).to eq(@shalva) }
+
+  specify{ expect(@u1.shown?).to eq(true) }
+  specify{ expect(@u2.shown?).to eq(true) }
   specify{ expect(@u3.shown?).to eq(false) }
+
+  specify{ expect(@u1.sent?).to eq(true) }
+  specify{ expect(@u2.sent?).to eq(false) }
+  specify{ expect(@u3.sent?).to eq(false) }
 
   context 'signee signs' do
     before(:all) do
@@ -444,5 +447,43 @@ RSpec.describe 'Signee, Author' do
     end
     specify{ expect(@m2.status).to eq(COMPLETED) }
     specify{ expect(@m3.status).to eq(CURRENT) }
+    specify{ expect(@u3.shown?).to eq(true) }
+
+    specify{ expect(@u1.sent?).to eq(true) }
+    specify{ expect(@u2.sent?).to eq(false) }
+    specify{ expect(@u3.sent?).to eq(false) }
+  end
+
+  context 'author signs' do
+     before(:all) do
+      @m3.add_comment(@shalva, { response_type: RESP_COMPLETE, text: 'authored' })
+      [ @doc, @m1, @m2, @m3, @u1, @u2, @u3 ].each{|x| x.reload}
+    end
+
+    specify{ expect(@u1.sent?).to eq(true) }
+    specify{ expect(@u2.sent?).to eq(false) }
+    specify{ expect(@u3.sent?).to eq(true) }
+  end
+
+  context 'document completed' do
+     before(:all) do
+      @doc.add_comment(@shalva, { response_type: RESP_COMPLETE, text: 'document completed' })
+      [ @doc, @m1, @m2, @m3, @u1, @u2, @u3 ].each{|x| x.reload}
+    end
+
+    specify{ expect(@u1.sent?).to eq(true) }
+    specify{ expect(@u2.sent?).to eq(false) }
+    specify{ expect(@u3.sent?).to eq(false) }
+  end
+
+  context 'sender completes' do
+     before(:all) do
+      @m1.add_comment(@dimitri, { response_type: RESP_COMPLETE, text: 'done' })
+      [ @doc, @m1, @m2, @m3, @u1, @u2, @u3 ].each{|x| x.reload}
+    end
+
+    specify{ expect(@u1.sent?).to eq(false) }
+    specify{ expect(@u2.sent?).to eq(false) }
+    specify{ expect(@u3.sent?).to eq(false) }
   end
 end

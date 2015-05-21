@@ -106,6 +106,7 @@ class Document::User < ActiveRecord::Base
     # calculate forwarded and is_shown flags
     calculate_forwarded
     calculate_shown
+    calculate_sent
     # calculate due date
     calculate_due
     # saving results
@@ -146,7 +147,6 @@ class Document::User < ActiveRecord::Base
       else
         self.as_owner = DOC_NONE
       end
-      self.is_sent = 1 if doc_status != DRAFT
     end
   end
 
@@ -166,7 +166,6 @@ class Document::User < ActiveRecord::Base
       else
         self.as_sender = DOC_NONE
       end
-      self.is_sent = 1 unless self.document.draft?
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
@@ -276,5 +275,16 @@ class Document::User < ActiveRecord::Base
     self.current_due_date = current_due_date
     self.completed_over_due = completed_over_due
     self.has_due_date = has_due_date
+  end
+
+  def calculate_sent
+    is_sent = 0
+    doc_status = self.document.status
+    if self.as_owner > DOC_NONE and self.completed?
+      is_sent = doc_status == CURRENT ? 1 : 0
+    elsif self.as_sender == DOC_CURRENT
+      is_sent = doc_status != DRAFT ? 1 : 0
+    end
+    self.is_sent = is_sent
   end
 end
