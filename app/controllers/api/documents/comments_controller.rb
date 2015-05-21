@@ -9,12 +9,20 @@ class Api::Documents::CommentsController < ApiController
   end
 
   def create
-    user = current_user
     doc  = Document::Base.find(params[:document_id])
-    motion = Document::Motion.find(params[:motion_id]) if params[:motion_id].present?
-    raise 'illegal document' if ( motion.present? and motion.document != doc )
-    Document::Comment.create(user, doc, motion, params)
-    render json: { success: true }
+    if can_comment_document?(doc)
+      user = effective_user
+      motion = Document::Motion.find(params[:motion_id]) if params[:motion_id].present?
+      raise 'illegal document' if ( motion.present? and motion.document != doc )
+      if motion.present?
+        motion.add_comment(user, params, current_user)
+      else
+        doc.add_comment(user, params, current_user)
+      end
+      render json: { success: true }
+    else
+      render json: { success: false, errors: MSG_CANNOT_COMMENT }
+    end
   end
 
   def sign
