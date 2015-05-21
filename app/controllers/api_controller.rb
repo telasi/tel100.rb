@@ -31,7 +31,8 @@ class ApiController < ActionController::Base
       proxy_id = params[:api_proxyid]
       current_user = self.current_user
       if proxy_id.present? and current_user
-        if Sys::UserRelation.where(user: current_user, related_id: proxy_id).any?
+        @__proxy_rel = Sys::UserRelation.where(user: current_user, related_id: proxy_id).first
+        if @__proxy_rel.present?
           @__proxy = Sys::User.find(proxy_id) rescue nil
         end
       end
@@ -40,14 +41,19 @@ class ApiController < ActionController::Base
     @__proxy
   end
 
+  def current_proxy_rel
+    current_proxy
+    @__proxy_rel
+  end
+
+  def current_proxy_role
+    rel = current_proxy_rel
+    rel.role if role.present?
+  end
+
   # Who is "effective" user for most queries.
   def effective_user
     self.current_proxy || self.current_user
-  end
-
-  # Can document's read status changed by given user?
-  def can_change_read_property?(doc = nil)
-    self.current_user == self.effective_user
   end
 
   # Can read given document?
@@ -57,11 +63,18 @@ class ApiController < ActionController::Base
 
   # Can edit given document?
   def can_edit_document?(doc = nil)
-    self.current_user == self.effective_user
+    return true if self.current_user == self.effective_user
+    return true if current_proxy_role == Sys::UserRelation::REL_CANCELARIA
+    return false
+  end
+
+  # Can document's read status changed by given user?
+  def can_change_read_property?(doc = nil)
+    self.can_edit_document?(doc)
   end
 
   # Can comment given document?
   def can_comment_document?(doc = nil)
-    can_edit_document?(doc)
+    self.can_edit_document?(doc)
   end
 end
