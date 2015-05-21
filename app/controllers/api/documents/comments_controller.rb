@@ -18,26 +18,34 @@ class Api::Documents::CommentsController < ApiController
   end
 
   def sign
-    user = current_user
     doc  = Document::Base.find(params[:document_id])
-    motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: ROLE_SIGNEE)
-    Document::Comment.transaction do
-      motions.each do |motion|
-        motion.add_comment!(user, params)
+    if can_comment_document?(doc)
+      user = effective_user    
+      motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: ROLE_SIGNEE)
+      Document::Comment.transaction do
+        motions.each do |motion|
+          motion.add_comment!(user, params, current_user)
+        end
       end
+      render json: { success: true }
+    else
+      render json: { success: false, errors: MSG_CANNOT_COMMENT }
     end
-    render json: { success: true }
   end
 
   def author
-    user = current_user
     doc  = Document::Base.find(params[:document_id])
-    motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: ROLE_AUTHOR)
-    Document::Comment.transaction do
-      motions.each do |motion|
-        motion.add_comment!(user, params)
+    if can_comment_document?(doc)
+      user = effective_user
+      motions = doc.motions.where(status: CURRENT, receiver_user_id: user.id, receiver_role: ROLE_AUTHOR)
+      Document::Comment.transaction do
+        motions.each do |motion|
+          motion.add_comment!(user, params, current_user)
+        end
       end
+      render json: { success: true }
+    else
+      render json: { success: false, errors: MSG_CANNOT_COMMENT }
     end
-    render json: { success: true }
   end
 end

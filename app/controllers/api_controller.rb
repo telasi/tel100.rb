@@ -2,6 +2,7 @@
 class ApiController < ActionController::Base
   MSG_CANNOT_EDIT = 'You cannot edit this document.'
   MSG_CANNOT_READ = 'You cannot read this document.'
+  MSG_CANNOT_COMMENT = 'You cannot comment on this document.'
 
   protect_from_forgery with: :null_session
   before_action :validate_locale
