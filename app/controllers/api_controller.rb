@@ -44,24 +44,23 @@ class ApiController < ActionController::Base
     self.current_proxy || self.current_user
   end
 
-  #
   # Can document's read status changed by given user?
-  #
   def can_change_read_property?(doc = nil)
     self.current_user == self.effective_user
   end
 
-  #
   # Can read given document?
-  #
   def can_read_document?(doc = nil)
     true
   end
 
-  #
   # Can edit given document?
-  #
   def can_edit_document?(doc = nil)
     self.current_user == self.effective_user
+  end
+
+  # Can comment given document?
+  def can_comment_document?(doc = nil)
+    can_edit_document?(doc)
   end
 end
