@@ -397,3 +397,40 @@ RSpec.describe 'Document, Motions, and Users' do
     end
   end
 end
+
+RSpec.describe 'Signee, Author' do
+  before(:all) do
+    create_default_schema
+    @dimitri = Sys::User.find_by_username('dimitri')
+    @shalva = Sys::User.find_by_username('shalva')
+    @nino = Sys::User.find_by_username('nino')
+    @temo = Sys::User.find_by_username('temo')
+    @doc = Document::Base.create_draft!(@dimitri)
+    @doc.update_draft!(@dimitri, { subject: 'test', body: 'test body' })
+    Document::Motion.create_draft!(@dimitri, { document_id: @doc.id, receiver_type: 'HR::Employee', receiver_id: @nino.employee.id,   receiver_role: ROLE_SIGNEE })
+    Document::Motion.create_draft!(@dimitri, { document_id: @doc.id, receiver_type: 'HR::Employee', receiver_id: @shalva.employee.id, receiver_role: ROLE_AUTHOR })
+    @doc.send_draft!(@dimitri)
+    @doc.reload
+    expect(@doc.motions.size).to eq(3)
+    expect(@doc.docnumber).not_to be_nil
+    expect(@doc.status).to eq(CURRENT)
+    expect(@doc.subject).to eq('test')
+    expect(@doc.body).to eq('test body')
+    @m1 = @doc.motions[0]
+    @m2 = @doc.motions[1]
+    @m3 = @doc.motions[2]
+  end
+
+  specify{ expect(@m1.status).to eq(CURRENT) }
+  specify{ expect(@m2.status).to eq(CURRENT) }
+  specify{ expect(@m3.status).to eq(SENT) }
+
+  context 'signee signs' do
+    before(:all) do
+      @m2.add_comment(@nino, { response_type: RESP_COMPLETE, text: 'signed' })
+      [@doc,@m1,@m2,@m3].each{|x| x.reload}
+    end
+    specify{ expect(@m2.status).to eq(COMPLETED) }
+    specify{ expect(@m3.status).to eq(CURRENT) }
+  end
+end
