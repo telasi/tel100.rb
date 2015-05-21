@@ -107,6 +107,7 @@ class Document::User < ActiveRecord::Base
     calculate_forwarded
     calculate_shown
     calculate_sent
+    calculate_current_completed_canceled
     # calculate due date
     calculate_due
     # saving results
@@ -210,10 +211,10 @@ class Document::User < ActiveRecord::Base
       else
         self.as_signee = DOC_NONE
       end
-      self.is_current = 1 if current_cnt > 0
-      self.is_canceled = 1 if canceled_cnt > 0
+      self.is_current   = 1 if current_cnt > 0
+      self.is_canceled  = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
-      self.is_received = 1
+      self.is_received  = 1
     end
   end
 
@@ -232,10 +233,10 @@ class Document::User < ActiveRecord::Base
       else
         self.as_author = DOC_NONE
       end
-      self.is_current = 1 if current_cnt > 0
-      self.is_canceled = 1 if canceled_cnt > 0
+      self.is_current   = 1 if current_cnt > 0
+      self.is_canceled  = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
-      self.is_received = 1
+      self.is_received  = 1
     end
   end
 
@@ -254,6 +255,9 @@ class Document::User < ActiveRecord::Base
     not_draft_count = calc_rel.where('status NOT IN (?)', [ SENT, NOT_SENT, NOT_RECEIVED ]).count
     if not_draft_count > 0
       self.is_shown = 1
+    else
+      self.as_owner = self.as_signee = self.as_assignee = self.as_author = DOC_NONE
+      self.is_current = self.is_completed = self.is_canceled = 0
     end
   end
 
@@ -286,5 +290,18 @@ class Document::User < ActiveRecord::Base
       is_sent = doc_status != DRAFT ? 1 : 0
     end
     self.is_sent = is_sent
+  end
+
+  def calculate_current_completed_canceled
+    if self.is_current == 1
+      # only current
+      self.is_canceled  = 0
+      self.is_completed = 0
+    elsif self.is_canceled == 1
+      # only canceled
+      self.is_completed = 0
+    else
+      # only completed
+    end
   end
 end

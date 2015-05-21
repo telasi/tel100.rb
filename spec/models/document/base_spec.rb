@@ -440,6 +440,10 @@ RSpec.describe 'Signee, Author' do
   specify{ expect(@u2.sent?).to eq(false) }
   specify{ expect(@u3.sent?).to eq(false) }
 
+  specify{ expect(@u1.current?).to eq(true) }
+  specify{ expect(@u2.current?).to eq(true) }
+  specify{ expect(@u3.current?).to eq(false) }
+
   context 'signee signs' do
     before(:all) do
       @m2.add_comment(@nino, { response_type: RESP_COMPLETE, text: 'signed' })
@@ -452,7 +456,11 @@ RSpec.describe 'Signee, Author' do
     specify{ expect(@u1.sent?).to eq(true) }
     specify{ expect(@u2.sent?).to eq(false) }
     specify{ expect(@u3.sent?).to eq(false) }
-  end
+
+    specify{ expect(@u1.current?).to eq(true) }
+    specify{ expect(@u2.completed?).to eq(true) }
+    specify{ expect(@u3.current?).to eq(true) }
+ end
 
   context 'author signs' do
      before(:all) do
@@ -463,6 +471,10 @@ RSpec.describe 'Signee, Author' do
     specify{ expect(@u1.sent?).to eq(true) }
     specify{ expect(@u2.sent?).to eq(false) }
     specify{ expect(@u3.sent?).to eq(true) }
+
+    specify{ expect(@u1.current?).to eq(true) }
+    specify{ expect(@u2.completed?).to eq(true) }
+    specify{ expect(@u3.current?).to eq(true) }
   end
 
   context 'document completed' do
@@ -474,6 +486,10 @@ RSpec.describe 'Signee, Author' do
     specify{ expect(@u1.sent?).to eq(true) }
     specify{ expect(@u2.sent?).to eq(false) }
     specify{ expect(@u3.sent?).to eq(false) }
+
+    specify{ expect(@u1.current?).to eq(true) }
+    specify{ expect(@u2.completed?).to eq(true) }
+    specify{ expect(@u3.completed?).to eq(true) }
   end
 
   context 'sender completes' do
@@ -485,5 +501,9 @@ RSpec.describe 'Signee, Author' do
     specify{ expect(@u1.sent?).to eq(false) }
     specify{ expect(@u2.sent?).to eq(false) }
     specify{ expect(@u3.sent?).to eq(false) }
+
+    specify{ expect(@u1.completed?).to eq(true) }
+    specify{ expect(@u2.completed?).to eq(true) }
+    specify{ expect(@u3.completed?).to eq(true) }
   end
 end
