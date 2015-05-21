@@ -193,7 +193,6 @@ class Document::User < ActiveRecord::Base
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
-      # self.is_received = 1
     end
   end
 
@@ -215,7 +214,6 @@ class Document::User < ActiveRecord::Base
       self.is_current   = 1 if current_cnt > 0
       self.is_canceled  = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
-      # self.is_received  = 1
     end
   end
 
@@ -237,7 +235,6 @@ class Document::User < ActiveRecord::Base
       self.is_current   = 1 if current_cnt > 0
       self.is_canceled  = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
-      # self.is_received  = 1
     end
   end
 
