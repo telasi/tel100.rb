@@ -82,8 +82,6 @@ class Document::User < ActiveRecord::Base
     end
   end
 
-  def is_editable?; true end
-
   def read!
     Document::User.transaction do
       self.is_new = 0
