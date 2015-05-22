@@ -47,10 +47,10 @@ class Api::PartyController < ApiController
   end
 
   def info
-    begin
-      object = params[:class_name].constantize.find params[:id]
+    object = params[:class_name].constantize.find(params[:id])
+    if object.respond_to?(:to_html)
       render json: { success: true, html: object.to_html }
-    rescue
+    else
       render json: { success: false, message: 'no info' }
     end
   end
