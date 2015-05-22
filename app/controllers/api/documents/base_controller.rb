@@ -81,7 +81,7 @@ class Api::Documents::BaseController < ApiController
   def update_draft
     doc = Document::Base.find(params[:id])
     if can_edit_document?(doc)
-      doc.update_draft!(current_user, params)
+      doc.update_draft!(effective_user, params)
       render json: { success: true }
     else
       render json: { success: false, error: MSG_CANNOT_EDIT }
