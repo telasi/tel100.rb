@@ -51,7 +51,7 @@ class Api::PartyController < ApiController
     if object.respond_to?(:to_html)
       render json: { success: true, html: object.to_html }
     else
-      render json: { success: false, message: 'no info' }
+      render json: { success: true, message: object.to_s }
     end
   end
 end
