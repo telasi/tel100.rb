@@ -43,12 +43,20 @@ json.additions_count doc.additions_count
 json.due_date    doc.due_date
 json.alarm_date  doc.alarm_date
 json.status      doc.status
-# sender
+
+# sender & actual sender
 sender = ( doc.sender || doc.sender_user )
 json.sender_user_id doc.sender_user_id
 json.sender_id   sender.id
 json.sender_type sender.class.name
 json.sender_name sender.to_s
+
+actual_sender = doc.actual_sender
+json.actual_sender do
+  json.id actual_sender.id
+  json.name actual_sender.to_s
+end
+
 # owner
 owner = ( doc.owner || doc.owner_user )
 json.owner_user_id doc.owner_user_id
