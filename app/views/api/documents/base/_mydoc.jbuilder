@@ -85,7 +85,7 @@ json.authors do
     json.id           author.id
     json.status       ''
     json.author_id    author.id
-    json.author_type  'HR::Employee'
+    json.author_type  author.class.name
     json.name         author.to_s
   end
 end
