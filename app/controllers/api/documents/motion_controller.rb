@@ -54,7 +54,8 @@ class Api::Documents::MotionController < ApiController
 
   def assignees
     doc  = Document::Base.find(params[:document_id])
-    motions = doc.motions.where('receiver_role IN (?) and status IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED], current_user.id).order('id')
+    user = effective_user
+    motions = doc.motions.where('receiver_role IN (?) and status IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED], user.id).order('id')
     render json: (motions.map do |motion|
           motion_data(motion)
         end)
@@ -62,7 +63,8 @@ class Api::Documents::MotionController < ApiController
 
   def assignees_out
     doc = Document::Base.find(params[:document_id])
-    @motions = doc.motions.where('receiver_role IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], current_user.id).order('ordering, id')
+    user = effective_user
+    @motions = doc.motions.where('receiver_role IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], user.id).order('ordering, id')
     render action: 'index'
   end
 
