@@ -91,7 +91,7 @@ class Api::Documents::BaseController < ApiController
   def delete_draft
     doc = Document::Base.find(params[:id])
     if can_edit_document?(doc)
-      doc.delete_draft!(current_user)
+      doc.delete_draft!(effective_user)
       render json: { success: true }
     else
       render json: { success: false, error: MSG_CANNOT_EDIT }
