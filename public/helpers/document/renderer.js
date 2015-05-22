@@ -3,7 +3,8 @@
 var Status = require('./status');
 
 module.exports = {
-  renderMotion: renderMotion
+  renderMotion: renderMotion,
+  renderDocument: renderDocument
 };
 
 function get(object, property) {
@@ -76,6 +77,20 @@ function renderMotion(record, opts) {
   }
 
   return text;
+};
+
+function renderDocument(record, opts) {
+  var senderId = get(record, 'sender_id');
+  var senderName = get(record, 'sender_name');
+  var senderType = get(record, 'sender_type');
+  var senderText = partyLink(senderId, senderType, senderName);
+  var actualUser = get(record, 'actual_sender');
+  var txt = '#<strong>' + record.get('docnumber') + '</strong>: ' + senderText;
+  if (actualUser) {
+    txt += ' (' + partyLink(actualUser.id, 'Sys::User', actualUser.name) + ')';
+  }
+  var status = get(record, 'status');
+  return statusify(txt, false, status);
 };
 
 function statusify(text, isNew, status) {
