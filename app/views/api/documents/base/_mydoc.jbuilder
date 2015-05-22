@@ -162,5 +162,9 @@ json.outgoing do
     json.completed_at   motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     json.role           motion.receiver_role
     json.is_new         motion.new?
+    json.last_receiver do
+      json.id    motion.last_receiver.id
+      json.name  motion.last_receiver.to_s
+    end if motion.last_receiver.present?
   end
 end
