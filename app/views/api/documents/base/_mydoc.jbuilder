@@ -102,7 +102,7 @@ json.signees do
     json.signee_type  receiver.class.name
     json.response     motion.response_type.to_s
     json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-    json.position  motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
+    json.position     motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
   end
 end
 
@@ -137,6 +137,10 @@ json.incoming do
     json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     json.role         motion.receiver_role
     json.is_new       motion.new?
+    json.actual_sender do
+      json.id    motion.actual_sender.id
+      json.name  motion.actual_sender.to_s
+    end if motion.actual_sender.present?
   end
 end
 
