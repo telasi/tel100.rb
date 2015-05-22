@@ -100,10 +100,10 @@ class Api::Documents::MotionController < ApiController
   def send_draft_motions
     doc = Document::Base.find(params[:document_id])
     if can_edit_document?(doc)
-      motions = doc.motions.where(status: DRAFT, sender_user_id: current_user.id)
+      motions = doc.motions.where(status: DRAFT, sender_user_id: effective_user.id)
       Document::Motion.transaction do
         motions.each do |motion|
-          motion.send_draft! effective_user
+          motion.send_draft!(current_user)
         end
       end
       render json: { success: true }
