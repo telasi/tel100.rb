@@ -43,13 +43,18 @@ json.additions_count doc.additions_count
 json.due_date    doc.due_date
 json.alarm_date  doc.alarm_date
 json.status      doc.status
+# sender
+sender = ( doc.sender || doc.sender_user )
 json.sender_user_id doc.sender_user_id
-json.sender_id   doc.sender_id
-json.sender_type doc.sender_type
-json.sender_name doc.sender_name
+json.sender_id   sender.id
+json.sender_type sender.class.name
+json.sender_name sender.to_s
+# owner
+owner = ( doc.owner || doc.owner_user )
 json.owner_user_id doc.owner_user_id
-json.owner_id    doc.owner_id
-json.owner_type  doc.owner_type
+json.owner_id    owner.id
+json.owner_type  owner.class.name
+json.owner_name  owner.to_s
 json.is_reply    doc.is_reply?
 # dates
 json.created_at doc.created_at
@@ -69,18 +74,6 @@ stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::N
 
 # authors
 json.authors do
-#  json.array! doc.author_motions.where('status IN (?)', stats).order('id ASC') do |motion|
-#    json.id        motion.id
-#    json.status    motion.status
-#    json.author_id motion.receiver_id
-#    json.author_type motion.receiver_type
-#    json.name      motion.receiver.to_s
-#    json.response  motion.response_type.to_s
-#    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-#    if motion.receiver.respond_to?('organization')
-#      json.position  motion.receiver.organization.to_s
-#    end
-#  end
   json.array! doc.authors do |author|
     json.id           author.id
     json.status       ''
@@ -93,11 +86,12 @@ end
 # signees
 json.signees do
   json.array! doc.signee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
+    receiver = ( motion.receiver || motion.receiver_user )
     json.id           motion.id
     json.status       motion.status
-    json.name         motion.receiver.to_s
-    json.signee_id    motion.receiver_id
-    json.signee_type  motion.receiver_type
+    json.name         receiver.to_s
+    json.signee_id    receiver.id
+    json.signee_type  receiver.class.name
     json.response     motion.response_type.to_s
     json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
     json.position  motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
@@ -107,14 +101,15 @@ end
 # assignees
 json.assignees do
   json.array! doc.assignee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
-    json.id        motion.id
-    json.status    motion.status
-    json.name      motion.receiver.to_s
-    json.assignee_id    motion.receiver_id
-    json.assignee_type  motion.receiver_type
-    json.response  motion.response_type.to_s
-    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-    json.position  motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
+    receiver = ( motion.receiver || motion.receiver_user )
+    json.id            motion.id
+    json.status        motion.status
+    json.name          receiver.to_s
+    json.assignee_id   receiver.id
+    json.assignee_type receiver.class.name
+    json.response      motion.response_type.to_s
+    json.completed_at  motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
+    json.position      receiver.organization.to_s if receiver.respond_to?('organization')
   end
 end
 
@@ -122,11 +117,12 @@ end
 incoming = mydoc.motions.order('ordering ASC, id ASC') # any status is OK
 json.incoming do
   json.array! incoming do |motion|
+    sender = ( motion.sender || motion.sender_user )
     json.id           motion.id
     json.status       motion.status
-    json.name         motion.sender.to_s
-    json.sender_id    motion.sender_id
-    json.sender_type  motion.sender_type
+    json.name         sender.to_s
+    json.sender_id    sender.id
+    json.sender_type  sender.class.name
     json.current_status motion.current_status.to_s
     json.motion_text  motion.motion_text
     json.due_date     motion.due_date
@@ -142,11 +138,12 @@ out_roles = [ Document::Role::ROLE_ASSIGNEE ]
 outgoing = mydoc.outgoing.where('status IN (?) AND receiver_role IN (?)', out_stats, out_roles).order('ordering ASC, id DESC') # any status is OK
 json.outgoing do
   json.array! outgoing do |motion|
+    receiver = ( motion.receiver || motion.receiver_user )
     json.id             motion.id
     json.status         motion.status
-    json.name           motion.receiver.to_s
-    json.receiver_id    motion.receiver_id
-    json.receiver_type  motion.receiver_type
+    json.name           receiver.to_s
+    json.receiver_id    receiver.id
+    json.receiver_type  receiver.class.name
     json.current_status motion.current_status.to_s
     json.response_text  motion.response_text
     json.due_date       motion.due_date
