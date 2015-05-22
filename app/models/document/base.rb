@@ -27,7 +27,7 @@ class Document::Base < ActiveRecord::Base
   def is_reply?; Document::Relation.where(base_id: self.id).any? end
 
   def is_editable?; true end
-  def has_history?; Document::Change(document: self).any? end
+  def has_history?; Document::Change.where(document: self).any? end
 
   def self.docnumber_eval(type, date)
     last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('id DESC').first
