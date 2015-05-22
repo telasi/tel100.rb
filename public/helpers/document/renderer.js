@@ -41,7 +41,14 @@ function renderMotion(record, opts) {
   var text = partyLink(id, type, name);
 
   // reveal actual party
-  var actualUser = record['actual_' + as];
+  var actualUser;
+
+  if (as == 'sender') {
+    actualUser = record.actual_sender;
+  } else {
+    actualUser = record.last_receiver;
+  }
+
   if (actualUser) {
     text = [ text, ' (',  partyLink(actualUser.id, 'Sys::User', actualUser.name) + ')' ].join('');
   }
