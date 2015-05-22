@@ -9,6 +9,6 @@ class Api::UserController < ApiController
   end
 
   def related
-    @relations = current_user.relations
+    @relations = current_user.relations.where('role NOT IN (?)', Sys::UserRelation::REL_AUTO_ASSIGNEE)
   end
 end
