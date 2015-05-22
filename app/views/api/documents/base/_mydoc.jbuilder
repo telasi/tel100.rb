@@ -55,7 +55,7 @@ actual_sender = doc.actual_sender
 json.actual_sender do
   json.id actual_sender.id
   json.name actual_sender.to_s
-end
+end if actual_sender.present?
 
 # owner
 owner = ( doc.owner || doc.owner_user )
