@@ -8,17 +8,18 @@ class Api::Documents::MotionController < ApiController
   def index
     @document = Document::Base.find(params[:document_id])
     rel = @document.motions.where('receiver_role not in (?)', ROLE_SENDER)
+    user = effective_user
 
     if params[:mode] == 'out'
-      rel = rel.where(sender_user: current_user)
+      rel = rel.where(sender_user: user)
       rel = rel.where(parent_id: (params[:parent_id].present? ? params[:parent_id] : nil))
     else
-      if current_user == @document.sender_user
+      if user == @document.sender_user
         hasbase = true
       else
-        is_author = @document.author?(current_user)
+        is_author = @document.author?(user)
       end
-      rel = rel.where(receiver_user: current_user)
+      rel = rel.where(receiver_user: user)
       rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
     end
 
