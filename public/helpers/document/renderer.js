@@ -40,6 +40,12 @@ function renderMotion(record, opts) {
   // start with party name
   var text = partyLink(id, type, name);
 
+  // reveal actual party
+  var actualUser = record['actual_' + as];
+  if (actualUser) {
+    text = [ text, ' (',  partyLink(actualUser.id, 'Sys::User', actualUser.name) + ')' ].join('');
+  }
+
   // adding current status
   var respType = responseTypeText(currentStatus);
   if (respType) { text = [ text, ' &mdash; ', currentStatus ].join(''); }
