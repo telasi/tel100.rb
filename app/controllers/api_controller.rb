@@ -48,7 +48,7 @@ class ApiController < ActionController::Base
 
   def current_proxy_role
     rel = current_proxy_rel
-    rel.role if role.present?
+    rel.role if rel.role.present?
   end
 
   # Who is "effective" user for most queries.
