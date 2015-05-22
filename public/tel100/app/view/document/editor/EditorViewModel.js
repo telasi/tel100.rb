@@ -94,7 +94,7 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
       var sentAt = get('document.sent_at_f');
       var senderText = '<strong><a data-id="' + senderId + '" data-class="' + senderType + '">' + senderName + '</a></strong>';
       if (actualSender && senderUserId !== actualSender.id) {
-        senderText += ' (' + actualSender.name + ')';
+        senderText += ' (' + '<strong><a data-id="' + actualSender.id + '" data-class="Sys::User">' + actualSender.name + '</a>)';
       }
 
       return [
