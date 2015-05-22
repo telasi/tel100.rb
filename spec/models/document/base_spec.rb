@@ -416,6 +416,8 @@ RSpec.describe 'Signee, Author' do
     expect(@doc.status).to eq(CURRENT)
     expect(@doc.subject).to eq('test')
     expect(@doc.body).to eq('test body')
+    expect(@doc.sender_user).to eq(@dimitri)
+    expect(@doc.owner_user).to eq(@shalva)
     @m1 = @doc.motions[0]
     @m2 = @doc.motions[1]
     @m3 = @doc.motions[2]
