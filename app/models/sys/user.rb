@@ -70,6 +70,15 @@ class Sys::User < ActiveRecord::Base
     user if (user and user.password == password)
   end
 
+  def to_html
+    if self.employee
+      self.employee.to_html
+    else
+      phone = "<code><i class=\"fa fa-phone\"></i> #{self.phone}</code> " if self.phone.present?
+      "#{phone} #{full_name}"
+    end
+  end
+
   private
 
   def on_before_create
