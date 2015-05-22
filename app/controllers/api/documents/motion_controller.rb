@@ -115,6 +115,8 @@ class Api::Documents::MotionController < ApiController
   private
 
   def motion_data(motion)
+    actual_sender = motion.actual_sender
+    last_receiver = motion.last_receiver
     { id: motion.id,
       type: 'motion',
       parent_id: motion.parent_id,
@@ -123,15 +125,20 @@ class Api::Documents::MotionController < ApiController
       current_status: motion.current_status.to_s,
       ordering: motion.ordering,
       sender: motion.sender_name,
+      sender_user_id: motion.sender_user_id,
+      actual_sender: ({ id: actual_sender.id, name: actual_sender.to_s } if actual_sender.present?),
       received_at: (motion.received_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.received_at.present?),
       receiver_role: motion.receiver_role,
       receiver: motion.receiver_name,
+      receiver_id: motion.receiver_id,
+      receiver_type: motion.receiver_type,
+      receiver_user_id: motion.receiver_user_id,
+      last_receiver: ({ id: last_receiver.id, name: last_receiver.to_s } if last_receiver.present?),
       send_type: motion.send_type.to_s,
       completed_at: (motion.completed_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.completed_at.present?),
       response_type: motion.response_type.to_s,
       due_date: motion.effective_due_date,
-      due_is_over: motion.due_is_over?,
-      receiver_id: motion.receiver_id,
-      receiver_type: motion.receiver_type }
+      due_is_over: motion.due_is_over?
+    }
   end
 end
