@@ -130,9 +130,9 @@ class Document::Base < ActiveRecord::Base
   def authors;
     motions = self.author_motions
     if motions.any?
-      motions.map{ |m| m.receiver }
+      motions.map{ |m| ( m.receiver || m.receiver_user ) }
     else
-      [ self.owner ]
+      [ self.owner || self.owner_user ]
     end
   end
 
