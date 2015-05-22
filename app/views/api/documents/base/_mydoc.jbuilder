@@ -126,17 +126,18 @@ incoming = mydoc.motions.order('ordering ASC, id ASC') # any status is OK
 json.incoming do
   json.array! incoming do |motion|
     sender = ( motion.sender || motion.sender_user )
-    json.id           motion.id
-    json.status       motion.status
-    json.name         sender.to_s
-    json.sender_id    sender.id
-    json.sender_type  sender.class.name
+    json.id             motion.id
+    json.sender_user_id motion.sender_user_id
+    json.status         motion.status
+    json.name           sender.to_s
+    json.sender_id      sender.id
+    json.sender_type    sender.class.name
     json.current_status motion.current_status.to_s
-    json.motion_text  motion.motion_text
-    json.due_date     motion.due_date
-    json.completed_at motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-    json.role         motion.receiver_role
-    json.is_new       motion.new?
+    json.motion_text    motion.motion_text
+    json.due_date       motion.due_date
+    json.completed_at   motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
+    json.role           motion.receiver_role
+    json.is_new         motion.new?
     json.actual_sender do
       json.id    motion.actual_sender.id
       json.name  motion.actual_sender.to_s
@@ -151,17 +152,18 @@ outgoing = mydoc.outgoing.where('status IN (?) AND receiver_role IN (?)', out_st
 json.outgoing do
   json.array! outgoing do |motion|
     receiver = ( motion.receiver || motion.receiver_user )
-    json.id             motion.id
-    json.status         motion.status
-    json.name           receiver.to_s
-    json.receiver_id    receiver.id
-    json.receiver_type  receiver.class.name
-    json.current_status motion.current_status.to_s
-    json.response_text  motion.response_text
-    json.due_date       motion.due_date
-    json.completed_at   motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-    json.role           motion.receiver_role
-    json.is_new         motion.new?
+    json.id               motion.id
+    json.receiver_user_id motion.receiver_user_id
+    json.status           motion.status
+    json.name             receiver.to_s
+    json.receiver_id      receiver.id
+    json.receiver_type    receiver.class.name
+    json.current_status   motion.current_status.to_s
+    json.response_text    motion.response_text
+    json.due_date         motion.due_date
+    json.completed_at     motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
+    json.role             motion.receiver_role
+    json.is_new           motion.new?
     json.last_receiver do
       json.id    motion.last_receiver.id
       json.name  motion.last_receiver.to_s
