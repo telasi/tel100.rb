@@ -30,6 +30,7 @@ function renderMotion(record, opts) {
   var as = opts.as === 'sender' ? 'sender' : 'receiver';
 
   var id = get(record, as + '_id');
+  var userId = get(record, as + '_user_id');
   var type = get(record, as + '_type');
   var name = get(record, [as + '_name', as, 'name']);
   var dueDate = get(record, 'due_date');
@@ -50,7 +51,7 @@ function renderMotion(record, opts) {
     actualUser = record.last_receiver;
   }
 
-  if (actualUser) {
+  if (actualUser && userId !== actualUser.id) {
     text = [ text, ' (',  partyLink(actualUser.id, 'Sys::User', actualUser.name) + ')' ].join('');
   }
 
@@ -81,12 +82,13 @@ function renderMotion(record, opts) {
 
 function renderDocument(record, opts) {
   var senderId = get(record, 'sender_id');
+  var senderUserId = get(record, 'sender_user_id');
   var senderName = get(record, 'sender_name');
   var senderType = get(record, 'sender_type');
   var senderText = partyLink(senderId, senderType, senderName);
   var actualUser = get(record, 'actual_sender');
   var txt = '#<strong>' + record.get('docnumber') + '</strong>: ' + senderText;
-  if (actualUser) {
+  if (actualUser && actualUser.id !== senderUserId) {
     txt += ' (' + partyLink(actualUser.id, 'Sys::User', actualUser.name) + ')';
   }
   var status = get(record, 'status');
