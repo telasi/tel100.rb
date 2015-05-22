@@ -70,8 +70,8 @@ class Api::Documents::BaseController < ApiController
 
   def create_draft
     if can_edit_document?
-      doc = Document::Base.create_draft!(current_user)
-      @my_doc = Document::User.where(document: doc, user: current_user).first
+      doc = Document::Base.create_draft!(effective_user)
+      @my_doc = Document::User.where(document: doc, user: effective_user).first
       render action: 'show'
     else
       render json: { success: false, error: MSG_CANNOT_EDIT }
