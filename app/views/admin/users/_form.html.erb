@@ -1,6 +1,6 @@
 <%= editor_for @user do |e|
   e.required_text_field 'username'
-  e.password_field 'virtual_password', i18n: 'password'
+  e.password_field 'virtual_password', i18n: 'password' if @user.new_record?
   e.text_field 'email'
   e.text_field 'first_name_ka'
   e.text_field 'last_name_ka'
@@ -12,5 +12,6 @@
   e.boolean_field 'is_active'
   e.boolean_field 'is_admin'
   e.submit 'მონაცემების შენახვა'
-  #e.button_action admin_user_url(id: @user.id), label: ' გაუქმება', icon: 'remove'
+  cancel_url = @user.new_record? ? admin_users_url : admin_user_url
+  e.button_action cancel_url, label: ' გაუქმება', icon: 'remove'
 end %>
