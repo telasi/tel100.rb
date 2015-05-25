@@ -13,7 +13,7 @@ if motion.blank?
   json.document_id document.id
   json.type 'document'
   json.status document.status
-  sender = document.sender
+  sender = document.sender || document.sender_user
   sender_user = document.sender_user
   json.sender_user { json.partial! 'api/sys/users/user', user: sender_user } if sender_user
   json.sender { json.partial! 'api/documents/party', party: sender } if sender
@@ -21,7 +21,7 @@ if motion.blank?
   json.motion_text document.subject
   json.created_at document.created_at
   json.updated_at document.updated_at
-  text = "##{document.docnumber}: #{document.sender}"
+  text = "##{document.docnumber}: #{sender}"
   json.text text
   json.html_text statusify(document, text)
 else
