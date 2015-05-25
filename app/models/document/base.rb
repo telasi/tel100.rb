@@ -117,9 +117,11 @@ class Document::Base < ActiveRecord::Base
     is_owner = self.owner_user == user
     is_sender = self.sender_user == user
     if is_owner and is_sender
-      add_document_comment(user, params, actual_user)
-      motion = self.motions.where(receiver_user: user, parent_id: nil).first
-      return motion.add_comment(user, params, actual_user) if motion.present?
+      status_updated = add_document_comment(user, params, actual_user)
+      if status_updated
+        motion = self.motions.where(receiver_user: user, parent_id: nil).first
+        motion.add_comment(user, params, actual_user) if motion.present?
+      end
     elsif is_owner
       add_document_comment(user, params, actual_user)
     elsif is_sender
@@ -298,6 +300,9 @@ class Document::Base < ActiveRecord::Base
           docuser.calculate!
         end
       end
+
+      ####
+      return status_updated
     end
   end
 
