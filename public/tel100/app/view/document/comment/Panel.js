@@ -30,13 +30,18 @@ Ext.define('Tel100.view.document.comment.Panel', {
     columns: [{
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        var partyLink = helpers.party.partyLink;
+
         var text = record.get('text');
         if (text) {
           text = '<p class="text-muted" style="white-space:normal;margin: 4px 0;">' + text + '</p>'
         }
+
+        var sender = ' <strong>' + partyLink(record.get('user_id'), 'Sys::User', record.get('user')) + '</strong>'
+
         return [
-          '<p style="margin:0;">', statusIcon(), ' <strong>', record.get('user'), '</strong>, <span class="text-muted">',
-          Ext.Date.format(record.get('created_at'),'d/m/Y H:i'), '</span></p>',
+          '<p style="margin:0;">', statusIcon(), sender,
+          ', <span class="text-muted">', Ext.Date.format(record.get('created_at'),'d/m/Y H:i'), '</span></p>',
           text
         ].join('');
 
