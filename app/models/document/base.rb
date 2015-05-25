@@ -183,12 +183,11 @@ class Document::Base < ActiveRecord::Base
     self.signee_motions.where(receiver_user: user).any?
   end
 
-
   def inner?
     self.motions.each do |motion|
-      return true if motion.inner?
+      return false unless motion.inner?
     end
-    return false
+    return true
   end
 
   def modify(params, user)
