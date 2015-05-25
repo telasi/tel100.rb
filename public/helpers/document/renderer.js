@@ -1,5 +1,6 @@
 'use strict';
 
+var partyModule = require('../party');
 var Status = require('./status');
 
 module.exports = {
@@ -111,13 +112,7 @@ function responseTypeText(respType) {
   return respType;
 };
 
-function partyLink(id, type, name) {
-  if (id) {
-    return ['<a href="#" data-id="',id,'" data-class="',type,'">',name,'</a>'].join('');
-  } else {
-    return name;
-  }
-};
+var partyLink = partyModule.partyLink;
 
 function dueDateText(dueDate, dueIsOver, status) {
   if (dueDate) {

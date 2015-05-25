@@ -106,6 +106,14 @@ var vacationAction = function(component){
   });
 };
 
+function partyLink(id, type, name) {
+  if (id) {
+    return ['<a href="#" data-id="',id,'" data-class="',type,'">',name,'</a>'].join('');
+  } else {
+    return name;
+  }
+};
+
 module.exports = {
   getPartyDialog: getPartyDialog,
   favouriteDecoration: favouriteDecoration,
@@ -113,5 +121,6 @@ module.exports = {
   convertTypeToRuby: convertTypeToRuby,
   employeeTips: employeeTips,
   vacationDecorations: vacationDecorations,
-  vacationAction: vacationAction
+  vacationAction: vacationAction,
+  partyLink: partyLink
 };
