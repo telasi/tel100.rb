@@ -252,10 +252,6 @@ class Document::Motion < ActiveRecord::Base
     return false
   end
 
-  def outer?
-    not self.inner?
-  end
-
   private
 
   def cancel_ups!

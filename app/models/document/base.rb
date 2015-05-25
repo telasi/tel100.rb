@@ -93,6 +93,13 @@ class Document::Base < ActiveRecord::Base
     raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
     raise I18n.t('models.document_base.errors.empty_subject') unless self.subject.present?
     raise I18n.t('models.document_base.errors.no_motions') unless self.motions.any?
+
+    if self.direction == INNER and not self.inner?
+      raise I18n.t('models.document_base.errors.inner_has_outer_parties')
+    elsif self.direction != INNER and self.inner?
+      raise I18n.t('models.document_base.errors.outer_doesnot_have_outer_parties')
+    end
+
     Document::Base.transaction do
       self.status = CURRENT
       self.docdate = Date.today if self.docdate.blank?
@@ -182,10 +189,6 @@ class Document::Base < ActiveRecord::Base
       return true if motion.inner?
     end
     return false
-  end
-
-  def outer?
-    not self.inner?
   end
 
   def modify(params, user)
