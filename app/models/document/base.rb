@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Document::Base < ActiveRecord::Base
   include Document::Personalize
+  include Document::Direction
   include Document::Status
   include Document::Role
   include Document::Who
@@ -42,7 +43,7 @@ class Document::Base < ActiveRecord::Base
     docparams = { sender_user: sender_user, sender: sender,
       owner_user: sender_user, owner: sender,
       actual_sender: nil, # it's not sent yet
-      direction: 'inner', status: DRAFT,
+      direction: INNER, status: DRAFT,
       type: Document::Type.order('order_by').first }
     Document::Base.transaction do
       doc = Document::Base.create!(docparams)

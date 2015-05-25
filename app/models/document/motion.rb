@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Document::Motion < ActiveRecord::Base
+  include Document::Direction
   include Document::Status
   include Document::Role
   include Document::Who
@@ -25,9 +26,6 @@ class Document::Motion < ActiveRecord::Base
   belongs_to :last_receiver, class_name: 'Sys::User', foreign_key: 'last_receiver_id'
   personalize 'receiver'
   personalize 'sender'
-
-
-  ## XXX
   personalize 'owner'
 
   def new=(val); self.is_new = val ? 1 : 0 end
