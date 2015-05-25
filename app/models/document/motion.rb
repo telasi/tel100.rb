@@ -245,6 +245,13 @@ class Document::Motion < ActiveRecord::Base
     completed > (due + 1.day)
   end
 
+  # Motion is inner if all parties in this motion are inner parties.
+  def inner?
+    return true if inner_party?(self.receiver)
+    return true if inner_party?(self.receiver_user)
+    return false
+  end
+
   private
 
   def cancel_ups!
