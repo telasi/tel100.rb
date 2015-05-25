@@ -131,7 +131,11 @@ json.incoming do
     json.name           sender.to_s
     json.sender_id      sender.id
     json.sender_type    sender.class.name
-    json.current_status motion.current_status.to_s
+    if motion.current_status.blank?
+      json.current_status '--'
+    else
+      json.current_status motion.current_status.to_s
+    end
     json.motion_text    motion.motion_text
     json.due_date       motion.due_date
     json.completed_at   motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
@@ -157,7 +161,11 @@ json.outgoing do
     json.name             receiver.to_s
     json.receiver_id      receiver.id
     json.receiver_type    receiver.class.name
-    json.current_status   motion.current_status.to_s
+    if motion.current_status.blank?
+      json.current_status '--'
+    else
+      json.current_status motion.current_status.to_s
+    end
     json.response_text    motion.response_text
     json.due_date         motion.due_date
     json.completed_at     motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
