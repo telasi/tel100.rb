@@ -57,14 +57,18 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel', {
     hideResult: function(get) {
       return !get('isResult');
     },
+
     hideComplete: function(get) {
       return get('selection.status') !== helpers.document.status.CURRENT;
     },
+
     saveLabel: function(get) {
-      return get('isResult') ?
-      i18n.document.comment.actions.saveResult :
-      i18n.document.comment.actions.saveComment;
+      if (get('isResult')) {
+        return i18n.document.comment.actions.saveResult;
+      }
+      return i18n.document.comment.actions.saveComment;
     },
+
     receiverRole: function(get) {
       return get('selection.receiver_role') || 'owner';
     }

@@ -35,7 +35,7 @@ else
   json.due_date motion.due_date
   json.ordering motion.ordering
   json.motion_text motion.motion_text
-  sender = motion.sender
+  sender = motion.sender || motion.sender_user
   sender_user = motion.sender_user
   json.sender_user { json.partial! 'api/sys/users/user', user: sender_user } if sender_user
   json.sender { json.partial! 'api/documents/party', party: sender } if sender
