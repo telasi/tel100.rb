@@ -24,14 +24,16 @@ class Admin::UsersController < AdminController
     @title = 'მომხმარებლის შეცვლა'
     @user = Sys::User.find(params[:id])
     if request.post?
-      redirect_to admin_user_url(id: @user.id) if @user.update_user(user_params)
+      redirect_to admin_user_url(id: @user.id) if @user.update_user(params.require(:sys_user).permit(:virtual_password))
     end
   end
 
   def change_password
     @title = 'პაროლის შეცვლა'
     @user = Sys::User.find(params[:id])
-    # TODO
+    if request.post?
+      redirect_to admin_user_url(id: @user.id) if @user.update_user(user_params)
+    end
   end
 
   def destroy
