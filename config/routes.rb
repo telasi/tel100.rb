@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get '/show/:id', action: 'show', as: 'user'
       match '/new', action: 'new', as: 'new_user', via: ['get', 'post']
       match '/edit/:id', action: 'edit', as: 'edit_user', via: ['get', 'post']
+      match '/change_password/:id', action: 'change_password', as: 'change_password', via: ['get', 'post']
       match '/relation/:id', action: 'relation', as: 'relate_user', via: ['get', 'post']
       delete '/relation/:user_id/:related_id', action: 'destroy_relation', as: 'destroy_related_user'
       delete '/delete/:id', action: 'destroy', as: 'delete_user'

@@ -28,6 +28,12 @@ class Admin::UsersController < AdminController
     end
   end
 
+  def change_password
+    @title = 'პაროლის შეცვლა'
+    @user = Sys::User.find(params[:id])
+    # TODO
+  end
+
   def destroy
     user = Sys::User.find(params[:id])
     user.destroy
