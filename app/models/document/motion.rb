@@ -154,8 +154,6 @@ class Document::Motion < ActiveRecord::Base
     end
     # save motion data
     self.save!
-    # check auto assignees
-    self.document.check_auto_assignees!(user, self)
     # calculate related document users
     receiver_du = self.document.users.where(user: self.receiver_user).first
     sender_du = self.document.users.where(user: user).first

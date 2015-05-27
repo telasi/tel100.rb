@@ -105,6 +105,7 @@ class Api::Documents::MotionController < ApiController
         motions.each do |motion|
           motion.send_draft!(current_user)
         end
+        doc.check_auto_assignees!(current_user)
       end
       render json: { success: true }
     else

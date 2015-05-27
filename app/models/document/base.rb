@@ -108,13 +108,13 @@ class Document::Base < ActiveRecord::Base
       self.actual_sender = user
       self.save!
       self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)}
-      check_auto_assignees!(user, nil)
+      check_auto_assignees!(user)
       self.users.each { |user| user.calculate! }
     end
   end
 
   # Checks auto-assignees to receive the document.
-  def check_auto_assignees!(user, parent_motion)
+  def check_auto_assignees!(user)
     # ignore inner documents
     return if self.direction == INNER
     # calculate auto assingees
@@ -125,7 +125,7 @@ class Document::Base < ActiveRecord::Base
     send_type = Document::ResponseType.where(direction: send_type_direction, role: ROLE_AUTO_ASSIGNEE).first
     auto_assignee_ids.each do |auto_assignee_id|
       unless self.motions.where(receiver_user_id: auto_assignee_id).any?
-        motion = Document::Motion.create!(document: self, parent: parent_motion, is_new: 1, ordering: Document::Motion::MAX,
+        motion = Document::Motion.create!(document: self, parent: nil, is_new: 1, ordering: Document::Motion::MAX,
           send_type: send_type, sender_user: user, receiver_user_id: auto_assignee_id, receiver_role: ROLE_ASSIGNEE, status: CURRENT,
           sent_at: Time.now, received_at: Time.now)
         docuser = Document::User.create!(document: self, user_id: auto_assignee_id, is_new: 1, is_changed: 1,
