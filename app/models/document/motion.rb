@@ -72,8 +72,11 @@ class Document::Motion < ActiveRecord::Base
       ordering = params[:ordering]
     end
     # get send_type
-    send_type = Document::ResponseType.find(params[:send_type_id]) if params[:send_type_id].present?
-    send_type = Document::ResponseType.send_types.where(role: role).order(:ordering).first if send_type.blank?
+    send_type = nil
+    if receiver_user.present?
+      send_type = Document::ResponseType.find(params[:send_type_id]) if params[:send_type_id].present?
+      send_type = Document::ResponseType.send_types.where(role: role).order(:ordering).first if send_type.blank?
+    end
     # calculate is_new parameter
     is_new = 1
     if receiver_user
