@@ -74,6 +74,11 @@ class AddResponseTypes < ActiveRecord::Migration
       insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka, name_ru) values ('signee', 3, 1, 'არ ვავიზირებ', 'Не визирую')
     SQL
 
+    # auto-assignee
+    execute <<-SQL
+      insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka, name_ru) values ('auto-assignee', 1, 1, 'ავტომატური ადრესატი', 'Автоматический Адресат')
+    SQL
+
     # asignee
     execute <<-SQL
       insert into DOCUMENT_RESPONSE_TYPES (role, direction, ordering, name_ka, name_ru) values ('assignee', 1, 1, '--', '--')
