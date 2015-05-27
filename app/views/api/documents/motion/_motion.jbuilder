@@ -11,6 +11,7 @@ end
 
 if motion.blank?
   json.document_id document.id
+  json.docnumber document.docnumber
   json.type 'document'
   json.status document.status
   sender = document.sender || document.sender_user
