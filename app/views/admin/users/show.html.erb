@@ -48,9 +48,10 @@ end %>
         <td width="32">
           <!-- a class="text-danger"></a -->
           <%= link_to '<i class="fa fa-trash"></i>'.html_safe,
-            admin_destroy_related_user_url(user_id: rel.user.id, related_id: rel.related.id),
-            method: 'delete',
-            confirm: 'ნამდვილად?',
+            admin_destroy_related_user_url(user_id: rel.user.id, related_id: rel.related.id, role: rel.role),
+            data: { method: 'delete',
+                    confirm: 'ნამდვილად გინდათ ამ კავშირის წაშლა?'
+                  },
             class: 'text-danger'
           %>
         </td>

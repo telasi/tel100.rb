@@ -62,7 +62,7 @@ class Admin::UsersController < AdminController
   end
 
   def destroy_relation
-    rel = Sys::UserRelation.find([params[:user_id], params[:related_id]])
+    rel = Sys::UserRelation.find([params[:user_id], params[:related_id], params[:role]])
     rel.destroy
     redirect_to admin_user_url(params[:user_id]), notice: 'მომხმარებლის კავშირი წაშლილია'
   end
