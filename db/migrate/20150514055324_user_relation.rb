@@ -5,7 +5,7 @@ class UserRelation < ActiveRecord::Migration
         USER_ID number(10,0) not null,
         RELATED_ID number(10, 0) not null,
         ROLE VARCHAR2(50) not null,
-        constraint USER_RELS_PRIMARYKEY primary key ( user_id, related_id ) enable
+        constraint USER_RELS_PRIMARYKEY primary key (user_id, related_id, role) enable
       )
     SQL
   end

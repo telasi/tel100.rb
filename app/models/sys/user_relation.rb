@@ -7,7 +7,7 @@ class Sys::UserRelation < ActiveRecord::Base
   RELATIONS = [ REL_HRTREE, REL_CANCELARIA, REL_AUTO_ASSIGNEE ]
 
   self.table_name  = 'user_relations'
-  self.primary_keys = :user_id, :related_id
+  self.primary_keys = :user_id, :related_id, :role
   belongs_to :user, class_name: 'Sys::User'
   belongs_to :related, class_name: 'Sys::User'
 

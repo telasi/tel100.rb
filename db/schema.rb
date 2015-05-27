@@ -124,11 +124,13 @@ ActiveRecord::Schema.define(version: 20150518120901) do
     t.integer   "send_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "motion_text",      limit: 1000
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
+    t.integer   "actual_sender_id", limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",      limit: 50
     t.integer   "resp_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "response_text",    limit: 1000
     t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "last_receiver_id", limit: 10,   precision: 10, scale: 0
     t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
     t.string    "receiver_type",    limit: 50
     t.string    "receiver_role",    limit: 10,                            default: "assignee", null: false
