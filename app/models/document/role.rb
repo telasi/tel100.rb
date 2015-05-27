@@ -5,4 +5,5 @@ module Document::Role
   ROLE_AUTHOR   = 'author'
   ROLE_SIGNEE   = 'signee'
   ROLE_ASSIGNEE = 'assignee'
+  ROLE_AUTO_ASSIGNEE = 'auto-assignee'
 end
