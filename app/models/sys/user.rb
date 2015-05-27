@@ -10,7 +10,6 @@ class Sys::User < ActiveRecord::Base
   has_many :documents, class_name: 'Document::User', foreign_key: 'user_id'
   has_many :relations, class_name: 'Sys::UserRelation', foreign_key: 'user_id'
   has_many :related_on, class_name: 'Sys::UserRelation', foreign_key: 'related_id'
-  # has_many :related, class_name: 'Sys::User', through: :relations
 
   validates :username, uniqueness: { message: 'ეს მომხმარებელის სახელი დაკავებულია' }
   validates :username, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
