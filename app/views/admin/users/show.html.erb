@@ -38,12 +38,17 @@ end %>
 <% if @user.relations.any? %>
     <table class="table table-bordered">
     <% @user.relations.each do |rel|
-        user = rel.related %>
+         user = rel.user
+         prnt = rel.related
+    %>
       <tr>
         <td width="150"><code><%= rel.role %></code></td>
         <td>
           <code><%= user.username %></code>
           <%= link_to user.full_name, admin_user_url(user) %>
+          &rarr;
+          <code><%= prnt.username %></code>
+          <%= link_to prnt.full_name, admin_user_url(prnt) %>
         </td>
         <td width="32">
           <!-- a class="text-danger"></a -->
@@ -54,6 +59,32 @@ end %>
                   },
             class: 'text-danger'
           %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<div class="page-header">
+  <h3>
+    გამოყენებულია კავშირებში
+    <code><%= @user.related_on.count %></code>
+  </h3>
+</div>
+<% if @user.related_on.any? %>
+    <table class="table table-bordered">
+    <% @user.related_on.each do |rel|
+      user = rel.user
+      prnt = rel.related
+    %>
+      <tr>
+        <td width="150"><code><%= rel.role %></code></td>
+        <td>
+          <code><%= user.username %></code>
+          <%= link_to user.full_name, admin_user_url(user) %>
+          &rarr;
+          <code><%= prnt.username %></code>
+          <%= link_to prnt.full_name, admin_user_url(prnt) %>
         </td>
       </tr>
     <% end %>
