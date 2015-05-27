@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Api::SapController < ApiController
   def sync
+    mandt = '240'
+
     sql = 'DELETE FROM SAP_ORGANIZATIONS'
     ActiveRecord::Base.connection.execute(sql)
 
@@ -17,7 +19,7 @@ class Api::SapController < ApiController
            WHERE PLVAR = '01'
              AND OTYPE in ('O','S')
              AND ISTAT = '1'
-             AND MANDT = '300'
+             AND MANDT = #{mandt}
              AND OBJID <> '49999997'
              AND OBJID <> '49999998'
              AND OBJID <> '49999999'
@@ -40,13 +42,13 @@ class Api::SapController < ApiController
                   ( SELECT TABNR,
                            LISTAGG(TLINE, ' ') WITHIN GROUP (ORDER BY TABSEQNR) AS NAME
                       FROM SAPSR3.HRT1002@SAP
-                      WHERE MANDT = '300'
+                      WHERE MANDT = #{mandt}
                       GROUP BY TABNR) T
              WHERE P.PLVAR = '01'
                AND P.OTYPE in ('O','S')
                AND P.ISTAT = '1'
                AND P.SUBTY = '0120'
-               AND P.MANDT = '300'
+               AND P.MANDT = #{mandt}
                AND P.TABNR = T.TABNR
     SQL
     ActiveRecord::Base.connection.execute(sql)
@@ -61,7 +63,7 @@ class Api::SapController < ApiController
                WHERE PLVAR = '01'
                  AND OTYPE in ('O','S','P')
                  AND ISTAT = '1'
-                 AND MANDT = '300'
+                 AND MANDT = #{mandt}
                  AND RELAT in ('002','003','008', '012')
     SQL
     ActiveRecord::Base.connection.execute(sql)
@@ -73,7 +75,7 @@ class Api::SapController < ApiController
       INSERT INTO SAP_PERSONS( PERSON_ID, BEGIN_DATE, END_DATE,STATUS )
                  SELECT PERNR, TO_DATE(BEGDA,'yyyymmdd'), TO_DATE(ENDDA,'yyyymmdd'), STAT2
                    FROM SAPSR3.PA0000@SAP
-                 WHERE MANDT = '300'
+                 WHERE MANDT = #{mandt}
     SQL
     ActiveRecord::Base.connection.execute(sql)
 
@@ -84,7 +86,7 @@ class Api::SapController < ApiController
       INSERT INTO SAP_PERSON_ORG ( PERSON_ID, BEGIN_DATE, END_DATE, ORGANIZATION, SHTAT )
        SELECT PERNR, TO_DATE(BEGDA,'yyyymmdd'), TO_DATE(ENDDA,'yyyymmdd'), ORGEH, PLANS
          FROM SAPSR3.PA0001@SAP
-       WHERE MANDT = '300'
+       WHERE MANDT = #{mandt}
     SQL
     ActiveRecord::Base.connection.execute(sql)
 
@@ -95,7 +97,7 @@ class Api::SapController < ApiController
       INSERT INTO SAP_PERSON_NAME ( PERSON_ID, BEGIN_DATE, END_DATE, LANGUAGE, FIRSTNAME, LASTNAME, MIDDLENAME )
                  SELECT PERNR, TO_DATE(BEGDA,'yyyymmdd'), TO_DATE(ENDDA,'yyyymmdd'),'KA', VORNA, NACHN, MIDNM
                    FROM SAPSR3.PA0002@SAP
-                 WHERE MANDT = '300'
+                 WHERE MANDT = #{mandt}
     SQL
     ActiveRecord::Base.connection.execute(sql)
 
@@ -103,13 +105,15 @@ class Api::SapController < ApiController
       INSERT INTO SAP_PERSON_NAME ( PERSON_ID, BEGIN_DATE, END_DATE, LANGUAGE, FIRSTNAME, LASTNAME, MIDDLENAME )
        SELECT PERNR, TO_DATE(BEGDA,'yyyymmdd'), TO_DATE(ENDDA,'yyyymmdd'), 'RU', FNAMR, LNAMR, NAME2
      FROM SAPSR3.PA0002@SAP
-     WHERE MANDT = '300'
+     WHERE MANDT = #{mandt}
     SQL
     ActiveRecord::Base.connection.execute(sql)
   end
 
   def hrupdate
-    updatehr(DateTime.now)
+    date = Date.parse(params[:date]) || DateTime.now
+
+    updatehr(date)
 
     render json: { success: true }
   end
@@ -147,9 +151,17 @@ class Api::SapController < ApiController
       end
     end
 
+    # delete old organizations
+    HR::Organization.active.each do | org |
+      if !Sap::Relation.current_structure.where(objectid: org.saporg_id, objecttype: org.saporg_type).any?
+        org.is_active = 0
+        org.save
+      end
+    end
+    
     # update parent ID's
     HR::Organization.active.each do | org |
-      relorg = HR::Organization.where(saporg_id: org.sapparent_id).first
+      relorg = HR::Organization.where(saporg_id: org.sapparent_id, is_active: 1).first
       if relorg
         org.parent_id = relorg.id
         org.save
@@ -158,7 +170,7 @@ class Api::SapController < ApiController
 
     #Employees
     Sap::Person.current.each do | per |
-      next unless Sap::Person.org
+      next unless per.org
 
       existed_per = HR::Employee.active.where(person_id: per.person_id).first
       if existed_per

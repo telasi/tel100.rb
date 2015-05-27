@@ -5,7 +5,15 @@ class Sap::Organization < ActiveRecord::Base
 
   self.table_name  = 'sap_organizations'
 
-  def name_ru; Sap::OrganizationText.current.where(objectid: self.objectid, objecttype: self.objecttype, language: 'RU').first.name; end
-  def name_ka; Sap::OrganizationText.current.where(objectid: self.objectid, objecttype: self.objecttype, language: 'KA').first.name; end
+  def name_ru 
+  	text = Sap::OrganizationText.current.where(objectid: self.objectid, objecttype: self.objecttype, language: 'RU').first
+  	text.name if text 
+  end
+
+  def name_ka 
+  	text = Sap::OrganizationText.current.where(objectid: self.objectid, objecttype: self.objecttype, language: 'KA').first
+  	text.name if text
+  end
+  
   def is_manager?; Sap::Relation.where(objectid: self.objectid, objecttype: self.objecttype, relation: 'A012').count; end
 end
