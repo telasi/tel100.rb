@@ -86,7 +86,7 @@ function renderMotion(record, opts) {
 function renderDocument(record, opts) {
   var senderId = get(record, 'sender_id');
   var senderUserId = get(record, 'sender_user_id');
-  var senderName = get(record, 'sender_name');
+  var senderName = get(record, ['sender_name', 'senderName']);
   var senderType = get(record, 'sender_type');
   var senderText = partyLink(senderId, senderType, senderName);
   var actualUser = get(record, 'actual_sender');

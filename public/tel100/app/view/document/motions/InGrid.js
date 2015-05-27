@@ -92,7 +92,11 @@ Ext.define('Tel100.view.document.motions.InGrid', {
       text: '{i18n.document.motion.sender}'
     },
     renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-      return helpers.document.renderer.renderMotion(record);
+      if (record.get('type') == 'document') {
+        return helpers.document.renderer.renderDocument(record);
+      } else {
+        return helpers.document.renderer.renderMotion(record);
+      }
     },
     flex: 1
   }],
