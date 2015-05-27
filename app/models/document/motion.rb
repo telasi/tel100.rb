@@ -87,7 +87,7 @@ class Document::Motion < ActiveRecord::Base
       is_new: is_new, due_date: params[:due_date]
     })
     # first author is an owner of the document as well
-    if role == ROLE_AUTHOR and document.owner_user == document.sender_user
+    if role == ROLE_AUTHOR and receiver_user.present? and document.owner_user == document.sender_user
       document.owner_user = receiver_user
       document.save!
     end
