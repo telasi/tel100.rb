@@ -2,12 +2,35 @@
 class HR::Party < ActiveRecord::Base
   self.table_name  = 'party_base'
   self.sequence_name = 'party_base_seq'
-
-  def to_s; self.name_ka end
-
+  self.localized_fields('name', 'address', 'contact')
   validate :name_entered
 
+  def to_s; self.name end
+
+  def to_html
+    id = self.identity
+    name = self.name
+    address = self.address
+    phones = self.phones
+    email = self.email
+    text = ''
+    text = "<code>#{id}</code>" if id.present?
+    text = "#{text} #{name}" if name.present?
+    text = "#{text} &mdash; <span class=\"text-muted\">#{address}</span>"
+    if email.present?
+      emails_text = email.split(' ').map{|x| "<a href=\"mailto:#{x}\">#{x}</a>"}
+      text = "#{text}<br>#{emails_text.join('; ')}"
+    end
+    if phones.present?
+      phones_text = phones.split(' ').map{|x| "<code><i class=\"fa fa-phone\"></i> #{x}</code>"}
+      text = "#{text}<br>#{phones_text.join('; ')}"
+    end
+    text
+  end
+
+  protected
+
   def name_entered
-  	errors.add('Name must be entered') if self.name_ka.nil? and self.name_ru.nil? and self.name_en.nil?
+  	errors.add('Name must be entered') if (self.name_ka.nil? and self.name_ru.nil? and self.name_en.nil?)
   end
 end
