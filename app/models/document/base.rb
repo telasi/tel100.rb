@@ -107,8 +107,30 @@ class Document::Base < ActiveRecord::Base
       self.sent_at = self.received_at = Time.now
       self.actual_sender = user
       self.save!
-      self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)} 
+      self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)}
+      check_auto_assignees!(user, nil)
       self.users.each { |user| user.calculate! }
+    end
+  end
+
+  # Checks auto-assignees to receive the document.
+  def check_auto_assignees!(user, motion)
+    # ignore inner documents
+    return if self.direction == INNER
+    # calculate auto assingees
+    receiver_ids = self.motions.where(status: RECEIVED).to_a.map{ |motion| motion.receiver_user }.flatten.map{|user| user.id}.uniq
+    auto_assignee_ids = Sys::UserRelation.where(role: ROLE_AUTO_ASSIGNEE).where('USER_ID IN (?)', receiver_ids).to_a.map{ |rel| rel.related_id }.uniq
+    # process each auto-assignee
+    send_type_direction = Document::ResponseTypeDirection::SEND
+    send_type = Document::ResponseType.where(direction: send_type_direction, role: ROLE_AUTO_ASSIGNEE).first
+    auto_assignee_ids.each do |auto_assignee_id|
+      unless self.motions.where(receiver_user_id: auto_assignee_id).any?
+        motion = Document::Motion.create!(document: self, parent: motion, is_new: 1, ordering: 1, send_type: send_type,
+          sender_user: user, receiver_user_id: auto_assignee_id, receiver_role: ASSIGNEE, status: CURRENT,
+          sent_at: Time.now, received_at: Time.now)
+        docuser = Document::User.create!(document: self, user_id: auto_assignee_id, is_new: 1, is_changed: 1,
+          is_shown: 1, is_received: 1, is_current: 1, as_assignee: DOC_CURRENT)
+      end
     end
   end
 
@@ -260,11 +282,9 @@ class Document::Base < ActiveRecord::Base
           motion.send_draft!(user)
         end
       end
-
     end
 
     reset_signees
-
   end
 
   private
