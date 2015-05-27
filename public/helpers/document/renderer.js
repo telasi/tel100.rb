@@ -30,10 +30,12 @@ function renderMotion(record, opts) {
   var opts = opts || {};
   var as = opts.as === 'sender' ? 'sender' : 'receiver';
 
-  var id = get(record, as + '_id');
-  var userId = get(record, as + '_user_id');
-  var type = get(record, as + '_type');
+  var id = get(record, as + '_id') || get(record, as).id;
+  var asObj = get(record, as);
+  var userId = get(record, as + '_user_id') || (asObj && asObj.user_id);
+  var type = get(record, as + '_type') || (asObj && asObj.type);
   var name = get(record, [as + '_name', as, 'name']);
+  if (typeof name !== 'string') { name = asObj && asObj.name; }
   var dueDate = get(record, 'due_date');
   var dueIsOver = get(record, 'due_is_over');
   var status = get(record, 'status');
@@ -46,7 +48,7 @@ function renderMotion(record, opts) {
   // reveal actual party
   var actualUser;
 
-  if (as == 'sender') {
+  if (as === 'sender') {
     actualUser = record.actual_sender;
   } else {
     actualUser = record.last_receiver;
