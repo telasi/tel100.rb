@@ -23,7 +23,6 @@ Ext.define('Tel100.view.user.box.ButtonViewController', {
       // console.log(userRec);
       helpers.user.setProxyUser(userRec);
       var mainView = view.up('main');
-      debugger;
       mainView.getViewModel().set('proxyUser', userRec);
       mainView.fireEvent('proxychanged');
     });

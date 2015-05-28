@@ -3,9 +3,11 @@ Ext.define('Tel100.view.document.Main', {
   alias: 'widget.documentmain',
 
   controller: 'documentmain',
+
   viewModel: {
     type: 'documentmain'
   },
+
   layout: 'border',
   defaultListenerScope: true,
 
@@ -109,6 +111,17 @@ Ext.define('Tel100.view.document.Main', {
     search.on('searchstart', function(url, params) {
       view.down('documentgridpanel').getController().setStoreConfig({url: url, extraParams: params });
       view.down('documentgridpanel').refresh();
+    });
+
+    // listen to proxy changes
+    var mainView = view.up('main');
+    mainView.on('proxychanged', function() {
+      var doctabs = view.down('#documentTabs');
+      var tabs = doctabs.items;
+      for (var i = 1; i < tabs.length; i++) {
+        var tab = tabs.getAt(i);
+        doctabs.remove(tab);
+      }
     });
   },
 
