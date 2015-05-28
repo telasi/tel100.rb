@@ -67,11 +67,12 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
       }
     });
 
-    // refreshing document on user change
+    // refreshing document on proxy changes
 
     var ctrl = this;
-    var viewModel = this.getViewModel();
-    viewModel.bind('{proxyUser}', function() {
+    var view = this.getView();
+    var mainView = view.up('main');
+    mainView.on('proxychanged', function() {
       ctrl.foldersRefresh();
     });
   },
