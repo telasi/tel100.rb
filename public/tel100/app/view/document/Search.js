@@ -22,7 +22,10 @@ Ext.define('Tel100.view.document.Search', {
     title: '',
     titleCollapse: false,
     region: 'west',
-    split: true
+    split: true,
+    listeners: {
+      searchstart: 'onSearch'
+    }
   }, {
     xtype: 'documentgridpanel',
     region: 'center',
@@ -37,6 +40,12 @@ Ext.define('Tel100.view.document.Search', {
       this.fireEvent('documentselected', record);
       this.close();
     }
+  },
+
+  onSearch: function(url, params) {
+    var grid = this.down('documentgridpanel');
+    grid.getController().setStoreConfig({url: url, extraParams: params });
+    grid.refresh();
   },
 
   getParentDocument: function() {
