@@ -6,8 +6,10 @@ Ext.define('Tel100.view.user.box.ButtonViewController', {
     var proxyUser = helpers.user.getProxyUser();
     if (proxyUser) {
       var view = this.getView();
+      var mainView = view.up('main');
       helpers.user.setProxyUser(null);
-      view.up('main').getViewModel().set('proxyUser', null);
+      mainView.getViewModel().set('proxyUser', null);
+      mainView.fireEvent('proxychanged');
     } else {
       window.location.reload();
     }
@@ -20,7 +22,10 @@ Ext.define('Tel100.view.user.box.ButtonViewController', {
       dialog.close();
       // console.log(userRec);
       helpers.user.setProxyUser(userRec);
-      view.up('main').getViewModel().set('proxyUser', userRec);
+      var mainView = view.up('main');
+      debugger;
+      mainView.getViewModel().set('proxyUser', userRec);
+      mainView.fireEvent('proxychanged');
     });
     dialog.show();
   }
