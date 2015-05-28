@@ -72,7 +72,9 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
     view.getController().addPagingToolbar(component);
     helpers.party.employeeTips(component);
 
-    viewModel.bind('{proxyUser}', function() {
+    // listening proxy changes
+    var mainView = view.up('main');
+    mainView.on('proxychanged', function() {
       view.refresh();
     });
   }
