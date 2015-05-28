@@ -74,8 +74,10 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
 
     // listening proxy changes
     var mainView = view.up('main');
-    mainView.on('proxychanged', function() {
-      view.refresh();
-    });
+    if (mainView) {
+      mainView.on('proxychanged', function() {
+        view.refresh();
+      });
+    }
   }
 });
