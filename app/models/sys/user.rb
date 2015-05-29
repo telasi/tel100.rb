@@ -7,7 +7,6 @@ class Sys::User < ActiveRecord::Base
   self.set_integer_columns :is_active, :is_admin
   self.localized_fields('first_name', 'last_name')
   belongs_to :employee, class_name: 'HR::Employee'
-  has_one :eflow_user, class_name: 'Eflow::User', foreign_key: 'eflow_user_id'
   has_many :documents, class_name: 'Document::User', foreign_key: 'user_id'
   has_many :relations, class_name: 'Sys::UserRelation', foreign_key: 'user_id'
   has_many :related_on, class_name: 'Sys::UserRelation', foreign_key: 'related_id'
@@ -78,6 +77,10 @@ class Sys::User < ActiveRecord::Base
       phone = "<code><i class=\"fa fa-phone\"></i> #{self.phone}</code> " if self.phone.present?
       "#{phone} #{full_name}"
     end
+  end
+
+  def eflow_users
+    Eflow::User.where(user_name: self.eflow_user_name)
   end
 
   private

@@ -417,6 +417,7 @@ ActiveRecord::Schema.define(version: 20150518120901) do
     t.string    "last_name_ka",     limit: 50,                                           null: false
     t.string    "last_name_ru",     limit: 50
     t.string    "last_name_en",     limit: 50
+    t.string    "eflow_user_name",  limit: 100
     t.string    "password_hash",    limit: 60,                                           null: false
     t.timestamp "created_at",       limit: 6,                                            null: false
     t.timestamp "updated_at",       limit: 6,                                            null: false
