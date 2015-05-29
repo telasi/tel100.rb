@@ -75,6 +75,7 @@ class Admin::UsersController < AdminController
   end
 
   def eflow_motions
+    @title = 'მოძრაობები'
     @user = Sys::User.find(params[:id])
     @motions = @user.eflow_motions.order('motion_id DESC').paginate(page: params[:page], per_page: 10)
   end

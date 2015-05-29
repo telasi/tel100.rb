@@ -1,0 +1,27 @@
+<h2 class="page-header">
+  eFlow მოძრაობები &mdash; <code><%= @motions.total_entries %></code>
+</h2>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li><%= link_to 'მომხმარებლები', admin_users_url %></li>
+  <li><%= link_to @user.full_name, admin_user_url %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<table class="table">
+  <% @motions.each do |motion| %>
+    <tr>
+      <td>
+        <code>
+          <%= motion.document.document_no || motion.document.document_no2 %>
+        </code>
+        <%= motion.document.document_name %>
+        <span class="text-muted">
+          <%= motion.document.document_note %>
+        </span>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @motions %>
