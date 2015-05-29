@@ -89,6 +89,7 @@ class Sys::User < ActiveRecord::Base
     if self.employee.present?
       person_id = self.employee.person_id
       eflow_user = Eflow::User.where(employee_id: person_id).first
+      eflow_user = Eflow::User.where(user_name: "#{self.employee.last_name.to_lat}.#{self.employee.first_name.to_lat}".upcase).first if eflow_user.blank?
       if eflow_user.present?
         self.eflow_user_name = eflow_user.user_name
         self.save
