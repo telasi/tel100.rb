@@ -53,14 +53,16 @@ class Sys::User < ActiveRecord::Base
   end
 
   def update_user(user_params)
-    Sys::User.transaction do
-      self.update_attributes!(user_params)
-      empl = self.employee
-      empl.update_attributes!(user_id: self.id) if empl
-      return true
+    begin
+      Sys::User.transaction do
+        self.update_attributes!(user_params)
+        empl = self.employee
+        empl.update_attributes!(user_id: self.id) if empl
+        return true
+      end
+    rescue
+      return false
     end
-  rescue
-    return false
   end
 
   def self.active; Sys::User.where(is_active: 1) end
@@ -81,6 +83,17 @@ class Sys::User < ActiveRecord::Base
 
   def eflow_users
     Eflow::User.where(user_name: self.eflow_user_name)
+  end
+
+  def sync_with_eflow
+    if self.employee.present?
+      person_id = self.employee.person_id
+      eflow_user = Eflow::User.where(employee_id: person_id).first
+      if eflow_user.present?
+        self.eflow_user_name = eflow_user.user_name
+        self.save
+      end
+    end
   end
 
   private
