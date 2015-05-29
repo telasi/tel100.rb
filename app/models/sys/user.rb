@@ -85,6 +85,11 @@ class Sys::User < ActiveRecord::Base
     Eflow::User.where(user_name: self.eflow_user_name)
   end
 
+  def eflow_motions
+    user_ids = self.eflow_users.map{|x| x.id}
+    Eflow::Motion.where("user_id IN (?)", user_ids)
+  end
+
   def sync_with_eflow
     if self.employee.present?
       person_id = self.employee.person_id
