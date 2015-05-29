@@ -21,6 +21,8 @@ class CreateUsersTable < ActiveRecord::Migration
         LAST_NAME_KA varchar2(50 CHAR) not null,
         LAST_NAME_RU varchar2(50 CHAR),
         LAST_NAME_EN varchar2(50 CHAR),
+        -- eflow connection
+        EFLOW_USER_ID number(15, 0),
         ---------------------------------------------------------
         PASSWORD_HASH char(60 CHAR) not null,
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
