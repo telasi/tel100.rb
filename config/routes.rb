@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       delete '/delete/:id', action: 'destroy', as: 'delete_user'
       post '/generate_relations/:id', action: 'generate_relations', as: 'generate_user_relations'
       post '/sync_eflow', action: 'sync_eflow_users', as: 'sync_eflow_users'
+      get '/eflow_motions/:id', action: 'eflow_motions', as: 'eflow_user_motions'
     end
     scope 'document' do
       scope 'types', controller: 'doctypes' do

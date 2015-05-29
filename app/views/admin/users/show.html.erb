@@ -22,7 +22,7 @@
     c.text_field 'person_number', tag: 'code'
     c.text_field 'full_name', url: ->(x){ admin_employee_url(id: x.id) }
   end
-  v.text_field 'eflow_user_name', tag: 'code'
+  v.text_field 'eflow_user_name', tag: 'code', url: admin_eflow_user_motions_url
 end %>
 
 <div class="page-header">

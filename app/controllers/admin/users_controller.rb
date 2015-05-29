@@ -74,6 +74,11 @@ class Admin::UsersController < AdminController
     redirect_to admin_users_url, notice: 'სინქრონიზაცია დასრულებულია'
   end
 
+  def eflow_motions
+    @user = Sys::User.find(params[:id])
+    @motions = @user.eflow_motions.order('motion_id DESC').paginate(page: params[:page], per_page: 10)
+  end
+
   private
 
   def user_params; params.require(:sys_user).permit(:username, :virtual_password, :email, :mobile, :phone, :employee_id, :is_active, :is_admin, :first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru) end
