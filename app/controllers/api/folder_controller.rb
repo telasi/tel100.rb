@@ -46,6 +46,7 @@ class Api::FolderController < ApiController
 
   def document_create
     Folder::Document.new(params.permit(:folder_id, :doc_id)).save
+    render json: { success: true }
   end
 
   def document_delete
