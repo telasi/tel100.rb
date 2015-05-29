@@ -67,6 +67,13 @@ class Admin::UsersController < AdminController
     redirect_to admin_user_url(params[:user_id]), notice: 'მომხმარებლის კავშირი წაშლილია'
   end
 
+  def sync_eflow_users
+    Sys::User.all.each do |user|
+      user.sync_with_eflow
+    end
+    redirect_to admin_users_url, notice: 'სინქრონიზაცია დასრულებულია'
+  end
+
   private
 
   def user_params; params.require(:sys_user).permit(:username, :virtual_password, :email, :mobile, :phone, :employee_id, :is_active, :is_admin, :first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru) end

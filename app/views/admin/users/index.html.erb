@@ -13,4 +13,5 @@
   t.email_field 'email'
   t.text_field 'mobile_formatted', i18n: 'mobile'
   t.button_action admin_new_user_url, label: 'ახალი მომხმარებელი', icon: 'plus'
+  t.button_action admin_sync_eflow_users_url, label: 'eFlow სინქრონიზაცია', icon: 'refresh', confirm: 'ნამდვილად გინდათ სინქრონიზაცია?', http_method: 'post'
 end %>
