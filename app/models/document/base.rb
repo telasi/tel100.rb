@@ -27,7 +27,7 @@ class Document::Base < ActiveRecord::Base
   def sender_name; (self.sender_user || self.sender).to_s end
   def is_reply?; Document::Relation.where(base_id: self.id).any? end
 
-  def is_editable?(user); self.status != COMPLETED && ( author?(user) || owner?(user) || signee?(user)); end
+  def is_editable?(user); !self.author_motions.where(status: COMPLETED) && ( author?(user) || owner?(user) || signee?(user)); end
   def has_history?; Document::Change.where(document: self).any? end
 
   def self.docnumber_eval(type, date)
