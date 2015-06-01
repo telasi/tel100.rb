@@ -5,6 +5,7 @@ class AddDocumentRelation < ActiveRecord::Migration
         ID number(10, 0) not null,
         BASE_ID number(10, 0) not null,
         RELATED_ID number(10, 0) not null,
+        RELATED_TYPE varchar2(100) not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint DOCREL_PRIMARYKEY primary key ( ID ) enable

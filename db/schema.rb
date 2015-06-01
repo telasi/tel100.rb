@@ -144,9 +144,10 @@ ActiveRecord::Schema.define(version: 20150518120901) do
   end
 
   create_table "document_relation", force: true do |t|
-    t.integer   "base_id",    limit: 10, precision: 10, scale: 0, null: false
-    t.integer   "related_id", limit: 10, precision: 10, scale: 0, null: false
-    t.timestamp "created_at", limit: 6,                           null: false
+    t.integer   "base_id",      limit: 10,  precision: 10, scale: 0, null: false
+    t.integer   "related_id",   limit: 10,  precision: 10, scale: 0, null: false
+    t.string    "related_type", limit: 100,                          null: false
+    t.timestamp "created_at",   limit: 6,                            null: false
   end
 
   create_table "document_response_types", force: true do |t|
