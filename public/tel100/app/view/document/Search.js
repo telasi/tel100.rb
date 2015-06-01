@@ -17,24 +17,44 @@ Ext.define('Tel100.view.document.Search', {
   },
 
   items: [{
-    xtype: 'documentfoldersearch',
-    width: 300,
-    title: '',
-    titleCollapse: false,
-    region: 'west',
-    split: true,
-    listeners: {
-      searchstart: 'onSearch'
-    }
-  }, {
-    xtype: 'documentgridpanel',
+    xtype: 'tabpanel',
     region: 'center',
-    listeners: {
-      itemdblclick: 'onGridpanelItemDblClick'
-    }
+    activeTab: 0,
+    deferredRender: false,
+    tabPosition: 'top',
+    items: [{
+      xtype: 'panel',
+      border: false,
+      layout: 'border',
+      bodyBorder: false,
+      title: '<i class="fa fa-send"></i> tel100',
+      items: [{
+        xtype: 'documentfoldersearch',
+        width: 300,
+        title: '',
+        titleCollapse: false,
+        region: 'west',
+        split: true,
+        listeners: {
+          searchstart: 'onSearch'
+        }
+      }, {
+        xtype: 'documentgridpanel',
+        region: 'center',
+        listeners: {
+          itemdblclick: 'onDocumentSelected'
+        }
+      }]
+    }, {
+      xtype: 'panel',
+      border: false,
+      layout: 'border',
+      bodyBorder: false,
+      title: '<i class="fa fa-envelope-o"></i> eflow'
+    }]
   }],
 
-  onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
+  onDocumentSelected: function(dataview, record, item, index, e, eOpts) {
     var parent = this.getParentDocument();
     if (record.get('status') !== 0 && record.id !== parent.id) {
       this.fireEvent('documentselected', record);
