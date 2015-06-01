@@ -10,7 +10,7 @@ class Folder::Base < ActiveRecord::Base
     {
       id:        self.id,
       name:      self.name,
-      count:     Folder::Base.joins(:documents).count,
+      count:     Folder::Base.where(id: self.id).joins(:documents).count,
       folder_type: self.folder_type,
       form: self.form
     }
