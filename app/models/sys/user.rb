@@ -115,12 +115,13 @@ class Sys::User < ActiveRecord::Base
           username = e_username.join('.').downcase
           password = euser.password.downcase
           if Sys::User.where(username: username).empty?
-            Sys::User.create(email: email, mobile: '555123456', phone: '7123', username: username,
+            user = Sys::User.create(email: email, mobile: '555123456', phone: '7123', username: username,
               email_confirmed: 0, mobile_confirmed: 0, is_active: 1, is_admin: 0,
               employee: empl, person_id: person_id, first_name_ka: empl.first_name_ka,
               first_name_ru: empl.first_name_ru, last_name_ka: empl.last_name_ka,
               last_name_ru: empl.last_name_ru, virtual_password: password,
               eflow_user_name: username)
+            empl.update_attributes(user_id: user.id)
           end
         end
       end
