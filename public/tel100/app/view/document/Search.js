@@ -46,7 +46,7 @@ Ext.define('Tel100.view.document.Search', {
         }
       }]
     }, {
-      xtype: 'panel',
+      xtype: 'eflowdocumentgrid',
       border: false,
       layout: 'border',
       bodyBorder: false,
