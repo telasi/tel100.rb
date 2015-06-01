@@ -34,7 +34,7 @@ class Sys::User < ActiveRecord::Base
 
   def password; @password ||= Password.new(self.password_hash) end
   def password=(new_password)
-    @password = Password.create(new_password)
+    @password = Password.create(new_password.downcase)
     self.password_hash = @password
   end
 
@@ -69,7 +69,7 @@ class Sys::User < ActiveRecord::Base
 
   def self.authenticate(userID, password)
     user = Sys::User.find_by_username(userID)
-    user if (user and user.password == password)
+    user if (user and user.password == password.downcase)
   end
 
   def to_html
@@ -98,6 +98,31 @@ class Sys::User < ActiveRecord::Base
       if eflow_user.present?
         self.eflow_user_name = eflow_user.user_name
         self.save
+      end
+    end
+  end
+
+  # Migrate EFLOW users into our structure
+  def self.migrate_eflow
+    Eflow::Employee.where(employee_state_id: 1).each do |eempl|
+      euser = Eflow::User.where(employee_id: eempl.employee_id).first
+      if euser.present?
+        person_id = eempl.position_id
+        empl = HR::Employee.where(person_id: person_id, is_active: 1).first
+        if empl.present?
+          e_username = euser.user_name.split('.')
+          email = "#{e_username[1]}.#{e_username[0]}@telasi.ge".downcase
+          username = e_username.join('.').downcase
+          password = euser.password.downcase
+          if Sys::User.where(username: username).empty?
+            Sys::User.create(email: email, mobile: '555123456', phone: '7123', username: username,
+              email_confirmed: 0, mobile_confirmed: 0, is_active: 1, is_admin: 0,
+              employee: empl, person_id: person_id, first_name_ka: empl.first_name_ka,
+              first_name_ru: empl.first_name_ru, last_name_ka: empl.last_name_ka,
+              last_name_ru: empl.last_name_ru, virtual_password: password,
+              eflow_user_name: username)
+          end
+        end
       end
     end
   end
