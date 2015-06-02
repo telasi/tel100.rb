@@ -20,4 +20,14 @@ class Api::UserController < ApiController
       render json: { success: false, message: @user.errros.full_messages.to_s }
     end
   end
+
+  def change_password
+    @user = current_user
+    @user.virtual_password = params[:password]
+    if @user.save
+      render json: { success: true }
+    else
+      render json: { success: false, message: @user.errros.full_messages.to_s }
+    end
+  end
 end

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     scope 'user', controller: 'user' do
       post '/login', action: 'login'
       put '/update', action: 'update'
+      put '/change_password', action: 'change_password'
       get '/related', action: 'related'
     end
     scope '/hr', controller: 'hr' do
