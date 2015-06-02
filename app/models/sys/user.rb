@@ -68,7 +68,7 @@ class Sys::User < ActiveRecord::Base
   def self.active; Sys::User.where(is_active: 1) end
 
   def self.authenticate(userID, password)
-    user = Sys::User.find_by_username(userID)
+    user = Sys::User.find_by_username(userID.downcase)
     user if (user and user.password == password.downcase)
   end
 
