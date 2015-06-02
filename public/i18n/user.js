@@ -9,6 +9,26 @@ module.exports = {
     ru: 'Пароль'
   },
 
+  eflow_user_name: {
+    ka: 'ძირითადი',
+    ru: 'Основной'
+  },
+
+  mobile: {
+    ka: 'მობილური',
+    ru: 'Мобильный'
+  },
+
+  phone: {
+    ka: 'შიდა ნომერი',
+    ru: 'Внутрений номер'
+  },
+
+  email: {
+    ka: 'Email',
+    ru: 'Email'
+  },
+
   ui: {
     login_title: {
       ka: '<i class="fa fa-user"></i> სისტემაში შესვლა',
@@ -19,8 +39,8 @@ module.exports = {
       ru: 'Вход &rarr;'
     },
     profile: {
-      ka: 'მომხმარებლის პროფილი',
-      ru: 'Профиль пользователя'
+      ka: '<i class="fa fa-edit"></i> მომხმარებლის პროფილი',
+      ru: '<i class="fa fa-edit"></i> Профиль пользователя'
     },
     logout: {
       ka: '<i class="fa fa-sign-out"></i> სისტემიდან გასვლა',

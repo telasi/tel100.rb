@@ -13,12 +13,17 @@ Ext.define('Tel100.view.user.box.Button', {
 
   menu: {
     xtype: 'menu',
-    items: [/*{
+    items: [{
       xtype: 'menuitem',
       bind: {
         text: '{i18n.user.ui.profile}'
+      },
+      listeners: {
+        click: 'onProfile'
       }
-    }, */{
+    }, {
+      xtype: 'menuseparator'
+    }, {
       xtype: 'menuitem',
       bind: {
         text: '{i18n.user.ui.switch}'
@@ -26,8 +31,6 @@ Ext.define('Tel100.view.user.box.Button', {
       listeners: {
         click: 'onSwitch'
       }
-    }, {
-      xtype: 'menuseparator'
     }, {
       xtype: 'menuitem',
       bind: {
