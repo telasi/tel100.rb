@@ -13,7 +13,7 @@ class Api::UserController < ApiController
   end
 
   def update
-    @user = Sys::User.authenticate(params[:userID], params[:password])
+    @user = current_user
     if @user.update_attributes(params.permit(:username, :mobile, :phone, :email))
       render action: 'login'
     else
