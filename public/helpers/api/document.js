@@ -39,7 +39,6 @@ var base = {
     opts.params = { sourceid: sourceid };
     ajax.request(opts);
   }
-
 };
 
 var edit = {
