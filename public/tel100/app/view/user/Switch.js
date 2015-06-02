@@ -23,6 +23,7 @@ Ext.define('Tel100.view.user.switch.Dialog', {
       xtype: 'textfield',
       flex: 1,
       enableKeyEvents: true,
+      emptyText: 'search by username...',
       listeners: {
         keyup: function(field) {
           var grid = field.up('userswitchdialog').down('grid');
