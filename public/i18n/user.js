@@ -53,6 +53,10 @@ module.exports = {
     switch: {
       ka: '<i class="fa fa-user-secret"></i> სხვა მომხმარებლად შესვლა',
       ru: '<i class="fa fa-user-secret"></i> Вход под другим пользователем',
+    },
+    changePassword: {
+      ka: '<i class="fa fa-lock"></i> პაროლის შეცვლა',
+      ru: '<i class="fa fa-lock"></i> Изменить пароль'
     }
   },
 

@@ -35,5 +35,11 @@ Ext.define('Tel100.view.user.box.ButtonViewController', {
     var user = this.getViewModel().get('currentUser');
     dialog.getViewModel().set('currentUser', Ext.clone(user));
     dialog.show();
+  },
+
+  onChangePassword: function(item, e, eOpts) {
+    var view = this.getView();
+    var dialog = Ext.create('Tel100.view.user.changePassword.Dialog', { modal: true });
+    dialog.show();
   }
 });

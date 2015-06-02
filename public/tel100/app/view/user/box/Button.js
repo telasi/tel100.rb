@@ -22,6 +22,14 @@ Ext.define('Tel100.view.user.box.Button', {
         click: 'onProfile'
       }
     }, {
+      xtype: 'menuitem',
+      bind: {
+        text: '{i18n.user.ui.changePassword}'
+      },
+      listeners: {
+        click: 'onChangePassword'
+      }
+    }, {
       xtype: 'menuseparator'
     }, {
       xtype: 'menuitem',
