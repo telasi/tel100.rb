@@ -8,6 +8,15 @@ var update = function(params, opts) {
   ajax.request(opts);
 };
 
+var changePassword = function(password, opts) {
+  var opts = opts || {};
+  opts.method = 'PUT';
+  opts.url = '/api/user/change_password';
+  opts.params = { password: password }
+  ajax.request(opts);
+};
+
 module.exports = {
+  changePassword: changePassword,
   update: update
 };
