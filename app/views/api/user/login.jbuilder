@@ -5,6 +5,7 @@ json.user do
   json.mobile      @user.mobile
   json.phone       @user.phone
   json.username    @user.username
+  json.eflow_user_name @user.eflow_user_name
   json.email_confirmed   @user.email_confirmed
   json.mobile_confirmed  @user.mobile_confirmed
   json.is_active   @user.is_active
