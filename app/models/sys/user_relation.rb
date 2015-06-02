@@ -11,6 +11,8 @@ class Sys::UserRelation < ActiveRecord::Base
   belongs_to :user, class_name: 'Sys::User'
   belongs_to :related, class_name: 'Sys::User'
 
+  validates_presence_of :user, :related, :role
+
   # Generates related users for this user.
   def self.generate(user)
     Sys::UserRelation.where(user: user, role: REL_HRTREE).destroy_all
