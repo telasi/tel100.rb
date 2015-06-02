@@ -51,6 +51,20 @@ Ext.define('Tel100.view.user.profile.Dialog', {
       fieldLabel: '{i18n.user.phone}',
       value: '{currentUser.phone}'
     }
+  }],
+
+  dockedItems: [{
+    xtype: 'toolbar',
+    dock: 'bottom',
+    items: ['->', {
+      bind: {
+        text: '{saveText}',
+        disabled: '{saving}'
+      },
+      listeners: {
+        click: 'onSave'
+      }
+    }]
   }]
 });
 
@@ -59,11 +73,43 @@ Ext.define('Tel100.view.user.profile.DialogViewModel', {
   alias: 'viewmodel.userprofiledialog',
 
   data: {
-    // currentUser: null
+    currentUser: null,
+    saving: false
+  },
+
+  formulas: {
+    saveText: function(get) {
+      if (get('saving')) {
+        return '<i class="fa fa-spinner fa-spin"></i> ' + i18n.ui.save;
+      } else {
+        return i18n.ui.save;
+      }
+    }
   }
 });
 
 Ext.define('Tel100.view.user.profile.DialogViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.userprofiledialog'
+  alias: 'controller.userprofiledialog',
+
+  onSave: function() {
+    var view = this.getView();
+    var vm = this.getViewModel();
+    var user = vm.get('currentUser');
+    var params = {
+      email: user.get('email'),
+      mobile: user.get('mobile'),
+      phone: user.get('phone'),
+      username: user.get('username')
+    };
+    helpers.api.user.update(params, {
+      success: function() {
+        vm.set('saving', false);
+        view.close();
+      },
+      failure: function() {
+        vm.set('saving', false);
+      }
+    });
+  }
 });

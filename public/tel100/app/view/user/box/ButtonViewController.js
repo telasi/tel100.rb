@@ -32,6 +32,8 @@ Ext.define('Tel100.view.user.box.ButtonViewController', {
   onProfile: function(item, e, eOpts) {
     var view = this.getView();
     var dialog = Ext.create('Tel100.view.user.profile.Dialog', { modal: true });
+    var user = this.getViewModel().get('currentUser');
+    dialog.getViewModel().set('currentUser', Ext.clone(user));
     dialog.show();
   }
 });
