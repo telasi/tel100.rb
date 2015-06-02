@@ -11,4 +11,13 @@ class Api::UserController < ApiController
   def related
     @relations = current_user.relations.where('role NOT IN (?)', Sys::UserRelation::REL_AUTO_ASSIGNEE)
   end
+
+  def update
+    @user = Sys::User.authenticate(params[:userID], params[:password])
+    if @user.update_attributes(params.permit(:username, :mobile, :phone, :email))
+      render action: 'login'
+    else
+      render json: { success: false, message: @user.errros.full_messages.to_s }
+    end
+  end
 end
