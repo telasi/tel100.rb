@@ -69,6 +69,7 @@ class Sys::User < ActiveRecord::Base
 
   def self.authenticate(userID, password)
     user = Sys::User.find_by_username(userID.downcase)
+    user = Sys::User.find_by_eflow_user_name(userID.downcase) if user.blank?
     user if (user and user.password == password.downcase)
   end
 
