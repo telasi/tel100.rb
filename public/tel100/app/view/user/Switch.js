@@ -14,6 +14,37 @@ Ext.define('Tel100.view.user.switch.Dialog', {
   bind: {
     title: '{i18n.user.ui.switch}'
   },
+
+  dockedItems: [{
+    xtype: 'toolbar',
+    dock: 'top',
+    padding: 3,
+    items: [{
+      xtype: 'textfield',
+      flex: 1,
+      enableKeyEvents: true,
+      listeners: {
+        keyup: function(field) {
+          var grid = field.up('userswitchdialog').down('grid');
+          var filters = grid.store.getFilters();
+          if (field.value) {
+            field.nameFilter = filters.add({
+              id            : 'nameFilter',
+              property      : 'username',
+              value         : field.value,
+              anyMatch      : true,
+              caseSensitive : false
+            });
+          } else {
+            filters.remove(field.nameFilter);
+            field.nameFilter = null;
+          }
+        },
+        buffer: 500
+      }
+    }]
+  }],
+
   items: [{
     xtype: 'grid',
     border: false,
