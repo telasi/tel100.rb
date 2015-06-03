@@ -1,24 +1,12 @@
 Ext.define('Tel100.view.hr.tree.Panel', {
   extend: 'Ext.tree.Panel',
   alias: 'widget.hrtreepanel',
-
-  requires: [
-    'Tel100.view.hr.tree.PanelViewModel',
-    'Tel100.view.hr.tree.PanelViewController',
-    'Ext.tree.View',
-    'Ext.tree.Column',
-    'Ext.panel.Tool',
-    'Ext.toolbar.Toolbar',
-    'Ext.form.field.Text',
-    'Ext.button.Button',
-    'Tel100.model.hr.Employee',
-    'Tel100.model.hr.Organization'
-  ],
-
   controller: 'hrtreepanel',
+
   viewModel: {
     type: 'hrtreepanel'
   },
+
   bodyCls: 'x-tree-noicon',
   autoLoad: true,
   enableColumnHide: false,
@@ -32,75 +20,67 @@ Ext.define('Tel100.view.hr.tree.Panel', {
     title: '{i18n.hr.tree.title}',
     store: '{structure}'
   },
-  viewConfig: {
 
-  },
-  columns: [
-    {
-      xtype: 'treecolumn',
-      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        if (record.toHtml) {
-          return record.toHtml();
-        } else {
-          return '<i class="fa fa-bolt"></i> ' + i18n.application.telasi;
-        }
-      },
-      dataIndex: 'name',
-      flex: 1
-    }
-  ],
+  viewConfig: {},
+
+  columns: [{
+    xtype: 'treecolumn',
+    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+      if (record.toHtml) {
+        return record.toHtml();
+      } else {
+        return '<i class="fa fa-bolt"></i> ' + i18n.application.telasi;
+      }
+    },
+    dataIndex: 'name',
+    flex: 1
+  }],
+
   listeners: {
     beforeload: 'onTreepanelBeforeLoad',
     load: 'onTreepanelLoad',
     afterrender: 'onTreepanelAfterRender',
     startsearch: 'onTreepanelStartsearch'
   },
-  tools: [
-    {
-      xtype: 'tool',
-      type: 'refresh',
+
+  tools: [{
+    xtype: 'tool',
+    type: 'refresh',
+    listeners: {
+      click: 'onRefresh'
+    }
+  }],
+
+  dockedItems: [{
+    xtype: 'toolbar',
+    dock: 'bottom',
+    items: [{
+      xtype: 'textfield',
+      itemId: 'searchField',
+      fieldLabel: 'Label',
+      hideLabel: true,
       listeners: {
-        click: 'onRefresh'
+        change: 'onSearchFieldChange',
+        specialkey: 'onSearchFieldSpecialkey'
       }
-    }
-  ],
-  dockedItems: [
-    {
-      xtype: 'toolbar',
-      dock: 'bottom',
-      items: [
-        {
-          xtype: 'textfield',
-          itemId: 'searchField',
-          fieldLabel: 'Label',
-          hideLabel: true,
-          listeners: {
-            change: 'onSearchFieldChange',
-            specialkey: 'onSearchFieldSpecialkey'
-          }
-        },
-        {
-          xtype: 'button',
-          text: '<i class="fa fa-search"></i>',
-          listeners: {
-            click: 'onSearchButtonClick'
-          }
-        },
-        {
-          xtype: 'button',
-          disabled: true,
-          itemId: 'nextbutton',
-          text: '<i class="fa fa-forward"></i>',
-          listeners: {
-            click: 'onNextSearchButtonClick'
-          }
-        }
-      ]
-    }
-  ],
+    }, {
+      xtype: 'button',
+      text: '<i class="fa fa-search"></i>',
+      listeners: {
+        click: 'onSearchButtonClick'
+      }
+    }, {
+      xtype: 'button',
+      disabled: true,
+      itemId: 'nextbutton',
+      text: '<i class="fa fa-forward"></i>',
+      listeners: {
+        click: 'onNextSearchButtonClick'
+      }
+    }]
+  }],
 
   refresh: function() {
     this.getStore('structure').load();
   }
-
 });
