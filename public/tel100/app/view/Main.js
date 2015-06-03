@@ -23,7 +23,7 @@ Ext.define('Tel100.view.Main', {
     },
     items: [{
       xtype: 'panel',
-      html: '<img src="/images/tel100_withmargin.png" height="100" width="200"></img>'
+      html: '<img src="/images/tel100_withmargin.png" height="100" ></img>'
     }, {
       xtype: 'userloginpanel',
       itemId: 'login',
