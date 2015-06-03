@@ -22,6 +22,9 @@ Ext.define('Tel100.view.Main', {
       pack: 'center'
     },
     items: [{
+      xtype: 'panel',
+      html: '<img src="/images/tel100_withmargin.png" height="100" width="200"></img>'
+    }, {
       xtype: 'userloginpanel',
       itemId: 'login',
       listeners: {
