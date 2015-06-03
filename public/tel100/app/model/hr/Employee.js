@@ -45,8 +45,13 @@ Ext.define('Tel100.model.hr.Employee', {
     }
 
     var position = this.get('position');
+    var phone = this.get('phone');
+    text = text + ' &mdash;';
+    if (phone) {
+      text = text + ' <code><i class="fa fa-phone"></i>' + phone + '</code>';
+    }
     if (position) {
-      text = text + ' &mdash; <span class="text-muted">' + position + '</span>';
+      text = text + ' <span class="text-muted">' + position + '</span>';
     }
 
     return text;
