@@ -5,6 +5,7 @@
 <html manifest="" lang="en-US">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="/favicon.ico" rel="shortcut icon" />
   <meta charset="UTF-8">
   <title>tel100</title>
   <!-- css -->
