@@ -4,23 +4,7 @@ class Api::HrController < ApiController
   before_filter :validate_login
 
   def structure
-    employees = HR::Employee.active.index_by{ |node| node['organization_id'] }
-    vacations = HR::Vacation::Base.confirmed.current.index_by{ |node| node['employee_id']}
-    structureArray = HR::Organization.active.order(saporg_type: :desc).order(is_manager: :desc, priority: :asc).map do |org|
-      if org.saporg_type == 'S'
-        empl = employees[org.id]
-        obj = empl.to_hash(organization: org) if empl
-        #add vacation fields
-        if empl
-          vac = vacations[empl.id]
-          obj.merge!(vac.to_hash) if vac
-        end
-        obj
-      else
-        org.to_hash
-      end
-    end.select{ |x| x.present? }
-    render json: array_to_tree(structureArray)
+    render json: get_tree
   end
 
   def partylist
@@ -47,5 +31,36 @@ class Api::HrController < ApiController
     else
      render json: { success: false, message: @party.errors.full_messages[0] }
     end
+  end
+
+  private
+
+  def build_tree
+    employees = HR::Employee.active.index_by{ |node| node['organization_id'] }
+    vacations = HR::Vacation::Base.confirmed.current.index_by{ |node| node['employee_id']}
+    structureArray = HR::Organization.active.order(saporg_type: :desc).order(is_manager: :desc, priority: :asc).map do |org|
+      if org.saporg_type == 'S'
+        empl = employees[org.id]
+        obj = empl.to_hash(organization: org) if empl
+        #add vacation fields
+        if empl
+          vac = vacations[empl.id]
+          obj.merge!(vac.to_hash) if vac
+        end
+        obj
+      else
+        org.to_hash
+      end
+    end.select{ |x| x.present? }
+    array_to_tree(structureArray)
+  end
+
+  def get_tree
+    if $hrstruct_cachedate != Date.today and ($hrstruct_cache.blank? or $hrstruct_cache[I18n.locale.to_s].blank?)
+      $hrstruct_cache ||= {}
+      $hrstruct_cache[I18n.locale.to_s] = build_tree
+      raise "here"
+    end
+    $hrstruct_cache[I18n.locale.to_s]
   end
 end
