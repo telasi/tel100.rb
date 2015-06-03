@@ -59,7 +59,7 @@ class Api::HrController < ApiController
     if $hrstruct_cachedate != Date.today and ($hrstruct_cache.blank? or $hrstruct_cache[I18n.locale.to_s].blank?)
       $hrstruct_cache ||= {}
       $hrstruct_cache[I18n.locale.to_s] = build_tree
-      raise "here"
+      $hrstruct_cachedate = Date.today
     end
     $hrstruct_cache[I18n.locale.to_s]
   end

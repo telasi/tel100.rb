@@ -18,10 +18,10 @@ class HR::Employee < ActiveRecord::Base
   def full_name; "#{first_name} #{last_name}" end
   def active?; self.is_active == 1 end
   def employee_status; I18n.t("models.hr_employee.employee_status_id.val#{self.employee_status_id}") end
-  
+
   def to_hash(opts = {})
     org = opts[:organization] || self.organization
-    {
+    hash = {
       id: self.id,
       is_active: self.active?,
       person_number: self.person_number,
@@ -40,6 +40,14 @@ class HR::Employee < ActiveRecord::Base
       parent_id: org.parent_id,
       ext_type: 'hr.Employee'
     }
+
+    if self.user.present?
+      hash[:phone] = self.user.phone
+      hash[:mobile] = self.user.mobile
+      hash[:email] = self.user.email
+    end
+
+    return hash
   end
 
   def to_html
