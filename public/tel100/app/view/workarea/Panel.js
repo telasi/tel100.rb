@@ -29,7 +29,10 @@ Ext.define('Tel100.view.workarea.Panel', {
         text: 'hr'
       }, {
         itemId: 'admin',
-        text: 'admin'
+        text: 'admin',
+        bind: {
+          hidden: '{hideAdmin}'
+        }
       }],
 
       listeners: {
