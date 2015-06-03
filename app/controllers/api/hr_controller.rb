@@ -56,7 +56,7 @@ class Api::HrController < ApiController
   end
 
   def get_tree
-    if $hrstruct_cachedate != Date.today and ($hrstruct_cache.blank? or $hrstruct_cache[I18n.locale.to_s].blank?)
+    if $hrstruct_cachedate != Date.today or $hrstruct_cache.blank? or $hrstruct_cache[I18n.locale.to_s].blank?
       $hrstruct_cache ||= {}
       $hrstruct_cache[I18n.locale.to_s] = build_tree
       $hrstruct_cachedate = Date.today
