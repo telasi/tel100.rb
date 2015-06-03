@@ -68,11 +68,13 @@ class Sys::User < ActiveRecord::Base
   def self.active; Sys::User.where(is_active: 1) end
 
   def self.authenticate(userID, password)
-    user = Sys::User.find_by_username(userID.downcase)
-    user = Sys::User.find_by_eflow_user_name(userID.downcase) if user.blank?
-    user = Sys::User.find_by_email(userID.downcase) if user.blank?
-    user = Sys::User.find_by_mobile(userID.downcase) if user.blank?
-    user if (user and user.password == password.downcase)
+    if userID.present? and password.present?
+      user = Sys::User.find_by_username(userID.downcase)
+      user = Sys::User.find_by_eflow_user_name(userID.downcase) if user.blank?
+      user = Sys::User.find_by_email(userID.downcase) if user.blank?
+      user = Sys::User.find_by_mobile(userID.downcase) if user.blank?
+      user if (user and user.password == password.downcase)
+    end
   end
 
   def to_html
