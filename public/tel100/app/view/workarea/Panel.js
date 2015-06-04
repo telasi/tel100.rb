@@ -22,8 +22,11 @@ Ext.define('Tel100.view.workarea.Panel', {
     items: [{
       xtype: 'segmentedbutton',
       items: [{
-        itemId: 'docs',
-        text: 'docs'
+        itemId: 'tel100',
+        text: 'tel100'
+      }, {
+        itemId: 'eflow',
+        text: 'eflow'
       }, {
         itemId: 'hr',
         text: 'hr'
@@ -54,14 +57,14 @@ Ext.define('Tel100.view.workarea.Panel', {
     },
     items: [{
       xtype: 'modulesdocuments',
-      border: 0,
-      itemId: 'docs'
-    },
-    {
+      itemId: 'tel100'
+    }, {
+      xtype: 'panel',
+      itemId: 'eflow'
+    }, {
       xtype: 'moduleshr',
       itemId: 'hr'
-    },
-    {
+    }, {
       xtype: 'modulesadmin',
       itemId: 'admin'
     }]

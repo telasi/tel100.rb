@@ -4,7 +4,12 @@ Ext.define('Tel100.view.workarea.PanelViewController', {
 
   setCurrentApplication: function(name, opts) {
     if (opts && opts.toggleButton) {
-      var applicationButton = this.getView().down('#' + name);
+      var view = this.getView();
+      var applicationButton = view.down('#' + name);
+      if (!applicationButton) {
+        applicationButton = view.down('#tel100');
+        name = 'tel100';
+      }
       applicationButton.toggle();
     }
     if (opts && opts.switchApplication) {
