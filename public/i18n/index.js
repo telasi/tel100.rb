@@ -9,7 +9,8 @@ var ka = {}
     hr: require('./hr'),
     ui: require('./ui'),
     vacation: require('./vacation'),
-    selector: require('./selector')
+    selector: require('./selector'),
+    eflow: require('./eflow')
   };
 
 var addProperties = function(ka, ru, data) {

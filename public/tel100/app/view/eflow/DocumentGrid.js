@@ -11,9 +11,11 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
   enableColumnMove: false,
   sortableColumns: false,
   defaultListenerScope: true,
-  // bind: {
-  //   store: '{documents}'
-  // },
+  hideHeaders: true,
+
+  bind: {
+    store: '{documents}'
+  },
 
   columns: [{
     xtype: 'gridcolumn',
