@@ -87,7 +87,7 @@ class Sys::User < ActiveRecord::Base
   end
 
   def eflow_users
-    Eflow::User.where(user_name: self.eflow_user_name)
+    Eflow::User.where(user_name: self.eflow_user_name.upcase)
   end
 
   def eflow_motions
