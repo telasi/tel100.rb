@@ -7,6 +7,7 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
   },
 
   border: false,
+  autoLoad: true,
   enableColumnHide: false,
   enableColumnMove: false,
   sortableColumns: false,
@@ -19,8 +20,16 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
 
   columns: [{
     xtype: 'gridcolumn',
-    text: 'doc #',
-    flex: 1
+    flex: 1,
+    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+      var doc = record.get('document');
+      var number = doc.number || doc.number2;
+      return [
+        '<code>', number, '</code> ',
+        doc.name,
+        ' &mdash; <span class="text-muted">', doc.note , '</span>'
+      ].join('');
+    },
   }]
 });
 
