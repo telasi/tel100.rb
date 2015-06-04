@@ -41,12 +41,6 @@ class HR::Employee < ActiveRecord::Base
       ext_type: 'hr.Employee'
     }
 
-    if self.user.present?
-      hash[:phone] = self.user.phone
-      hash[:mobile] = self.user.mobile
-      hash[:email] = self.user.email
-    end
-
     return hash
   end
 
