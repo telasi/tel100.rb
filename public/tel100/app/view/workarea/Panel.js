@@ -15,10 +15,12 @@ Ext.define('Tel100.view.workarea.Panel', {
     xtype: 'container',
     region: 'north',
     padding: 4,
+
     layout: {
       type: 'hbox',
       align: 'stretch'
     },
+
     items: [{
       xtype: 'segmentedbutton',
       items: [{

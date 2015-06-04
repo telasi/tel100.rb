@@ -17,9 +17,9 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
   moveDocumentToFolder: function(id) {
     debugger;
     var model = Ext.create('Tel100.model.folder.Document',{
-          folder_id: id, doc_id: data.records[0].id
-        });
-        model.save();
+      folder_id: id, doc_id: data.records[0].id
+    });
+    model.save();
   },
 
   addPagingToolbar: function(component) {
@@ -33,8 +33,7 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
       bind: {
         store: '{documents}'
       }
-    })
-    );
+    }));
   },
 
   onGridpanelBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
