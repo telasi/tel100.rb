@@ -81,6 +81,9 @@ Rails.application.routes.draw do
       post '/search', action: 'search'
       delete '/:id', action: 'delete'
     end
+    scope 'eflow', controller: 'eflow' do
+      get 'motions', action: 'motions'
+    end
     namespace 'sys' do
       scope 'users', controller: 'users' do
         get '/', action: 'index'
