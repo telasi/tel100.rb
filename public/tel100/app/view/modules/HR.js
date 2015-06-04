@@ -73,3 +73,29 @@ Ext.define('Tel100.view.modules.HR', {
     }
   ]}
 ]});
+
+Ext.define('Tel100.view.modules.HRViewController', {
+  extend: 'Ext.app.ViewController',
+  alias: 'controller.moduleshr',
+
+  onButtonClick: function(button, e, eOpts) {
+    var vacationwindow = Ext.create('Tel100.view.hr.vacation.Window');
+    vacationwindow.show();
+  }
+});
+
+Ext.define('Tel100.view.modules.HRViewModel', {
+  extend: 'Ext.app.ViewModel',
+  alias: 'viewmodel.moduleshr',
+
+  stores: {
+    vacationlist: {
+      autoLoad: true,
+      proxy: {
+        type: 'rest',
+        url: '/api/vacation/list'
+      },
+      fields: [ 'id', 'from_date', 'to_date', 'full_name', 'type_name' ]
+    }
+  }
+});
