@@ -1,6 +1,6 @@
 Ext.define('Tel100.model.document.Motion', {
   extend: 'Ext.data.Model',
-
+  schema: 'tel100',
 
   fields: [{
     name: 'receiver'
