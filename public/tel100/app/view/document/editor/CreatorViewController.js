@@ -88,5 +88,20 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
   onSaveClick: function(button, e, eOpts) {
     var doc = this.getViewModel().get('document');
     this.onDocumentChange(doc);
+  },
+
+  onDocumentPrintClick: function(button, e, eOpts) {
+    var vm = this.getViewModel();
+    var document = vm.get('document');
+    var printParams = vm.get('printParams');
+    var url = '/api/documents/print/document/' + 
+              document.id + 
+              '?lang=' + helpers.i18n.getCurrentLocale();
+    for(var key in printParams){
+      if(printParams[key]){
+        url += '&'+ key + '=true';
+      }
+    }
+    helpers.api.document.print.showPDFwindow(url);
   }
 });
