@@ -16,7 +16,7 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
 
   bind: {
     store: '{documents}',
-    title: '{i18n.eflow.title} (0)'
+    title: '{i18n.eflow.title} ({totalCount})'
   },
 
   columns: [{
@@ -37,9 +37,19 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
     type: 'refresh',
     handler: function(event, toolEl, panelHeader) {
       var view = panelHeader.up('eflowdocumentgrid');
+      view.setLoading(true);
       view.store.load();
     }
-  }]
+  }],
+
+  onBeforeLoad: function(store, operation, eOpts) {
+    this.setLoading(true);
+  },
+
+  onLoad: function(store, records, successful, eOpts) {
+    this.setLoading(false);
+    this.getViewModel().set('totalCount', store.getTotalCount());
+  }
 });
 
 Ext.define('Tel100.view.eflow.DocumentGridViewController', {
@@ -50,6 +60,10 @@ Ext.define('Tel100.view.eflow.DocumentGridViewController', {
 Ext.define('Tel100.view.eflow.DocumentGridViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.eflowdocumentgrid',
+
+  data: {
+    totalCount: 0
+  },
 
   stores: {
     documents: {
@@ -62,6 +76,10 @@ Ext.define('Tel100.view.eflow.DocumentGridViewModel', {
           type: 'json',
           rootProperty: 'data'
         }
+      },
+      listeners: {
+        beforeload: 'onBeforeLoad',
+        load: 'onLoad'
       }
     }
   }

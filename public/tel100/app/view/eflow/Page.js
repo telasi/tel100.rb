@@ -12,7 +12,7 @@ Ext.define('Tel100.view.eflow.Page', {
   items: [{
     xtype: 'panel',
     split: true,
-    region: 'west',
+    region: 'center',
     width: 400,
     layout: 'fit',
     items: [{
