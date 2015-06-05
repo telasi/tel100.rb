@@ -13,10 +13,7 @@ Ext.define('Tel100.view.eflow.Page', {
     xtype: 'panel',
     split: true,
     region: 'west',
-    width: 300,
-    title: {
-      bind: '{i18n.eflow.title}',
-    },
+    width: 400,
     layout: 'fit',
     items: [{
       xtype: 'eflowdocumentgrid'

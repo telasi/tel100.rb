@@ -15,7 +15,8 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
   hideHeaders: true,
 
   bind: {
-    store: '{documents}'
+    store: '{documents}',
+    title: '{i18n.eflow.title} (0)'
   },
 
   columns: [{
@@ -30,6 +31,14 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
         ' &mdash; <span class="text-muted">', doc.note , '</span>'
       ].join('');
     },
+  }],
+
+  tools: [{
+    type: 'refresh',
+    handler: function(event, toolEl, panelHeader) {
+      var view = panelHeader.up('eflowdocumentgrid');
+      view.store.load();
+    }
   }]
 });
 
