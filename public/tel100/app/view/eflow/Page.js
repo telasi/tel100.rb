@@ -12,12 +12,16 @@ Ext.define('Tel100.view.eflow.Page', {
   items: [{
     xtype: 'panel',
     split: true,
-    region: 'center',
+    region: 'west',
     width: 400,
     layout: 'fit',
     items: [{
       xtype: 'eflowdocumentgrid'
     }]
+  }, {
+    xtype: 'panel',
+    region: 'center',
+    html: '<iframe src="http://1.1.2.61" style="width:100%;height:100%;" id="eflow"></iframe>'
   }]
 });
 
