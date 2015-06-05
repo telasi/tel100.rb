@@ -92,7 +92,7 @@ class Sys::User < ActiveRecord::Base
 
   def eflow_motions
     employee_ids = self.eflow_users.map{|x| x.employee_id}
-    Eflow::Motion.where("target_id IN (?)", employee_ids)
+    Eflow::Motion.where("target_id IN (?) AND motion_state_id IN (?)", employee_ids, Eflow::MotionStatus::RECEIVER_STATS)
   end
 
   def sync_with_eflow
