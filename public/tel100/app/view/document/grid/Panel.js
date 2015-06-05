@@ -35,14 +35,13 @@ Ext.define('Tel100.view.document.grid.Panel', {
 
       return statusClass;
     },
-    plugins: [
-      {
-        ptype: 'gridviewdragdrop',
-        pluginId: 'draganddropplug',
-        ddGroup: 'Grid2FolderDDGroup',
-        enableDrop: false
-      }
-    ]
+
+    plugins: [{
+      ptype: 'gridviewdragdrop',
+      pluginId: 'draganddropplug',
+      ddGroup: 'Grid2FolderDDGroup',
+      enableDrop: false
+    }]
   },
 
   columns: [{

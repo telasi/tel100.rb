@@ -42,6 +42,15 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
     }
   }],
 
+  dockedItems: [{
+    xtype: 'pagingtoolbar',
+    bind: {
+      store: '{documents}'
+    },
+    dock: 'bottom',
+    displayInfo: false
+  }],
+
   onBeforeLoad: function(store, operation, eOpts) {
     this.setLoading(true);
   },
