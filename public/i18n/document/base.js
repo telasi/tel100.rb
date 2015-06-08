@@ -119,7 +119,7 @@ module.exports = {
     ka: 'გვერდები',
     ru: 'Страницы'
   },
-  additions_count: { 
+  additions: { 
     ka: 'დანართები',
     ru: 'Приложения'
   },

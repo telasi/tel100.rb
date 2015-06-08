@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150518120901) do
     t.datetime  "docdate"
     t.integer   "docyear",          limit: 4,    precision: 4,  scale: 0
     t.integer   "page_count",       limit: 6,    precision: 6,  scale: 0
-    t.integer   "additions_count",  limit: 6,    precision: 6,  scale: 0
+    t.string    "additions"
     t.datetime  "due_date"
     t.datetime  "alarm_date"
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0

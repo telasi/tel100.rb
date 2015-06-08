@@ -46,11 +46,11 @@ def properties(pdf)
            [I18n.t("views.document.print.due_date"),   "#{due_date}", ""],
            [I18n.t("views.document.print.direction"),  I18n.t("models.document_base.direction.#{@document.direction}"), ""],
            [I18n.t("views.document.print.pages"),      "#{@document.page_count}", ""],
-           [I18n.t("views.document.print.attachment"), "#{@document.additions_count}", ""],
+           [I18n.t("views.document.print.attachment"), "#{@document.additions}", ""],
            [I18n.t("views.document.print.owner"),      "#{@document.sender.full_name}", "#{@document.sender.organization.chained_name}"]]
-           
+
   @document.authors.each_with_index do |author, index|
-    data += [[ index == 0 ? I18n.t("views.document.print.authors") : "",    "#{author}", 
+    data += [[ index == 0 ? I18n.t("views.document.print.authors") : "",    "#{author}",
                author.respond_to?(:organization) ? author.organization.chained_name : ""]]
   end
   @document.signees.each_with_index do |signee, index|

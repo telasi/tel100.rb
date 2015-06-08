@@ -15,7 +15,7 @@ class AddDocumentBaseTable < ActiveRecord::Migration
         DOCDATE     date,
         DOCYEAR     number( 4, 0),
         PAGE_COUNT  number( 6, 0),
-        ADDITIONS_COUNT number(6, 0),
+        ADDITIONS   varchar2(255),
         DUE_DATE    date,
         ALARM_DATE  date,
         -----

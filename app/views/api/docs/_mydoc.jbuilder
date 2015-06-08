@@ -23,7 +23,7 @@ json.docnumber   doc.docnumber
 json.docdate     doc.docdate
 json.docyear     doc.docyear
 json.page_count  doc.page_count
-json.additions_count doc.additions_count
+json.additions   doc.additions
 json.due_date    doc.due_date
 json.alarm_date  doc.alarm_date
 json.status      doc.status
