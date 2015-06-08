@@ -6,6 +6,7 @@ Ext.define('Tel100.model.document.Base', {
   ],
 
   schema: 'tel100',
+  entityName: 'documnet.Base',
 
   proxy: {
     type: 'rest',

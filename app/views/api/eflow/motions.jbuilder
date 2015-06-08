@@ -10,6 +10,7 @@ json.data do
       json.type     doc.document_subtype_name
       json.number   doc.document_no
       json.number2  doc.document_no2
+      json.sender   doc.sign_employee_name
     end
   end
 end
