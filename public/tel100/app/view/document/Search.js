@@ -42,7 +42,7 @@ Ext.define('Tel100.view.document.Search', {
         xtype: 'documentgridpanel',
         region: 'center',
         listeners: {
-          itemdblclick: 'onDocumentSelected'
+          itemdblclick: 'onTel100DocumentSelected'
         }
       }]
     }, {
@@ -50,16 +50,23 @@ Ext.define('Tel100.view.document.Search', {
       border: false,
       layout: 'border',
       bodyBorder: false,
-      title: '<i class="fa fa-envelope-o"></i> eflow'
+      listeners: {
+        itemdblclick: 'onEflowDocumentSelected'
+      }
     }]
   }],
 
-  onDocumentSelected: function(dataview, record, item, index, e, eOpts) {
+  onTel100DocumentSelected: function(dataview, record, item, index, e, eOpts) {
     var parent = this.getParentDocument();
     if (record.get('status') !== 0 && record.id !== parent.id) {
-      this.fireEvent('documentselected', record);
+      this.fireEvent('documentselected', record, 'tel100');
       this.close();
     }
+  },
+
+  onEflowDocumentSelected: function(dataview, record, item, index, e, opts) {
+    this.fireEvent('documentselected', record, 'eflow');
+    this.close();
   },
 
   onSearch: function(url, params) {
@@ -75,4 +82,14 @@ Ext.define('Tel100.view.document.Search', {
   setParentDocument: function(doc) {
     this.getViewModel().set('document', doc);
   }
+});
+
+Ext.define('Tel100.view.document.SearchViewController', {
+  extend: 'Ext.app.ViewController',
+  alias: 'controller.documentsearch'
+});
+
+Ext.define('Tel100.view.document.SearchViewModel', {
+  extend: 'Ext.app.ViewModel',
+  alias: 'viewmodel.documentsearch'
 });

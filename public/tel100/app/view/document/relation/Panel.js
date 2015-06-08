@@ -85,11 +85,13 @@ Ext.define('Tel100.view.document.relation.Panel', {
         maximizable: true
       });
 
-      this.searchDialog.on('documentselected', function(related) {
+      this.searchDialog.on('documentselected', function(related, type) {
+        var relatedType = type === 'eflow' ? 'Eflow::Motion' : 'Document::Base';
         helpers.api.document.relation.create({
           params: {
             base_id: doc.id,
-            related_id: related.id
+            related_id: related.id,
+            related_type: relatedType
           },
           success: function(params) {
             view.refresh();
