@@ -5,9 +5,7 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
   onEditClick: function(button, e, eOpts) {
     var vm = this.getViewModel();
     var document = vm.get('document');
-    var title = [ i18n.document.comment.actions.edit,
-                  ': ',
-                  document.get('docnumber')].join('');
+    var title = [ i18n.document.comment.actions.edit, ': ', document.get('docnumber')].join('');
 
     var editWindow = Ext.create('Tel100.view.document.editor.Modify', {
       title: title,
@@ -83,5 +81,4 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
     var field = 'printParams.' + menucheckitem.itemId;
     vm.set(field, checked);
   }
-
 });

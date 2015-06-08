@@ -134,5 +134,4 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
       return !get('document.outgoing').length;
     }
   }
-
 });

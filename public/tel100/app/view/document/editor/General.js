@@ -38,7 +38,8 @@ Ext.define('Tel100.view.document.editor.General', {
     bind: {
       fieldLabel: '{i18n.document.base.docnumber}',
       value: '{document.docnumber}',
-      readOnly: '{readonly}'
+      // readOnly: '{readonly}'
+      readOnly: true
     }
   }, {
     xtype: 'datefield',
@@ -46,7 +47,8 @@ Ext.define('Tel100.view.document.editor.General', {
     bind: {
       fieldLabel: '{i18n.document.base.docdate}',
       value: '{document.docdate}',
-      readOnly: '{readonly}'
+      // readOnly: '{readonly}'
+      readOnly: true
     }
   }, {
     xtype: 'datefield',
