@@ -1,12 +1,11 @@
 Ext.define('Tel100.model.document.Base', {
   extend: 'Ext.data.Model',
+  schema: 'tel100',
+  entityName: 'document.Base',
 
   uses: [
     'Tel100.model.document.Type'
   ],
-
-  schema: 'tel100',
-  entityName: 'documnet.Base',
 
   proxy: {
     type: 'rest',
@@ -56,5 +55,9 @@ Ext.define('Tel100.model.document.Base', {
       return i18n.document.base.directions[data.direction];
     },
     name: 'directionName'
-  }]
+  }],
+
+  toHtml: function() {
+    return '<code>' + this.get('docnumber') + '</code> <span class="text-muted">' + this.get('owner') + '</span>';
+  }
 });

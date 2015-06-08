@@ -23,7 +23,7 @@ Ext.define('Tel100.view.document.relation.Panel', {
     columns: [{
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        return '<strong>' + value + '</strong> <span class="text-muted">' + record.get('owner') + '</span>';
+        return record.toHtml();
       },
       dataIndex: 'docnumber',
       text: 'document',
@@ -53,6 +53,7 @@ Ext.define('Tel100.view.document.relation.Panel', {
       }
     }
   }],
+
   tools: [{
     xtype: 'tool',
     type: 'refresh',
@@ -166,7 +167,8 @@ Ext.define('Tel100.view.document.relation.PanelViewModel', {
         },
         url: '/api/documents/relations',
         reader: {
-          type: 'json'
+          type: 'json',
+          typeProperty: 'ext_type'
         }
       }
     }
