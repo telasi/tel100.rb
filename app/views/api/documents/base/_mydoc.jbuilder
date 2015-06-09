@@ -35,6 +35,7 @@ json.subject     doc.subject
 json.original_number doc.original_number
 json.original_date   doc.original_date
 json.docnumber   doc.docnumber
+json.docnumber2  doc.docnumber2
 json.docdate     doc.docdate
 json.docyear     doc.docyear
 json.page_count  doc.page_count

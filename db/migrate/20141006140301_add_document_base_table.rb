@@ -12,6 +12,7 @@ class AddDocumentBaseTable < ActiveRecord::Migration
         ORIGINAL_NUMBER varchar(50 CHAR),
         ORIGINAL_DATE   date,
         DOCNUMBER   varchar2(20 CHAR),
+        DOCNUMBER2  varchar2(20 CHAR),
         DOCDATE     date,
         DOCYEAR     number( 4, 0),
         PAGE_COUNT  number( 6, 0),
