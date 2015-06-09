@@ -2,6 +2,21 @@ var partyApi = require('../api/party');
 var partyDialog;
 var employeeTip;
 
+function openPartyTips(el, id, className) {
+  partyApi.getInfo(id, className, {
+    success: function(data) {
+      employeeTip.setHtml(data.html);
+    }
+  });
+  html = '<i class="fa fa-circle-o-notch fa-spin"></i> loading...';
+  if (!employeeTip) {
+    employeeTip = Ext.create('Ext.tip.ToolTip', { autoHide: false });
+  }
+  var rect = el.getBoundingClientRect();
+  employeeTip.setHtml(html);
+  employeeTip.showAt({ x: rect.left, y: rect.bottom });
+};
+
 var getPartyDialog = function(callback) {
 
   // create party listener if not created yet
@@ -54,24 +69,14 @@ var convertTypeToRuby = function(type){
   }
 };
 
+
 var employeeTips = function(component) {
   component.getEl().on('click', function(event, el) {
     if (el && el.tagName === 'A') {
       var id = el.attributes['data-id'].value;
       var className = el.attributes['data-class'].value;
       if (id && className) {
-        partyApi.getInfo(id, className, {
-          success: function(data) {
-            employeeTip.setHtml(data.html);
-          }
-        });
-        html = '<i class="fa fa-circle-o-notch fa-spin"></i> loading...';
-        if (!employeeTip) {
-          employeeTip = Ext.create('Ext.tip.ToolTip', { autoHide: false });
-        }
-        var rect = el.getBoundingClientRect();
-        employeeTip.setHtml(html);
-        employeeTip.showAt({ x: rect.left, y: rect.bottom });
+        openPartyTips(el, id, className);
       }
     }
   });
@@ -100,8 +105,14 @@ var vacationDecorations = function(record){
 var vacationAction = function(component){
   component.getEl().on('click', function(event, el) {
     if (el && el.tagName === 'A') {
-      var sub_id = el.attributes['data-sub'].value;
-      component.fireEvent('startsearch', component, sub_id);
+      if (el.attributes['data-sub']) {
+        var sub_id = el.attributes['data-sub'].value;
+        component.fireEvent('startsearch', component, sub_id);
+      } else if (el.attributes['data-id']) {
+        var id = el.attributes['data-id'].value;
+        var className = el.attributes['data-class'].value;
+        openPartyTips(el, id, className);
+      }
     }
   });
 };

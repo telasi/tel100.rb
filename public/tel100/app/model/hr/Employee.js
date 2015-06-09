@@ -35,13 +35,14 @@ Ext.define('Tel100.model.hr.Employee', {
 
   toHtml: function() {
     var text;
+    var fullName = '<a data-id="' + this.id + '" data-class="HR::Employee">' + this.get('full_name') + '</a>';
 
     if(this.get('on_vacation')) {
       return helpers.party.vacationDecorations(this);
     } else  if (this.get('has_user')) {
-      text = '<span class="text-success"><i class="fa fa-user"></i> '+ this.get('full_name') +'</span>';
+      text = '<span class="text-success"><i class="fa fa-user"></i> '+ fullName +'</span>';
     } else {
-      text = '<span class="text-muted"><i class="fa fa-user"></i> ' + this.get('full_name') + '</span>';
+      text = '<span class="text-muted"><i class="fa fa-user"></i> ' + fullName + '</span>';
     }
 
     var position = this.get('position');
