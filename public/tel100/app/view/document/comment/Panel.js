@@ -36,8 +36,11 @@ Ext.define('Tel100.view.document.comment.Panel', {
           text = '<p class="text-muted" style="white-space:normal;margin: 4px 0;">' + text + '</p>'
         }
 
-        var sender = ' <strong>' + partyLink(record.get('user_id'), 'Sys::User', record.get('user')) + '</strong>';
-        if (record.get('actual_user_id')) {
+        var actualUserId = record.get('actual_user_id');
+        var senderId = record.get('user_id');
+        var sender = ' <strong>' + partyLink(senderId, 'Sys::User', record.get('user')) + '</strong>';
+
+        if (actualUserId && actualUserId != senderId) {
           var actualUser = partyLink(record.get('actual_user_id'), 'Sys::User', record.get('actual_user'));
           sender += ' (' + actualUser + ')';
         }
