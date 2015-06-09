@@ -76,13 +76,13 @@ Ext.define('Tel100.view.document.motions.MotionQuickViewViewModel', {
         var responseType = get('motion.response_type');
         var completedAt = get('motion.completed_at');
         return [
-        '<span class="' + decor.style + '">',
-        '<i class="fa ' + decor.icon + '"></i> ',
-        '<strong>' + receiverName + '</strong>',
-        ( completedAt ? ', <span class="text-muted">' + responseType + '</span> ' : ''),
-        '<span class="text-danger">' + (completedAt || '') + '</span>',
-        '</span>'
-        ].join('');
+          '<span class="' + decor.style + '">',
+          '<i class="fa ' + decor.icon + '"></i> ',
+          '<strong>' + receiverName + '</strong>',
+          ( completedAt ? ', <span class="text-muted">' + responseType + '</span> ' : ''),
+          '<span class="text-danger">' + (completedAt || '') + '</span>',
+          '</span>'
+          ].join('');
       } else {
         return '';
       }

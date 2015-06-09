@@ -128,12 +128,9 @@ Ext.define('Tel100.view.document.motions.TreeViewModel', {
   },
 
   formulas: {
-    disableProperties: function(get) {
-      return !get('selection');
-    },
-
     hideQuickProperties: function(get) {
-      return !get('selection');
+      var selection = get('selection');
+      return !selection || (selection && selection.get('root'));
     }
   }
 });
