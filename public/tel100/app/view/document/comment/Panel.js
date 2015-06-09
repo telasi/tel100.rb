@@ -2,7 +2,6 @@ Ext.define('Tel100.view.document.comment.Panel', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.documentcommentpanel',
 
-  controller: 'documentcommentpanel',
   viewModel: {
     type: 'documentcommentpanel'
   },
@@ -94,5 +93,34 @@ Ext.define('Tel100.view.document.comment.Panel', {
   onStoreLoad: function(store, records, successful, eOpts) {
     var vm = this.getViewModel();
     vm.set('commentCount', store.count());
+  }
+});
+
+Ext.define('Tel100.view.document.comment.PanelViewModel', {
+  extend: 'Ext.app.ViewModel',
+  alias: 'viewmodel.documentcommentpanel',
+
+  data: {
+    commentCount: 0
+  },
+
+  stores: {
+    comments: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Comment',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          document_id: '{document.id}'
+        },
+        url: '/api/documents/comments',
+        reader: {
+          type: 'json'
+        }
+      },
+      listeners: {
+        load: 'onStoreLoad'
+      }
+    }
   }
 });
