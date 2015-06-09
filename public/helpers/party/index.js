@@ -119,7 +119,12 @@ var vacationAction = function(component){
 
 function partyLink(id, type, name) {
   if (id) {
-    return ['<a href="#" data-id="',id,'" data-class="',type,'">',name,'</a>'].join('');
+    return [
+      '<a href="#" data-id="', id,
+      '" data-class="', type, '">',
+      name,
+      '</a>'
+    ].join('');
   } else {
     return name;
   }
