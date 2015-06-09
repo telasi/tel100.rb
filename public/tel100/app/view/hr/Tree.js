@@ -1,3 +1,90 @@
+Ext.define('Tel100.view.hr.tree.Panel', {
+  extend: 'Ext.tree.Panel',
+  alias: 'widget.hrtreepanel',
+  controller: 'hrtreepanel',
+
+  viewModel: {
+    type: 'hrtreepanel'
+  },
+
+  bodyCls: 'x-tree-noicon',
+  autoLoad: true,
+  enableColumnHide: false,
+  hideHeaders: true,
+  rowLines: true,
+  lines: false,
+  rootVisible: false,
+  useArrows: true,
+
+  bind: {
+    title: '{i18n.hr.tree.title}',
+    store: '{structure}'
+  },
+
+  viewConfig: {},
+
+  columns: [{
+    xtype: 'treecolumn',
+    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+      if (record.toHtml) {
+        return record.toHtml();
+      } else {
+        return '<i class="fa fa-bolt"></i> ' + i18n.application.telasi;
+      }
+    },
+    dataIndex: 'name',
+    flex: 1
+  }],
+
+  listeners: {
+    beforeload: 'onTreepanelBeforeLoad',
+    load: 'onTreepanelLoad',
+    afterrender: 'onTreepanelAfterRender',
+    startsearch: 'onTreepanelStartsearch'
+  },
+
+  tools: [{
+    xtype: 'tool',
+    type: 'refresh',
+    listeners: {
+      click: 'onRefresh'
+    }
+  }],
+
+  dockedItems: [{
+    xtype: 'toolbar',
+    dock: 'bottom',
+    items: [{
+      xtype: 'textfield',
+      itemId: 'searchField',
+      fieldLabel: 'Label',
+      hideLabel: true,
+      listeners: {
+        change: 'onSearchFieldChange',
+        specialkey: 'onSearchFieldSpecialkey'
+      }
+    }, {
+      xtype: 'button',
+      text: '<i class="fa fa-search"></i>',
+      listeners: {
+        click: 'onSearchButtonClick'
+      }
+    }, {
+      xtype: 'button',
+      disabled: true,
+      itemId: 'nextbutton',
+      text: '<i class="fa fa-forward"></i>',
+      listeners: {
+        click: 'onNextSearchButtonClick'
+      }
+    }]
+  }],
+
+  refresh: function() {
+    this.getStore('structure').load();
+  }
+});
+
 Ext.define('Tel100.view.hr.tree.PanelViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.hrtreepanel',
@@ -81,5 +168,29 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
     this.counter = 0;
     this.oldcounter = 0;
     this.searchAndExpand(view, rn, sub_id, 'id', function(cv, sv) { return cv == sv; });
+  }
+});
+
+Ext.define('Tel100.view.hr.tree.PanelViewModel', {
+  extend: 'Ext.app.ViewModel',
+  alias: 'viewmodel.hrtreepanel',
+
+  stores: {
+    structure: {
+      type: 'tree',
+      autoLoad: false,
+      root: { },
+
+      proxy: {
+        type: 'ajax',
+        url: '/api/hr/structure',
+        reader: {
+          type: 'json',
+          typeProperty: 'ext_type'
+        }
+      },
+
+      fields: [ 'name' ]
+    }
   }
 });
