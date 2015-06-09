@@ -72,7 +72,7 @@ class Document::Base < ActiveRecord::Base
         text.save!
       end
       if params.respond_to?(:permit)
-        params = params.permit(:subject,:docnumber,:type_id,:docdate,:due_date,:page_count,:additions,:direction,:original_number,:original_date)
+        params = params.permit(:subject,:docnumber,:docnumber2,:type_id,:docdate,:due_date,:page_count,:additions,:direction,:original_number,:original_date)
       else
         params = params.dup.except(:body)
       end

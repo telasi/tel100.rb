@@ -73,40 +73,47 @@ Ext.define('Tel100.view.document.editor.Creator', {
           },
           defaults: {
           },
-          menu: [
-            { xtype: 'menucheckitem',
-              bind: { text: '{i18n.ui.printParams.subject}'},
-              itemId: 'subject',
-              listeners: { checkchange: { 
+          menu: [{ xtype: 'menucheckitem',
+            bind: { text: '{i18n.ui.printParams.subject}'},
+            itemId: 'subject',
+            listeners: {
+              checkchange: { 
                 fn: 'onMenucheckitemCheckChange',
                 scope: 'controller'
-              } }
-            },
-            { xtype: 'menucheckitem',
-              bind: { text: '{i18n.ui.printParams.signature}'},
-              itemId: 'signature',
-              listeners: { checkchange: { 
-                fn: 'onMenucheckitemCheckChange',
-                scope: 'controller'
-              } }
-            },
-            { xtype: 'menucheckitem',
-              bind: { text: '{i18n.ui.printParams.assignees}'},
-              itemId: 'assignees',
-              listeners: { checkchange: { 
-                fn: 'onMenucheckitemCheckChange',
-                scope: 'controller'
-              } }
-            },
-            { xtype: 'menucheckitem',
-              bind: { text: '{i18n.ui.printParams.author}'},
-              itemId: 'author',
-              listeners: { checkchange: { 
-                fn: 'onMenucheckitemCheckChange',
-                scope: 'controller'
-              } }
+              }
             }
-          ], 
+          }, {
+            xtype: 'menucheckitem',
+            bind: { text: '{i18n.ui.printParams.signature}'},
+            itemId: 'signature',
+            listeners: {
+              checkchange: { 
+                fn: 'onMenucheckitemCheckChange',
+                scope: 'controller'
+              }
+            }
+          }, {
+            xtype: 'menucheckitem',
+            bind: { text: '{i18n.ui.printParams.assignees}'},
+            itemId: 'assignees',
+            listeners: {
+              checkchange: { 
+                fn: 'onMenucheckitemCheckChange',
+                scope: 'controller'
+              }
+            }
+          }, {
+            xtype: 'menucheckitem',
+            bind: { text: '{i18n.ui.printParams.author}'},
+            itemId: 'author',
+            listeners: {
+              checkchange: { 
+                fn: 'onMenucheckitemCheckChange',
+                scope: 'controller'
+              }
+            }
+          }],
+
           listeners: {
             click: {
               fn: 'onDocumentPrintClick',
@@ -129,10 +136,10 @@ Ext.define('Tel100.view.document.editor.Creator', {
           type: 'vbox',
           align: 'stretch'
         },
+
         items: [{
           xtype: 'textfield',
           submitEmptyText: false,
-          // padding: 5,
           labelAlign: 'top',
           emptyText: 'enter document\'s subject',
           bind: {
@@ -143,7 +150,6 @@ Ext.define('Tel100.view.document.editor.Creator', {
           xtype: 'htmleditor',
           flex: 1,
           itemId: 'documentBody',
-          // padding: '0 5 5 5',
           labelAlign: 'top',
           bind: {
             fieldLabel: '{i18n.document.base.body}'
