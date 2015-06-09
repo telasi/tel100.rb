@@ -28,9 +28,7 @@ Ext.define('Tel100.view.document.motions.Tree', {
     store: '{motions}'
   },
 
-  viewConfig: {
-
-  },
+  viewConfig: {},
 
   columns: [{
     xtype: 'treecolumn',
@@ -97,5 +95,45 @@ Ext.define('Tel100.view.document.motions.Tree', {
     var vm = this.getViewModel();
     var store = vm.get('motions');
     store.load();
+  }
+});
+
+Ext.define('Tel100.view.document.motions.TreeViewModel', {
+  extend: 'Ext.app.ViewModel',
+  alias: 'viewmodel.documentmotionstree',
+
+  data: {
+    selection: null
+  },
+
+  stores: {
+    motions: {
+      type: 'tree',
+      rootVisible: true,
+      root: {
+        expanded: true
+      },
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          document_id: '{document.id}'
+        },
+        url: '/api/documents/motion/tree',
+        reader: {
+          type: 'json'
+        }
+      },
+      fields: [ 'id', 'sender', 'receiver', 'status', 'ordering' ]
+    }
+  },
+
+  formulas: {
+    disableProperties: function(get) {
+      return !get('selection');
+    },
+
+    hideQuickProperties: function(get) {
+      return !get('selection');
+    }
   }
 });
