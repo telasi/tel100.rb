@@ -136,6 +136,8 @@ class Api::Documents::MotionController < ApiController
       receiver_user_id: motion.receiver_user_id,
       last_receiver: ({ id: last_receiver.id, name: last_receiver.to_s } if last_receiver.present?),
       send_type: motion.send_type.to_s,
+      motion_text: motion.motion_text,
+      response_text: motion.response_text,
       completed_at: (motion.completed_at.localtime.strftime('%d-%b-%Y %H:%M') if motion.completed_at.present?),
       response_type: motion.response_type.to_s,
       due_date: motion.effective_due_date,

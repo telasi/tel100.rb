@@ -38,58 +38,45 @@ Ext.define('Tel100.view.document.motions.MotionQuickViewViewModel', {
   },
 
   formulas: {
-    sender: function(get) {
-      var type = get('motion.type');
-      var status = get('motion.status');
-      if (type === 'motion') {
-        var senderName = get('motion.sender');
-        var sendType = get('motion.send_type');
-        var receivedAt = get('motion.received_at');
-        return [
-        '<strong>' + senderName + '</strong>, ',
-        '<span class="text-muted">' + sendType + '</span> ',
-        '<span class="text-danger">' + receivedAt + '</span>'
-        ].join('');
-      } else {
-        var doc = get('document');
-        var status = doc.get('status');
-        var senderName = doc.get('sender_name');
-        var docnumber = doc.get('docnumber');
-        var decor = helpers.document.status.statusDecoration(status);
-        var sentAt = doc.get('sent_at_f');
-        return [
-        '<span class="' + decor.style + '">',
-        '<i class="fa ' + decor.icon + '"></i> ',
-        '#<strong>' + docnumber + '</strong> ',
-        senderName + ' ',
-        '<span class="text-danger">' + (sentAt || '') + '</span>',
-        '</span>'
-        ].join('');
-      }
-    },
-    receiver: function(get) {
-      var type = get('motion.type');
-      var status = get('motion.status');
-      if (type === 'motion') {
-        var decor = helpers.document.status.statusDecoration(status);
-        var receiverName = get('motion.receiver');
-        var responseType = get('motion.response_type');
-        var completedAt = get('motion.completed_at');
-        return [
-          '<span class="' + decor.style + '">',
-          '<i class="fa ' + decor.icon + '"></i> ',
-          '<strong>' + receiverName + '</strong>',
-          ( completedAt ? ', <span class="text-muted">' + responseType + '</span> ' : ''),
-          '<span class="text-danger">' + (completedAt || '') + '</span>',
-          '</span>'
-          ].join('');
-      } else {
-        return '';
-      }
-    },
-
     html: function(get) {
-      return '<h1>TODO:</h1>';
+      // sender name and text
+      var senderName = get('motion.sender');
+      var senderText = '<strong>' + senderName + '</strong> &rarr;';
+
+      // send type and text
+      var sendType = get('motion.send_type');
+      var sendText = get('motion.motion_text');
+      var sendingStatus = '';
+      if (sendType && sendType !== '--') { sendingStatus = sendType; }
+      if (sendText) { sendingStatus += ' <span class="text-muted">' + sendText + '</span>'; }
+      if (sendingStatus !== '') { sendingStatus += ' &rarr;'; }
+
+      // receive date
+      var receivedAt = get('motion.received_at');
+      var receivedAtText = receivedAt ? '<span class="text-danger">' + receivedAt + '</span> &rarr;' : '';
+
+      // 
+      var status = get('motion.status');
+      var decor = helpers.document.status.statusDecoration(status);
+      var receiverName = get('motion.receiver');
+      var receiverText = '<span class="' + decor.style + '">' +
+          '<i class="fa ' + decor.icon + '"></i> ' +
+          '<strong>' + receiverName + '</strong>';
+
+      // response text
+      var responseType = get('motion.response_type');
+      var responseText = get('motion.response_text');
+      var responseStatus = '';
+      if (responseType && responseType !== '--') { responseStatus = responseType; }
+      if (responseText) { responseStatus += ' <span class="text-muted">' + responseText + '</span>'; }
+
+      return [
+        '<p style="padding:8px;margin:0;">',
+        senderText, sendingStatus,
+        receivedAtText, receiverText,
+        responseStatus,
+        '</p>'
+      ].join(' ');
     }
   }
 });
