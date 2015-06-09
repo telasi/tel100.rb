@@ -55,6 +55,13 @@ Ext.define('Tel100.view.document.folder.Search', {
   }, {
     xtype: 'textfield',
     anchor: '100%',
+    name: 'body',
+    bind: {
+      fieldLabel: '{i18n.document.search.body}'
+    }
+  }, {
+    xtype: 'textfield',
+    anchor: '100%',
     name: 'original_number',
     bind: {
       fieldLabel: '{i18n.document.search.original_number}'
