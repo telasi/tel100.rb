@@ -111,6 +111,10 @@ module.exports = {
     ka: 'ნომერი',
     ru: 'Номер'
   },
+  docnumber2: {
+    ka: 'ბრძანების #',
+    ru: '№ Приказа'
+  },
   docdate: {
     ka: 'თარიღი',
     ru: 'Дата'

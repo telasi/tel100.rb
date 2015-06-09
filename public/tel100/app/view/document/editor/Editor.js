@@ -61,40 +61,37 @@ Ext.define('Tel100.view.document.editor.Editor', {
         },
         defaults: {
         },
-        menu: [
-          { xtype: 'menucheckitem',
-            bind: { text: '{i18n.ui.printParams.subject}'},
-            itemId: 'subject',
-            listeners: { checkchange: { 
+        menu: [{ xtype: 'menucheckitem',
+          bind: { text: '{i18n.ui.printParams.subject}'},
+          itemId: 'subject',
+          listeners: { checkchange: { 
+            fn: 'onMenucheckitemCheckChange',
+            scope: 'controller'
+          } }
+        }, { xtype: 'menucheckitem',
+          bind: { text: '{i18n.ui.printParams.signature}'},
+          itemId: 'signature',
+          listeners: { checkchange: { 
+            fn: 'onMenucheckitemCheckChange',
+            scope: 'controller'
+          } }
+        }, { xtype: 'menucheckitem',
+          bind: { text: '{i18n.ui.printParams.assignees}'},
+          itemId: 'assignees',
+          listeners: { checkchange: { 
+            fn: 'onMenucheckitemCheckChange',
+            scope: 'controller'
+          } }
+        }, { xtype: 'menucheckitem',
+          bind: { text: '{i18n.ui.printParams.author}'},
+          itemId: 'author',
+          listeners: {
+            checkchange: { 
               fn: 'onMenucheckitemCheckChange',
               scope: 'controller'
-            } }
-          },
-          { xtype: 'menucheckitem',
-            bind: { text: '{i18n.ui.printParams.signature}'},
-            itemId: 'signature',
-            listeners: { checkchange: { 
-              fn: 'onMenucheckitemCheckChange',
-              scope: 'controller'
-            } }
-          },
-          { xtype: 'menucheckitem',
-            bind: { text: '{i18n.ui.printParams.assignees}'},
-            itemId: 'assignees',
-            listeners: { checkchange: { 
-              fn: 'onMenucheckitemCheckChange',
-              scope: 'controller'
-            } }
-          },
-          { xtype: 'menucheckitem',
-            bind: { text: '{i18n.ui.printParams.author}'},
-            itemId: 'author',
-            listeners: { checkchange: { 
-              fn: 'onMenucheckitemCheckChange',
-              scope: 'controller'
-            } }
+            }
           }
-        ], 
+        }], 
         listeners: {
           click: {
             fn: 'onDocumentPrintClick',
@@ -121,7 +118,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
         }
       }]
     }],
-    items: [ {
+    items: [{
       xtype: 'panel',
       border: false,
       layout: 'border',
@@ -135,181 +132,157 @@ Ext.define('Tel100.view.document.editor.Editor', {
           type: 'vbox',
           align: 'stretch'
         },
-          items: [ {
-              xtype: 'form',
-              margins: '0',
-              autoScroll: true,
-              border: false,
-              cls: 'document-subject',
-              resizable: false,
-              layout: {
-                type: 'vbox',
-                align: 'stretch'
-              },
-              items: [
-                {
-                  xtype: 'displayfield',
-                  flex: 1,
-                  itemId: 'fldAuthors',
-                  shrinkWrap: 2,
-                  fieldStyle: 'height: inherit',
-                  bind: {
-                    fieldLabel: '{i18n.document.base.authors}',
-                    value: '{authors}'
-                  }
-                },
-                {
-                  xtype: 'displayfield',
-                  flex: 1,
-                  itemId: 'fldDocumentInfo',
-                  shrinkWrap: 2,
-                  width: '100%',
-                  fieldStyle: 'height: inherit',
-                  bind: {
-                    fieldLabel: '{i18n.document.base.doc}',
-                    value: '{docinfo}'
-                  }
-                },
-                {
-                  xtype: 'displayfield',
-                  flex: 1,
-                  itemId: 'fldSignees',
-                  shrinkWrap: 2,
-                  fieldStyle: 'height: inherit',
-                  bind: {
-                    hidden: '{hideSignees}',
-                    fieldLabel: '{i18n.document.base.signees}',
-                    value: '{signees}'
-                  }
-                },
-                {
-                  xtype: 'displayfield',
-                  flex: 1,
-                  itemId: 'fldIncoming',
-                  shrinkWrap: 2,
-                  fieldStyle: 'height: inherit',
-                  bind: {
-                    hidden: '{hideIncoming}',
-                    fieldLabel: '{i18n.document.base.from}',
-                    value: '{incoming}'
-                  }
-                },
-                {
-                  xtype: 'displayfield',
-                  flex: 1,
-                  itemId: 'fldOutgoing',
-                  shrinkWrap: 2,
-                  fieldStyle: 'height: inherit',
-                  bind: {
-                    hidden: '{hideOutgoing}',
-                    fieldLabel: '{i18n.document.base.to}',
-                    value: '{outgoing}'
-                  }
-                },
-                {
-                  xtype: 'textfield',
-                  flex: 1,
-                  width: '100%',
-                  editable: false,
-                  bind: {
-                    fieldLabel: '{i18n.document.base.subject}',
-                    value: '{document.subject}'
-                  }
-                }
-              ]
-            },
-            {
-              xtype: 'container',
-              flex: 1,
-              cls: 'document-body',
-              overflowY: 'scroll',
-              bind: {
-                html: '{document.body}'
-              }
-            }
-          ]}, {
-            xtype: 'container',
-            region: 'east',
-            split: true,
-            width: 400,
-            layout: {
-              type: 'accordion',
-              hideCollapseTool: true
-            },
-            items: [
-              {
-                xtype: 'documenteditorgeneral',
-                bind: {
-                  title: '{i18n.document.base.ui.generalTabTitle}'
-                }
-              },
-              // {
-              //   xtype: 'documentmotionssignaturesviewer'
-              // },
-              {
-                xtype: 'documentmotionsreceiverspanel'
-              },
-              {
-                xtype: 'documentmotionstree'
-              },
-              {
-                xtype: 'documentmotionsresultpanel',
-                listeners: {
-                  commentadded: 'onPanelCommentadded'
-                }
-              },
-              {
-                xtype: 'documentcommentpanel'
-              },
-              {
-                xtype: 'documentfilepanel'
-              },
-              {
-                xtype: 'documentrelationpanel'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        xtype: 'panel',
-        border: false,
-        layout: {
-          type: 'hbox',
-          align: 'stretch'
-        },
-        bind: {
-          title: '{i18n.document.base.ui.motionsTabTitle}'
-        },
-        items: [
-          {
-            xtype: 'documentmotionsinpanel',
+        items: [{
+          xtype: 'form',
+          margins: '0',
+          autoScroll: true,
+          border: false,
+          cls: 'document-subject',
+          resizable: false,
+          layout: {
+            type: 'vbox',
+            align: 'stretch'
+          },
+          items: [{
+            xtype: 'displayfield',
             flex: 1,
-            listeners: {
-              motionchanged: {
-                fn: 'onInMotionChanged',
-                scope: 'controller'
-              }
+            itemId: 'fldAuthors',
+            shrinkWrap: 2,
+            fieldStyle: 'height: inherit',
+            bind: {
+              fieldLabel: '{i18n.document.base.authors}',
+              value: '{authors}'
             }
-          },
-          {
-            xtype: 'splitter',
-            width: 5
-          },
-          {
-            xtype: 'documentmotionsoutpanel',
-            border: false,
-            flex: 1
+          }, {
+            xtype: 'displayfield',
+            flex: 1,
+            itemId: 'fldDocumentInfo',
+            shrinkWrap: 2,
+            width: '100%',
+            fieldStyle: 'height: inherit',
+            bind: {
+              fieldLabel: '{i18n.document.base.doc}',
+              value: '{docinfo}'
+            }
+          }, {
+            xtype: 'displayfield',
+            flex: 1,
+            itemId: 'fldSignees',
+            shrinkWrap: 2,
+            fieldStyle: 'height: inherit',
+            bind: {
+              hidden: '{hideSignees}',
+              fieldLabel: '{i18n.document.base.signees}',
+              value: '{signees}'
+            }
+          }, {
+            xtype: 'displayfield',
+            flex: 1,
+            itemId: 'fldIncoming',
+            shrinkWrap: 2,
+            fieldStyle: 'height: inherit',
+            bind: {
+              hidden: '{hideIncoming}',
+              fieldLabel: '{i18n.document.base.from}',
+              value: '{incoming}'
+            }
+          }, {
+            xtype: 'displayfield',
+            flex: 1,
+            itemId: 'fldOutgoing',
+            shrinkWrap: 2,
+            fieldStyle: 'height: inherit',
+            bind: {
+              hidden: '{hideOutgoing}',
+              fieldLabel: '{i18n.document.base.to}',
+              value: '{outgoing}'
+            }
+          }, {
+            xtype: 'textfield',
+            flex: 1,
+            width: '100%',
+            editable: false,
+            bind: {
+              fieldLabel: '{i18n.document.base.subject}',
+              value: '{document.subject}'
+            }
+          }]
+        }, {
+          xtype: 'container',
+          flex: 1,
+          cls: 'document-body',
+          overflowY: 'scroll',
+          bind: {
+            html: '{document.body}'
           }
-        ]
-      }
-    ]
+        }]
+      }, {
+        xtype: 'container',
+        region: 'east',
+        split: true,
+        width: 400,
+        layout: {
+          type: 'accordion',
+          hideCollapseTool: true
+        },
+        items: [{
+          xtype: 'documenteditorgeneral',
+          bind: {
+            title: '{i18n.document.base.ui.generalTabTitle}'
+          }
+        }, {
+          xtype: 'documentmotionsreceiverspanel'
+        }, {
+          xtype: 'documentmotionstree'
+        }, {
+          xtype: 'documentmotionsresultpanel',
+          listeners: {
+            commentadded: 'onPanelCommentadded'
+          }
+        }, {
+          xtype: 'documentcommentpanel'
+        }, {
+          xtype: 'documentfilepanel'
+        }, {
+          xtype: 'documentrelationpanel'
+        }]
+      }]
+    }, {
+      xtype: 'panel',
+      border: false,
+      layout: {
+        type: 'hbox',
+        align: 'stretch'
+      },
+      bind: {
+        title: '{i18n.document.base.ui.motionsTabTitle}'
+      },
+      items: [{
+        xtype: 'documentmotionsinpanel',
+        flex: 1,
+        listeners: {
+          motionchanged: {
+            fn: 'onInMotionChanged',
+            scope: 'controller'
+          }
+        }
+      }, {
+        xtype: 'splitter',
+        width: 5
+      }, {
+        xtype: 'documentmotionsoutpanel',
+        border: false,
+        flex: 1
+      }]
+    }]
   }],
+
   listeners: {
     destroy: {
       fn: 'onDestroy',
       scope: 'controller'
     },
+
     afterrender: {
       fn: 'onContainerAfterRender',
       scope: 'controller'
@@ -366,5 +339,4 @@ Ext.define('Tel100.view.document.editor.Editor', {
       }
     });
   }
-
 });

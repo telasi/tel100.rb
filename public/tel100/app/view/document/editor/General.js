@@ -59,6 +59,14 @@ Ext.define('Tel100.view.document.editor.General', {
       readOnly: '{readonly}'
     }
   }, {
+    xtype: 'textfield',
+    anchor: '100%',
+    bind: {
+      fieldLabel: '{i18n.document.base.docnumber2}',
+      value: '{document.docnumber2}',
+      readOnly: '{readonly}'
+    }
+  }, {
     xtype: 'numberfield',
     anchor: '100%',
     minValue: 0,
