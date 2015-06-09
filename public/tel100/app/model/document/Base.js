@@ -58,6 +58,7 @@ Ext.define('Tel100.model.document.Base', {
   }],
 
   toHtml: function() {
-    return '<code>' + this.get('docnumber') + '</code> <span class="text-muted">' + this.get('owner') + '</span>';
+    return '<code>' + this.get('docnumber') + '</code> ' + this.get('owner') +
+      ' &mdash; <span class="text-muted">' + this.get('subject') + '</span>';
   }
 });

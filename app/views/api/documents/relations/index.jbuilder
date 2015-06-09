@@ -10,6 +10,7 @@ json.array! @relations do |relation|
     json.docnumber 	doc.docnumber
     json.status    	doc.status
     json.owner     	owner.full_name
+    json.subject    doc.subject
     json.ext_type   'document.Base'
   elsif doc.is_a?(Eflow::Motion)
     document = doc.document
