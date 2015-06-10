@@ -36,12 +36,29 @@ var getPartyDialog = function(callback) {
   return partyDialog;
 };
 
-var favouriteDecoration = function(value, record){
+var favouriteDecoration = function(record){
+  var value = record.get('name');
   var person_type = record.get('person_type');
+
+  if (record.get('vacation')){
+    var value = ['<span title="'+ i18n.hr.tree.absence_reason + record.get('vac_text')+ '" class="text-muted"><i class="fa fa-pause"></i> ',
+                 record.get('name'),
+                 '</span>'].join('');
+           
+    if (record.get('sub_id')){
+      value = [value,
+             ' - ',
+             '<span class="text-success"><i class="fa fa-user"></i> ',
+             i18n.hr.tree.substitude,
+             record.get('sub_name'),
+             '</span>']
+             .join('');
+    }
+  }
 
   switch(person_type){
     case 'HR::Employee':
-      return '<i class="fa fa-user"></i> ' + value;  
+      return '<i class="fa fa-user"></i> ' + value;
     case 'HR::Organization':
       return '<i class="fa fa-bank"></i> ' + value;
     case 'HR::Party':
@@ -97,7 +114,7 @@ var vacationDecorations = function(record){
            i18n.hr.tree.substitude,
            record.get('sub_name'),
            '</a></span>']
-           .join('');   
+           .join('');
   }
          
   return text;
