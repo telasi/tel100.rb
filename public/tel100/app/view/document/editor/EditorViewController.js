@@ -40,13 +40,10 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
     helpers.api.document.print.showPDFwindow(url);
   },
 
-  onDocumentPrintClick: function(button, e, eOpts) {
+  onDocumentPrint: function(printParams) {
     var vm = this.getViewModel();
     var document = vm.get('document');
-    var printParams = vm.get('printParams');
-    var url = '/api/documents/print/document/' + 
-              document.id + 
-              '?lang=' + helpers.i18n.getCurrentLocale();
+    var url = '/api/documents/print/document/' + document.id + '?lang=' + helpers.i18n.getCurrentLocale();
     for(var key in printParams){
       if(printParams[key]){
         url += '&'+ key + '=true';

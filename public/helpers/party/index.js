@@ -72,10 +72,12 @@ var convertTypeToRuby = function(type){
 var employeeTips = function(component) {
   component.getEl().on('click', function(event, el) {
     if (el && el.tagName === 'A') {
-      var id = el.attributes['data-id'].value;
-      var className = el.attributes['data-class'].value;
-      if (id && className) {
-        openPartyTips(el, id, className);
+      if (el.attributes['data-id']) {
+        var id = el.attributes['data-id'].value;
+        var className = el.attributes['data-class'].value;
+        if (id && className) {
+          openPartyTips(el, id, className);
+        }
       }
     }
   });
