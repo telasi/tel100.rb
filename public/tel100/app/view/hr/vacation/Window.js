@@ -34,7 +34,7 @@ Ext.define('Tel100.view.hr.vacation.Window', {
   viewModel: {
     type: 'hrvacationwindow'
   },
-  height: 340,
+  height: 205,
   resizable: false,
   width: 700,
   autoDestroy: false,
@@ -143,31 +143,6 @@ Ext.define('Tel100.view.hr.vacation.Window', {
           ]
         },
         {
-          xtype: 'combobox',
-          anchor: '100%',
-          name: 'substitude_type',
-          readOnly: false,
-          editable: false,
-          displayField: 'name',
-          valueField: 'id',
-          bind: {
-            fieldLabel: '{i18n.vacation.fields.docview}',
-            store: '{substitude_type}',
-            selection: '{substitude_explain}'
-          }
-        },
-        {
-          xtype: 'textareafield',
-          height: 100,
-          width: '100%',
-          name: 'substitude_type_explanation',
-          submitValue: false,
-          editable: false,
-          bind: {
-            value: '{substitude_explain.explain}'
-          }
-        },
-        {
           xtype: 'fieldcontainer',
           height: 32,
           margin: '0 0 10 0',
@@ -201,6 +176,33 @@ Ext.define('Tel100.view.hr.vacation.Window', {
               }
             }
           ]
+        },
+        {
+          xtype: 'combobox',
+          anchor: '100%',
+          name: 'substitude_type',
+          hidden: true,
+          readOnly: false,
+          editable: false,
+          displayField: 'name',
+          valueField: 'id',
+          bind: {
+            fieldLabel: '{i18n.vacation.fields.docview}',
+            store: '{substitude_type}',
+            selection: '{substitude_explain}'
+          }
+        },
+        {
+          xtype: 'textareafield',
+          height: 100,
+          hidden: true,
+          width: '100%',
+          name: 'substitude_type_explanation',
+          submitValue: false,
+          editable: false,
+          bind: {
+            value: '{substitude_explain.explain}'
+          }
         },
         {
           xtype: 'label',
