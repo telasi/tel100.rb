@@ -69,7 +69,6 @@ var convertTypeToRuby = function(type){
   }
 };
 
-
 var employeeTips = function(component) {
   component.getEl().on('click', function(event, el) {
     if (el && el.tagName === 'A') {

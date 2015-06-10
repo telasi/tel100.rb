@@ -60,7 +60,8 @@ Ext.define('Tel100.view.document.MainViewController', {
     }
 
     // loading document for edit
-    doc.load({
+    var doc2 = Ext.create('Tel100.model.document.Base', {id: doc.id});
+    doc2.load({
       success: function(document) {
         var isDraft = document.get('status') === helpers.document.status.DRAFT;
         if (isDraft) {
