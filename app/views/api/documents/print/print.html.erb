@@ -21,6 +21,10 @@
     margin: 0; padding: 0;
     margin-bottom: 8px;
   }
+
+  .text-muted {
+    color: #666;
+  }
 </style>
 
 <% qr = RQRCode::QRCode.new( "telasi#{@document.docnumber}", :size => 4, :level => :h ) %>
@@ -54,16 +58,27 @@
 <!-- authors -->
 
 <% if @author %>
+  <hr>
   <% @document.authors.each do |author| %>
-    <div style="padding: 16px 0;">
-      <% if author.respond_to? :organization %>
-        <p>
-          <%= raw author.organization.chain.map{|x| x.name}.join('<br>') %>
-        </p>
+    <p>
+      <span class="text-muted"><%= t("views.document.print.author") %>,</span>
+      <strong><%= author.to_s %></strong>
+    </p>
+    <% if author.respond_to? :organization %>
+      <p style="padding:0 16px;"><%= raw author.organization.chain.map{|x| x.name}.join('<br>') %></p>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if @assignees %>
+  <hr>
+  <% @document.assignees.each do |assignee| %>
+    <p>
+      <span class="text-muted"><%= t("views.document.print.assignee") %>,</span>
+      <strong><%= assignee.to_s %></strong>
+      <% if assignee.respond_to? :organization %>
+        &mdash; <%= assignee.organization.to_s %>
       <% end %>
-      <p>
-        <strong><%= author.to_s %></strong>
-      </p>
-    </div>
+    </p>
   <% end %>
 <% end %>

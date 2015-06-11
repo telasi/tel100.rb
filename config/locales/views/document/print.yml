@@ -13,7 +13,9 @@ ka:
         authors: "ავტორები:"
         signees: "ვიზატორები:"
         assignees: "ადრესატები:"
+        assignee: ადრესატი
         subject: "სათაური:"
+        author: ავტორი
 ru:
   views:
     document:
@@ -29,4 +31,6 @@ ru:
         authors: "Авторы:"
         signees: "Визаторы:"
         assignees: "Адресаты:"
+        assignee: Адресат
         subject: "Заголовок:"
+        author: Автор
