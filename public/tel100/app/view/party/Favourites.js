@@ -38,7 +38,7 @@ Ext.define('Tel100.view.party.Favourites', {
     {
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-        return helpers.party.favouriteDecoration(value, record);
+        return record.toHtml();
       },
       draggable: false,
       resizable: false,
