@@ -49,7 +49,8 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
         url += '&'+ key + '=true';
       }
     }
-    helpers.api.document.print.showPDFwindow(url);
+    // helpers.api.document.print.showPDFwindow(url);
+    window.open(url, 'tel100');
   },
 
   onInMotionChanged: function(motion) {

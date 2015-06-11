@@ -95,6 +95,7 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
     for (var key in printParameters) {
       url += '&' + key + '=' + printParameters[key];
     }
-    helpers.api.document.print.showPDFwindow(url);
+    // helpers.api.document.print.showPDFwindow(url);
+    window.open(url, 'tel100');
   }
 });
