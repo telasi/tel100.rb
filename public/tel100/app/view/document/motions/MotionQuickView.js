@@ -70,11 +70,15 @@ Ext.define('Tel100.view.document.motions.MotionQuickViewViewModel', {
       if (responseType && responseType !== '--') { responseStatus = responseType; }
       if (responseText) { responseStatus += ' <span class="text-muted">' + responseText + '</span>'; }
 
+      // complete date
+      var completedAt = get('motion.completed_at');
+      var completedAtText = completedAt ? '&rarr; <span class="text-danger">' + completedAt + '</span>' : '';
+
       return [
         '<p style="padding:8px;margin:0;">',
         senderText, sendingStatus,
         receivedAtText, receiverText,
-        responseStatus,
+        responseStatus, completedAtText,
         '</p>'
       ].join(' ');
     }
