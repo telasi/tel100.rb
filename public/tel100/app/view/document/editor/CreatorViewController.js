@@ -68,10 +68,7 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
       if (!subject) {
         Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_subject);
         return;
-      } /*else if (!body) {
-        Ext.Msg.alert(i18n.errors.title, i18n.document.base.errors.empty_body);
-        return;
-      }*/
+      }
       vm.set('isSending', true);
       helpers.api.document.base.sendDraft(document.id, {
         success: function() {
@@ -90,17 +87,13 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
     this.onDocumentChange(doc);
   },
 
-  onDocumentPrintClick: function(button, e, eOpts) {
+  onDocumentPrintClick: function(printParameters, e, eOpts) {
     var vm = this.getViewModel();
+    var view = this.getView();
     var document = vm.get('document');
-    var printParams = vm.get('printParams');
-    var url = '/api/documents/print/document/' + 
-              document.id + 
-              '?lang=' + helpers.i18n.getCurrentLocale();
-    for(var key in printParams){
-      if(printParams[key]){
-        url += '&'+ key + '=true';
-      }
+    var url = '/api/documents/print/document/' + document.id + '?lang=' + helpers.i18n.getCurrentLocale();
+    for (var key in printParameters) {
+      url += '&' + key + '=' + printParameters[key];
     }
     helpers.api.document.print.showPDFwindow(url);
   }

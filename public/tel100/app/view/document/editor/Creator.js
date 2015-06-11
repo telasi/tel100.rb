@@ -67,55 +67,9 @@ Ext.define('Tel100.view.document.editor.Creator', {
             }
           }
         }, {
-          xtype: 'splitbutton',
-          bind: {
-            text: '{i18n.ui.print}'
-          },
-          defaults: {
-          },
-          menu: [{ xtype: 'menucheckitem',
-            bind: { text: '{i18n.ui.printParams.subject}'},
-            itemId: 'subject',
-            listeners: {
-              checkchange: { 
-                fn: 'onMenucheckitemCheckChange',
-                scope: 'controller'
-              }
-            }
-          }, {
-            xtype: 'menucheckitem',
-            bind: { text: '{i18n.ui.printParams.signature}'},
-            itemId: 'signature',
-            listeners: {
-              checkchange: { 
-                fn: 'onMenucheckitemCheckChange',
-                scope: 'controller'
-              }
-            }
-          }, {
-            xtype: 'menucheckitem',
-            bind: { text: '{i18n.ui.printParams.assignees}'},
-            itemId: 'assignees',
-            listeners: {
-              checkchange: { 
-                fn: 'onMenucheckitemCheckChange',
-                scope: 'controller'
-              }
-            }
-          }, {
-            xtype: 'menucheckitem',
-            bind: { text: '{i18n.ui.printParams.author}'},
-            itemId: 'author',
-            listeners: {
-              checkchange: { 
-                fn: 'onMenucheckitemCheckChange',
-                scope: 'controller'
-              }
-            }
-          }],
-
+        xtype: 'documenteditorprintbutton',
           listeners: {
-            click: {
+            'print': {
               fn: 'onDocumentPrintClick',
               scope: 'controller'
             }
