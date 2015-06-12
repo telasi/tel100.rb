@@ -48,7 +48,7 @@ def properties(pdf)
            [I18n.t("views.document.print.pages"),      "#{@document.page_count}", ""],
            [I18n.t("views.document.print.attachment"), "#{@document.additions}", ""],
            [I18n.t("views.document.print.owner"),      "#{@document.sender.to_s}", 
-           @document.sender.respond_to?(:organization) ? document.sender.organization.chained_name : ""]]
+           @document.sender.respond_to?(:organization) ? @document.sender.organization.chained_name : ""]]
 
   @document.authors.each_with_index do |author, index|
     data += [[ index == 0 ? I18n.t("views.document.print.authors") : "",    "#{author}",
