@@ -9,6 +9,7 @@ class Api::HrController < ApiController
 
   def partylist
     @party = HR::Party.all
+    @party = @party.where(id: params['id']) if params['id'].present?
     @party = @party.where("name_ka LIKE N:p_name or name_en LIKE N:p_name or name_en LIKE N:p_name", { p_name: '%' + params['name'] +'%'}) if params['name'].present?
     @party = @party.where("address_ka LIKE N:p_address or address_ru LIKE N:p_address or address_en LIKE N:p_address", { p_address: '%' + params['address'] +'%'}) if params['address'].present?
       @party = @party.where("contact_ka LIKE N:p_contact or contact_ru LIKE N:p_contact or contact_en LIKE N:p_contact", { p_contact: '%' + params['contact'] +'%'}) if params['address'].present?
@@ -27,7 +28,7 @@ class Api::HrController < ApiController
                                          :identity, :phones, :email))
     @party.org_type = 1
     if @party.save
-     render json: { success: true }
+     render json: { success: true, id: @party.id }
     else
      render json: { success: false, message: @party.errors.full_messages[0] }
     end

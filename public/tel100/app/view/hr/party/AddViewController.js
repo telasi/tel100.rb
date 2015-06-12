@@ -18,9 +18,10 @@ Ext.define('Tel100.view.hr.party.AddViewController', {
   alias: 'controller.hrpartyadd',
 
   onButtonClick: function(button, e, eOpts) {
+    var view = this.getView();
     this.getView().down('form').submit({
       success: function(form, action) {
-        Ext.Msg.alert('Success');
+        view.fireEvent('partyadded', action);
         form.owner.up('window').close();
       },
       failure: function(form, action) {

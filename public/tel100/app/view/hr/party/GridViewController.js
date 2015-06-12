@@ -20,20 +20,28 @@ Ext.define('Tel100.view.hr.party.GridViewController', {
   onButtonClick1: function(button, e, eOpts) {
     var form = this.getView().down('form');
     var params = form.getValues();
-    this.getStore('party').getProxy().setExtraParams(params);
+    this.filterParty(params);
+  },
 
-    //this.getStore('customer').load({ params: form.getValues() });
+  onButtonClick: function(button, e, eOpts) {
+    me = this;
+    var newDialog = Ext.create('Tel100.view.hr.party.Add', {
+      title: i18n.document.motion.selectReceiver,
+      listeners: {
+        partyadded: function(action){
+          me.filterParty({ id: action.result.id });
+        }
+      }
+    });
+    newDialog.show();
+  },
+
+  filterParty: function(params){
+    this.getStore('party').getProxy().setExtraParams(params);
     var st = this.getStore('party');
     st.removeAll();
     st.currentPage = 1;
     this.getStore('party').load();
-  },
-
-  onButtonClick: function(button, e, eOpts) {
-    var newDialog = Ext.create('Tel100.view.hr.party.Add', {
-      title: i18n.document.motion.selectReceiver
-    });
-    newDialog.show();
   }
 
 });

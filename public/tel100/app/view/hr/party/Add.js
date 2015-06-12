@@ -183,6 +183,11 @@ Ext.define('Tel100.view.hr.party.Add', {
         }
       ]
     }
-  ]
+  ],
+
+  initComponent: function () {
+    this.callParent();
+    this.enableBubble('partyadded');
+  }
 
 });
