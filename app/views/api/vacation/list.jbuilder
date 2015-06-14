@@ -8,5 +8,5 @@ json.array! @list do |item|
 
   sub_employee = item.sub_employee
 
-  json.full_name sub_employee.full_name
+  json.full_name sub_employee.full_name if sub_employee
 end
