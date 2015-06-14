@@ -46,15 +46,16 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
   },
 
   onOKButtonClick: function(button, e, eOpts) {
+    var view = this.getView();
     var form = button.up('form').getForm();
     if(form.isValid()) {
       form.submit({
         success: function(form,action) {
+          view.fireEvent('vacationadded', action);
           button.up('window').close();
           //we have to close the window here!!
         },
         failure: function(form,action){
-          debugger;
           Ext.MessageBox.alert('Error',action.result.error);
         }});
       } else {

@@ -393,6 +393,11 @@ Ext.define('Tel100.view.hr.vacation.Window', {
         }
       ]
     }
-  ]
+  ],
+
+  initComponent: function () {
+    this.callParent();
+    this.enableBubble('vacationadded');
+  }
 
 });
