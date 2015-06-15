@@ -48,10 +48,8 @@ var favouriteDecoration = function(record){
     if (record.get('sub_id')){
       value = [value,
              ' - ',
-             '<span class="text-success"><i class="fa fa-user"></i> ',
              i18n.hr.tree.substitude,
-             record.get('sub_name'),
-             '</span>']
+             record.get('sub_name') ]
              .join('');
     }
   }
