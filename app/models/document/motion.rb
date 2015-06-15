@@ -136,8 +136,8 @@ class Document::Motion < ActiveRecord::Base
     # raise 'don\'t have send permission' unless self.can_edit?(user)
     rel = Document::Motion.where(document: self.document, parent: self.parent)
     # checking if there are some motions above this motion
-    upper = rel.where('ordering > ? AND status NOT IN (?)', self.ordering, [DRAFT]).count
-    raise I18n.t('models.document_motion.errors.cannot_send_from_this_level') if upper > 0
+    #upper = rel.where('ordering > ? AND status NOT IN (?)', self.ordering, [DRAFT]).count
+    #raise I18n.t('models.document_motion.errors.cannot_send_from_this_level') if upper > 0
     # sending this motion
     self.sent_at = Time.now
     self.actual_sender = user

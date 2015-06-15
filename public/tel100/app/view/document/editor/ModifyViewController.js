@@ -45,6 +45,28 @@ Ext.define('Tel100.view.document.editor.ModifyViewController', {
         motions.push({ id:            motionid,
                        receiver_id:   receiver.id,
                        receiver_type: receiver.ext_type,
+                       reciever_role: 'assignee',
+                       motion_text:   record.get('motion_text'),
+                       send_type_id:  record.get('send_type_id'),
+                       due_date:      record.get('due_date'),
+                       deleted:       record.get('deleted'),
+                       temp:          record.get('temp') })
+      }
+    });
+
+    var vm = this.getView().down('documentmotionssigneemodifypanel');
+    var st = vm.getViewModel().getStore('motions');
+
+    st.each(function(record){
+      if (record.get('temp') || record.get('deleted')){
+        var motionid = null;
+        if(record.get('deleted')){ motionid = record.get('id'); }
+        var receiver = record.get('receiver');
+        motions.push({ id:            motionid,
+                       receiver_id:   receiver.id,
+                       receiver_type: receiver.ext_type,
+                       receiver_role: 'signee',
+                       ordering:      record.get('ordering'),
                        motion_text:   record.get('motion_text'),
                        send_type_id:  record.get('send_type_id'),
                        due_date:      record.get('due_date'),
@@ -61,8 +83,8 @@ Ext.define('Tel100.view.document.editor.ModifyViewController', {
           document.commit(true);
           component.up('window').destroy();
         }.bind(this),
-        failure: function() {
-          console.log('failed to save document');
+        failure: function(msg) {
+          Ext.Msg.alert(i18n.errors.title, msg);
         }
     });
   }

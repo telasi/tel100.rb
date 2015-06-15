@@ -219,18 +219,24 @@ class Document::Base < ActiveRecord::Base
 
   def modify(params, user)
     motions = JSON.parse(params[:motions])
+    should_reset_signees = false
 
     #check if changes were made
     dirty = false
-    dirty = self.text.body != params[:body]
+    dirty = self.text.body != params[:body] if params[:body].present?
     dirty ||= Document::FileTemp.where(document: self).where('state in (?)', [Document::Change::STATE_TEMP, Document::Change::STATE_DELETED]).any?
-    dirty ||= motions.empty?
+    
+    # reset signees if text and files are dirty
+    # if assignees are dirty is checked below
+    should_reset_signees = dirty 
+
+    dirty ||= !motions.empty?
     return if not dirty
 
     Document::Base.transaction do
       change = Document::Change.new(document_id: params[:id], user: user, created_at: Time.now)
       change.save!
-
+      # Save text to history
       histext = Document::History::Text.new(document: self)
       if self.text
         histext.body = self.text.body
@@ -239,17 +245,17 @@ class Document::Base < ActiveRecord::Base
       end
       histext.change_no = change.id
       histext.save!
-
+      # new text
       text = self.text || Document::Text.new(document: self)
       text.body = params[:body] || self.text.body
       text.save!
-
+      # Save files to history
       Document::File.where(document: self).map do |f|
         hisfile = Document::History::File.new(document: self, original_name: f.original_name, store_name: f.store_name, change_no: change.id)
         hisfile.save!
         f.delete
       end
-
+      # Save new files
       Document::FileTemp.where(document: self).map do |f|
         if f.state == Document::Change::STATE_TEMP || f.state == Document::Change::STATE_CURRENT
           newfile = Document::File.new(document: self, original_name: f.original_name, store_name: f.store_name)
@@ -266,6 +272,12 @@ class Document::Base < ActiveRecord::Base
         hismotion.save!
       end
 
+      self.signee_motions.map do |m|
+        hismotion = Document::History::Motion.new(m.attributes.merge({id: nil}))
+        hismotion.change_no = change.id
+        hismotion.save!
+      end
+
       # process motions
       motions.each do |m|
         if m["deleted"]
@@ -276,20 +288,36 @@ class Document::Base < ActiveRecord::Base
           motion_params = {
             document_id:    params[:id],
             parent_id:      nil,
-            receiver_role:  ROLE_ASSIGNEE,
+            receiver_role:  m["receiver_role"],
             receiver_id:    m["receiver_id"],
             receiver_type:  m["receiver_type"],
-            ordering:       nil,
+            ordering:       m["ordering"],
             send_type_id:   m["send_type_id"],
             due_date:       m["due_date"]
           }
           motion = Document::Motion.create_draft!(user, motion_params)
           motion.send_draft!(user)
         end
+
+        should_reset_signees = true if m["receiver_role"] == 'assignee'
       end
+
+      motions_to_process = self.motions.where('status IN (?) AND receiver_role = ?', [SENT, CURRENT], ROLE_SIGNEE).order(:ordering)
+      if motions_to_process.count > 0
+        ordering = motions_to_process.minimum('ordering')
+        motions_to_process = motions_to_process.where(ordering: ordering)
+        motions_to_process.each do |motion_to_process|
+          docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: CURRENT })
+          motion_to_process.status = CURRENT
+          motion_to_process.received_at = Time.now
+          motion_to_process.save!
+          docuser.calculate!
+        end
+      end
+
+      reset_signees if should_reset_signees
     end
 
-    reset_signees
   end
 
   private

@@ -118,12 +118,12 @@ Ext.define('Tel100.view.document.editor.Modify', {
             hideCollapseTool: true
           },
           items: [
-            // {
-            //   xtype: 'documentmotionssigneepanel',
-            //   listeners: {
-            //     datachanged: 'onSigneesChanged'
-            //   }
-            // },
+            {
+              xtype: 'documentmotionssigneemodifypanel',
+              listeners: {
+                datachanged: 'onSigneesChanged'
+              }
+            },
             {
               xtype: 'documentmotionsassigneemodifypanel',
               listeners: {

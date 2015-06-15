@@ -21,6 +21,9 @@ Ext.define('Tel100.view.document.motions.AssigneeModifyPanelViewController', {
 
     var motion = Ext.create('Tel100.model.document.Motion', motionData);
     store.add(motion);
+    if (callback) {
+      callback(null, motion);
+    }
   },
 
   addTempReceivers: function(receivers) {

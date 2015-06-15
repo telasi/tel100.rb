@@ -130,6 +130,7 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanel', {
   },
 
   onGridBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
+    if(record.get('status') != helpers.document.status.COMPLETED && record.get('status') != helpers.document.status.CANCELED ){
       var gridMenu = Ext.create('Ext.menu.Menu', {
         items: [{
           text: i18n.document.motion.actions.delete_signee,
@@ -143,6 +144,7 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanel', {
 
       e.stopEvent();
       gridMenu.showAt(e.getXY());
+    }
   },
 
   onRefreshToolClick: function(tool, e, owner, eOpts) {
@@ -185,7 +187,9 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanel', {
     if(item.get('temp')){
       store.remove(item);
     } else {
-      item.set('deleted', true);
+      if(item.get('status') != helpers.document.status.COMPLETED && item.get('status') != helpers.document.status.CANCELED ){
+        item.set('deleted', true);        
+      }
     }
   }
 });

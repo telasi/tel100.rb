@@ -10,8 +10,13 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanelViewController', {
     var document = vm.get('document');
     var store = vm.getStore('motions');
 
+    var max = 0;
+    store.each(function(record){ max = record.get('ordering'); });
+    max++;
+
     motionData = {
-      status: 0,
+      status: 1,
+      ordering: max,
       receiver: receiver.data,
       send_type_id: 11,
       motion_text: null,
@@ -44,27 +49,27 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanelViewController', {
   },
 
   onBeforeRender: function(component, eOpts) {
-    // var view = this.getView();
-    // var vm = this.getViewModel();
-    // var onChange = function(newVal, oldVal, binding) {
-    //   if (newVal && newVal.dirty) {
-    //     var motion = newVal;
-    //     var changes = motion.getChanges();
-    //     helpers.api.document.motion.updateDraft(motion.id, {
-    //       params: changes,
-    //       success: function() {
-    //         motion.commit();
-    //         view.fireEvent('datachanged', view, 'update', motion);
-    //         if (changes.send_type_id) { view.refresh(); }
-    //       }.bind(this),
-    //       failure: function(message) {
-    //         motion.reject();
-    //         console.error(message);
-    //       }
-    //     });
-    //   }
-    // };
-    // var options = { deep: true };
-    // vm.bind('{selection}', onChange, this, { deep: true });
+    var vm = this.getViewModel();
+    var onChange = function(newVal, oldVal, binding) {
+       if (newVal && newVal.dirty) {
+         var motion = newVal;
+         var changes = motion.getChanges();
+         var vm = this.getViewModel();
+         var st = vm.getStore('motions');
+         // reject if ordering less or equal motion with CURRENT status
+        for(i=0;i<st.data.length; i++){
+          var item = st.data.items[i];
+          if( (newVal.get('ordering') <= item.get('ordering')) && 
+              (item.get('status') in [2, 3, -3]) 
+            ){
+               motion.reject();
+               return;
+            };
+        };
+        motion.commit();
+       }
+    };
+    var options = { deep: true };
+    vm.bind('{selection}', onChange, this, { deep: true });
   }
 });
