@@ -87,7 +87,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
           text: '{i18n.document.base.ui.history}'
         },
         listeners: {
-          click: 'onAuthorDocument'
+          click: 'onHistoryShow'
         }
       }]
     }],
