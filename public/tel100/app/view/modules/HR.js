@@ -93,7 +93,7 @@ Ext.define('Tel100.view.modules.HRViewController', {
 
   refreshVacationGrid: function(){
     var view = this.getView();
-    view.down('gridpanel').getStroe().reload();
+    view.down('gridpanel').getStore().reload();
   }
 });
 
