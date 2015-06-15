@@ -25,6 +25,10 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
       return get('document.as_author') !== 1;
     },
 
+    hideHistoryButton: function(get) {
+      return !get('document.has_history');
+    },
+
     authors: function(get) {
       var authors = get('document.authors');
       var text = [];

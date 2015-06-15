@@ -51,6 +51,10 @@ module.exports = {
     motionsTabTitle: {
       ka: '<i class="fa fa-send"></i> მოძრაობები',
       ru: '<i class="fa fa-send"></i> Движения'
+    },
+    history: {
+      ka: '<i class="fa fa-history"></i> ისტორია',
+      ru: '<i class="fa fa-history"></i> История'
     }
   },
   errors: {

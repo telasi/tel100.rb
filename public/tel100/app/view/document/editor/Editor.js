@@ -80,6 +80,15 @@ Ext.define('Tel100.view.document.editor.Editor', {
         listeners: {
           click: 'onAuthorDocument'
         }
+      }, {
+        xtype: 'button',
+        bind: {
+          hidden: '{hideHistoryButton}',
+          text: '{i18n.document.base.ui.history}'
+        },
+        listeners: {
+          click: 'onAuthorDocument'
+        }
       }]
     }],
     items: [{
