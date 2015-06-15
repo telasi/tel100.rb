@@ -375,12 +375,12 @@ class Document::Base < ActiveRecord::Base
   end
 
   def reset_signees
-    self.signee_motions.map do |s|
-      s.status = CURRENT
-      s.resp_type_id = nil
-      s.save
+    self.signee_motions.where('status IN (?)', [ COMPLETED, CANCELED ]).map do |smotion|
+      smotion.status = CURRENT
+      smotion.resp_type_id = nil
+      smotion.save
 
-      receiver_du = s.document.users.where(user: s.receiver_user).first
+      receiver_du = smotion.document.users.where(user: smotion.receiver_user).first
       receiver_du.calculate! if receiver_du.present?
     end
   end
