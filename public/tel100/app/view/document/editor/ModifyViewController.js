@@ -45,7 +45,7 @@ Ext.define('Tel100.view.document.editor.ModifyViewController', {
         motions.push({ id:            motionid,
                        receiver_id:   receiver.id,
                        receiver_type: receiver.ext_type,
-                       reciever_role: 'assignee',
+                       receiver_role: 'assignee',
                        motion_text:   record.get('motion_text'),
                        send_type_id:  record.get('send_type_id'),
                        due_date:      record.get('due_date'),

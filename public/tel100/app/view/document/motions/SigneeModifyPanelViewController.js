@@ -54,18 +54,21 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanelViewController', {
        if (newVal && newVal.dirty) {
          var motion = newVal;
          var changes = motion.getChanges();
-         var vm = this.getViewModel();
-         var st = vm.getStore('motions');
-         // reject if ordering less or equal motion with CURRENT status
-        for(i=0;i<st.data.length; i++){
-          var item = st.data.items[i];
-          if( (newVal.get('ordering') <= item.get('ordering')) && 
-              (item.get('status') in [2, 3, -3]) 
-            ){
-               motion.reject();
-               return;
+         // only when ordering is changed
+         if(changes.ordering){
+            var vm = this.getViewModel();
+            var st = vm.getStore('motions');
+            // reject if ordering less or equal motion with CURRENT status
+            for(i=0;i<st.data.length; i++){
+              var item = st.data.items[i];
+              if( (newVal.get('ordering') <= item.get('ordering')) && 
+                  (item.get('status') in [2, 3, -3]) 
+                ){
+                   motion.reject();
+                   return;
+                };
             };
-        };
+         }
         motion.commit();
        }
     };
