@@ -18,7 +18,6 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanelViewController', {
       status: 1,
       ordering: max,
       receiver: receiver.data,
-      send_type_id: 11,
       motion_text: null,
       due_date: null,
       temp: true
