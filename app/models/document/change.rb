@@ -11,5 +11,4 @@ class Document::Change < ActiveRecord::Base
   has_many :files, class_name: 'Document::File', foreign_key: 'change_no'
   has_many :texts, class_name: 'Document::Text', foreign_key: 'change_no'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
-
 end
