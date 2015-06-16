@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 module ResponseTypesHelper
   include Document::ResponseTypeDirection
+  include Document::Role
 
   def response_type_directions
     {
