@@ -60,9 +60,8 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanelViewController', {
             // reject if ordering less or equal motion with CURRENT status
             for(i=0;i<st.data.length; i++){
               var item = st.data.items[i];
-              if( (newVal.get('ordering') <= item.get('ordering')) && 
-                  (item.get('status') in [2, 3, -3]) 
-                ){
+              if( newVal.id == item.id ){ continue; };
+              if( (newVal.get('ordering') <= item.get('ordering')) && ( [2, 3, -3].indexOf(item.get('status')) > 0 ) ){
                    motion.reject();
                    return;
                 };
