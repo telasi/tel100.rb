@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616075156) do
+ActiveRecord::Schema.define(version: 20150518120901) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",         limit: 2,                             default: "KA",    null: false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150616075156) do
     t.timestamp "received_at",      limit: 6
     t.timestamp "completed_at",     limit: 6
     t.timestamp "updated_at",       limit: 6,                                               null: false
+    t.string    "docnumber2",       limit: 20
   end
 
   create_table "document_change", force: true do |t|
@@ -124,13 +125,11 @@ ActiveRecord::Schema.define(version: 20150616075156) do
     t.integer   "send_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "motion_text",      limit: 1000
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
-    t.integer   "actual_sender_id", limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",      limit: 50
     t.integer   "resp_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "response_text",    limit: 1000
     t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
-    t.integer   "last_receiver_id", limit: 10,   precision: 10, scale: 0
     t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
     t.string    "receiver_type",    limit: 50
     t.string    "receiver_role",    limit: 10,                            default: "assignee", null: false
@@ -146,8 +145,8 @@ ActiveRecord::Schema.define(version: 20150616075156) do
   create_table "document_relation", force: true do |t|
     t.integer   "base_id",      limit: 10,  precision: 10, scale: 0, null: false
     t.integer   "related_id",   limit: 10,  precision: 10, scale: 0, null: false
-    t.string    "related_type", limit: 100,                          null: false
     t.timestamp "created_at",   limit: 6,                            null: false
+    t.string    "related_type", limit: 100,                          null: false
   end
 
   create_table "document_response_types", force: true do |t|
@@ -162,13 +161,6 @@ ActiveRecord::Schema.define(version: 20150616075156) do
   end
 
   add_index "document_response_types", ["role", "direction", "ordering"], name: "docresptype_role_dirct_idx"
-
-  create_table "document_send_orderings", id: false, force: true do |t|
-    t.string  "role",     limit: 10,                          null: false
-    t.integer "user_id",  limit: 10, precision: 10, scale: 0, null: false
-    t.integer "type_id",  limit: 5,  precision: 5,  scale: 0, null: false
-    t.integer "ordering", limit: 4,  precision: 4,  scale: 0, null: false
-  end
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
     t.text "body"
@@ -425,10 +417,10 @@ ActiveRecord::Schema.define(version: 20150616075156) do
     t.string    "last_name_ka",     limit: 50,                                           null: false
     t.string    "last_name_ru",     limit: 50
     t.string    "last_name_en",     limit: 50
-    t.string    "eflow_user_name",  limit: 100
     t.string    "password_hash",    limit: 60,                                           null: false
     t.timestamp "created_at",       limit: 6,                                            null: false
     t.timestamp "updated_at",       limit: 6,                                            null: false
+    t.string    "eflow_user_name",  limit: 100
   end
 
   add_index "users", ["email"], name: "users_email_idx", unique: true
