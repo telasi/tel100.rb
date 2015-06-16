@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518120901) do
+ActiveRecord::Schema.define(version: 20150616075156) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",         limit: 2,                             default: "KA",    null: false
@@ -162,6 +162,13 @@ ActiveRecord::Schema.define(version: 20150518120901) do
   end
 
   add_index "document_response_types", ["role", "direction", "ordering"], name: "docresptype_role_dirct_idx"
+
+  create_table "document_send_orderings", id: false, force: true do |t|
+    t.string  "role",     limit: 10,                          null: false
+    t.integer "user_id",  limit: 10, precision: 10, scale: 0, null: false
+    t.integer "type_id",  limit: 5,  precision: 5,  scale: 0, null: false
+    t.integer "ordering", limit: 4,  precision: 4,  scale: 0, null: false
+  end
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
     t.text "body"
