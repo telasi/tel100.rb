@@ -154,6 +154,10 @@ Rails.application.routes.draw do
         get '/document/:id', action: 'print'
         get '/sign/:id', action: 'sign'
       end
+      scope 'changes', controller: 'changes' do
+        get '/', action: 'index'
+        get '/show', action: 'show'
+      end
     end
     scope 'sap', controller: 'sap' do
       get '/sync', action: 'sync'

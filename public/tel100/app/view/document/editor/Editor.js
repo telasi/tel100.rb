@@ -311,5 +311,21 @@ Ext.define('Tel100.view.document.editor.Editor', {
         treePanel.refresh();
       }
     });
+  },
+
+  onHistoryShow: function(){
+    var vm = this.getViewModel();
+    var document = vm.get('document');
+
+    var historyWindow = Ext.create('Tel100.view.document.history.Window', {
+      title: 'History',
+      viewModel: {
+        data: {
+          document: document
+        }
+      }
+    });
+    historyWindow.show();
   }
+
 });

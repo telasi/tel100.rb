@@ -78,9 +78,5 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
     var vm = this.getViewModel();
     var field = 'printParams.' + menucheckitem.itemId;
     vm.set(field, checked);
-  },
-
-  onHistoryShow: function(){
-    
   }
 });
