@@ -92,6 +92,7 @@ class Document::Motion < ActiveRecord::Base
     })
     # first author is an owner of the document as well
     if role == ROLE_AUTHOR and receiver_user.present? and document.owner_user == document.sender_user
+      document.owner = receiver
       document.owner_user = receiver_user
       document.save!
     end
