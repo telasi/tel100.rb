@@ -262,8 +262,8 @@ class Document::Base < ActiveRecord::Base
       histext.change_no = change.id
       histext.save!
 
-      self.subject ||= params[:subject]
-      self.docnumber ||= params[:docnumber]
+      self.subject = params[:subject] if params[:subject].present?
+      self.docnumber = params[:docnumber] if params[:docnumber].present?
       self.save
       # new text
       text = self.text || Document::Text.new(document: self)
