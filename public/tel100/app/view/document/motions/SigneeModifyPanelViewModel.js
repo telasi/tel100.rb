@@ -14,11 +14,11 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanelViewModel', {
       //   this.viewModel.set('assigneeCount', store.getCount());
       //   this.view.fireEvent('listchanged', store);
       // },
-      // listeners: {
-      //   datachanged: function() {
-      //     this.onStoreChanges();
+      //listeners: {
+      //  datachanged: function() {
+           // this.onStoreChanges();
       //   }
-      // },
+      //},
       autoLoad: true,
       model: 'Tel100.model.document.Motion',
       proxy: {
@@ -26,6 +26,7 @@ Ext.define('Tel100.view.document.motions.SigneeModifyPanelViewModel', {
         extraParams: {
           mode: 'out',
           role: 'signee',
+          modify: 'true',
           document_id: '{document.id}'
         },
         url: '/api/documents/motion',
