@@ -260,7 +260,7 @@ class Document::Motion < ActiveRecord::Base
   private
 
   def cancel_ups!
-    ups = Document::Motion.where(parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
+    ups = Document::Motion.where(document_id: self.document_id, parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
     ups.each do |up|
       docuser = Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: NOT_RECEIVED })
       up.status = NOT_RECEIVED
@@ -271,7 +271,7 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def resend_ups!
-    thisLevel = Document::Motion.where(parent_id: self.parent_id, status: CURRENT, ordering: self.ordering).count
+    thisLevel = Document::Motion.where(document_id: self.document_id, parent_id: self.parent_id, status: CURRENT, ordering: self.ordering).count
     if thisLevel == 0
       ups = Document::Motion.where(parent_id: self.parent_id).where('status IN (?) AND ordering > ?', [SENT, CURRENT], self.ordering)
       if ups.count > 0
