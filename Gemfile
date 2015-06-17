@@ -56,9 +56,11 @@ gem 'yajl-ruby'
 gem 'tzinfo'
 gem 'tzinfo-data'
 
-# pdf
+# PDF
 gem 'prawn'
 gem 'prawn-table'
 gem 'prawn_rails'
 gem 'barby'
 gem 'rqrcode'
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
