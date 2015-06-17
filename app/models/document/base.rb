@@ -236,12 +236,14 @@ class Document::Base < ActiveRecord::Base
     #check if changes were made
     dirty = false
     dirty = self.text.body != params[:body] if params[:body].present?
+    dirty = self.subject != params[:subject] if params[:subject].present?
     dirty ||= Document::FileTemp.where(document: self).where('state in (?)', [Document::Change::STATE_TEMP, Document::Change::STATE_DELETED]).any?
     
     # reset signees if text and files are dirty
     # if assignees are dirty is checked below
     should_reset_signees = dirty 
 
+    dirty = self.docnumber != params[:docnumber] if params[:docnumber].present?
     dirty ||= !motions.empty?
     return if not dirty
 
@@ -255,12 +257,18 @@ class Document::Base < ActiveRecord::Base
       else
         histext.body = ""
       end
+      histext.subject = self.subject
+      histext.docnumber = self.docnumber
       histext.change_no = change.id
       histext.save!
+
+      self.subject = params[:subject]
+      self.docnumber = params[:docnumber]
       # new text
       text = self.text || Document::Text.new(document: self)
       text.body = params[:body] || self.text.body
       text.save!
+
       # Save files to history
       Document::File.where(document: self).map do |f|
         hisfile = Document::History::File.new(document: self, original_name: f.original_name, store_name: f.store_name, change_no: change.id)
