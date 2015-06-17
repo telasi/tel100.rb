@@ -93,6 +93,17 @@ Ext.define('Tel100.view.document.editor.Modify', {
               }
             },
             {
+              xtype: 'textfield',
+              submitEmptyText: false,
+              padding: 5,
+              labelAlign: 'top',
+              emptyText: 'enter document\'s number',
+              bind: {
+                fieldLabel: '{i18n.document.base.docnumber}',
+                value: '{document.docnumber}'
+              }
+            },
+            {
               xtype: 'htmleditor',
               flex: 1,
               itemId: 'documentBody',

@@ -25,6 +25,9 @@ class Api::Documents::MotionController < ApiController
 
     rel = rel.where(receiver_role: params[:role]) if params[:role].present?
 
+    # if we call tis from modification windows we get rid of ORDERING_AUTO_SIGNEE signee
+    rel = rel.where('ordering NOT IN (?)', Document::Motion::ORDERING_AUTO_SIGNEE) if params[:modify].present?
+
     motions = rel.order('ordering ASC, id ASC').to_a
     if hasbase
       @motions = [ nil ] + motions
