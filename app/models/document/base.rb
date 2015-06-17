@@ -264,6 +264,7 @@ class Document::Base < ActiveRecord::Base
 
       self.subject = params[:subject]
       self.docnumber = params[:docnumber]
+      self.save
       # new text
       text = self.text || Document::Text.new(document: self)
       text.body = params[:body] || self.text.body
