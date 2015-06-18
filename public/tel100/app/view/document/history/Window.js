@@ -48,6 +48,30 @@ Ext.define('Tel100.view.document.history.Window', {
               region: 'center',
               layout: 'border',
               items: [{
+                xtype: 'textfield',
+                labelAlign: 'top',
+                region: 'north',
+                baseCls: 'white-panel',
+                border: false,
+                padding: 5,
+                readOnly: true,
+                bind: {
+                  fieldLabel: '{i18n.document.base.subject}',
+                  value: '{change.subject}'
+                }
+              },{
+                xtype: 'textfield',
+                labelAlign: 'top',
+                region: 'north',
+                baseCls: 'white-panel',
+                border: false,
+                readOnly: true,
+                padding: 5,
+                bind: {
+                  fieldLabel: '{i18n.document.base.docnumber2}',
+                  value: '{change.docnumber2}'
+                }
+              },{
                 xtype: 'panel',
                 region: 'center',
                 bodyPadding: 10,
@@ -55,7 +79,7 @@ Ext.define('Tel100.view.document.history.Window', {
                   html: '{change.body}'
                 },
               },{
-                xtype: 'panel',
+                xtype: 'container',
                 region: 'east',
                 layout: 'vbox',
                 items: [{ 

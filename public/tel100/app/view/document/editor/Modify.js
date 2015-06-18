@@ -99,8 +99,8 @@ Ext.define('Tel100.view.document.editor.Modify', {
               labelAlign: 'top',
               emptyText: 'enter document\'s number',
               bind: {
-                fieldLabel: '{i18n.document.base.docnumber}',
-                value: '{document.docnumber}'
+                fieldLabel: '{i18n.document.base.docnumber2}',
+                value: '{document.docnumber2}'
               }
             },
             {

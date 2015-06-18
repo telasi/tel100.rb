@@ -233,6 +233,11 @@ class Document::Base < ActiveRecord::Base
     motions = JSON.parse(params[:motions])
     should_reset_signees = false
 
+    #check if docnumber already exists
+    if params[:docnumber2] && self.docnumber2 != params[:docnumber2]
+      raise I18n.t('models.document_base.errors.docnumber2_exists') if Document::Base.where(docnumber2: params[:docnumber2]).any?
+    end
+
     #check if changes were made
     dirty = false
     dirty = self.text.body != params[:body] if params[:body].present?
@@ -243,7 +248,7 @@ class Document::Base < ActiveRecord::Base
     # if assignees are dirty is checked below
     should_reset_signees = dirty 
 
-    dirty = self.docnumber != params[:docnumber] if params[:docnumber].present?
+    dirty = self.docnumber2 != params[:docnumber2] if params[:docnumber2].present?
     dirty ||= !motions.empty?
     return if not dirty
 
@@ -258,12 +263,12 @@ class Document::Base < ActiveRecord::Base
         histext.body = ""
       end
       histext.subject = self.subject
-      histext.docnumber = self.docnumber
+      histext.docnumber2 = self.docnumber2
       histext.change_no = change.id
       histext.save!
 
       self.subject = params[:subject] if params[:subject].present?
-      self.docnumber = params[:docnumber] if params[:docnumber].present?
+      self.docnumber2 = params[:docnumber2] if params[:docnumber2].present?
       self.save
       # new text
       text = self.text || Document::Text.new(document: self)
