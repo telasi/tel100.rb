@@ -28,7 +28,7 @@ class Document::Base < ActiveRecord::Base
   def is_reply?; Document::Relation.where(base_id: self.id).any? end
 
   def is_editable?(user); 
-    return false if self.author_motions.where(status: COMPLETED).any?
+    return false if ( self.author_motions.where(status: COMPLETED).any? && author?(user) )
     return false if self.signee_motions.where(receiver_user: user, status: COMPLETED).any?
     author?(user) || owner?(user) || signee?(user)
   end
@@ -233,9 +233,17 @@ class Document::Base < ActiveRecord::Base
     motions = JSON.parse(params[:motions])
     should_reset_signees = false
 
+    #check if docnumber already exists
+    if params[:docnumber2] && self.docnumber2 != params[:docnumber2]
+      raise I18n.t('models.document_base.errors.docnumber2_exists') if Document::Base.where(docnumber2: params[:docnumber2]).any?
+    end
+
+    oldtext = ''
+    oldtext = self.text.body if self.text 
+
     #check if changes were made
     dirty = false
-    dirty = self.text.body != params[:body] if params[:body].present?
+    dirty = oldtext != params[:body] if params[:body].present?
     dirty = self.subject != params[:subject] if params[:subject].present?
     dirty ||= Document::FileTemp.where(document: self).where('state in (?)', [Document::Change::STATE_TEMP, Document::Change::STATE_DELETED]).any?
     
@@ -243,7 +251,7 @@ class Document::Base < ActiveRecord::Base
     # if assignees are dirty is checked below
     should_reset_signees = dirty 
 
-    dirty = self.docnumber != params[:docnumber] if params[:docnumber].present?
+    dirty = self.docnumber2 != params[:docnumber2] if params[:docnumber2].present?
     dirty ||= !motions.empty?
     return if not dirty
 
@@ -252,18 +260,14 @@ class Document::Base < ActiveRecord::Base
       change.save!
       # Save text to history
       histext = Document::History::Text.new(document: self)
-      if self.text
-        histext.body = self.text.body
-      else
-        histext.body = ""
-      end
+      histext.body = oldtext
       histext.subject = self.subject
-      histext.docnumber = self.docnumber
+      histext.docnumber2 = self.docnumber2
       histext.change_no = change.id
       histext.save!
 
-      self.subject = params[:subject]
-      self.docnumber = params[:docnumber]
+      self.subject = params[:subject] if params[:subject].present?
+      self.docnumber2 = params[:docnumber2] if params[:docnumber2].present?
       self.save
       # new text
       text = self.text || Document::Text.new(document: self)
