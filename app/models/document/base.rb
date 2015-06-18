@@ -238,9 +238,12 @@ class Document::Base < ActiveRecord::Base
       raise I18n.t('models.document_base.errors.docnumber2_exists') if Document::Base.where(docnumber2: params[:docnumber2]).any?
     end
 
+    oldtext = ''
+    oldtext = self.text.body if self.text 
+
     #check if changes were made
     dirty = false
-    dirty = self.text.body != params[:body] if params[:body].present?
+    dirty = oldtext != params[:body] if params[:body].present?
     dirty = self.subject != params[:subject] if params[:subject].present?
     dirty ||= Document::FileTemp.where(document: self).where('state in (?)', [Document::Change::STATE_TEMP, Document::Change::STATE_DELETED]).any?
     
@@ -257,11 +260,7 @@ class Document::Base < ActiveRecord::Base
       change.save!
       # Save text to history
       histext = Document::History::Text.new(document: self)
-      if self.text
-        histext.body = self.text.body
-      else
-        histext.body = ""
-      end
+      histext.body = oldtext
       histext.subject = self.subject
       histext.docnumber2 = self.docnumber2
       histext.change_no = change.id
