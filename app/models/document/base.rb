@@ -400,7 +400,14 @@ class Document::Base < ActiveRecord::Base
   end
 
   def reset_signees
-    self.signee_motions.where('status IN (?)', [ COMPLETED, CANCELED ]).map do |smotion|
+    signees_to_process = self.signee_motions.where('status IN (?)', [ COMPLETED, CANCELED ])
+
+    max_author_ordering = self.author_motions.where(status: COMPLETED).max(:ordering)
+    if max_author_ordering
+      signees_to_process = signees_to_process.where('ordering > ?', max_author_ordering)
+    end
+
+    signees_to_process.map do |smotion|
       smotion.status = CURRENT
       smotion.resp_type_id = nil
       smotion.save
