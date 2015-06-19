@@ -402,7 +402,7 @@ class Document::Base < ActiveRecord::Base
   def reset_signees
     signees_to_process = self.signee_motions.where('status IN (?)', [ COMPLETED, CANCELED ])
 
-    max_author_ordering = self.author_motions.where(status: COMPLETED).max(:ordering)
+    max_author_ordering = self.author_motions.where(status: COMPLETED).maximum('ordering')
     if max_author_ordering
       signees_to_process = signees_to_process.where('ordering > ?', max_author_ordering)
     end
