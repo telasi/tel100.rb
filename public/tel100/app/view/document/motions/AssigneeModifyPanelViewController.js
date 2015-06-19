@@ -9,11 +9,13 @@ Ext.define('Tel100.view.document.motions.AssigneeModifyPanelViewController', {
     var extType = receiver.get('ext_type');
     var document = vm.get('document');
     var store = vm.getStore('motions');
+    var responseTypeStore = vm.getStore('responseTypes');
+    var send_type_id = responseTypeStore.min('id');
 
     motionData = {
       status: 0,
       receiver: receiver.data,
-      send_type_id: 11,
+      send_type_id: send_type_id,
       motion_text: null,
       due_date: null,
       temp: true
