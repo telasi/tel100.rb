@@ -126,7 +126,7 @@ class Api::Documents::BaseController < ApiController
 
   def edit
     doc = Document::Base.find(params[:id])
-    render json: { success: doc.modify(params, current_user) }
+    render json: { success: doc.modify(params, effective_user) }
   end
 
   def united_role_filter(pdoc, search_string, role)
