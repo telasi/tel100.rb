@@ -252,23 +252,28 @@ class Document::Base < ActiveRecord::Base
     should_reset_signees = dirty 
 
     dirty = self.docnumber2 != params[:docnumber2] if params[:docnumber2].present?
+    dirty = self.docdate != params[:docdate] if params[:docdate].present?
     dirty ||= !motions.empty?
     return if not dirty
 
     Document::Base.transaction do
       change = Document::Change.new(document_id: params[:id], user: user, created_at: Time.now)
+      change.subject = self.subject
+      change.docnumber2 = self.docnumber2
+      change.docdate = self.docdate
       change.save!
-      # Save text to history
-      histext = Document::History::Text.new(document: self)
-      histext.body = oldtext
-      histext.subject = self.subject
-      histext.docnumber2 = self.docnumber2
-      histext.change_no = change.id
-      histext.save!
 
       self.subject = params[:subject] if params[:subject].present?
       self.docnumber2 = params[:docnumber2] if params[:docnumber2].present?
+      self.docdate = params[:docdate] if params[:docdate].present?
       self.save
+      
+      # Save text to history
+      histext = Document::History::Text.new(document: self)
+      histext.body = oldtext
+      histext.change_no = change.id
+      histext.save!
+
       # new text
       text = self.text || Document::Text.new(document: self)
       text.body = params[:body] || self.text.body

@@ -93,15 +93,31 @@ Ext.define('Tel100.view.document.editor.Modify', {
               }
             },
             {
-              xtype: 'textfield',
-              submitEmptyText: false,
-              padding: 5,
-              labelAlign: 'top',
-              emptyText: 'enter document\'s number',
-              bind: {
-                fieldLabel: '{i18n.document.base.docnumber2}',
-                value: '{document.docnumber2}'
-              }
+              xtype: 'fieldcontainer',
+              layout: 'hbox',
+              items:[{
+                  flex: 1,
+                  xtype: 'textfield',
+                  submitEmptyText: false,
+                  padding: 5,
+                  labelAlign: 'top',
+                  emptyText: 'enter document\'s number',
+                  bind: {
+                    fieldLabel: '{i18n.document.base.docnumber2}',
+                    value: '{document.docnumber2}'
+                  }
+                },
+                {
+                  xtype: 'datefield',
+                  format: 'd/m/Y',
+                  padding: 5,
+                  labelAlign: 'top',
+                  emptyText: 'enter document\'s number',
+                  bind: {
+                    fieldLabel: '{i18n.document.base.docdate}',
+                    value: '{document.docdate}'
+                  }
+                }]
             },
             {
               xtype: 'htmleditor',

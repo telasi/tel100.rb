@@ -5,8 +5,6 @@ class AddTextHistoryTable < ActiveRecord::Migration
         ID number(10, 0) not null,
       	DOCUMENT_ID number(10, 0) not null,
         BODY        clob,
-        SUBJECT     varchar2(1000),
-        docnumber   varchar2(20),
         CHANGE_NO   number(10, 0),
         constraint DOCTEXTHIS_PRIMARYKEY primary key ( ID ) enable
       )
