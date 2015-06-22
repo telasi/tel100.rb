@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150518120901) do
     t.string    "original_number",  limit: 50
     t.datetime  "original_date"
     t.string    "docnumber",        limit: 20
+    t.string    "docnumber2",       limit: 20
     t.datetime  "docdate"
     t.integer   "docyear",          limit: 4,    precision: 4,  scale: 0
     t.integer   "page_count",       limit: 6,    precision: 6,  scale: 0
@@ -41,13 +42,15 @@ ActiveRecord::Schema.define(version: 20150518120901) do
     t.timestamp "received_at",      limit: 6
     t.timestamp "completed_at",     limit: 6
     t.timestamp "updated_at",       limit: 6,                                               null: false
-    t.string    "docnumber2",       limit: 20
   end
 
   create_table "document_change", force: true do |t|
-    t.integer   "document_id", limit: 10, precision: 10, scale: 0, null: false
-    t.integer   "user_id",     limit: 10, precision: 10, scale: 0, null: false
-    t.timestamp "created_at",  limit: 6,                           null: false
+    t.integer   "document_id", limit: 10,   precision: 10, scale: 0, null: false
+    t.integer   "user_id",     limit: 10,   precision: 10, scale: 0, null: false
+    t.string    "subject",     limit: 1000
+    t.string    "docnumber2",  limit: 20
+    t.datetime  "docdate"
+    t.timestamp "created_at",  limit: 6,                             null: false
   end
 
   create_table "document_comment", force: true do |t|
@@ -125,11 +128,13 @@ ActiveRecord::Schema.define(version: 20150518120901) do
     t.integer   "send_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "motion_text",      limit: 1000
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
+    t.integer   "actual_sender_id", limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",      limit: 50
     t.integer   "resp_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "response_text",    limit: 1000
     t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "last_receiver_id", limit: 10,   precision: 10, scale: 0
     t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
     t.string    "receiver_type",    limit: 50
     t.string    "receiver_role",    limit: 10,                            default: "assignee", null: false
@@ -145,8 +150,8 @@ ActiveRecord::Schema.define(version: 20150518120901) do
   create_table "document_relation", force: true do |t|
     t.integer   "base_id",      limit: 10,  precision: 10, scale: 0, null: false
     t.integer   "related_id",   limit: 10,  precision: 10, scale: 0, null: false
-    t.timestamp "created_at",   limit: 6,                            null: false
     t.string    "related_type", limit: 100,                          null: false
+    t.timestamp "created_at",   limit: 6,                            null: false
   end
 
   create_table "document_response_types", force: true do |t|
@@ -173,12 +178,14 @@ ActiveRecord::Schema.define(version: 20150518120901) do
   end
 
   create_table "document_type", force: true do |t|
-    t.string    "name_ka",    limit: 50,                                     null: false
-    t.string    "name_ru",    limit: 50
-    t.string    "name_en",    limit: 50
-    t.integer   "order_by",   limit: 5,  precision: 5, scale: 0, default: 0, null: false
-    t.timestamp "created_at", limit: 6,                                      null: false
-    t.timestamp "updated_at", limit: 6,                                      null: false
+    t.string    "name_ka",       limit: 50,                                     null: false
+    t.string    "name_ru",       limit: 50
+    t.string    "name_en",       limit: 50
+    t.integer   "order_by",      limit: 5,  precision: 5, scale: 0, default: 0, null: false
+    t.integer   "margin_top",    limit: 5,  precision: 5, scale: 0
+    t.integer   "margin_bottom", limit: 5,  precision: 5, scale: 0
+    t.timestamp "created_at",    limit: 6,                                      null: false
+    t.timestamp "updated_at",    limit: 6,                                      null: false
   end
 
   create_table "document_user", id: false, force: true do |t|
@@ -417,10 +424,10 @@ ActiveRecord::Schema.define(version: 20150518120901) do
     t.string    "last_name_ka",     limit: 50,                                           null: false
     t.string    "last_name_ru",     limit: 50
     t.string    "last_name_en",     limit: 50
+    t.string    "eflow_user_name",  limit: 100
     t.string    "password_hash",    limit: 60,                                           null: false
     t.timestamp "created_at",       limit: 6,                                            null: false
     t.timestamp "updated_at",       limit: 6,                                            null: false
-    t.string    "eflow_user_name",  limit: 100
   end
 
   add_index "users", ["email"], name: "users_email_idx", unique: true

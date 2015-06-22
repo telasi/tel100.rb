@@ -8,6 +8,8 @@ class AddDocumentType < ActiveRecord::Migration
         NAME_RU  varchar2(50),
         NAME_EN  varchar2(50),
         ORDER_BY number(5, 0) default 0 not null,
+        MARGIN_TOP number(5, 0),
+        MARGIN_BOTTOM number(5, 0),
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
