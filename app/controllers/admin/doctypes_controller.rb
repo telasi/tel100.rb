@@ -40,5 +40,5 @@ class Admin::DoctypesController < AdminController
 
   private
 
-  def doctype_params; params.require(:document_type).permit(:name_ka, :name_ru, :name_en, :order_by) end
+  def doctype_params; params.require(:document_type).permit(:name_ka, :name_ru, :name_en, :order_by, :margin_top, :margin_bottom) end
 end
