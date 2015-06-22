@@ -15,7 +15,8 @@ class Api::Documents::PrintController < ApiController
     I18n.locale = params[:lang]
     @document = Document::Base.find(params[:id])
     html = render_to_string "api/documents/print/print"
-    kit = PDFKit.new(html, page_size: 'A4', margin_top: '0.25in', margin_left: '0.25in', margin_right: '0.25in', margin_bottom: '0.25in')
+    margins = @document.type.margins
+    kit = PDFKit.new(html, page_size: 'A4', margin_top: "#{margins[0]}in", margin_right: "#{margins[1]}in", margin_bottom: "#{margins[2]}in", margin_left: "#{margins[3]}in")
     send_data kit.to_pdf, type: 'application/pdf', disposition: 'inline'
   end
 end
