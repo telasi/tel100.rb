@@ -14,6 +14,6 @@ class Document::Type < ActiveRecord::Base
       DEFAULT_MARGIN,
       self.margin_bottom || DEFAULT_MARGIN,
       DEFAULT_MARGIN
-    ].map{|x x * MM_TO_INCHES}
+    ].map{|x| x * MM_TO_INCHES}
   end
 end
