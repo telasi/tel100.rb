@@ -131,6 +131,8 @@ Ext.define('Tel100.view.document.editor.General', {
   }
 });
 
+// GeneralViewController
+
 Ext.define('Tel100.view.document.editor.GeneralViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenteditorgeneral',
@@ -143,6 +145,8 @@ Ext.define('Tel100.view.document.editor.GeneralViewController', {
     }
   }
 });
+
+// GeneralViewModel
 
 Ext.define('Tel100.view.document.editor.GeneralViewModel', {
   extend: 'Ext.app.ViewModel',
