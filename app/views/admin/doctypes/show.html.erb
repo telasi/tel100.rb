@@ -16,7 +16,7 @@
   v.text_field 'margin_top', after: 'mm', tag: 'code'
   v.text_field 'margin_top_out', after: 'mm', tag: 'code'
   v.text_field 'margin_bottom', after: 'mm', tag: 'code'
-  v.boolean_field 'print_header'
+  v.boolean_field 'print_header?', i18n: 'print_header'
   v.button_action admin_edit_doctype_url(id: @type.id), label: 'შეცვლა', icon: 'pencil'
   v.button_action admin_delete_doctype_url(id: @type.id), label: 'წაშლა', icon: 'trash', confirm: 'ნამდვილად გინდათ ამ სახეობის წაშლა?', http_method: 'delete'
 end %>
