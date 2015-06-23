@@ -54,6 +54,7 @@ Ext.define('Tel100.view.document.MainViewController', {
       var vm = item.getViewModel();
       var tabDoc = vm && vm.get('document');
       if (tabDoc && tabDoc.id === doc.id) {
+        item.refresh();
         tabs.setActiveTab(item);
         return;
       }
