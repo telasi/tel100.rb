@@ -95,6 +95,7 @@ Ext.define('Tel100.view.document.MainViewController', {
     }.bind(this));
     tabs.add(editor);
     tabs.setActiveTab(editor);
+    this.refreshFoldersAndDocuments();
   },
 
   deleteFromCustom: function(folder_id, doc_id) {
