@@ -39,6 +39,7 @@
 <% qr = RQRCode::QRCode.new( "telasi#{@document.docnumber}", :size => 4, :level => :h ) %>
 
 <!-- print header -->
+<% if @document.type.print_header? %>
 <table style="width:100%;">
   <tr>
     <td>
@@ -56,6 +57,7 @@
     </td>
   </tr>
 </table>
+<% end %>
 
 <!-- subject and body -->
 
