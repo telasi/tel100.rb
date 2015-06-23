@@ -90,6 +90,9 @@ Ext.define('Tel100.view.document.MainViewController', {
     var title = document.get('docnumber');
     var editor = Tel100.view.document.editor.Editor.create({ title: title, closable: true });
     editor.getViewModel().set('document', document);
+    editor.on('documentchanged', function(document) {
+      this.refreshFoldersAndDocuments();
+    }.bind(this));
     tabs.add(editor);
     tabs.setActiveTab(editor);
   },

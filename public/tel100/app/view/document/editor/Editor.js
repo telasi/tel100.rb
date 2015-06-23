@@ -278,6 +278,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     dialog.getViewModel().set('document', doc);
     dialog.on('signed', function() {
       view.refresh();
+      view.fireEvent('documentchanged', doc);
     });
     dialog.show();
   },
@@ -290,6 +291,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
     dialog.getViewModel().set('document', doc);
     dialog.on('authored', function() {
       view.refresh();
+      view.fireEvent('documentchanged', doc);
     });
     dialog.show();
   },
@@ -299,6 +301,9 @@ Ext.define('Tel100.view.document.editor.Editor', {
     commentsPanel.refresh(function() {
       commentsPanel.setCollapsed(false);
     });
+    var doc = this.getViewModel().get('document');
+    this.fireEvent('documentchanged', doc);
+    this.refresh();
   },
 
   initComponent: function() {
