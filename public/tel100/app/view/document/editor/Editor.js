@@ -23,6 +23,14 @@ Ext.define('Tel100.view.document.editor.Editor', {
       items: [{
         xtype: 'button',
         bind: {
+          text: '{i18n.ui.refresh}'
+        },
+        listeners: {
+          click: 'refresh'
+        }
+      }, {
+        xtype: 'button',
+        bind: {
           text: '{i18n.document.comment.actions.reply}'
         },
         listeners: {
@@ -301,6 +309,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
 
   refresh: function() {
     var view = this;
+    view.setLoading(true);
     var vm = view.getViewModel();
     var doc = vm.get('document');
     doc.load({
@@ -309,6 +318,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
         var treePanel = view.down('documentmotionstree');
         commentsPanel.refresh();
         treePanel.refresh();
+        view.setLoading(false);
       }
     });
   },
