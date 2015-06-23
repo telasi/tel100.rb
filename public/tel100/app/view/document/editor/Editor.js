@@ -314,11 +314,17 @@ Ext.define('Tel100.view.document.editor.Editor', {
     var doc = vm.get('document');
     doc.load({
       callback: function() {
+        view.setLoading(false);
+
+        var assigneesPanel = view.down('documentmotionsreceiverspanel');
         var commentsPanel = view.down('documentcommentpanel');
         var treePanel = view.down('documentmotionstree');
+        var filesPanel = view.down('documentfilepanel');
+
+        assigneesPanel.refresh();
         commentsPanel.refresh();
         treePanel.refresh();
-        view.setLoading(false);
+        filesPanel.refresh();
       }
     });
   },
