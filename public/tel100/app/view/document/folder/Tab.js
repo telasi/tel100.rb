@@ -6,6 +6,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
   viewModel: {
     type: 'documentfoldertab'
   },
+
   header: false,
   activeTab: 0,
   defaultListenerScope: true,
@@ -16,9 +17,11 @@ Ext.define('Tel100.view.document.folder.Tab', {
       type: 'vbox',
       align: 'stretch'
     },
+
     bind: {
       title: '{i18n.document.folder.ui.folders}'
     },
+
     items: [{
       xtype: 'gridpanel',
       border: false,
@@ -169,20 +172,24 @@ Ext.define('Tel100.view.document.folder.Tab', {
 
   onTabpanelAfterRender: function(component, eOpts) {
     /* var bar = component.tabBar;
-                bar.insert(2,[
-                     {
-                         xtype: 'component',
-                         flex: 1
-                     },
-                    {
-                        xtype: 'button',
-                        text: '<i class="fa fa-cog"></i>',
-                      handler: function(button){
-                        var configwindow = Ext.create('Tel100.view.document.folder.Config');
-                        configwindow.show();
-                      }
-                    }
-                ]);
+      bar.insert(2,[
+           {
+               xtype: 'component',
+               flex: 1
+           },
+          {
+              xtype: 'button',
+              text: '<i class="fa fa-cog"></i>',
+            handler: function(button){
+              var configwindow = Ext.create('Tel100.view.document.folder.Config');
+              configwindow.show();
+            }
+          }
+      ]);
       */
+  },
+
+  refresh: function() {
+    this.getController().foldersRefresh();
   }
 });

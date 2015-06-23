@@ -14,7 +14,7 @@ Ext.define('Tel100.view.document.MainViewController', {
     var selection = viewModel.get('selection');
     if (customfolderselection){
       this.deleteFromCustom(customfolderselection[0].id, selection.id);
-      this.onRefresh();
+      this.refreshFoldersAndDocuments();
     } else {
       if (selection) {
         var status = selection.get('status');
@@ -24,7 +24,7 @@ Ext.define('Tel100.view.document.MainViewController', {
           Ext.Msg.confirm(title, msg, function(resp) {
             if (resp === 'yes') {
               helpers.api.document.base.deleteDraft(selection.id, {
-                success: this.onRefresh.bind(this)
+                success: this.refreshFoldersAndDocuments.bind(this)
               });
             }
           }.bind(this));
@@ -37,7 +37,7 @@ Ext.define('Tel100.view.document.MainViewController', {
     // var grid = this.getView().down('documentgridpanel');
     helpers.api.document.base.createDraft({
       success: function(data) {
-        this.onRefresh();
+        this.refreshFoldersAndDocuments();
         var doc = Ext.create('Tel100.model.document.Base', data);
         this.getViewModel().set('selection', doc);
         this.openDocument(doc);
@@ -108,6 +108,12 @@ Ext.define('Tel100.view.document.MainViewController', {
   },
 
   onFoldersRefresh: function(tabpanel) {
+    this.onRefresh();
+  },
+
+  refreshFoldersAndDocuments: function() {
+    var folders = this.getView().up('main').down('documentfoldertab');
+    folders.refresh();
     this.onRefresh();
   }
 });
