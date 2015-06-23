@@ -1,5 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Document::Base < ActiveRecord::Base
+  DEFAULT_TOP_MARGIN_FOR_OUTER_DOCS = 45
+  DEFAULT_BOTTOM_MARGIN_FOR_OUTER_DOCS = 30
+
   include Document::Personalize
   include Document::Direction
   include Document::Status
@@ -26,6 +29,15 @@ class Document::Base < ActiveRecord::Base
   def draft?; self.status == DRAFT end
   def sender_name; (self.sender_user || self.sender).to_s end
   def is_reply?; Document::Relation.where(base_id: self.id).any? end
+
+  def margins
+    margins = self.type.margins
+    if self.direction == OUT and self.type.margin_top.blank?
+      margins[0] = DEFAULT_TOP_MARGIN_FOR_OUTER_DOCS * Document::Type::MM_TO_INCHES
+      margins[2] = DEFAULT_BOTTOM_MARGIN_FOR_OUTER_DOCS * Document::Type::MM_TO_INCHES
+    end
+    margins
+  end
 
   def is_editable?(user); 
     return false if ( self.author_motions.where(status: COMPLETED).any? && author?(user) )

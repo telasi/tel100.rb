@@ -3,18 +3,36 @@ class AddDocumentType < ActiveRecord::Migration
   def up
     execute <<-SQL
       create table DOCUMENT_TYPE (
-        ID       number(5, 0) not null,
-        NAME_KA  varchar2(50) not null,
-        NAME_RU  varchar2(50),
-        NAME_EN  varchar2(50),
-        ORDER_BY number(5, 0) default 0 not null,
-        MARGIN_TOP number(5, 0),
-        MARGIN_BOTTOM number(5, 0),
+        ID            number(5, 0) not null,
+        NAME_KA       varchar2(50) not null,
+        NAME_RU       varchar2(50),
+        NAME_EN       varchar2(50),
+        ORDER_BY       number(5, 0) default 0 not null,
+        MARGIN_TOP     number(5, 0),
+        MARGIN_TOP_OUT number(5, 0),
+        MARGIN_BOTTOM  number(5, 0),
+        PRINT_HEADER   number(1, 0) default 1 not null,
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint DOCTYPE_PRIMARYKEY primary key ( ID ) enable
       )
+    SQL
+
+    execute <<-SQL
+      COMMENT ON COLUMN DOCUMENT_TYPE.MARGIN_TOP IS 'Top margin for the document of this type.'
+    SQL
+
+    execute <<-SQL
+      COMMENT ON COLUMN DOCUMENT_TYPE.MARGIN_TOP_OUT IS 'Top margin for the document of this type and OUT direction (overrides TOP_MARGIN property).'
+    SQL
+
+    execute <<-SQL
+      COMMENT ON COLUMN DOCUMENT_TYPE.MARGIN_BOTTOM IS 'Bottom margin for the document of this type.'
+    SQL
+
+    execute <<-SQL
+      COMMENT ON COLUMN DOCUMENT_TYPE.PRINT_HEADER IS 'Should the header of the document of this type be types.'
     SQL
 
     execute <<-SQL

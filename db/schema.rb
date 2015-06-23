@@ -178,14 +178,16 @@ ActiveRecord::Schema.define(version: 20150518120901) do
   end
 
   create_table "document_type", force: true do |t|
-    t.string    "name_ka",       limit: 50,                                     null: false
-    t.string    "name_ru",       limit: 50
-    t.string    "name_en",       limit: 50
-    t.integer   "order_by",      limit: 5,  precision: 5, scale: 0, default: 0, null: false
-    t.integer   "margin_top",    limit: 5,  precision: 5, scale: 0
-    t.integer   "margin_bottom", limit: 5,  precision: 5, scale: 0
-    t.timestamp "created_at",    limit: 6,                                      null: false
-    t.timestamp "updated_at",    limit: 6,                                      null: false
+    t.string    "name_ka",        limit: 50,                                        null: false
+    t.string    "name_ru",        limit: 50
+    t.string    "name_en",        limit: 50
+    t.integer   "order_by",       limit: 5,  precision: 5, scale: 0, default: 0,    null: false
+    t.integer   "margin_top",     limit: 5,  precision: 5, scale: 0
+    t.integer   "margin_top_out", limit: 5,  precision: 5, scale: 0
+    t.integer   "margin_bottom",  limit: 5,  precision: 5, scale: 0
+    t.boolean   "print_header",              precision: 1, scale: 0, default: true, null: false
+    t.timestamp "created_at",     limit: 6,                                         null: false
+    t.timestamp "updated_at",     limit: 6,                                         null: false
   end
 
   create_table "document_user", id: false, force: true do |t|
