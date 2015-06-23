@@ -1,0 +1,12 @@
+ka:
+  models:
+    document_responsetype:
+      name: დასახელება
+      typename: კატეგორია
+      ordering: დალაგება
+      name_ka: დასახელება (ქარ.)
+      name_ru: დასახელება (რუს.)
+      name_en: დასახელება (ინგ.)
+      direction_name: მიმართულება
+      role: როლი
+      name: დასახელება

@@ -13,8 +13,7 @@ class Document::Type < ActiveRecord::Base
   has_many :documents, class_name: 'Document::Base'
   validates :name_ka, presence: { message: 'ჩაწერეთ ქართული დასახელება' }
 
-  def with_header; self.print_header == 1 end
-  def with_header=(val); self.print_header = val ? 1 : 0 end
+  def print_header?; self.print_header == 1 end
 
   def margins(direction=IN)
     if direction == OUT and self.margin_top_out

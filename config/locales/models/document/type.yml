@@ -1,12 +1,12 @@
 ka:
   models:
-    document_responsetype:
-      name: დასახელება
-      typename: კატეგორია
-      ordering: დალაგება
+    document_type:
+      order_by: დალაგება
       name_ka: დასახელება (ქარ.)
       name_ru: დასახელება (რუს.)
       name_en: დასახელება (ინგ.)
       direction_name: მიმართულება
-      role: როლი
-      name: დასახელება
+      margin_top: ზედა მერჯინი
+      margin_top_out: ზედა მერჯინი (გამავალი დოკუმენტი)
+      margin_bottom: ქვედა მერჯინი
+      print_header: შტრიხ კოდი ჩანდეს?
