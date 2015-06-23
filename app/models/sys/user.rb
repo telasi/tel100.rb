@@ -4,7 +4,7 @@ require 'bcrypt'
 class Sys::User < ActiveRecord::Base
   include BCrypt
   self.table_name  = 'users'
-  self.set_integer_columns :is_active, :is_admin
+  self.set_integer_columns :is_active, :is_admin, :need_refresh
   self.localized_fields('first_name', 'last_name')
   belongs_to :employee, class_name: 'HR::Employee'
   has_many :documents, class_name: 'Document::User', foreign_key: 'user_id'
@@ -19,6 +19,10 @@ class Sys::User < ActiveRecord::Base
 
   before_create :on_before_create
   before_save :on_before_save
+
+  def need_refresh?; self.need_refresh == 1 end
+  def notify!; self.update_columns(need_refresh: 1) end
+  def denotify!; self.update_columns(need_refresh: 0) end
 
   def full_name; "#{self.first_name} #{self.last_name}" end
   def to_s; self.full_name end
