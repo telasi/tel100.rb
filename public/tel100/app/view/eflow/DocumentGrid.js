@@ -49,6 +49,27 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
     },
     dock: 'bottom',
     displayInfo: false
+  }, {
+    xtype: 'panel',
+    dock: 'top',
+    bodyPadding: 3,
+    bodyStyle: 'background: #eee',
+    layout: {
+      type: 'hbox',
+      align: 'stretch'
+    },
+    items: [{
+      xtype: 'textfield',
+      flex: 1,
+      emptyText: 'enter doc#',
+      itemId: 'docNumber'
+    }, {
+      xtype: 'button',
+      text: '<i class="fa fa-search"></i> Search',
+      listeners: {
+        click: 'onSearch'
+      }
+    }]
   }],
 
   onBeforeLoad: function(store, operation, eOpts) {
@@ -58,12 +79,21 @@ Ext.define('Tel100.view.eflow.DocumentGrid', {
   onLoad: function(store, records, successful, eOpts) {
     this.setLoading(false);
     this.getViewModel().set('totalCount', store.getTotalCount());
+  },
+
+  onSearch: function(button, event, eOpts) {
+    var docNumber = this.down('#docNumber').value;
+    var params = { doc_number: docNumber };
+    this.getStore().load({ params: params });
   }
 });
 
 Ext.define('Tel100.view.eflow.DocumentGridViewController', {
   extend: 'Ext.app.ViewController',
-  alias: 'controller.eflowdocumentgrid'
+  alias: 'controller.eflowdocumentgrid',
+  data: {
+    docNumber: null
+  }
 });
 
 Ext.define('Tel100.view.eflow.DocumentGridViewModel', {
