@@ -22,6 +22,7 @@ Ext.define('Tel100.view.document.history.Window', {
               region: 'west',
               width: 200,
               resizable: true,
+              border: true,
               columns: [{
                 xtype: 'templatecolumn',
                 flex: 1,
@@ -44,9 +45,13 @@ Ext.define('Tel100.view.document.history.Window', {
             },
 
             {
-              xtype: 'panel',
+              xtype: 'form',
               region: 'center',
-              layout: 'border',
+              layout: {
+                type: 'vbox',
+                align: 'stretch'
+              },
+              bodyPadding: 5,
               items: [{
                 xtype: 'textfield',
                 labelAlign: 'top',
@@ -59,26 +64,59 @@ Ext.define('Tel100.view.document.history.Window', {
                   fieldLabel: '{i18n.document.base.subject}',
                   value: '{change.subject}'
                 }
+              }, {
+              xtype: 'fieldcontainer',
+              layout: 'hbox',
+              items:[{
+                  xtype: 'textfield',
+                  flex: 1,
+                  labelAlign: 'top',
+                  region: 'north',
+                  baseCls: 'white-panel',
+                  border: false,
+                  readOnly: true,
+                  padding: 5,
+                  bind: {
+                    fieldLabel: '{i18n.document.base.docnumber2}',
+                    value: '{change.docnumber2}'
+                  }
+                }, {
+                  xtype: 'datefield',
+                  format: 'd/m/Y',
+                  padding: 5,
+                  labelAlign: 'top',
+                  readOnly: true,
+                  bind: {
+                    fieldLabel: '{i18n.document.base.docdate}',
+                    value: '{change.docdate}'
+                  }
+                }]
               },{
-                xtype: 'textfield',
-                labelAlign: 'top',
+                xtype: 'label',
                 region: 'north',
-                baseCls: 'white-panel',
-                border: false,
-                readOnly: true,
-                padding: 5,
-                bind: {
-                  fieldLabel: '{i18n.document.base.docnumber2}',
-                  value: '{change.docnumber2}'
-                }
-              },{
-                xtype: 'panel',
-                region: 'center',
                 bodyPadding: 10,
                 bind: {
+                  text: '{i18n.document.base.body}'
+                },
+              },{
+                xtype: 'container',
+                overflowY: 'scroll',
+                flex: 1,
+                region: 'center',
+                padding: 5,
+                border: true,
+                style: {
+                   borderColor: 'lightgrey',
+                   borderStyle: 'solid'
+                },
+                bind: {
+                  //fieldLabel: '{i18n.document.base.body}',
                   html: '{change.body}'
                 },
               },{
+                xtype: 'container',
+                region: 'south'
+              }, {
                 xtype: 'container',
                 region: 'east',
                 layout: 'vbox',
