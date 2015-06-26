@@ -143,15 +143,80 @@ Ext.define('Tel100.view.document.history.Window', {
                         },{ 
                           xtype: 'gridpanel',
                           hideHeaders: true,
-                          columns: [
-                            {
+                          columns: [{
                               xtype: 'gridcolumn',
                               renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
                                 return helpers.document.status.motionStatusIcon(value, record);
                               },
-                              dataIndex: 'name',
-                              text: 'name',
-                              flex: 1
+                              draggable: false,
+                              resizable: false,
+                              width: 32,
+                              sortable: false,
+                              dataIndex: 'status',
+                              hideable: false,
+                              text: ''
+                            }, {
+                              xtype: 'gridcolumn',
+                              renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                                return helpers.document.status.motionReceiverName(value, record);
+                              },
+                              draggable: false,
+                              width: 200,
+                              sortable: false,
+                              dataIndex: 'receiverName',
+                              hideable: false,
+                              bind: {
+                                text: '{i18n.document.motion.receiver}'
+                              }
+                            }, {
+                              xtype: 'gridcolumn',
+                              renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                                return record.get('send_type_name');
+                              },
+                              defaultWidth: 150,
+                              sortable: false,
+                              dataIndex: 'send_type_id',
+                              hideable: false,
+                              bind: {
+                                text: '{i18n.document.motion.send_type}'
+                              },
+                              editor: {
+                                xtype: 'combobox',
+                                editable: false,
+                                displayField: 'name',
+                                valueField: 'id',
+                                bind: {
+                                  store: '{responseTypes}'
+                                }
+                              }
+                            }, {
+                              xtype: 'gridcolumn',
+                              draggable: false,
+                              width: 200,
+                              sortable: false,
+                              dataIndex: 'motion_text',
+                              hideable: false,
+                              bind: {
+                                text: '{i18n.document.motion.motion_text}'
+                              },
+                              editor: {
+                                xtype: 'textfield'
+                              }
+                            }, {
+                              xtype: 'gridcolumn',
+                              draggable: false,
+                              width: 100,
+                              sortable: false,
+                              dataIndex: 'due_date',
+                              formatter: 'date("d/m/Y")',
+                              hideable: false,
+                              bind: {
+                                text: '{i18n.document.motion.due_date}'
+                              },
+                              editor: {
+                                xtype: 'datefield',
+                                format: 'd/m/Y'
+                              }
                             }
                           ],
                           bind: {
