@@ -53,82 +53,133 @@ Ext.define('Tel100.view.document.history.Window', {
               },
               bodyPadding: 5,
               items: [{
-                xtype: 'textfield',
-                labelAlign: 'top',
-                region: 'north',
-                baseCls: 'white-panel',
-                border: false,
-                padding: 5,
-                readOnly: true,
-                bind: {
-                  fieldLabel: '{i18n.document.base.subject}',
-                  value: '{change.subject}'
-                }
-              }, {
-              xtype: 'fieldcontainer',
-              layout: 'hbox',
-              items:[{
                   xtype: 'textfield',
-                  flex: 1,
                   labelAlign: 'top',
                   region: 'north',
                   baseCls: 'white-panel',
                   border: false,
-                  readOnly: true,
                   padding: 5,
-                  bind: {
-                    fieldLabel: '{i18n.document.base.docnumber2}',
-                    value: '{change.docnumber2}'
-                  }
-                }, {
-                  xtype: 'datefield',
-                  format: 'd/m/Y',
-                  padding: 5,
-                  labelAlign: 'top',
                   readOnly: true,
                   bind: {
-                    fieldLabel: '{i18n.document.base.docdate}',
-                    value: '{change.docdate}'
+                    fieldLabel: '{i18n.document.base.subject}',
+                    value: '{change.subject}'
                   }
+                },{
+                xtype: 'fieldcontainer',
+                layout: 'hbox',
+                items:[{
+                    xtype: 'textfield',
+                    flex: 1,
+                    labelAlign: 'top',
+                    region: 'north',
+                    baseCls: 'white-panel',
+                    border: false,
+                    readOnly: true,
+                    padding: 5,
+                    bind: {
+                      fieldLabel: '{i18n.document.base.docnumber2}',
+                      value: '{change.docnumber2}'
+                    }
+                  }, {
+                    xtype: 'datefield',
+                    format: 'd/m/Y',
+                    padding: 5,
+                    labelAlign: 'top',
+                    readOnly: true,
+                    bind: {
+                      fieldLabel: '{i18n.document.base.docdate}',
+                      value: '{change.docdate}'
+                    }
+                  }]
+                },{
+                  xtype: 'label',
+                  region: 'north',
+                  bodyPadding: 10,
+                  bind: {
+                    text: '{i18n.document.base.body}'
+                  },
+                },{
+                  xtype: 'container',
+                  overflowY: 'scroll',
+                  flex: 1,
+                  region: 'center',
+                  padding: 5,
+                  border: true,
+                  style: {
+                     borderColor: 'lightgrey',
+                     borderStyle: 'solid'
+                  },
+                  bind: {
+                    html: '{change.body}'
+                  },
                 }]
-              },{
-                xtype: 'label',
-                region: 'north',
-                bodyPadding: 10,
-                bind: {
-                  text: '{i18n.document.base.body}'
-                },
-              },{
-                xtype: 'container',
-                overflowY: 'scroll',
-                flex: 1,
-                region: 'center',
-                padding: 5,
-                border: true,
-                style: {
-                   borderColor: 'lightgrey',
-                   borderStyle: 'solid'
-                },
-                bind: {
-                  //fieldLabel: '{i18n.document.base.body}',
-                  html: '{change.body}'
-                },
-              },{
-                xtype: 'container',
-                region: 'south'
-              }, {
+            }, {
                 xtype: 'container',
                 region: 'east',
-                layout: 'vbox',
+                width: 400,
+                split: true,
+                layout: {
+                  type: 'accordion',
+                  hideCollapseTool: true
+                },
                 items: [{ 
-                          xtype: 'panel',
-                          flex: 1
+                          xtype: 'gridpanel',
+                          hideHeaders: true,
+                          columns: [
+                            {
+                              xtype: 'gridcolumn',
+                              renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                                return helpers.document.renderer.renderMotion(record, { as: 'receiver' });
+                              },
+                              dataIndex: 'name',
+                              text: 'name',
+                              flex: 1
+                            }
+                          ],
+                          bind: {
+                            title: '{i18n.document.motion.signees} ({signeesCount})',
+                            store: '{signees}'
+                          },
                         },{ 
-                          xtype: 'panel',
-                          flex: 1
+                          xtype: 'gridpanel',
+                          hideHeaders: true,
+                          columns: [
+                            {
+                              xtype: 'gridcolumn',
+                              renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                                return helpers.document.status.motionStatusIcon(value, record);
+                              },
+                              dataIndex: 'name',
+                              text: 'name',
+                              flex: 1
+                            }
+                          ],
+                          bind: {
+                            title: '{i18n.document.motion.assignees} ({assigneesCount})',
+                            store: '{assignees}'
+                          },
+                        },{
+                          xtype: 'gridpanel',
+                          hideHeaders: true,
+                          columns: [
+                            {
+                              xtype: 'gridcolumn',
+                              dataIndex: 'name',
+                              flex: 1
+                            }
+                          ],
+                          bind: {
+                            title: '{i18n.document.file.attachments} ({filesCount})',
+                            store: '{files}'
+                          },
+                          listeners: {
+                            celldblclick: {
+                              fn: 'onGridpanelCellDblClick',
+                              scope: 'controller'
+                            }
+                          }
                         }]
-              }]
-            }
+              }
           ]
 
 });

@@ -157,11 +157,14 @@ Rails.application.routes.draw do
       scope 'changes', controller: 'changes' do
         get '/', action: 'index'
         get '/show', action: 'show'
+        get '/motion', action: 'motion'
+        get '/files', action: 'files'
       end
     end
     scope 'sap', controller: 'sap' do
       get '/sync', action: 'sync'
       get '/hrupdate', action: 'hrupdate'
+      get '/job', action: 'job'
     end
   end
 
