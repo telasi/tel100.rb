@@ -422,6 +422,7 @@ class Document::Base < ActiveRecord::Base
       smotion.save
 
       receiver_du = smotion.document.users.where(user: smotion.receiver_user).first
+      receiver_du.is_new = 1
       receiver_du.calculate! if receiver_du.present?
     end
   end
