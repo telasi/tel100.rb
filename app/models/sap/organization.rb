@@ -5,6 +5,10 @@ class Sap::Organization < ActiveRecord::Base
 
   self.table_name  = 'sap_organizations'
 
+  CONTRACTOR_ORGANIZATION_ID = 49999999
+  CONTRACTOR_ORGANIZATION_NAME_KA = 'კონტრაქტორები'
+  CONTRACTOR_ORGANIZATION_NAME_RU = 'Контракторы'
+
   def name_ru 
   	text = Sap::OrganizationText.current.where(objectid: self.objectid, objecttype: self.objecttype, language: 'RU').first
   	text.name if text 
