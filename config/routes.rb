@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-require 'sidekiq.web'
+require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
