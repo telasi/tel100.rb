@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
+require 'sidekiq.web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
+
   namespace 'admin' do
     get '/', controller: 'base', action: 'index', as: 'home'
     scope 'hr', controller: 'hr' do
