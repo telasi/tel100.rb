@@ -66,4 +66,5 @@ gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
 
 gem 'sidekiq'
+gem 'sinatra', :require => nil
 gem 'whenever'
