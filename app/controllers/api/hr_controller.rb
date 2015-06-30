@@ -37,22 +37,22 @@ class Api::HrController < ApiController
   private
 
   def build_tree
-    employees = HR::Employee.active.index_by{ |node| node['organization_id'] }
+    employees = HR::Employee.active.group_by{ |node| node['organization_id'] }
     vacations = HR::Vacation::Base.confirmed.current.index_by{ |node| node['employee_id']}
     structureArray = HR::Organization.active.order(saporg_type: :desc).order(is_manager: :desc, priority: :asc).map do |org|
       if org.saporg_type == 'S'
         empl = employees[org.id]
-        obj = empl.to_hash(organization: org) if empl
-        #add vacation fields
-        if empl
-          vac = vacations[empl.id]
+        empl.map do | e |
+          obj = e.to_hash(organization: org) 
+          #add vacation fields
+          vac = vacations[e.id]
           obj.merge!(vac.to_hash) if vac
-        end
-        obj
+          obj
+        end if empl
       else
         org.to_hash
       end
-    end.select{ |x| x.present? }
+    end.flatten.select{ |x| x.present? }
     array_to_tree(structureArray)
   end
 

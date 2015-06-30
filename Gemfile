@@ -7,7 +7,7 @@ gem 'rails', '4.1.6'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
-gem 'less-rails'
+#gem 'less-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -38,7 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'ka'
 gem 'ruby-oci8'
-gem 'activerecord-oracle_enhanced-adapter'
+gem 'activerecord-oracle_enhanced-adapter', '1.5.6'
 gem 'composite_primary_keys'
 gem 'forma', path: '../forma'
 gem 'will_paginate-bootstrap'
@@ -64,3 +64,7 @@ gem 'barby'
 gem 'rqrcode'
 gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
+
+gem 'sidekiq'
+gem 'sinatra', :require => nil
+gem 'whenever'

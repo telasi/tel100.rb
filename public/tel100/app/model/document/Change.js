@@ -10,7 +10,8 @@ Ext.define('Tel100.model.document.Change', {
     'name',
     'document_id',
     'created_at_f',
-    'body'
+    'body',
+    'docdate'
   ]
 
 });

@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
+
   namespace 'admin' do
     get '/', controller: 'base', action: 'index', as: 'home'
     scope 'hr', controller: 'hr' do
@@ -157,11 +161,14 @@ Rails.application.routes.draw do
       scope 'changes', controller: 'changes' do
         get '/', action: 'index'
         get '/show', action: 'show'
+        get '/motion', action: 'motion'
+        get '/files', action: 'files'
       end
     end
     scope 'sap', controller: 'sap' do
       get '/sync', action: 'sync'
       get '/hrupdate', action: 'hrupdate'
+      get '/job', action: 'job'
     end
   end
 
