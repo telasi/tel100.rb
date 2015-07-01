@@ -215,6 +215,8 @@ module Sap::Synchronizer
            if sysuser
              sysuser.employee_id = newper.id
              sysuser.save
+             newper.user_id = sysuser.id
+             newper.save
            end
         end
       else
@@ -229,6 +231,8 @@ module Sap::Synchronizer
         if sysuser
           sysuser.employee_id = newper.id
           sysuser.save
+          newper.user_id = sysuser.id
+          newper.save
         end
       end
 
