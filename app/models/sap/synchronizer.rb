@@ -210,6 +210,14 @@ module Sap::Synchronizer
                                      organization_id: org_id,
                                      employee_status_id: per.status)
            newper.save
+
+           sysuser = Sys::User.where(person_id: newper.person_id).first
+           if sysuser
+             sysuser.employee_id = newper.id
+             sysuser.save
+             newper.user_id = sysuser.id
+             newper.save
+           end
         end
       else
         newper = HR::Employee.new(person_id: per.person_id, is_active: 1, 
@@ -217,7 +225,15 @@ module Sap::Synchronizer
                                   first_name_ru: per.first_name_ru, last_name_ru: per.last_name_ru, 
                                   organization_id: org_id,
                                   employee_status_id: per.status)
-        newper.save       
+        newper.save
+
+        sysuser = Sys::User.where(person_id: newper.person_id).first
+        if sysuser
+          sysuser.employee_id = newper.id
+          sysuser.save
+          newper.user_id = sysuser.id
+          newper.save
+        end
       end
 
     end
