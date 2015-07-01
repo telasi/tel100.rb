@@ -40,7 +40,7 @@ class Document::Base < ActiveRecord::Base
   def has_history?; Document::Change.where(document: self).any? end
 
   def self.docnumber_eval(type, date)
-    last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('id DESC').first
+    last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('docnumber DESC').first
     last_number = '1'
     last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
     "#{date.strftime('%m%d')}/#{last_number.rjust(3,'0')}"
