@@ -155,7 +155,7 @@ module Sap::Synchronizer
     
     # add contractors organization and position if not exists
     contractor_org = HR::Organization.where(is_active: 1, saporg_type: 'O', saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID).first
-    if !contractor_org
+    if contractor_org.blank?
       contractor_org = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID, 
                                             saporg_type: 'O', sapparent_id: '1', 
                                             name_ka: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_KA, 
@@ -164,7 +164,7 @@ module Sap::Synchronizer
     end
 
     contractor_shtat = HR::Organization.where(is_active: 1, saporg_type: 'S', saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID).first
-    if !contractor_shtat
+    if contractor_shtat.blank?
       contractor_shtat = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID, 
                                               saporg_type: 'S', sapparent_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID, 
                                               name_ka: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_KA, 
