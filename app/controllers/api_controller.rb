@@ -31,8 +31,8 @@ class ApiController < ActionController::Base
       proxy_id = params[:api_proxyid]
       current_user = self.current_user
       if proxy_id.present? and current_user
-        @__proxy_rel = Sys::UserRelation.where(user: current_user, related_id: proxy_id).first
-        if @__proxy_rel.present?
+        @__proxy_roles = Sys::UserRelation.where(user: current_user, related_id: proxy_id).all.map{|rel| rel.role}
+        if @__proxy_roles.any?
           @__proxy = Sys::User.find(proxy_id) rescue nil
         end
       end
@@ -41,14 +41,8 @@ class ApiController < ActionController::Base
     @__proxy
   end
 
-  def current_proxy_rel
-    current_proxy
-    @__proxy_rel
-  end
-
-  def current_proxy_role
-    rel = current_proxy_rel
-    rel.role if rel.role.present?
+  def current_proxy_roles
+    @__proxy_roles if current_proxy.present?
   end
 
   # Who is "effective" user for most queries.
@@ -63,8 +57,16 @@ class ApiController < ActionController::Base
 
   # Can edit given document?
   def can_edit_document?(doc = nil)
-    return true if self.current_user == self.effective_user
-    return true if current_proxy_role == Sys::UserRelation::REL_CANCELARIA
+    debugger
+
+    if self.current_user == self.effective_user
+      return true
+    end
+
+    if current_proxy_roles and current_proxy_roles.include?(Sys::UserRelation::REL_CANCELARIA)
+      return true
+    end
+
     return false
   end
 
