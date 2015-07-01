@@ -64,6 +64,16 @@ Ext.define('Tel100.view.document.grid.Panel', {
     }
   }, {
     xtype: 'gridcolumn',
+    width: 100,
+    sortable: false,
+    dataIndex: 'docnumber2',
+    hideable: false,
+    lockable: false,
+    bind: {
+      text: '{i18n.document.base.docnumber2}'
+    }
+  }, {
+    xtype: 'gridcolumn',
     renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
       if (record.get('as_signee') === 1) {
         return '<strong class="text-danger">' + i18n.document.comment.actions.sign +'</strong>';

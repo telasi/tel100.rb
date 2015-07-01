@@ -33,6 +33,7 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.where("document_base.docdate <= ?", Date.strptime(params['docdate_to'], '%d/%m/%Y')) if params['docdate_to'].present?
     @my_docs = @my_docs.where("document_base.direction" => params['direction']) if params['direction'].present?
     @my_docs = @my_docs.where("document_base.docnumber" => params['docnumber']) if params['docnumber'].present?
+    @my_docs = @my_docs.where("document_base.docnumber2" => params['docnumber2']) if params['docnumber2'].present?
     @my_docs = @my_docs.where("document_base.subject LIKE ?", params['subject']+'%') if params['subject'].present?
     if params['body'].present?
        @my_docs = @my_docs.joins('JOIN document_text ON document_text.document_id = document_user.document_id').where("dbms_lob.instr(document_text.body,?)>=1", params['body']) 
