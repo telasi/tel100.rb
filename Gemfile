@@ -68,3 +68,4 @@ gem 'wkhtmltopdf-binary'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'whenever'
+gem 'redis'

@@ -229,6 +229,7 @@ DEPENDENCIES
   prawn-table
   prawn_rails
   rails (= 4.1.6)
+  redis
   rqrcode
   rspec-rails (~> 3.0.0)
   ruby-oci8
