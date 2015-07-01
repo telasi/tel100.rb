@@ -23,8 +23,8 @@ module Sap::Synchronizer
              AND ISTAT = '1'
              AND MANDT = #{mandt}
              AND OBJID <> '49999997'
-             AND OBJID <> '49999998'
     SQL
+                 #AND OBJID <> '49999998'
                  #AND OBJID <> '49999999'
     ActiveRecord::Base.connection.execute(sql)
 
@@ -172,6 +172,25 @@ module Sap::Synchronizer
       contractor_shtat.save
     end
 
+    # add temporary organization and position if not exists
+    temp_org = HR::Organization.where(is_active: 1, saporg_type: 'O', saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID).first
+    if temp_org.blank?
+      temp_org = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID, 
+                                      saporg_type: 'O', sapparent_id: '1', 
+                                      name_ka: Sap::Organization::TEMP_ORGANIZATION_NAME_KA, 
+                                      name_ru: Sap::Organization::TEMP_ORGANIZATION_NAME_RU)
+      temp_org.save
+    end
+
+    temp_shtat = HR::Organization.where(is_active: 1, saporg_type: 'S', saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID).first
+    if temp_shtat.blank?
+      temp_shtat = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID, 
+                                        saporg_type: 'S', sapparent_id: Sap::Organization::TEMP_ORGANIZATION_ID, 
+                                        name_ka: Sap::Organization::TEMP_ORGANIZATION_NAME_KA, 
+                                        name_ru: Sap::Organization::TEMP_ORGANIZATION_NAME_RU)
+      temp_shtat.save
+    end
+
     # update parent ID's
     HR::Organization.active.each do | org |
       relorg = HR::Organization.where(saporg_id: org.sapparent_id, is_active: 1).first
@@ -187,6 +206,8 @@ module Sap::Synchronizer
 
       if per.org.shtat == Sap::Organization::CONTRACTOR_ORGANIZATION_ID
         org_id = contractor_shtat.id
+      elsif per.org.shtat == Sap::Organization::TEMP_ORGANIZATION_ID
+        org_id = temp_shtat.id
       else
         org_id = per.org_id
       end
