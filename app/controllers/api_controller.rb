@@ -57,8 +57,6 @@ class ApiController < ActionController::Base
 
   # Can edit given document?
   def can_edit_document?(doc = nil)
-    debugger
-
     if self.current_user == self.effective_user
       return true
     end

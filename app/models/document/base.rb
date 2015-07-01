@@ -41,10 +41,13 @@ class Document::Base < ActiveRecord::Base
   def has_history?; Document::Change.where(document: self).any? end
 
   def self.docnumber_eval(type, date)
-    last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('docnumber DESC').first
-    last_number = '1'
-    last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
-    "#{date.strftime('%m%d')}/#{last_number.rjust(3,'0')}"
+    # last_doc = Document::Base.where('docdate=? AND docnumber IS NOT NULL', date).order('docnumber DESC').first
+    # last_number = '1'
+    # last_number = ( last_doc.docnumber.split('/').last.to_i + 1 ).to_s if last_doc.present?
+    # "#{date.strftime('%m%d')}/#{last_number.rjust(3,'0')}"
+    key = "#{date.strftime('%y%m%d')}"
+    next_number = $redis.incr(key)
+    "#{date.strftime('%m%d')}/#{next_number.to_s.rjust(3,'0')}"
   end
 
   def self.create_draft!(sender_user)
@@ -113,7 +116,6 @@ class Document::Base < ActiveRecord::Base
     Document::Base.transaction do
       self.status = CURRENT
       self.docdate = Date.today if self.docdate.blank?
-      self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate) if self.docnumber.blank?
       self.sent_at = self.received_at = Time.now
       self.actual_sender = user
       self.save!
@@ -121,6 +123,11 @@ class Document::Base < ActiveRecord::Base
       check_auto_assignees!(user)
       check_auto_signees!(user)
       self.users.each { |user| user.calculate! }
+
+      if self.docnumber.blank?
+        self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate)
+        self.save!
+      end
     end
   end
 
