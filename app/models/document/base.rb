@@ -287,9 +287,11 @@ class Document::Base < ActiveRecord::Base
       histext.save!
 
       # new text
-      text = self.text || Document::Text.new(document: self)
-      text.body = params[:body] || self.text.body
-      text.save!
+      if params[:body].present?
+        text = self.text || Document::Text.new(document: self)
+        text.body = params[:body]
+        text.save!
+      end
 
       # Save files to history
       Document::File.where(document: self).map do |f|
