@@ -554,28 +554,46 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
 
     incoming: function(get) {
       var incoming = get('document.incoming');
-      var text = [];
-      incoming.forEach(function(motion) {
-        text.push(helpers.document.renderer.renderMotion(motion, { as: 'sender' }));
-      });
-      return text.join('; ');
+
+      if (incoming) {
+        var text = [];
+        incoming.forEach(function(motion) {
+          text.push(helpers.document.renderer.renderMotion(motion, { as: 'sender' }));
+        });
+        return text.join('; ');
+      }
+
+      return null;
     },
 
     hideIncoming: function(get) {
-      return !get('document.incoming').length;
+      var incoming = get('document.incoming');
+      if (incoming) {
+        return incoming.length == 0;
+      }
+      return true;
     },
 
     outgoing: function(get) {
       var outgoing = get('document.outgoing');
-      var text = [];
-      outgoing.forEach(function(motion) {
-        text.push(helpers.document.renderer.renderMotion(motion, { as: 'receiver' }));
-      });
-      return text.join('; ');
+
+      if (outgoing) {
+        var text = [];
+        outgoing.forEach(function(motion) {
+          text.push(helpers.document.renderer.renderMotion(motion, { as: 'receiver' }));
+        });
+        return text.join('; ');
+      }
+
+      return null;
     },
 
     hideOutgoing: function(get) {
-      return !get('document.outgoing').length;
+      var outgoing = get('document.outgoing');
+      if (outgoing) {
+        return outgoing.length == 0;
+      }
+      return true;
     }
   }
 });
