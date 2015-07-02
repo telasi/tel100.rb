@@ -166,6 +166,13 @@ Ext.define('Tel100.view.hr.party.Add', {
             },
             {
               xtype: 'textfield',
+              name: 'customer',
+              bind: {
+                fieldLabel: '{i18n.hr.customer.fields.accnumb}'
+              }
+            },
+            {
+              xtype: 'textfield',
               fieldLabel: 'Email',
               name: 'email'
             }

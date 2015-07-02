@@ -7,6 +7,7 @@ json.data do
 	  json.identity     part.identity
 	  json.phones       part.phones
 	  json.email        part.email
+	  json.customer     part.customer
 	  json.ext_type     'hr.Party'
 	end
 end

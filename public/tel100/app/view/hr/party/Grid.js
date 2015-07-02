@@ -88,11 +88,10 @@ Ext.define('Tel100.view.hr.party.Grid', {
     },
     {
       xtype: 'gridcolumn',
-      hidden: true,
-      dataIndex: 'account',
+      dataIndex: 'customer',
       flex: 1,
       bind: {
-        text: '{i18n.hr.party.fields.account}'
+        text: '{i18n.hr.customer.fields.accnumb}'
       }
     }
   ],
@@ -145,6 +144,13 @@ Ext.define('Tel100.view.hr.party.Grid', {
               name: 'contact',
               bind: {
                 fieldLabel: '{i18n.hr.party.fields.contact}'
+              }
+            },
+            {
+              xtype: 'textfield',
+              name: 'customer',
+              bind: {
+                fieldLabel: '{i18n.hr.customer.fields.accnumb}'
               }
             }
           ]

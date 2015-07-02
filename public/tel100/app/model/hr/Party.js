@@ -60,6 +60,9 @@ Ext.define('Tel100.model.hr.Party', {
       name: 'email'
     },
     {
+      name: 'customer'
+    },
+    {
       name: 'ext_type'
     }
   ],

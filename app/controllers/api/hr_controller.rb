@@ -12,8 +12,9 @@ class Api::HrController < ApiController
     @party = @party.where(id: params['id']) if params['id'].present?
     @party = @party.where("name_ka LIKE N:p_name or name_en LIKE N:p_name or name_en LIKE N:p_name", { p_name: '%' + params['name'] +'%'}) if params['name'].present?
     @party = @party.where("address_ka LIKE N:p_address or address_ru LIKE N:p_address or address_en LIKE N:p_address", { p_address: '%' + params['address'] +'%'}) if params['address'].present?
-      @party = @party.where("contact_ka LIKE N:p_contact or contact_ru LIKE N:p_contact or contact_en LIKE N:p_contact", { p_contact: '%' + params['contact'] +'%'}) if params['address'].present?
+    @party = @party.where("contact_ka LIKE N:p_contact or contact_ru LIKE N:p_contact or contact_en LIKE N:p_contact", { p_contact: '%' + params['contact'] +'%'}) if params['address'].present?
     @party = @party.where("identity" => params['identity']) if params['identity'].present?
+    @party = @party.where("customer" => params['customer']) if params['customer'].present?
     #@party = @party.where("phones LIKE N?", '%' + params['phones'] +'%') if params['phones'].present?
     #@party = @party.where("accnumb" => params['accnumb']) if params['accnumb'].present?
     @total = @party.count
@@ -25,7 +26,7 @@ class Api::HrController < ApiController
     @party = HR::Party.new(params.permit(:name_ka, :address_ka, :contact_ka, 
                                          :name_ru, :address_ru, :contact_ru, 
                                          :name_en, :address_en, :contact_en, 
-                                         :identity, :phones, :email))
+                                         :identity, :phones, :email, :customer))
     @party.org_type = 1
     if @party.save
      render json: { success: true, id: @party.id }
