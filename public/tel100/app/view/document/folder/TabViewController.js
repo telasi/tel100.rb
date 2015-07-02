@@ -20,10 +20,13 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
   },
 
   onStandardGridpanelSelect: function(dataview, record, item, index, e, eOpts) {
+    var st = dataview.getStore();
+    var view = this.getView();
+    st.currentPage = 1;
     this.refreshDocuments({folderType: 'standard', folderId: record.id});
-    this.getView().down('#customFolders').getSelectionModel().deselectAll();
-    this.getView().up().getViewModel().set('customfolderselection', null);
-    this.getView().fireEvent('folderChosen');
+    view.down('#customFolders').getSelectionModel().deselectAll();
+    view.up().getViewModel().set('customfolderselection', null);
+    view.fireEvent('folderChosen');
   },
 
   onRefreshFolderButtonClick: function(button, e, eOpts) {
