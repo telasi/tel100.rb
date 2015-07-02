@@ -47,8 +47,8 @@ Ext.define('Tel100.view.document.editor.General', {
     bind: {
       fieldLabel: '{i18n.document.base.docdate}',
       value: '{document.docdate}',
-      // readOnly: '{readonly}'
-      readOnly: true
+      readOnly: '{readonlyForDate}',
+      // readOnly: true
     }
   }, {
     xtype: 'datefield',
@@ -140,8 +140,10 @@ Ext.define('Tel100.view.document.editor.GeneralViewController', {
   onTypeIdChange: function(field, newValue, oldValue, eOpts) {
     var vm = this.getViewModel();
     var doc = vm.get('document');
+    var type = field.getSelectedRecord();
+    vm.set('specialType', type && type.get('is_special'));
     if (doc.dirty) {
-      doc.set('type', field.getSelectedRecord());
+      doc.set('type', type);
     }
   }
 });
@@ -153,7 +155,8 @@ Ext.define('Tel100.view.document.editor.GeneralViewModel', {
   alias: 'viewmodel.documenteditorgeneral',
 
   data: {
-    readonly: false
+    readonly: false,
+    specialType: false
   },
 
   stores: {
@@ -179,6 +182,12 @@ Ext.define('Tel100.view.document.editor.GeneralViewModel', {
   formulas: {
     isIncoming: function(get) {
       return get('document.direction') === 'in';
+    },
+
+    readonlyForDate: function(get) {
+      if (get('readonly')) { return true; }
+      if (get('specialType')) { return false; }
+      return true;
     }
   }
 });
