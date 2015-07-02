@@ -212,13 +212,19 @@ Ext.define('Tel100.view.document.editor.Editor', {
             title: '{i18n.document.base.ui.generalTabTitle}'
           }
         }, {
-          xtype: 'documentmotionsreceiverspanel'
+          xtype: 'documentmotionsreceiverspanel',
+          bind: {
+            hidden: '{notMyDocument}'
+          }
         }, {
           xtype: 'documentmotionstree'
         }, {
           xtype: 'documentmotionsresultpanel',
           listeners: {
             commentadded: 'onPanelCommentadded'
+          },
+          bind: {
+            hidden: '{notMyDocument}'
           }
         }, {
           xtype: 'documentcommentpanel'
@@ -594,6 +600,11 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
         return outgoing.length == 0;
       }
       return true;
+    },
+
+    notMyDocument: function(get) {
+      var doc = this.get('document');
+      return !doc.get('is_mydoc');
     }
   }
 });
