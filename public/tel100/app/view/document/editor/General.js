@@ -62,9 +62,10 @@ Ext.define('Tel100.view.document.editor.General', {
     xtype: 'textfield',
     anchor: '100%',
     bind: {
-      fieldLabel: '{i18n.document.base.docnumber2}',
+      fieldLabel: '{typeName} №',
       value: '{document.docnumber2}',
-      readOnly: '{readonly}'
+      readOnly: '{readonly}',
+      hidden: '{readonlyForDate}'
     }
   }, {
     xtype: 'numberfield',
@@ -141,6 +142,7 @@ Ext.define('Tel100.view.document.editor.GeneralViewController', {
     var vm = this.getViewModel();
     var doc = vm.get('document');
     var type = field.getSelectedRecord();
+    vm.set('typeName', type && type.get('name'));
     vm.set('specialType', type && type.get('is_special'));
     if (doc.dirty) {
       doc.set('type', type);
@@ -156,7 +158,8 @@ Ext.define('Tel100.view.document.editor.GeneralViewModel', {
 
   data: {
     readonly: false,
-    specialType: false
+    specialType: false,
+    typeName: null
   },
 
   stores: {
