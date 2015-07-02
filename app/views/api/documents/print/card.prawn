@@ -61,7 +61,7 @@ def properties(pdf)
   end
   @document.assignees.each_with_index do |assignee, index|
     data += [[ index == 0 ? I18n.t("views.document.print.assignees") : "",    
-               "#{assignee}", 
+               assignee.respond_to?(:identity) ? "#{assignee} (#{assignee.identity})": "#{assignee}", 
                assignee.respond_to?(:organization) ? assignee.organization.chained_name : ""]]
   end
            
