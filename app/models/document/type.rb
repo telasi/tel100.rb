@@ -9,11 +9,13 @@ class Document::Type < ActiveRecord::Base
   self.sequence_name = 'doctypes_seq'
   self.localized_fields('name')
   self.set_integer_columns :print_header
+  self.set_integer_columns :is_special
 
   has_many :documents, class_name: 'Document::Base'
   validates :name_ka, presence: { message: 'ჩაწერეთ ქართული დასახელება' }
 
   def print_header?; self.print_header == 1 end
+  def special?; self.is_special == 0 end
 
   def margins(direction=IN)
     if direction == OUT and self.margin_top_out
