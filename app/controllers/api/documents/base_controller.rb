@@ -64,11 +64,10 @@ class Api::Documents::BaseController < ApiController
   end
 
   def show
+    @doc = Document::Base.find(params[:id])
     @my_doc = Document::User.where(document_id: params[:id], user: effective_user).first
-    if can_read_document?(@my_doc.document)
-      @my_doc.read! if can_change_read_property?
-    else
-      render json: { success: false, error: MSG_CANNOT_READ }
+    if @my_doc.present? and can_change_read_property?
+      @my_doc.read!
     end
   end
 
