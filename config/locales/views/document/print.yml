@@ -16,6 +16,7 @@ ka:
         assignee: ადრესატი
         subject: "სათაური:"
         author: ავტორი
+        motion_text: რეზოლუცია
 ru:
   views:
     document:
@@ -34,3 +35,4 @@ ru:
         assignee: Адресат
         subject: "Заголовок:"
         author: Автор
+        motion_text: Резолюция

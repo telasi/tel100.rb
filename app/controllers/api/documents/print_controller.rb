@@ -5,6 +5,7 @@ class Api::Documents::PrintController < ApiController
   def card
   	I18n.locale = params[:lang]
     @document = Document::Base.find(params[:id])
+    @user_id = params[:user]
   end
 
   def print

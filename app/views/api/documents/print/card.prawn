@@ -35,8 +35,8 @@ def barcode(pdf)
 end
 
 def properties(pdf)
-  docdate = @document.docdate.strftime '%d-%b-%Y %H:%M' if @document.docdate.present?
-  due_date = @document.due_date.strftime '%d-%b-%Y %H:%M' if @document.due_date.present?
+  docdate = @document.docdate.strftime '%d-%m-%Y %H:%M' if @document.docdate.present?
+  due_date = @document.due_date.strftime '%d-%m-%Y %H:%M' if @document.due_date.present?
 
   pdf.move_down 60
 
@@ -46,9 +46,18 @@ def properties(pdf)
            [I18n.t("views.document.print.due_date"),   "#{due_date}", ""],
            [I18n.t("views.document.print.direction"),  I18n.t("models.document_base.direction.#{@document.direction}"), ""],
            [I18n.t("views.document.print.pages"),      "#{@document.page_count}", ""],
-           [I18n.t("views.document.print.attachment"), "#{@document.additions}", ""],
-           [I18n.t("views.document.print.owner"),      "#{@document.sender.to_s}", 
-           @document.sender.respond_to?(:organization) ? @document.sender.organization.chained_name : ""]]
+           [I18n.t("views.document.print.attachment"), "#{@document.additions}", ""]]
+
+  incoming = @document.motions.where(receiver_user_id: @user_id).order('ordering ASC, id ASC')
+  incoming.each_with_index do |motion, index|
+    data += [[ index == 0 ? I18n.t("views.document.print.motion_text") : "",    
+                "#{motion.sender} \n #{motion.created_at.localtime.strftime '%d-%m-%Y %H:%M'}",
+                motion.motion_text ]] if not motion.motion_text.blank?
+  end
+  
+  data +=  [[I18n.t("views.document.print.owner"),      "#{@document.sender.to_s}", 
+             @document.sender.respond_to?(:organization) ? @document.sender.organization.chained_name : ""]]
+
 
   @document.authors.each_with_index do |author, index|
     data += [[ index == 0 ? I18n.t("views.document.print.authors") : "",    "#{author}",

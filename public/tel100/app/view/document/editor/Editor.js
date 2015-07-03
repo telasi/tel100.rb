@@ -395,9 +395,11 @@ Ext.define('Tel100.view.document.editor.EditorViewController', {
   },
 
   onCardPrintClick: function(button, e, eOpts) {
+    var user = helpers.user.getProxyUser();
+    if(!user) { user = helpers.user.getCurrentUser() };
     var vm = this.getViewModel();
     var document = vm.get('document');
-    var url = '/api/documents/print/card/' + document.id + '?lang=' + helpers.i18n.getCurrentLocale(); 
+    var url = '/api/documents/print/card/' + document.id + '?lang=' + helpers.i18n.getCurrentLocale() + '&user=' + user.id; 
     helpers.api.document.print.showPDFwindow(url);
   },
 
