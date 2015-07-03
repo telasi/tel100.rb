@@ -52,9 +52,9 @@ class Document::Motion < ActiveRecord::Base
     # sender/receiver information
     sender = whose_user(sender_user)
     receiver_user, receiver = who_eval('receiver', params)
-    same_receiver_user = ( receiver_user.present? and sender_user == receiver_user )
-    same_receiver = ( receiver.present? and sender.present? and sender == receiver )
-    raise I18n.t('models.document_motion.errors.sent_to_himself') if (same_receiver or same_receiver_user)
+    # same_receiver_user = ( receiver_user.present? and sender_user == receiver_user )
+    # same_receiver = ( receiver.present? and sender.present? and sender == receiver )
+    # raise I18n.t('models.document_motion.errors.sent_to_himself') if (same_receiver or same_receiver_user)
     # check existence of this receiver on the branch
     receiver_count = receiver.present? ? document.motions.where(parent_id: parent_id, receiver: receiver).count : 0
     receiver_user_count = receiver_user.present? ? document.motions.where(parent_id: parent_id, receiver_user: receiver_user).count : 0
