@@ -34,6 +34,10 @@
   .text-muted {
     color: #666;
   }
+
+  span {
+    hyphens: manual;
+  }
 </style>
 
 <% qr = RQRCode::QRCode.new( "telasi#{@document.docnumber}", :size => 4, :level => :h ) %>
