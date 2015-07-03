@@ -12,7 +12,9 @@ class HR::Employee < ActiveRecord::Base
   has_one :user, class_name: 'Sys::User'
   belongs_to :vacation, class_name: 'HR::Vacation::Vacation'
 
-  def self.active; HR::Employee.where(is_active: 1) end
+  def self.active
+    HR::Employee.where('is_active = ? and employee_status_id > ?', 1, 0)
+  end
   def to_s; self.full_name end
   def person_number; self.person_id.to_s.rjust(5, '0') end
   def full_name; "#{first_name} #{last_name}" end
