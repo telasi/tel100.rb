@@ -262,4 +262,9 @@ module Sap::Synchronizer
     $hrstruct_cachedate = nil
 
   end
+
+  def self.daily_sync
+    Sap::Synchronizer.sync
+    Sap::Synchronizer.updatehr(DateTime.now)
+  end
 end
