@@ -154,42 +154,42 @@ module Sap::Synchronizer
     end
     
     # add contractors organization and position if not exists
-    contractor_org = HR::Organization.where(is_active: 1, saporg_type: 'O', saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID).first
-    if contractor_org.blank?
-      contractor_org = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID, 
-                                            saporg_type: 'O', sapparent_id: '1', 
-                                            name_ka: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_KA, 
-                                            name_ru: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_RU)
-      contractor_org.save
-    end
+    #contractor_org = HR::Organization.where(is_active: 1, saporg_type: 'O', saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID).first
+    #if contractor_org.blank?
+    #  contractor_org = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID, 
+    #                                        saporg_type: 'O', sapparent_id: '1', 
+    #                                        name_ka: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_KA, 
+    #                                        name_ru: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_RU)
+    #  contractor_org.save
+    #end
 
-    contractor_shtat = HR::Organization.where(is_active: 1, saporg_type: 'S', saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID).first
-    if contractor_shtat.blank?
-      contractor_shtat = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID, 
-                                              saporg_type: 'S', sapparent_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID, 
-                                              name_ka: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_KA, 
-                                              name_ru: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_RU)
-      contractor_shtat.save
-    end
+    #contractor_shtat = HR::Organization.where(is_active: 1, saporg_type: 'S', saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID).first
+    #if contractor_shtat.blank?
+    # contractor_shtat = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID, 
+    #                                          saporg_type: 'S', sapparent_id: Sap::Organization::CONTRACTOR_ORGANIZATION_ID, 
+    #                                          name_ka: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_KA, 
+    #                                          name_ru: Sap::Organization::CONTRACTOR_ORGANIZATION_NAME_RU)
+    #  contractor_shtat.save
+    #end
 
     # add temporary organization and position if not exists
-    temp_org = HR::Organization.where(is_active: 1, saporg_type: 'O', saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID).first
-    if temp_org.blank?
-      temp_org = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID, 
-                                      saporg_type: 'O', sapparent_id: '1', 
-                                      name_ka: Sap::Organization::TEMP_ORGANIZATION_NAME_KA, 
-                                      name_ru: Sap::Organization::TEMP_ORGANIZATION_NAME_RU)
-      temp_org.save
-    end
+    #temp_org = HR::Organization.where(is_active: 1, saporg_type: 'O', saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID).first
+    #if temp_org.blank?
+    #  temp_org = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID, 
+    #                                  saporg_type: 'O', sapparent_id: '1', 
+    #                                  name_ka: Sap::Organization::TEMP_ORGANIZATION_NAME_KA, 
+    #                                  name_ru: Sap::Organization::TEMP_ORGANIZATION_NAME_RU)
+    #  temp_org.save
+    #end
 
-    temp_shtat = HR::Organization.where(is_active: 1, saporg_type: 'S', saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID).first
-    if temp_shtat.blank?
-      temp_shtat = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID, 
-                                        saporg_type: 'S', sapparent_id: Sap::Organization::TEMP_ORGANIZATION_ID, 
-                                        name_ka: Sap::Organization::TEMP_ORGANIZATION_NAME_KA, 
-                                        name_ru: Sap::Organization::TEMP_ORGANIZATION_NAME_RU)
-      temp_shtat.save
-    end
+    #temp_shtat = HR::Organization.where(is_active: 1, saporg_type: 'S', saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID).first
+    #if temp_shtat.blank?
+    #  temp_shtat = HR::Organization.new(is_active: 1, saporg_id: Sap::Organization::TEMP_ORGANIZATION_ID, 
+    #                                    saporg_type: 'S', sapparent_id: Sap::Organization::TEMP_ORGANIZATION_ID, 
+    #                                    name_ka: Sap::Organization::TEMP_ORGANIZATION_NAME_KA, 
+    #                                    name_ru: Sap::Organization::TEMP_ORGANIZATION_NAME_RU)
+    #  temp_shtat.save
+    #end
 
     # update parent ID's
     HR::Organization.active.each do | org |
