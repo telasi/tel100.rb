@@ -138,21 +138,11 @@ class Document::User < ActiveRecord::Base
       if doc_status == COMPLETED
         self.as_owner = DOC_COMPLETED
         self.is_completed = 1
-        # when owner is completed, sender also should be completed
-        sender_docs = Document::User.where(document_id: self.document_id, as_sender: 1)
-        sender_docs.each do |docuser|
-          docuser.as_sender = DOC_COMPLETED
-          docuser.save!
-        end
+        calculate_sender_from_owner!
       elsif doc_status == CANCELED
         self.as_owner = DOC_CANCELED
         self.is_canceled = 1
-        # when owner is canceled, sender also should be canceled
-        sender_docs = Document::User.where(document_id: self.document_id, as_sender: 1)
-        sender_docs.each do |docuser|
-          docuser.as_sender = DOC_CANCELED
-          docuser.save!
-        end
+        calculate_sender_from_owner!
       elsif doc_status == CURRENT
         self.is_current = 1
         self.as_owner = DOC_CURRENT
@@ -182,6 +172,30 @@ class Document::User < ActiveRecord::Base
       self.is_canceled = 1 if canceled_cnt > 0
       self.is_completed = 1 if completed_cnt > 0
       self.is_shown = 1 # sender always visible
+
+      calculate_sender_from_owner
+    end
+  end
+
+  def calculate_sender_from_owner
+    owner = self.document.owner_user
+    if owner
+      sender_status = nil
+
+      owner_status = Document::User.where(document_id: self.document_id, user_id: owner.id).first.as_owner      
+      if owner_status == DOC_COMPLETED
+        sender_status = DOC_COMPLETED
+      elsif  owner_status == DOC_CANCELED
+        sender_status = DOC_CANCELED  
+      end
+
+      if sender_status.present?
+        sender_docs = Document::User.where("document_id = ? AND as_sender > ?", self.document_id, DOC_NONE)
+        sender_docs.each do |docuser|
+          docuser.as_sender = sender_status
+          docuser.save!
+        end
+      end
     end
   end
 
