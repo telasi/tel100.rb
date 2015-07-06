@@ -147,9 +147,11 @@ module Sap::Synchronizer
 
     # delete old organizations
     HR::Organization.active.each do | org |
-      if !Sap::Relation.current_structure.where(objectid: org.saporg_id, objecttype: org.saporg_type).any?
-        org.is_active = 0
-        org.save
+      if org.custom != 1
+        if !Sap::Relation.current_structure.where(objectid: org.saporg_id, objecttype: org.saporg_type).any?
+          org.is_active = 0
+          org.save
+        end
       end
     end
     
