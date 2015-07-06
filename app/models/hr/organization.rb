@@ -3,7 +3,7 @@ class HR::Organization < ActiveRecord::Base
   self.table_name  = 'hr_organizations'
   self.sequence_name = 'hr_orgs_seq'
   self.localized_field('name')
-  self.set_integer_columns :is_manager, :is_active
+  self.set_integer_columns :is_manager, :is_active, :custom
   belongs_to :parent, class_name: 'HR::Organization', foreign_key: 'parent_id'
 
   def self.active; HR::Organization.where(is_active: 1) end
