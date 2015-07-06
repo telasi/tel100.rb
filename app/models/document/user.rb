@@ -138,11 +138,11 @@ class Document::User < ActiveRecord::Base
       if doc_status == COMPLETED
         self.as_owner = DOC_COMPLETED
         self.is_completed = 1
-        calculate_sender_from_owner!
+        calculate_sender_from_owner
       elsif doc_status == CANCELED
         self.as_owner = DOC_CANCELED
         self.is_canceled = 1
-        calculate_sender_from_owner!
+        calculate_sender_from_owner
       elsif doc_status == CURRENT
         self.is_current = 1
         self.as_owner = DOC_CURRENT
