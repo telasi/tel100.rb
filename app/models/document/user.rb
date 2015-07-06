@@ -138,9 +138,21 @@ class Document::User < ActiveRecord::Base
       if doc_status == COMPLETED
         self.as_owner = DOC_COMPLETED
         self.is_completed = 1
+        # when owner is completed, sender also should be completed
+        sender_docs = Document::User.where(document_id: self.document_id, as_sender: 1)
+        sender_docs.each do |docuser|
+          docuser.as_sender = DOC_COMPLETED
+          docuser.save!
+        end
       elsif doc_status == CANCELED
         self.as_owner = DOC_CANCELED
         self.is_canceled = 1
+        # when owner is canceled, sender also should be canceled
+        sender_docs = Document::User.where(document_id: self.document_id, as_sender: 1)
+        sender_docs.each do |docuser|
+          docuser.as_sender = DOC_CANCELED
+          docuser.save!
+        end
       elsif doc_status == CURRENT
         self.is_current = 1
         self.as_owner = DOC_CURRENT
