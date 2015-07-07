@@ -229,7 +229,8 @@ Ext.define('Tel100.view.document.grid.Panel', {
     //if (cellIndex === actionIndex && record.get('as_signee') === 1) {
     if (cell.dataIndex === 'statusName' && record.get('as_signee') === 1) {
       this.fireEvent('documentsign', record);
-    } else if (cellIndex === actionIndex && record.get('as_author') === 1) {
+    //} else if (cellIndex === actionIndex && record.get('as_author') === 1) {
+    } else if (cell.dataIndex === 'statusName' && record.get('as_author') === 1) {
       this.fireEvent('documentauthor', record);
     } else {
       this.fireEvent('documentopen', record);
