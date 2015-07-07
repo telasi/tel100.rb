@@ -33,7 +33,7 @@ class Api::Documents::PrintController < ApiController
     src.close
     dest = Tempfile.new('pdf')
 
-    cmd = "java -cp lib/tel100.jar:lib/xmlworker.jar:lib/itextpdf.jar:lib/commons-io.jar tel100.HTMLToPdf #{I18n.locale} #{src.path} #{dest.path} #{margins.join(' ')}"
+    cmd = "java -cp lib/tel100.jar:lib/xmlworker.jar:lib/itextpdf.jar:lib/commons-io.jar:lib/jsoup.jar tel100.HTMLToPdf #{I18n.locale} #{src.path} #{dest.path} #{margins.join(' ')}"
     if number.present?
       cmd = "#{cmd} #{number} #{date}"
     end
