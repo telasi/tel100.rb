@@ -23,6 +23,7 @@
 
   h1 {
     font-size: 13pt;
+    margin-bottom: 32pt;
   }
 
   p {
@@ -37,6 +38,10 @@
 
   span {
     hyphens: manual;
+  }
+
+  author {
+    border-top: 1px solid red;
   }
 </style>
 
@@ -73,7 +78,7 @@
 <!-- authors -->
 
 <% if @author %>
-  <hr>
+  <p style="margin-top: 3px;">&nbsp;</p>
   <% @document.authors.each do |author| %>
     <p>
       <span class="text-muted"><%= t("views.document.print.author") %>,</span>
@@ -86,7 +91,7 @@
 <% end %>
 
 <% if @assignees %>
-  <hr>
+  <p style="margin-top: 3px;">&nbsp;</p>
   <% @document.assignees.each do |assignee| %>
     <p>
       <span class="text-muted"><%= t("views.document.print.assignee") %>,</span>
