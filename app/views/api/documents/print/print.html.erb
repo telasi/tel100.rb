@@ -45,35 +45,15 @@
   }
 </style>
 
-<% qr = RQRCode::QRCode.new( "telasi#{@document.docnumber}", :size => 4, :level => :h ) %>
-
-<!-- print header -->
-<% if @document.type.print_header? %>
-<table style="width:100%;">
-  <tr>
-    <td>
-      <div class="qrcode"><%= raw qr.as_html %></div>
-    </td>
-    <td style="text-align: right; vertical-align: top;">
-      <p>
-        <strong><%= t("views.document.print.number") %></strong>
-        <code><%= @document.docnumber || '--' %></code>
-      </p>
-      <p>
-        <strong><%= t("views.document.print.date") %></strong>
-        <code><%= @document.docdate ? @document.docdate.strftime('%d/%m/%Y')  : '--' %></code>
-      </p>
-    </td>
-  </tr>
-</table>
-<% end %>
-
-<!-- subject and body -->
+<!-- subject -->
 
 <% if @subject %>
   <h1 style="text-align: center;"><%= @document.subject %></h1>
 <% end %>
-<div><%= raw @document.body %></div>
+
+<!-- body -->
+
+<%= raw @document.body %>
 
 <!-- authors -->
 
