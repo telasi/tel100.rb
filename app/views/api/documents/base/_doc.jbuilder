@@ -85,7 +85,7 @@ end
 
 # assignees
 json.assignees do
-  json.array! doc.assignee_motions.where('status IN (?)', stats).order('id ASC') do |motion|
+  json.array! doc.assignee_motions.where('sender_user_id = ? and status IN (?)', user.id, stats).order('id ASC') do |motion|
     receiver = ( motion.receiver || motion.receiver_user )
     json.id            motion.id
     json.status        motion.status

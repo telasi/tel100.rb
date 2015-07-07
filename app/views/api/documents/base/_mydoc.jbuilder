@@ -1,5 +1,5 @@
 user = mydoc.user
-json.partial! 'api/documents/base/doc' , doc: mydoc.document
+json.partial! 'api/documents/base/doc' , { doc: mydoc.document, user: user }
 
 json.user_id      mydoc.user.id
 json.is_new       mydoc.new?
