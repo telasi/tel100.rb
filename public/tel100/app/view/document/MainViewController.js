@@ -118,5 +118,87 @@ Ext.define('Tel100.view.document.MainViewController', {
     var folders = this.getView().up('main').down('documentfoldertab');
     folders.refresh();
     this.onRefresh();
-  }
+  },
+
+  addReceiverToDocument: function(document_id, parent_id, receiver, callback) {
+    var extType = receiver.get('ext_type');
+
+    helpers.api.document.motion.createDraft({
+      params: {
+        document_id: document_id,
+        parent_id: parent_id,
+        receiver_id: receiver.id,
+        receiver_type: extType,
+        receiver_role: 'assignee'
+      },
+      success: function(motionData) {
+        var motion = Ext.create('Tel100.model.document.Motion', motionData);
+        if (callback) {
+          callback(null, motion);
+        }
+      }.bind(this),
+      failure: function(error) {
+        console.error(error);
+      }.bind(this)
+    });
+  },
+
+  sendDraftMotions: function(document_id, callback){
+      helpers.api.document.motion.sendDraft(document_id, {
+        success: function(data) {
+          if (callback) {
+            callback();
+          }
+        }.bind(this),
+        failure: function(data){
+          Ext.Msg.alert('error', 'error');
+        }.bind(this)
+      });
+  },
+
+  forwardDocuments: function(selection, receivers) {
+    debugger;
+    var cntrl = this;
+
+    if (selection && receivers) {
+      for (var i = 0; i < selection.length; i++){
+
+        var tasks = [];
+
+        var document_id = selection[i].get('id');
+        var incoming = selection[i].get('incoming');
+        if (incoming){
+          var role = incoming[0].role;
+          if(role === helpers.document.role.SENDER){
+            parent_id = null;  
+          } else {
+            parent_id = incoming[0].id;  
+          }
+        };
+
+        for (var k = 0; k < receivers.length; k++) {
+
+          var t = (function(document_id, parent_id, receiver) {
+            return function(callback) {
+              cntrl.addReceiverToDocument(document_id, parent_id, receiver, callback);
+            };
+          })(document_id, parent_id, receivers[k]);
+
+          tasks.push(t);
+        }
+
+        var t = (function(document_id) {
+            return function(callback) {
+              cntrl.sendDraftMotions(document_id, callback);
+            };
+        })(document_id);
+
+        tasks.push(t);
+        async.series(tasks);        
+      }
+
+    };
+    
+  },
+
 });

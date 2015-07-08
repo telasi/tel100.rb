@@ -12,6 +12,14 @@ module.exports = {
       ka: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
       ru: '<i class="fa fa-plus"></i> Новый документ'
     },
+    result: {
+      ka: '<i class="fa fa-check"></i> შედეგი',
+      ru: '<i class="fa fa-check"></i> Результат'
+    },
+    forward: {
+      ka: '<i class="fa fa-mail-forward"></i> გადაგზავნა',
+      ru: '<i class="fa fa-mail-forward"></i> Переслать'
+    },
     deleteDraft: {
       ka: '<i class="fa fa-trash"></i> წაშლა',
       ru: '<i class="fa fa-trash"></i> Удалить'
