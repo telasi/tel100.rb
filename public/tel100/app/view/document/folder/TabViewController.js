@@ -22,7 +22,6 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
   onStandardGridpanelSelect: function(dataview, record, item, index, e, eOpts) {
     var st = dataview.getStore();
     var view = this.getView();
-    st.currentPage = 1;
     this.refreshDocuments({folderType: 'standard', folderId: record.id});
     view.down('#customFolders').getSelectionModel().deselectAll();
     view.up().getViewModel().set('customfolderselection', null);

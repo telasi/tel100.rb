@@ -3,7 +3,10 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
   alias: 'controller.documentgridpanel',
 
   setStoreConfig: function(opts, values) {
-    var proxy = this.getStore('documents').getProxy();
+    var st = this.getStore('documents');
+    st.startPage = 1;
+    st.currentPage = 1;
+    var proxy = st.getProxy();
     proxy.setConfig(opts, values);
 
     var subst = Ext.ComponentQuery.query('#main-viewport')[0].getViewModel().get('substitude');
@@ -15,7 +18,6 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
   },
 
   moveDocumentToFolder: function(id) {
-    debugger;
     var model = Ext.create('Tel100.model.folder.Document',{
       folder_id: id, doc_id: data.records[0].id
     });
