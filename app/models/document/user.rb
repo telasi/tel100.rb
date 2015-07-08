@@ -165,10 +165,11 @@ class Document::User < ActiveRecord::Base
         self.as_sender = DOC_CANCELED
       elsif completed_cnt > 0
         self.as_sender = DOC_COMPLETED
-      else
-        # self.as_sender = DOC_NONE
+      elsif self.document.status != DRAFT
         self.as_sender = DOC_CANCELED
         self.is_canceled = 1
+      else
+        self.as_sender = DOC_NONE
       end
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
