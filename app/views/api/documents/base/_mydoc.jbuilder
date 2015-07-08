@@ -1,5 +1,6 @@
 user = mydoc.user
-json.partial! 'api/documents/base/doc' , { doc: mydoc.document, user: user }
+doc = mydoc.document
+json.partial! 'api/documents/base/doc' , { doc: doc, user: user }
 
 json.user_id      mydoc.user.id
 json.is_new       mydoc.new?
@@ -74,5 +75,22 @@ json.outgoing do
       json.id    motion.last_receiver.id
       json.name  motion.last_receiver.to_s
     end if motion.last_receiver.present?
+  end
+end
+
+# assignees
+stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
+
+json.assignees do
+  json.array! doc.assignee_motions.where('sender_user_id = ? and status IN (?)', user.id, stats).order('id ASC') do |motion|
+    receiver = ( motion.receiver || motion.receiver_user )
+    json.id            motion.id
+    json.status        motion.status
+    json.name          receiver.to_s
+    json.assignee_id   receiver.id
+    json.assignee_type receiver.class.name
+    json.response      motion.response_type.to_s
+    json.completed_at  motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
+    json.position      receiver.organization.to_s if receiver.respond_to?('organization')
   end
 end

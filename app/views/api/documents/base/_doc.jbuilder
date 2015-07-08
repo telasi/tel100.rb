@@ -82,18 +82,3 @@ json.signees do
     json.position     motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
   end
 end
-
-# assignees
-json.assignees do
-  json.array! doc.assignee_motions.where('sender_user_id = ? and status IN (?)', user.id, stats).order('id ASC') do |motion|
-    receiver = ( motion.receiver || motion.receiver_user )
-    json.id            motion.id
-    json.status        motion.status
-    json.name          receiver.to_s
-    json.assignee_id   receiver.id
-    json.assignee_type receiver.class.name
-    json.response      motion.response_type.to_s
-    json.completed_at  motion.completed_at.localtime.strftime '%d-%b-%Y %H:%M' if motion.completed_at.present?
-    json.position      receiver.organization.to_s if receiver.respond_to?('organization')
-  end
-end
