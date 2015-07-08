@@ -75,9 +75,11 @@ class Folder::Standard
    		when SENT
         docs.where(is_sent: 1)
       when COMPLETED
-        docs.where('document_user.as_assignee IN (?) or document_user.as_owner IN (?) or document_user.as_sender IN (?)', [Document::User::DOC_COMPLETED], [Document::User::DOC_COMPLETED], [Document::User::DOC_COMPLETED] )
+        #docs.where('document_user.as_assignee IN (?) or document_user.as_owner IN (?) or document_user.as_sender IN (?)', [Document::User::DOC_COMPLETED], [Document::User::DOC_COMPLETED], [Document::User::DOC_COMPLETED] )
+        docs.where('document_user.is_completed = 1')
       when CANCELED
-        docs.where('document_user.as_owner IN (?) or document_user.as_owner IN (?) or document_user.as_sender IN (?)', [ Document::User::DOC_CANCELED ], [ Document::User::DOC_CANCELED ], [ Document::User::DOC_CANCELED ])
+        #docs.where('document_user.as_owner IN (?) or document_user.as_owner IN (?) or document_user.as_sender IN (?)', [ Document::User::DOC_CANCELED ], [ Document::User::DOC_CANCELED ], [ Document::User::DOC_CANCELED ])
+        docs.where('document_user.is_canceled = 1')
       when ALL
         docs
     end
