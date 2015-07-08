@@ -267,7 +267,7 @@ class Document::User < ActiveRecord::Base
       'document_id=? AND sender_user_id=? AND status IN (?) AND parent_id IS NOT NULL',
       self.document_id,
       self.user_id,
-      [ CURRENT ]
+      [ CURRENT, COMPLETED, CANCELED ]
     ]
     forwarded_count = Document::Motion.where(conditions).count
     self.is_forwarded = 1 if forwarded_count > 0
