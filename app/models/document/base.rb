@@ -186,8 +186,9 @@ class Document::Base < ActiveRecord::Base
     elsif is_owner
       add_document_comment(user, params, actual_user)
     elsif is_sender
-      motion = self.motions.where(receiver_user: user, parent_id: nil).first
-      return motion.add_comment(user, params, actual_user) if motion.present?
+      self.motions.where(receiver_user: user, parent_id: nil).each do |motion|
+        motion.add_comment(user, params, actual_user)
+      end
     else
       raise 'cannot add comment here'
     end
@@ -408,7 +409,8 @@ class Document::Base < ActiveRecord::Base
       # S4: if document was canceled mark current motions as not received
       if self.status == CANCELED and status_updated
         self.update_attributes!(status: CANCELED)
-        self.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
+        # self.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
+        self.motions.where('status IN (?)', [ SENT ]).each do |motion|
           motion.update_attributes!(status: NOT_RECEIVED)
           docuser = self.users.where(user: motion.receiver_user).first
           docuser.calculate!

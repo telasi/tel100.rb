@@ -147,7 +147,7 @@ class Document::User < ActiveRecord::Base
         self.is_current = 1
         self.as_owner = DOC_CURRENT
       else
-        self.as_owner = DOC_NONE
+        # self.as_owner = DOC_NONE
       end
     end
   end
@@ -166,7 +166,9 @@ class Document::User < ActiveRecord::Base
       elsif completed_cnt > 0
         self.as_sender = DOC_COMPLETED
       else
-        self.as_sender = DOC_NONE
+        # self.as_sender = DOC_NONE
+        self.as_sender = DOC_CANCELED
+        self.is_canceled = 1
       end
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
@@ -212,7 +214,7 @@ class Document::User < ActiveRecord::Base
       elsif completed_cnt > 0
         self.as_assignee = DOC_COMPLETED
       else
-        self.as_assignee = DOC_NONE
+        # self.as_assignee = DOC_NONE
       end
       self.is_current = 1 if current_cnt > 0
       self.is_canceled = 1 if canceled_cnt > 0
@@ -233,7 +235,7 @@ class Document::User < ActiveRecord::Base
       elsif completed_cnt > 0
         self.as_signee = DOC_COMPLETED
       else
-        self.as_signee = DOC_NONE
+        # self.as_signee = DOC_NONE
       end
       self.is_current   = 1 if current_cnt > 0
       self.is_canceled  = 1 if canceled_cnt > 0
@@ -254,7 +256,7 @@ class Document::User < ActiveRecord::Base
       elsif completed_cnt > 0
         self.as_author = DOC_COMPLETED
       else
-        self.as_author = DOC_NONE
+        # self.as_author = DOC_NONE
       end
       self.is_current   = 1 if current_cnt > 0
       self.is_canceled  = 1 if canceled_cnt > 0
