@@ -59,15 +59,16 @@ class Folder::Standard
       when DRAFT
         docs.joins("JOIN document_base on document_base.id = document_user.document_id AND document_base.status = 0 AND user_id = #{user.id}")
       when INBOX
-        docs.where(is_received: 1, is_completed: show_completed)
+        docs.where(is_received: 1, is_completed: 0)
    		when INBOX_UNREAD
-   			docs.where(is_received: 1, is_completed: show_completed, is_new: 1)
+   			docs.where(is_received: 1, is_completed: 0, is_forwarded: 0, is_new: 1)
    		when INBOX_READ
-   			docs.where(is_received: 1, is_completed: show_completed, is_new: 0, is_forwarded: 0)
+   			docs.where(is_received: 1, is_completed: 0, is_forwarded: 0, is_new: 0)
       when INBOX_RESENT
-        docs.where(is_forwarded: 1, is_completed: show_completed)
+        docs.where(is_received: 1, is_completed: 0, is_forwarded: 1)
       when INBOX_SIGNEE
-        docs.where('document_user.is_completed = ? and ( document_user.as_signee = 1 or document_user.as_author = 1)', show_completed)
+        # docs.where('document_user.is_completed = ? and ( document_user.as_signee = 1 or document_user.as_author = 1)', 0)
+        docs.where(is_received: 1, is_completed: 0).where('as_signee = 1 or as_author = 1')
       when INBOX_SIGNED
         docs.where('document_user.as_signee IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED] )
       when CHANGED
@@ -75,10 +76,8 @@ class Folder::Standard
    		when SENT
         docs.where(is_sent: 1)
       when COMPLETED
-        #docs.where('document_user.as_assignee IN (?) or document_user.as_owner IN (?) or document_user.as_sender IN (?)', [Document::User::DOC_COMPLETED], [Document::User::DOC_COMPLETED], [Document::User::DOC_COMPLETED] )
         docs.where('document_user.is_completed = 1')
       when CANCELED
-        #docs.where('document_user.as_owner IN (?) or document_user.as_owner IN (?) or document_user.as_sender IN (?)', [ Document::User::DOC_CANCELED ], [ Document::User::DOC_CANCELED ], [ Document::User::DOC_CANCELED ])
         docs.where('document_user.is_canceled = 1')
       when ALL
         docs
