@@ -175,19 +175,13 @@ class Document::Base < ActiveRecord::Base
   def add_comment(user, params, actual_user = nil)
     is_owner = self.owner_user == user
     is_sender = self.sender_user == user
-    if is_owner and is_sender
+    if is_owner or is_sender
       status_updated = add_document_comment(user, params, actual_user)
-      if status_updated
+      if not is_owner or status_updated
         motion = self.motions.where(receiver_user: user, parent_id: nil).first
         if motion.present? and not motion.cannot_add_comment?
           motion.add_comment(user, params, actual_user)
         end
-      end
-    elsif is_owner
-      add_document_comment(user, params, actual_user)
-    elsif is_sender
-      self.motions.where(receiver_user: user, parent_id: nil).each do |motion|
-        motion.add_comment(user, params, actual_user)
       end
     else
       raise 'cannot add comment here'
