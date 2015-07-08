@@ -1,1 +1,1 @@
-FILES_REPOSITORY = 'opt1/docfiles'
+FILES_REPOSITORY = '/opt1/docfiles'
