@@ -6,6 +6,7 @@ class Api::Documents::RelationsController < ApiController
 
   def answer
     @relations = Document::Relation.where(related_id: params[:related_id]).order(:id)
+    @user = effective_user
   end
 
   def create

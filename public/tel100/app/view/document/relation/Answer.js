@@ -17,12 +17,14 @@ Ext.define('Tel100.view.document.relation.Answer', {
   },
   columns: [{
     xtype: 'gridcolumn',
-    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-      return [value,
-      ' ',
-      record.get('doctype'),
-      '</a>'].join('');
-    },
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        var text = record.toHtml();
+        var is_owner = record.get('is_owner');
+        if(is_owner && is_owner === 1){
+          text = ["<span class='text-success'>", text, "</span>"].join('');
+        }
+        return text;
+      },
     draggable: false,
     resizable: false,
     sortable: false,
