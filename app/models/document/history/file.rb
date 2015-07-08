@@ -5,7 +5,8 @@ class Document::History::File < ActiveRecord::Base
   belongs_to :document, class_name: 'Document::Base'
 
   def full_path
-    File.join(Rails.root, 'public', 'uploads', 'docfiles', self.store_name)
+    #File.join(Rails.root, 'public', 'uploads', 'docfiles', self.store_name)
+    File.join(FILES_REPOSITORY, self.store_name)
   end
 
   def delete_file
