@@ -278,7 +278,7 @@ class Document::User < ActiveRecord::Base
     if not_draft_count > 0
       self.is_shown = 1
     else
-      self.as_owner = self.as_signee = self.as_assignee = self.as_author = DOC_NONE
+      # self.as_owner = self.as_signee = self.as_assignee = self.as_author = DOC_NONE
       self.is_current = self.is_completed = self.is_canceled = 0
     end
   end
