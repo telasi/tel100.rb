@@ -170,8 +170,12 @@ class Document::Motion < ActiveRecord::Base
     end
   end
 
+  def cannot_add_comment?
+    [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
+  end
+
   def add_comment!(user, params, actual_user=nil)
-    raise 'status not supported' if [ DRAFT, SENT, NOT_SENT, NOT_RECEIVED ].include?(self.status)
+    raise 'status not supported' if cannot_add_comment?
     raise 'not your motion' if user != self.receiver_user
     new_status = self.status
     doc = self.document
