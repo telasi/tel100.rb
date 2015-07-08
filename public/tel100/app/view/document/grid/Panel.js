@@ -46,6 +46,8 @@ Ext.define('Tel100.view.document.grid.Panel', {
   },
 
   columns: [{
+    xtype: 'rownumberer',
+  },{
     xtype: 'gridcolumn',
     renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
       var text = value;
