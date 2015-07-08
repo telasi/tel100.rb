@@ -12,6 +12,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
   enableColumnMove: false,
   sortableColumns: false,
   defaultListenerScope: true,
+  selType: 'checkboxmodel',
 
   bind: {
     store: '{documents}'

@@ -3,5 +3,6 @@ module.exports = {
   CREATOR:  'creator',
   AUTHOR:   'author',
   SIGNEE:   'signee',
-  ASSIGNEE: 'assignee'
+  ASSIGNEE: 'assignee',
+  SENDER:   'sender'
 };

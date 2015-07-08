@@ -49,6 +49,21 @@ Ext.define('Tel100.view.document.Main', {
           bind: {
             text: '{i18n.document.base.ui.newDocument}'
           }
+        }, {
+          handler: 'onForward',
+          cls: 'success-button',
+          bind: {
+            text: '{i18n.document.base.ui.forward}',
+            disabled: '{forwardButtonDisabled}'
+          }
+        }, {
+          handler: 'onResult',
+          hidden: true,
+          cls: 'success-button',
+          bind: {
+            text: '{i18n.document.base.ui.result}',
+            disabled: '{resultButtonDisabled}'
+          }
         }, '->', {
           handler: 'onDeleteDraft',
           cls: 'danger-button',
@@ -71,7 +86,8 @@ Ext.define('Tel100.view.document.Main', {
         listeners: {
           documentopen: 'onGridpanelDocumentopen',
           documentsign: 'onGridpanelDocumentsign',
-          documentauthor: 'onGridpanelDocumentauthor'
+          documentauthor: 'onGridpanelDocumentauthor',
+          selectionchange: 'onGridPanelSelectionChange'
         }
       }]
     }]
@@ -79,6 +95,33 @@ Ext.define('Tel100.view.document.Main', {
 
   listeners: {
     beforerender: 'onPanelBeforeRender'
+  },
+
+  onGridPanelSelectionChange: function(model, selected){
+    var vm = this.getViewModel();
+    var disableForwardButton = false;
+    var disableResultButton = false;
+
+    for(i=0; i<selected.length;i++){
+      var select = selected[i];
+
+      if(select.get('status') === helpers.document.status.DRAFT || 
+         select.get('status') === helpers.document.status.COMPLETED || 
+         select.get('status') === helpers.document.status.CANCELED){
+        disableForwardButton = true;
+        disableResultButton = true;
+        break;
+      };
+
+      if(select.get('incoming').length != 1){
+        disableForwardButton = true;
+        disableResultButton = true;
+        break;
+      }
+    };
+
+    vm.set('disableResultButton', disableForwardButton);
+    vm.set('disableForwardButton', disableForwardButton);    
   },
 
   onGridpanelDocumentopen: function(doc) {
@@ -136,5 +179,35 @@ Ext.define('Tel100.view.document.Main', {
 
   onDeleteDraft: function() {
     this.getController().onDeleteDraft();
+  },
+
+  onResult: function() {
+    var grid = this.down('documentgridpanel');
+    var selection = grid.getSelection();
+
+    var dialog = Ext.create('Ext.window.Window',{
+      items: [{
+        xtype: 'documentmotionsresultpanel',
+      }]
+    });
+
+    // var view = this;
+    // var dialog = Ext.create('Tel100.view.document.comment.Author', { modal: true });
+    // dialog.getViewModel().set('document', doc);
+    // dialog.on('authored', function() {
+    //   view.onRefresh();
+    // });
+    dialog.show();
+  },
+
+  onForward: function() {
+    var view = this;
+    var grid = view.down('documentgridpanel');
+    var selection = grid.getSelection();
+
+    var dialog = helpers.party.getPartyDialog(function(assignees) {
+      view.getController().forwardDocuments(selection, assignees);
+    });
+    dialog.show();
   }
 });

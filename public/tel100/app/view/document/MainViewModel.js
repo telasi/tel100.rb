@@ -4,7 +4,9 @@ Ext.define('Tel100.view.document.MainViewModel', {
 
   data: {
     selection: null,
-    customfolderselection: null
+    customfolderselection: null,
+    disableResultButton: true,
+    disableForwardButton: true
   },
 
   formulas: {
@@ -20,6 +22,13 @@ Ext.define('Tel100.view.document.MainViewModel', {
           return true;
         }
       }
+    },
+    resultButtonDisabled: function(get) {
+      return get('disableResultButton');
+    },
+
+    forwardButtonDisabled: function(get) {
+      return get('disableForwardButton');
     }
   }
 });
