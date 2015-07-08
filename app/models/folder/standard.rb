@@ -25,13 +25,14 @@ class Folder::Standard
   attr_accessor :folder_type
 
   # getter
-   define_method("name") do
+  define_method("name") do
     self.send("name_#{I18n.locale}") || self.send("name_#{I18n.default_locale}")
-   end
+  end
+
   # setter
-   define_method("name=") do |value|
+  define_method("name=") do |value|
     self.send("name_#{I18n.locale}=", value)
-   end
+  end
 
   def initialize(id, parent_id, icon, name_ka, name_ru, name_en, folder_type)
     self.id = id
@@ -41,46 +42,45 @@ class Folder::Standard
     self.name_ru = name_ru
     self.name_en = name_en
     self.folder_type = folder_type
-   end
+  end
 
-   def to_hash(user)
-    {
-      name:      self.name,
+  def to_hash(user)
+    { name:      self.name,
       icon:      self.icon,
       count:      Folder::Standard.docs(self.folder_type, show_completed = 0, user).count,
       folder_type: self.folder_type,
       parent_id: self.parent_id
     }
-   end
+  end
 
-   def self.docs(folderType, show_completed = 0, user)
+  def self.docs(folderType, show_completed = 0, user)
     docs = Document::User.mydocs(user)
     case folderType.to_i
       when DRAFT
         docs.joins("JOIN document_base on document_base.id = document_user.document_id AND document_base.status = 0 AND user_id = #{user.id}")
       when INBOX
         docs.where(is_received: 1, is_completed: 0)
-   		when INBOX_UNREAD
-   			docs.where(is_received: 1, is_completed: 0, is_forwarded: 0, is_new: 1).where('as_signee = 0 or as_author = 0')
-   		when INBOX_READ
-   			docs.where(is_received: 1, is_completed: 0, is_forwarded: 0, is_new: 0).where('as_signee = 0 or as_author = 0')
+      when INBOX_UNREAD
+        docs.where(is_received: 1, is_completed: 0, is_forwarded: 0, is_new: 1).where('as_signee = 0 and as_author = 0')
+      when INBOX_READ
+        docs.where(is_received: 1, is_completed: 0, is_forwarded: 0, is_new: 0).where('as_signee = 0 and as_author = 0')
       when INBOX_RESENT
         docs.where(is_received: 1, is_completed: 0, is_forwarded: 1)
       when INBOX_SIGNEE
         # docs.where('document_user.is_completed = ? and ( document_user.as_signee = 1 or document_user.as_author = 1)', 0)
         docs.where(is_received: 1, is_completed: 0).where('as_signee = 1 or as_author = 1')
       when INBOX_SIGNED
-        docs.where('document_user.as_signee IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED] )
+        docs.where('as_signee IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED] )
       when CHANGED
         docs.where(is_changed: 1)
-   		when SENT
+      when SENT
         docs.where(is_sent: 1)
       when COMPLETED
-        docs.where('document_user.is_completed = 1')
+        docs.where(is_completed: 1)
       when CANCELED
-        docs.where('document_user.is_canceled = 1')
+        docs.where(is_canceled: 1)
       when ALL
         docs
     end
-   end
+  end
 end

@@ -157,7 +157,6 @@ Ext.define('Tel100.view.document.MainViewController', {
   },
 
   forwardDocuments: function(selection, receivers) {
-    debugger;
     var cntrl = this;
 
     if (selection && receivers) {
