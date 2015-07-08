@@ -179,9 +179,7 @@ class Document::Base < ActiveRecord::Base
       status_updated = add_document_comment(user, params, actual_user)
       if status_updated
         motion = self.motions.where(receiver_user: user, parent_id: nil).first
-        if motion.present? and not motion.cannot_add_comment?
-          motion.add_comment(user, params, actual_user)
-        end
+        motion.add_comment(user, params, actual_user) if motion.present?
       end
     elsif is_owner
       add_document_comment(user, params, actual_user)
