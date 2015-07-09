@@ -1,0 +1,1 @@
+FILES_REPOSITORY = '/opt1/docfiles'
