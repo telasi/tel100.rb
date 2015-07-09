@@ -7,10 +7,11 @@ class Document::Motion < ActiveRecord::Base
   MIN = 1
   MAX = 999
 
-  ORDERING_SINGEE      = 1
-  ORDERING_AUTHOR      = 250
-  ORDERING_AUTO_SIGNEE = 400
-  ORDERING_ASIGNEE     = 500
+  ORDERING_SINGEE       = 1
+  ORDERING_AUTHOR       = 250
+  ORDERING_AUTO_SIGNEE  = 400
+  ORDERING_ASIGNEE      = 500
+  ORDERING_AUTO_ASIGNEE = 500
 
   include Document::Personalize
   include Document::Status
