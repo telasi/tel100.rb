@@ -7,7 +7,7 @@ class Api::Documents::MotionController < ApiController
 
   def index
     @document = Document::Base.find(params[:document_id])
-    rel = @document.motions.where('receiver_role not in (?)', ROLE_SENDER)
+    rel = @document.motions #.where('receiver_role not in (?)', ROLE_SENDER)
     user = effective_user
 
     if params[:mode] == 'out'
@@ -25,13 +25,11 @@ class Api::Documents::MotionController < ApiController
 
     rel = rel.where(receiver_role: params[:role]) if params[:role].present?
 
-    # if we call tis from modification windows we get rid of ORDERING_AUTO_SIGNEE signee
+    # if we call this from modification windows we get rid of ORDERING_AUTO_SIGNEE signee
     rel = rel.where('ordering NOT IN (?)', Document::Motion::ORDERING_AUTO_SIGNEE) if params[:modify].present?
 
     motions = rel.order('ordering ASC, id ASC').to_a
-    if hasbase
-      @motions = [ nil ] + motions
-    elsif is_author
+    if hasbase or is_author
       @motions = motions + [ nil ]
     else
       @motions = motions
