@@ -82,7 +82,8 @@ end
 stats = [ Document::Status::SENT, Document::Status::CURRENT, Document::Status::NOT_RECEIVED, Document::Status::COMPLETED, Document::Status::CANCELED ]
 
 json.assignees do
-  json.array! doc.assignee_motions.where('sender_user_id = ? and status IN (?)', user.id, stats).order('id ASC') do |motion|
+  userid = doc.author?(user) ? doc.sender_user.id : user.id
+  json.array! doc.assignee_motions.where('sender_user_id = ? and status IN (?)', userid, stats).order('id ASC') do |motion|
     receiver = ( motion.receiver || motion.receiver_user )
     json.id            motion.id
     json.status        motion.status
