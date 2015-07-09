@@ -172,6 +172,17 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
+  def can_change_status?(user)
+    is_owner = self.owner_user == user
+    return true if is_owner
+    is_sender = self.sender_user == user
+    return false unless is_sender
+
+    # check if author already get document
+    owner_status = self.motions.where(receiver_user: self.owner_user).first.status
+    return (not [SENT,NOT_SENT,NOT_RECEIVED].include?(owner_status))
+  end
+
   def add_comment(user, params, actual_user = nil)
     is_owner = self.owner_user == user
     is_sender = self.sender_user == user
@@ -391,6 +402,7 @@ class Document::Base < ActiveRecord::Base
       status_updated = false
       if self.status != new_status
         raise 'cannot change status' if self.status == CANCELED
+        raise 'you cannot change status' if can_change_status?(user)
         self.completed_at = Time.now
         self.status = new_status
         self.save!
