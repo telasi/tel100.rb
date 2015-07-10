@@ -27,6 +27,30 @@ class Api::Documents::MotionController < ApiController
     end
   end
 
+  # This method should be used for getting motions for document/motion "resend".
+  def motions_for_resend
+    @document = Document::Base.find(params[:document_id])
+    user = effective_user
+    rel = @document.motions.where('receiver_role not in (?)', ROLE_SENDER)
+
+    if params[:mode] == 'out'
+      rel = rel.where(sender_user: user)
+      rel = rel.where(parent_id: (params[:parent_id].present? ? params[:parent_id] : nil))
+    else
+      show_doc = (@document.sender?(user) || @document.author?(user))
+      rel = rel.where(receiver_user: user).where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
+    end
+
+    motions = rel.order('ordering ASC, id ASC').to_a
+    if show_doc
+      @motions = [ nil ] + motions
+    else
+      @motions = motions
+    end
+
+    render action: 'index'
+  end
+
   def show
     @motion = Document::Motion.find(params[:id])
   end

@@ -107,6 +107,7 @@ Rails.application.routes.draw do
       end
       scope 'motion', controller: 'motion' do
         get    '/',                   action: 'index'
+        get    '/motions_for_resend', action: 'motions_for_resend'
         get    '/tree',               action: 'tree'
         get    '/signatures',         action: 'signatures'
         get    '/assignees',          action: 'assignees'
