@@ -178,7 +178,7 @@ class Api::Documents::MotionController < ApiController
     elsif is_sender
       receive_or_may_receive_statuses = [SENT,CURRENT,COMPLETED,CANCELED]
       authors_which_received_or_may_receive = Document::Motion.where(document_id: doc.id, role: ROLE_AUTHOR).where('status IN (?)', receive_or_may_receive_statuses)
-      show_doc = authors_which_received_or_may_receive == 0
+      show_doc = authors_which_received_or_may_receive.empty?
       hide_sender_motion = show_doc
     else
       show_doc = false
