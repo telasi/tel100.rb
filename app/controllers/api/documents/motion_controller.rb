@@ -7,29 +7,20 @@ class Api::Documents::MotionController < ApiController
 
   def index
     @document = Document::Base.find(params[:document_id])
-    rel = @document.motions #.where('receiver_role not in (?)', ROLE_SENDER)
     user = effective_user
 
     if params[:mode] == 'out'
-      rel = rel.where(sender_user: user)
-      rel = rel.where(parent_id: (params[:parent_id].present? ? params[:parent_id] : nil))
+      show_doc, rel = out_motions(@document, user, params)
     else
-      if user == @document.sender_user
-        hasbase = true
-      else
-        is_author = @document.author?(user)
-      end
-      rel = rel.where(receiver_user: user)
-      rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
+      show_doc, rel = in_motions(@document, user, params)
     end
 
     rel = rel.where(receiver_role: params[:role]) if params[:role].present?
-
     # if we call this from modification windows we get rid of ORDERING_AUTO_SIGNEE signee
     rel = rel.where('ordering NOT IN (?)', Document::Motion::ORDERING_AUTO_SIGNEE) if params[:modify].present?
 
     motions = rel.order('ordering ASC, id ASC').to_a
-    if hasbase or is_author
+    if show_doc
       @motions = motions + [ nil ]
     else
       @motions = motions
@@ -144,5 +135,34 @@ class Api::Documents::MotionController < ApiController
       due_date: motion.effective_due_date,
       due_is_over: motion.due_is_over?
     }
+  end
+
+  def out_motions(doc, user, params)
+    rel = doc.motions.where('receiver_role not in (?)', ROLE_SENDER)
+    rel = rel.where(sender_user: user)
+    rel = rel.where(parent_id: (params[:parent_id].present? ? params[:parent_id] : nil))
+    [ false, rel ]
+  end
+
+  def in_motions(doc, user, params)
+    is_author = doc.author?(user)
+    is_sender = doc.sender?(user)
+
+    if is_author
+      debugger
+      show_doc = true
+    elsif is_sender
+      receive_or_may_receive_statuses = [SENT,CURRENT,COMPLETED,CANCELED]
+      authors_which_received_or_may_receive = Document::Motion.where(document_id: doc.id, role: ROLE_AUTHOR).where('status IN (?)', receive_or_may_receive_statuses)
+      show_doc = authors_which_received_or_may_receive == 0
+    else
+      show_doc = false
+    end
+
+    rel = doc.motions
+    rel = rel.where(receiver_user: user)
+    rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
+
+    [ show_doc, rel ]
   end
 end

@@ -229,13 +229,15 @@ class Document::Base < ActiveRecord::Base
   end
 
   def author?(user)
-    return true if self.sender_user == user
-    return true if self.author_motions.where(receiver_user: user).any?
-    false
+    self.owner_user == user
   end
 
   def owner?(user)
     self.owner_user == user
+  end
+
+  def sender?(user)
+    self.sender_user == user
   end
 
   def signee?(user)
