@@ -173,7 +173,6 @@ class Api::Documents::MotionController < ApiController
     is_sender = doc.sender?(user)
 
     if is_author
-      debugger
       show_doc = true
     elsif is_sender
       receive_or_may_receive_statuses = [SENT,CURRENT,COMPLETED,CANCELED]
