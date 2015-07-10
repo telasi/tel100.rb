@@ -23,7 +23,7 @@ Ext.define('Tel100.view.document.motions.InGridViewModel', {
           mode: 'in',
           document_id: '{document.id}'
         },
-        url: '/api/documents/motion',
+        url: '/api/documents/motion/motions_for_resend',
         reader: {
           type: 'json'
         }
