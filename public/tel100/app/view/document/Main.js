@@ -214,6 +214,9 @@ Ext.define('Tel100.view.document.Main', {
         }
       }
     });
+    dialog.on('close', function(document) {
+      this.onRefresh();
+    }.bind(this));
     dialog.show();
   },
 
