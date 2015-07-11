@@ -58,7 +58,6 @@ Ext.define('Tel100.view.document.Main', {
           }
         }, {
           handler: 'onResult',
-          hidden: true,
           cls: 'success-button',
           bind: {
             text: '{i18n.document.base.ui.result}',
@@ -101,6 +100,9 @@ Ext.define('Tel100.view.document.Main', {
     var vm = this.getViewModel();
     var disableForwardButton = false;
     var disableResultButton = false;
+    var role = null;
+
+    disableForwardButton = disableResultButton = selected.length == 0;
 
     for(i=0; i<selected.length;i++){
       var select = selected[i];
@@ -114,14 +116,34 @@ Ext.define('Tel100.view.document.Main', {
       };
 
       if(select.get('incoming').length != 1){
-        disableForwardButton = true;
         disableResultButton = true;
         break;
+      };
+
+      // get role and check if all selected has same role
+      if (role === null){
+        role = this.getRole(select);
+      } else {
+        var temprole = this.getRole(select);
+        if(temprole != role){
+          disableResultButton = true;
+          break;  
+        }
       }
     };
 
-    vm.set('disableResultButton', disableForwardButton);
+    vm.set('disableResultButton', disableResultButton);
     vm.set('disableForwardButton', disableForwardButton);    
+  },
+
+  getRole: function(record){
+    if(record.get('as_assignee') === 1){
+      return 'assignee';
+    } else if (record.get('as_signee') === 1 ) { 
+      return 'signee';
+    } else if (record.get('as_owner') === 1 && record.get('as_sender') === 1) { 
+      return 'author';
+    };
   },
 
   onGridpanelDocumentopen: function(doc) {
@@ -185,18 +207,13 @@ Ext.define('Tel100.view.document.Main', {
     var grid = this.down('documentgridpanel');
     var selection = grid.getSelection();
 
-    var dialog = Ext.create('Ext.window.Window',{
-      items: [{
-        xtype: 'documentmotionsresultpanel',
-      }]
+    var dialog = Ext.create('Tel100.view.document.comment.Result',{
+      viewModel: {
+        data: {
+          selectedDocuments : selection
+        }
+      }
     });
-
-    // var view = this;
-    // var dialog = Ext.create('Tel100.view.document.comment.Author', { modal: true });
-    // dialog.getViewModel().set('document', doc);
-    // dialog.on('authored', function() {
-    //   view.onRefresh();
-    // });
     dialog.show();
   },
 
