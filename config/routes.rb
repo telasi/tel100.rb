@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   namespace 'admin' do
     get '/', controller: 'base', action: 'index', as: 'home'
+    match '/login', controller: 'base', action: 'login', as: 'login', via: ['get', 'post']
+
     scope 'hr', controller: 'hr' do
       scope 'employees' do
         get '/', action: 'employees', as: 'employees'

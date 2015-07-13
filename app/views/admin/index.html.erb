@@ -1,6 +1,10 @@
-<h1 class="page-header">
-  <%= @title %>
-</h1>
+<div class="page-header">
+  <div class="pull-right">
+    <strong><%= current_user.full_name %></strong><br>
+    <%= link_to 'გასვლა' %>
+  </div>
+  <h1><%= @title %></h1>
+</div>
 
 <div class="row">
   <div class="col-sm-4">
