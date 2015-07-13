@@ -171,7 +171,7 @@ Ext.define('Tel100.view.document.MainViewController', {
           if(role === helpers.document.role.SENDER){
             parent_id = null;  
           } else {
-            parent_id = incoming[0].id;  
+            parent_id = incoming[0].id;
           }
         };
 

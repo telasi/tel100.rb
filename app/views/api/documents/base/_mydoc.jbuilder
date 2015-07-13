@@ -31,6 +31,7 @@ json.incoming do
     json.name           sender.to_s
     json.sender_id      sender.id
     json.sender_type    sender.class.name
+    json.receiver_role  motion.receiver_role
     if motion.current_status.blank?
       json.current_status '--'
     else
