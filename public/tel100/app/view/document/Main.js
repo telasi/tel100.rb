@@ -123,6 +123,9 @@ Ext.define('Tel100.view.document.Main', {
       // get role and check if all selected has same role
       if (role === null){
         role = this.getRole(select);
+        if(role === null) {
+          disableResultButton = true;          
+        }
       } else {
         var temprole = this.getRole(select);
         if(temprole != role){
@@ -144,6 +147,7 @@ Ext.define('Tel100.view.document.Main', {
     } else if (record.get('as_owner') === 1 && record.get('as_sender') === 1) { 
       return 'author';
     };
+    return null;
   },
 
   onGridpanelDocumentopen: function(doc) {
