@@ -14,4 +14,9 @@ class Admin::BaseController < AdminController
       end
     end
   end
+
+  def logout
+    session[:user_id] = nil
+    redirect_to admin_login_url
+  end
 end

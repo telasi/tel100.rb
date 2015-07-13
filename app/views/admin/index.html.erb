@@ -1,7 +1,7 @@
 <div class="page-header">
   <div class="pull-right">
     <strong><%= current_user.full_name %></strong><br>
-    <%= link_to 'გასვლა' %>
+    <%= link_to 'გასვლა', admin_logout_url, data: { confirm: 'ნამდვილად გინდათ გასვლა?' } %>
   </div>
   <h1><%= @title %></h1>
 </div>
