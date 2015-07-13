@@ -166,6 +166,27 @@ Ext.define('Tel100.view.document.folder.Search', {
       }
     }]
   }, {
+    xtype: 'fieldset',
+    layout: 'form',
+    bind: {
+      title: '{i18n.document.search.due_date}'
+    },
+    items: [{
+      xtype: 'datefield',
+      name: 'due_date_from',
+      format: 'd/m/Y',
+      bind: {
+        fieldLabel: '{i18n.document.search.from}'
+      }
+    }, {
+      xtype: 'datefield',
+      name: 'due_date_to',
+      format: 'd/m/Y',
+      bind: {
+        fieldLabel: '{i18n.document.search.to}'
+      }
+    }]
+  }, {
     xtype: 'button',
     width: '100%',
     bind: {

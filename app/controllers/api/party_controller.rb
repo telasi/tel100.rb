@@ -3,9 +3,9 @@ class Api::PartyController < ApiController
   def list
     @party = HR::Party.all
     @party = @party.where(id: params['id']) if params['id'].present?
-    @party = @party.where("name_ka LIKE N:p_name or name_en LIKE N:p_name or name_en LIKE N:p_name", { p_name: '%' + params['name'] +'%'}) if params['name'].present?
-    @party = @party.where("address_ka LIKE N:p_address or address_ru LIKE N:p_address or address_en LIKE N:p_address", { p_address: '%' + params['address'] +'%'}) if params['address'].present?
-    @party = @party.where("contact_ka LIKE N:p_contact or contact_ru LIKE N:p_contact or contact_en LIKE N:p_contact", { p_contact: '%' + params['contact'] +'%'}) if params['address'].present?
+    @party = @party.where("lower(name_ka) LIKE N:p_name or lower(name_ru) LIKE N:p_name or lower(name_en) LIKE N:p_name", { p_name: '%' + params['name'].mb_chars.downcase.to_s + '%' }) if params['name'].present?
+    @party = @party.where("lower(address_ka) LIKE N:p_address or lower(address_ru) LIKE N:p_address or lower(address_en) LIKE N:p_address", { p_address: '%' + params['address'].mb_chars.downcase.to_s + '%' }) if params['address'].present?
+    @party = @party.where("lower(contact_ka) LIKE N:p_contact or lower(contact_ru) LIKE N:p_contact or lower(contact_en) LIKE N:p_contact", { p_contact: '%' + params['contact'].mb_chars.downcase.to_s + '%' }) if params['address'].present?
     @party = @party.where("identity" => params['identity']) if params['identity'].present?
     @party = @party.where("customer" => params['customer']) if params['customer'].present?
     @total = @party.count

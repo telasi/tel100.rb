@@ -31,13 +31,15 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.where("document_base.type_id" => params['type']) if params['type'].present?
     @my_docs = @my_docs.where("document_base.docdate >= ?", Date.strptime(params['docdate_from'], '%d/%m/%Y')) if params['docdate_from'].present?
     @my_docs = @my_docs.where("document_base.docdate <= ?", Date.strptime(params['docdate_to'], '%d/%m/%Y')) if params['docdate_to'].present?
+    @my_docs = @my_docs.where("document_base.due_date >= ?", Date.strptime(params['due_date_from'], '%d/%m/%Y')) if params['due_date_from'].present?
+    @my_docs = @my_docs.where("document_base.due_date <= ?", Date.strptime(params['due_date_to'], '%d/%m/%Y')) if params['due_date_to'].present?
     @my_docs = @my_docs.where("document_base.direction" => params['direction']) if params['direction'].present?
-    @my_docs = @my_docs.where("document_base.docnumber" => params['docnumber']) if params['docnumber'].present?
-    @my_docs = @my_docs.where("document_base.original_number" => params['original_number']) if params['original_number'].present?
-    @my_docs = @my_docs.where("document_base.docnumber2" => params['docnumber2']) if params['docnumber2'].present?
-    @my_docs = @my_docs.where("document_base.subject LIKE ?", params['subject']+'%') if params['subject'].present?
+    @my_docs = @my_docs.where("document_base.docnumber" => params['docnumber'].strip) if params['docnumber'].present?
+    @my_docs = @my_docs.where("document_base.original_number LIKE ?", '%'+ params['original_number'].strip + '%') if params['original_number'].present?
+    @my_docs = @my_docs.where("document_base.docnumber2" => params['docnumber2'].strip) if params['docnumber2'].present?
+    @my_docs = @my_docs.where("lower(document_base.subject) LIKE ?", params['subject'].strip.mb_chars.downcase.to_s + '%') if params['subject'].present?
     if params['body'].present?
-       @my_docs = @my_docs.joins('JOIN document_text ON document_text.document_id = document_user.document_id').where("dbms_lob.instr(document_text.body,?)>=1", params['body']) 
+       @my_docs = @my_docs.joins('JOIN document_text ON document_text.document_id = document_user.document_id').where("dbms_lob.instr(document_text.body,?)>=1", params['body'].strip) 
     end
     @my_docs = @my_docs.where("document_base.page_count" => params['page_count']) if params['page_count'].present?
 
@@ -143,7 +145,8 @@ class Api::Documents::BaseController < ApiController
                                                       where name_ka || name_ru || name_en like N'%#{search_string}%'
                                           ) b where b.class = document_motion.receiver_type and b.id = document_motion.receiver_id
                                                 and receiver_role = '#{role}'
-                                                and document_id = document_user.document_id ))");
+                                                and document_id = document_user.document_id ))
+                      ");
 #                                          select 'BS::Customer' as class, custkey as id, TO_NCHAR(name) from customer 
 #                                                     where name like N'%#{search_string}%'
 #                                        union 
