@@ -232,6 +232,8 @@ Ext.define('Tel100.view.document.editor.Editor', {
           xtype: 'documentfilepanel'
         }, {
           xtype: 'documentrelationpanel'
+        }, {
+          xtype: 'documentrelationanswer'
         }]
       }]
     }, {

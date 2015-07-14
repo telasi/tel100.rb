@@ -8,13 +8,14 @@ Ext.define('Tel100.view.document.relation.Answer', {
   },
 
   border: false,
-  header: false,
-  title: 'My Grid Panel',
+  hideHeaders: true,
 
   bind: {
     hidden: '{hideAnswers}',
-    store: '{answers}'
+    store: '{answers}',
+    title: '{i18n.document.base.answers} ({answersCount})'
   },
+
   columns: [{
     xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
@@ -30,15 +31,20 @@ Ext.define('Tel100.view.document.relation.Answer', {
     sortable: false,
     dataIndex: 'docnumber',
     hideable: false,
-    flex: 1,
-    bind: {
-      text: '{i18n.document.base.answers}'
-    }
+    flex: 1
   }],
 
   listeners: {
     celldblclick: 'onAnswersGridpanelCellDblClick'
-  }
+  },
+
+  tools: [{
+    xtype: 'tool',
+    type: 'refresh',
+    listeners: {
+      click: 'onRefresh'
+    }
+  }]
 });
 
 Ext.define('Tel100.view.document.relation.AnswerViewController', {
@@ -57,7 +63,11 @@ Ext.define('Tel100.view.document.relation.AnswerViewController', {
 
   onStoreLoad: function(store, records, successful, eOpts) {
     var vm = this.getViewModel();
-    vm.set('hideAnswers', !store.count());
+    vm.set('answersCount', store.getCount());
+  },
+
+  onRefresh: function() {
+    this.getView().getStore().load();
   }
 });
 
@@ -72,7 +82,7 @@ Ext.define('Tel100.view.document.relation.AnswerViewModel', {
   ],
 
   data: {
-    hideAnswers: true
+    answersCount: 0
   },
 
   stores: {
