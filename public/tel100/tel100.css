@@ -104,3 +104,8 @@ tr.text-unread td.x-grid-cell .x-grid-cell-inner {
   border: 1px solid #ebccd1;
   padding: 0 3px;
 }
+
+/* text goes down after blur fix */ 
+.x-form-text {
+    display: inherit;
+}
