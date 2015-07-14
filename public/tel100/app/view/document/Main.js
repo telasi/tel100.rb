@@ -107,13 +107,13 @@ Ext.define('Tel100.view.document.Main', {
     for(i=0; i<selected.length;i++){
       var select = selected[i];
 
-      if(select.get('status') === helpers.document.status.DRAFT || 
-         select.get('status') === helpers.document.status.COMPLETED || 
-         select.get('status') === helpers.document.status.CANCELED){
-        disableForwardButton = true;
-        disableResultButton = true;
-        break;
-      };
+      // if(select.get('status') === helpers.document.status.DRAFT || 
+      //    select.get('status') === helpers.document.status.COMPLETED || 
+      //    select.get('status') === helpers.document.status.CANCELED){
+      //   disableForwardButton = true;
+      //   disableResultButton = true;
+      //   break;
+      // };
 
       if(select.get('incoming').length != 1){
         disableResultButton = true;
@@ -228,6 +228,9 @@ Ext.define('Tel100.view.document.Main', {
     var view = this;
     var grid = view.down('documentgridpanel');
     var selection = grid.getSelection();
+
+    // var dialog = Ext.create('Tel100.view.document.motions.Forward');
+    // dialog.show();
 
     var dialog = helpers.party.getPartyDialog(function(assignees) {
       view.getController().forwardDocuments(selection, assignees);
