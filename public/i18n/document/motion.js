@@ -161,5 +161,9 @@ module.exports = {
   incoming: {
     ka: 'შემომავალი',
     ru: 'Входящие'
+  },
+  outgoing: {
+    ka: 'გამავალი',
+    ru: 'Исходящие'
   }
 };

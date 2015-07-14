@@ -219,7 +219,7 @@ Ext.define('Tel100.view.document.editor.Editor', {
         }, {
           xtype: 'documentmotionstree'
         }, {
-          xtype: 'documentmotionsresultpanel',
+          xtype: 'documentmotionsresultpanel2',
           listeners: {
             commentadded: 'onPanelCommentadded'
           },

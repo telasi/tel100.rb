@@ -38,7 +38,6 @@ Ext.define('Tel100.view.workarea.LocaleSelectorViewController', {
       window.i18n = i18n;
     }
   }
-
 });
 
 Ext.define('Tel100.view.workarea.LocaleSelectorViewModel', {
