@@ -24,7 +24,8 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
     width: '100%',
     hideHeaders: true,
     bind: {
-      store: '{motions}'
+      store: '{motions}',
+      selection: '{selection}'
     },
     columns: [{
       dataIndex: 'html_text',
@@ -94,6 +95,17 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
     }
   }],
 
+  dockedItems: [{
+    xtype: 'documentmotionsmotionquickview',
+    resizable: true,
+    style: 'background-color: #dfeaf2;',
+    dock: 'bottom',
+    bind: {
+      motion: '{selection}',
+      hidden: '{hideQuickProperties}'
+    }
+  }],
+
   refresh: function() {
     var vm = this.getViewModel();
     vm.getStore('motions').load();
@@ -103,6 +115,10 @@ Ext.define('Tel100.view.document.motions.ResultPanel', {
 Ext.define('Tel100.view.document.motions.ResultPanelViewModel2', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.documentmotionsresultpanel2',
+
+  data: {
+    selection: null
+  },
 
   stores: {
     motions: {
@@ -123,6 +139,13 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewModel2', {
         // load: 'onMotionsStoreLoad'
       }
     },
+  },
+
+  formulas: {
+    hideQuickProperties: function(get) {
+      var selection = get('selection');
+      return !selection || (selection && selection.get('root'));
+    }
   }
 });
 

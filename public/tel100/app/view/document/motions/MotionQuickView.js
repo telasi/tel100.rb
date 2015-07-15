@@ -40,11 +40,19 @@ Ext.define('Tel100.view.document.motions.MotionQuickViewViewModel', {
   formulas: {
     html: function(get) {
       // sender name and text
-      var senderName = get('motion.sender');
+      var motion = get('motion');
+
+      var sender = get('motion.sender');
+      var senderName;
+      if (sender.name) {
+        senderName = sender.name;
+      } else {
+        senderName = sender;
+      }
       var senderText = '<strong>' + senderName + '</strong> &rarr;';
 
       // send type and text
-      var sendType = get('motion.send_type');
+      var sendType = get('motion.send_type') || get('motion.send_type_name');
       var sendText = get('motion.motion_text');
       var sendingStatus = '';
       if (sendType && sendType !== '--') { sendingStatus = sendType; }
@@ -53,18 +61,27 @@ Ext.define('Tel100.view.document.motions.MotionQuickViewViewModel', {
 
       // receive date
       var receivedAt = get('motion.received_at');
+      if (typeof receivedAt === 'object') {
+        receivedAt = Ext.Date.format(receivedAt, 'd/m/Y G:i A');
+      }
       var receivedAtText = receivedAt ? '<span class="text-danger">' + receivedAt + '</span> &rarr;' : '';
 
       // 
       var status = get('motion.status');
       var decor = helpers.document.status.statusDecoration(status);
-      var receiverName = get('motion.receiver');
+      var receiver = get('motion.receiver');
+      var receiverName;
+      if (receiver.name) {
+        receiverName = receiver.name;
+      } else {
+        receiverName = receiver;
+      }
       var receiverText = '<span class="' + decor.style + '">' +
           '<i class="fa ' + decor.icon + '"></i> ' +
           '<strong>' + receiverName + '</strong>';
 
       // response text
-      var responseType = get('motion.response_type');
+      var responseType = get('motion.response_type') || get('motion.resp_type_name');
       var responseText = get('motion.response_text');
       var responseStatus = '';
       if (responseType && responseType !== '--') { responseStatus = responseType; }
@@ -72,6 +89,9 @@ Ext.define('Tel100.view.document.motions.MotionQuickViewViewModel', {
 
       // complete date
       var completedAt = get('motion.completed_at');
+      if (typeof completedAt === 'object') {
+        completedAt = Ext.Date.format(completedAt, 'd/m/Y G:i A');
+      }
       var completedAtText = completedAt ? '&rarr; <span class="text-danger">' + completedAt + '</span>' : '';
 
       return [
