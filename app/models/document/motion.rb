@@ -90,7 +90,7 @@ class Document::Motion < ActiveRecord::Base
     motion = Document::Motion.create!({ parent: parent, document: document, status: DRAFT,
       sender_user: sender_user, sender: sender, receiver_user: receiver_user,
       receiver: receiver, receiver_role: role, ordering: ordering, send_type: send_type,
-      is_new: is_new, due_date: params[:due_date]
+      is_new: is_new, due_date: params[:due_date], motion_text: params[:motion_text]
     })
     # first author is an owner of the document as well
     if role == ROLE_AUTHOR and receiver_user.present? and document.owner_user == document.sender_user

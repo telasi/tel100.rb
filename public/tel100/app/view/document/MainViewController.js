@@ -120,7 +120,7 @@ Ext.define('Tel100.view.document.MainViewController', {
     this.onRefresh();
   },
 
-  addReceiverToDocument: function(document_id, parent_id, receiver, callback) {
+  addReceiverToDocument: function(document_id, parent_id, receiver, motion_values, callback) {
     var extType = receiver.get('ext_type');
 
     helpers.api.document.motion.createDraft({
@@ -129,7 +129,10 @@ Ext.define('Tel100.view.document.MainViewController', {
         parent_id: parent_id,
         receiver_id: receiver.id,
         receiver_type: extType,
-        receiver_role: 'assignee'
+        receiver_role: 'assignee',
+        send_type_id: motion_values["send_type_id"],
+        motion_text: motion_values["motion_text"],
+        due_date: motion_values["due_date"]
       },
       success: function(motionData) {
         var motion = Ext.create('Tel100.model.document.Motion', motionData);
@@ -138,7 +141,7 @@ Ext.define('Tel100.view.document.MainViewController', {
         }
       }.bind(this),
       failure: function(error) {
-        console.error(error);
+        Ext.Msg.alert('error', 'error');
       }.bind(this)
     });
   },
@@ -156,7 +159,7 @@ Ext.define('Tel100.view.document.MainViewController', {
       });
   },
 
-  forwardDocuments: function(selection, receivers) {
+  forwardDocuments: function(selection, receivers, motion_values) {
     var cntrl = this;
 
     if (selection && receivers) {
@@ -177,11 +180,11 @@ Ext.define('Tel100.view.document.MainViewController', {
 
         for (var k = 0; k < receivers.length; k++) {
 
-          var t = (function(document_id, parent_id, receiver) {
+          var t = (function(document_id, parent_id, motion_values, receiver) {
             return function(callback) {
-              cntrl.addReceiverToDocument(document_id, parent_id, receiver, callback);
+              cntrl.addReceiverToDocument(document_id, parent_id, receiver, motion_values, callback);
             };
-          })(document_id, parent_id, receivers[k]);
+          })(document_id, parent_id, motion_values, receivers[k]);
 
           tasks.push(t);
         }
@@ -193,7 +196,7 @@ Ext.define('Tel100.view.document.MainViewController', {
         })(document_id);
 
         tasks.push(t);
-        async.series(tasks);        
+        async.series(tasks);
       }
 
     };
