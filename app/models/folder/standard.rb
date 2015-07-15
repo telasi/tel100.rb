@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 class Folder::Standard
-
   DRAFT = 0
   INBOX = 1
   INBOX_UNREAD = 2
@@ -70,7 +69,7 @@ class Folder::Standard
         # docs.where('document_user.is_completed = ? and ( document_user.as_signee = 1 or document_user.as_author = 1)', 0)
         docs.where(is_received: 1, is_completed: 0).where('as_signee = 1 or as_author = 1')
       when INBOX_SIGNED
-        docs.where('as_signee IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED] )
+        docs.where('as_signee IN (?)', [Document::User::DOC_COMPLETED, Document::User::DOC_CANCELED])
       when CHANGED
         docs.where(is_changed: 1)
       when SENT

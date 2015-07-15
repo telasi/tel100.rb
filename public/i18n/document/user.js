@@ -1,68 +1,48 @@
 module.exports = {
   my_status: {
-    'any.none': {
-        ka: 'დრაფტი',
-        ru: 'Черновик'
+    draft: {
+      ka: 'დრაფტი',
+      ru: 'Драфт'
     },
-    'owner.current':  {
-        ka: 'მიმდინარე',
-        ru: 'Текущий'
+    completed: {
+      ka: 'შესრულებული',
+      ru: 'Выполненый'
     },
-    'owner.completed':  {
-        ka: 'დასრულებული',
-        ru: 'Завершенный'
+    signed: {
+      ka: 'ხელმოწერილი',
+      ru: 'Подписанный'
     },
-    'owner.canceled':  {
-        ka: 'გაუქმებული',
-        ru: 'Отмененный'
+    canceled: {
+      ka: 'გაუქმებული',
+      ru: 'Отмененый'
     },
-    'author.current':  {
-        ka: 'ხელმოსაწერი',
-        ru: 'На подпись'
+    notsigned: {
+      ka: 'ხელმოუწერელი',
+      ru: 'Неподписанный'
     },
-    'author.completed':  {
-        ka: 'ხელმოწერილი',
-        ru: 'Подписанный'
+    sent: {
+      ka: 'გაგზავნილი',
+      ru: 'Посланный'
     },
-    'author.canceled':  {
-        ka: 'ხელმოუწერელი',
-        ru: 'Не подписанный'
+    forwarded: {
+      ka: 'გადაგზავნილი',
+      ru: 'Пересланный'
     },
-    'signee.current':  {
-        ka: 'დასავიზირებელი',
-        ru: 'На визирование'
+    tobeauthored: {
+      ka: 'ხელმოსაწერი',
+      ru: 'На подпись'
     },
-    'signee.completed':  {
-        ka: 'დავიზირებული',
-        ru: 'Визированный'
+    tobesigned: {
+      ka: 'დასავიზირებელი',
+      ru: 'На визирование'
     },
-    'signee.canceled':  {
-        ka: 'დაუვიზირებელი',
-        ru: 'Не визированный'
+    tobedone: {
+      ka: 'მიმდინარე',
+      ru: 'Текущий'
     },
-    'assignee.current': {
-        ka: 'მიღებული',
-        ru: 'Принятый'
+    current: {
+      ka: 'მიმდინარე',
+      ru: 'Текущий'
     },
-    'assignee.completed': {
-        ka: 'დასრულებული',
-        ru: 'Выполненый'
-    },
-    'assignee.canceled': {
-        ka: 'უარყოფილი',
-        ru: 'Отмененный'
-    },
-    'sender.current': {
-        ka: 'მიღებული',
-        ru: 'Принятый'
-    },
-    'sender.completed': {
-        ka: 'დასრულებული',
-        ru: 'Выполненый'
-    },
-    'sender.canceled': {
-        ka: 'უარყოფილი',
-        ru: 'Отмененный'
-    }
   }
 };
