@@ -229,11 +229,9 @@ Ext.define('Tel100.view.document.Main', {
     var grid = view.down('documentgridpanel');
     var selection = grid.getSelection();
 
-    // var dialog = Ext.create('Tel100.view.document.motions.Forward');
-    // dialog.show();
-
-    var dialog = helpers.party.getPartyDialog(function(assignees) {
-      view.getController().forwardDocuments(selection, assignees);
+    var dialog = Ext.create('Tel100.view.document.motions.Forward');
+    dialog.on('forwardassignees', function(assignees, motion_values){
+      view.getController().forwardDocuments(selection, assignees, motion_values);
     });
     dialog.show();
   }

@@ -17,6 +17,7 @@ ka:
         subject: "სათაური:"
         author: ავტორი
         motion_text: რეზოლუცია
+        original_number: "დედანის #"
 ru:
   views:
     document:
@@ -36,3 +37,4 @@ ru:
         subject: "Заголовок:"
         author: Автор
         motion_text: Резолюция
+        original_number: "№ оригинала"

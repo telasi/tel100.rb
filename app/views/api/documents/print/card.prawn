@@ -40,8 +40,13 @@ def properties(pdf)
 
   pdf.move_down 60
 
-  data = [ [I18n.t("views.document.print.number"),     "#{@document.docnumber}", ""],
-           [I18n.t("views.document.print.type"),       "#{@document.type.name}", ""],
+  data = [ [I18n.t("views.document.print.number"),     "#{@document.docnumber}", ""] ]
+
+  if not @document.original_number.blank?
+    data += [[I18n.t("views.document.print.original_number"),     "#{@document.original_number}", ""] ]
+  end
+
+  data += [[I18n.t("views.document.print.type"),       "#{@document.type.name}", ""],
            [I18n.t("views.document.print.date"),       "#{docdate}", ""],
            [I18n.t("views.document.print.due_date"),   "#{due_date}", ""],
            [I18n.t("views.document.print.direction"),  I18n.t("models.document_base.direction.#{@document.direction}"), ""],
