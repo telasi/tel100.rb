@@ -34,7 +34,7 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.where("document_base.due_date >= ?", Date.strptime(params['due_date_from'], '%d/%m/%Y')) if params['due_date_from'].present?
     @my_docs = @my_docs.where("document_base.due_date <= ?", Date.strptime(params['due_date_to'], '%d/%m/%Y')) if params['due_date_to'].present?
     @my_docs = @my_docs.where("document_base.direction" => params['direction']) if params['direction'].present?
-    @my_docs = @my_docs.where("document_base.docnumber" => params['docnumber'].strip) if params['docnumber'].present?
+    @my_docs = @my_docs.where("document_base.docnumber LIKE ?", "#{params['docnumber'].strip.likefy}") if params['docnumber'].present?
     @my_docs = @my_docs.where("document_base.original_number LIKE ?", '%'+ params['original_number'].strip + '%') if params['original_number'].present?
     @my_docs = @my_docs.where("document_base.docnumber2" => params['docnumber2'].strip) if params['docnumber2'].present?
     @my_docs = @my_docs.where("lower(document_base.subject) LIKE ?", params['subject'].strip.mb_chars.downcase.to_s + '%') if params['subject'].present?
