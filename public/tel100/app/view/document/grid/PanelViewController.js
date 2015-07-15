@@ -80,5 +80,12 @@ Ext.define('Tel100.view.document.grid.PanelViewController', {
         view.refresh();
       });
     }
+  },
+
+  openFile: function(id){
+    var url = '/api/documents/files/download?id=' + id;
+    var tab = window.open(url, 'tel100');
+    tab.focus();  
   }
+  
 });
