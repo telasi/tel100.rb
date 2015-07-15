@@ -118,7 +118,7 @@ Ext.define('Tel100.view.document.motions.ReceiversPanelViewModel', {
   formulas: {
     hideQuickProperties: function(get) {
       var selection = get('selection');
-      return !selection || (selection && selection.get('root'));
+      return !selection || (selection && selection.get('type') === 'document');
     }
   }
 });
