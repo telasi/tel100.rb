@@ -1,7 +1,7 @@
 <%
   employees = {}
   HR::Employee.active.each do |empl|
-    employees[empl.id.to_s] = "#{empl.person_id} :#{empl.full_name}"
+    employees[empl.id] = "#{empl.person_id} :#{empl.full_name}"
   end
 %>
 <%= editor_for @user do |e|
