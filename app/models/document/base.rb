@@ -19,6 +19,7 @@ class Document::Base < ActiveRecord::Base
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_many :comments, class_name: 'Document::Comment', foreign_key: 'document_id'
   has_many :users, class_name: 'Document::User', foreign_key: 'document_id'
+  has_many :files, class_name: 'Document::File', foreign_key: 'document_id'
   before_save :on_before_save
 
   def body; self.text.body if self.text.present? end

@@ -48,6 +48,40 @@ Ext.define('Tel100.view.document.grid.Panel', {
   columns: [{
     xtype: 'rownumberer',
   },{
+    xtype: 'widgetcolumn',
+    width: 54,
+    widget: {
+      xtype: 'button',
+      style:'background:none;',
+      width: 42,
+      height: 28,
+      border: false,
+      padding: 0,
+      text: '<span style="color:black;"><i class="fa fa-paperclip"></i></span>',
+    },
+    onWidgetAttach: function(column, widget, record) {
+      var files = widget.get('files');
+      column.setVisible(files.length > 0);
+      //column.setArrowVisible(files.length > 1);
+      //if ( files.length > 1 ){
+        var items = [];
+        for(var i = 0;i < files.length; i++){
+          var id = files[i].id;
+          items.push({text: files[i].name,
+                      fileId: files[i].id,
+            handler: function(menu){
+              this.up('documentgridpanel').getController().openFile(menu.fileId);
+            }.bind(this)  
+          });
+        }
+        column.setMenu({ items: items });
+      //} else {
+      //  column.setHandler(function(){
+      //    this.up('documentgridpanel').getController().openFile(files[0].id);
+      //  }.bind(this));
+     // }
+    }
+  },{
     xtype: 'gridcolumn',
     renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
       var text = value;

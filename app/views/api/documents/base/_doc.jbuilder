@@ -82,3 +82,10 @@ json.signees do
     json.position     motion.receiver.organization.to_s if motion.receiver.respond_to?('organization')
   end
 end
+
+json.files do
+  json.array! doc.files do |file|
+    json.id    file.id
+    json.name  file.original_name
+  end
+end
