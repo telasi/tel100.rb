@@ -44,7 +44,7 @@ Ext.define('Tel100.view.document.motions.MotionQuickViewViewModel', {
 
       var sender = get('motion.sender');
       var senderName;
-      if (sender.name) {
+      if (sender && sender.name) {
         senderName = sender.name;
       } else {
         senderName = sender;
@@ -71,7 +71,7 @@ Ext.define('Tel100.view.document.motions.MotionQuickViewViewModel', {
       var decor = helpers.document.status.statusDecoration(status);
       var receiver = get('motion.receiver');
       var receiverName;
-      if (receiver.name) {
+      if (receiver && receiver.name) {
         receiverName = receiver.name;
       } else {
         receiverName = receiver;
