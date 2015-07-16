@@ -158,19 +158,17 @@ Ext.define('Tel100.view.document.motions.ResultPanelViewController2', {
 
     var view = this.getView();
 
-    var dialog = Ext.create('Tel100.view.document.comment.ResultDialog',{
-      viewModel: {
-        data: {
-          document: doc,
-          motion: motion,
-          operation: oper
-        }
-      }
+    var dialog = helpers.document.motion.getResultDialog({
+      document: doc,
+      motion: motion,
+      operation: oper
     });
+
     dialog.on('commentadded', function() {
       view.refresh();
       view.fireEvent('commentadded');
     });
+
     dialog.show();
   }
 });

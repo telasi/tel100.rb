@@ -7,7 +7,7 @@ Ext.define('Tel100.view.document.comment.ResultDialog', {
     type: 'documentcommentresultdialog'
   },
   autoScroll: true,
-  modal: true,
+  // modal: true,
   width: 500,
 
   layout: {

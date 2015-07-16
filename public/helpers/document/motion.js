@@ -1,4 +1,5 @@
 var motionDialog;
+var resultDialog;
 
 var getPropertiesDialog = function(motion) {
 
@@ -116,8 +117,21 @@ var formatResponses = function(data, metaData) {
   return text.join('<br>');
 };
 
+var getResultDialog = function(data) {
+  if (resultDialog) { resultDialog.close(); }
+
+  resultDialog = Ext.create('Tel100.view.document.comment.ResultDialog',{
+    viewModel: {
+      data: data
+    }
+  });
+
+  return resultDialog;
+};
+
 module.exports = {
   getPropertiesDialog: getPropertiesDialog,
   formatReceivers: formatReceivers,
-  formatResponses: formatResponses
+  formatResponses: formatResponses,
+  getResultDialog: getResultDialog
 };
