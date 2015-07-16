@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702094016) do
+ActiveRecord::Schema.define(version: 20150716064538) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",         limit: 2,                             default: "KA",    null: false
@@ -45,22 +45,26 @@ ActiveRecord::Schema.define(version: 20150702094016) do
   end
 
   create_table "document_change", force: true do |t|
-    t.integer   "document_id", limit: 10, precision: 10, scale: 0, null: false
-    t.integer   "user_id",     limit: 10, precision: 10, scale: 0, null: false
-    t.timestamp "created_at",  limit: 6,                           null: false
+    t.integer   "document_id", limit: 10,   precision: 10, scale: 0, null: false
+    t.integer   "user_id",     limit: 10,   precision: 10, scale: 0, null: false
+    t.timestamp "created_at",  limit: 6,                             null: false
+    t.string    "subject",     limit: 1000
+    t.string    "docnumber2",  limit: 20
+    t.datetime  "docdate"
   end
 
   create_table "document_comment", force: true do |t|
-    t.integer   "document_id",    limit: 10,   precision: 10, scale: 0, null: false
-    t.integer   "motion_id",      limit: 10,   precision: 10, scale: 0
-    t.integer   "user_id",        limit: 10,   precision: 10, scale: 0, null: false
-    t.integer   "actual_user_id", limit: 10,   precision: 10, scale: 0
-    t.boolean   "status",                      precision: 1,  scale: 0, null: false
-    t.boolean   "old_status",                  precision: 1,  scale: 0, null: false
-    t.string    "role",           limit: 10,                            null: false
-    t.string    "text",           limit: 1000
-    t.timestamp "created_at",     limit: 6,                             null: false
-    t.timestamp "updated_at",     limit: 6,                             null: false
+    t.integer   "document_id",      limit: 10,   precision: 10, scale: 0, null: false
+    t.integer   "motion_id",        limit: 10,   precision: 10, scale: 0
+    t.integer   "user_id",          limit: 10,   precision: 10, scale: 0, null: false
+    t.integer   "actual_user_id",   limit: 10,   precision: 10, scale: 0
+    t.boolean   "status",                        precision: 1,  scale: 0, null: false
+    t.boolean   "old_status",                    precision: 1,  scale: 0, null: false
+    t.string    "role",             limit: 10,                            null: false
+    t.string    "text",             limit: 1000
+    t.timestamp "created_at",       limit: 6,                             null: false
+    t.timestamp "updated_at",       limit: 6,                             null: false
+    t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
   end
 
   create_table "document_file", force: true do |t|
@@ -140,6 +144,8 @@ ActiveRecord::Schema.define(version: 20150702094016) do
     t.timestamp "completed_at",     limit: 6
     t.timestamp "updated_at",       limit: 6,                                                  null: false
     t.integer   "change_no",        limit: 10,   precision: 10, scale: 0
+    t.integer   "actual_sender_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "last_receiver_id", limit: 10,   precision: 10, scale: 0
   end
 
   create_table "document_relation", force: true do |t|

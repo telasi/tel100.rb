@@ -47,6 +47,9 @@ Rails.application.routes.draw do
         match '/edit/:id', action: 'edit', as: 'edit_response_type', via: ['get', 'post']
         delete '/delete/:id', action: 'destroy', as: 'delete_response_type'
       end
+      scope '/documents', controller: 'documents' do
+        get '/', action: 'index', as: 'documents'
+      end
     end
   end
 
