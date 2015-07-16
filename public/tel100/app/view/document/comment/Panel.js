@@ -33,7 +33,7 @@ Ext.define('Tel100.view.document.comment.Panel', {
 
         var text = record.get('text');
         if (text) {
-          text = '<p class="text-muted" style="white-space:normal;">' + text + '</p>'
+          text = '<p class="text-muted" style="white-space:normal;margin:0;">' + text + '</p>'
         }
 
         var actualUserId = record.get('actual_user_id');
@@ -54,7 +54,7 @@ Ext.define('Tel100.view.document.comment.Panel', {
 
         return [
           '<p style="margin:0;">', statusIcon(), sender, '</p>',
-          '<p><span class="text-danger">', Ext.Date.format(record.get('created_at'),'d/m/Y H:i'), '</span></p>',
+          '<p style="margin:0;"><span class="text-danger">', Ext.Date.format(record.get('created_at'),'d/m/Y H:i'), '</span></p>',
           text
         ].join('');
 
