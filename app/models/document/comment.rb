@@ -16,8 +16,8 @@ class Document::Comment < ActiveRecord::Base
 
   def calculate_receiver_user
     if self.motion.present?
-      user1 = motion.actual_sender
-      user2 = motion.last_receiver
+      user1 = motion.sender_user
+      user2 = motion.receiver_user
       if user1 == self.user || user1 == self.actual_user
         self.receiver_user = user2
       else
