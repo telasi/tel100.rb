@@ -12,7 +12,7 @@ class Document::Comment < ActiveRecord::Base
   belongs_to :actual_user, class_name: 'Sys::User', foreign_key: 'actual_user_id'
   belongs_to :receiver_user, class_name: 'Sys::User', foreign_key: 'receiver_user_id'
 
-  before_create :calculate_receiver_user
+  before_save :calculate_receiver_user
 
   def calculate_receiver_user
     if self.motion.present?
