@@ -142,7 +142,6 @@ function dueDateText(dueDate, dueIsOver, status) {
 };
 
 function answerDecoration(data, metaData, opts){
-  debugger;
   var text = [];
   var tooltip = [];
   var count = 0;
