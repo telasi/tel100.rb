@@ -114,6 +114,14 @@ class Document::Base < ActiveRecord::Base
       raise I18n.t('models.document_base.errors.outer_doesnot_have_outer_parties')
     end
 
+    if self.direction == INNER and not self.type.inner?
+      raise I18n.t('models.document_base.errors.inner_not_allowed')
+    elsif self.direction == OUT and not self.type.out?
+      raise I18n.t('models.document_base.errors.outer_not_allowed')
+    elsif self.direction == IN and not self.type.in?
+      raise I18n.t('models.document_base.errors.in_not_allowed')
+    end
+
     Document::Base.transaction do
       self.status = CURRENT
       self.docdate = Date.today if self.docdate.blank?
