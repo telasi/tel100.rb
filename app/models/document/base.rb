@@ -411,8 +411,16 @@ class Document::Base < ActiveRecord::Base
       end
       # S3: document_user updates
       docuser = Document::User.upsert!(self, user, ROLE_OWNER, { status: new_status, is_new: 0 })
-      docuser.make_others_unread!
+      # docuser.make_others_unread!
       docuser.calculate!
+
+      # S3-new: make others unread on the top level
+      notify_users = Document::Motion.where(document: self, parent_id: nil).where('receiver_user_id NOT IN (?)', user.id).map{|x| x.receiver_user}
+      notify_users.each do |notifyuser|
+        notify_du = Document::User.where(document: self, user: notifyuser).first
+        notify_du.update_attributes!(is_changed: 1)
+      end
+
       # S4: if document was canceled mark current motions as not received
       if self.status == CANCELED and status_updated
         self.update_attributes!(status: CANCELED)
