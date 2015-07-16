@@ -8,7 +8,10 @@
 </ol>
 
 <%= table_for @types, model_name: 'Document::Type' do |t|
-  t.text_field 'order_by', tag: 'code', width: 100
+  t.text_field 'order_by', tag: 'code', width: 50
   t.text_field 'name', url: ->(x){ admin_doctype_url(id:x.id) }
+  t.boolean_field 'allow_inner', width: 100
+  t.boolean_field 'allow_in', width: 100
+  t.boolean_field 'allow_out', width: 100
   t.button_action admin_new_doctype_url, label: 'ახალი სახეობა', icon: 'plus'
 end %>

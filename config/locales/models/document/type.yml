@@ -1,7 +1,7 @@
 ka:
   models:
     document_type:
-      order_by: დალაგება
+      order_by: "#"
       name_ka: დასახელება (ქარ.)
       name_ru: დასახელება (რუს.)
       name_en: დასახელება (ინგ.)
@@ -11,3 +11,7 @@ ka:
       margin_bottom: ქვედა მერჯინი
       print_header: შტრიხ კოდი ჩანდეს?
       is_special: სპეციალურია ტიპია?
+      name: დასახელება
+      allow_inner: შიდა?
+      allow_in: შემომავალი?
+      allow_out: გამავალი?

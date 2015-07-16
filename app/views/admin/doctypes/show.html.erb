@@ -9,10 +9,10 @@
 </ol>
 
 <%= viewer_for @type do |v|
+  v.required_text_field 'order_by', tag: 'code'
   v.required_text_field 'name_ka'
   v.text_field 'name_ru'
   v.text_field 'name_en'
-  v.required_text_field 'order_by', tag: 'code'
   v.text_field 'margin_top', after: 'mm', tag: 'code'
   v.text_field 'margin_top_out', after: 'mm', tag: 'code'
   v.text_field 'margin_bottom', after: 'mm', tag: 'code'
@@ -20,4 +20,10 @@
   v.boolean_field 'special?', i18n: 'is_special'
   v.button_action admin_edit_doctype_url(id: @type.id), label: 'შეცვლა', icon: 'pencil'
   v.button_action admin_delete_doctype_url(id: @type.id), label: 'წაშლა', icon: 'trash', confirm: 'ნამდვილად გინდათ ამ სახეობის წაშლა?', http_method: 'delete'
+end %>
+
+<%= viewer_for @type do |v|
+  v.boolean_field 'inner?', i18n: 'allow_inner'
+  v.boolean_field 'out?', i18n: 'allow_out'
+  v.boolean_field 'in?', i18n: 'allow_in'
 end %>
