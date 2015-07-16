@@ -214,5 +214,18 @@ Ext.define('Tel100.view.document.folder.Search', {
     listeners: {
       click: 'onSaveFilterButtonClick'
     }
-  }]
+  }],
+
+  listeners: {
+      afterRender: function(thisForm, options){
+        this.keyNav = Ext.create('Ext.util.KeyNav', this.el, {                    
+            enter: this.onSubmit,
+            scope: this
+        });
+    }    
+  },
+
+  onSubmit: function(){
+    this.getController().search();
+  }
 });
