@@ -215,8 +215,18 @@ class Document::Motion < ActiveRecord::Base
     # S3: calculate Document::User
     docuser = doc.users.where(user: user).first
     docuser.calculate!
-    # S4: mark other users unread
-    docuser.make_others_unread!
+
+    # # S4: mark other users unread
+    # docuser.make_others_unread!
+    # S4-new: make changed only receiving user
+    if is_receiver
+      notifyuser = self.sender_user
+    else
+      notifyuser = self.receiver_user
+    end
+    notify_du = Document::User.where(document: document, user: notifyuser).first
+    notify_du.update_attributes!(is_changed: 1)
+
     # S5: update upper motions
     check_level_ups!
     # S6: if motion was canceled mark others as not received
