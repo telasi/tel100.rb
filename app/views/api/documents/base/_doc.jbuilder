@@ -89,3 +89,12 @@ json.files do
     json.name  file.original_name
   end
 end
+
+json.answers do
+  json.array! Document::Relation.where(related: doc) do |relation|
+    answer = relation.base
+    owner = answer.owner || answer.owner_user
+    json.docnumber answer.docnumber
+    json.owner     owner.full_name
+  end
+end

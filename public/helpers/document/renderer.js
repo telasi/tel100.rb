@@ -5,7 +5,8 @@ var Status = require('./status');
 
 module.exports = {
   renderMotion: renderMotion,
-  renderDocument: renderDocument
+  renderDocument: renderDocument,
+  answerDecoration: answerDecoration
 };
 
 function get(object, property) {
@@ -139,3 +140,26 @@ function dueDateText(dueDate, dueIsOver, status) {
     return [ ' <span class="', dueClass, '">', dueDateText, '</strong></span>' ].join('');
   }
 };
+
+function answerDecoration(data, metaData, opts){
+  var text = [];
+  var tooltip = [];
+  var count = 0;
+  for(var i = 0; i < data.length; i++ ){
+    var item = data[i];
+
+    tooltip.push([item.docnumber, ' (' , item.owner, ')'].join(''));
+
+    if(i < 2){
+      text.push(item.docnumber);
+    } else {
+      count += 1;
+    }
+  }
+
+  metaData.tdAttr = 'data-qtip="' + tooltip.join('; ') + '"';
+
+  if (count) { text.push(i18n.ui.more + '<span class="label label-info"><i class="fa fa-reply"></i> ' + count + '</span>'); }
+
+  return text.join('<br>');
+}
