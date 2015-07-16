@@ -215,6 +215,9 @@ Ext.define('Tel100.view.document.editor.Editor', {
           xtype: 'documentmotionsreceiverspanel',
           bind: {
             hidden: '{notMyDocument}'
+          },
+          listeners: {
+            commentadded: 'onPanelCommentadded'
           }
         }, {
           xtype: 'documentmotionstree'

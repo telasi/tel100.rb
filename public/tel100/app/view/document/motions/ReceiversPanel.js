@@ -23,6 +23,21 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
     dataIndex: 'name',
     text: 'name',
     flex: 1
+  }, {
+    xtype: 'actioncolumn',
+    width: 60,
+    items: [{
+      icon: '/images/comment.png',
+      handler: function(grid, rowIndex, colIndex) {
+        var view = grid.up('documentmotionsreceiverspanel');
+        var ctrl = view.getController();
+        var vm = view.getViewModel();
+        var doc = vm.get('document');
+        var motions = vm.get('receivers');
+        motion = motions.getAt(rowIndex);
+        ctrl.onResult(doc, motion);
+      }
+    }]
   }],
 
   tools: [{
@@ -82,7 +97,28 @@ Ext.define('Tel100.view.document.motions.ReceiversPanelViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documentmotionsreceiverspanel',
 
-  onStoreLoad: function(store, records, successful, eOpts) {
+  onStoreLoad: function(store, records, successful, eOpts) {},
+
+  onResult: function(doc, motion) {
+    var oper = 'comment';
+    if (motion.get('type') == 'document') { motion = null; }
+
+    var view = this.getView();
+
+    var dialog = Ext.create('Tel100.view.document.comment.ResultDialog',{
+      viewModel: {
+        data: {
+          document: doc,
+          motion: motion,
+          operation: oper
+        }
+      }
+    });
+    dialog.on('commentadded', function() {
+      view.refresh();
+      view.fireEvent('commentadded');
+    });
+    dialog.show();
   }
 });
 
