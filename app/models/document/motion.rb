@@ -183,9 +183,10 @@ class Document::Motion < ActiveRecord::Base
     if not is_sender and not is_receiver
       raise 'not your motion'
     end
+
     new_status = self.status
     doc = self.document
-    if self.status == CURRENT
+    if is_receiver and self.status == CURRENT
       type = Document::ResponseType.find(params[:response_type_id]) if params[:response_type_id].present?
       if type.blank? and params[:response_type].present?
         type = Document::ResponseType.where(role: self.receiver_role, direction: params[:response_type]).order(:ordering).first
@@ -196,25 +197,30 @@ class Document::Motion < ActiveRecord::Base
         new_status = CANCELED
       end
     end
+
     # S1: create comment
     text = params[:text] if params[:text].present?
     Document::Comment.create!(document: doc, motion: self,
       user: user, actual_user: actual_user, role: self.receiver_role,
       status: new_status, old_status: self.status, text: text)
-    # S2: update motion
-    status_updated = false
-    if self.status != new_status # it's completed
-      self.completed_at = Time.now
-      self.status = new_status
-      status_updated = true
+
+    if is_receiver
+      # S2: update motion
+      status_updated = false
+      if self.status != new_status # it's completed
+        self.completed_at = Time.now
+        self.status = new_status
+        status_updated = true
+      end
+      self.response_type = type if type.present?
+      self.response_text = text
+      self.last_receiver = actual_user
+      self.save!
+
+      # S3: calculate Document::User
+      docuser = doc.users.where(user: user).first
+      docuser.calculate!
     end
-    self.response_type = type
-    self.response_text = text
-    self.last_receiver = actual_user if is_receiver
-    self.save!
-    # S3: calculate Document::User
-    docuser = doc.users.where(user: user).first
-    docuser.calculate!
 
     # # S4: mark other users unread
     # docuser.make_others_unread!
@@ -227,16 +233,19 @@ class Document::Motion < ActiveRecord::Base
     notify_du = Document::User.where(document: document, user: notifyuser).first
     notify_du.update_attributes!(is_changed: 1)
 
-    # S5: update upper motions
-    check_level_ups!
-    # S6: if motion was canceled mark others as not received
-    is_signature = [ROLE_SIGNEE, ROLE_AUTHOR].include?(self.receiver_role)
-    is_toplevel = self.parent_id.blank?
-    if self.status == CANCELED and status_updated and is_signature and is_toplevel
-      doc.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
-        motion.update_attributes!(status: NOT_RECEIVED)
-        docuser = self.document.users.where(user: motion.receiver_user).first
-        docuser.calculate!
+    if is_receiver
+      # S5: update upper motions
+      check_level_ups!
+
+      # S6: if motion was canceled mark others as not received
+      is_signature = [ROLE_SIGNEE, ROLE_AUTHOR].include?(self.receiver_role)
+      is_toplevel = self.parent_id.blank?
+      if self.status == CANCELED and status_updated and is_signature and is_toplevel
+        doc.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
+          motion.update_attributes!(status: NOT_RECEIVED)
+          docuser = self.document.users.where(user: motion.receiver_user).first
+          docuser.calculate!
+        end
       end
     end
   end
