@@ -178,7 +178,9 @@ class Document::Motion < ActiveRecord::Base
   def add_comment!(user, params, actual_user=nil)
     # raise 'status not supported' if cannot_add_comment?
     # return if cannot_add_comment?
-    if user != self.receiver_user && user != self.sender_user
+    is_sender = user == self.sender_user
+    is_receiver = user == self.receiver_user
+    if not is_sender and not is_receiver
       raise 'not your motion'
     end
     new_status = self.status
@@ -208,7 +210,7 @@ class Document::Motion < ActiveRecord::Base
     end
     self.response_type = type
     self.response_text = text
-    self.last_receiver = actual_user
+    self.last_receiver = actual_user if is_receiver
     self.save!
     # S3: calculate Document::User
     docuser = doc.users.where(user: user).first
