@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716064538) do
+ActiveRecord::Schema.define(version: 20150716133254) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",         limit: 2,                             default: "KA",    null: false
@@ -190,6 +190,9 @@ ActiveRecord::Schema.define(version: 20150716064538) do
     t.boolean   "print_header",              precision: 1, scale: 0, default: false, null: false
     t.integer   "margin_top_out", limit: 5,  precision: 5, scale: 0
     t.boolean   "is_special",                precision: 1, scale: 0, default: false, null: false
+    t.boolean   "allow_inner",               precision: 1, scale: 0, default: true,  null: false
+    t.boolean   "allow_in",                  precision: 1, scale: 0, default: true,  null: false
+    t.boolean   "allow_out",                 precision: 1, scale: 0, default: true,  null: false
   end
 
   create_table "document_user", id: false, force: true do |t|
