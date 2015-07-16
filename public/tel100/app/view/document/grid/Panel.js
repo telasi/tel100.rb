@@ -246,6 +246,15 @@ Ext.define('Tel100.view.document.grid.Panel', {
     bind: {
       text: '{i18n.document.base.original_date}'
     }
+  },{
+    xtype: 'gridcolumn',
+    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+      return helpers.document.renderer.answerDecoration(value, metaData);
+    },
+    dataIndex: 'answers',
+    bind: {
+      text: '{i18n.document.base.answers}'
+    }
   }],
 
   listeners: {
