@@ -7,9 +7,12 @@ Ext.define('Tel100.view.document.grid.Panel', {
     type: 'documentgridpanel'
   },
 
+  stateful: true,
+  stateId: 'documentGridId',
+
   border: false,
-  enableColumnHide: false,
-  enableColumnMove: false,
+  enableColumnHide: true,
+  enableColumnMove: true,
   sortableColumns: false,
   defaultListenerScope: true,
   selType: 'checkboxmodel',
@@ -46,10 +49,13 @@ Ext.define('Tel100.view.document.grid.Panel', {
   },
 
   columns: [{
-    xtype: 'rownumberer',
+    xtype: 'rownumberer'
   },{
     xtype: 'widgetcolumn',
     width: 54,
+    bind: {
+      text: '{i18n.document.base.files}'
+    },
     widget: {
       xtype: 'button',
       style:'background:none;',
@@ -94,7 +100,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     width: 100,
     sortable: false,
     dataIndex: 'docnumber',
-    hideable: false,
+    // hideable: false,
     lockable: false,
     bind: {
       text: '{i18n.document.base.docnumber}'
@@ -104,7 +110,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     width: 100,
     sortable: false,
     dataIndex: 'docnumber2',
-    hideable: false,
+    // hideable: false,
     lockable: false,
     bind: {
       text: '{i18n.document.base.docnumber2}'
@@ -138,7 +144,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     width: 130,
     sortable: false,
     dataIndex: 'statusName',
-    hideable: false,
+    // hideable: false,
     bind: {
       text: '{i18n.document.base.status}<br>{i18n.document.base.direction}'
     }
@@ -168,7 +174,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     width: 150,
     sortable: false,
     dataIndex: 'docdate',
-    hideable: false,
+    // hideable: false,
     bind: {
       text: '{i18n.document.base.my_status}<br>{i18n.document.base.docdate}'
     }
@@ -181,7 +187,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     sortable: false,
     cellWrap: true,
     dataIndex: 'assignees',
-    hideable: false,
+    // hideable: false,
     bind: {
       text: '{i18n.document.base.assignees}'
     }
@@ -194,7 +200,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     sortable: false,
     cellWrap: true,
     dataIndex: 'authors',
-    hideable: false,
+    // hideable: false,
     bind: {
       text: '{i18n.document.base.authors}'
     }
@@ -203,7 +209,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     width: 150,
     sortable: false,
     dataIndex: 'subject',
-    hideable: false,
+    // hideable: false,
     bind: {
       text: '{i18n.document.base.subject}'
     }
@@ -216,7 +222,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     sortable: false,
     cellWrap: true,
     dataIndex: 'signees',
-    hideable: false,
+    // hideable: false,
     bind: {
       text: '{i18n.document.base.signees}'
     }
@@ -234,7 +240,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     xtype: 'gridcolumn',
     sortable: false,
     dataIndex: 'original_number',
-    hideable: false,
+    // hideable: false,
     bind: {
       text: '{i18n.document.base.original_number}'
     }
@@ -242,7 +248,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     xtype: 'gridcolumn',
     dataIndex: 'original_date',
     formatter: 'date("d/m/Y")',
-    hideable: false,
+    // hideable: false,
     bind: {
       text: '{i18n.document.base.original_date}'
     }

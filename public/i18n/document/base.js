@@ -187,6 +187,10 @@ module.exports = {
     ka: 'პასუხები',
     ru: 'Ответы'
   },
+  files: {
+    ka: 'ფაილები',
+    ru: 'Файлы'
+  },
   statuses: {
     draft: {
       ka: 'დრაფტი',
