@@ -69,8 +69,8 @@ module.exports = {
       ru: '<i class="fa fa-edit"></i> Визирование документа'
     },
     sign_ok: {
-      ka: '<i class="fa fa-check"></i> ვავიზირება',
-      ru: '<i class="fa fa-check"></i> Визирование'
+      ka: '<i class="fa fa-check"></i> ვავიზირებ',
+      ru: '<i class="fa fa-check"></i> Визирую'
     },
     sign_cancel: {
       ka: '<i class="fa fa-times"></i> არ ვავიზირებ',
