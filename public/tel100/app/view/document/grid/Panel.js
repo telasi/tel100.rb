@@ -117,6 +117,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
     }
   }, {
     xtype: 'gridcolumn',
+    dataIndex: 'actionColumn',
     renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
       if (record.get('as_signee') === 1) {
         return '<strong class="text-danger">' + i18n.document.comment.actions.sign +'</strong>';
@@ -125,6 +126,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
       }
     },
     lockable: false,
+    sortable: false,
     bind: {
       text: '{i18n.document.base.actions}'
     }
@@ -277,12 +279,14 @@ Ext.define('Tel100.view.document.grid.Panel', {
 
   onGridpanelCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     var cell = tableview.panel.columns[cellIndex];
-    var actionIndex = 1; // index of sign column
-    //if (cellIndex === actionIndex && record.get('as_signee') === 1) {
-    if (cell.dataIndex === 'statusName' && record.get('as_signee') === 1) {
+
+    var text = td.innerHTML;
+    var isSignText = text.indexOf(i18n.document.comment.actions.sign) != -1;
+    var isAuthorText = text.indexOf(i18n.document.comment.actions.author) != -1;
+
+    if (isSignText) {
       this.fireEvent('documentsign', record);
-    //} else if (cellIndex === actionIndex && record.get('as_author') === 1) {
-    } else if (cell.dataIndex === 'statusName' && record.get('as_author') === 1) {
+    } else if (isAuthorText) {
       this.fireEvent('documentauthor', record);
     } else {
       this.fireEvent('documentopen', record);
