@@ -144,8 +144,8 @@ Ext.define('Tel100.view.document.Main', {
       return 'assignee';
     } else if (record.get('as_signee') === 1 ) { 
       return 'signee';
-    } else if (record.get('as_owner') === 1 && record.get('as_sender') === 1) { 
-      return 'author';
+    } else if (record.get('as_owner') === 1 ) { 
+      return 'owner';
     };
     return null;
   },
@@ -199,7 +199,10 @@ Ext.define('Tel100.view.document.Main', {
   },
 
   onRefresh: function() {
-    this.getController().onRefresh();
+    this.getController().onRefresh({scope: this, callback: function() {
+      var grid = this.down('documentgridpanel');
+      this.onGridPanelSelectionChange(grid, grid.getSelection());
+    }});
     this.down('documentfoldertab').fireEvent('documentgridrefresh');
   },
 

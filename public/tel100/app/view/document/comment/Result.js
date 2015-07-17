@@ -61,9 +61,6 @@ Ext.define('Tel100.view.document.comment.Result', {
     listeners: {
       click: 'onSaveClick'
     }
-  }, {
-    xtype: 'documentrelationanswer',
-    flex: 1
   }]
 
 });
@@ -169,9 +166,19 @@ Ext.define('Tel100.view.document.comment.ResultViewModel', {
   formulas: {
      receiverRole: function(get) {
        var selDocs = get('selectedDocuments');
-       var motions = selDocs[0].get('incoming');
-       var motion = motions[0];
-       return motion.receiver_role || 'owner';
+       var selDoc = selDocs[0];
+       // var motions = selDocs[0].get('incoming');
+       // var motion = motions[0];
+       // return motion.receiver_role || 'owner';
+       if(selDoc.get('as_signee') === 1){
+        return 'signee';
+       } else if (selDoc.get('as_assignee') === 1){
+        return 'assignee';
+       } else if (selDoc.get('as_author') === 1) {
+        return 'author';
+       } else if (selDoc.get('as_owner') === 1) {
+        return 'owner';
+       }
      },
 
      hideResult: function(get) {
