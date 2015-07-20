@@ -188,8 +188,8 @@ module.exports = {
     ru: 'Ответы'
   },
   files: {
-    ka: 'ფაილები',
-    ru: 'Файлы'
+    ka: '<i class="fa fa-paperclip"></i>',
+    ru: '<i class="fa fa-paperclip"></i>'
   },
   statuses: {
     draft: {

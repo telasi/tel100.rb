@@ -100,7 +100,6 @@ Ext.define('Tel100.view.document.grid.Panel', {
     width: 100,
     sortable: false,
     dataIndex: 'docnumber',
-    // hideable: false,
     lockable: false,
     bind: {
       text: '{i18n.document.base.docnumber}'
@@ -110,7 +109,6 @@ Ext.define('Tel100.view.document.grid.Panel', {
     width: 100,
     sortable: false,
     dataIndex: 'docnumber2',
-    // hideable: false,
     lockable: false,
     bind: {
       text: '{i18n.document.base.docnumber2}'
@@ -240,19 +238,16 @@ Ext.define('Tel100.view.document.grid.Panel', {
     }
   }, {
     xtype: 'gridcolumn',
+    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+      var date = record.get('original_date');
+      dateFormatted = Ext.Date.format(date,"d/m/Y")
+      return [ value, dateFormatted ].join('<br>');
+    },
     sortable: false,
     dataIndex: 'original_number',
     // hideable: false,
     bind: {
-      text: '{i18n.document.base.original_number}'
-    }
-  }, {
-    xtype: 'gridcolumn',
-    dataIndex: 'original_date',
-    formatter: 'date("d/m/Y")',
-    // hideable: false,
-    bind: {
-      text: '{i18n.document.base.original_date}'
+      text: '{i18n.document.base.original_number}<br>{i18n.document.base.original_date}'
     }
   },{
     xtype: 'gridcolumn',
