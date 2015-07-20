@@ -120,7 +120,7 @@ module Sap::Synchronizer
 
     Sap::Relation.current_structure.each do | org |
       existed_org = HR::Organization.active.where(saporg_id: org.objectid, saporg_type: org.objecttype).first
-      if existed_org
+      if not existed_org.present?
         if existed_org.sapparent_id != org.rel_obj_id || 
            existed_org.name_ka      != org.organization.name_ka ||
            existed_org.name_ru      != org.organization.name_ru ||
@@ -215,7 +215,7 @@ module Sap::Synchronizer
       end
 
       existed_per = HR::Employee.active.where(person_id: per.person_id).first
-      if existed_per
+      if existed_per.present?
         if existed_per.person_id     != per.person_id ||
            existed_per.first_name_ka != per.first_name_ka ||
            existed_per.last_name_ka  != per.last_name_ka ||
@@ -251,7 +251,7 @@ module Sap::Synchronizer
         newper.save
 
         sysuser = Sys::User.where(person_id: newper.person_id).first
-        if sysuser
+        if sysuser.present?
           sysuser.employee_id = newper.id
           sysuser.save
           newper.user_id = sysuser.id
