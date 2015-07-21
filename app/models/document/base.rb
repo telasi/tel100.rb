@@ -344,6 +344,14 @@ class Document::Base < ActiveRecord::Base
         if m["deleted"]
           motion = Document::Motion.find(m["id"])
           motion.delete
+
+          # update document_user for deleted
+          if m["receiver_type"] == 'hr.Employee'
+            emp = HR::Employee.find(m["receiver_id"])
+            receiver_user = emp.user if emp
+            docuser = self.users.where(user: receiver_user).first
+            docuser.calculate!
+          end
         end
         if m["temp"]
           motion_params = {
