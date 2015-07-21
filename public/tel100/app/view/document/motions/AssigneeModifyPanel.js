@@ -218,7 +218,9 @@ Ext.define('Tel100.view.document.motions.AssigneeModifyPanel', {
     if(item.get('temp')){
       store.remove(item);
     } else {
-      item.set('deleted', true);
+      if(item.get('is_new') == 1 ){
+       item.set('deleted', true);
+      }
     }
   }
 
