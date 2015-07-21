@@ -145,6 +145,17 @@ Ext.define('Tel100.view.document.folder.Search', {
       fieldLabel: '{i18n.document.search.page_count}'
     }
   }, {
+    xtype: 'combobox',
+    anchor: '100%',
+    name: 'state',
+    valueField: 'id',
+    displayField: 'name',
+    editable: false,
+    bind: {
+      store: '{states}',
+      fieldLabel: '{i18n.document.search.state}'
+    }
+  }, {
     xtype: 'fieldset',
     layout: 'form',
     bind: {

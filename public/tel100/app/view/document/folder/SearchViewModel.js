@@ -13,6 +13,19 @@ Ext.define('Tel100.view.document.folder.SearchViewModel', {
       model: 'Tel100.model.folder.Standard'
     },
 
+    states: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Completion',
+      proxy: {
+        type: 'memory',
+        data: [
+          { id: 'current' },
+          { id: 'completed' },
+          { id: 'canceled' }
+        ]
+      }
+    },
+
     direction: {
       autoLoad: true,
       model: 'Tel100.model.document.Direction',
