@@ -120,7 +120,7 @@ module Sap::Synchronizer
 
     Sap::Relation.current_structure.each do | org |
       existed_org = HR::Organization.active.where(saporg_id: org.objectid, saporg_type: org.objecttype).first
-      if not existed_org.present?
+      if existed_org.present?
         if existed_org.sapparent_id != org.rel_obj_id || 
            existed_org.name_ka      != org.organization.name_ka ||
            existed_org.name_ru      != org.organization.name_ru ||
