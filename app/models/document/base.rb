@@ -437,7 +437,7 @@ class Document::Base < ActiveRecord::Base
       # S3: document_user updates
       docuser = Document::User.upsert!(self, user, ROLE_OWNER, { status: new_status, is_new: 0 })
       # docuser.make_others_unread!
-      docuser.calculate!
+      docuser.calculate! if docuser.present?
 
       # S3-new: make others unread on the top level
       notify_users = Document::Motion.where(document: self, parent_id: nil).where('receiver_user_id NOT IN (?)', user.id).map{|x| x.receiver_user}

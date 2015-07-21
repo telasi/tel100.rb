@@ -104,7 +104,7 @@ class Document::Motion < ActiveRecord::Base
       if du.blank?
         du = Document::User.create!(document: document, user: receiver_user, is_new: 1, is_changed: 1)
       end
-      du.calculate!
+      du.calculate! if du.present?
     end
 
     return motion
@@ -219,7 +219,7 @@ class Document::Motion < ActiveRecord::Base
 
       # S3: calculate Document::User
       docuser = doc.users.where(user: user).first
-      docuser.calculate!
+      docuser.calculate! if docuser.present?
     end
 
     # # S4: mark other users unread
@@ -244,7 +244,7 @@ class Document::Motion < ActiveRecord::Base
         doc.motions.where('status IN (?)', [ SENT, CURRENT ]).each do |motion|
           motion.update_attributes!(status: NOT_RECEIVED)
           docuser = self.document.users.where(user: motion.receiver_user).first
-          docuser.calculate!
+          docuser.calculate! if docuser.present?
         end
       end
     end
@@ -296,7 +296,7 @@ class Document::Motion < ActiveRecord::Base
       up.status = NOT_RECEIVED
       up.received_at = Time.now
       up.save!
-      docuser.calculate!
+      docuser.calculate! if docuser.present?
     end
   end
 
@@ -312,7 +312,7 @@ class Document::Motion < ActiveRecord::Base
           up.status = CURRENT
           up.received_at = Time.now
           up.save!
-          docuser.calculate!
+          docuser.calculate! if docuser.present?
         end
       end
     end
