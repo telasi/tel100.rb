@@ -13,6 +13,7 @@
   <link href="/build/font-awesome.min.css" rel="stylesheet">
   <!-- scripts -->
   <script src="/extjs/ext-all.js"></script>
+  <script src="/build/tinymce/tinymce.min.js"></script>
   <script src="/build/i18n.js?v={{ version }}"></script>  
   <script src="/build/helpers.js?v={{ version }}"></script>
   <script src="/build/tel100.js?v={{ version }}"></script>

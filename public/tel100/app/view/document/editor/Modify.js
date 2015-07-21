@@ -120,14 +120,18 @@ Ext.define('Tel100.view.document.editor.Modify', {
                 }]
             },
             {
-              xtype: 'htmleditor',
+              //xtype: 'htmleditor',
+              xtype: 'tinymce_textarea',
+              noWysiwyg: false,
+              tinyMCEConfig: helpers.tinymce.config,
+              style: { border: '0' },
               flex: 1,
               itemId: 'documentBody',
               padding: '0 5 5 5',
               labelAlign: 'top',
-              bind: {
-                fieldLabel: '{i18n.document.base.body}'
-              },
+              // bind: {
+              //   fieldLabel: '{i18n.document.base.body}'
+              // },
               listeners: {
                 change: 'onHtmleditorChange'
               }

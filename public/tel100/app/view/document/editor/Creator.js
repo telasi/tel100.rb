@@ -102,7 +102,11 @@ Ext.define('Tel100.view.document.editor.Creator', {
             value: '{document.subject}'
           }
         }, {
-          xtype: 'htmleditor',
+          // xtype: 'htmleditor',
+          xtype: 'tinymce_textarea',
+          noWysiwyg: false,
+          tinyMCEConfig: helpers.tinymce.config,
+          style: { border: '0' },
           flex: 1,
           itemId: 'documentBody',
           labelAlign: 'top',
