@@ -350,7 +350,7 @@ class Document::Base < ActiveRecord::Base
             emp = HR::Employee.find(m["receiver_id"])
             receiver_user = emp.user if emp
             docuser = self.users.where(user: receiver_user).first
-            docuser.calculate! if docuser
+            docuser.calculate! if docuser.present?
           end
         end
         if m["temp"]
@@ -382,7 +382,7 @@ class Document::Base < ActiveRecord::Base
           motion_to_process.status = CURRENT
           motion_to_process.received_at = Time.now
           motion_to_process.save!
-          docuser.calculate! if docuser
+          docuser.calculate! if docuser.present?
         end
       end
       motions_to_process = self.motions.where('ordering > ?', ordering)
@@ -391,7 +391,7 @@ class Document::Base < ActiveRecord::Base
         motion_to_process.status = SENT
         motion_to_process.received_at = Time.now
         motion_to_process.save!
-        docuser.calculate! if docuser
+        docuser.calculate! if docuser.present?
       end
 
     end
