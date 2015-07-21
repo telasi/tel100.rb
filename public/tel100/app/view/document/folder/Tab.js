@@ -191,5 +191,17 @@ Ext.define('Tel100.view.document.folder.Tab', {
 
   refresh: function() {
     this.getController().foldersRefresh();
-  }
+  },
+
+  standardFolderWasLoaded: false,
+
+  onStandardFoldersLoaded: function(store, records, successful, eOpts) {
+    if (!this.standardFolderWasLoaded) {
+      this.standardFolderWasLoaded = true;
+      var selection = records.filter(function(x) { return x.id === 7; })[0];
+      var grid = this.down('gridpanel');
+      grid.setSelection(selection);
+      this.refresh();
+    }
+  },
 });

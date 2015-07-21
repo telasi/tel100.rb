@@ -6,9 +6,13 @@ Ext.define('Tel100.view.document.folder.TabViewModel', {
     documentStore: {
       model: 'Tel100.model.folder.Document'
     },
+
     standardfolders: {
       autoLoad: true,
-      model: 'Tel100.model.folder.Standard'
+      model: 'Tel100.model.folder.Standard',
+      listeners: {
+        load: 'onStandardFoldersLoaded'
+      }
     },
 
     substitudeStore: {
