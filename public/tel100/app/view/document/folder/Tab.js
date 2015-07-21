@@ -201,7 +201,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
       var selection = records.filter(function(x) { return x.id === 7; })[0];
       var grid = this.down('gridpanel');
       grid.setSelection(selection);
-      this.refresh();
+      this.getController().onStandardGridpanelSelect(grid, selection);
     }
   },
 });
