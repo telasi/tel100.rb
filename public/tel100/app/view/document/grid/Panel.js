@@ -49,7 +49,8 @@ Ext.define('Tel100.view.document.grid.Panel', {
   },
 
   columns: [{
-    xtype: 'rownumberer'
+    xtype: 'rownumberer',
+    resizable: true
   },{
     xtype: 'widgetcolumn',
     width: 54,
