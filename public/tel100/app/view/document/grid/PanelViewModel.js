@@ -8,7 +8,7 @@ Ext.define('Tel100.view.document.grid.PanelViewModel', {
 
   stores: {
     documents: {
-      autoLoad: true,
+      // autoLoad: true,
       model: 'Tel100.model.document.Base',
       proxy: {
         type: 'ajax',

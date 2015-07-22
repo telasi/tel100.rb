@@ -99,7 +99,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
       columns: [{
         xtype: 'gridcolumn',
         renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-          var s = ( record.get('folder_type') === 0 ? '<span style="float:right;">' + record.data.count + '</span>' : "");
+          var s = (record.get('folder_type') === 0 ? '<span style="float:right;">' + record.data.count + '</span>' : "");
           return helpers.api.folders.folderDecoration(record.get('folder_type'), record.get('name')) + s;
         },
         enableColumnHide: false,
@@ -136,13 +136,11 @@ Ext.define('Tel100.view.document.folder.Tab', {
         title: '{i18n.vacation.ui.grid_title}',
         store: '{substitudeStore}'
       },
-      columns: [
-        {
-          xtype: 'gridcolumn',
-          dataIndex: 'name',
-          flex: 1
-        }
-      ],
+      columns: [{
+        xtype: 'gridcolumn',
+        dataIndex: 'name',
+        flex: 1
+      }],
       listeners: {
         cellclick: {
           fn: 'onGridpanelCellClick',
@@ -171,22 +169,18 @@ Ext.define('Tel100.view.document.folder.Tab', {
   },
 
   onTabpanelAfterRender: function(component, eOpts) {
-    /* var bar = component.tabBar;
-      bar.insert(2,[
-           {
-               xtype: 'component',
-               flex: 1
-           },
-          {
-              xtype: 'button',
-              text: '<i class="fa fa-cog"></i>',
-            handler: function(button){
-              var configwindow = Ext.create('Tel100.view.document.folder.Config');
-              configwindow.show();
-            }
-          }
-      ]);
-      */
+/*  var bar = component.tabBar;
+    bar.insert(2,[{
+      xtype: 'component',
+      flex: 1
+    }, {
+      xtype: 'button',
+      text: '<i class="fa fa-cog"></i>',
+      handler: function(button){
+        var configwindow = Ext.create('Tel100.view.document.folder.Config');
+        configwindow.show();
+      }
+    }]);*/
   },
 
   refresh: function() {
@@ -198,7 +192,7 @@ Ext.define('Tel100.view.document.folder.Tab', {
   onStandardFoldersLoaded: function(store, records, successful, eOpts) {
     if (!this.standardFolderWasLoaded) {
       this.standardFolderWasLoaded = true;
-      var selection = records.filter(function(x) { return x.id === 7; })[0];
+      var selection = records.filter(function(x) { return x.id === 6; })[0];
       var grid = this.down('gridpanel');
       grid.setSelection(selection);
       this.getController().onStandardGridpanelSelect(grid, selection);

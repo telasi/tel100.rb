@@ -98,7 +98,6 @@ Ext.define('Tel100.view.document.folder.TabViewController', {
   },
 
   onGridpanelCellClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
-
     var me = this;
 
     if(Ext.ComponentQuery.query('usersubstitudepanel').length === 0){

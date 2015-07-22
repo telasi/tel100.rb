@@ -164,7 +164,6 @@ Ext.define('Tel100.view.document.MainViewController', {
 
     if (selection && receivers) {
       for (var i = 0; i < selection.length; i++){
-
         var tasks = [];
 
         var document_id = selection[i].get('id');
@@ -179,7 +178,6 @@ Ext.define('Tel100.view.document.MainViewController', {
         };
 
         for (var k = 0; k < receivers.length; k++) {
-
           var t = (function(document_id, parent_id, motion_values, receiver) {
             return function(callback) {
               cntrl.addReceiverToDocument(document_id, parent_id, receiver, motion_values, callback);
@@ -198,9 +196,6 @@ Ext.define('Tel100.view.document.MainViewController', {
         tasks.push(t);
         async.series(tasks);
       }
-
     };
-    
   },
-
 });

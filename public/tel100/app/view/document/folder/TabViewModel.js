@@ -21,29 +21,22 @@ Ext.define('Tel100.view.document.folder.TabViewModel', {
         type: 'rest',
         url: '/api/vacation/substitudes'
       },
-      fields: [
-        {
-          name: 'id'
+      fields: [{
+        name: 'id'
+      }, {
+        name: 'substitude_type'
+      }, {
+        calculate: function(data) {
+          return data.first_name + " " + data.last_name;
         },
-        {
-          name: 'substitude_type'
-        },
-        {
-          calculate: function(data) {
-            return data.first_name + " " + data.last_name;
-          },
-          name: 'name'
-        },
-        {
-          name: 'first_name'
-        },
-        {
-          name: 'last_name'
-        },
-        {
-          name: 'userid'
-        }
-      ]
+        name: 'name'
+      }, {
+        name: 'first_name'
+      }, {
+        name: 'last_name'
+      }, {
+        name: 'userid'
+      }]
     }
   }
 });
