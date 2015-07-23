@@ -15,6 +15,13 @@ class Document::File < ActiveRecord::Base
     f.save!
   end
 
+  def clone(doc)
+    storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
+    f = Document::File.new(document: doc, original_name: self.original_name, store_name: storename, created_at: Time.now)
+    FileUtils.cp(self.full_path, f.full_path)
+    f.save!
+  end
+
   def full_path
     #File.join(Rails.root, 'public', 'uploads', 'docfiles', self.store_name)
     File.join(FILES_REPOSITORY, self.store_name)

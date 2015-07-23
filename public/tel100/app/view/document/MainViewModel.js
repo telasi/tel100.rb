@@ -10,6 +10,9 @@ Ext.define('Tel100.view.document.MainViewModel', {
   },
 
   formulas: {
+    closeDisabled: function(get){
+      return !get('selection');
+    },
     deleteDraftButtonDisabled: function(get) {
       var selection = get('selection');
       if (this.getData().customfolderselection){

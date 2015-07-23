@@ -398,6 +398,55 @@ class Document::Base < ActiveRecord::Base
 
   end
 
+  def clone!(user)
+    sender = user.employee
+    docparams = { sender_user: user, sender: sender,
+      owner_user: user, owner: sender,
+      actual_sender:    nil, # it's not sent yet
+      direction:        self.direction, 
+      status:           DRAFT,
+      subject:          self.subject,
+      type_id:          self.type_id,
+      page_count:       self.page_count,
+      original_number:  self.original_number,
+      original_date:    self.original_date }
+
+    author_motions = self.author_motions
+    assignee_motions = self.assignee_motions.where(sender_user: self.sender_user)
+    signee_motions = self.signee_motions
+
+    Document::Base.transaction do
+      doc = Document::Base.create!(docparams)
+
+      if self.text.present?
+        text = Document::Text.new(document: doc)
+        text.body = self.text.body
+        text.save!
+      end
+
+      # create sender motion
+      motionparams = { document_id: doc.id, is_new: 0, ordering: 0,
+          sender_user: user, sender: sender, actual_sender: nil, # it's not sent yet
+          receiver_user: user, receiver: sender, receiver_role: ROLE_SENDER, status: DRAFT,
+          created_at: Time.now, sent_at: Time.now, received_at: Time.now}
+      Document::Motion.create!(motionparams)
+      Document::User.create!(document_id: doc.id, user_id: user.id, is_new: 0, is_changed: 0).calculate!
+
+      copy_motions(author_motions, doc, user, ROLE_AUTHOR)
+      copy_motions(assignee_motions, doc, user, ROLE_ASSIGNEE)
+      copy_motions(signee_motions, doc, user, ROLE_SIGNEE)
+
+      # copy files
+      self.files.map do |file|
+        f = file.clone(doc)
+      end
+
+      return doc
+
+    end
+
+  end
+
   private
 
   def on_before_save
@@ -480,4 +529,21 @@ class Document::Base < ActiveRecord::Base
       receiver_du.calculate! if receiver_du.present?
     end
   end
+
+  def copy_motions(motions, doc, user, role)
+    motions.map do |motion|
+      next if motion.receiver_user && ( motion.receiver_user.id == user.id )
+      ordering = motion.ordering if role == ROLE_SIGNEE
+      motionparams = { document_id:   doc.id, 
+                       receiver_id:   motion.receiver_id, 
+                       receiver_type: motion.receiver_type, 
+                       receiver_role: role,
+                       motion_text:   motion.motion_text,
+                       send_type_id:  motion.send_type_id,
+                       ordering:      ordering
+                     }
+      Document::Motion.create_draft!(user, motionparams)
+    end
+  end
+
 end

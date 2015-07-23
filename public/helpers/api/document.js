@@ -38,6 +38,14 @@ var base = {
     opts.url = '/api/documents/base/reply';
     opts.params = { sourceid: sourceid };
     ajax.request(opts);
+  },
+
+  clone: function(sourceid, args){
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/base/clone';
+    opts.params = { sourceid: sourceid };
+    ajax.request(opts);
   }
 };
 

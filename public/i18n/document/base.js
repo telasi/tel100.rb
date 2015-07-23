@@ -12,6 +12,10 @@ module.exports = {
       ka: '<i class="fa fa-plus"></i> ახალი დოკუმენტი',
       ru: '<i class="fa fa-plus"></i> Новый документ'
     },
+    clone: {
+      ka: '<i class="fa fa-copy"></i> კლონი',
+      ru: '<i class="fa fa-copy"></i> Клон'
+    },
     result: {
       ka: '<i class="fa fa-check"></i> შედეგი',
       ru: '<i class="fa fa-check"></i> Результат'

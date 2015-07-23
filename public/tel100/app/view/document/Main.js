@@ -45,9 +45,19 @@ Ext.define('Tel100.view.document.Main', {
           }
         }, {
           handler: 'onNewDocument',
+          xtype: 'splitbutton',
           cls: 'success-button',
+          menu: {
+            items: [{
+               bind: {
+                text: '{i18n.document.base.ui.clone}',
+                disabled: '{closeDisabled}',
+                handler: 'onClone'
+               }
+            }]
+          },
           bind: {
-            text: '{i18n.document.base.ui.newDocument}'
+            text: '{i18n.document.base.ui.newDocument}',
           }
         }, {
           handler: 'onForward',
@@ -196,6 +206,10 @@ Ext.define('Tel100.view.document.Main', {
 
   onNewDocument: function() {
     this.getController().onNewDocument();
+  },
+
+  onClone: function(){
+    this.getController().onClone();
   },
 
   onRefresh: function() {
