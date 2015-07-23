@@ -1,2 +1,10 @@
-<h1 class="page-header">დოკუმენტების მართვა</h1>
-documents
+<% if @document %>
+<h1 class="page-header">დოკუმენტი <code><%= @document.docnumber %></code></h1>
+<%= render partial: 'admin/documents/document', locals: { document: @document } %>
+<% else %>
+<h1 class="page-header">დოკუმენტის ძებნა</h1>
+<form method="GET">
+  <input type="text" name="docnumber" placeholder="docnumber" value="<%= params[:docnumber] %>">
+  <input type="submit" value="ძებნა">
+</form>
+<% end %>
