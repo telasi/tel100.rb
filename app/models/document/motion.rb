@@ -45,21 +45,26 @@ class Document::Motion < ActiveRecord::Base
     document_id = params[:document_id] ; parent_id = params[:parent_id]
     document = Document::Base.find(document_id)
     parent = Document::Motion.find(parent_id) if parent_id.present?
+
     # check user permission for this action
     is_receiver_user = ( parent.present? and sender_user == parent.receiver_user )
     is_owner_user = ( parent.blank? and (sender_user == document.owner_user || sender_user == document.sender_user))
     is_signee = document.motions.where(receiver_user: sender_user, receiver_role: ROLE_SIGNEE).any?
     raise I18n.t('models.document_motion.errors.no_privilege_to_add') unless (is_receiver_user or is_owner_user or is_signee)
+
     # sender/receiver information
     sender = whose_user(sender_user)
     receiver_user, receiver = who_eval('receiver', params)
+
     # same_receiver_user = ( receiver_user.present? and sender_user == receiver_user )
     # same_receiver = ( receiver.present? and sender.present? and sender == receiver )
     # raise I18n.t('models.document_motion.errors.sent_to_himself') if (same_receiver or same_receiver_user)
+
     # check existence of this receiver on the branch
-    receiver_count = receiver.present? ? document.motions.where(parent_id: parent_id, receiver: receiver).count : 0
-    receiver_user_count = receiver_user.present? ? document.motions.where(parent_id: parent_id, receiver_user: receiver_user).count : 0
-    raise I18n.t('models.document_motion.errors.receiver_exists_on_branch') if ( receiver_count > 0 or receiver_user_count > 0 )
+    # receiver_count = receiver.present? ? document.motions.where(parent_id: parent_id, receiver: receiver).count : 0
+    # receiver_user_count = receiver_user.present? ? document.motions.where(parent_id: parent_id, receiver_user: receiver_user).count : 0
+    # raise I18n.t('models.document_motion.errors.receiver_exists_on_branch') if ( receiver_count > 0 or receiver_user_count > 0 )
+
     # get ordering
     role = params[:receiver_role]
     if params[:ordering].blank?
@@ -74,30 +79,35 @@ class Document::Motion < ActiveRecord::Base
     else
       ordering = params[:ordering]
     end
+
     # get send_type
     send_type = nil
     if receiver_user.present?
       send_type = Document::ResponseType.find(params[:send_type_id]) if params[:send_type_id].present?
       send_type = Document::ResponseType.send_types.where(role: role).order(:ordering).first if send_type.blank?
     end
+
     # calculate is_new parameter
     is_new = 1
     if receiver_user
       docuser = Document::User.where(document_id: document_id, user_id: receiver_user.id).first
       is_new = docuser.is_new if docuser.present?
     end
+
     # create motion
     motion = Document::Motion.create!({ parent: parent, document: document, status: DRAFT,
       sender_user: sender_user, sender: sender, receiver_user: receiver_user,
       receiver: receiver, receiver_role: role, ordering: ordering, send_type: send_type,
       is_new: is_new, due_date: params[:due_date], motion_text: params[:motion_text]
     })
+
     # first author is an owner of the document as well
     if role == ROLE_AUTHOR and receiver_user.present? and document.owner_user == document.sender_user
       document.owner = receiver
       document.owner_user = receiver_user
       document.save!
     end
+
     # create document::user
     if receiver_user
       du = Document::User.where(document: document, user: receiver_user).first
