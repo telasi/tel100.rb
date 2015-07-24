@@ -12,6 +12,7 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
   bind: {
     title: '{i18n.document.motion.signees} ({assigneeCount})'
   },
+
   items: [{
     xtype: 'gridpanel',
     bind: {
@@ -94,7 +95,11 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
       }
     }],
     listeners: {
-      beforeitemcontextmenu: 'onGridBeforeItemContextMenu'
+      beforeitemcontextmenu: 'onGridBeforeItemContextMenu',
+      edit: {
+        fn: 'onEdit',
+        scope: 'controller'
+      }
     },
     plugins: [{
       ptype: 'cellediting',
@@ -114,12 +119,6 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
       click: 'onAddToolClick'
     }
   }],
-  listeners: {
-    beforerender: {
-      fn: 'onBeforeRender',
-      scope: 'controller'
-    }
-  },
 
   onGridBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
     if (record.get('status') === helpers.document.status.DRAFT) {

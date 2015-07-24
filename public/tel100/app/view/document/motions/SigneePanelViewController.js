@@ -58,24 +58,30 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController1', {
     var view = this.getView();
     var vm = this.getViewModel();
     var onChange = function(newVal, oldVal, binding) {
-      if (newVal && newVal.dirty) {
-        var motion = newVal;
-        var changes = motion.getChanges();
-        helpers.api.document.motion.updateDraft(motion.id, {
-          params: changes,
-          success: function() {
-            motion.commit();
-            view.fireEvent('datachanged', view, 'update', motion);
-            if (changes.send_type_id) { view.refresh(); }
-          }.bind(this),
-          failure: function(message) {
-            motion.reject();
-            console.error(message);
-          }
-        });
-      }
+      
     };
     var options = { deep: true };
     vm.bind('{selection}', onChange, this, { deep: true });
+  },
+
+  onEdit: function(editor, context, eOpts) {
+    var newVal = context.record;
+    if (newVal && newVal.dirty) {
+      var view = this;
+      var motion = newVal;
+      var changes = motion.getChanges();
+      helpers.api.document.motion.updateDraft(motion.id, {
+        params: changes,
+        success: function() {
+          motion.commit();
+          view.fireEvent('datachanged', view, 'update', motion);
+          if (changes.send_type_id) { view.refresh(); }
+        }.bind(this),
+        failure: function(message) {
+          motion.reject();
+          console.error(message);
+        }
+      });
+    }
   }
 });
