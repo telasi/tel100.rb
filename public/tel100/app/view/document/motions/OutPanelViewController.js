@@ -38,39 +38,6 @@ Ext.define('Tel100.view.document.motions.OutPanelViewController', {
     }
   },
 
-  onBeforeRender: function(component, eOpts) {
-    var view = this.getView();
-    var vm = this.getViewModel();
-
-    // selection change
-    var onChange = function(newVal, oldVal, binding) {
-      if (newVal) {
-        this.getView().fireEvent('motionchange', newVal);
-      }
-    };
-    var options = { deep: true };
-    vm.bind('{selection}', onChange, this, options);
-  },
-
-  onPanelMotionChange: function(motion) {
-    if (motion.dirty) {
-      var view = this.getView();
-      var changes = motion.getChanges();
-      helpers.api.document.motion.updateDraft(motion.id, {
-        params: changes,
-        success: function() {
-          motion.commit();
-          view.fireEvent('datachanged', view, 'update', motion);
-          if(changes.send_type_id) { view.getGrid().refresh(); }
-        }.bind(this),
-        failure: function(message) {
-          motion.reject();
-          console.error(message);
-        }
-      });
-    }
-  },
-
   onPanelBeforeDestroy: function(component, eOpts) {
     if (this.receiverDialog) {
       this.receiverDialog.destroy();

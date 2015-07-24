@@ -110,23 +110,40 @@ Ext.define('Tel100.view.document.motions.OutPanel', {
     region: 'center',
     bind: {
       selection: '{selection}'
+    },
+    listeners: {
+      edit: 'onEdit'
     }
   }],
 
   listeners: {
-    beforerender: {
-      fn: 'onBeforeRender',
-      scope: 'controller'
-    },
-    motionchange: {
-      fn: 'onPanelMotionChange',
-      scope: 'controller'
-    },
     beforedestroy: {
       fn: 'onPanelBeforeDestroy',
       scope: 'controller'
     },
     draftmotionchanged: 'onDraftmotionChanged'
+  },
+
+  onEdit: function(editor, context, eOpts) {
+    var motion = context.record;
+    if (motion && motion.dirty) {
+      var view = this;
+      var changes = motion.getChanges();
+      helpers.api.document.motion.updateDraft(motion.id, {
+        params: changes,
+        success: function() {
+          motion.commit();
+          view.fireEvent('datachanged', view, 'update', motion);
+          if(changes.send_type_id) {
+            view.getGrid().refresh();
+          }
+        },
+        failure: function(message) {
+          motion.reject();
+          console.error(message);
+        }
+      });
+    }
   },
 
   onDraftmotionChanged: function(hasDraftMotions) {
