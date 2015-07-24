@@ -70,5 +70,4 @@ Ext.define('Tel100.view.document.motions.AssigneeModifyPanelViewController', {
     // var options = { deep: true };
     // vm.bind('{selection}', onChange, this, { deep: true });
   }
-
 });

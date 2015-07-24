@@ -2,12 +2,6 @@ Ext.define('Tel100.view.document.motions.AssigneeModifyPanelViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.documentmotionsassigneemodifypanel',
 
-  requires: [
-    'Ext.data.Store',
-    'Ext.data.proxy.Ajax',
-    'Ext.data.reader.Json'
-  ],
-
   data: {
     assigneeCount: 0,
     selection: null
@@ -56,5 +50,4 @@ Ext.define('Tel100.view.document.motions.AssigneeModifyPanelViewModel', {
       }
     }
   }
-
 });

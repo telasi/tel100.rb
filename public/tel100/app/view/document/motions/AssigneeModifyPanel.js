@@ -2,159 +2,138 @@ Ext.define('Tel100.view.document.motions.AssigneeModifyPanel', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.documentmotionsassigneemodifypanel',
 
-  requires: [
-    'Tel100.view.document.motions.AssigneeModifyPanelViewModel',
-    'Tel100.view.document.motions.AssigneeModifyPanelViewController',
-    'Ext.grid.Panel',
-    'Ext.grid.View',
-    'Ext.grid.column.Column',
-    'Ext.form.field.ComboBox',
-    'Ext.form.field.Date',
-    'Ext.grid.plugin.CellEditing',
-    'Ext.panel.Tool'
-  ],
-
   controller: 'documentmotionsassigneemodifypanel',
   viewModel: {
     type: 'documentmotionsassigneemodifypanel'
   },
+
   layout: 'fit',
   defaultListenerScope: true,
 
   bind: {
     title: '{i18n.document.motion.assignees}'
   },
-  items: [
-    {
-      xtype: 'gridpanel',
-      bind: {
-        selection: '{selection}',
-        store: '{motions}'
-      },
-      viewConfig: {
-        getRowClass: function(record, rowIndex, rowParams, store) {
-          var status = record.get('status');
-          text = helpers.document.status.motionStatusRowClass(status, record);
-          if(record.get('deleted')){
-            return 'row-text-deleted';
-          }
-          
-          return text;
+
+  items: [{
+    xtype: 'gridpanel',
+    bind: {
+      selection: '{selection}',
+      store: '{motions}'
+    },
+    viewConfig: {
+      getRowClass: function(record, rowIndex, rowParams, store) {
+        var status = record.get('status');
+        text = helpers.document.status.motionStatusRowClass(status, record);
+        if(record.get('deleted')){
+          return 'row-text-deleted';
         }
-      },
-      columns: [
-        {
-          xtype: 'gridcolumn',
-          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-            return helpers.document.status.motionStatusIcon(value, record);
-          },
-          draggable: false,
-          resizable: false,
-          width: 32,
-          sortable: false,
-          dataIndex: 'status',
-          hideable: false,
-          text: ''
-        },
-        {
-          xtype: 'gridcolumn',
-          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-            return helpers.document.status.motionReceiverName(value, record);
-          },
-          draggable: false,
-          width: 200,
-          sortable: false,
-          dataIndex: 'receiverName',
-          hideable: false,
-          bind: {
-            text: '{i18n.document.motion.receiver}'
-          }
-        },
-        {
-          xtype: 'gridcolumn',
-          renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-            var vm = this.up().getViewModel();
-            var st = vm.getStore('responseTypes');
-            return st.getById(value).get('name');
-          },
-          defaultWidth: 150,
-          sortable: false,
-          dataIndex: 'send_type_id',
-          hideable: false,
-          bind: {
-            text: '{i18n.document.motion.send_type}'
-          },
-          editor: {
-            xtype: 'combobox',
-            editable: false,
-            displayField: 'name',
-            valueField: 'id',
-            bind: {
-              store: '{responseTypes}'
-            },
-          },
-        },
-        {
-          xtype: 'gridcolumn',
-          draggable: false,
-          width: 200,
-          sortable: false,
-          dataIndex: 'motion_text',
-          hideable: false,
-          bind: {
-            text: '{i18n.document.motion.motion_text}'
-          },
-          editor: {
-            xtype: 'textfield'
-          }
-        },
-        {
-          xtype: 'gridcolumn',
-          draggable: false,
-          width: 100,
-          sortable: false,
-          dataIndex: 'due_date',
-          formatter: 'date("d/m/Y")',
-          hideable: false,
-          bind: {
-            text: '{i18n.document.motion.due_date}'
-          },
-          editor: {
-            xtype: 'datefield',
-            format: 'd/m/Y'
-          }
-        }
-      ],
-      listeners: {
-        beforeitemcontextmenu: 'onGridBeforeItemContextMenu',
-        beforeedit: function(e, editor){
-          return !editor.store.getAt(editor.rowIdx).get('deleted');
-        }
-      },
-      plugins: [
-        {
-          ptype: 'cellediting',
-          clicksToEdit: 1
-        }
-      ]
-    }
-  ],
-  tools: [
-    {
-      xtype: 'tool',
-      type: 'refresh',
-      listeners: {
-        click: 'onRefreshToolClick'
+        
+        return text;
       }
     },
-    {
-      xtype: 'tool',
-      type: 'plus',
-      listeners: {
-        click: 'onAddToolClick'
+    columns: [{
+      xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return helpers.document.status.motionStatusIcon(value, record);
+      },
+      draggable: false,
+      resizable: false,
+      width: 32,
+      sortable: false,
+      dataIndex: 'status',
+      hideable: false,
+      text: ''
+    }, {
+      xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        return helpers.document.status.motionReceiverName(value, record);
+      },
+      draggable: false,
+      width: 200,
+      sortable: false,
+      dataIndex: 'receiverName',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.receiver}'
       }
+    }, {
+      xtype: 'gridcolumn',
+      renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+        var vm = this.up().getViewModel();
+        var st = vm.getStore('responseTypes');
+        return st.getById(value).get('name');
+      },
+      defaultWidth: 150,
+      sortable: false,
+      dataIndex: 'send_type_id',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.send_type}'
+      },
+      editor: {
+        xtype: 'combobox',
+        editable: false,
+        displayField: 'name',
+        valueField: 'id',
+        bind: {
+          store: '{responseTypes}'
+        },
+      },
+    }, {
+      xtype: 'gridcolumn',
+      draggable: false,
+      width: 200,
+      sortable: false,
+      dataIndex: 'motion_text',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.motion_text}'
+      },
+      editor: {
+        xtype: 'textfield'
+      }
+    }, {
+      xtype: 'gridcolumn',
+      draggable: false,
+      width: 100,
+      sortable: false,
+      dataIndex: 'due_date',
+      formatter: 'date("d/m/Y")',
+      hideable: false,
+      bind: {
+        text: '{i18n.document.motion.due_date}'
+      },
+      editor: {
+        xtype: 'datefield',
+        format: 'd/m/Y'
+      }
+    }],
+    listeners: {
+      beforeitemcontextmenu: 'onGridBeforeItemContextMenu',
+      beforeedit: function(e, editor){
+        return !editor.store.getAt(editor.rowIdx).get('deleted');
+      }
+    },
+
+    plugins: [{
+      ptype: 'cellediting',
+      clicksToEdit: 1
+    }]
+  }],
+  tools: [{
+    xtype: 'tool',
+    type: 'refresh',
+    listeners: {
+      click: 'onRefreshToolClick'
     }
-  ],
+  }, {
+    xtype: 'tool',
+    type: 'plus',
+    listeners: {
+      click: 'onAddToolClick'
+    }
+  }],
+
   listeners: {
     beforerender: {
       fn: 'onBeforeRender',
@@ -163,19 +142,19 @@ Ext.define('Tel100.view.document.motions.AssigneeModifyPanel', {
   },
 
   onGridBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
-      var gridMenu = Ext.create('Ext.menu.Menu', {
-        items: [{
-          text: i18n.document.motion.actions.delete_assignee,
-          icon: '/images/delete.png',
-          handler: function() {
-            var view = dataview.up('documentmotionsassigneemodifypanel');
-            view.deleteItemAt(index);
-          }
-        }]
-      });
+    var gridMenu = Ext.create('Ext.menu.Menu', {
+      items: [{
+        text: i18n.document.motion.actions.delete_assignee,
+        icon: '/images/delete.png',
+        handler: function() {
+          var view = dataview.up('documentmotionsassigneemodifypanel');
+          view.deleteItemAt(index);
+        }
+      }]
+    });
 
-      e.stopEvent();
-      gridMenu.showAt(e.getXY());
+    e.stopEvent();
+    gridMenu.showAt(e.getXY());
   },
 
   onRefreshToolClick: function(tool, e, owner, eOpts) {
@@ -223,5 +202,4 @@ Ext.define('Tel100.view.document.motions.AssigneeModifyPanel', {
       }
     }
   }
-
 });
