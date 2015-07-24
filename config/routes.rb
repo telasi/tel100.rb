@@ -110,6 +110,7 @@ Rails.application.routes.draw do
         post   '/send_draft',   action: 'send_draft'
         post   '/reply',        action: 'reply'
         post   '/edit',         action: 'edit'
+        post   '/clone',        action: 'clone'
       end
       scope 'motion', controller: 'motion' do
         get    '/',                   action: 'index'

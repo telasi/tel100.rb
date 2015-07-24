@@ -45,6 +45,19 @@ Ext.define('Tel100.view.document.MainViewController', {
     });
   },
 
+  onClone: function(){
+    var vm = this.getViewModel();
+    var selection = vm.get('selection');
+
+    helpers.api.document.base.clone(selection.id, {
+      success: function(data) {
+        var doc = Ext.create('Tel100.model.document.Base', data);
+        this.getViewModel().set('selection', doc);
+        this.openDocument(doc);
+      }.bind(this)
+    });
+  },
+
   openDocument: function(doc) {
     // checking if the document is already open
     var tabs = this.getView().down('#documentTabs');

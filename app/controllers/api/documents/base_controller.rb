@@ -135,6 +135,17 @@ class Api::Documents::BaseController < ApiController
     end
   end
 
+  def clone
+    if can_edit_document?
+      doc = Document::Base.find(params[:sourceid])
+      newdoc = doc.clone!(effective_user)
+      @my_doc = Document::User.where(document: newdoc, user: effective_user).first
+      render action: 'show'
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end    
+  end
+
   def edit
     doc = Document::Base.find(params[:id])
     render json: { success: doc.modify(params, effective_user) }
