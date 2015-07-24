@@ -42,10 +42,12 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     region: 'center',
     itemId: 'grid-out',
     bodyBorder: false,
+
     bind: {
       selection: '{outSelection}',
       store: '{outgoing}'
     },
+
     columns: [{
       xtype: 'gridcolumn',
       renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
@@ -125,15 +127,10 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     }],
 
     listeners: {
-      beforecellcontextmenu: 'showOutMotionsContextMenu'
+      beforecellcontextmenu: 'showOutMotionsContextMenu',
+      edit: 'onEdit'
     }
-    }
-  ],
-
-  listeners: {
-    beforerender: 'onWindowBeforeRender',
-    motionchange: 'onOutgoingMotionChange'
-  },
+  }],
 
   dockedItems: [{
     xtype: 'toolbar',

@@ -74,22 +74,9 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialogViewController', {
     }
   },
 
-  onWindowBeforeRender: function(component, eOpts) {
-    var view = this.getView();
-    var vm = this.getViewModel();
-
-    // selection change
-    var onChange = function(newVal, oldVal, binding) {
-      if (newVal) {
-        this.getView().fireEvent('motionchange', newVal);
-      }
-    };
-    var options = { deep: true };
-    vm.bind('{outSelection}', onChange, this, options);
-  },
-
-  onOutgoingMotionChange: function(motion) {
-    if (motion.dirty) {
+  onEdit: function(editor, context, eOpts) {
+    var motion = context.record;
+    if (motion && motion.dirty) {
       var view = this.getView();
       var changes = motion.getChanges();
       helpers.api.document.motion.updateDraft(motion.id, {
