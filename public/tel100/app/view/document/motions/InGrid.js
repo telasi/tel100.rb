@@ -2,12 +2,6 @@ Ext.define('Tel100.view.document.motions.InGrid', {
   extend: 'Ext.grid.Panel',
   alias: 'widget.documentmotionsingrid',
 
-  requires: [
-    'Tel100.view.document.motions.InGridViewModel',
-    'Ext.grid.column.Column',
-    'Ext.grid.View'
-  ],
-
   config: {
     selection: null
   },
