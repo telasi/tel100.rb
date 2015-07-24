@@ -106,7 +106,8 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
     }],
 
     listeners: {
-      beforeitemcontextmenu: 'onGridBeforeItemContextMenu'
+      beforeitemcontextmenu: 'onGridBeforeItemContextMenu',
+      edit: 'onEdit'
     },
 
     plugins: [{
@@ -114,6 +115,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
       clicksToEdit: 1
     }]
   }],
+
   tools: [{
     xtype: 'tool',
     type: 'refresh',
@@ -127,10 +129,27 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
       click: 'onAddToolClick'
     }
   }],
-  listeners: {
-    beforerender: {
-      fn: 'onBeforeRender',
-      scope: 'controller'
+
+  onEdit: function(editor, context, eOpts) {
+    var newVal = context.record;
+    var view = this;
+    if (newVal && newVal.dirty) {
+      var motion = newVal;
+      var changes = motion.getChanges();
+      helpers.api.document.motion.updateDraft(motion.id, {
+        params: changes,
+        success: function() {
+          motion.commit();
+          view.fireEvent('datachanged', view, 'update', motion);
+          if (changes.send_type_id) {
+            view.refresh();
+          }
+        },
+        failure: function(message) {
+          motion.reject();
+          console.error(message);
+        }
+      });
     }
   },
 

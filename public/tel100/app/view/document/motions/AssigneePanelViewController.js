@@ -9,7 +9,6 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
     var extType = receiver.get('ext_type');
     var document = vm.get('document');
 
-
     // XXX: do we need parent ID here?
     //
     // var parentId = grid.getViewModel().get('parentId');
@@ -52,32 +51,5 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewController', {
       }
       async.series(tasks);
     }
-  },
-
-  onBeforeRender: function(component, eOpts) {
-    var view = this.getView();
-    var vm = this.getViewModel();
-    var onChange = function(newVal, oldVal, binding) {
-      if (newVal && newVal.dirty) {
-        var motion = newVal;
-        var changes = motion.getChanges();
-        helpers.api.document.motion.updateDraft(motion.id, {
-          params: changes,
-          success: function() {
-            motion.commit();
-            view.fireEvent('datachanged', view, 'update', motion);
-            if (changes.send_type_id) {
-              view.refresh();
-            }
-          }.bind(this),
-          failure: function(message) {
-            motion.reject();
-            console.error(message);
-          }
-        });
-      }
-    };
-    var options = { deep: true };
-    vm.bind('{selection}', onChange, this, { deep: true });
   }
 });
