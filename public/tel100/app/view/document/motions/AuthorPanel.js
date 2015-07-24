@@ -82,7 +82,11 @@ Ext.define('Tel100.view.document.motions.AuthorPanel', {
     }],
 
     listeners: {
-      beforeitemcontextmenu: 'onGridBeforeItemContextMenu'
+      beforeitemcontextmenu: 'onGridBeforeItemContextMenu',
+      edit: {
+        fn: 'onEdit',
+        scope: 'controller'
+      }
     },
 
     plugins: [{
@@ -97,21 +101,13 @@ Ext.define('Tel100.view.document.motions.AuthorPanel', {
     listeners: {
       click: 'onRefreshToolClick'
     }
-  },
-  {
+  }, {
     xtype: 'tool',
     type: 'plus',
     listeners: {
       click: 'onAddToolClick'
     }
   }],
-
-  listeners: {
-    beforerender: {
-      fn: 'onBeforeRender',
-      scope: 'controller'
-    }
-  },
 
   onGridBeforeItemContextMenu: function(dataview, record, item, index, e, eOpts) {
     if (record.get('status') === helpers.document.status.DRAFT) {
