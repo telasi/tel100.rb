@@ -9,7 +9,7 @@ var config = {
       toolbar1: "newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect | bullist numlist | outdent indent blockquote",
       toolbar2: "cut copy paste | searchreplace | undo redo | link unlink code | inserttime | forecolor backcolor | table | hr removeformat | subscript superscript | charmap emoticons | fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft",
 
-      //content_css : "/contents.css",
+      content_css : "/mycontents.css",
 
       table_default_attributes: {
            width: '100%',
