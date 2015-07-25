@@ -123,7 +123,7 @@ Ext.define('Tel100.view.document.editor.Modify', {
               //xtype: 'htmleditor',
               xtype: 'tinymce_textarea',
               noWysiwyg: false,
-              tinyMCEConfig: helpers.tinymce.config,
+              tinyMCEConfig: helpers.tinymce.getConfig(),
               style: { border: '0' },
               flex: 1,
               itemId: 'documentBody',
