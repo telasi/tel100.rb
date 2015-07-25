@@ -25,7 +25,6 @@ var config = {
 
 var getConfig = function(){
       config.language = helpers.i18n.getCurrentLocale();
-      debugger;
       return config;
 }
 
