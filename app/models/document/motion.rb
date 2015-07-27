@@ -158,8 +158,8 @@ class Document::Motion < ActiveRecord::Base
     self.status = self.receiver_user.blank? ? NOT_SENT : SENT
     if self.status == SENT
       # try to make this motion current
-      lower = rel.where('ordering > 0 AND ordering < ? AND status IN (?)', self.ordering, [SENT,CURRENT,NOT_RECEIVED,CANCELED]).count
-      if lower == 0
+      # lower = rel.where('ordering > 0 AND ordering < ? AND status IN (?)', self.ordering, [SENT,CURRENT,NOT_RECEIVED,CANCELED]).count
+      if should_be_current?
         self.status = CURRENT
         self.received_at = Time.now
       end
@@ -173,6 +173,12 @@ class Document::Motion < ActiveRecord::Base
     sender_du = self.document.users.where(user: user).first
     receiver_du.calculate! if receiver_du.present?
     sender_du.calculate! if sender_du.present?
+  end
+
+  def should_be_current?
+    rel = Document::Motion.where(document: self.document, parent: self.parent)
+    lower = rel.where('ordering > 0 AND ordering < ? AND status IN (?)', self.ordering, [SENT,CURRENT,NOT_RECEIVED,CANCELED]).count
+    lower == 0
   end
 
   def add_comment(user, params, actual_user=nil)
