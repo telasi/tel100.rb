@@ -128,9 +128,9 @@ class Document::Base < ActiveRecord::Base
       self.sent_at = self.received_at = Time.now
       self.actual_sender = user
       self.save!
+      self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user) }
       check_auto_assignees!(user)
       check_auto_signees!(user)
-      self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)}
       self.users.each { |user| user.calculate! }
       if self.docnumber.blank?
         self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate)
@@ -152,7 +152,7 @@ class Document::Base < ActiveRecord::Base
     auto_assignee_ids.each do |auto_assignee_id|
       unless self.motions.where(receiver_user_id: auto_assignee_id).any?
         motion = Document::Motion.create!(document: self, parent: nil, is_new: 1, ordering: Document::Motion::ORDERING_AUTO_ASIGNEE,
-          send_type: send_type, sender_user: user, receiver_user_id: auto_assignee_id, receiver_role: ROLE_ASSIGNEE, status: DRAFT,
+          send_type: send_type, sender_user: user, receiver_user_id: auto_assignee_id, receiver_role: ROLE_ASSIGNEE, status: SENT,
           sent_at: Time.now, received_at: Time.now)
         docuser = Document::User.create!(document: self, user_id: auto_assignee_id, is_new: 1, is_changed: 1)
       end
@@ -165,7 +165,7 @@ class Document::Base < ActiveRecord::Base
     unless self.motions.where(receiver_user_id: AUTO_SIGNEE).any?
       send_type = Document::ResponseType.find(AUTO_SIGNEE_RESPONSE_TYPE)
       motion = Document::Motion.create!(document: self, parent: nil, is_new: 1, ordering: Document::Motion::ORDERING_AUTO_SIGNEE,
-        send_type: send_type, sender_user: user, receiver_user_id: AUTO_SIGNEE, receiver_role: ROLE_SIGNEE, status: DRAFT,
+        send_type: send_type, sender_user: user, receiver_user_id: AUTO_SIGNEE, receiver_role: ROLE_SIGNEE, status: SENT,
         sent_at: Time.now, received_at: Time.now)
       docuser = Document::User.create!(document: self, user_id: AUTO_SIGNEE, is_new: 1, is_changed: 1)
     end
