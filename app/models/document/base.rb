@@ -128,9 +128,9 @@ class Document::Base < ActiveRecord::Base
       self.sent_at = self.received_at = Time.now
       self.actual_sender = user
       self.save!
+      self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)}
       check_auto_assignees!(user)
       check_auto_signees!(user)
-      self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)}
       self.users.each { |user| user.calculate! }
 
       if self.docnumber.blank?
