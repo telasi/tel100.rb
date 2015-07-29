@@ -214,7 +214,7 @@ module Sap::Synchronizer
         org_id = per.org_id
       end
 
-      existed_per = HR::Employee.active.where(person_id: per.person_id).first
+      existed_per = HR::Employee.where(is_active: 1).where(person_id: per.person_id).first
       if existed_per.present?
         if existed_per.person_id     != per.person_id ||
            existed_per.first_name_ka != per.first_name_ka ||
