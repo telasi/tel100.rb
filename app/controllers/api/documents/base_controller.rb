@@ -159,7 +159,7 @@ class Api::Documents::BaseController < ApiController
         party_ids = HR::Party.where('name_ka LIKE :name OR name_ru LIKE :name OR name_en LIKE :name', name: search_string.likefy).map{ |p| p.id }
 
         @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Employee' AND receiver_role = ?)", employee_ids, role) if employee_ids.any?
-        @my_docs = @my_docs.where("id in (select document id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", party_ids, role) if party_ids.any?
+        @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", party_ids, role) if party_ids.any?
       end
     end
 
