@@ -194,7 +194,7 @@ class Document::Base < ActiveRecord::Base
 
     # check if author already get document
     owner_status = self.motions.where(receiver_user: self.owner_user).first.status
-    return (not [SENT,NOT_SENT,NOT_RECEIVED].include?(owner_status))
+    return (not [SENT,NOT_SENT,NOT_RECEIVED,CURRENT].include?(owner_status))
   end
 
   def add_comment(user, params, actual_user = nil)
