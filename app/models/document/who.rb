@@ -6,6 +6,7 @@ module Document::Who
 
   module ClassMethods
     def who_eval(whom, opts)
+
       id = opts[ "#{whom.to_s}_id".to_sym ]
 
       # getting type
@@ -25,6 +26,12 @@ module Document::Who
         who = whose_user( user )
       else
         who = type.constantize.find(id)
+        if who.instance_of?(HR::Employee)
+          unless who.active?
+            active_who = HR::Employee.where(person_id: who.person_id, is_active: 1).first
+            who = active_who if who.present?
+          end
+        end
         user = user_by_who( who )
       end
 
