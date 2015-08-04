@@ -169,24 +169,21 @@ class Api::Documents::MotionController < ApiController
   end
 
   def in_motions(doc, user, params)
-    is_author = doc.author?(user)
+    # is_author = doc.author?(user)
     is_sender = doc.sender?(user)
+    show_doc = doc.can_change_status?(user)
 
-    if is_author
-      show_doc = true
-      hide_sender_motion = true
-    elsif is_sender
-      receive_or_may_receive_statuses = [SENT,CURRENT,COMPLETED,CANCELED]
-      authors_which_received_or_may_receive = Document::Motion.where(document_id: doc.id, receiver_role: ROLE_AUTHOR).where('status IN (?)', receive_or_may_receive_statuses)
-      show_doc = authors_which_received_or_may_receive.empty?
+    if is_sender
+      # receive_or_may_receive_statuses = [SENT,CURRENT,COMPLETED,CANCELED]
+      # authors_which_received_or_may_receive = Document::Motion.where(document_id: doc.id, receiver_role: ROLE_AUTHOR).where('status IN (?)', receive_or_may_receive_statuses)
+      # show_doc = authors_which_received_or_may_receive.empty?
       hide_sender_motion = show_doc
     else
-      show_doc = false
       hide_sender_motion = true
     end
 
     rel = doc.motions
-    rel = rel.where('receiver_role not in (?)', ROLE_SENDER) if hide_sender_motion
+    rel = rel.where('receiver_role NOT IN (?)', ROLE_SENDER) if hide_sender_motion
     rel = rel.where(receiver_user: user)
     rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
 

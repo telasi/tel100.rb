@@ -192,9 +192,9 @@ class Document::Base < ActiveRecord::Base
     return true if owner?(user)
     return false unless sender?(user)
 
-    # check if author already get document
-    owner_status = self.motions.where(receiver_user: self.owner_user).first.status
-    return (not [SENT,NOT_SENT,NOT_RECEIVED,CURRENT].include?(owner_status))
+    signed_statuses = [COMPLETED,CANCELED]
+    signed_motions = self.motions.where(receiver_role: ROLE_AUTHOR).where('status IN (?)',signed_statuses)
+    signed_motions.empty?
   end
 
   def add_comment(user, params, actual_user = nil)
