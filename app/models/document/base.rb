@@ -449,9 +449,16 @@ class Document::Base < ActiveRecord::Base
       end
 
       return doc
-
     end
+  end
 
+  def fix_owner!
+    owner_motion = self.motions.where(receiver_role: ROLE_AUTHOR).where('receiver_user_id IS NOT NULL').order('id ASC').first
+    owner_user = owner_motion ? owner_motion.receiver_user : self.sender_user
+    owner = owner_motion ? owner_motion.receiver : self.sender
+    self.owner = owner
+    self.owner_user = owner_user
+    self.save!
   end
 
   private

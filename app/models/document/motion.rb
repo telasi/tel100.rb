@@ -145,9 +145,9 @@ class Document::Motion < ActiveRecord::Base
     if self.receiver_user.present?
       other_motions = Document::Motion.where(document_id: self.document_id).where('id != ?', self.id)
 
-      # reset owner
+      # we are about to delete an author
       if self.receiver_role == ROLE_AUTHOR and self.receiver_user == document.owner_user
-        new_owner_motion = other_motions.where(receiver_user: ROLE_AUTHOR).where('receiver_user_id IS NOT NULL').order('id ASC').first
+        new_owner_motion = other_motions.where(receiver_role: ROLE_AUTHOR).where('receiver_user_id IS NOT NULL').order('id ASC').first
         new_owner_user = new_owner_motion ? new_owner_motion.receiver_user : document.sender_user
         new_owner = new_owner_motion ? new_owner_motion.receiver : document.sender
         document.owner = new_owner

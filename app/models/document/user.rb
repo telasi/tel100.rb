@@ -185,11 +185,11 @@ class Document::User < ActiveRecord::Base
     if owner
       sender_status = nil
 
-      owner_status = Document::User.where(document_id: self.document_id, user_id: owner.id).first.as_owner      
+      owner_status = Document::User.where(document_id: self.document_id, user_id: owner.id).first.as_owner
       if owner_status == DOC_COMPLETED
         sender_status = DOC_COMPLETED
       elsif  owner_status == DOC_CANCELED
-        sender_status = DOC_CANCELED  
+        sender_status = DOC_CANCELED
       end
 
       if sender_status.present?
