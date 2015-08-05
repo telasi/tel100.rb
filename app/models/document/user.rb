@@ -178,11 +178,11 @@ class Document::User < ActiveRecord::Base
           self.is_current = 1 if current_cnt > 0
           self.is_canceled = 1 if canceled_cnt > 0
           self.is_completed = 1 if completed_cnt > 0
-          self.is_shown = 1 # sender always visible
 
           calculate_sender_from_owner
         end
       end
+      self.is_shown = 1 # sender always visible
     end
   end
 
