@@ -153,30 +153,32 @@ class Document::User < ActiveRecord::Base
   end
 
   def calculate_sender
-    rel = Document::Motion.where('document_id=? AND receiver_user_id=?', self.document_id, self.user_id)
-    sender_rel = rel.where(receiver_role: ROLE_SENDER)
-    if sender_rel.any?
-      current_cnt   = sender_rel.where(status: CURRENT).count
-      completed_cnt = sender_rel.where(status: COMPLETED).count
-      canceled_cnt  = sender_rel.where(status: CANCELED).count
-      if current_cnt > 0
-        self.as_sender = DOC_CURRENT
-      elsif canceled_cnt > 0
-        self.as_sender = DOC_CANCELED
-      elsif completed_cnt > 0
-        self.as_sender = DOC_COMPLETED
-      elsif self.document.status != DRAFT
-        self.as_sender = DOC_CANCELED
-        self.is_canceled = 1
-      else
-        self.as_sender = DOC_NONE
-      end
-      self.is_current = 1 if current_cnt > 0
-      self.is_canceled = 1 if canceled_cnt > 0
-      self.is_completed = 1 if completed_cnt > 0
-      self.is_shown = 1 # sender always visible
+    if self.user == self.document.sender_user and self.user != self.document.owner_user
+      rel = Document::Motion.where('document_id=? AND receiver_user_id=?', self.document_id, self.user_id)
+      sender_rel = rel.where(receiver_role: ROLE_SENDER)
+      if sender_rel.any?
+        current_cnt   = sender_rel.where(status: CURRENT).count
+        completed_cnt = sender_rel.where(status: COMPLETED).count
+        canceled_cnt  = sender_rel.where(status: CANCELED).count
+        if current_cnt > 0
+          self.as_sender = DOC_CURRENT
+        elsif canceled_cnt > 0
+          self.as_sender = DOC_CANCELED
+        elsif completed_cnt > 0
+          self.as_sender = DOC_COMPLETED
+        elsif self.document.status != DRAFT
+          self.as_sender = DOC_CANCELED
+          self.is_canceled = 1
+        else
+          self.as_sender = DOC_NONE
+        end
+        self.is_current = 1 if current_cnt > 0
+        self.is_canceled = 1 if canceled_cnt > 0
+        self.is_completed = 1 if completed_cnt > 0
+        self.is_shown = 1 # sender always visible
 
-      calculate_sender_from_owner
+        calculate_sender_from_owner
+      end
     end
   end
 
