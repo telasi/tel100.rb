@@ -142,6 +142,27 @@ class Document::Motion < ActiveRecord::Base
   def delete_draft!(user)
     raise 'not a draft' unless self.draft?
     raise 'don\'t have delete permission' unless self.can_edit?(user)
+    if self.receiver_user.present?
+      other_motions = Document::Motion.where(document_id: self.document_id).where('id != ?', self.id)
+
+      # reset owner
+      if self.receiver_role == ROLE_AUTHOR and self.receiver_user == document.owner_user
+        new_owner_motion = other_motions.where(receiver_user: ROLE_AUTHOR).where('receiver_user_id IS NOT NULL').order('id ASC').first
+        new_owner_user = new_owner_motion ? new_owner_motion.receiver_user : document.sender_user
+        new_owner = new_owner_motion ? new_owner_motion.receiver : document.sender
+        document.owner = new_owner
+        document.owner_user = new_owner_user
+        document.save!
+      end
+
+      # has other motions for this user
+      has_other_motions = other_motions.where(receiver_user_id: self.receiver_user_id).any?
+      unless has_other_motions
+        Document::User.where(document_id: self.document_id, user_id: self.receiver_user_id).destroy_all
+      end
+    end
+
+    # delete this motion
     self.destroy
   end
 
