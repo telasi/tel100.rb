@@ -195,8 +195,12 @@ class Document::User < ActiveRecord::Base
       if sender_status.present?
         sender_docs = Document::User.where("document_id = ? AND as_sender > ?", self.document_id, DOC_NONE)
         sender_docs.each do |docuser|
-          docuser.as_sender = sender_status
-          docuser.save!
+          if docuser == self
+            self.as_sender = sender_status
+          else
+            docuser.as_sender = sender_status
+            docuser.save!
+          end
         end
       end
     end
