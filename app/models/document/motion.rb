@@ -91,7 +91,7 @@ class Document::Motion < ActiveRecord::Base
     is_new = 1
     if receiver_user
       docuser = Document::User.where(document_id: document_id, user_id: receiver_user.id).first
-      is_new = docuser.is_new if docuser.present?
+      docuser.update_attributes!(is_new: 1) if docuser.present?
     end
 
     # create motion
