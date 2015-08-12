@@ -108,7 +108,8 @@ class Document::User < ActiveRecord::Base
     calculate_current_completed_canceled
     calculate_received
     # calculate due date
-    calculate_due
+    calculate_due_date
+    calculate_receive_date
     # saving results
     self.save!
   end
@@ -296,7 +297,7 @@ class Document::User < ActiveRecord::Base
     end
   end
 
-  def calculate_due
+  def calculate_due_date
     current_due_date = nil ; has_due_date = 0 ; completed_over_due = 0
     self.motions.each do |motion|
       d = motion.effective_due_date
@@ -314,6 +315,12 @@ class Document::User < ActiveRecord::Base
     self.current_due_date = current_due_date
     self.completed_over_due = completed_over_due
     self.has_due_date = has_due_date
+  end
+
+  def calculate_receive_date
+    if self.is_shown == 1 && self.receive_date.blank?
+      self.receive_date = Date.today
+    end
   end
 
   def calculate_sent

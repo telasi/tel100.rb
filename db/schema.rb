@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716133254) do
+ActiveRecord::Schema.define(version: 20150812063811) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",         limit: 2,                             default: "KA",    null: false
@@ -217,8 +217,10 @@ ActiveRecord::Schema.define(version: 20150716133254) do
     t.boolean   "as_author",                     precision: 1,  scale: 0, default: false, null: false
     t.timestamp "created_at",         limit: 6,                                           null: false
     t.timestamp "updated_at",         limit: 6,                                           null: false
+    t.datetime  "receive_date"
   end
 
+  add_index "document_user", ["\"RECEIVE_DATE\""], name: "docuser_receive_date_idx"
   add_index "document_user", ["as_assignee"], name: "document_user_asassignee_idx"
   add_index "document_user", ["as_author"], name: "document_user_asauthor_idx"
   add_index "document_user", ["as_owner"], name: "document_user_asowner_idx"
@@ -312,7 +314,7 @@ ActiveRecord::Schema.define(version: 20150716133254) do
   end
 
   create_table "party_base", force: true do |t|
-    t.string    "org_type",   limit: 20,  null: false
+    t.string    "org_type",   limit: 20,                           null: false
     t.string    "identity",   limit: 30
     t.string    "name_ka",    limit: 200
     t.string    "name_ru",    limit: 200
@@ -326,8 +328,9 @@ ActiveRecord::Schema.define(version: 20150716133254) do
     t.string    "phones",     limit: 100
     t.string    "email",      limit: 50
     t.string    "account",    limit: 50
-    t.timestamp "created_at", limit: 6,   null: false
-    t.timestamp "updated_at", limit: 6,   null: false
+    t.timestamp "created_at", limit: 6,                            null: false
+    t.timestamp "updated_at", limit: 6,                            null: false
+    t.integer   "customer",   limit: 10,  precision: 10, scale: 0
   end
 
   create_table "party_contacts", force: true do |t|
