@@ -319,7 +319,7 @@ class Document::User < ActiveRecord::Base
 
   def calculate_receive_date
     if self.is_shown == 1 && self.receive_date.blank?
-      self.receive_date = Date.today
+      self.receive_date = Time.now
     end
   end
 
