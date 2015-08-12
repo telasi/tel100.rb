@@ -1,7 +1,7 @@
 class AddDocuserReceiveDate < ActiveRecord::Migration
   def up
     execute <<-SQL
-      ALTER TABLE DOCUMENT_USER  ADD (RECEIVE_DATE DATE)
+      ALTER TABLE DOCUMENT_USER  ADD (RECEIVE_DATE TIMESTAMP WITH TIME ZONE)
     SQL
 
     execute <<-SQL
