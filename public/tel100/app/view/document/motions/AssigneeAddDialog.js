@@ -97,7 +97,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
         text: '{i18n.document.motion.motion_text}'
       },
       editor: {
-        xtype: 'textfield'
+        xtype: 'textarea'
       }
     }, {
       xtype: 'gridcolumn',
@@ -122,7 +122,7 @@ Ext.define('Tel100.view.document.motions.AssigneeAddDialog', {
     },
 
     plugins: [{
-      ptype: 'cellediting',
+      ptype: 'rowediting',
       clicksToEdit: 1
     }],
 

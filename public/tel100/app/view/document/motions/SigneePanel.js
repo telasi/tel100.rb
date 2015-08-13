@@ -76,7 +76,7 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
         text: '{i18n.document.motion.motion_text}'
       },
       editor: {
-        xtype: 'textfield'
+        xtype: 'textarea'
       }
     }, {
       xtype: 'gridcolumn',
@@ -102,7 +102,7 @@ Ext.define('Tel100.view.document.motions.SigneePanel', {
       }
     },
     plugins: [{
-      ptype: 'cellediting',
+      ptype: 'rowediting',
       clicksToEdit: 1
     }]
   }],
