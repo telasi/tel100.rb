@@ -86,7 +86,7 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
         text: '{i18n.document.motion.motion_text}'
       },
       editor: {
-        xtype: 'textfield'
+        xtype: 'textarea'
       }
     }, {
       xtype: 'gridcolumn',
@@ -111,8 +111,9 @@ Ext.define('Tel100.view.document.motions.AssigneePanel', {
     },
 
     plugins: [{
-      ptype: 'cellediting',
-      clicksToEdit: 1
+      ptype: 'rowediting',
+      clicksToEdit: 1,
+      autoCancel: false
     }]
   }],
 

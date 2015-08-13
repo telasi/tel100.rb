@@ -61,7 +61,10 @@ Ext.define('Tel100.model.document.Motion', {
       return data.deleted;
     },
     name: 'isDeleted'
-  }],
+  },
+  'send_type_id',
+  'motion_text',
+  'ordering'],
 
   proxy: {
     type: 'rest',
