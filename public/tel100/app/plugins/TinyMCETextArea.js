@@ -243,12 +243,14 @@ Ext.define('Ext.ux.form.TinyMCETextArea', {
                     setContent.apply(ed, arguments);
                     ed.fire('change', {});
                 };
-                
-                if(height) {
+
+                setTimeout(function () { me.syncEditorHeight(me.getHeight()); }, 200);
+
+                // if(height) {
                   // setTimeout is a hack. The problem is that the editor
                   // it not realle ready, when init fires.
-                  setTimeout(function () { me.syncEditorHeight(height); }, 200);
-                }
+                  //setTimeout(function () { me.syncEditorHeight(height); }, 200);
+                //}
             });
             
             // Catch and propagate the change event 
