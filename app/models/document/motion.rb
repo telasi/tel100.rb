@@ -41,6 +41,15 @@ class Document::Motion < ActiveRecord::Base
   def receiver_name;  (self.receiver_user || self.receiver).to_s end
   def current_status; self.response_type || self.send_type end
 
+  def self.auto_sign
+    types = AUTO_SIGN_DOCUMENT_TYPES
+    conditions = "document_base.type_id IN (?) AND document_motion.received_at<? AND document_motion.status IN (?)"
+    time = AUTO_SIGN_INTERVAL.ago # = 8.working.hours.ago
+    Document::Motion.joins(:document).where(conditions, types, time, [CURRENT]).each do |motion|
+      motion.add_comment!(motion.receiver_user, { response_type_id: AUTO_SIGN_TYPE_ID })
+    end
+  end
+
   def self.create_draft!(sender_user, params)
     document_id = params[:document_id] ; parent_id = params[:parent_id]
     document = Document::Base.find(document_id)

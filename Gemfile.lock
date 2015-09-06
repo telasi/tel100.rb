@@ -40,8 +40,47 @@ GEM
     bcrypt (3.1.10)
     bcrypt (3.1.10-x86-mingw32)
     builder (3.2.2)
-    celluloid (0.16.0)
-      timers (~> 4.0.0)
+    celluloid (0.17.1.2)
+      bundler
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.2.1)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.1)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.1)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.1)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.1.1)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (>= 4.1.1)
     chronic (0.10.2)
     chunky_png (1.3.4)
     coffee-rails (4.0.1)
@@ -51,21 +90,15 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    columnize (0.9.0)
     commonjs (0.2.7)
     composite_primary_keys (7.0.11)
       activerecord (= 4.1.6)
     connection_pool (2.2.0)
-    database_cleaner (1.4.1)
-    debugger (1.6.8)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.3.5)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.3.8)
+    database_cleaner (1.5.0)
     diff-lcs (1.2.5)
+    dotenv (2.0.2)
     erubis (2.7.0)
-    execjs (2.5.2)
+    execjs (2.6.0)
     hike (1.2.3)
     hitimes (1.2.2)
     hitimes (1.2.2-x86-mingw32)
@@ -73,7 +106,7 @@ GEM
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
-    jquery-rails (3.1.3)
+    jquery-rails (3.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
@@ -89,14 +122,16 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.6.1)
-    minitest (5.7.0)
+    minitest (5.8.0)
     multi_json (1.11.2)
-    pdf-core (0.5.1)
-    pdfkit (0.7.0)
-    prawn (2.0.1)
-      pdf-core (~> 0.5.1)
+    nenv (0.2.0)
+    pdf-core (0.6.0)
+    pdfkit (0.8.2)
+    prawn (2.0.2)
+      pdf-core (~> 0.6.0)
       ttfunk (~> 1.4.0)
-    prawn-table (0.2.1)
+    prawn-table (0.2.2)
+      prawn (>= 1.3.0, < 3.0.0)
     prawn_rails (0.0.11)
       prawn (>= 0.11.1)
       railties (>= 3.0.0)
@@ -126,14 +161,15 @@ GEM
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    ref (1.0.5)
-    rqrcode (0.6.0)
+    ref (2.0.0)
+    rqrcode (0.7.0)
       chunky_png
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.0.0)
+    rspec-logsplit (0.1.3)
     rspec-mocks (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-rails (3.0.2)
@@ -158,12 +194,12 @@ GEM
       rdoc (~> 4.0)
     select2-rails (3.5.9.3)
       thor (~> 0.14)
-    sidekiq (3.4.1)
-      celluloid (~> 0.16.0)
-      connection_pool (>= 2.1.1)
-      json
-      redis (>= 3.0.6)
-      redis-namespace (>= 1.3.1)
+    sidekiq (3.5.0)
+      celluloid (~> 0.17.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      json (~> 1.0)
+      redis (~> 3.2, >= 3.2.1)
+      redis-namespace (~> 1.5, >= 1.5.2)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -186,17 +222,17 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    timecop (0.7.4)
-    timers (4.0.1)
+    timecop (0.8.0)
+    timers (4.1.1)
       hitimes
     ttfunk (1.4.0)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2015.5)
+    tzinfo-data (1.2015.6)
       tzinfo (>= 1.0.0)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     whenever (0.9.4)
@@ -205,6 +241,9 @@ GEM
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
     wkhtmltopdf-binary (0.9.9.3)
+    working_hours (1.1.1)
+      activesupport (>= 3.2)
+      tzinfo
     yajl-ruby (1.2.1)
 
 PLATFORMS
@@ -218,7 +257,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   composite_primary_keys
   database_cleaner
-  debugger
   forma!
   jbuilder (~> 2.0)
   jquery-rails
@@ -249,4 +287,8 @@ DEPENDENCIES
   whenever
   will_paginate-bootstrap
   wkhtmltopdf-binary
+  working_hours
   yajl-ruby
+
+BUNDLED WITH
+   1.10.6
