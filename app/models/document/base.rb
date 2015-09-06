@@ -419,7 +419,7 @@ class Document::Base < ActiveRecord::Base
       original_date:    self.original_date }
 
     author_motions = self.author_motions
-    assignee_motions = self.assignee_motions.where(sender_user: self.sender_user)
+    assignee_motions = self.assignee_motions.where(sender_user: self.sender_user).where('reciever_user_id IS NOT NULL and reciever_id IS NOT NULL')
     signee_motions = self.signee_motions
 
     Document::Base.transaction do
@@ -548,13 +548,13 @@ class Document::Base < ActiveRecord::Base
     motions.map do |motion|
       next if motion.receiver_user && ( motion.receiver_user.id == user.id )
       ordering = motion.ordering if role == ROLE_SIGNEE
-      motionparams = { document_id:   doc.id, 
-                       receiver_id:   motion.receiver_id, 
-                       receiver_type: motion.receiver_type, 
-                       receiver_role: role,
-                       motion_text:   motion.motion_text,
-                       send_type_id:  motion.send_type_id,
-                       ordering:      ordering
+      motionparams = { document_id:        doc.id, 
+                       receiver_id:        motion.receiver_id, 
+                       receiver_type:      motion.receiver_type, 
+                       receiver_role:      role,
+                       motion_text:        motion.motion_text,
+                       send_type_id:       motion.send_type_id,
+                       ordering:           ordering
                      }
       Document::Motion.create_draft!(user, motionparams)
     end
