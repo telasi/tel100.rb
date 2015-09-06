@@ -45,14 +45,18 @@ class Document::Motion < ActiveRecord::Base
     types = AUTO_SIGN_DOCUMENT_TYPES
     conditions = <<-SQL
       document_base.type_id IN (?) AND
+      document_base.status  IN (?) AND
       document_motion.received_at < ? AND
       document_motion.status IN (?) AND
       document_motion.receiver_role = ? AND
+      document_motion.receiver_user_id IS NOT NULL AND
       document_motion.receiver_user_id NOT IN (?)
     SQL
     time = AUTO_SIGN_INTERVAL.ago
     motions = Document::Motion.joins(:document)
-    motions.where(conditions, types, time, [CURRENT], ROLE_SIGNEE, AUTO_SIGN_SKIP_USERS).each do |motion|
+    doc_statuses = [CURRENT]
+    motion_statuses = [CURRENT]
+    motions.where(conditions, types, doc_statuses, time, motion_statuses, ROLE_SIGNEE, AUTO_SIGN_SKIP_USERS).each do |motion|
       motion.add_comment!(motion.receiver_user, { response_type_id: AUTO_SIGN_TYPE_ID })
     end
   end
