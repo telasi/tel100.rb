@@ -15,6 +15,7 @@ class Document::ResponseType < ActiveRecord::Base
   end
 
   def positive?
+    return true if self.id == AUTO_SIGN_TYPE_ID
     self.direction == RESP_COMPLETE
   end
 
