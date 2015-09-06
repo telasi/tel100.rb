@@ -43,9 +43,16 @@ class Document::Motion < ActiveRecord::Base
 
   def self.auto_sign
     types = AUTO_SIGN_DOCUMENT_TYPES
-    conditions = "document_base.type_id IN (?) AND document_motion.received_at<? AND document_motion.status IN (?)"
-    time = AUTO_SIGN_INTERVAL.ago # = 8.working.hours.ago
-    Document::Motion.joins(:document).where(conditions, types, time, [CURRENT]).each do |motion|
+    conditions = <<-SQL
+      document_base.type_id IN (?) AND
+      document_motion.received_at < ? AND
+      document_motion.status IN (?) AND
+      document_motion.receiver_role = ? AND
+      document_motion.receiver_user_id NOT IN (?)
+    SQL
+    time = AUTO_SIGN_INTERVAL.ago
+    motions = Document::Motion.joins(:document)
+    motions.where(conditions, types, time, [CURRENT], ROLE_SIGNEE, AUTO_SIGN_SKIP_USERS).each do |motion|
       motion.add_comment!(motion.receiver_user, { response_type_id: AUTO_SIGN_TYPE_ID })
     end
   end
