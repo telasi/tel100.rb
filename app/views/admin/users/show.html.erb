@@ -18,6 +18,7 @@
   v.text_field 'phone'
   v.required_boolean_field 'active?', i18n: 'is_active'
   v.required_boolean_field 'admin?', i18n: 'is_admin'
+  v.required_boolean_field 'director?', i18n: 'is_director'
   v.complex_field 'employee' do |c|
     c.text_field 'person_number', tag: 'code'
     c.text_field 'full_name', url: ->(x){ admin_employee_url(id: x.id) }

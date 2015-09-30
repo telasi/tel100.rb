@@ -197,7 +197,19 @@ Ext.define('Tel100.view.document.folder.Search', {
         fieldLabel: '{i18n.document.search.to}'
       }
     }]
-  }, {
+  }, 
+
+  {
+      xtype: 'checkbox',
+      name: 'show_all',
+      bind: {
+        hidden: '{hideShowAll}',
+        boxLabel: '{i18n.document.search.show_all}'
+      },
+      boxLabel: true
+  }, 
+
+    {
     xtype: 'button',
     width: '100%',
     bind: {

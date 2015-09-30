@@ -17,6 +17,7 @@
   e.combo_field 'employee_id', collection: employees, i18n: 'employee', empty: '-- აარჩიეთ თანამშრომელი --'
   e.boolean_field 'is_active'
   e.boolean_field 'is_admin'
+  e.boolean_field 'is_director'
   e.submit 'მონაცემების შენახვა'
   cancel_url = @user.new_record? ? admin_users_url : admin_user_url
   e.button_action cancel_url, label: ' გაუქმება', icon: 'remove'

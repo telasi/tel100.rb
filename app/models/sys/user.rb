@@ -4,7 +4,7 @@ require 'bcrypt'
 class Sys::User < ActiveRecord::Base
   include BCrypt
   self.table_name  = 'users'
-  self.set_integer_columns :is_active, :is_admin, :need_refresh
+  self.set_integer_columns :is_active, :is_admin, :is_director, :need_refresh
   self.localized_fields('first_name', 'last_name')
   belongs_to :employee, class_name: 'HR::Employee'
   has_many :documents, class_name: 'Document::User', foreign_key: 'user_id'
@@ -28,6 +28,7 @@ class Sys::User < ActiveRecord::Base
   def to_s; self.full_name end
   def active?; self.is_active == 1 end
   def admin?; self.is_admin == 1 end
+  def director?; self.is_director == 1 end
   def mobile_formatted; KA.format_mobile(self.mobile) if self.mobile.present? end
 
   def virtual_password; @virtual_password end

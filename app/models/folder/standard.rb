@@ -44,19 +44,19 @@ class Folder::Standard
   end
 
   def to_hash(user)
+    docs = Document::User.mydocs(user)
     { name:      self.name,
       icon:      self.icon,
-      count:      Folder::Standard.docs(self.folder_type, show_completed = 0, user).count,
+      count:      Folder::Standard.docs(docs, self.folder_type, show_completed = 0, user).count,
       folder_type: self.folder_type,
       parent_id: self.parent_id
     }
   end
 
-  def self.docs(folderType, show_completed = 0, user)
-    docs = Document::User.mydocs(user)
+  def self.docs(docs, folderType, show_completed = 0, user)
     case folderType.to_i
       when DRAFT
-        docs.joins("JOIN document_base on document_base.id = document_user.document_id AND document_base.status = 0 AND user_id = #{user.id}")
+        docs.joins("JOIN document_base on document_base.id = document_user.document_id AND document_base.status = 0")
       when INBOX
         docs.where(is_received: 1, is_completed: 0)
       when INBOX_UNREAD

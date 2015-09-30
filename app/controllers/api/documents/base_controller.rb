@@ -3,7 +3,7 @@ class Api::Documents::BaseController < ApiController
   before_filter :validate_login
 
   def index
-    @my_docs = doc_list(params[:folderType], params[:folderId])
+    @my_docs = doc_list(@my_docs, params[:folderType], 0, params[:folderId])
     @total = @my_docs.count
     @my_docs = @my_docs.offset(params["start"]) if params["start"]
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
@@ -11,9 +11,13 @@ class Api::Documents::BaseController < ApiController
   end
 
   def search
-    @my_docs = Document::User.mydocs(effective_user).joins(:document)
-    # @my_docs = @my_docs.where('document_user.created_at >= ?', current_substitude.from_date) if current_substitude.present? and current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
-    @my_docs = doc_list('standard', 1, params['folder']) if params['folder'].present?
+    if params['show_all'].present? and params['show_all'] == 'on'
+      @my_docs = Document::User.all.joins(:document) if current_user.is_director?
+    else 
+      @my_docs = Document::User.mydocs(effective_user)
+    end
+    @my_docs = doc_list(@my_docs, 'standard', 1, params['folder']) if params['folder'].present?
+
     @my_docs = @my_docs.joins(:document)
 
     if params['sender'].present?
@@ -57,21 +61,16 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.order('document_user.receive_date DESC, document_user.document_id DESC')
   end
 
-  def doc_list(folderType, show_completed = 0, folderId)
+  def doc_list(pdocs, folderType, show_completed = 0, folderId)
+    pdocs = Document::User.mydocs(effective_user) unless pdocs
     @docs = case folderType
       when 'standard'
-        Folder::Standard.docs(folderId, show_completed, effective_user)
+        Folder::Standard.docs(pdocs, folderId, show_completed, effective_user)
       when 'custom'
         Folder::Document.docs(folderId, effective_user)
       else 
         Document::User.mydocs(effective_user)
     end
-
-    # if current_substitude.present? and current_substitude.substitude_type = HR::Vacation::Vacation::VIEW_NEW
-    #  @docs = @docs.where('document_user.created_at >= ?', current_substitude.from_date) 
-    # else
-    #  @docs
-    # end
     @docs
   end
 

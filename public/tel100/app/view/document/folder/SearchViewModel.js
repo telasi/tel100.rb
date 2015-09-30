@@ -40,5 +40,12 @@ Ext.define('Tel100.view.document.folder.SearchViewModel', {
         }]
       }
     }
+  },
+
+  formulas: {
+    hideShowAll: function(get){
+      var user = helpers.user.getCurrentUser();
+      return !user.get('is_director');
+    }
   }
 });

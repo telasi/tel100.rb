@@ -14,6 +14,9 @@ ka:
       is_active: "აქტიურია?"
       is_active_true: "მომხმარებელი აქტიურია"
       is_active_false: "მომხმარებელი პასიურია"
+      is_director: "დირექტორია?"
+      is_director_true: დირექტორია!
+      is_director_false: არ არის დირექტორი
       created_at: რეგისტრაციის თარიღი
       updated_at: ბოლო ცლილების თარიღი
       first_name_ka: სახელი

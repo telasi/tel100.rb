@@ -11,37 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812063811) do
+ActiveRecord::Schema.define(version: 20150921074640) do
 
   create_table "document_base", force: true do |t|
-    t.string    "language",         limit: 2,                             default: "KA",    null: false
-    t.integer   "parent_id",        limit: 10,   precision: 10, scale: 0
-    t.integer   "type_id",          limit: 5,    precision: 5,  scale: 0,                   null: false
-    t.string    "direction",        limit: 20,                            default: "inner", null: false
-    t.string    "subject",          limit: 1000
-    t.string    "original_number",  limit: 50
+    t.string    "language",          limit: 2,                             default: "KA",    null: false
+    t.integer   "parent_id",         limit: 10,   precision: 10, scale: 0
+    t.integer   "type_id",           limit: 5,    precision: 5,  scale: 0,                   null: false
+    t.string    "direction",         limit: 20,                            default: "inner", null: false
+    t.string    "subject",           limit: 1000
+    t.string    "original_number",   limit: 50
     t.datetime  "original_date"
-    t.string    "docnumber",        limit: 20
+    t.string    "docnumber",         limit: 20
     t.datetime  "docdate"
-    t.integer   "docyear",          limit: 4,    precision: 4,  scale: 0
-    t.integer   "page_count",       limit: 6,    precision: 6,  scale: 0
-    t.string    "additions"
+    t.integer   "docyear",           limit: 4,    precision: 4,  scale: 0
+    t.integer   "page_count",        limit: 6,    precision: 6,  scale: 0
+    t.integer   "additions_count",   limit: 6,    precision: 6,  scale: 0
     t.datetime  "due_date"
     t.datetime  "alarm_date"
-    t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
-    t.integer   "actual_sender_id", limit: 10,   precision: 10, scale: 0
-    t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
-    t.string    "sender_type",      limit: 50
-    t.integer   "owner_user_id",    limit: 10,   precision: 10, scale: 0
-    t.integer   "owner_id",         limit: 10,   precision: 10, scale: 0
-    t.string    "owner_type",       limit: 50
-    t.boolean   "status",                        precision: 1,  scale: 0, default: false,   null: false
-    t.timestamp "created_at",       limit: 6,                                               null: false
-    t.timestamp "sent_at",          limit: 6
-    t.timestamp "received_at",      limit: 6
-    t.timestamp "completed_at",     limit: 6
-    t.timestamp "updated_at",       limit: 6,                                               null: false
-    t.string    "docnumber2",       limit: 20
+    t.integer   "sender_user_id",    limit: 10,   precision: 10, scale: 0
+    t.integer   "sender_id",         limit: 10,   precision: 10, scale: 0
+    t.string    "sender_type",       limit: 50
+    t.integer   "owner_user_id",     limit: 10,   precision: 10, scale: 0
+    t.integer   "owner_id",          limit: 10,   precision: 10, scale: 0
+    t.string    "owner_type",        limit: 50
+    t.integer   "motions_total",     limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
+    t.integer   "motions_completed", limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
+    t.integer   "motions_canceled",  limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
+    t.integer   "comments_total",    limit: 6,    precision: 6,  scale: 0, default: 0,       null: false
+    t.boolean   "status",                         precision: 1,  scale: 0, default: false,   null: false
+    t.timestamp "created_at",        limit: 6,                                               null: false
+    t.timestamp "sent_at",           limit: 6
+    t.timestamp "received_at",       limit: 6
+    t.timestamp "completed_at",      limit: 6
+    t.timestamp "updated_at",        limit: 6,                                               null: false
+    t.integer   "actual_sender_id",  limit: 10,   precision: 10, scale: 0
+    t.string    "docnumber2",        limit: 20
+    t.string    "additions"
   end
 
   create_table "document_change", force: true do |t|
@@ -57,13 +62,13 @@ ActiveRecord::Schema.define(version: 20150812063811) do
     t.integer   "document_id",      limit: 10,   precision: 10, scale: 0, null: false
     t.integer   "motion_id",        limit: 10,   precision: 10, scale: 0
     t.integer   "user_id",          limit: 10,   precision: 10, scale: 0, null: false
-    t.integer   "actual_user_id",   limit: 10,   precision: 10, scale: 0
     t.boolean   "status",                        precision: 1,  scale: 0, null: false
     t.boolean   "old_status",                    precision: 1,  scale: 0, null: false
     t.string    "role",             limit: 10,                            null: false
     t.string    "text",             limit: 1000
     t.timestamp "created_at",       limit: 6,                             null: false
     t.timestamp "updated_at",       limit: 6,                             null: false
+    t.integer   "actual_user_id",   limit: 10,   precision: 10, scale: 0
     t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
   end
 
@@ -99,13 +104,11 @@ ActiveRecord::Schema.define(version: 20150812063811) do
     t.integer   "send_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "motion_text",      limit: 1000
     t.integer   "sender_user_id",   limit: 10,   precision: 10, scale: 0
-    t.integer   "actual_sender_id", limit: 10,   precision: 10, scale: 0
     t.integer   "sender_id",        limit: 10,   precision: 10, scale: 0
     t.string    "sender_type",      limit: 50
     t.integer   "resp_type_id",     limit: 5,    precision: 5,  scale: 0
     t.string    "response_text",    limit: 1000
     t.integer   "receiver_user_id", limit: 10,   precision: 10, scale: 0
-    t.integer   "last_receiver_id", limit: 10,   precision: 10, scale: 0
     t.integer   "receiver_id",      limit: 10,   precision: 10, scale: 0
     t.string    "receiver_type",    limit: 50
     t.string    "receiver_role",    limit: 10,                            default: "assignee", null: false
@@ -115,6 +118,8 @@ ActiveRecord::Schema.define(version: 20150812063811) do
     t.timestamp "received_at",      limit: 6
     t.timestamp "completed_at",     limit: 6
     t.timestamp "updated_at",       limit: 6,                                                  null: false
+    t.integer   "actual_sender_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "last_receiver_id", limit: 10,   precision: 10, scale: 0
   end
 
   add_index "document_motion", ["document_id"], name: "docmotions_base_idx"
@@ -152,7 +157,7 @@ ActiveRecord::Schema.define(version: 20150812063811) do
     t.integer   "base_id",      limit: 10,  precision: 10, scale: 0, null: false
     t.integer   "related_id",   limit: 10,  precision: 10, scale: 0, null: false
     t.timestamp "created_at",   limit: 6,                            null: false
-    t.string    "related_type", limit: 100,                          null: false
+    t.string    "related_type", limit: 100
   end
 
   create_table "document_response_types", force: true do |t|
@@ -179,20 +184,16 @@ ActiveRecord::Schema.define(version: 20150812063811) do
   end
 
   create_table "document_type", force: true do |t|
-    t.string    "name_ka",        limit: 50,                                         null: false
-    t.string    "name_ru",        limit: 50
-    t.string    "name_en",        limit: 50
-    t.integer   "order_by",       limit: 5,  precision: 5, scale: 0, default: 0,     null: false
-    t.timestamp "created_at",     limit: 6,                                          null: false
-    t.timestamp "updated_at",     limit: 6,                                          null: false
-    t.integer   "margin_top",     limit: 5,  precision: 5, scale: 0
-    t.integer   "margin_bottom",  limit: 5,  precision: 5, scale: 0
-    t.boolean   "print_header",              precision: 1, scale: 0, default: false, null: false
-    t.integer   "margin_top_out", limit: 5,  precision: 5, scale: 0
-    t.boolean   "is_special",                precision: 1, scale: 0, default: false, null: false
-    t.boolean   "allow_inner",               precision: 1, scale: 0, default: true,  null: false
-    t.boolean   "allow_in",                  precision: 1, scale: 0, default: true,  null: false
-    t.boolean   "allow_out",                 precision: 1, scale: 0, default: true,  null: false
+    t.string    "name_ka",     limit: 50,                                         null: false
+    t.string    "name_ru",     limit: 50
+    t.string    "name_en",     limit: 50
+    t.integer   "order_by",    limit: 5,  precision: 5, scale: 0, default: 0,     null: false
+    t.timestamp "created_at",  limit: 6,                                          null: false
+    t.timestamp "updated_at",  limit: 6,                                          null: false
+    t.boolean   "is_special",             precision: 1, scale: 0, default: false, null: false
+    t.boolean   "allow_inner",            precision: 1, scale: 0, default: true,  null: false
+    t.boolean   "allow_in",               precision: 1, scale: 0, default: true,  null: false
+    t.boolean   "allow_out",              precision: 1, scale: 0, default: true,  null: false
   end
 
   create_table "document_user", id: false, force: true do |t|
@@ -217,10 +218,10 @@ ActiveRecord::Schema.define(version: 20150812063811) do
     t.boolean   "as_author",                     precision: 1,  scale: 0, default: false, null: false
     t.timestamp "created_at",         limit: 6,                                           null: false
     t.timestamp "updated_at",         limit: 6,                                           null: false
-    t.datetime  "receive_date"
+    t.timestamp "receive_date",       limit: 6
   end
 
-  add_index "document_user", ["\"RECEIVE_DATE\""], name: "docuser_receive_date_idx"
+  add_index "document_user", ["SYS_EXTRACT_UTC(\"RECEIVE_DATE\")"], name: "docuser_receive_date_idx"
   add_index "document_user", ["as_assignee"], name: "document_user_asassignee_idx"
   add_index "document_user", ["as_author"], name: "document_user_asauthor_idx"
   add_index "document_user", ["as_owner"], name: "document_user_asowner_idx"
@@ -272,9 +273,48 @@ ActiveRecord::Schema.define(version: 20150812063811) do
     t.boolean   "employee_status_id",            precision: 1,  scale: 0, default: false, null: false
     t.timestamp "created_at",         limit: 6,                                           null: false
     t.timestamp "updated_at",         limit: 6,                                           null: false
+    t.boolean   "custom",                        precision: 1,  scale: 0
   end
 
   add_index "hr_employees", ["is_active", "person_id"], name: "hr_employees_status_idx"
+
+  create_table "hr_employees2", id: false, force: true do |t|
+    t.integer   "id",                 limit: 10, precision: 10, scale: 0, null: false
+    t.boolean   "is_active",                     precision: 1,  scale: 0, null: false
+    t.integer   "person_id",          limit: 8,  precision: 8,  scale: 0, null: false
+    t.integer   "user_id",            limit: 10, precision: 10, scale: 0
+    t.string    "first_name_ka",      limit: 50,                          null: false
+    t.string    "first_name_ru",      limit: 50
+    t.string    "first_name_en",      limit: 50
+    t.string    "last_name_ka",       limit: 50,                          null: false
+    t.string    "last_name_ru",       limit: 50
+    t.string    "last_name_en",       limit: 50
+    t.string    "gender",             limit: 1,                           null: false
+    t.integer   "organization_id",    limit: 10, precision: 10, scale: 0
+    t.boolean   "employee_status_id",            precision: 1,  scale: 0, null: false
+    t.timestamp "created_at",         limit: 6,                           null: false
+    t.timestamp "updated_at",         limit: 6,                           null: false
+    t.boolean   "custom",                        precision: 1,  scale: 0
+  end
+
+  create_table "hr_employees_backup", id: false, force: true do |t|
+    t.integer   "id",                 limit: 10, precision: 10, scale: 0, null: false
+    t.boolean   "is_active",                     precision: 1,  scale: 0, null: false
+    t.integer   "person_id",          limit: 8,  precision: 8,  scale: 0, null: false
+    t.integer   "user_id",            limit: 10, precision: 10, scale: 0
+    t.string    "first_name_ka",      limit: 50,                          null: false
+    t.string    "first_name_ru",      limit: 50
+    t.string    "first_name_en",      limit: 50
+    t.string    "last_name_ka",       limit: 50,                          null: false
+    t.string    "last_name_ru",       limit: 50
+    t.string    "last_name_en",       limit: 50
+    t.string    "gender",             limit: 1,                           null: false
+    t.integer   "organization_id",    limit: 10, precision: 10, scale: 0
+    t.boolean   "employee_status_id",            precision: 1,  scale: 0, null: false
+    t.timestamp "created_at",         limit: 6,                           null: false
+    t.timestamp "updated_at",         limit: 6,                           null: false
+    t.boolean   "custom",                        precision: 1,  scale: 0
+  end
 
   create_table "hr_organizations", force: true do |t|
     t.integer   "parent_id",    limit: 10,  precision: 10, scale: 0
@@ -290,6 +330,43 @@ ActiveRecord::Schema.define(version: 20150812063811) do
     t.string    "priority",     limit: 2
     t.timestamp "created_at",   limit: 6,                                            null: false
     t.timestamp "updated_at",   limit: 6,                                            null: false
+    t.boolean   "custom",                   precision: 1,  scale: 0
+  end
+
+  create_table "hr_organizations2", id: false, force: true do |t|
+    t.integer   "id",           limit: 10,  precision: 10, scale: 0, null: false
+    t.integer   "parent_id",    limit: 10,  precision: 10, scale: 0
+    t.integer   "tree_level",   limit: 3,   precision: 3,  scale: 0, null: false
+    t.boolean   "is_active",                precision: 1,  scale: 0, null: false
+    t.integer   "saporg_id",    limit: 8,   precision: 8,  scale: 0
+    t.string    "saporg_type",  limit: 1
+    t.integer   "sapparent_id", limit: 8,   precision: 8,  scale: 0
+    t.string    "name_ka",      limit: 500,                          null: false
+    t.string    "name_ru",      limit: 500
+    t.string    "name_en",      limit: 500
+    t.boolean   "is_manager",               precision: 1,  scale: 0, null: false
+    t.string    "priority",     limit: 2
+    t.timestamp "created_at",   limit: 6,                            null: false
+    t.timestamp "updated_at",   limit: 6,                            null: false
+    t.boolean   "custom",                   precision: 1,  scale: 0
+  end
+
+  create_table "hr_organizations_backup", id: false, force: true do |t|
+    t.integer   "id",           limit: 10,  precision: 10, scale: 0, null: false
+    t.integer   "parent_id",    limit: 10,  precision: 10, scale: 0
+    t.integer   "tree_level",   limit: 3,   precision: 3,  scale: 0, null: false
+    t.boolean   "is_active",                precision: 1,  scale: 0, null: false
+    t.integer   "saporg_id",    limit: 8,   precision: 8,  scale: 0
+    t.string    "saporg_type",  limit: 1
+    t.integer   "sapparent_id", limit: 8,   precision: 8,  scale: 0
+    t.string    "name_ka",      limit: 500,                          null: false
+    t.string    "name_ru",      limit: 500
+    t.string    "name_en",      limit: 500
+    t.boolean   "is_manager",               precision: 1,  scale: 0, null: false
+    t.string    "priority",     limit: 2
+    t.timestamp "created_at",   limit: 6,                            null: false
+    t.timestamp "updated_at",   limit: 6,                            null: false
+    t.boolean   "custom",                   precision: 1,  scale: 0
   end
 
   create_table "hr_vacation", id: false, force: true do |t|
@@ -314,7 +391,7 @@ ActiveRecord::Schema.define(version: 20150812063811) do
   end
 
   create_table "party_base", force: true do |t|
-    t.string    "org_type",   limit: 20,                           null: false
+    t.string    "org_type",   limit: 20,  null: false
     t.string    "identity",   limit: 30
     t.string    "name_ka",    limit: 200
     t.string    "name_ru",    limit: 200
@@ -327,10 +404,9 @@ ActiveRecord::Schema.define(version: 20150812063811) do
     t.string    "contact_en", limit: 200
     t.string    "phones",     limit: 100
     t.string    "email",      limit: 50
-    t.string    "account",    limit: 50
-    t.timestamp "created_at", limit: 6,                            null: false
-    t.timestamp "updated_at", limit: 6,                            null: false
-    t.integer   "customer",   limit: 10,  precision: 10, scale: 0
+    t.string    "customer",   limit: 50
+    t.timestamp "created_at", limit: 6,   null: false
+    t.timestamp "updated_at", limit: 6,   null: false
   end
 
   create_table "party_contacts", force: true do |t|
@@ -438,6 +514,7 @@ ActiveRecord::Schema.define(version: 20150812063811) do
     t.timestamp "created_at",       limit: 6,                                            null: false
     t.timestamp "updated_at",       limit: 6,                                            null: false
     t.string    "eflow_user_name",  limit: 100
+    t.boolean   "is_director",                  precision: 1,  scale: 0, default: false, null: false
   end
 
   add_index "users", ["email"], name: "users_email_idx", unique: true

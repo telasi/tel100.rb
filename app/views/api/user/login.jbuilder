@@ -10,6 +10,7 @@ json.user do
   json.mobile_confirmed  @user.mobile_confirmed
   json.is_active   @user.is_active
   json.is_admin    @user.is_admin
+  json.is_director @user.is_director
   json.employee_id @user.employee_id
   json.person_id   @user.person_id
   json.first_name  @user.first_name
