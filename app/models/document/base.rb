@@ -302,7 +302,7 @@ class Document::Base < ActiveRecord::Base
       self.subject = params[:subject] if params[:subject].present?
       self.docnumber2 = params[:docnumber2] if params[:docnumber2].present?
       self.docdate = params[:docdate] if params[:docdate].present?
-      self.save
+      self.save!
       
       # Save text to history
       histext = Document::History::Text.new(document: self)
@@ -327,7 +327,7 @@ class Document::Base < ActiveRecord::Base
       Document::FileTemp.where(document: self).map do |f|
         if f.state == Document::Change::STATE_TEMP || f.state == Document::Change::STATE_CURRENT
           newfile = Document::File.new(document: self, original_name: f.original_name, store_name: f.store_name)
-          newfile.save
+          newfile.save!
         end
         f.delete
       end
@@ -391,14 +391,15 @@ class Document::Base < ActiveRecord::Base
           motion_to_process.save!
           docuser.calculate! if docuser.present?
         end
-      end
-      motions_to_process = self.motions.where('ordering > ?', ordering)
-      motions_to_process.each do |motion_to_process|
-        docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: SENT })
-        motion_to_process.status = SENT
-        motion_to_process.received_at = Time.now
-        motion_to_process.save!
-        docuser.calculate! if docuser.present?
+
+        motions_to_process = self.motions.where('ordering > ?', ordering)
+        motions_to_process.each do |motion_to_process|
+          docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: SENT })
+          motion_to_process.status = SENT
+          motion_to_process.received_at = Time.now
+          motion_to_process.save!
+          docuser.calculate! if docuser.present?
+        end
       end
 
     end
@@ -419,7 +420,7 @@ class Document::Base < ActiveRecord::Base
       original_date:    self.original_date }
 
     author_motions = self.author_motions
-    assignee_motions = self.assignee_motions.where(sender_user: self.sender_user).where('reciever_user_id IS NOT NULL and reciever_id IS NOT NULL')
+    assignee_motions = self.assignee_motions.where(sender_user: self.sender_user).where('receiver_user_id IS NOT NULL and receiver_id IS NOT NULL')
     signee_motions = self.signee_motions
 
     Document::Base.transaction do
