@@ -71,3 +71,5 @@ gem 'whenever'
 gem 'redis'
 
 gem 'working_hours'
+gem 'dalli'
+gem 'connection_pool'

@@ -94,6 +94,7 @@ GEM
     composite_primary_keys (7.0.11)
       activerecord (= 4.1.6)
     connection_pool (2.2.0)
+    dalli (2.7.4)
     database_cleaner (1.5.0)
     diff-lcs (1.2.5)
     dotenv (2.0.2)
@@ -256,6 +257,8 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   coffee-rails (~> 4.0.0)
   composite_primary_keys
+  connection_pool
+  dalli
   database_cleaner
   forma!
   jbuilder (~> 2.0)
