@@ -4,7 +4,7 @@ class Api::Documents::BaseController < ApiController
 
   def index
     @my_docs = doc_list(@my_docs, params[:folderType], 0, params[:folderId])
-    @total = @my_docs.count
+    @total   = @my_docs.count
     @my_docs = @my_docs.offset(params["start"]) if params["start"]
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
     @my_docs = @my_docs.order('receive_date DESC, document_id DESC')
