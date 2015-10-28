@@ -21,7 +21,7 @@ Ext.define('Tel100.view.eflow.Page', {
   }, {
     xtype: 'panel',
     region: 'center',
-    html: '<iframe src="http://1.1.2.61" style="width:100%;height:100%;" id="eflow"></iframe>'
+    html: '<iframe src="http://192.168.1.18" style="width:100%;height:100%;" id="eflow"></iframe>'
   }]
 });
 
