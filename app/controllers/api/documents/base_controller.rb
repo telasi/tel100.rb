@@ -41,7 +41,7 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.where("document_base.docnumber LIKE ?", "#{params['docnumber'].strip.likefy}") if params['docnumber'].present?
     @my_docs = @my_docs.where("document_base.original_number LIKE ?", "#{params['original_number'].strip.likefy}") if params['original_number'].present?
     @my_docs = @my_docs.where("document_base.docnumber2" => params['docnumber2'].strip) if params['docnumber2'].present?
-    @my_docs = @my_docs.where("lower(document_base.subject) LIKE ?", params['subject'].strip.mb_chars.downcase.to_s + '%') if params['subject'].present?
+    @my_docs = @my_docs.where("lower(document_base.subject) LIKE ?", '%' + params['subject'].strip.mb_chars.downcase.to_s + '%') if params['subject'].present?
     if params['body'].present?
        @my_docs = @my_docs.joins('JOIN document_text ON document_text.document_id = document_user.document_id').where("dbms_lob.instr(upper(document_text.body),upper(?))>=1", params['body'].strip) 
     end
