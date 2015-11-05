@@ -291,6 +291,14 @@ class Document::Motion < ActiveRecord::Base
     notify_du.update_attributes!(is_changed: 1)
 
     if is_receiver
+
+      # exception: if type is ბრძანება or განკარგულება and signee cancels - dont stop
+      # stop only if author cancels
+      if ( AUTO_SIGNEE_DOCTYPES.include?(doc.type_id) and !doc.author?(user) )
+        resend_ups!
+        return
+      end
+
       # S5: update upper motions
       check_level_ups!
 
