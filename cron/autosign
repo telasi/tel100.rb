@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/www/tel100
+source /home/www/.rvm/environments/ruby-2.2.2
+bundle exec rails runner -e production 'Document::Motion.auto_sign'
