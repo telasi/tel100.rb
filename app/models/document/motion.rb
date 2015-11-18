@@ -54,7 +54,9 @@ class Document::Motion < ActiveRecord::Base
     motions = Document::Motion.joins(:document)
     doc_statuses = [CURRENT]
     motion_statuses = [CURRENT]
+    autosign_exceptions = [ 2 ]
     motions.where(conditions, doc_statuses, time, motion_statuses, ROLE_SIGNEE, AUTO_SIGN_SKIP_USERS).each do |motion|
+      next if autosign_exceptions.include?( motion.receiver_user_id )
       motion.add_comment!(motion.receiver_user, { response_type_id: AUTO_SIGN_TYPE_ID })
     end
   end
