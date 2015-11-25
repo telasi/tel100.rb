@@ -180,5 +180,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace 'reports' do
+    scope 'incoming', controller: 'incoming' do
+      get 'report1', action: 'report1'
+    end
+  end
+
   root controller: 'site', action: 'index'
 end
