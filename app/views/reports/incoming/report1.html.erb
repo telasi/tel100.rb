@@ -6,10 +6,7 @@
     <tr>
       <th>#</th>
       <th>№/თარიღი</th>
-      <th>ორიგ.</th>
-      <th>სტატ.</th>
       <th>ავტორები/სათაური</th>
-      <th>ადრესატები</th>
     </tr>
   </thead>
   <% @docs.each_with_index do |doc,i| %>
@@ -21,20 +18,10 @@
         <code><%= doc.docnumber %><br></code>
         <%= doc.docdate.strftime('%d-%b-%Y') %>
       </td>
-      <td width="100">
-        <%= doc.original_number %>
-        <%= doc.original_date.strftime('%d-%b-%Y') if doc.original_date %>
-      </td>
-      <td width="75" align="center">
-        <%= doc.status == 2 ? 'მიმდ.' : 'დასრ.' %>
-      </td>
       <td>
         <%= doc.authors.map{|x| x.to_s}.join(', ') %>
         <hr style="margin: 5px 0;">
         <span class="text-muted"><%= doc.subject %></span>
-      </td>
-      <td width="200">
-        <%= doc.motions.where({parent_id: nil, receiver_type:'HR::Employee'}).map{|x| x.receiver}.compact.map{|x|x.to_s}.join('<br>').html_safe %>
       </td>
     </tr>
   <% end %>
