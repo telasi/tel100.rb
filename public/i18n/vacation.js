@@ -9,7 +9,7 @@ module.exports = {
       ru: 'Новое'
     },
     save: {
-      ka: 'შენაზვა',
+      ka: 'შენახვა',
       ru: 'Сохранить'
     },
     cancel: {
