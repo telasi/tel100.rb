@@ -5,3 +5,5 @@ WorkingHours::Config.working_hours = {
   thu: {'09:00' => '13:00', '14:00' => '18:00'},
   fri: {'09:00' => '13:00', '14:00' => '18:00'}
 }
+
+WorkingHours::Config.time_zone = 'Tbilisi'
