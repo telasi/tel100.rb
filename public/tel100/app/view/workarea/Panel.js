@@ -24,7 +24,7 @@ Ext.define('Tel100.view.workarea.Panel', {
     items: [{
       xtype: 'segmentedbutton',
       items: [
-        { itemId: 'tel100', text: 'tel100' },
+        { itemId: 'tel100', text: 'teldoc' },
         { itemId: 'hr',     text: 'hr'     },
         { itemId: 'eflow',  text: 'eflow'  },
         { itemId: 'admin',  text: 'admin', bind: { hidden: '{hideAdmin}' } }
