@@ -21,6 +21,14 @@
   <script src="/extjs/theme/ext-theme-neptune.js"></script>
   <link href="/extjs/theme/resources/ext-theme-neptune-all_01.css" rel="stylesheet">
   <link href="/tel100/tel100.css" rel="stylesheet">
+  <style type="text/css">
+    .tel100-help {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      font-size: 24px;
+    }
+  </style>
   <!-- start script -->
   <script>
     Ext.Loader.setConfig({ enabled: false });
@@ -29,6 +37,14 @@
       name: 'Tel100',
       launch: function() {
         Ext.create('Tel100.view.Main');
+
+        // create help link
+        var el = document.createElement('a');
+        el.innerHTML = '<i class="fa fa-question-circle"></i>';
+        el.classList.add('tel100-help');
+        el.href = '/teldoc.pdf';
+        el.target = 'doc';
+        document.body.appendChild(el);
       }
     });
   </script>
