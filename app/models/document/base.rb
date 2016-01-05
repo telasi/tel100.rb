@@ -271,7 +271,7 @@ class Document::Base < ActiveRecord::Base
 
     #check if docnumber already exists
     if params[:docnumber2] && self.docnumber2 != params[:docnumber2]
-      raise I18n.t('models.document_base.errors.docnumber2_exists') if Document::Base.where(docnumber2: params[:docnumber2]).any?
+      raise I18n.t('models.document_base.errors.docnumber2_exists') if Document::Base.where(docnumber2: params[:docnumber2], docyear: self.docyear).any?
     end
 
     oldtext = ''
