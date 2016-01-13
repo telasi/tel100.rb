@@ -25,7 +25,8 @@ class Api::Documents::BaseController < ApiController
       @my_docs = @my_docs.where('document_base.sender_id IN (?)', @employees)
     end
 
-    author_filter(params['author'])
+    #author_filter(params['author'])
+    united_role_filter(params['author'], 'author')
     united_role_filter(params['assignee'], 'assignee')
     united_role_filter(params['signee'],   'signee')
 
