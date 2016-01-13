@@ -25,8 +25,7 @@ class Api::Documents::BaseController < ApiController
       @my_docs = @my_docs.where('document_base.sender_id IN (?)', @employees)
     end
 
-    #author_filter(params['author'])
-    united_role_filter(params['author'], 'author')
+    author_filter(params['author'])
     united_role_filter(params['assignee'], 'assignee')
     united_role_filter(params['signee'],   'signee')
 
@@ -159,14 +158,18 @@ class Api::Documents::BaseController < ApiController
         employee_ids = HR::Employee.where('first_name_ka IN (:name) OR first_name_ru IN (:name) OR last_name_ka IN (:name) OR last_name_ru IN (:name)', name: search_string.split(' ')).map{ |e| e.id }
         party_ids = HR::Party.where('name_ka LIKE :name OR name_ru LIKE :name OR name_en LIKE :name', name: search_string.likefy).map{ |p| p.id }
 
-        @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (:ids) AND receiver_type = 'HR::Employee' AND receiver_role = 'author'
-                                          union select id from document_base b where owner_id IN (:ids) 
-                                                   and not exists ( select document_id from document_motion where document_id = b.id and receiver_id IN (:ids) AND receiver_type = 'HR::Employee' AND receiver_role = 'author')
-                                          )", ids: employee_ids) if employee_ids.any?
-        @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (:ids) AND receiver_type = 'HR::Party' AND receiver_role = 'author'
-                                          union select id from document_base b where owner_id IN (:ids) 
-                                                   and not exists ( select document_id from document_motion where document_id = b.id and receiver_id IN (:ids) AND receiver_type = 'HR::Party' AND receiver_role = 'author')
-                                          )", ids: party_ids) if party_ids.any?
+        if ( employee_ids.none? and party_ids.none? )
+          @my_docs = @my_docs.none
+        else
+          @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (:ids) AND receiver_type = 'HR::Employee' AND receiver_role = 'author'
+                                            union select id from document_base b where owner_id IN (:ids) 
+                                                     and not exists ( select document_id from document_motion where document_id = b.id and receiver_id IN (:ids) AND receiver_type = 'HR::Employee' AND receiver_role = 'author')
+                                            )", ids: employee_ids) if employee_ids.any?
+          @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (:ids) AND receiver_type = 'HR::Party' AND receiver_role = 'author'
+                                            union select id from document_base b where owner_id IN (:ids) 
+                                                     and not exists ( select document_id from document_motion where document_id = b.id and receiver_id IN (:ids) AND receiver_type = 'HR::Party' AND receiver_role = 'author')
+                                            )", ids: party_ids) if party_ids.any?
+         end
       end
     end
   end
@@ -178,8 +181,13 @@ class Api::Documents::BaseController < ApiController
         employee_ids = HR::Employee.where('first_name_ka IN (:name) OR first_name_ru IN (:name) OR last_name_ka IN (:name) OR last_name_ru IN (:name)', name: search_string.split(' ')).map{ |e| e.id }
         party_ids = HR::Party.where('name_ka LIKE :name OR name_ru LIKE :name OR name_en LIKE :name', name: search_string.likefy).map{ |p| p.id }
 
-        @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Employee' AND receiver_role = ?)", employee_ids, role) if employee_ids.any?
-        @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", party_ids, role) if party_ids.any?
+        if ( employee_ids.none? and party_ids.none? )
+          @my_docs = @my_docs.none
+        else
+          @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Employee' AND receiver_role = ?)", employee_ids, role) if employee_ids.any?
+          @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", party_ids, role) if party_ids.any?
+        end
+
       end
     end
 
