@@ -61,9 +61,9 @@ class Folder::Standard
         docs.where(is_received: 1, is_completed: 0)
       when INBOX_UNREAD
         # docs.where(is_received: 1, is_completed: 0, is_forwarded: 0, is_new: 1).where('as_signee = 0 and as_author = 0')
-        docs.where(is_received: 1, is_new: 1).where('as_signee = 0 and as_author = 0')
+        docs.where(is_received: 1, is_new: 1).where('as_signee <> 1 and as_author <> 1')
       when INBOX_READ
-        docs.where(is_received: 1, is_completed: 0, is_forwarded: 0, is_new: 0).where('as_signee = 0 and as_author = 0')
+        docs.where(is_received: 1, is_completed: 0, is_forwarded: 0, is_new: 0).where('as_signee <> 1 and as_author <> 1')
       when INBOX_RESENT
         docs.where(is_received: 1, is_completed: 0, is_forwarded: 1)
       when INBOX_SIGNEE
