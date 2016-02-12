@@ -571,7 +571,11 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
       if (incoming) {
         var text = [];
         incoming.forEach(function(motion) {
-          text.push(helpers.document.renderer.renderMotion(motion, { as: 'sender' }));
+          var motion_text = helpers.document.renderer.renderMotion(motion, { as: 'sender' });
+          if ( motion.motion_text ) {
+           motion_text = motion_text + ' &mdash; ' + motion.motion_text;
+          }
+          text.push(motion_text);
         });
         return text.join('; ');
       }
