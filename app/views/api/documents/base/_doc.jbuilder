@@ -3,9 +3,11 @@ json.id       doc.id
 # document::base properties
 json.parent_id   doc.parent_id
 json.type_id     doc.type_id ## XXX remove!!!
-json.type do
-  json.id   doc.type_id
-  json.name doc.type.name
+if doc.type_id.present?
+  json.type do
+    json.id   doc.type_id
+    json.name doc.type.name
+  end
 end
 json.direction   doc.direction
 json.subject     doc.subject

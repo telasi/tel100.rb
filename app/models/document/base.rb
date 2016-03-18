@@ -58,7 +58,8 @@ class Document::Base < ActiveRecord::Base
       owner_user: sender_user, owner: sender,
       actual_sender: nil, # it's not sent yet
       direction: INNER, status: DRAFT,
-      type: Document::Type.order('order_by').first }
+      #type: Document::Type.order('order_by').first 
+    }
     Document::Base.transaction do
       doc = Document::Base.create!(docparams)
       motionparams = { document_id: doc.id, is_new: 0, ordering: 0,
@@ -104,6 +105,7 @@ class Document::Base < ActiveRecord::Base
   end
 
   def send_draft!(user)
+    raise I18n.t('models.document_base.errors.type_is_null') unless self.type_id.present?
     raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
     raise I18n.t('models.document_base.errors.empty_subject') unless self.subject.present?
     raise I18n.t('models.document_base.errors.no_motions') unless self.motions.any?
