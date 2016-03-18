@@ -339,12 +339,14 @@ class Document::Base < ActiveRecord::Base
       self.assignee_motions.map do |m|
         hismotion = Document::History::Motion.new(m.attributes.merge({id: nil}))
         hismotion.change_no = change.id
+        hismotion.old_id = m.id
         hismotion.save!
       end
 
       self.signee_motions.map do |m|
         hismotion = Document::History::Motion.new(m.attributes.merge({id: nil}))
         hismotion.change_no = change.id
+        hismotion.old_id = m.id
         hismotion.save!
       end
 
