@@ -4,7 +4,11 @@ json.array! @relations do |relation|
   json.id        relation.id
   json.docid     doc.id
   json.docnumber doc.docnumber
-  json.doctype   doc.type.name
+  if doc.type.present?
+     json.doctype   doc.type.name 
+  else
+     json.doctype   '--'
+  end
   json.status    doc.status
   json.subject 	 doc.subject
   json.owner     owner.full_name
