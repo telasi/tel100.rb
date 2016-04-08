@@ -15,6 +15,7 @@ class Api::Documents::PrintController < ApiController
     @subject = params[:subject] == 'true'
     I18n.locale = params[:lang]
     @document = Document::Base.find(params[:id])
-    @margins = @document.type.margins
+    @margins = @document.type ? @document.type.margins : Document::Type.default_margins
+    @print_header = @document.type ? @document.type.print_header : true
   end
 end

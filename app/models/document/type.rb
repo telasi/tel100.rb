@@ -34,4 +34,12 @@ class Document::Type < ActiveRecord::Base
       DEFAULT_MARGIN
     ].map{|x| x * MM_TO_INCHES}
   end
+
+  def self.default_margins
+    [ DEFAULT_MARGIN,
+      DEFAULT_MARGIN,
+      DEFAULT_MARGIN,
+      DEFAULT_MARGIN
+    ].map{|x| x * MM_TO_INCHES}
+  end
 end
