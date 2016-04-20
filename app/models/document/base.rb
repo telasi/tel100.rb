@@ -36,7 +36,12 @@ class Document::Base < ActiveRecord::Base
     #return false if ( self.status == COMPLETED || self.status == CANCELED)
     return false if ( self.author_motions.where(status: COMPLETED).any? && ( author?(user) || sender?(user)) )
     return false if ( self.sender_motions.where('status IN (?)', [COMPLETED, CANCELED]).any? && sender?(user) )
-    return false if self.assignee_motions.where('receiver_user_id <> ? and parent_id IS NULL', AUTO_SIGNEE).where('status IN (?)', [CURRENT, COMPLETED, CANCELED]).any?
+    
+    assignee_has_read = self.assignee_motions.where('receiver_user_id <> ? and parent_id IS NULL', AUTO_SIGNEE).
+                                              where('status IN (?)', [CURRENT, COMPLETED, CANCELED]).any?
+    canc_in_direction = ( self.direction == Document::Direction && owner?(user) )
+    return false if ( assignee_has_read && ( not canc_in_direction ) )
+
     return false if self.signee_motions.where(receiver_user: user, status: COMPLETED).any?
     author?(user) || owner?(user) || signee?(user) || sender?(user)
   end
