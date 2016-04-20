@@ -237,6 +237,7 @@ module Sap::Synchronizer
            sysuser = Sys::User.where(person_id: newper.person_id).first
            if sysuser
              sysuser.employee_id = newper.id
+             sysuser.is_active = 0 if ( per.status == 0 )
              sysuser.save
              newper.user_id = sysuser.id
              newper.save
@@ -253,6 +254,7 @@ module Sap::Synchronizer
         sysuser = Sys::User.where(person_id: newper.person_id).first
         if sysuser.present?
           sysuser.employee_id = newper.id
+          sysuser.is_active = 0 if ( per.status == 0 )
           sysuser.save
           newper.user_id = sysuser.id
           newper.save
