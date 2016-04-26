@@ -33,10 +33,7 @@ module Tel100Rb
     config.action_mailer.smtp_settings = { 
       :address              => "92.241.77.33",
       :port                 => 25,
-      :domain               => "telasi.ge",
-      :user_name            => "teldoc@telasi.ge",
-      :password             => "teldoc1234",
-      :authentication       => :plain,
-      :enable_starttls_auto => true }
+      :domain               => "telasi.ge"
+    }
   end
 end
