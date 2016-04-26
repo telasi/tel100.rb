@@ -23,5 +23,20 @@ module Tel100Rb
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :ka
     config.i18n.fallbacks = true
+
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.perform_deliveries = true
+
+    config.action_mailer.default_url_options = { :host => 'localhost' }
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = { 
+      :address              => "92.241.77.33",
+      :port                 => 25,
+      :domain               => "telasi.ge",
+      :user_name            => "teldoc@telasi.ge",
+      :password             => "teldoc1234",
+      :authentication       => :plain,
+      :enable_starttls_auto => true }
   end
 end
