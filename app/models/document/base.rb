@@ -155,7 +155,7 @@ class Document::Base < ActiveRecord::Base
     # ignore inner documents
     return if self.direction == INNER
     # calculate auto assingees
-    receiver_ids = self.motions.where(status: CURRENT).to_a.map{ |motion| motion.receiver_user }.flatten.map{|user| user.id}.uniq
+    receiver_ids = self.motions.where(status: CURRENT, receiver_type: 'HR::Employee').to_a.map{ |motion| motion.receiver_user }.flatten.map{|user| user.id}.uniq
     auto_assignee_ids = Sys::UserRelation.where(role: ROLE_AUTO_ASSIGNEE).where('USER_ID IN (?)', receiver_ids).to_a.map{ |rel| rel.related_id }.uniq
     # process each auto-assignee
     send_type_direction = Document::ResponseTypeDirection::SEND
