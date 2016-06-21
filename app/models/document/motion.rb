@@ -12,6 +12,7 @@ class Document::Motion < ActiveRecord::Base
   ORDERING_AUTO_SIGNEE  = 400
   ORDERING_ASIGNEE      = 500
   ORDERING_AUTO_ASIGNEE = 500
+  ORDERING_AUTO_ASIGNEE_EXCEPTION = 500
 
   include Document::Personalize
   include Document::Status

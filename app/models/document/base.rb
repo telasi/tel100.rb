@@ -150,8 +150,26 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
+  # Checks auto-assignees for agreement type.
+  def check_auto_assignees_exception!(user)
+    return unless AUTO_ASSIGNEE_EXCEPTION_DOCTYPES.include?(self.type_id)
+    unless self.motions.where(receiver_user_id: AUTO_ASSIGNEE_EXCEPTION).any?
+      send_type = Document::ResponseType.find(AUTO_ASSIGNEE_EXCEPTION_RESPONSE_TYPE)
+      motion = Document::Motion.create!(document: self, parent: nil, is_new: 1, ordering: Document::Motion::ORDERING_AUTO_ASIGNEE_EXCEPTION,
+        send_type: send_type, sender_user: user, receiver_user_id: AUTO_ASSIGNEE_EXCEPTION, receiver_role: ROLE_ASSIGNEE, status: SENT,
+        sent_at: Time.now, received_at: Time.now)
+      if motion.should_be_current?
+        motion.update_attributes!(status: CURRENT)
+      end
+      docuser = Document::User.create!(document: self, user_id: AUTO_ASSIGNEE_EXCEPTION, is_new: 1, is_changed: 1)
+    end
+  end
+
   # Checks auto-assignees to receive the document.
   def check_auto_assignees!(user)
+    # exception for agreement document type
+    check_auto_assignees_exception!(user)
+
     # ignore inner documents
     return if self.direction == INNER
     # calculate auto assingees

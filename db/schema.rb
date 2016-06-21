@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228082625) do
+ActiveRecord::Schema.define(version: 20160613124044) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
     t.integer   "parent_id",         limit: 10,   precision: 10, scale: 0
-    t.integer   "type_id",           limit: 5,    precision: 5,  scale: 0,                   null: false
+    t.integer   "type_id",           limit: 5,    precision: 5,  scale: 0
     t.string    "direction",         limit: 20,                            default: "inner", null: false
     t.string    "subject",           limit: 1000
     t.string    "original_number",   limit: 50
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20151228082625) do
     t.integer   "change_no",        limit: 10,   precision: 10, scale: 0
     t.integer   "actual_sender_id", limit: 10,   precision: 10, scale: 0
     t.integer   "last_receiver_id", limit: 10,   precision: 10, scale: 0
+    t.integer   "old_id",           limit: 12,   precision: 12, scale: 0
   end
 
   create_table "document_relation", force: true do |t|
