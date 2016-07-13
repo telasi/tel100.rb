@@ -41,7 +41,7 @@ class HR::Vacation::Base < ActiveRecord::Base
   end
 
   def self.confirmed; HR::Vacation::Base.where(confirmed: 1) end
-  def self.current; HR::Vacation::Base.where("from_date <= sysdate and to_date >= sysdate") end
+  def self.current; HR::Vacation::Base.where("from_date <= sysdate and to_date + 1 >= sysdate") end
 
   def self.substitude_for_employee(user)
   	HR::Vacation::Base.confirmed.current.where("employeeid = ?", user.employee.id).first if ( user && user.employee )
