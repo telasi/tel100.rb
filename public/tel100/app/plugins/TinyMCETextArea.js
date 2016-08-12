@@ -230,6 +230,10 @@ Ext.define('Ext.ux.form.TinyMCETextArea', {
         me.tinyMCEConfig.setup = function (ed) {
         
             ed.on('init', function(e) {
+
+                ed.target.execCommand("fontName", false, "Times New Roman");
+                ed.target.execCommand("fontSize", false, "12pt");
+
                 me.wysiwygIntialized = true;
                 me.intializationInProgress = false;
                 
