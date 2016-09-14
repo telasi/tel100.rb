@@ -15,6 +15,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
   enableColumnMove: true,
   sortableColumns: false,
   defaultListenerScope: true,
+  loadMask : true,
   selType: 'checkboxmodel',
 
   bind: {
@@ -292,6 +293,11 @@ Ext.define('Tel100.view.document.grid.Panel', {
   refresh: function(opts) {
     var grid = this;
     var store = grid.getStore();
-    store.load(opts);
+    grid.setLoading(true);
+    store.load({
+      callback: function(){
+        grid.setLoading(false);
+      }
+    });
   }
 });
