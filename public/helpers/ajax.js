@@ -15,6 +15,8 @@ var request = function(opts) {
     view.setLoading(true);
   }
 
+  Ext.Ajax.timeout = 300000;
+
   Ext.Ajax.request({
     url: url,
     method: method,
