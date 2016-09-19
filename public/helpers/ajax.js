@@ -16,6 +16,7 @@ var request = function(opts) {
   }
 
   Ext.Ajax.timeout = 300000;
+  Ext.Ajax.setTimeout(60000);
 
   Ext.Ajax.request({
     url: url,
