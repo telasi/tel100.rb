@@ -13,6 +13,7 @@ Ext.define('Tel100.view.document.grid.PanelViewModel', {
       proxy: {
         type: 'ajax',
         url: '/api/documents/base',
+        timeout: 300000, 
         reader: {
           type: 'json',
           rootProperty: 'data'
