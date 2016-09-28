@@ -24,10 +24,11 @@ Ext.define('Tel100.view.workarea.Panel', {
     items: [{
       xtype: 'segmentedbutton',
       items: [
-        { itemId: 'tel100', text: 'teldoc' },
-        { itemId: 'hr',     text: 'hr'     },
-        { itemId: 'eflow',  text: 'eflow'  },
-        { itemId: 'admin',  text: 'admin', bind: { hidden: '{hideAdmin}' } }
+        { itemId: 'tel100',     text: 'teldoc' },
+        { itemId: 'hr',         text: 'hr'     },
+        { itemId: 'eflow',      text: 'eflow'  },
+        { itemId: 'reporting',  text: 'reporting'  },
+        { itemId: 'admin',      text: 'admin', bind: { hidden: '{hideAdmin}' } }
       ],
 
       listeners: {
@@ -51,6 +52,7 @@ Ext.define('Tel100.view.workarea.Panel', {
       { xtype: 'modulesdocuments', itemId: 'tel100' },
       { xtype: 'moduleseflow',     itemId: 'eflow' },
       { xtype: 'moduleshr',        itemId: 'hr' },
+      { xtype: 'modulesreporting', itemId: 'reporting' },
       { xtype: 'modulesadmin',     itemId: 'admin' }
     ]
   }],

@@ -15,6 +15,7 @@
 //= require select2
 //= require forma
 //= require_tree .
+//= require bootstrap-datepicker
 
 var forma = require('forma');
 

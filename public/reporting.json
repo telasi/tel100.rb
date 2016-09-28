@@ -1,0 +1,14 @@
+{ "root": true, 
+	"children": [{
+		"name":		"Резолюции",
+		"children": 	[{
+						"name":	 	  "Резолюции по пользователю",
+						"operation":  "resolution_by_user",
+						leaf: true
+				  	},{
+						"name":		  "Резолюции по документам",
+						"operation":  "resolution_by_doc",
+						leaf: true
+					}]
+	}]
+}
