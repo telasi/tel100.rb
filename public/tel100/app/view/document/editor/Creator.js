@@ -132,6 +132,12 @@ Ext.define('Tel100.view.document.editor.Creator', {
           bind: {
             title: '{i18n.document.base.ui.generalTabTitle}'
           }
+        },{
+          xtype: 'documentgnercpanel',
+          itemId: 'gnerc',
+          bind: {
+            hidden: '{!isGnerc}'
+          }
         }, {
           xtype: 'documentrelationpanel',
           itemId: 'relations'
@@ -244,6 +250,10 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
     // setting files as editable
     var filesPanel = view.down('#files');
     filesPanel.setEditable(true);
+
+    // setting gnerc as editable
+    var gnercPanel = view.down('#gnerc');
+    gnercPanel.setEditable(true);
 
     // setting relations as editable
     var relationPanel = view.down('#relations');
@@ -363,6 +373,9 @@ Ext.define('Tel100.view.document.editor.CreatorViewModel', {
       // if (!get('hasBody')) { return true; }
       // send is open
       return false;
+    },
+    isGnerc: function(get) {
+      return Ext.Array.contains([13, 14, 15], get('document.type_id'));
     }
   }
 });

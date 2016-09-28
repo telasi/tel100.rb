@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613124044) do
+ActiveRecord::Schema.define(version: 20160926104009) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -93,6 +93,12 @@ ActiveRecord::Schema.define(version: 20160613124044) do
     t.string    "store_name",    limit: 64,                                           null: false
     t.boolean   "state",                     precision: 1,  scale: 0, default: false, null: false
     t.timestamp "created_at",    limit: 6,                                            null: false
+  end
+
+  create_table "document_gnerc", primary_key: "document_id", force: true do |t|
+    t.integer   "type_id",    limit: 5,  precision: 5,  scale: 0
+    t.integer   "file_id",    limit: 10, precision: 10, scale: 0
+    t.timestamp "created_at", limit: 6,                           null: false
   end
 
   create_table "document_motion", force: true do |t|
@@ -195,6 +201,14 @@ ActiveRecord::Schema.define(version: 20160613124044) do
     t.boolean   "allow_inner",            precision: 1, scale: 0, default: true,  null: false
     t.boolean   "allow_in",               precision: 1, scale: 0, default: true,  null: false
     t.boolean   "allow_out",              precision: 1, scale: 0, default: true,  null: false
+  end
+
+  create_table "document_type_gnerc_subtype", force: true do |t|
+    t.string    "name_ka",    limit: 150, null: false
+    t.string    "name_ru",    limit: 150
+    t.string    "name_en",    limit: 150
+    t.timestamp "created_at", limit: 6,   null: false
+    t.timestamp "updated_at", limit: 6,   null: false
   end
 
   create_table "document_user", id: false, force: true do |t|

@@ -127,6 +127,7 @@ Rails.application.routes.draw do
       end
       scope 'types', controller: 'types' do
         get    '/',    action: 'index'
+        get    '/gnerc_subtypes', action: 'gnerc_subtypes'
         get    '/:id', action: 'show'
         post   '/',   action: 'create'
         put    '/:id', action: 'update'
@@ -134,6 +135,12 @@ Rails.application.routes.draw do
       end
       scope 'response_types', controller: 'response_types' do
         get '/', action: 'index'
+      end
+      scope 'gnerc', controller: 'gnerc' do
+        get  '/',         action: 'index'
+        post '/upload',   action: 'upload'
+        put  '/update',   action: 'update'
+        delete '/file_delete',   action: 'file_delete'
       end
       scope 'comments', controller: 'comments' do
         get  '/', action: 'index'
@@ -184,6 +191,12 @@ Rails.application.routes.draw do
     scope 'incoming', controller: 'incoming' do
       get 'report1', action: 'report1'
     end
+    
+  end
+
+  namespace 'reporting' do
+    get 'report_tree', controller: 'reporting'
+    match '/resolution_by_user', controller: 'reporting', action: 'resolution_by_user', as: 'resolution_by_user', via: ['get', 'post']
   end
 
   root controller: 'site', action: 'index'

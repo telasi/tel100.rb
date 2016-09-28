@@ -16,6 +16,7 @@ class Document::Base < ActiveRecord::Base
   personalize 'owner'
   belongs_to :type, class_name: 'Document::Type', foreign_key: 'type_id'
   has_one :text, class_name: 'Document::Text', foreign_key: 'document_id'
+  has_one :gnerc, class_name: 'Document::Gnerc', foreign_key: 'document_id'
   has_many :motions, class_name: 'Document::Motion', foreign_key: 'document_id'
   has_many :comments, class_name: 'Document::Comment', foreign_key: 'document_id'
   has_many :users, class_name: 'Document::User', foreign_key: 'document_id'
@@ -106,6 +107,7 @@ class Document::Base < ActiveRecord::Base
       self.comments.destroy_all
       Document::Relation.where(base_id: self.id).destroy_all
       self.text.destroy if self.text
+      self.gnerc.destroy if self.gnerc
       Document::User.where(document_id: self.id).destroy_all
       self.destroy
     end
@@ -131,6 +133,19 @@ class Document::Base < ActiveRecord::Base
       raise I18n.t('models.document_base.errors.in_not_allowed')
     end
 
+    if self.type_id == GNERC_TYPES
+      raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.present?
+      if self.type_id == GNERC_TYPE5 
+        raise I18n.t('models.document_base.errors.gnerctype_is_null') unless self.gnerc.type_id.present?
+      end
+      raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
+    else
+      if self.gnerc.present?
+        self.gnerc.delete
+        self.save!
+      end
+    end
+
     Document::Base.transaction do
       self.status = CURRENT
       self.docdate = Date.today if self.docdate.blank?
@@ -147,7 +162,11 @@ class Document::Base < ActiveRecord::Base
         self.docnumber = Document::Base.docnumber_eval(self.type, self.docdate)
         self.save!
       end
+
+      send_to_gnerc
     end
+
+    #send_to_gnerc
   end
 
   # Checks auto-assignees for agreement type.
@@ -495,6 +514,56 @@ class Document::Base < ActiveRecord::Base
     self.save!
   end
 
+  def send_to_gnerc
+    return unless GNERC_TYPES.include?(self.type_id)
+    return if self.status == DRAFT
+
+    # check if this is reply and has doc of type [13,14]
+    reply = nil
+
+    sourcedocs = Document::Relation.where(base: self)
+    sourcedocs.each do |source|
+      related = Document::Base.find(source.related_id)
+      if GNERC_TYPES.include?(related.type_id)
+        reply = related
+      end
+    end
+
+    if reply.present?
+      file = reply.files.first
+      content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
+      content = Base64.encode64(content)
+      
+      parameters = { docid:      reply.id,
+                     attach_5_2: content }
+
+      Gnerc.perform_async(:docflow_check_answer, parameters)
+    else
+      motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: ROLE_AUTHOR).first
+      return unless motion.present?
+
+      customer = motion.receiver
+
+      file = self.files.first
+      content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
+      content = Base64.encode64(content)
+
+      parameters = { docid:            self.id,
+                     docyear:          self.docyear,
+                     docnumber:        self.docnumber,
+                     abonent_number:    customer.accnumb,
+                     abonent:           customer.name,
+                     abonent_address:   customer.address,
+                     consumer_category: 1,
+                     appeal_date:       self.docdate,
+                     attach_5_1:        content
+                   }
+
+      Gnerc.perform_async(:docflow_check, parameters)
+    end
+
+  end
+
   private
 
   def on_before_save
@@ -593,4 +662,5 @@ class Document::Base < ActiveRecord::Base
       Document::Motion.create_draft!(user, motionparams)
     end
   end
+
 end

@@ -67,4 +67,8 @@ class Api::Documents::FilesController < ApiController
     end
     render json: { success: true }
   end
+
+  def uploadgnerc
+    render json: { success: Document::Gnerc.upload(params) }
+  end
 end
