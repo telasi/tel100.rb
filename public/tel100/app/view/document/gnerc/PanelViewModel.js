@@ -69,7 +69,7 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     showMinus: function(get){
       return get('editable') && !get('showplus');
     },
-    isGnercType5: function(get) {
+    isGnercType4: function(get) {
       return get('document.type_id') === 13;
     },
     comboHidden: function(get){

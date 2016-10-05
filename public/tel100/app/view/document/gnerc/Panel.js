@@ -60,7 +60,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
           value: '{type_id}',
           readOnly: '{notEditable}',
           store: '{gnerc_subtypes}',
-          hidden: '{!isGnercType5}'
+          hidden: '{!isGnercType4}'
         },
         listConfig: {
          listeners: {

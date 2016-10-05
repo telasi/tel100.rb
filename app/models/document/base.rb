@@ -133,9 +133,9 @@ class Document::Base < ActiveRecord::Base
       raise I18n.t('models.document_base.errors.in_not_allowed')
     end
 
-    if self.type_id == GNERC_TYPES
+    if GNERC_TYPES.include?(self.type_id)
       raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.present?
-      if self.type_id == GNERC_TYPE5 
+      if self.type_id == GNERC_TYPE4
         raise I18n.t('models.document_base.errors.gnerctype_is_null') unless self.gnerc.type_id.present?
       end
       raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
@@ -534,10 +534,11 @@ class Document::Base < ActiveRecord::Base
       content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
       content = Base64.encode64(content)
       
-      parameters = { docid:      reply.id,
-                     attach_5_2: content }
+      parameters = { docid: reply.id,
+                     "attach_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}_2".to_sym => content }
 
-      Gnerc.perform_async(:docflow_check_answer, parameters)
+      GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[self.type_id], parameters)
+      # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}_answer".to_sym, parameters)
     else
       motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: ROLE_AUTHOR).first
       return unless motion.present?
@@ -548,18 +549,44 @@ class Document::Base < ActiveRecord::Base
       content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
       content = Base64.encode64(content)
 
-      parameters = { docid:            self.id,
-                     docyear:          self.docyear,
-                     docnumber:        self.docnumber,
-                     abonent_number:    customer.accnumb,
-                     abonent:           customer.name,
-                     abonent_address:   customer.address,
-                     consumer_category: 1,
-                     appeal_date:       self.docdate,
-                     attach_5_1:        content
-                   }
+      case self.type_id
+        when GNERC_TYPE4
+          parameters = { docid:             self.id,
+                         docyear:           self.docyear,
+                         docnumber:         self.docnumber,
+                         abonent_number:    customer.accnumb,
+                         abonent:           customer.name,
+                         abonent_address:   customer.address,
+                         abonent_type:      1,
+                         appeal_date:       self.docdate,
+                         attach_4_1:        content
+                       }
+        when GNERC_TYPE5
+          parameters = { docid:             self.id,
+                         docyear:           self.docyear,
+                         docnumber:         self.docnumber,
+                         abonent_number:    customer.accnumb,
+                         abonent:           customer.name,
+                         abonent_address:   customer.address,
+                         consumer_category: 1,
+                         appeal_date:       self.docdate,
+                         attach_5_1:        content
+                       }
+        when GNERC_TYPE6
+          parameters = { docid:             self.id,
+                         docyear:           self.docyear,
+                         docnumber:         self.docnumber,
+                         abonent_number:    customer.accnumb,
+                         applicant:         customer.name,
+                         applicant_address: customer.address,
+                         consumer_category: 1,
+                         appeal_date:       self.docdate,
+                         attach_6_1:        content
+                       }
+      end
 
-      Gnerc.perform_async(:docflow_check, parameters)
+      GnercWorker.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[self.type_id], parameters)
+      # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}".to_sym, parameters)
     end
 
   end
@@ -662,5 +689,4 @@ class Document::Base < ActiveRecord::Base
       Document::Motion.create_draft!(user, motionparams)
     end
   end
-
 end
