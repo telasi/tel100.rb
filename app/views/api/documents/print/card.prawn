@@ -68,10 +68,11 @@ def properties(pdf)
     data += [[ index == 0 ? I18n.t("views.document.print.authors") : "",    "#{author}",
                author.respond_to?(:organization) ? author.organization.chained_name : ""]]
   end
-  @document.signees.each_with_index do |signee, index|
+  @document.signee_motions.each_with_index do |signee, index|
     data += [[ index == 0 ? I18n.t("views.document.print.signees") : "",    
-               "#{signee}", 
-               signee.respond_to?(:organization) ? signee.organization.chained_name : ""]]
+               "#{signee.receiver}", 
+               signee.receiver.respond_to?(:organization) ? signee.receiver.organization.chained_name : "",
+               "#{ signee.response_type.nil? ? "" : signee.response_type.name} \n #{signee.response_text}"]]
   end
   @document.assignees.each_with_index do |assignee, index|
     data += [[ index == 0 ? I18n.t("views.document.print.assignees") : "",    
@@ -84,12 +85,13 @@ def properties(pdf)
   pdf.table(data, :cell_style => { :font => pdf.set_font_name('default'), :borders => [] }) do
     column(0).style(:borders => [:right])
     column(0).width = 80
-    column(1).width = 170
-    column(2).width = 260
+    column(1).width = 120
+    column(2).width = 240
+    column(3).width = 110
   end
 end
 
-prawn_document(page_size: 'A4', margin: [40, 40]) do |pdf|
+prawn_document(page_size: 'A4', margin: [40, 20]) do |pdf|
   default_font(pdf)
   barcode(pdf)
   properties(pdf)
