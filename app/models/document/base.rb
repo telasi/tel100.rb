@@ -558,7 +558,7 @@ class Document::Base < ActiveRecord::Base
                          abonent:           customer.name,
                          abonent_address:   customer.address,
                          abonent_type:      1,
-                         letter_category:   self.gnerc.type_id
+                         letter_category:   self.gnerc.type_id,
                          appeal_date:       self.docdate,
                          attach_4_1:        content
                        }
