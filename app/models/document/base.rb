@@ -553,18 +553,19 @@ class Document::Base < ActiveRecord::Base
         when GNERC_TYPE4
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
-                         docnumber:         self.docnumber,
+                         letter_number:     self.docnumber,
                          abonent_number:    customer.accnumb,
                          abonent:           customer.name,
                          abonent_address:   customer.address,
                          abonent_type:      1,
+                         letter_category:   self.gnerc.type_id
                          appeal_date:       self.docdate,
                          attach_4_1:        content
                        }
         when GNERC_TYPE5
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
-                         docnumber:         self.docnumber,
+                         letter_number:     self.docnumber,
                          abonent_number:    customer.accnumb,
                          abonent:           customer.name,
                          abonent_address:   customer.address,
@@ -575,7 +576,18 @@ class Document::Base < ActiveRecord::Base
         when GNERC_TYPE6
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
-                         docnumber:         self.docnumber,
+                         letter_number:     self.docnumber,
+                         abonent_number:    customer.accnumb,
+                         applicant:         customer.name,
+                         applicant_address: customer.address,
+                         consumer_category: 1,
+                         appeal_date:       self.docdate,
+                         attach_6_1:        content
+                       }
+        when GNERC_TYPE8
+          parameters = { docid:             self.id,
+                         docyear:           self.docyear,
+                         letter_number:     self.docnumber,
                          abonent_number:    customer.accnumb,
                          applicant:         customer.name,
                          applicant_address: customer.address,
