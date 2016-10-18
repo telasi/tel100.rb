@@ -589,8 +589,8 @@ class Document::Base < ActiveRecord::Base
                          docyear:           self.docyear,
                          letter_number:     self.docnumber,
                          abonent_number:    customer.accnumb,
-                         applicant:         customer.name,
-                         applicant_address: customer.address,
+                         abonent:           customer.name,
+                         abonent_address:   customer.address,
                          consumer_category: 1,
                          appeal_date:       self.docdate,
                          attach_6_1:        content
