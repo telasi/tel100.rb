@@ -375,7 +375,7 @@ Ext.define('Tel100.view.document.editor.CreatorViewModel', {
       return false;
     },
     isGnerc: function(get) {
-      return Ext.Array.contains([13, 14, 15], get('document.type_id'));
+      return Ext.Array.contains([13, 14, 15, 16], get('document.type_id'));
     }
   }
 });
