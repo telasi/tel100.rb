@@ -593,7 +593,7 @@ class Document::Base < ActiveRecord::Base
                          abonent_address:   customer.address,
                          consumer_category: 1,
                          appeal_date:       self.docdate,
-                         attach_6_1:        content
+                         attach_8_1:        content
                        }
       end
 
