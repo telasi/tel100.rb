@@ -306,7 +306,7 @@ class Document::Base < ActiveRecord::Base
     end
 
     oldtext = ''
-    oldtext = self.text.body if self.text 
+    oldtext = self.text.body if self.text
 
     #check if changes were made
     dirty = false
@@ -406,14 +406,22 @@ class Document::Base < ActiveRecord::Base
           }
           motion = Document::Motion.create_draft!(user, motion_params)
           motion.send_draft!(user)
+
+          if m["receiver_role"] == 'author'
+
+            receiver_user, receiver = Document::Base.who_eval('receiver', motion_params)
+            self.owner = receiver
+            self.owner_user = receiver_user
+            self.save!
+          end
         end
 
         should_reset_signees = true if m["receiver_role"] == 'assignee'
       end
 
-      reset_signees if should_reset_signees
+      reset_signees if ( should_reset_signees && user.id != AUTO_SIGNEE )
 
-      motions_to_process = self.motions.where('status IN (?) AND receiver_role IN (?)', [SENT, CURRENT], [ROLE_SIGNEE, ROLE_ASSIGNEE, ROLE_AUTHOR]).order(:ordering)
+      motions_to_process = self.motions.where('status IN (?) AND receiver_role IN (?)', [SENT, CURRENT], [ROLE_SIGNEE, ROLE_AUTHOR]).order(:ordering)
       if motions_to_process.count > 0
         ordering = motions_to_process.minimum('ordering')
         motions_to_process = motions_to_process.where(ordering: ordering)
@@ -425,7 +433,7 @@ class Document::Base < ActiveRecord::Base
           docuser.calculate! if docuser.present?
         end
 
-        motions_to_process = self.motions.where('ordering > ?', ordering)
+        motions_to_process = self.motions.where('ordering > ? AND receiver_role IN (?)', ordering, [ROLE_SIGNEE, ROLE_AUTHOR])
         motions_to_process.each do |motion_to_process|
           docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: SENT })
           motion_to_process.status = SENT
@@ -550,7 +558,7 @@ class Document::Base < ActiveRecord::Base
         self.motions.where('status IN (?)', [ SENT ]).each do |motion|
           motion.update_attributes!(status: NOT_RECEIVED)
           docuser = self.users.where(user: motion.receiver_user).first
-          docuser.calculate!
+          docuser.calculate! if docuser.present?
         end
       end
 

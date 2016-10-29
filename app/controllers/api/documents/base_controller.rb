@@ -151,6 +151,10 @@ class Api::Documents::BaseController < ApiController
     render json: { success: doc.modify(params, effective_user) }
   end
 
+  def modification
+    render json: { success: true, is_auto_signee: effective_user.id == AUTO_SIGNEE }
+  end
+
   def author_filter(search_string)
     if search_string.present?
       search_string = search_string.strip

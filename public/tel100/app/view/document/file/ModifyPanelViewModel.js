@@ -11,7 +11,8 @@ Ext.define('Tel100.view.document.file.ModifyPanelViewModel', {
 
   data: {
     fileCount: 0,
-    editable: false
+    editable: false,
+    is_auto_signee: false
   },
 
   stores: {
@@ -40,6 +41,9 @@ Ext.define('Tel100.view.document.file.ModifyPanelViewModel', {
   formulas: {
     notEditable: function(get) {
       return !get('editable');
+    },
+    notDeletable: function(get) {
+      return !get('deletable');
     }
   }
 

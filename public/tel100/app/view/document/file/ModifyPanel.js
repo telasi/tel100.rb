@@ -89,9 +89,9 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
         {
           xtype: 'actioncolumn',
           width: 24,
-          bind: {
-            hidden: '{notEditable}'
-          },
+          // bind: {
+          //   hidden: '{notDeletable}'
+          // },
           items: [
             {
               handler: function(view, rowIndex, colIndex, item, e, record, row) {
@@ -101,6 +101,12 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
                     view.up('documentfilemodifypanel').refresh();
                   }
                 });
+              },
+              getClass: function(v, meta, rec) {
+                var is_auto_signee = this.up('documentfilemodifypanel').getViewModel().get('is_auto_signee');
+                  if(rec.data.state != 2 && is_auto_signee) {
+                      return 'x-hidden';
+                  }
               },
               icon: '/images/delete.gif'
             }

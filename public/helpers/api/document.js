@@ -50,6 +50,14 @@ var base = {
 };
 
 var edit = {
+  modification: function(id, args) {
+    var opts = args || {};
+    opts.method = 'GET';
+    opts.url = '/api/documents/base/modification/'+ id;
+    opts.params = { id: id };
+    ajax.request(opts);
+  },
+
   edit: function(id, args) {
     var opts = args || {};
     opts.method = 'POST';

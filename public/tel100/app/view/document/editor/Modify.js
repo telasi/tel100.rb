@@ -89,7 +89,8 @@ Ext.define('Tel100.view.document.editor.Modify', {
               emptyText: 'enter document\'s subject',
               bind: {
                 fieldLabel: '{i18n.document.base.subject}',
-                value: '{document.subject}'
+                value: '{document.subject}',
+                readOnly: '{!canEditSubject}'
               }
             },
             {
@@ -104,7 +105,8 @@ Ext.define('Tel100.view.document.editor.Modify', {
                   emptyText: 'enter document\'s number',
                   bind: {
                     fieldLabel: '{i18n.document.base.docnumber2}',
-                    value: '{document.docnumber2}'
+                    value: '{document.docnumber2}',
+                    readOnly: '{!canEditNumber}'
                   }
                 },
                 {
@@ -115,7 +117,8 @@ Ext.define('Tel100.view.document.editor.Modify', {
                   emptyText: 'enter document\'s number',
                   bind: {
                     fieldLabel: '{i18n.document.base.docdate}',
-                    value: '{document.docdate}'
+                    value: '{document.docdate}',
+                    readOnly: '{!canEditDate}'
                   }
                 }]
             },
@@ -129,9 +132,10 @@ Ext.define('Tel100.view.document.editor.Modify', {
               itemId: 'documentBody',
               padding: '0 5 5 5',
               labelAlign: 'top',
-              // bind: {
+              bind: {
               //   fieldLabel: '{i18n.document.base.body}'
-              // },
+                readOnly: '{!canEditText}'
+              },
               listeners: {
                 change: 'onHtmleditorChange'
               }
@@ -150,7 +154,19 @@ Ext.define('Tel100.view.document.editor.Modify', {
           },
           items: [
             {
+              xtype: 'documentmotionsauthormodifypanel',
+              bind: {
+                hidden: '{!author_one}'
+              },
+              listeners: {
+                datachanged: 'onAuthorChanged'
+              }
+            },
+            {
               xtype: 'documentmotionssigneemodifypanel',
+              bind: {
+                hidden: '{!canEditSignees}'
+              },
               listeners: {
                 datachanged: 'onSigneesChanged'
               }
@@ -174,8 +190,29 @@ Ext.define('Tel100.view.document.editor.Modify', {
   onHtmleditorChange: function(field, newValue, oldValue, eOpts) {
     var view = field.up('documenteditormodify');
     var vm = view.getViewModel();
-    var document = vm.get('document');
-    document.set('body', newValue);
-  }
+    if(vm.get('canEditText')){
+      var document = vm.get('document');
+      document.set('body', newValue);
+    }
+  },
+
+  initComponent: function() {
+    this.callParent();
+
+    var view = this;
+    var viewModel = this.getViewModel();
+
+    var document = viewModel.get('document');
+
+    var fileview = this.down('documentfilemodifypanel');
+    var fileViewModel = fileview.getViewModel();
+
+    helpers.api.document.edit.modification(document.id, { success: function(data) {
+        var is_auto_signee = data.is_auto_signee;
+        viewModel.set('is_auto_signee', is_auto_signee);
+        fileViewModel.set('is_auto_signee', is_auto_signee);
+      }
+    });
+  },
 
 });

@@ -26,16 +26,66 @@ Ext.define('Tel100.view.document.editor.ModifyViewController', {
   },
 
   onSaveClick: function(component, eOpts){
+    var me = this;
     var view = this.getView();
     var vm = this.getViewModel();
     var document = vm.get('document');
     
     var changes = document.getChanges();
 
-    var vm = this.getView().down('documentmotionsassigneemodifypanel');
-    var st = vm.getViewModel().getStore('motions');
+    files_dirty = false
+
+    var view = this.getView().down('documentfilemodifypanel');
+    var st = view.getViewModel().getStore('files');
+    st.each(function(record){
+      if(record.get('state') > 0){
+        if(record.get('state') != 2 || !vm.get('is_auto_signee') ){
+          files_dirty = true;
+        }
+        return false;
+      }
+    });
+
+    var view = this.getView().down('documentmotionsauthormodifypanel');
+    var st = view.getViewModel().getStore('motions');
 
     var motions = [];
+    var authorCount = 1;
+
+    st.each(function(record){
+      if (record.get('temp') || record.get('deleted')){
+
+        if(record.get('temp')){
+          authorCount++;
+        };
+        if(record.get('deleted')){
+          authorCount--;
+        };
+
+        var motionid = null;
+        if(record.get('deleted')){ motionid = record.get('id'); }
+        var receiver = record.get('receiver');
+        motions.push({ id:            motionid,
+                       receiver_id:   receiver.id,
+                       receiver_type: receiver.ext_type,
+                       receiver_role: 'author',
+                       motion_text:   record.get('motion_text'),
+                       send_type_id:  record.get('send_type_id'),
+                       due_date:      record.get('due_date'),
+                       deleted:       record.get('deleted'),
+                       temp:          record.get('temp') })
+      }
+    });
+
+    if(authorCount !== 1 ){
+      Ext.MessageBox.alert('Error', i18n.document.base.errors.author_count, function(){
+        return true;
+      });
+      return;
+    };
+
+    var view = this.getView().down('documentmotionsassigneemodifypanel');
+    var st = view.getViewModel().getStore('motions');
 
     st.each(function(record){
       if (record.get('temp') || record.get('deleted')){
@@ -54,8 +104,8 @@ Ext.define('Tel100.view.document.editor.ModifyViewController', {
       }
     });
 
-    var vm = this.getView().down('documentmotionssigneemodifypanel');
-    var st = vm.getViewModel().getStore('motions');
+    var view = this.getView().down('documentmotionssigneemodifypanel');
+    var st = view.getViewModel().getStore('motions');
 
     st.each(function(record){
       if (record.get('temp') || record.get('deleted')){
@@ -77,16 +127,36 @@ Ext.define('Tel100.view.document.editor.ModifyViewController', {
 
     changes.motions = Ext.encode(motions);
 
-    helpers.api.document.edit.edit(document.id, {
-        params: changes,
-        success: function() {
-          document.commit(true);
-          component.up('window').destroy();
-        }.bind(this),
-        failure: function(msg) {
-          Ext.Msg.alert(i18n.errors.title, msg);
+    if(!vm.get('is_auto_signee') && ( document.dirty || files_dirty ) ){
+      Ext.MessageBox.confirm('Document was changed', i18n.document.base.ui.modify_confirm, function(btn, text){
+        if(btn == 'yes'){
+          helpers.api.document.edit.edit(document.id, {
+                params: changes,
+                success: function() {
+                  document.commit(true);
+                  component.up('window').destroy();
+                }.bind(this),
+                failure: function(msg) {
+                  Ext.Msg.alert(i18n.errors.title, msg);
+                }
+          });
+        } else {
+          return;
         }
-    });
+      });
+    } else {
+        helpers.api.document.edit.edit(document.id, {
+              params: changes,
+              success: function() {
+                document.commit(true);
+                component.up('window').destroy();
+              }.bind(this),
+              failure: function(msg) {
+                Ext.Msg.alert(i18n.errors.title, msg);
+              }
+        });
+    };
+
   }
 
 });
