@@ -15,35 +15,7 @@ class AddGnercSubtypeTable < ActiveRecord::Migration
 
     execute <<-SQL
       insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
-      VALUES (1, 'ახალი მიერთება ურთიერთშეთანხმებით (სამუშაოების მოთხოვნით/ტექნიკური პირობის საფუძველზე)', 'ახალი მიერთება ურთიერთშეთანხმებით (სამუშაოების მოთხოვნით/ტექნიკური პირობის საფუძველზე)')
-    SQL
-    execute <<-SQL
-      insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
-      VALUES (2, 'აბონენტის გაყოფა (უძრავი ქონების გაყოფის შემთხვევაში)', 'აბონენტის გაყოფა (უძრავი ქონების გაყოფის შემთხვევაში)')
-    SQL
-    execute <<-SQL
-      insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
-      VALUES (3, 'ქსელზე შეჭრისა და აღრიცხვის კვანძის მოწყობის მოთხოვნა', 'ქსელზე შეჭრისა და აღრიცხვის კვანძის მოწყობის მოთხოვნა')
-    SQL
-    execute <<-SQL
-      insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
-      VALUES (4, 'სიმძლავრის გაზრდა (მოხმარების დასაშვები მოცულობის გაზრდა)', 'სიმძლავრის გაზრდა (მოხმარების დასაშვები მოცულობის გაზრდა)')
-    SQL
-    execute <<-SQL
-      insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
       VALUES (5, 'სარეზერვო კვება (ელექტრომომარაგების ალტერნატიული წყაროს მოწყობა)', 'სარეზერვო კვება (ელექტრომომარაგების ალტერნატიული წყაროს მოწყობა)')
-    SQL
-    execute <<-SQL
-      insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
-      VALUES (6, 'დროებითი მიერთება გამ. ქსელზე (დროებითი სამშენებლო და სხვა სამუშაოები)', 'დროებითი მიერთება გამ. ქსელზე (დროებითი სამშენებლო და სხვა სამუშაოები)')
-    SQL
-    execute <<-SQL
-      insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
-      VALUES (7, 'ქვეაბონენტად აყვანა (დროებითი აბონენტი)', 'ქვეაბონენტად აყვანა (დროებითი აბონენტი)')
-    SQL
-    execute <<-SQL
-      insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
-      VALUES (8, 'გამ.ქსელის გადატანა-რეკონსტრუქცია', 'გამ.ქსელის გადატანა-რეკონსტრუქცია')
     SQL
     execute <<-SQL
       insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
@@ -93,6 +65,35 @@ class AddGnercSubtypeTable < ActiveRecord::Migration
       insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
       VALUES (20, 'მომარაგების შეწყვეტა/აღდგენა', 'მომარაგების შეწყვეტა/აღდგენა')
     SQL
+
+    # execute <<-SQL
+    #   insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
+    #   VALUES (1, 'ახალი მიერთება ურთიერთშეთანხმებით (სამუშაოების მოთხოვნით/ტექნიკური პირობის საფუძველზე)', 'ახალი მიერთება ურთიერთშეთანხმებით (სამუშაოების მოთხოვნით/ტექნიკური პირობის საფუძველზე)')
+    # SQL
+    # execute <<-SQL
+    #   insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
+    #   VALUES (2, 'აბონენტის გაყოფა (უძრავი ქონების გაყოფის შემთხვევაში)', 'აბონენტის გაყოფა (უძრავი ქონების გაყოფის შემთხვევაში)')
+    # SQL
+    # execute <<-SQL
+    #   insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
+    #   VALUES (3, 'ქსელზე შეჭრისა და აღრიცხვის კვანძის მოწყობის მოთხოვნა', 'ქსელზე შეჭრისა და აღრიცხვის კვანძის მოწყობის მოთხოვნა')
+    # SQL
+    # execute <<-SQL
+    #   insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
+    #   VALUES (4, 'სიმძლავრის გაზრდა (მოხმარების დასაშვები მოცულობის გაზრდა)', 'სიმძლავრის გაზრდა (მოხმარების დასაშვები მოცულობის გაზრდა)')
+    # SQL
+    # execute <<-SQL
+    #   insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
+    #   VALUES (6, 'დროებითი მიერთება გამ. ქსელზე (დროებითი სამშენებლო და სხვა სამუშაოები)', 'დროებითი მიერთება გამ. ქსელზე (დროებითი სამშენებლო და სხვა სამუშაოები)')
+    # SQL
+    # execute <<-SQL
+    #   insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
+    #   VALUES (7, 'ქვეაბონენტად აყვანა (დროებითი აბონენტი)', 'ქვეაბონენტად აყვანა (დროებითი აბონენტი)')
+    # SQL
+    # execute <<-SQL
+    #   insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
+    #   VALUES (8, 'გამ.ქსელის გადატანა-რეკონსტრუქცია', 'გამ.ქსელის გადატანა-რეკონსტრუქცია')
+    # SQL
   end
 
   def down
