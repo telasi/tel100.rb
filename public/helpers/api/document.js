@@ -171,6 +171,24 @@ var relation = {
   }
 };
 
+var gnerc = {
+  update: function(id, args) {
+    var opts = args || {};
+    opts.method = 'PUT';
+    opts.url = '/api/documents/gnerc/update';
+    opts.params.id = id;
+    ajax.request(opts);
+  },
+  fileDelete: function(id, args) {
+    var opts = args || {};
+    opts.method = 'DELETE';
+    opts.url = '/api/documents/gnerc/file_delete';
+    opts.params = { id: id };
+    ajax.request(opts);
+  },
+};
+
+
 var responseType = {
   send: 1,
   complete: 2,
@@ -216,5 +234,6 @@ module.exports = {
   relation: relation,
   responseType: responseType,
   print: print,
-  edit: edit
+  edit: edit,
+  gnerc: gnerc
 };

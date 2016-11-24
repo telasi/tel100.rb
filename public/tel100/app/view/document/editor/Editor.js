@@ -212,6 +212,11 @@ Ext.define('Tel100.view.document.editor.Editor', {
             title: '{i18n.document.base.ui.generalTabTitle}'
           }
         }, {
+          xtype: 'documentgnercpanel',
+          bind: {
+            hidden: '{!isGnerc}'
+          }
+        }, {
           xtype: 'documentmotionsreceiverspanel',
           bind: {
             hidden: '{notMyDocument}'
@@ -616,6 +621,10 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
     notMyDocument: function(get) {
       var doc = this.get('document');
       return !doc.get('is_mydoc');
+    },
+
+    isGnerc: function(get) {
+      return Ext.Array.contains(helpers.document.type.GNERC_TYPES, get('document.type_id'));
     }
   }
 });

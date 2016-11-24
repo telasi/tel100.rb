@@ -5,13 +5,7 @@ class Document::File < ActiveRecord::Base
   belongs_to :document, class_name: 'Document::Base'
 
   def self.upload(params)
-    document = Document::Base.find(params[:document_id])
-    storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
-    f = Document::File.new(document: document, original_name: params[:file].original_filename, store_name: storename, created_at: Time.now)
-    #dir = File.join(Rails.root, 'public', 'uploads', 'docfiles')
-    # file = File.join(dir, storename)
-    FileUtils.mkdir_p(FILES_REPOSITORY)
-    FileUtils.cp(params[:file].tempfile, f.full_path)
+    f = create_file(params)
     f.save!
   end
 
@@ -29,5 +23,14 @@ class Document::File < ActiveRecord::Base
 
   def delete_file
     FileUtils.rm(self.full_path)
+  end
+
+  def self.create_file(params)
+    document = Document::Base.find(params[:document_id])
+    storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
+    f = Document::File.new(document: document, original_name: params[:file].original_filename, store_name: storename, created_at: Time.now)
+    FileUtils.mkdir_p(FILES_REPOSITORY)
+    FileUtils.cp(params[:file].tempfile, f.full_path)
+    f
   end
 end

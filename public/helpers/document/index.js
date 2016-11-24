@@ -3,5 +3,6 @@ module.exports = {
   role: require('./role'),
   motion: require('./motion'),
   user: require('./user'),
-  renderer: require('./renderer')
+  renderer: require('./renderer'),
+  type: require('./type')
 };

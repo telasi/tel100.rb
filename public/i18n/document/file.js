@@ -6,5 +6,9 @@ module.exports = {
   addfile: {
   	ka: '<i class="fa fa-plus"></i> დამატება',
   	ru: '<i class="fa fa-plus"></i> Добавление'
-  }
+  },
+  file: {
+  	ka: 'ფაილი',
+  	ru: 'Файл'
+  },
 };

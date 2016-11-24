@@ -33,6 +33,10 @@ class Api::Documents::TypesController < ApiController
     render json: { success: true }
   end
 
+  def gnerc_subtypes
+    @types = Document::GnercSubtype.order('id ASC')
+  end
+
   private
 
   def type_params

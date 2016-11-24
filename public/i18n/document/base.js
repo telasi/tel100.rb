@@ -91,6 +91,14 @@ module.exports = {
     ka: 'სახეობა',
     ru: 'Вид'
   },
+  gnerc: {
+    ka: '<i class="fa fa-hand-paper-o"></i> მომხმარებლის მიმართვა',
+    ru: '<i class="fa fa-hand-paper-o"></i> Обращение пользователя'
+  },
+  gnerc_subtype: {
+    ka: 'ქვესახეობა',
+    ru: 'Подвид'
+  },
   direction: {
     ka: 'მიმართულება',
     ru: 'Направление'
