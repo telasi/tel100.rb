@@ -548,7 +548,7 @@ class Document::Base < ActiveRecord::Base
       GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[self.type_id], parameters)
       # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}_answer".to_sym, parameters)
     else
-      motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: ROLE_AUTHOR).first
+      motion = self.motions.where(receiver_type: 'HR::Party', receiver_role: ROLE_AUTHOR).first
       return unless motion.present?
 
       customer = motion.receiver
@@ -562,7 +562,7 @@ class Document::Base < ActiveRecord::Base
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
                          letter_number:     self.docnumber,
-                         abonent_number:    customer.accnumb,
+                         abonent_number:    customer.customer,
                          abonent:           customer.name,
                          abonent_address:   customer.address,
                          abonent_type:      1,
@@ -574,7 +574,7 @@ class Document::Base < ActiveRecord::Base
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
                          letter_number:     self.docnumber,
-                         abonent_number:    customer.accnumb,
+                         abonent_number:    customer.customer,
                          abonent:           customer.name,
                          abonent_address:   customer.address,
                          consumer_category: 1,
@@ -585,7 +585,7 @@ class Document::Base < ActiveRecord::Base
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
                          letter_number:     self.docnumber,
-                         abonent_number:    customer.accnumb,
+                         abonent_number:    customer.customer,
                          applicant:         customer.name,
                          applicant_address: customer.address,
                          consumer_category: 1,
@@ -596,7 +596,7 @@ class Document::Base < ActiveRecord::Base
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
                          letter_number:     self.docnumber,
-                         abonent_number:    customer.accnumb,
+                         abonent_number:    customer.customer,
                          abonent:           customer.name,
                          abonent_address:   customer.address,
                          consumer_category: 1,
