@@ -548,7 +548,10 @@ class Document::Base < ActiveRecord::Base
       GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[self.type_id], parameters)
       # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}_answer".to_sym, parameters)
     else
-      motion = self.motions.where(receiver_type: 'HR::Party', receiver_role: ROLE_AUTHOR).first
+      motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: ROLE_AUTHOR).first
+      if motion.blank?
+        motion = self.motions.where(receiver_type: 'HR::Party', receiver_role: ROLE_AUTHOR).first
+      end
       return unless motion.present?
 
       customer = motion.receiver
