@@ -552,6 +552,7 @@ class Document::Base < ActiveRecord::Base
       return unless motion.present?
 
       customer = motion.receiver
+      return unless customer.customer.present?
 
       file = self.files.first
       content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
