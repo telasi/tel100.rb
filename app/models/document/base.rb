@@ -513,6 +513,13 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
+  def self.create_reply!(user)
+    newdoc = Document::Base.create_draft!(user)
+    newdoc.update_draft!(user, { subject: "Re: #{self.subject}", type: self.type })
+    rel = Document::Relation.create(base: newdoc, related: self)
+    newdoc
+  end
+
   def fix_owner!
     owner_motion = self.motions.where(receiver_role: ROLE_AUTHOR).where('receiver_user_id IS NOT NULL').order('id ASC').first
     owner_user = owner_motion ? owner_motion.receiver_user : self.sender_user
@@ -549,13 +556,15 @@ class Document::Base < ActiveRecord::Base
       # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}_answer".to_sym, parameters)
     else
       motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: ROLE_AUTHOR).first
+      customer = motion.receiver if motion.present?
       if motion.blank?
         motion = self.motions.where(receiver_type: 'HR::Party', receiver_role: ROLE_AUTHOR).first
+        customer = motion.receiver.customer if motion.present?
+        customer = BS::Customer.where(accnumb: "#{customer}").first
       end
-      return unless motion.present?
 
-      customer = motion.receiver
-      return unless customer.customer.present?
+      return unless motion.present?
+      return unless customer.present?
 
       file = self.files.first
       content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
@@ -566,7 +575,7 @@ class Document::Base < ActiveRecord::Base
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
                          letter_number:     self.docnumber,
-                         abonent_number:    customer.customer,
+                         abonent_number:    customer.accnumb,
                          abonent:           customer.name,
                          abonent_address:   customer.address,
                          abonent_type:      1,
@@ -578,7 +587,7 @@ class Document::Base < ActiveRecord::Base
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
                          letter_number:     self.docnumber,
-                         abonent_number:    customer.customer,
+                         abonent_number:    customer.accnumb,
                          abonent:           customer.name,
                          abonent_address:   customer.address,
                          consumer_category: 1,
@@ -589,7 +598,7 @@ class Document::Base < ActiveRecord::Base
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
                          letter_number:     self.docnumber,
-                         abonent_number:    customer.customer,
+                         abonent_number:    customer.accnumb,
                          applicant:         customer.name,
                          applicant_address: customer.address,
                          consumer_category: 1,
@@ -600,7 +609,7 @@ class Document::Base < ActiveRecord::Base
           parameters = { docid:             self.id,
                          docyear:           self.docyear,
                          letter_number:     self.docnumber,
-                         abonent_number:    customer.customer,
+                         abonent_number:    customer.accnumb,
                          abonent:           customer.name,
                          abonent_address:   customer.address,
                          consumer_category: 1,
