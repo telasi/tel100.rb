@@ -24,6 +24,21 @@ Ext.define('Tel100.view.document.editor.General', {
     displayField: 'name',
     valueField: 'id',
     bind: {
+      fieldLabel: '{i18n.document.base.direction}',
+      value: '{document.direction}',
+      readOnly: '{readonly}',
+      store: '{directions}'
+    },
+    listeners: {
+      change: 'onDirectionChange'
+    }
+  }, {
+    xtype: 'combobox',
+    anchor: '100%',
+    editable: false,
+    displayField: 'name',
+    valueField: 'id',
+    bind: {
       fieldLabel: '{i18n.document.base.type}',
       value: '{document.type_id}',
       readOnly: '{readonly}',
@@ -86,18 +101,6 @@ Ext.define('Tel100.view.document.editor.General', {
       readOnly: '{readonly}'
     }
   }, {
-    xtype: 'combobox',
-    anchor: '100%',
-    editable: false,
-    displayField: 'name',
-    valueField: 'id',
-    bind: {
-      fieldLabel: '{i18n.document.base.direction}',
-      value: '{document.direction}',
-      readOnly: '{readonly}',
-      store: '{directions}'
-    }
-  }, {
     xtype: 'fieldset',
     bind: {
       hidden: '{!isIncoming}',
@@ -144,9 +147,41 @@ Ext.define('Tel100.view.document.editor.GeneralViewController', {
     var type = field.getSelectedRecord();
     vm.set('typeName', type && type.get('name'));
     vm.set('specialType', type && type.get('is_special'));
+    vm.set('isGnerc', type && type.get('is_gnerc'));
+    if (!vm.get('readonly') && type && type.get('is_gnerc') && !doc.get('is_reply')){
+      helpers.api.utils.getTime({
+        success: function(result) {
+          var today = new Date(result.time);
+          today.setDate(today.getDate() + type.get('deadline'));
+          doc.set('due_date', today);
+        }.bind(this),
+        failure: function() {
+          console.log('failed to get time');
+        }
+      });
+    }
     if (doc.dirty) {
       doc.set('type', type);
     }
+  },
+
+  onDirectionChange: function(field, newValue, oldValue, eOpts) {
+    var vm = this.getViewModel();
+    var store = vm.getStore('types');
+    store.proxy.extraParams.direction = newValue;
+    store.load(function(records, operation, success) {
+      if(success){
+        var doc = vm.get('document');
+        var type_id = doc.get('type_id');
+        doc.set('type_id', null);
+        for(var i=0; i < records.length; i++){
+          if(records[i].id == type_id){
+            doc.set('type_id', records[i].id);
+          }
+        }
+      }
+      
+    });
   }
 });
 

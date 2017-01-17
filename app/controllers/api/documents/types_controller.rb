@@ -4,6 +4,7 @@ class Api::Documents::TypesController < ApiController
 
   def index
     @types = Document::Type.order('order_by ASC')
+    @types = @types.where("ALLOW_#{params[:direction]} = 1") if params[:direction].present?
   end
 
   def show

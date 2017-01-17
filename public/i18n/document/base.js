@@ -95,6 +95,10 @@ module.exports = {
     ka: '<i class="fa fa-hand-paper-o"></i> მომხმარებლის მიმართვა',
     ru: '<i class="fa fa-hand-paper-o"></i> Обращение пользователя'
   },
+  gnerc_reply: {
+    ka: '<i class="fa fa-hand-paper-o"></i> გასაგზავნი პასუხი',
+    ru: '<i class="fa fa-hand-paper-o"></i> Ответ для отправки'
+  },
   gnerc_subtype: {
     ka: 'ქვესახეობა',
     ru: 'Подвид'

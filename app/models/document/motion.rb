@@ -4,6 +4,9 @@ class Document::Motion < ActiveRecord::Base
   include Document::Status
   include Document::Role
   include Document::Who
+
+  require 'gnerc/sender'
+
   MIN = 1
   MAX = 999
 
@@ -313,6 +316,11 @@ class Document::Motion < ActiveRecord::Base
           docuser.calculate! if docuser.present?
         end
       end
+
+      # send to gnerc when author completes
+      if self.status == COMPLETED and status_updated and self.receiver_role == ROLE_AUTHOR
+        send_to_gnerc(doc)
+      end
     end
   end
 
@@ -351,6 +359,13 @@ class Document::Motion < ActiveRecord::Base
     return true if inner_party?(self.receiver)
     return true if inner_party?(self.receiver_user)
     return false
+  end
+
+  def send_to_gnerc(doc)
+    return unless GNERC_TYPES.include?(self.type_id)
+    return unless self.direction == OUT
+
+    Gnerc::Sender.answer(doc)
   end
 
   private

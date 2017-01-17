@@ -12,12 +12,14 @@ class GnercWorker
   	else
   		stage = 2
   		doc = clazz.where(docid: parameters["docid"]).first
-  		doc.update_attributes!(parameters.except("docid"))
+  		doc.update_attributes!(parameters.except("docid")) if doc.present?
   	end
-  	doc.stage = stage
-  	doc.save!
-  	queue = Gnerc::SendQueue.new(service: service, service_id: doc.id, stage: stage, created_at: Time.now)
-  	queue.save!
+    if doc.present?
+    	doc.stage = stage
+    	doc.save!
+      queue = Gnerc::SendQueue.new(service: service, service_id: doc.id, stage: stage, created_at: Time.now)
+      queue.save!
+    end
   end
 
   # def perform(func, parameters)

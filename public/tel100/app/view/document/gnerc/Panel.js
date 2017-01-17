@@ -38,7 +38,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
   bodyPadding: 5,
 
   bind: {
-    title: '{i18n.document.base.gnerc}'
+    title: '{dynamicTitle}'
   },
 
   listeners: {

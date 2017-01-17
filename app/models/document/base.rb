@@ -6,6 +6,8 @@ class Document::Base < ActiveRecord::Base
   include Document::Role
   include Document::Who
 
+  require 'gnerc/sender'
+
   self.table_name  = 'document_base'
   self.sequence_name = 'docbase_seq'
   self.set_integer_columns :status
@@ -94,6 +96,7 @@ class Document::Base < ActiveRecord::Base
       else
         params = params.dup.except(:body)
       end
+
       self.update_attributes(params)
       self.save!
     end
@@ -134,11 +137,32 @@ class Document::Base < ActiveRecord::Base
     end
 
     if GNERC_TYPES.include?(self.type_id)
+      raise I18n.t('models.document_base.errors.no_due_date') if self.due_date.blank? && !self.is_reply?
       raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.present?
-      if self.type_id == GNERC_TYPE4
+      if self.type_id == GNERC_TYPE4 and not self.is_reply?
         raise I18n.t('models.document_base.errors.gnerctype_is_null') unless self.gnerc.type_id.present?
       end
+
+      # check if reply and has GNERC type relation
+      if self.is_reply?
+        reply = false
+        
+        sourcedocs = Document::Relation.where(base: self)
+        sourcedocs.each do |source|
+          related = Document::Base.find(source.related_id)
+          if GNERC_TYPES.include?(related.type_id)
+            reply = related
+          end
+        end
+
+        raise I18n.t('models.document_base.errors.no_gnerc_original') unless reply.present?
+      end
+
       raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
+
+      if self.is_reply? and self.author_motions.blank?
+        raise I18n.t('models.document_base.errors.no_author')
+      end
     else
       if self.gnerc.present?
         self.gnerc.delete
@@ -166,7 +190,6 @@ class Document::Base < ActiveRecord::Base
       send_to_gnerc
     end
 
-    #send_to_gnerc
   end
 
   # Checks auto-assignees for agreement type.
@@ -321,7 +344,9 @@ class Document::Base < ActiveRecord::Base
 
     #check if docnumber already exists
     if params[:docnumber2] && self.docnumber2 != params[:docnumber2]
-      raise I18n.t('models.document_base.errors.docnumber2_exists') if Document::Base.where(docnumber2: params[:docnumber2], docyear: self.docyear).any?
+      year = Time.now.year
+      year = params[:docdate].to_date.year if params[:docdate].present?
+      raise I18n.t('models.document_base.errors.docnumber2_exists') if Document::Base.where(docnumber2: params[:docnumber2], docyear: year).any?
     end
 
     oldtext = ''
@@ -513,11 +538,38 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
-  def self.create_reply!(user)
-    newdoc = Document::Base.create_draft!(user)
-    newdoc.update_draft!(user, { subject: "Re: #{self.subject}", type: self.type })
-    rel = Document::Relation.create(base: newdoc, related: self)
-    newdoc
+  def create_reply!(user)
+    sender = user.employee
+    author_motion = self.author_motions.first
+
+    case self.direction
+      when Document::Direction::INNER then 
+        direction = Document::Direction::INNER
+        receiver_user = self.owner_user
+        receiver      = self.owner
+      when Document::Direction::IN then 
+        direction = Document::Direction::OUT
+        receiver      = author_motion.receiver
+      when Document::Direction::OUT then 
+        direction = Document::Direction::IN
+    end
+
+    Document::Base.transaction do
+      newdoc = Document::Base.create_draft!(user)
+      newdoc.update_draft!(user, { subject: "Re: #{self.subject}", direction: direction, type: self.type })
+
+      rel = Document::Relation.create(base: newdoc, related: self)
+
+      #create assignee
+
+      motionparams = { document: newdoc, is_new: 1, ordering: Document::Motion::ORDERING_ASIGNEE,
+            sender_user: user, sender: sender, actual_sender: nil, 
+            receiver_user: receiver_user, receiver: receiver, receiver_role: ROLE_ASSIGNEE, status: DRAFT,
+            created_at: Time.now, sent_at: Time.now, received_at: Time.now}
+      Document::Motion.create!(motionparams)
+
+      return newdoc
+    end
   end
 
   def fix_owner!
@@ -531,97 +583,11 @@ class Document::Base < ActiveRecord::Base
 
   def send_to_gnerc
     return unless GNERC_TYPES.include?(self.type_id)
+    return unless self.direction == IN
     return if self.status == DRAFT
+    return if self.is_reply?
 
-    # check if this is reply and has doc of type [13,14]
-    reply = nil
-
-    sourcedocs = Document::Relation.where(base: self)
-    sourcedocs.each do |source|
-      related = Document::Base.find(source.related_id)
-      if GNERC_TYPES.include?(related.type_id)
-        reply = related
-      end
-    end
-
-    if reply.present?
-      file = reply.files.first
-      content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
-      content = Base64.encode64(content)
-      
-      parameters = { docid: reply.id,
-                     "attach_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}_2".to_sym => content }
-
-      GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[self.type_id], parameters)
-      # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}_answer".to_sym, parameters)
-    else
-      motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: ROLE_AUTHOR).first
-      customer = motion.receiver if motion.present?
-      if motion.blank?
-        motion = self.motions.where(receiver_type: 'HR::Party', receiver_role: ROLE_AUTHOR).first
-        customer = motion.receiver.customer if motion.present?
-        customer = BS::Customer.where(accnumb: "#{customer}").first
-      end
-
-      return unless motion.present?
-      return unless customer.present?
-
-      file = self.files.first
-      content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
-      content = Base64.encode64(content)
-
-      case self.type_id
-        when GNERC_TYPE4
-          parameters = { docid:             self.id,
-                         docyear:           self.docyear,
-                         letter_number:     self.docnumber,
-                         abonent_number:    customer.accnumb,
-                         abonent:           customer.name,
-                         abonent_address:   customer.address,
-                         abonent_type:      1,
-                         letter_category:   self.gnerc.type_id,
-                         appeal_date:       self.docdate,
-                         attach_4_1:        content
-                       }
-        when GNERC_TYPE5
-          parameters = { docid:             self.id,
-                         docyear:           self.docyear,
-                         letter_number:     self.docnumber,
-                         abonent_number:    customer.accnumb,
-                         abonent:           customer.name,
-                         abonent_address:   customer.address,
-                         consumer_category: 1,
-                         appeal_date:       self.docdate,
-                         attach_5_1:        content
-                       }
-        when GNERC_TYPE6
-          parameters = { docid:             self.id,
-                         docyear:           self.docyear,
-                         letter_number:     self.docnumber,
-                         abonent_number:    customer.accnumb,
-                         applicant:         customer.name,
-                         applicant_address: customer.address,
-                         consumer_category: 1,
-                         appeal_date:       self.docdate,
-                         attach_6_1:        content
-                       }
-        when GNERC_TYPE8
-          parameters = { docid:             self.id,
-                         docyear:           self.docyear,
-                         letter_number:     self.docnumber,
-                         abonent_number:    customer.accnumb,
-                         abonent:           customer.name,
-                         abonent_address:   customer.address,
-                         consumer_category: 1,
-                         appeal_date:       self.docdate,
-                         attach_8_1:        content
-                       }
-      end
-
-      GnercWorker.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[self.type_id], parameters)
-      # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}".to_sym, parameters)
-    end
-
+    Gnerc::Sender.appeal(self)
   end
 
   private

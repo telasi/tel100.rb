@@ -125,9 +125,7 @@ class Api::Documents::BaseController < ApiController
   def reply
     sourcedoc = Document::Base.find(params[:sourceid])
     if can_edit_document?(sourcedoc)
-      newdoc = Document::Base.create_draft!(current_user)
-      newdoc.update_draft!(current_user, { subject: "Re: #{sourcedoc.subject}" })
-      rel = Document::Relation.create(base: newdoc, related: sourcedoc)
+      newdoc = sourcedoc.create_reply!(current_user)
       @my_doc = Document::User.where(document: newdoc, user: current_user).first
       render action: 'show'
     else

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926104009) do
+ActiveRecord::Schema.define(version: 20161228130538) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -98,7 +98,9 @@ ActiveRecord::Schema.define(version: 20160926104009) do
   create_table "document_gnerc", primary_key: "document_id", force: true do |t|
     t.integer   "type_id",    limit: 5,  precision: 5,  scale: 0
     t.integer   "file_id",    limit: 10, precision: 10, scale: 0
-    t.timestamp "created_at", limit: 6,                           null: false
+    t.timestamp "created_at", limit: 6,                                           null: false
+    t.boolean   "stage",                 precision: 1,  scale: 0, default: false, null: false
+    t.timestamp "sent_at",    limit: 6
   end
 
   create_table "document_motion", force: true do |t|
@@ -191,16 +193,18 @@ ActiveRecord::Schema.define(version: 20160926104009) do
   end
 
   create_table "document_type", force: true do |t|
-    t.string    "name_ka",     limit: 50,                                         null: false
+    t.string    "name_ka",     limit: 50,                                          null: false
     t.string    "name_ru",     limit: 50
     t.string    "name_en",     limit: 50
-    t.integer   "order_by",    limit: 5,  precision: 5, scale: 0, default: 0,     null: false
-    t.timestamp "created_at",  limit: 6,                                          null: false
-    t.timestamp "updated_at",  limit: 6,                                          null: false
-    t.boolean   "is_special",             precision: 1, scale: 0, default: false, null: false
-    t.boolean   "allow_inner",            precision: 1, scale: 0, default: true,  null: false
-    t.boolean   "allow_in",               precision: 1, scale: 0, default: true,  null: false
-    t.boolean   "allow_out",              precision: 1, scale: 0, default: true,  null: false
+    t.integer   "order_by",    limit: 5,  precision: 5,  scale: 0, default: 0,     null: false
+    t.timestamp "created_at",  limit: 6,                                           null: false
+    t.timestamp "updated_at",  limit: 6,                                           null: false
+    t.boolean   "is_special",             precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "allow_inner",            precision: 1,  scale: 0, default: true,  null: false
+    t.boolean   "allow_in",               precision: 1,  scale: 0, default: true,  null: false
+    t.boolean   "allow_out",              precision: 1,  scale: 0, default: true,  null: false
+    t.boolean   "is_gnerc",               precision: 1,  scale: 0, default: false, null: false
+    t.integer   "deadline",    limit: 12, precision: 12, scale: 0, default: 0,     null: false
   end
 
   create_table "document_type_gnerc_subtype", force: true do |t|

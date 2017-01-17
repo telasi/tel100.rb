@@ -70,10 +70,17 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
       return get('editable') && !get('showplus');
     },
     isGnercType4: function(get) {
-      return get('document.type_id') === 13;
+      return ( get('document.type_id') === 13 && !get('document.is_reply') );
     },
     comboHidden: function(get){
       return !get('document.type_id') === 13 ;
+    },
+    dynamicTitle: function(get){
+      if(get('document.is_reply')){
+        return i18n.document.base.gnerc_reply;
+      } else {
+        return i18n.document.base.gnerc;
+      }
     }
   }
 

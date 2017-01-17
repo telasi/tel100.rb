@@ -4,6 +4,9 @@ Ext.define('Tel100.model.document.Type', {
 
   proxy: {
     type: 'rest',
-    url: '/api/documents/types'
+    url: '/api/documents/types',
+    extraParams: {
+       direction: ''
+    },
   }
 });

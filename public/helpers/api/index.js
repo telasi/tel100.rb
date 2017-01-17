@@ -3,5 +3,6 @@ module.exports = {
   substitude: require('./substitude'),
   folders: require('./folders'),
   party: require('./party'),
-  user: require('./user')
+  user: require('./user'),
+  utils: require('./utils')
 };

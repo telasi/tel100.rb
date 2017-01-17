@@ -99,6 +99,9 @@ Rails.application.routes.draw do
         get '/', action: 'index'
       end
     end
+    scope 'utils', controller: 'utils' do
+      get 'time', action: 'gettime'
+    end
     namespace 'documents' do
       scope 'base', controller: 'base' do
         get    '/', action: 'index'
