@@ -363,7 +363,7 @@ class Document::Motion < ActiveRecord::Base
 
   def send_to_gnerc(doc)
     return unless GNERC_TYPES.include?(self.document.type_id)
-    return unless self.direction == OUT
+    return unless self.document.direction == OUT
 
     Gnerc::Sender.answer(doc)
   end
