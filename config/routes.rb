@@ -101,6 +101,7 @@ Rails.application.routes.draw do
     end
     scope 'utils', controller: 'utils' do
       get 'time', action: 'gettime'
+      get 'deadline', action: 'getdeadline'
     end
     namespace 'documents' do
       scope 'base', controller: 'base' do

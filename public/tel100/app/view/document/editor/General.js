@@ -149,11 +149,9 @@ Ext.define('Tel100.view.document.editor.GeneralViewController', {
     vm.set('specialType', type && type.get('is_special'));
     vm.set('isGnerc', type && type.get('is_gnerc'));
     if (!vm.get('readonly') && type && type.get('is_gnerc') && !doc.get('is_reply')){
-      helpers.api.utils.getTime({
+      helpers.api.utils.getDeadline(type.id, {
         success: function(result) {
-          var today = new Date(result.time);
-          today.setDate(today.getDate() + type.get('deadline'));
-          doc.set('due_date', today);
+          doc.set('due_date', new Date(result.deadline));
         }.bind(this),
         failure: function() {
           console.log('failed to get time');
