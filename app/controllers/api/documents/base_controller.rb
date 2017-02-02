@@ -161,7 +161,7 @@ class Api::Documents::BaseController < ApiController
         party_ids = HR::Party.where('name_ka LIKE :name OR name_ru LIKE :name OR name_en LIKE :name', name: search_string.likefy).map{ |p| p.id }
         customer_ids = BS::Customer.where('name LIKE N:name', name: search_string.likefy).map{ |p| p.id }
 
-        if ( employee_ids.none? and party_ids.none? and and customer_ids.none?)
+        if ( employee_ids.none? and party_ids.none? and customer_ids.none?)
           @my_docs = @my_docs.none
         else
           @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (:ids) AND receiver_type = 'HR::Employee' AND receiver_role = 'author'
