@@ -156,7 +156,7 @@ class Api::Documents::BaseController < ApiController
   def author_filter(search_string)
     if search_string.present?
       search_string = search_string.strip
-      if search_string.size > 5
+      if search_string.size > 2
         employee_ids = HR::Employee.where('first_name_ka IN (:name) OR first_name_ru IN (:name) OR last_name_ka IN (:name) OR last_name_ru IN (:name)', name: search_string.split(' ')).map{ |e| e.id }
         party_ids = HR::Party.where('name_ka LIKE :name OR name_ru LIKE :name OR name_en LIKE :name', name: search_string.likefy).map{ |p| p.id }
         customer_ids = BS::Customer.where("name LIKE N\'%#{search_string}%\'").map{ |p| p.id }
@@ -188,7 +188,7 @@ class Api::Documents::BaseController < ApiController
   def united_role_filter(search_string, role)
     if search_string.present?
       search_string = search_string.strip
-      if search_string.size > 5
+      if search_string.size > 2
         employee_ids = HR::Employee.where('first_name_ka IN (:name) OR first_name_ru IN (:name) OR last_name_ka IN (:name) OR last_name_ru IN (:name)', name: search_string.split(' ')).map{ |e| e.id }
         party_ids = HR::Party.where('name_ka LIKE :name OR name_ru LIKE :name OR name_en LIKE :name', name: search_string.likefy).map{ |p| p.id }
 
