@@ -392,6 +392,10 @@ class Document::Base < ActiveRecord::Base
         text.save!
       end
 
+      if self.gnerc.present? && self.gnerc.file.present
+        gnerc_store_name = self.gnerc.file.store_name
+      end
+
       # Save files to history
       Document::File.where(document: self).map do |f|
         hisfile = Document::History::File.new(document: self, original_name: f.original_name, store_name: f.store_name, change_no: change.id)
@@ -403,6 +407,11 @@ class Document::Base < ActiveRecord::Base
         if f.state == Document::Change::STATE_TEMP || f.state == Document::Change::STATE_CURRENT
           newfile = Document::File.new(document: self, original_name: f.original_name, store_name: f.store_name)
           newfile.save!
+
+          if f.store_name == gnerc_store_name
+            self.gnerc.file_id = newfile.id
+            self.gnerc.save!
+          end
         end
         f.delete
       end
