@@ -43,18 +43,21 @@ Ext.define('Tel100.view.document.gnerc.PanelViewController', {
 
   onGnercTypeChange: function(combo , records , eOpts){
     var vm = this.getViewModel();
-    var doc = vm.get('document');
-    
-    var params = { type_id: records.getData().id };
-    helpers.api.document.gnerc.update(doc.id, {
-          params: params,
-          success: function() {
-            // gnerc.commit(true);
-          }.bind(this),
-          failure: function() {
-            console.log('failed to save gnerc');
-          }
-     });
+    var editable = vm.get('editable');
+
+    if (editable){
+      var doc = vm.get('document');
+      var params = { type_id: records.getData().id };
+      helpers.api.document.gnerc.update(doc.id, {
+            params: params,
+            success: function() {
+              // gnerc.commit(true);
+            }.bind(this),
+            failure: function() {
+              console.log('failed to save gnerc');
+            }
+       });  
+    }
   },
 
   onFilefieldChange: function(filefield, value, eOpts) {
