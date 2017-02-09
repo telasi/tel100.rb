@@ -9,28 +9,73 @@ Ext.define('Tel100.view.document.MainViewController', {
   },
 
   onDeleteDraft: function() {
+    var cntrl = this;
     var viewModel = this.getViewModel();
     var customfolderselection = viewModel.get('customfolderselection');
     var selection = viewModel.get('selection');
+
+    var grid = this.getView().down('documentgridpanel');
+    var selected = grid.getSelectionModel().getSelection();
+
+    tasks = [];
+
     if (customfolderselection){
-      this.deleteFromCustom(customfolderselection[0].id, selection.id);
-      this.refreshFoldersAndDocuments();
+
+        for (var i = 0; i < selected.length; i++) {
+          var t = (function(custom_id, selected) {
+            return function(callback) {
+              cntrl.deleteFromCustom(custom_id, selected.id, callback);
+            };
+          })(customfolderselection[0].id, selected[i]);
+
+          tasks.push(t);
+        }
+
     } else {
-      if (selection) {
-        var status = selection.get('status');
+
+      for (var i = 0; i < selected.length; i++) {
+        var status = selected[i].get('status');
         if (status === helpers.document.status.DRAFT) {
-          var msg = i18n.document.base.ui.confirmDeleteDraft;
-          var title = i18n.ui.confirmTitle;
-          Ext.Msg.confirm(title, msg, function(resp) {
-            if (resp === 'yes') {
-              helpers.api.document.base.deleteDraft(selection.id, {
-                success: this.refreshFoldersAndDocuments.bind(this)
-              });
-            }
-          }.bind(this));
+          var t = (function(selected) {
+            return function(callback) {
+              cntrl.deleteDraft(selected.id, callback);
+            };
+          })(selected[i]);
+
+          tasks.push(t);
         }
       }
+
     }
+
+    var t = (function() {
+        return function(callback) {
+          cntrl.refreshFoldersAndDocuments();
+        };
+    })();
+
+    tasks.push(t);
+    async.series(tasks);
+
+    // if (customfolderselection){
+    //   this.deleteFromCustom(customfolderselection[0].id, selection.id);
+    //   this.refreshFoldersAndDocuments();
+    // } else {
+    //   if (selection) {
+    //     var status = selection.get('status');
+    //     if (status === helpers.document.status.DRAFT) {
+    //       var msg = i18n.document.base.ui.confirmDeleteDraft;
+    //       var title = i18n.ui.confirmTitle;
+    //       Ext.Msg.confirm(title, msg, function(resp) {
+    //         if (resp === 'yes') {
+    //           helpers.api.document.base.deleteDraft(selection.id, {
+    //             success: this.refreshFoldersAndDocuments.bind(this)
+    //           });
+    //         }
+    //       }.bind(this));
+    //     }
+    //   }
+    // }
   },
 
   onNewDocument: function() {
@@ -111,12 +156,34 @@ Ext.define('Tel100.view.document.MainViewController', {
     this.refreshFoldersAndDocuments();
   },
 
-  deleteFromCustom: function(folder_id, doc_id) {
-            var opts = {};
-            opts.method = 'DELETE';
-            opts.url = '/api/folder/document';
-            opts.params = { folder_id: folder_id, doc_id: doc_id };
-            Ext.Ajax.request(opts);
+  deleteFromCustom: function(folder_id, doc_id, callback) {
+    var opts = {};
+    opts.method = 'DELETE';
+    opts.url = '/api/folder/document';
+    opts.params = { folder_id: folder_id, doc_id: doc_id };
+    opts.success = function(data) {
+          if (callback) {
+            callback();
+          }
+        }.bind(this);
+
+    opts.failure = function(data){
+          Ext.Msg.alert('error', 'error');
+        }.bind(this);
+    Ext.Ajax.request(opts);
+  },
+
+  deleteDraft: function(id, callback){
+    helpers.api.document.base.deleteDraft(id, {
+        success: function(data) {
+          if (callback) {
+            callback();
+          }
+        }.bind(this),
+        failure: function(data){
+          Ext.Msg.alert('error', 'error');
+        }.bind(this)
+      });
   },
 
   onTabpanelFolderChosen: function(tabpanel) {

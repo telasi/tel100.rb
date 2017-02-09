@@ -6,26 +6,28 @@ Ext.define('Tel100.view.document.MainViewModel', {
     selection: null,
     customfolderselection: null,
     disableResultButton: true,
-    disableForwardButton: true
+    disableForwardButton: true,
+    deleteDraftButtonDisabled: true
   },
 
   formulas: {
     closeDisabled: function(get){
       return !get('selection');
     },
-    deleteDraftButtonDisabled: function(get) {
-      var selection = get('selection');
-      if (this.getData().customfolderselection){
-        return false;
-      } else {
-        if (selection) {
-          var status = selection.get('status');
-          return status !== helpers.document.status.DRAFT;
-        } else {
-          return true;
-        }
-      }
-    },
+    // deleteDraftButtonDisabled: function(get) {
+    //   var selection = get('selection');
+    //   debugger;
+    //   if (this.getData().customfolderselection){
+    //     return false;
+    //   } else {
+    //     if (selection) {
+    //       var status = selection.get('status');
+    //       return status !== helpers.document.status.DRAFT;
+    //     } else {
+    //       return true;
+    //     }
+    //   }
+    // },
     resultButtonDisabled: function(get) {
       return get('disableResultButton');
     },

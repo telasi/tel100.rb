@@ -52,5 +52,6 @@ class Api::FolderController < ApiController
   def document_delete
     doc = Folder::Document.where(folder_id: params[:folder_id], doc_id: params[:doc_id]).first
     doc.destroy if doc
+    render json: { success: true }
   end
 end

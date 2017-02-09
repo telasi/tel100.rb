@@ -110,9 +110,25 @@ Ext.define('Tel100.view.document.Main', {
     var vm = this.getViewModel();
     var disableForwardButton = false;
     var disableResultButton = false;
+    var deleteDraftButtonDisabled = false;
     var role = null;
 
-    disableForwardButton = disableResultButton = selected.length == 0;
+    deleteDraftButtonDisabled = disableForwardButton = disableResultButton = selected.length == 0;
+
+    if(vm.get('customfolderselection')){
+      deleteDraftButtonDisabled = false;
+    } else {
+
+      for(i=0; i<selected.length;i++){
+        var select = selected[i];
+        
+        var status = select.get('status');
+        if(status !== helpers.document.status.DRAFT){
+          deleteDraftButtonDisabled = true;
+          break;
+        }
+      }
+    }
 
     for(i=0; i<selected.length;i++){
       var select = selected[i];
@@ -145,6 +161,7 @@ Ext.define('Tel100.view.document.Main', {
       }
     };
 
+    vm.set('deleteDraftButtonDisabled', deleteDraftButtonDisabled);
     vm.set('disableResultButton', disableResultButton);
     vm.set('disableForwardButton', disableForwardButton);    
   },
