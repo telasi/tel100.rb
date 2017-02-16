@@ -392,8 +392,8 @@ class Document::Base < ActiveRecord::Base
         text.save!
       end
 
-      if self.gnerc.present? && self.gnerc.file.present
-        gnerc_store_name = self.gnerc.file.store_name
+      if self.gnerc.present? && self.gnerc.file.present?
+        gnerc_store_name = self.gnerc.file.store_name if self.gnerc.file.present?
       end
 
       # Save files to history
