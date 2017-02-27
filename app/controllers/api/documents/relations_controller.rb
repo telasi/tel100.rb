@@ -5,7 +5,8 @@ class Api::Documents::RelationsController < ApiController
   end
 
   def answer
-    @relations = Document::Relation.where(related_id: params[:related_id]).order(:id)
+    @relations = Document::Relation.where(related_id: params[:related_id])
+                                   .joins(:base).where.not(:document_base => { docnumber: nil}).order(:id)
     @user = effective_user
   end
 
