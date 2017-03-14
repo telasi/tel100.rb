@@ -27,7 +27,7 @@ module Gnerc::Sender
                          abonent_number:      customer.accnumb,
                          abonent:             customer.name,
                          abonent_address:     customer.address,
-                         abonent_type:        1,
+                         abonent_type:        customer.abonent_type,
                          letter_category:     doc.gnerc.type_id,
                          appeal_date:         doc.docdate,
                          attach_4_1:          content,
@@ -40,7 +40,7 @@ module Gnerc::Sender
                          abonent_number:      customer.accnumb,
                          abonent:             customer.name,
                          abonent_address:     customer.address,
-                         consumer_category:   1,
+                         consumer_category:   customer.abonent_type,
                          appeal_date:         doc.docdate,
                          attach_5_1:          content,
                          attach_5_1_filename: file.original_name
@@ -52,7 +52,7 @@ module Gnerc::Sender
                          abonent_number:      customer.accnumb,
                          applicant:           customer.name,
                          applicant_address:   customer.address,
-                         consumer_category:   1,
+                         consumer_category:   customer.abonent_type,
                          appeal_date:         doc.docdate,
                          attach_6_1:          content,
                          attach_6_1_filename: file.original_name
@@ -64,7 +64,7 @@ module Gnerc::Sender
                          abonent_number:      customer.accnumb,
                          abonent:             customer.name,
                          abonent_address:     customer.address,
-                         consumer_category:   1,
+                         consumer_category:   customer.abonent_type,
                          appeal_date:         doc.docdate,
                          attach_8_1:          content,
                          attach_8_1_filename: file.original_name

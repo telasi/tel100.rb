@@ -5,7 +5,7 @@ Ext.define('Tel100.view.document.folder.SearchViewModel', {
   stores: {
     types: {
       autoLoad: true,
-      model: 'Tel100.model.document.Type'
+      model: 'Tel100.model.document.TypeFull'
     },
 
     standardFolders: {
