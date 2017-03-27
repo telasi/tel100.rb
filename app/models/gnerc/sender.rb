@@ -83,29 +83,31 @@ module Gnerc::Sender
       file = doc.gnerc.file if doc.gnerc.present?
       return unless file.present?
 
-      reply = false
+      content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
+      content = Base64.encode64(content)
+
+      # reply = false
 
       sourcedocs = Document::Relation.where(base: doc)
       sourcedocs.each do |source|
         related = Document::Base.find(source.related_id)
-        if GNERC_TYPES.include?(related.type_id)
-          reply = related
+        if GNERC_TYPES.include?(related.type_id) && related.direction == 'in'
+          parameters = { docid: related.id,
+                         "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content }
+
+          gnerc_record = related.gnerc
+          if gnerc_record.present?
+            related.gnerc.stage = 2
+            related.gnerc.sent_at = Time.now
+            related.gnerc.save!
+          end
+
+          GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
         end
       end
 
-      return unless reply.present?
+      # return unless reply.present?
 
-	    content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
-	    content = Base64.encode64(content)
-	      
-	    parameters = { docid: reply.id,
-	                   "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content }
-
-      doc.gnerc.stage = 2
-      doc.gnerc.sent_at = Time.now
-      doc.gnerc.save!
-
-	    GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
 	      # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}_answer".to_sym, parameters)
 	end
 
