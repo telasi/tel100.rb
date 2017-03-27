@@ -93,7 +93,8 @@ module Gnerc::Sender
         related = Document::Base.find(source.related_id)
         if GNERC_TYPES.include?(related.type_id) && related.direction == 'in'
           parameters = { docid: related.id,
-                         "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content }
+                         "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content,
+                         "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2_filename".to_sym => file.original_name }
 
           gnerc_record = related.gnerc
           if gnerc_record.present?
