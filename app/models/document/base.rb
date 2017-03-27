@@ -144,7 +144,7 @@ class Document::Base < ActiveRecord::Base
       end
 
       if self.direction == IN 
-        motion = doc.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
+        motion = self.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
         if motion.present?
           customer = motion.receiver.customer 
           customer = BS::Customer.where(accnumb: "#{customer}").first
