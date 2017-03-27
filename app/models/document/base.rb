@@ -143,6 +143,15 @@ class Document::Base < ActiveRecord::Base
         raise I18n.t('models.document_base.errors.gnerctype_is_null') unless self.gnerc.type_id.present?
       end
 
+      if self.direction == IN 
+        motion = doc.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
+        if motion.present?
+          customer = motion.receiver.customer 
+          customer = BS::Customer.where(accnumb: "#{customer}").first
+          raise I18n.t('models.document_base.errors.no_author') if customer.blank?
+        end
+      end
+
       # check if reply and has GNERC type relation
       if self.is_reply?
         reply = false
