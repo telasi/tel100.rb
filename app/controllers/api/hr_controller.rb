@@ -28,6 +28,7 @@ class Api::HrController < ApiController
                                          :name_en, :address_en, :contact_en, 
                                          :identity, :phones, :email, :customer))
     @party.org_type = 1
+    @party.customer = @party.customer.squish
     if @party.save
      render json: { success: true, id: @party.id }
     else
