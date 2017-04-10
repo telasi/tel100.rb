@@ -17,7 +17,7 @@ class AddPartyTable < ActiveRecord::Migration
         CONTACT_EN varchar2(200 CHAR),
         PHONES		 varchar2(100 CHAR),
         EMAIL      varchar2(50 CHAR),
-        CUSTOMER   number(10, 0),
+        CUSTOMER   varchar2(20 CHAR),
         -----
         CREATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,

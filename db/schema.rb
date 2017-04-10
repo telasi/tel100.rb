@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228130538) do
+ActiveRecord::Schema.define(version: 20170407125551) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -426,6 +426,26 @@ ActiveRecord::Schema.define(version: 20161228130538) do
     t.string    "customer",   limit: 50
     t.timestamp "created_at", limit: 6,   null: false
     t.timestamp "updated_at", limit: 6,   null: false
+  end
+
+  create_table "party_base_copy", id: false, force: true do |t|
+    t.integer   "id",         limit: 10,  precision: 10, scale: 0, null: false
+    t.string    "org_type",   limit: 20,                           null: false
+    t.string    "identity",   limit: 30
+    t.string    "name_ka",    limit: 200
+    t.string    "name_ru",    limit: 200
+    t.string    "name_en",    limit: 200
+    t.string    "address_ka", limit: 500
+    t.string    "address_ru", limit: 500
+    t.string    "address_en", limit: 500
+    t.string    "contact_ka", limit: 200
+    t.string    "contact_ru", limit: 200
+    t.string    "contact_en", limit: 200
+    t.string    "phones",     limit: 100
+    t.string    "email",      limit: 50
+    t.string    "customer",   limit: 50
+    t.timestamp "created_at", limit: 6,                            null: false
+    t.timestamp "updated_at", limit: 6,                            null: false
   end
 
   create_table "party_contacts", force: true do |t|
