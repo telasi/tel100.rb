@@ -165,15 +165,15 @@ class Api::Documents::BaseController < ApiController
           @my_docs = @my_docs.none
         else
           @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (:employee_ids) AND receiver_type = 'HR::Employee' AND receiver_role = 'author'
-                                            union select id from document_base b where owner_id IN (:employee_ids) 
+                                            union select id from document_base b where owner_id IN (:employee_ids) AND owner_type = 'HR::Employee'
                                                      and not exists ( select document_id from document_motion where document_id = b.id and receiver_id IN (:employee_ids) AND receiver_type = 'HR::Employee' AND receiver_role = 'author')
                                             )
                                      or id in (select document_id from document_motion where receiver_id IN (:party_ids) AND receiver_type = 'HR::Party' AND receiver_role = 'author'
-                                            union select id from document_base b where owner_id IN (:party_ids) 
+                                            union select id from document_base b where owner_id IN (:party_ids) AND owner_type = 'HR::Party'
                                                      and not exists ( select document_id from document_motion where document_id = b.id and receiver_id IN (:party_ids) AND receiver_type = 'HR::Party' AND receiver_role = 'author')
                                             )
                                      or id in (select document_id from document_motion where receiver_id IN (:customer_ids) AND receiver_type = 'BS::Customer' AND receiver_role = 'author'
-                                            union select id from document_base b where owner_id IN (:customer_ids) 
+                                            union select id from document_base b where owner_id IN (:customer_ids) AND owner_type = 'BS::Customer'
                                                      and not exists ( select document_id from document_motion where document_id = b.id and receiver_id IN (:customer_ids) AND receiver_type = 'BS::Customer' AND receiver_role = 'author')
                                             )", employee_ids: employee_ids, party_ids: party_ids, customer_ids: customer_ids)
 
