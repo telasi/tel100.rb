@@ -75,7 +75,7 @@ class Api::Documents::BaseController < ApiController
     end
     @my_docs = @my_docs.where("document_base.page_count" => params['page_count']) if params['page_count'].present?
 
-    if not director 
+    if director == false
       if params['state'] == 'current'
         @my_docs = @my_docs.where('is_current = 1')
       elsif params['state'] == 'canceled'
@@ -89,7 +89,7 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.offset(params["start"]) if params["start"]
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
 
-    if director
+    if director == true
       @my_docs = @my_docs.order('document_base.docnumber')
     else
       @my_docs = @my_docs.order('document_user.receive_date DESC, document_user.document_id DESC')
