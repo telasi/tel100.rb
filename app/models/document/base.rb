@@ -568,7 +568,7 @@ class Document::Base < ActiveRecord::Base
         receiver      = self.owner
       when Document::Direction::IN then 
         direction = Document::Direction::OUT
-        receiver      = author_motion.receiver
+        receiver = author_motion.receiver if author_motion.present?
       when Document::Direction::OUT then 
         direction = Document::Direction::IN
     end
