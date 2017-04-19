@@ -2,6 +2,10 @@ Ext.define('Tel100.view.document.folder.SearchViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.documentfoldersearch',
 
+  data: {
+    showall: false
+  },
+
   stores: {
     types: {
       autoLoad: true,

@@ -11,14 +11,41 @@ class Api::Documents::BaseController < ApiController
   end
 
   def search
+    director = false
+
     if params['show_all'].present? and params['show_all'] == 'on'
-      @my_docs = Document::User.all.joins(:document) if current_user.is_director?
+      director = true
+      #@my_docs = Document::User.all.joins(:document) if current_user.is_director?
+      @my_docs = Document::User.select('document_id,
+                                        min(user_id) as user_id,
+                                        min(HAS_DUE_DATE) as has_due_date,
+                                        min(COMPLETED_OVER_DUE) as COMPLETED_OVER_DUE,
+                                        min(CURRENT_DUE_DATE) as CURRENT_DUE_DATE,
+                                        min(IS_NEW) as IS_NEW,
+                                        min(IS_CHANGED) as IS_CHANGED,
+                                        min(IS_SHOWN) as IS_SHOWN,
+                                        min(IS_FORWARDED) as IS_FORWARDED,
+                                        min(IS_SENT) as IS_SENT,
+                                        min(IS_RECEIVED) as IS_RECEIVED,
+                                        min(IS_CURRENT) as IS_CURRENT,
+                                        min(IS_CANCELED) as IS_CANCELED,
+                                        min(IS_COMPLETED) as IS_COMPLETED,
+                                        min(AS_OWNER) as AS_OWNER,
+                                        min(AS_SENDER) as AS_SENDER,
+                                        min(AS_ASSIGNEE) as AS_ASSIGNEE,
+                                        min(AS_SIGNEE) as AS_SIGNEE,
+                                        min(AS_AUTHOR) as AS_AUTHOR,
+                                        min(document_user.CREATED_AT) as CREATED_AT,
+                                        min(document_user.UPDATED_AT) as UPDATED_AT,
+                                        min(RECEIVE_DATE) as RECEIVE_DATE')
+                                        .joins(:document)
+                                        .group('document_id') if current_user.is_director?
     else 
       @my_docs = Document::User.mydocs(effective_user)
+      @my_docs = doc_list(@my_docs, 'standard', 1, params['folder']) if params['folder'].present?
     end
-    @my_docs = doc_list(@my_docs, 'standard', 1, params['folder']) if params['folder'].present?
 
-    @my_docs = @my_docs.joins(:document)
+    # @my_docs = @my_docs.joins(:document)
 
     if params['sender'].present?
       @employees = HR::Employee.find_by_name(params['sender'])
@@ -47,18 +74,25 @@ class Api::Documents::BaseController < ApiController
     end
     @my_docs = @my_docs.where("document_base.page_count" => params['page_count']) if params['page_count'].present?
 
-    if params['state'] == 'current'
-      @my_docs = @my_docs.where('is_current = 1')
-    elsif params['state'] == 'canceled'
-      @my_docs = @my_docs.where('is_canceled = 1')
-    elsif params['state'] == 'completed'
-      @my_docs = @my_docs.where('is_completed = 1')
+    if not director 
+      if params['state'] == 'current'
+        @my_docs = @my_docs.where('is_current = 1')
+      elsif params['state'] == 'canceled'
+        @my_docs = @my_docs.where('is_canceled = 1')
+      elsif params['state'] == 'completed'
+        @my_docs = @my_docs.where('is_completed = 1')
+      end
     end
 
-    @total = @my_docs.count
+    @total = @my_docs.length
     @my_docs = @my_docs.offset(params["start"]) if params["start"]
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
-    @my_docs = @my_docs.order('document_user.receive_date DESC, document_user.document_id DESC')
+
+    if director
+      @my_docs = @my_docs.order('document_id')
+    else
+      @my_docs = @my_docs.order('document_user.receive_date DESC, document_user.document_id DESC')
+    end
   end
 
   def doc_list(pdocs, folderType, show_completed = 0, folderId)

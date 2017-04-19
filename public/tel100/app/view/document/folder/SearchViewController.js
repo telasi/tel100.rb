@@ -10,6 +10,10 @@ Ext.define('Tel100.view.document.folder.SearchViewController', {
     view.up().fireEvent('folderChosen');
   },
 
+  onShowAllClick: function(checkbox, newValue, oldValue, eOpts){
+    checkbox.up().getViewModel().set('showall', newValue);
+  },
+
   onChoseCustomerButtonClick: function(button, e, eOpts) {
     var receiverDialog = Ext.create('Tel100.view.party.Selector', {
       title: i18n.document.search.choseCustomer,

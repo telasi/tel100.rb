@@ -21,7 +21,8 @@ Ext.define('Tel100.view.document.folder.Search', {
     valueField: 'id',
     bind: {
       fieldLabel: '{i18n.document.search.folder}',
-      store: '{standardFolders}'
+      store: '{standardFolders}',
+      disabled: '{showall}'
     }
   }, {
     xtype: 'combobox',
@@ -153,7 +154,8 @@ Ext.define('Tel100.view.document.folder.Search', {
     editable: false,
     bind: {
       store: '{states}',
-      fieldLabel: '{i18n.document.search.state}'
+      fieldLabel: '{i18n.document.search.state}',
+      disabled: '{showall}'
     }
   }, {
     xtype: 'fieldset',
@@ -205,6 +207,9 @@ Ext.define('Tel100.view.document.folder.Search', {
       bind: {
         hidden: '{hideShowAll}',
         boxLabel: '{i18n.document.search.show_all}'
+      },
+      listeners: {
+        change: 'onShowAllClick'
       },
       boxLabel: true
   }, 
