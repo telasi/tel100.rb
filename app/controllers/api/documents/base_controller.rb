@@ -16,7 +16,8 @@ class Api::Documents::BaseController < ApiController
     if params['show_all'].present? and params['show_all'] == 'on'
       director = true
       #@my_docs = Document::User.all.joins(:document) if current_user.is_director?
-      @my_docs = Document::User.select('document_id,
+      @my_docs = Document::User.select('document_base.docnumber, 
+                                        document_id,
                                         min(user_id) as user_id,
                                         min(HAS_DUE_DATE) as has_due_date,
                                         min(COMPLETED_OVER_DUE) as COMPLETED_OVER_DUE,
@@ -39,7 +40,7 @@ class Api::Documents::BaseController < ApiController
                                         min(document_user.UPDATED_AT) as UPDATED_AT,
                                         min(RECEIVE_DATE) as RECEIVE_DATE')
                                         .joins(:document)
-                                        .group('document_id') if current_user.is_director?
+                                        .group('document_base.docnumber, document_id') if current_user.is_director?
     else 
       @my_docs = Document::User.mydocs(effective_user)
       @my_docs = doc_list(@my_docs, 'standard', 1, params['folder']) if params['folder'].present?
@@ -89,7 +90,7 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
 
     if director
-      @my_docs = @my_docs.order('document_id')
+      @my_docs = @my_docs.order('document_base.docnumber')
     else
       @my_docs = @my_docs.order('document_user.receive_date DESC, document_user.document_id DESC')
     end
