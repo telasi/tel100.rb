@@ -44,9 +44,8 @@ class Api::Documents::BaseController < ApiController
     else 
       @my_docs = Document::User.mydocs(effective_user)
       @my_docs = doc_list(@my_docs, 'standard', 1, params['folder']) if params['folder'].present?
+      @my_docs = @my_docs.joins(:document)
     end
-
-    # @my_docs = @my_docs.joins(:document)
 
     if params['sender'].present?
       @employees = HR::Employee.find_by_name(params['sender'])
