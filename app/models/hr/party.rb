@@ -3,7 +3,7 @@ class HR::Party < ActiveRecord::Base
   self.table_name  = 'party_base'
   self.sequence_name = 'party_base_seq'
   self.localized_fields('name', 'address', 'contact')
-  validate :name_entered
+  validate :name_entered, :customer_exist
 
   def to_s; self.name end
 
@@ -32,5 +32,11 @@ class HR::Party < ActiveRecord::Base
 
   def name_entered
   	errors.add('Name must be entered') if (self.name_ka.nil? and self.name_ru.nil? and self.name_en.nil?)
+  end
+
+  def customer_exist
+    if self.customer.strip.length > 0
+      errors.add('Customer not found') unless BS::Customer.where(accnumb: self.customer).any?
+    end
   end
 end
