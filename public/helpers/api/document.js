@@ -186,6 +186,27 @@ var gnerc = {
     opts.params = { id: id };
     ajax.request(opts);
   },
+  resetSms: function(id, status, args){
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/gnerc/reset_sms';
+    opts.params = { document_id: id, status: status };
+    ajax.request(opts);
+  },
+  updateSms: function(id, args) {
+    var opts = args || {};
+    opts.method = 'PUT';
+    opts.url = '/api/documents/gnerc/update_sms';
+    opts.params.id = id;
+    ajax.request(opts);
+  },
+  sendSms: function(id, args){
+    var opts = args || {};
+    opts.method = 'POST';
+    opts.url = '/api/documents/gnerc/send_sms';
+    opts.params = { id: id };
+    ajax.request(opts);
+  }
 };
 
 

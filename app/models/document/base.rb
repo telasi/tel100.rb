@@ -148,7 +148,9 @@ class Document::Base < ActiveRecord::Base
         if motion.present?
           customer = motion.receiver.customer 
           customer = BS::Customer.where(accnumb: "#{customer}").first
-          raise I18n.t('models.document_base.errors.no_author') if customer.blank?
+          raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if customer.blank?
+
+          raise Sys::MyException.new(I18n.t('models.document_base.errors.no_phone'), { error_code: 1, party_id: motion.receiver.id }) unless HR::Party.correct_mobile?(motion.receiver.phones)
         end
       end
 

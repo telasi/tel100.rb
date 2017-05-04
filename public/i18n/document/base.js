@@ -103,6 +103,18 @@ module.exports = {
     ka: 'ქვესახეობა',
     ru: 'Подвид'
   },
+  positive: {
+    ka: '<i class="fa fa-check"></i> დადებითი',
+    ru: '<i class="fa fa-check"></i> Положительный'
+  },
+  negative: {
+    ka: '<i class="fa fa-times"></i> უარყოფითი',
+    ru: '<i class="fa fa-times"></i> Отрицательный'
+  },
+  mediate: {
+    ka: 'შუალედური',
+    ru: 'Промежуточный'
+  },
   direction: {
     ka: 'მიმართულება',
     ru: 'Направление'

@@ -36,6 +36,20 @@ class Api::HrController < ApiController
     end
   end
 
+  def party_get
+    @party = HR::Party.where(id: params[:id])
+  end
+
+  def party_update
+    @party = HR::Party.find(params[:id])
+    if @party.update_attributes!(params.permit(:name_ka, :address_ka, :contact_ka, :name_ru, :address_ru, :contact_ru, :name_en, :address_en, :contact_en,
+                                               :identity, :phones, :email, :customer))
+      render json: { success: true, id: @party.id }
+    else
+      render json: { success: false, message: @party.errors.full_messages[0] }
+    end
+  end
+
   private
 
   def build_tree

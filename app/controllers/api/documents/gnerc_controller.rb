@@ -35,5 +35,33 @@ class Api::Documents::GnercController < ApiController
       render json: { success: false, error: MSG_CANNOT_EDIT }
     end
   end
+
+  def reset_sms
+    doc = Document::Base.find(params[:document_id])
+    Document::Sms.reset_sms!(doc, params[:status], effective_user)
+    render json: { success: true }
+  end
+
+  def update_sms
+    sms = Document::Sms.find(params[:id])
+    sms.update_attributes(params.permit(:active, :text).merge({user: effective_user}))
+    sms.save!
+    render json: { success: true }
+  end
+
+  def send_sms
+    doc = Document::Base.find(params[:id])
+    if can_edit_document?(doc)
+      Document::Gnerc.send_sms(params)
+      render json: { success: true }
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end
+  end
+
+  def sms
+    doc = Document::Base.find(params[:document_id])
+    @smses = Document::Sms.where(answer: doc)
+  end
   
 end

@@ -3,11 +3,20 @@ module Gnerc::Sender
 	
  def self.appeal(doc)
       motion = doc.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
-      customer = motion.receiver if motion.present?
+      if motion.present?
+        customer = motion.receiver 
+        phone = customer.fax
+      end
       if motion.blank?
         motion = doc.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
-        customer = motion.receiver.customer if motion.present?
+        if motion.present?
+          customer = motion.receiver.customer 
+          phone = motion.receiver.phones
+        end
         customer = BS::Customer.where(accnumb: "#{customer}").first
+        if customer.present? and phone.nil? 
+          phone = customer.fax
+        end
       end
 
       return unless motion.present?
@@ -75,6 +84,10 @@ module Gnerc::Sender
       doc.gnerc.sent_at = Time.now
       doc.gnerc.save!
 
+      if phone.present?
+        Document::Sms.first_sms!(doc, phone)
+      end
+
       GnercWorker.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
       # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}".to_sym, parameters)
     end
@@ -87,6 +100,8 @@ module Gnerc::Sender
       content = Base64.encode64(content)
 
       # reply = false
+
+      Document::Sms.following_sms!(doc)
 
       sourcedocs = Document::Relation.where(base: doc)
       sourcedocs.each do |source|

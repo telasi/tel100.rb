@@ -305,12 +305,38 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
         success: function() {
           view.fireEvent('documentsent', document);
         }.bind(this),
-        failure: function(msg) {
-          Ext.Msg.alert(i18n.errors.title, msg);
+        failure: function(msg, object) {
           vm.set('isSending', false);
+          if(object){
+            if(object.error_code == 1){
+              this.askForAuthor(msg, object.party_id);
+            }
+          } else {
+            Ext.Msg.alert(i18n.errors.title, msg);
+          }
         }.bind(this)
       });
     }
+  },
+
+  askForAuthor: function(msg, id){
+    var view = this;
+
+    Ext.Msg.prompt({
+                title : 'Error',
+                msg : msg,
+                width : 300,
+                buttons : Ext.Msg.OK,
+                fn: function(buttonValue, inputText, showConfig){
+                      dialog = Ext.create('Tel100.view.hr.party.Edit', {
+                        title: 'Edit',
+                        viewModel: { data: { id: id} }
+                      });
+
+                      dialog.show();
+                }
+            });
+
   },
 
   onSaveClick: function(button, e, eOpts) {

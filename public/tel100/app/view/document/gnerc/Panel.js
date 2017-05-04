@@ -20,9 +20,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
   requires: [
     'Tel100.view.document.gnerc.PanelViewModel',
     'Tel100.view.document.gnerc.PanelViewController',
-    'Ext.toolbar.Toolbar',
     'Ext.form.Panel',
-    'Ext.form.field.File',
     'Ext.grid.Panel',
     'Ext.grid.View',
     'Ext.grid.column.Action',
@@ -36,6 +34,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
   border: false,
   defaultListenerScope: true,
   bodyPadding: 5,
+  autoScroll: true,
 
   bind: {
     title: '{dynamicTitle}'
@@ -49,6 +48,77 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
   },
 
   items: [
+  // {
+  //   xtype: 'documentgnercsmscreatorpanel'
+  // },
+  // {
+  //   xtype: 'documentgnercsmsviewerpanel'
+  // },
+  {
+    xtype: 'displayfield',
+    text: 'aaa',
+    bind: {
+      fieldLabel: '{i18n.document.base.my_status}',
+      hidden: '{hideStatus}',
+      value: '{status}'
+    },
+    renderer: function(value, object){
+      if(value == "1"){
+        return '<span class="label label-success"></i> ' + i18n.document.base.positive + '</span>';
+      } else {
+        return '<span class="label label-danger"></i> ' + i18n.document.base.negative + '</span>';
+      }
+    }
+  }, 
+  // {
+  //             xtype: 'checkbox',
+  //             inputValue: '1',
+  //             uncheckedValue: '0',
+  //             bind: {
+  //               fieldLabel: '{i18n.document.base.positive}',
+  //               disabled: '{!editable}',
+  //               value: '{status}',
+  //               hidden: '{!showSms}'
+  //             },
+  //             listeners: {
+  //                 change: {
+  //                   fn: 'onStatusChange'
+  //                 }
+  //             }
+  //           },
+  {
+      xtype: 'segmentedbutton',
+      width: '100%',
+      margin: "0 0 5 0",
+      // value: '1',
+      // readOnly: 'true',
+      bind: {
+        disabled: '{!editable}',
+        hidden: '{!showSms}',
+        value: '{status}'
+      },
+      items: [
+        {
+          value: '1',
+          id: 'positive',
+          bind: {
+            text: '{i18n.document.base.positive}'
+          },
+        },
+        {
+          value: '0',
+          id: 'negative',
+          bind: {
+            text: '{i18n.document.base.negative}'
+          }
+        }
+      ],
+      listeners: {
+        toggle: {
+          fn: 'onStatusChange',
+        }
+      }
+    },
     {
         xtype: 'combobox',
         anchor: '100%',
@@ -119,7 +189,98 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                   }
                 }
               }]
-         }
+         }, {
+            xtype: 'container',
+            anchor: '100%',
+            layout: {
+              type: 'vbox',
+              pack: 'top',
+            },
+            items: [{
+              xtype: 'checkbox',
+              inputValue: '1',
+              uncheckedValue: '0',
+              bind: {
+                fieldLabel: '{i18n.document.base.mediate}',
+                readOnly: '{!hideStatus}',
+                value: '{mediate}',
+                hidden: '{!isReply}'
+              },
+              listeners: {
+                  change: {
+                    fn: 'onMediateClick',
+                    scope: 'controller'
+                  }
+              }
+            }]
+         }, { 
+            xtype: 'gridpanel',
+            name: 'smses',
+            anchor: '100%',
+            hideHeaders: true,
+            bind: {
+              store: '{smses}',
+              hidden: '{!editable}'
+            },
+            columns: [{
+              xtype: 'gridcolumn',
+              renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                var text = record.get('text');
+                if (text) {
+                  text = '<p class="text-muted" style="white-space:normal;margin:0;">' + text + '</p>'
+                };
+
+                return [
+                  //'<p style="margin:0;"><span class="text-danger">', Ext.Date.format(record.get('created_at'),'d/m/Y H:i'), '</span></p>',
+                  text
+                ].join('');
+
+              },
+              flex: 1,
+              sortable: false,
+              hidable: false
+            }, {
+                  xtype: 'checkcolumn',
+                  width: 30,
+                  dataIndex: 'active',
+                  listeners: {
+                    checkchange: function(view, rowIndex, checked, eOpts){
+                      var panel = view.up('documentgnercpanel');
+                      var id = panel.getViewModel().getStore('smses').getAt(rowIndex).id;
+                      var value = checked === true ? 1 : 0;
+                      helpers.api.document.gnerc.updateSms(id, { params: { active: value }});
+                    }
+                  }
+            },{
+                  xtype: 'actioncolumn',
+                  width: 30,
+                  items: [{
+                    icon: '/images/pencil.png',
+                    handler: function(grid, rowIndex, colIndex) {
+                      var item = grid.getStore().getAt(rowIndex);
+                      var me = this.getView();
+                      Ext.Msg.prompt({
+                          title: 'SMS',
+                          row: rowIndex,
+                          message: 'Edit sms:',
+                          width: 300,
+                          buttons: Ext.Msg.OKCANCEL,
+                          multiline: true,
+                          fn: function(buttonValue, inputText, showConfig) {
+                            var store = this.getStore();
+                            var item = store.getAt(showConfig.row);
+                            item.set('text', inputText);
+
+                            var id = item.id;
+                            helpers.api.document.gnerc.updateSms(id, { params: { text: inputText }});
+                          },
+                          scope: me,
+                          value: item.get('text')
+                      });
+                    }
+                  }]
+            }]
+          }, 
     ],
   tools: [
     {
@@ -135,9 +296,37 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
     this.refresh();
   },
 
+  onResetSmsClick: function(){
+    this.getController().resetSms();
+  },
+
+  // onStatusChange: function(view, newValue, oldValue, eOpts){
+  //   debugger;
+  //   var vm = this.getViewModel();
+  //   var value = newValue == false ? 0 : 1;
+  //   this.getController().onGnercStatusChange(value);
+  //   helpers.api.document.gnerc.resetSms(vm.get('document').id, value,{
+  //     success: function(){
+  //         vm.getStore('smses').load();
+  //     }
+  //   });
+  // },  
+
+  onStatusChange: function(view, button, isPressed, eOpts){
+    var vm = this.getViewModel();
+    this.getController().onGnercStatusChange(vm.get('status'));
+    helpers.api.document.gnerc.resetSms(vm.get('document').id, vm.get('status'),{
+      success: function(){
+          vm.getStore('smses').load();
+      }
+    });
+  },
+
   refresh: function() {
     var vm = this.getViewModel();
     vm.getStore('gnerc').load();
+    vm.getStore('smshistory').load();
+    vm.getStore('smses').load();
   },
 
   initComponent: function() {

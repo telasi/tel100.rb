@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419125052) do
+ActiveRecord::Schema.define(version: 20170428055243) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20170419125052) do
     t.timestamp "created_at", limit: 6,                                           null: false
     t.boolean   "stage",                 precision: 1,  scale: 0, default: false, null: false
     t.timestamp "sent_at",    limit: 6
+    t.boolean   "status",                precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "mediate",               precision: 1,  scale: 0, default: false, null: false
   end
 
   create_table "document_motion", force: true do |t|
@@ -181,6 +183,13 @@ ActiveRecord::Schema.define(version: 20170419125052) do
   end
 
   add_index "document_response_types", ["role", "direction", "ordering"], name: "docresptype_role_dirct_idx"
+
+  create_table "document_sms", force: true do |t|
+    t.integer   "document_id", limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "user_id",     limit: 10, precision: 10, scale: 0, null: false
+    t.string    "text",                                            null: false
+    t.timestamp "created_at",  limit: 6,                           null: false
+  end
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
     t.text "body"

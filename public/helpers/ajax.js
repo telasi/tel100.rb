@@ -27,7 +27,7 @@ var request = function(opts) {
       var data = JSON.parse(response.responseText);
       if (data.success === false) {
         if (failure) {
-          failure(data.message || data.error);
+          failure(data.message || data.error, data.object);
         } else {
           errorMessage(data.message || data.error);
         }

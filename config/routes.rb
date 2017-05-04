@@ -63,7 +63,9 @@ Rails.application.routes.draw do
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
       get '/party/list', action: 'partylist'
+      get '/party/get', action: 'party_get'
       post '/party/create', action: 'partycreate'
+      post '/party/update', action: 'party_update'
     end
     scope '/bs', controller: 'bs' do
       get '/list', action: 'list'
@@ -146,6 +148,10 @@ Rails.application.routes.draw do
         post '/upload',   action: 'upload'
         put  '/update',   action: 'update'
         delete '/file_delete',   action: 'file_delete'
+        post '/reset_sms', action: 'reset_sms'
+        put  '/update_sms',   action: 'update_sms'
+        post '/send_sms', action: 'send_sms'
+        get '/sms', action: 'sms'
       end
       scope 'comments', controller: 'comments' do
         get  '/', action: 'index'
@@ -201,7 +207,9 @@ Rails.application.routes.draw do
 
   namespace 'reporting' do
     get 'report_tree', controller: 'reporting'
+    match '/', controller: 'reporting', action: 'report', as: 'report', via: ['get', 'post']
     match '/resolution_by_user', controller: 'reporting', action: 'resolution_by_user', as: 'resolution_by_user', via: ['get', 'post']
+    match '/gnerc_report', controller: 'reporting', action: 'gnerc_report', as: 'gnerc_report', via: ['get', 'post']
   end
 
   root controller: 'site', action: 'index'

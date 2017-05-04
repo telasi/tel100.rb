@@ -8,14 +8,16 @@ class ApiController < ActionController::Base
   before_action :validate_locale
 
   rescue_from Exception do |exception|
-    render_api_error exception.message
+    object = exception.object if exception.respond_to?(:object)
+
+    render_api_error exception.message, object
   end
 
-  def render_api_error(error)
+  def render_api_error(error, object)
     if error.is_a?(Array)
-      render json: { success: false, error: error }
+      render json: { success: false, error: error, object: object }
     else
-      render json: { success: false, error: error.to_s }
+      render json: { success: false, error: error.to_s, object: object }
     end
   end
 

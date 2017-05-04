@@ -6,5 +6,7 @@ if @gnerc
 	else
 		json.name ''
 	end
+	json.status @gnerc.status
+	json.mediate @gnerc.mediate
 	json.created_at @gnerc.created_at
 end

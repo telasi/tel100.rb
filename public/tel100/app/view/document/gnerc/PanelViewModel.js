@@ -28,7 +28,9 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     type_id: null,
     editable: false,
     showplus: true,
-    filename: null
+    filename: null,
+    mediate: false,
+    status: null
   },
 
   stores: {
@@ -39,6 +41,8 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
           store.viewModel.set('filename', store.data.items[0].get('name'));
           store.viewModel.set('showplus', !store.data.items[0].get('name'));
           store.viewModel.set('type_id', store.data.items[0].get('type_id'));
+          store.viewModel.set('mediate', store.data.items[0].get('mediate'));
+          store.viewModel.set('status', store.data.items[0].get('status'));
         }
       },
       autoLoad: true,
@@ -57,6 +61,34 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     gnerc_subtypes: {
       autoLoad: true,
       model: 'Tel100.model.document.Gnerc_subtypes'
+    },
+    smshistory: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Sms',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          document_id: '{document.id}'
+        },
+        url: '/api/documents/gnerc/sms',
+        reader: {
+          type: 'json'
+        }
+      }
+    },
+    smses: {
+      autoLoad: true,
+      model: 'Tel100.model.document.Sms',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          document_id: '{document.id}'
+        },
+        url: '/api/documents/gnerc/sms',
+        reader: {
+          type: 'json'
+        }
+      }
     }
   },
   formulas: {
@@ -72,6 +104,15 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     isGnercType4: function(get) {
       return ( get('document.type_id') === 13 && !get('document.is_reply') );
     },
+    isReply: function(get){
+      return get('document.is_reply');
+    },
+    showSms: function(get){
+      return get('editable') && get('document.is_reply');
+    },
+    hideStatus: function(get){
+      return get('editable') || !get('document.is_reply');
+    },
     comboHidden: function(get){
       return !get('document.type_id') === 13 ;
     },
@@ -81,7 +122,7 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
       } else {
         return i18n.document.base.gnerc;
       }
-    }
+    },
   }
 
 });

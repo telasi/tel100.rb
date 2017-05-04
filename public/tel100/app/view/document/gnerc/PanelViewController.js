@@ -42,12 +42,25 @@ Ext.define('Tel100.view.document.gnerc.PanelViewController', {
   },
 
   onGnercTypeChange: function(combo , records , eOpts){
+    this.updateGnerc({ type_id: records.getData().id });
+  },
+
+  onGnercStatusChange: function(status){
+    this.updateGnerc({ status: status });
+  },
+
+  onMediateClick: function(view, newValue , oldValue , eOpts){
+    var value = newValue == false ? 0 : 1;
+    this.updateGnerc({ mediate: value });
+  },
+
+  updateGnerc: function(args){
     var vm = this.getViewModel();
     var editable = vm.get('editable');
 
     if (editable){
       var doc = vm.get('document');
-      var params = { type_id: records.getData().id };
+      var params = args;
       helpers.api.document.gnerc.update(doc.id, {
             params: params,
             success: function() {
@@ -91,6 +104,17 @@ Ext.define('Tel100.view.document.gnerc.PanelViewController', {
     var url = '/api/documents/files/download?id=' + record.id;
     var tab = window.open(url, 'tel100');
     tab.focus();
+  },
+
+  resetSms: function(){
+    var doc = this.getViewModel().get('document');
+    var view = this.getView();
+    helpers.api.document.gnerc.resetSms(doc.id, {
+      success: function() {
+        view.refresh();
+        view.up().down('documentfilepanel').refresh();
+      }
+    });
   }
 
 });
