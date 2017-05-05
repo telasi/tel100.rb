@@ -25,13 +25,13 @@ class Document::Sms < ActiveRecord::Base
   def self.first_sms!(doc, phone)
     text = Document::Sms.generate(false, doc, '0')
     Document::Sms.new(document: doc, user: doc.sender_user, text: text, active: 1, phone: phone, sent_at: Time.now).save
-    #Sys::SentMessage.send_sms(phone, text)
+    Sys::SentMessage.send_sms(phone, text)
   end
 
   def self.following_sms!(doc)
     Document::Sms.where(answer: doc, active: 1).map do |sms|
       sms.update_attributes!(sent_at: Time.now)
-      #Sys::SentMessage.send_sms(sms.phone, sms.text)
+      Sys::SentMessage.send_sms(sms.phone, sms.text)
     end
   end
 
