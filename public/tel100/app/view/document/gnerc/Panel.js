@@ -93,21 +93,19 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
       // value: '1',
       // readOnly: 'true',
       bind: {
-        disabled: '{!editable}',
+        // disabled: '{!editable}',
         hidden: '{!showSms}',
         value: '{status}'
       },
       items: [
         {
-          value: '1',
-          id: 'positive',
+          value: 1,
           bind: {
             text: '{i18n.document.base.positive}'
           },
         },
         {
-          value: '0',
-          id: 'negative',
+          value: 0,
           bind: {
             text: '{i18n.document.base.negative}'
           }
