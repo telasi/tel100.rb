@@ -84,7 +84,7 @@ module Gnerc::Sender
       doc.gnerc.sent_at = Time.now
       doc.gnerc.save!
 
-      phone = nil if phone[0..2].upcase == 'OFF'
+      phone = nil if phone and phone[0..2].upcase == 'OFF'
 
       if phone.present?
         Document::Sms.first_sms!(doc, phone)
