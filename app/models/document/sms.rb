@@ -31,7 +31,7 @@ class Document::Sms < ActiveRecord::Base
   def self.following_sms!(doc)
     Document::Sms.where(answer: doc, active: 1).map do |sms|
       sms.update_attributes!(sent_at: Time.now)
-      Sys::SentMessage.send_sms(sms.phone, sms.text)
+      Sys::SentMessage.send_sms(sms.phone, sms.text) if sms.phone.present?
     end
   end
 
