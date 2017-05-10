@@ -112,6 +112,8 @@ class Document::Base < ActiveRecord::Base
       self.text.destroy if self.text
       self.gnerc.destroy if self.gnerc
       Document::User.where(document_id: self.id).destroy_all
+      Document::Sms.where(base_id: self.id).destroy_all
+      Document::Sms.where(answer_id: self.id).destroy_all
       self.destroy
     end
   end
@@ -589,6 +591,8 @@ class Document::Base < ActiveRecord::Base
             created_at: Time.now, sent_at: Time.now, received_at: Time.now}
       Document::Motion.create!(motionparams)
 
+      Document::Sms.reset_sms!(newdoc, '1', user) if ( GNERC_TYPES.include?(self.type_id) and direction == Document::Direction::OUT )
+
       return newdoc
     end
   end
@@ -608,7 +612,7 @@ class Document::Base < ActiveRecord::Base
     return if self.status == DRAFT
     return if self.is_reply?
 
-    Gnerc::Sender.appeal(self)
+    #Gnerc::Sender.appeal(self)
   end
 
   private
