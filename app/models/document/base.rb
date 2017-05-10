@@ -153,6 +153,12 @@ class Document::Base < ActiveRecord::Base
           raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if customer.blank?
 
           raise Sys::MyException.new(I18n.t('models.document_base.errors.no_phone'), { error_code: 1, party_id: motion.receiver.id }) unless HR::Party.correct_mobile?(motion.receiver.phones)
+        else
+          motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
+          if motion.present?
+            customer = motion.receiver 
+            raise I18n.t('models.document_base.errors.no_phone_in_bs') if customer.fax.nil?
+          end
         end
       end
 
@@ -612,7 +618,7 @@ class Document::Base < ActiveRecord::Base
     return if self.status == DRAFT
     return if self.is_reply?
 
-    #Gnerc::Sender.appeal(self)
+    Gnerc::Sender.appeal(self)
   end
 
   private

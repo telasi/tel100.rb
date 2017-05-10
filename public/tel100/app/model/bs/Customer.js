@@ -52,6 +52,9 @@ Ext.define('Tel100.model.bs.Customer', {
     },
     {
       name: 'accnumb'
+    },
+    {
+      name: 'fax'
     }
   ],
 

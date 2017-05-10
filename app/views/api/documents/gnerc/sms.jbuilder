@@ -5,6 +5,7 @@ json.array! @smses do |item|
   json.user_id 		item.user_id
   json.user 		item.user.full_name
   json.text			item.text
+  json.phone 		item.phone
   json.active		item.active
   json.created_at   item.created_at
 end

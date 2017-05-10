@@ -6,6 +6,7 @@ json.data do
 	  json.address      customer.address
 	  json.taxid        customer.taxid
 	  json.accnumb      customer.accnumb
+	  json.fax	      	customer.fax
 	  json.ext_type     'bs.Customer'
 	end
 end

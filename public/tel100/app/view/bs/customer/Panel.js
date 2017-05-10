@@ -68,6 +68,13 @@ Ext.define('Tel100.view.bs.customer.Panel', {
       bind: {
         text: '{i18n.hr.customer.fields.accnumb}'
       }
+    },
+    {
+      xtype: 'gridcolumn',
+      dataIndex: 'fax',
+      bind: {
+        text: '{i18n.hr.party.fields.phones}'
+      }
     }
   ],
   dockedItems: [
@@ -119,6 +126,13 @@ Ext.define('Tel100.view.bs.customer.Panel', {
               name: 'accnumb',
               bind: {
                 fieldLabel: '{i18n.hr.customer.fields.accnumb}'
+              }
+            },
+            {
+              xtype: 'textfield',
+              name: 'fax',
+              bind: {
+                fieldLabel: '{i18n.hr.party.fields.phones}'
               }
             }
           ]

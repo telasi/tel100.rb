@@ -229,7 +229,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                 };
 
                 return [
-                  //'<p style="margin:0;"><span class="text-danger">', Ext.Date.format(record.get('created_at'),'d/m/Y H:i'), '</span></p>',
+                  '<p style="margin:0;"><i class="fa fa-phone">&nbsp;</i><span class="text-danger">', record.get('phone'), '</span></p>',
                   text
                 ].join('');
 
