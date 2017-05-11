@@ -50,7 +50,7 @@ class Document::Sms < ActiveRecord::Base
         else
           first_sms = Document::Sms.where(document: related).first
           phone = first_sms.phone if first_sms.present?
-          Document::Sms.new(document: related, answer: doc, user: user, text: text, active: 1, phone: phone).save
+          Document::Sms.new(document: related, answer: doc, user: user, text: text, active: 1, phone: phone).save if phone.present?
         end
 
         ids_2_delete << related.id
