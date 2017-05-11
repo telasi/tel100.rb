@@ -13,7 +13,7 @@ class Document::Sms < ActiveRecord::Base
   def self.generate(is_reply, doc, status)
     if is_reply
       if status == '1'
-        "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} daymayofilebulia"
+        "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} dakmayofilebulia"
       else
         "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} uaryofilia"        
       end
