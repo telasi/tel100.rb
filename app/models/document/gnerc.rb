@@ -12,7 +12,7 @@ class Document::Gnerc < ActiveRecord::Base
 
     document = Document::Base.find(params[:document_id])
 
-    gnerc = Document::Gnerc.where(document: document).first || Document::Gnerc.new(document: document)
+    gnerc = Document::Gnerc.where(document: document).first || Document::Gnerc.new(document: document, status: 1)
     gnerc.file = f
     gnerc.created_at = Time.now
     gnerc.save!
