@@ -452,6 +452,13 @@ class Document::Base < ActiveRecord::Base
         hismotion.save!
       end
 
+      self.author_motions.map do |m|
+        hismotion = Document::History::Motion.new(m.attributes.merge({id: nil}))
+        hismotion.change_no = change.id
+        hismotion.old_id = m.id
+        hismotion.save!
+      end
+
       # process motions
       motions.each do |m|
         if m["deleted"]
