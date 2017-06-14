@@ -114,8 +114,8 @@ class Api::Documents::BaseController < ApiController
 
     if @my_doc.present? and can_change_read_property?
       @my_doc.read!
-    else 
-      render json: { success: false, error: MSG_CANNOT_EDIT }
+    #else 
+    #  render json: { success: false, error: MSG_CANNOT_EDIT }
     end
   end
 
