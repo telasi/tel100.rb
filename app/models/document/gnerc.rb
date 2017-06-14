@@ -7,7 +7,7 @@ class Document::Gnerc < ActiveRecord::Base
   belongs_to :file, class_name: 'Document::File'
 
   def self.upload(params)
-    f = Document::File.create_file(params)
+    f = Document::File.create_file(params[:file], params[:document_id])
     f.save!
 
     document = Document::Base.find(params[:document_id])

@@ -5,7 +5,12 @@ class Document::File < ActiveRecord::Base
   belongs_to :document, class_name: 'Document::Base'
 
   def self.upload(params)
-    params[:file].each do |file|
+    if params[:file].kind_of?(Array)
+      params[:file].each do |file|
+      f = create_file(file, params[:document_id])
+      f.save!
+    end
+    else
       f = create_file(file, params[:document_id])
       f.save!
     end
