@@ -111,8 +111,11 @@ class Api::Documents::BaseController < ApiController
   def show
     @doc = Document::Base.find(params[:id])
     @my_doc = Document::User.where(document_id: params[:id], user: effective_user).first
+
     if @my_doc.present? and can_change_read_property?
       @my_doc.read!
+    else 
+      render json: { success: false, error: MSG_CANNOT_EDIT }
     end
   end
 

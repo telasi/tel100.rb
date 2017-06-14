@@ -18,18 +18,85 @@ Ext.define('Tel100.view.document.file.PanelViewController', {
   alias: 'controller.documentfilepanel',
 
   onFilefieldChange: function(filefield, value, eOpts) {
+    var cntrl = this;
     if (value) {
       var form = filefield.up('form').getForm();
       var vm = this.getViewModel();
       var view = this.getView();
       var doc = vm.get('document');
+      // var inp = filefield.fileInputEl.dom;
+      // var files = inp.files;
+      // var tasks = [];
+      // reader = new FileReader();
+
+      // for( var i = 0; i < files.length; i++){
+
+      //   var t = (function(file) {
+      //     return function(callback) {
+      //       cntrl.uploadFile(file, doc, callback);
+      //     }
+      //   })(files[i]);
+
+      //   tasks.push(t);
+
+      // };
+
+      // async.series(tasks);
+
       form.submit({
         url: '/api/documents/files/upload?document_id=' + doc.id,
         success: function() {
           view.refresh();
+          cntrl.updateFileInputElement(view);
+        },
+        failure: function(){
+          view.refresh();
+          cntrl.updateFileInputElement(view);
         }
       });
-    }
+
+    };
+
+  },
+
+  updateFileInputElement: function(view){
+      var file = view.down('multiplefileuploadfield');
+      file.fileInputEl.set({
+        multiple:'multiple',
+        name: file.name ? file.name + '[]' : 'files[]'
+      });
+  },
+
+  uploadFile: function(file, doc, callback){
+      reader.onloadend = function (event) {
+         var binaryString = '',
+             bytes = new Uint8Array(event.target.result),
+             length = bytes.byteLength,
+             i,
+             base64String;
+
+         // convert to binary string
+         for (i = 0; i < length; i++) {
+             binaryString += String.fromCharCode(bytes[i]);
+         }
+
+         // convert to base64
+         base64String = btoa(binaryString);
+
+         Ext.Ajax.request({
+             url: '/api/documents/files/upload?document_id=' + doc.id,
+             method: 'POST',
+             params: {
+                 data: base64String
+             }
+         });
+
+         if (callback) {
+            callback(null);
+          }
+      };
+
+      reader.readAsArrayBuffer(file);
   },
 
   onGridpanelCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {

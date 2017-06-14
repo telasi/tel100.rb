@@ -264,6 +264,7 @@ module Sap::Synchronizer
     end
 
     $hrstruct_cachedate = nil
+    $hrstruct_cache = nil
 
   end
 
