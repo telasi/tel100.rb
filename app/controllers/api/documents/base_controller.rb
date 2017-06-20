@@ -114,9 +114,9 @@ class Api::Documents::BaseController < ApiController
     if @my_doc.present? and can_change_read_property?
       @my_doc.read!
     end
-    if @my_doc.blank? and not can_see_every_document?
-      render json: { success: false, error: MSG_CANNOT_READ }
-    end
+    #if @my_doc.blank? and not can_see_every_document?
+    #  render json: { success: false, error: MSG_CANNOT_READ }
+    #end
   end
 
   def create_draft
