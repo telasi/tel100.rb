@@ -105,6 +105,8 @@ module Gnerc::Sender
 
       Document::Sms.following_sms!(doc)
 
+      smsrecord = Document::Sms.where(answer: doc, active: 1).first
+
       sourcedocs = Document::Relation.where(base: doc)
       sourcedocs.each do |source|
         related = Document::Base.find(source.related_id)
@@ -112,6 +114,9 @@ module Gnerc::Sender
           parameters = { docid: related.id,
                          "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content,
                          "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2_filename".to_sym => file.original_name }
+
+          parameters.merge({ company_answer: smsrecord.text,
+                             phone:          smsrecord.phone }) if smsrecord.present?
 
           gnerc_record = related.gnerc
           if gnerc_record.present?
