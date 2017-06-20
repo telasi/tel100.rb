@@ -79,4 +79,8 @@ class ApiController < ActionController::Base
   def can_comment_document?(doc = nil)
     self.can_edit_document?(doc)
   end
+
+  def can_see_every_document?(doc = nil)
+    self.current_user.is_director == 1
+  end
 end
