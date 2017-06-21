@@ -115,7 +115,7 @@ module Gnerc::Sender
                          "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content,
                          "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2_filename".to_sym => file.original_name }
 
-          parameters.merge({ company_answer: smsrecord.text,
+          parameters.merge!({ company_answer: smsrecord.text,
                              phone:          smsrecord.phone }) if smsrecord.present?
 
           gnerc_record = related.gnerc
