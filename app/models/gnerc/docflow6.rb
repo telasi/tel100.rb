@@ -2,4 +2,5 @@
 class Gnerc::Docflow6 < ActiveRecord::Base
   establish_connection :gnerc
   self.table_name  = 'docflow6'
+  self.set_integer_columns :affirmative
 end
