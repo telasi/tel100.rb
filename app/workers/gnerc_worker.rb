@@ -17,7 +17,7 @@ class GnercWorker
     if doc.present?
     	doc.stage = stage
     	doc.save!
-      if Gnerc::SendQueue.new(service: service, service_id: doc.id, stage: stage).empty?
+      if Gnerc::SendQueue.where(service: service, service_id: doc.id, stage: stage).empty?
        queue = Gnerc::SendQueue.new(service: service, service_id: doc.id, stage: stage, created_at: Time.now)
        queue.save!
       end
