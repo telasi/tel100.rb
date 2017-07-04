@@ -1,0 +1,6 @@
+<%= editor_for @role do |e|
+  e.required_text_field 'name'
+  e.submit 'მონაცემების შენახვა'
+  cancel_url = @role.new_record? ? admin_roles_url : admin_role_url
+  e.button_action cancel_url, label: ' გაუქმება', icon: 'remove'
+end %>

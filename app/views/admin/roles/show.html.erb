@@ -1,0 +1,47 @@
+<h1 class="page-header"><%= @title %></h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li><%= link_to 'როლები', admin_roles_url %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<%= viewer_for @role do |v|
+  v.button_action admin_delete_role_url(id: @role.id), icon: 'trash', label: 'წაშლა', http_method: 'delete', confirm: 'ნამდვილად გინდათ წაშლა?'
+  v.required_text_field 'name', tag: 'code'
+end %>
+
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to '<i class="fa fa-plus"></i> ახალი კავშირი'.html_safe,
+      admin_relate_role_user_url(id: @role.id),
+      class: ['btn', 'btn-default'] %>
+  </div>
+  <h3>
+    მომხმარებლები ამ როლით
+    <code><%= @users.count %></code>
+  </h3>
+</div>
+<% if @users.any? %>
+    <table class="table table-bordered">
+    <% @users.each do |rel|
+      user = rel.user
+    %>
+      <tr>
+        <td>
+          <code><%= user.username %></code>
+          <%= link_to user.full_name, admin_user_url(user) %>
+        </td>
+        <td width="32">
+          <%= link_to '<i class="fa fa-trash"></i>'.html_safe,
+            admin_role_destroy_related_user_url(user_id: rel.user.id, role_id: @role.id),
+            data: { method: 'delete',
+                    confirm: 'ნამდვილად გინდათ ამ კავშირის წაშლა?'
+                  },
+            class: 'text-danger'
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -18,6 +18,7 @@
     <h4 class="page-header">მომხმარებლები</h4>
     <div>
       <%= link_to "მომხმარებლები <code>#{Sys::User.active.count}</code>".html_safe, admin_users_url, class: ['btn', 'btn-default'] %>
+      <%= link_to "როლები <code>#{Sys::Role.count}</code>".html_safe, admin_roles_url, class: ['btn', 'btn-default'] %>
     </div>
   </div>
   <div class="col-sm-4">

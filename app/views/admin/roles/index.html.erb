@@ -1,0 +1,14 @@
+<h1 class="page-header">
+  <%= @title %> <code><%= @roles.count %></code>
+</h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<%= table_for @roles, model_name: 'Sys::Role' do |t|
+  t.text_field 'name', tag: 'code', url: ->(x) { admin_role_url(id: x.id) }
+  t.text_field 'category'
+  t.button_action admin_new_role_url, label: 'ახალი როლი', icon: 'plus'
+end %>

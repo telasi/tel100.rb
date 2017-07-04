@@ -1,0 +1,15 @@
+<h1 class="page-header">
+  <%= @title %>
+</h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li><%= link_to 'როლები', admin_roles_url %></li>
+  <li><%= link_to @role.name, admin_role_url %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<%= editor_for @relation do |e|
+  e.combo_field :user_id, collection: Sys::User.all, empty: '--აარჩიეთ მომხმარებელი--', i18n: 'related'
+  e.submit 'შენახვა'
+end %>
