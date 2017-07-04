@@ -11,7 +11,7 @@ class Document::File < ActiveRecord::Base
       f.save!
     end
     else
-      f = create_file(file, params[:document_id])
+      f = create_file(params[:file], params[:document_id])
       f.save!
     end
   end
