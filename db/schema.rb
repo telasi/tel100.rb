@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428055243) do
+ActiveRecord::Schema.define(version: 20170630073853) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -185,10 +185,14 @@ ActiveRecord::Schema.define(version: 20170428055243) do
   add_index "document_response_types", ["role", "direction", "ordering"], name: "docresptype_role_dirct_idx"
 
   create_table "document_sms", force: true do |t|
-    t.integer   "document_id", limit: 10, precision: 10, scale: 0, null: false
-    t.integer   "user_id",     limit: 10, precision: 10, scale: 0, null: false
-    t.string    "text",                                            null: false
-    t.timestamp "created_at",  limit: 6,                           null: false
+    t.integer   "base_id",    limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "user_id",    limit: 10, precision: 10, scale: 0, null: false
+    t.string    "text",                                           null: false
+    t.timestamp "created_at", limit: 6,                           null: false
+    t.integer   "answer_id",  limit: 10, precision: 10, scale: 0
+    t.timestamp "sent_at",    limit: 6
+    t.boolean   "active",                precision: 1,  scale: 0
+    t.string    "phone",      limit: 10
   end
 
   create_table "document_text", primary_key: "document_id", force: true do |t|
@@ -479,6 +483,21 @@ ActiveRecord::Schema.define(version: 20170428055243) do
     t.timestamp "created_at",  limit: 6,                           null: false
   end
 
+  create_table "permissions", force: true do |t|
+    t.string    "role",       limit: 100
+    t.string    "permission", limit: 200
+    t.string    "action",     limit: 200
+    t.timestamp "created_at", limit: 6,   null: false
+    t.timestamp "updated_at", limit: 6,   null: false
+  end
+
+  create_table "roles", force: true do |t|
+    t.string    "name",       limit: 100
+    t.integer   "category",   limit: 10,  precision: 10, scale: 0
+    t.timestamp "created_at", limit: 6,                            null: false
+    t.timestamp "updated_at", limit: 6,                            null: false
+  end
+
   create_table "sap_organization_texts", id: false, force: true do |t|
     t.integer  "objectid",   limit: 8,   precision: 8, scale: 0, null: false
     t.string   "objecttype", limit: 1,                           null: false
@@ -535,10 +554,24 @@ ActiveRecord::Schema.define(version: 20170428055243) do
     t.string   "rel_obj_type", limit: 1,                          null: false
   end
 
+  create_table "upload_file", id: false, force: true do |t|
+    t.integer   "document_id", limit: 10, precision: 10, scale: 0, null: false
+    t.integer   "user_id",     limit: 10, precision: 10, scale: 0, null: false
+    t.timestamp "created_at",  limit: 6,                           null: false
+    t.timestamp "updated_at",  limit: 6,                           null: false
+  end
+
   create_table "user_relations", id: false, force: true do |t|
     t.integer "user_id",    limit: 10, precision: 10, scale: 0, null: false
     t.integer "related_id", limit: 10, precision: 10, scale: 0, null: false
     t.string  "role",       limit: 50,                          null: false
+  end
+
+  create_table "user_roles", force: true do |t|
+    t.integer   "user_id",    limit: 10, precision: 10, scale: 0
+    t.integer   "role_id",    limit: 10, precision: 10, scale: 0
+    t.timestamp "created_at", limit: 6,                           null: false
+    t.timestamp "updated_at", limit: 6,                           null: false
   end
 
   create_table "users", force: true do |t|
