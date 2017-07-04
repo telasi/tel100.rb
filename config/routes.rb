@@ -32,6 +32,15 @@ Rails.application.routes.draw do
       post '/sync_eflow', action: 'sync_eflow_users', as: 'sync_eflow_users'
       get '/eflow_motions/:id', action: 'eflow_motions', as: 'eflow_user_motions'
     end
+    scope 'roles', controller: 'roles' do
+      get '/', action: 'index', as: 'roles'
+      get '/show/:id', action: 'show', as: 'role'
+      match '/new', action: 'new', as: 'new_role', via: ['get', 'post']
+      match '/edit/:id', action: 'edit', as: 'edit_role', via: ['get', 'post']
+      match '/relation/:id', action: 'relation', as: 'relate_role_user', via: ['get', 'post']
+      delete '/relation/:user_id/:role_id', action: 'role_destroy_relation', as: 'role_destroy_related_user'
+      delete '/delete/:id', action: 'destroy', as: 'delete_role'
+    end
     scope 'document' do
       scope 'types', controller: 'doctypes' do
         get '/', action: 'index', as: 'doctypes'
@@ -210,6 +219,8 @@ Rails.application.routes.draw do
     match '/', controller: 'reporting', action: 'report', as: 'report', via: ['get', 'post']
     match '/resolution_by_user', controller: 'reporting', action: 'resolution_by_user', as: 'resolution_by_user', via: ['get', 'post']
     match '/gnerc_report', controller: 'reporting', action: 'gnerc_report', as: 'gnerc_report', via: ['get', 'post']
+    match '/rus_doc_attach', controller: 'reporting', action: 'rus_doc_attach', as: 'rus_doc_attach', via: ['get', 'post']
+    match '/attached_docs', controller: 'reporting', action: 'attached_docs', as: 'attached_docs', via: ['get', 'post']
   end
 
   root controller: 'site', action: 'index'

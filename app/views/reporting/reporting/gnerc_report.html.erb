@@ -1,0 +1,82 @@
+<h2 class="page-header">
+  დოკუმენტები
+</h2>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#search">ფილტრი</a>
+      </h4>
+    </div>
+  <div id="search" class="panel-collapse collapse panel-body">
+	<%= form_tag reporting_resolution_by_user_path, method: 'POST' do %>
+	<div>
+	 <%= label_tag :date1, "პერიოდი", class: ['span5', 'col-md-1'] %>
+	 <div class="span5 col-md-3 input-daterange input-group" id="datepicker">
+        <%= text_field_tag "date1", params[:date1], class: ['input-sm', 'form-control'] %>
+        <span class="input-group-addon">-</span>
+        <%= text_field_tag "date2", params[:date2], class: ['input-sm', 'form-control'] %>
+     </div>
+	</div>
+  <div class="span5 col-md-3 input-daterange input-group" id="datepicker">
+        <%= text_field_tag "date1", params[:date1], class: ['input-sm', 'form-control'] %>
+        <span class="input-group-addon">-</span>
+        <%= text_field_tag "date2", params[:date2], class: ['input-sm', 'form-control'] %>
+  </div>
+	<div>
+	  <%= check_box_tag "in", params[:in] %>
+	  <%= label_tag "in", "დასრულებული" %>
+	</div>
+	<div>
+    <%= hidden_field_tag params[:out] %>
+	  <%= check_box_tag "out", params[:out] %>
+	  <%= label_tag "out", "პასუხის გარეშე" %>
+	</div>
+  <%= hidden_field_tag 'user', params[:user] %>
+  <%= hidden_field_tag 'lang', params[:lang] %>
+	<%= submit_tag "ფილტრი" %>
+	 <% end %>
+  </div>
+</div>
+
+<table class="table table-bordered table-condensed" style="font-size: 10pt;">
+  <thead>
+    <tr>
+      <th>სახეობა</th>
+      <th>შემოსული</th>
+      <th>მიმდინარე ვადაგადაცილებით</th>
+      <th>მიმდინარე ვადაგადაცილების გარეშე</th>
+      <th>პასუხგაცემული ვადაში</th>
+      <th>პასუხგაცემული ვადის დარღვევით</th>
+    </tr>
+  </thead>
+  <% @rel.each do |doc| %>
+    <tr>
+      <td align="right" width="30">
+        <code><%= doc.docnumber %></code>
+      </td>
+      <td align="right" width="30">
+        <%= doc.docdate.present? ? doc.docdate.strftime("%d/%m/%Y") : '' %>
+      </td>
+      <td width="100">
+        <%= doc.cr.present? ? doc.cr.strftime("%d/%m/%Y") : '' %>
+      </td>
+      <td>
+        asd
+      </td>
+      <td>
+        asd
+      </td>
+      <td>
+        asd
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<script>
+$('.input-daterange').datepicker({
+	format: "dd/mm/yyyy"
+});
+</script>

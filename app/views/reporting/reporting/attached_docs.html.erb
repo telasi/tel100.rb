@@ -1,0 +1,108 @@
+<h2 class="page-header">
+  დოკუმენტები
+</h2>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#search">ფილტრი</a>
+      </h4>
+    </div>
+  <div id="search" class="panel-collapse collapse panel-body">
+	<%= form_tag reporting_rus_doc_attach_path, method: 'POST' do %>
+	<div>
+	 <%= label_tag :date1, "პერიოდი", class: ['span5', 'col-md-1'] %>
+	 <div class="span5 col-md-3 input-daterange input-group" id="datepicker">
+        <%= text_field_tag "date1", params[:date1], class: ['input-sm', 'form-control'] %>
+        <span class="input-group-addon">-</span>
+        <%= text_field_tag "date2", params[:date2], class: ['input-sm', 'form-control'] %>
+   </div>
+	</div>
+  <div>
+   <%= label_tag :number, "ნომერი", class: ['span5', 'col-md-1'] %>
+   <div class="span5 col-md-1 input-group">
+        <%= text_field_tag "number", params[:number], class: ['input-sm', 'form-control'] %>
+   </div>
+  </div>
+  <div>
+   <%= label_tag :docyear, "წელი", class: ['span5', 'col-md-1'] %>
+   <div class="span5 col-md-1 input-group">
+        <%= text_field_tag "docyear", params[:docyear], class: ['input-sm', 'form-control'] %>
+   </div>
+  </div>
+   <%= hidden_field_tag 'api_username', params[:api_username] %>
+   <%= hidden_field_tag 'api_password', params[:api_password] %>
+   <%= hidden_field_tag 'api_locale', params[:api_locale] %>
+	 <%= submit_tag "ფილტრი" %>
+	 <% end %>
+  </div>
+</div>
+
+<table class="table table-bordered table-condensed" style="font-size: 10pt;">
+  <thead>
+    <tr>
+      <th>ნომერი</th>
+      <th>წელი</th>
+      <th>სახეობა</th>
+      <th>მიმართულება</th>
+      <th>ავტორი</th>
+      <th>თემა</th>
+      <th>მიბმული დოკუმენტები</th>
+    </tr>
+  </thead>
+  <% @rel.each do |docuser| %>
+   <%
+     doc = docuser.document
+     type = doc.type
+     type_name = doc.type.present? ? doc.type.name : ''
+   %>
+    <tr>
+      <td align="right" width="30">
+        <a href="#" onclick="showDoc(<%= doc.id %>);">
+          <code><%= doc.docnumber %></code>
+        </a>
+      </td>
+      <td align="right" width="30">
+        <code><%= doc.docyear %></code>
+      </td>
+      <td align="right" width="30">
+        <%= type_name %>
+      </td>
+      <td width="100">
+        <%= doc.direction %>
+      </td>
+      <td width="100">
+        <%= doc.authors.first %>
+      </td>
+      <td width="100">
+        <%= doc.subject %>
+      </td>
+      <td width="100">
+        <% doc.files.each do |f| %>
+          <%= link_to f.original_name, api_documents_download_path(id: f.id) %>
+          <br>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%#= will_paginate @rel, renderer: BootstrapPagination::Rails %>
+
+<script>
+$('.input-daterange').datepicker({
+	format: "dd/mm/yyyy"
+});
+
+$(function () {
+    $(".addbutton").click(function () {
+        var my_id_value = $(this).data('id');
+        $(".modal-body #document_id").val(my_id_value);
+    })
+});
+
+function showDoc(docid) {
+  window.parent.postMessage({ 'message': 'documentopen', 'document_id': docid}, '*');
+};
+</script>
