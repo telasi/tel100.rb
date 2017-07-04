@@ -19,5 +19,24 @@ Ext.define('Tel100.view.MainViewController', {
     window.i18n = i18n;
     var viewModel = this.getViewModel();
     viewModel.set('i18n', i18n);
+
+    var me = component;
+    window.onmessage = function(ev){
+      if (ev.data.message == 'documentopen'){
+        var view = this.getView();
+        var dm = view.down('documentmain');
+        var doc = { id: ev.data.document_id };
+        dm.getController().openDocument(doc);
+        var b = view.down('#tel100');
+        b.toggle();
+      }
+     }.bind(this);
   }
+
+  // window.onmessage = function(ev){
+  //   debugger;
+  //   if (ev.data == 'message') {
+        
+  //   }
+  // }
 });
