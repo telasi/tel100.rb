@@ -64,7 +64,7 @@ Ext.define('Tel100.view.modules.ReportingViewController', {
                     autoEl: {
                         tag: 'iframe',
                         style: 'height: 100%; width: 100%; border: none',
-                        src: 'http://192.168.1.32/reporting/' + record.get('operation') + 
+                        src: 'http://1.1.2.65/reporting/' + record.get('operation') + 
                               '?api_username=' + extra["api_username"] +
                               '&api_password=' + extra["api_password"] +
                               '&api_locale=' + extra["api_locale"]
