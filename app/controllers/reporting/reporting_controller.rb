@@ -48,6 +48,15 @@ class Reporting::ReportingController < ApiController
            if params[:file].present?
              Document::File.upload(params) 
              Sys::UploadFile.new(document_id: params[:document_id], user_id: effective_user.id).save
+             parent_motion = Document::Motion.where(document_id: params[:document_id], receiver_user_id: effective_user.id).first
+             motion_params = { document_id: params[:document_id],
+                            parent_id: parent_motion.id,
+                            receiver_user_id: HR_RUS_ATTACH_DOC_RECEIVER_USER,
+                            receiver_id: HR_RUS_ATTACH_DOC_RECEIVER,
+                            receiver_type: 'HR::Employee',
+                            receiver_role: 'assignee' }
+             motion = Document::Motion.create_draft!(effective_user, motion_params)
+             motion.send_draft!(effective_user)
            end
            @rel = @rel.where('document_base.docnumber = ?', params[:number]) if params[:number].present?
            @rel = @rel.where('document_base.docyear = ?', params[:docyear]) if params[:docyear].present?
