@@ -11,8 +11,8 @@ class Reporting::ReportingController < ApiController
     def report_tree
         user_operations = Sys::UserRole.where(user: effective_user).map{ |ur| ur.role.name }
         filtered_reporting_tree = ReportingTree.deep_dup
-        filtered_reporting_tree[:children].reject!{ |x| !user_operations.include?(x[:operation]) }.map{ |x| x.merge!({:name => ( params[:api_locale] =='ka' ? x[:name_ka] : x[:name_ru] )}) }
-        render json: filtered_reporting_tree.to_json
+        filtered = filtered_reporting_tree[:children].reject{ |x| !user_operations.include?(x[:operation]) }.map{ |x| x.merge!({:name => ( params[:api_locale] =='ka' ? x[:name_ka] : x[:name_ru] )}) }
+        render json: filtered.to_json
     end
 
     def report
