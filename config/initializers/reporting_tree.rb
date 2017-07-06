@@ -1,13 +1,15 @@
 ReportingTree = { root: true, :children => [{
-								:name =>	"რუსული დოკუმენტების მიბმა",
-								:operation => "rus_doc_attach",
-								:leaf => true,
-							   },{
-								 name:	"ატვირთული დოკუმენტების სია",
-								 operation: "attached_docs",
-								 leaf: true
-						       },
-							 ]}
+									:name_ka =>	"რუსული დოკუმენტების მიბმა",
+									:name_ru =>	"Загрузка русских документов",
+									:operation => "rus_doc_attach",
+									:leaf => true,
+								   },{
+									 :name_ka => "ატვირთული დოკუმენტების სია",
+									 :name_ru =>	"Список загруженных документов",
+									 :operation => "attached_docs",
+									 :leaf => true
+							       },
+								 ]}
 
 
 							 #   ,{
