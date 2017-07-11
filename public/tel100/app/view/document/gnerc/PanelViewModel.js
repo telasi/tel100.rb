@@ -110,6 +110,11 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     showSms: function(get){
       return get('editable') && get('document.is_reply');
     },
+    smsEditable: function(get){
+      debugger;
+      return get('editable') || 
+             ( ( get('document.as_author') === 1 || get('document.as_signee') === 1 ) && !get('document.is_completed') && !get('document.is_canceled') );
+    },
     hideStatus: function(get){
       return get('editable') || !get('document.is_reply');
     },

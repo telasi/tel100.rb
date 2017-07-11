@@ -217,8 +217,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
             anchor: '100%',
             hideHeaders: true,
             bind: {
-              store: '{smses}',
-              hidden: '{!editable}'
+              store: '{smses}'
             },
             columns: [{
               xtype: 'gridcolumn',
@@ -241,6 +240,9 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                   xtype: 'checkcolumn',
                   width: 30,
                   dataIndex: 'active',
+                  bind: {
+                    hidden: '{!smsEditable}'
+                  },
                   listeners: {
                     checkchange: function(view, rowIndex, checked, eOpts){
                       var panel = view.up('documentgnercpanel');
@@ -252,6 +254,9 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
             },{
                   xtype: 'actioncolumn',
                   width: 30,
+                  bind: {
+                    hidden: '{!smsEditable}'
+                  },
                   items: [{
                     icon: '/images/pencil.png',
                     handler: function(grid, rowIndex, colIndex) {
