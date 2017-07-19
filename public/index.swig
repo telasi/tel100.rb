@@ -42,7 +42,7 @@
         var el = document.createElement('a');
         el.innerHTML = '<i class="fa fa-question-circle"></i>';
         el.classList.add('tel100-help');
-        el.href = '/teldoc.pdf';
+        el.href = '/teldoc'+helpers.i18n.getCurrentLocale()+'.pdf';
         el.target = 'doc';
         document.body.appendChild(el);
       }

@@ -36,6 +36,7 @@ Ext.define('Tel100.view.workarea.LocaleSelectorViewController', {
       var i18n =  window[newLocale];
       this.getView().up('#main-viewport').getViewModel().set('i18n', i18n);
       window.i18n = i18n;
+      Ext.Element.select('.tel100-help').elements[0].href = '/teldoc'+helpers.i18n.getCurrentLocale()+'.pdf';
     }
   }
 });
