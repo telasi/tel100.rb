@@ -41,6 +41,8 @@ class Reporting::ReportingController < ApiController
     def rus_doc_attach
         @rel = Document::User.where(user: effective_user, is_shown: 1)
         @uploadlist = Sys::UploadFile.where(user: effective_user).select(:document_id)
+        @doctypes = Document::Type.select(:id, :name_ka).as_json
+        @doctypes.insert(0, { id: 0, name_ka: ''} )
         @rel = @rel.where.not(document_id: @uploadlist)
         @rel = @rel.joins(:document)
 
@@ -58,6 +60,8 @@ class Reporting::ReportingController < ApiController
              motion = Document::Motion.create_draft!(effective_user, motion_params)
              motion.send_draft!(effective_user)
            end
+           @rel = @rel.where('document_base.direction = ?', params[:direction]) if params[:direction].present?
+           @rel = @rel.where('document_base.type_id = ?', params[:type_id]) if params[:type_id].present?
            @rel = @rel.where('document_base.docnumber = ?', params[:number]) if params[:number].present?
            @rel = @rel.where('document_base.docyear = ?', params[:docyear]) if params[:docyear].present?
            @rel = @rel.where("document_base.created_at >= ?", Date.strptime(params['date1'], '%d/%m/%Y')) if params['date1'].present?

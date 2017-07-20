@@ -12,7 +12,7 @@
   <div id="search" class="panel-collapse collapse panel-body">
 	<%= form_tag reporting_rus_doc_attach_path, method: 'POST' do %>
 	<div>
-	 <%= label_tag :date1, "პერიოდი", class: ['span5', 'col-md-1'] %>
+	 <%= label_tag :date1, "პერიოდი", class: ['span5', 'col-md-2'] %>
 	 <div class="span5 col-md-3 input-daterange input-group" id="datepicker">
         <%= text_field_tag "date1", params[:date1], class: ['input-sm', 'form-control'] %>
         <span class="input-group-addon">-</span>
@@ -20,13 +20,25 @@
    </div>
 	</div>
   <div>
-   <%= label_tag :number, "ნომერი", class: ['span5', 'col-md-1'] %>
+   <%= label_tag :number, "ნომერი", class: ['span5', 'col-md-2'] %>
    <div class="span5 col-md-1 input-group">
         <%= text_field_tag "number", params[:number], class: ['input-sm', 'form-control'] %>
    </div>
   </div>
   <div>
-   <%= label_tag :docyear, "წელი", class: ['span5', 'col-md-1'] %>
+   <%= label_tag :direction, "მიმართულება", class: ['span5', 'col-md-2'] %>
+   <div class="span5 col-md-1 input-group">
+        <%= select_tag 'direction', options_for_select([['', ''], ['შემოსული', 'in'], ['შიდა', 'inner'], ['გასული', 'out']], :selected => params[:direction]), class: ['input-sm', 'form-control'] %>
+   </div>
+  </div>
+  <div>
+  <%= label_tag :type_id, "ტიპი", class: ['span5', 'col-md-2'] %>
+   <div class="span5 col-md-1 input-group">
+        <%= select_tag 'type_id', options_for_select(@doctypes.map { |obj| [obj['name_ka'], obj['id']] }, params[:type_id]), class: ['input-sm', 'form-control'] %>
+   </div>
+  </div>
+  <div>
+   <%= label_tag :docyear, "წელი", class: ['span5', 'col-md-2'] %>
    <div class="span5 col-md-1 input-group">
         <%= text_field_tag "docyear", params[:docyear], class: ['input-sm', 'form-control'] %>
    </div>
