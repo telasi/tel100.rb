@@ -16,6 +16,13 @@ class Document::File < ActiveRecord::Base
     end
   end
 
+  def self.replace(params)
+    file = params[:file]
+    f = Document::File.find(params[:id])
+    FileUtils.cp(file.tempfile, f.full_path)
+    f
+  end
+
   def clone(doc)
     storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
     f = Document::File.new(document: doc, original_name: self.original_name, store_name: storename, created_at: Time.now)

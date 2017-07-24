@@ -58,6 +58,9 @@ Rails.application.routes.draw do
       end
       scope '/documents', controller: 'documents' do
         get '/', action: 'index', as: 'documents'
+        post '/replace',  action: 'replace'
+        post '/upload', action: 'upload'
+        delete '/destroy', action: 'destroy'
       end
     end
   end
@@ -161,6 +164,7 @@ Rails.application.routes.draw do
         put  '/update_sms',   action: 'update_sms'
         post '/send_sms', action: 'send_sms'
         get '/sms', action: 'sms'
+        get '/smses', action: 'smses'
       end
       scope 'comments', controller: 'comments' do
         get  '/', action: 'index'
