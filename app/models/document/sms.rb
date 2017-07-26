@@ -80,7 +80,7 @@ class Document::Sms < ActiveRecord::Base
       related = Document::Base.find(source.related_id)
       if GNERC_TYPES.include?(related.type_id) && related.direction == 'in'
         sms = Document::Sms.where(document: related, answer: doc).first
-        if doc.gnerc.mediate == 1
+        if doc.gnerc.present? and doc.gnerc.mediate == 1
           text = "Tqveni #date clis ganckhadeba #number pasuxad gatsnobebt, rom mimdinareobs cerilshi mititebuli garemoebebis shescavla. saboloo shedegebis shesaxeb getsnobebat damatebit"
         else
           text = Document::Sms.generate(true, related, status)
