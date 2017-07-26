@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630073853) do
+ActiveRecord::Schema.define(version: 20170713104610) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -552,6 +552,13 @@ ActiveRecord::Schema.define(version: 20170630073853) do
     t.string   "priority",     limit: 2
     t.integer  "rel_obj_id",   limit: 8,  precision: 8, scale: 0, null: false
     t.string   "rel_obj_type", limit: 1,                          null: false
+  end
+
+  create_table "sms_templates", id: false, force: true do |t|
+    t.integer "type_id",     limit: 5,   precision: 5, scale: 0, null: false
+    t.integer "subtype_id",  limit: 5,   precision: 5, scale: 0
+    t.string  "description", limit: 150
+    t.string  "text",        limit: 500
   end
 
   create_table "upload_file", id: false, force: true do |t|

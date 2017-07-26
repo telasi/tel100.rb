@@ -126,6 +126,8 @@ module Gnerc::Sender
             related.gnerc.save!
           end
 
+          parameters.merge!({ mediate: 1 }) if doc.gnerc.mediate == 1
+
           GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
         end
       end

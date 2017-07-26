@@ -63,5 +63,9 @@ class Api::Documents::GnercController < ApiController
     doc = Document::Base.find(params[:document_id])
     @smses = Document::Sms.where(answer: doc)
   end
+
+  def smses
+    @smses = Document::Sms.get_smsmes(params[:id])
+  end
   
 end

@@ -51,7 +51,22 @@ Ext.define('Tel100.view.document.gnerc.PanelViewController', {
 
   onMediateClick: function(view, newValue , oldValue , eOpts){
     var value = newValue == false ? 0 : 1;
-    this.updateGnerc({ mediate: value });
+    // this.updateGnerc({ mediate: value });
+    var vm = view.up('panel').getViewModel();
+    helpers.api.document.gnerc.update(vm.get('document').id, {
+            params: { mediate: value },
+            success: function() {
+              helpers.api.document.gnerc.resetSms(vm.get('document').id, vm.get('status'),{
+                success: function(){
+                    vm.getStore('smses').load();
+                }
+              });
+            }.bind(this),
+            failure: function() {
+              console.log('failed to save gnerc');
+            }
+    });  
+
   },
 
   updateGnerc: function(args){
@@ -115,6 +130,10 @@ Ext.define('Tel100.view.document.gnerc.PanelViewController', {
         view.up().down('documentfilepanel').refresh();
       }
     });
+  },
+
+  onSmsSelectionComplete: function(data){
+    debugger;
   }
 
 });

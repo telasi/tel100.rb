@@ -44,6 +44,10 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
     beforerender: {
       fn: 'onBeforeRender',
       scope: 'controller'
+    },
+    smsselectioncomlete: {
+      fn: 'onSmsSelectionComplete',
+      scope: 'controller'
     }
   },
 
@@ -238,7 +242,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
               hidable: false
             }, {
                   xtype: 'checkcolumn',
-                  width: 30,
+                  width: 25,
                   dataIndex: 'active',
                   bind: {
                     hidden: '{!smsEditable}'
@@ -253,7 +257,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                   }
             },{
                   xtype: 'actioncolumn',
-                  width: 30,
+                  width: 23,
                   bind: {
                     hidden: '{!smsEditable}'
                   },
@@ -280,6 +284,33 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                           scope: me,
                           value: item.get('text')
                       });
+                    }
+                  }]
+            },{
+                  xtype: 'actioncolumn',
+                  width: 23,
+                  bind: {
+                    hidden: '{!smsEditable}'
+                  },
+                  items: [{
+                    icon: '/images/drawer.png',
+                    handler: function(grid, rowIndex, colIndex){
+                      var smsid = grid.getStore().getAt(rowIndex).id;
+                      var me = this;
+
+                      var smsselector = Ext.create('Tel100.view.document.gnerc.SmsSelector', function(data){
+                      });
+
+                      smsselector.getViewModel().set('id', smsid);
+                      smsselector.on('smsselectioncomplete', function(data){
+                        helpers.api.document.gnerc.updateSms(smsid, { params: { text: data },
+                          success: function(){
+                            this.up('documentgnercpanel').refresh();                         
+                          }.bind(grid)
+                        });
+                        
+                      });
+                      smsselector.show();
                     }
                   }]
             }]
