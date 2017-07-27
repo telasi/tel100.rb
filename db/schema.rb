@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713104610) do
+ActiveRecord::Schema.define(version: 20170727070003) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -185,13 +185,13 @@ ActiveRecord::Schema.define(version: 20170713104610) do
   add_index "document_response_types", ["role", "direction", "ordering"], name: "docresptype_role_dirct_idx"
 
   create_table "document_sms", force: true do |t|
-    t.integer   "base_id",    limit: 10, precision: 10, scale: 0, null: false
-    t.integer   "user_id",    limit: 10, precision: 10, scale: 0, null: false
-    t.string    "text",                                           null: false
-    t.timestamp "created_at", limit: 6,                           null: false
-    t.integer   "answer_id",  limit: 10, precision: 10, scale: 0
+    t.integer   "base_id",    limit: 10,  precision: 10, scale: 0, null: false
+    t.integer   "user_id",    limit: 10,  precision: 10, scale: 0, null: false
+    t.string    "text",       limit: 500,                          null: false
+    t.timestamp "created_at", limit: 6,                            null: false
+    t.integer   "answer_id",  limit: 10,  precision: 10, scale: 0
     t.timestamp "sent_at",    limit: 6
-    t.boolean   "active",                precision: 1,  scale: 0
+    t.boolean   "active",                 precision: 1,  scale: 0
     t.string    "phone",      limit: 10
   end
 
