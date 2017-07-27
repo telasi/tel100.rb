@@ -20,7 +20,9 @@ var config = {
       
       menubar: false,
       statusbar: false,
-      toolbar_items_size: 'small'
+      toolbar_items_size: 'small',
+
+      invalid_elements: 'div,container'
 };
 
 var getConfig = function(){
