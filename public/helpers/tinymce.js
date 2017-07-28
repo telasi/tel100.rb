@@ -22,7 +22,7 @@ var config = {
       statusbar: false,
       toolbar_items_size: 'small',
 
-      invalid_elements: 'div,container'
+      invalid_elements: 'container'
 };
 
 var getConfig = function(){
