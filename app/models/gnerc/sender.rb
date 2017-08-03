@@ -95,11 +95,14 @@ module Gnerc::Sender
     end
 
 	def self.answer(doc)
+      return unless doc.gnerc.present?
       file = doc.gnerc.file if doc.gnerc.present?
-      return unless file.present?
+      # return unless file.present?
 
-      content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
-      content = Base64.encode64(content)
+      if file.present?
+        content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
+        content = Base64.encode64(content)
+      end
 
       # reply = false
 
@@ -111,10 +114,9 @@ module Gnerc::Sender
       sourcedocs.each do |source|
         related = Document::Base.find(source.related_id)
         if GNERC_TYPES.include?(related.type_id) && related.direction == 'in'
-          parameters = { docid: related.id,
-                         "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content,
-                         "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2_filename".to_sym => file.original_name }
-
+          parameters = { docid: related.id }
+          parameters.merge!({ "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content,
+                              "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2_filename".to_sym => file.original_name }) if content.present?
           parameters.merge!({ company_answer: smsrecord.text,
                               phone:          smsrecord.phone, 
                               affirmative:    doc.gnerc.status }) if smsrecord.present?

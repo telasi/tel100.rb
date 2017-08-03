@@ -177,7 +177,19 @@ class Document::Base < ActiveRecord::Base
         raise I18n.t('models.document_base.errors.no_gnerc_original') unless reply.present?
       end
 
-      raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
+      #check if reply and file present or sms
+      if self.is_reply?
+
+        if self.gnerc.status == 0
+          raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
+        else
+          sms = Document::Sms.where(answer: self, active: 1).first
+          raise I18n.t('models.document_base.errors.no_file_or_sms') if ( self.gnerc.file.blank? and sms.blank? )
+        end
+        
+      else # not reply
+        raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
+      end
 
       if self.is_reply? and self.author_motions.blank?
         raise I18n.t('models.document_base.errors.no_author')
