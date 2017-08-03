@@ -186,7 +186,7 @@ class Document::Base < ActiveRecord::Base
           sms = Document::Sms.where(answer: self, active: 1).first
           raise I18n.t('models.document_base.errors.no_file_or_sms') if ( self.gnerc.file.blank? and sms.blank? )
         end
-        
+
       else # not reply
         raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
       end
@@ -616,6 +616,7 @@ class Document::Base < ActiveRecord::Base
             created_at: Time.now, sent_at: Time.now, received_at: Time.now}
       Document::Motion.create!(motionparams)
 
+      Document::Gnerc.create!(newdoc) if ( GNERC_TYPES.include?(self.type_id) and direction == Document::Direction::OUT )
       Document::Sms.reset_sms!(newdoc, '1', user) if ( GNERC_TYPES.include?(self.type_id) and direction == Document::Direction::OUT )
 
       return newdoc

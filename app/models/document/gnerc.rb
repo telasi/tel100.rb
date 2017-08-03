@@ -27,6 +27,10 @@ class Document::Gnerc < ActiveRecord::Base
     FileUtils.rm(self.full_path)
   end
 
+  def self.create!(doc)
+    Document::Gnerc.new(document: doc, status: 1).save
+  end
+
   def self.update_gnerc(params)
     document = Document::Base.find(params[:id])
     gnerc = Document::Gnerc.where(document: document).first || Document::Gnerc.new(document: document, status: 1)
