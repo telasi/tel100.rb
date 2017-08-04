@@ -117,6 +117,9 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     hideStatus: function(get){
       return get('editable') || !get('document.is_reply');
     },
+    hideMediate: function(get){
+      return ( get('document.type_id') === 15 || !get('document.is_reply') );
+    },
     comboHidden: function(get){
       return !get('document.type_id') === 13 ;
     },

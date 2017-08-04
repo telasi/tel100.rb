@@ -206,7 +206,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                 fieldLabel: '{i18n.document.base.mediate}',
                 readOnly: '{!smsEditable}',
                 value: '{mediate}',
-                hidden: '{!isReply}'
+                hidden: '{hideMediate}'
               },
               listeners: {
                   change: {
