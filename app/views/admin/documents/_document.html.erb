@@ -4,7 +4,7 @@
 </h3>
 <div class="row">
   <div class="col-sm-11">
-    <div class="well"><%= document.body.html_safe %></div>
+    <div class="well"><%= document.body.html_safe if document.body.present? %></div>
   </div>
   <div class="col-sm-1">
   	<%= link_to '<i class="fa fa-pencil"></i>'.html_safe, "#", 
