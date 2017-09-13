@@ -36,7 +36,8 @@ class Document::Base < ActiveRecord::Base
   end
 
   def is_editable?(user); 
-    #return false if ( self.status == COMPLETED || self.status == CANCELED)
+    # return false if ( self.status == COMPLETED || self.status == CANCELED)
+    return false if self.status == CANCELED
     return false if ( self.author_motions.where(status: COMPLETED).any? && ( author?(user) || sender?(user)) )
     return false if ( self.sender_motions.where('status IN (?)', [COMPLETED, CANCELED]).any? && sender?(user) )
     
