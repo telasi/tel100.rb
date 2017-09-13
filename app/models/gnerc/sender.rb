@@ -130,7 +130,7 @@ module Gnerc::Sender
 
           parameters.merge!({ mediate: 1 }) if ( doc.type_id != GNERC_TYPE6 and doc.gnerc.mediate == 1 )
 
-          GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
+          GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[related.type_id], parameters)
         end
       end
 
