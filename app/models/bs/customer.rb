@@ -10,7 +10,7 @@ class BS::Customer < ActiveRecord::Base
   end
 
   def abonent_type
-  	return 1 if [1, 7, 1111, 1112, 1113].include?(self.custcatkey)
+  	return 1 if [1, 7, 1111, 1112, 1113, 1120].include?(self.custcatkey)
   	return 2
   end
 end
