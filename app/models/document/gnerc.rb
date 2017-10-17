@@ -35,6 +35,7 @@ class Document::Gnerc < ActiveRecord::Base
     document = Document::Base.find(params[:id])
     gnerc = Document::Gnerc.where(document: document).first || Document::Gnerc.new(document: document, status: 1)
     gnerc.update_attributes!(params.permit(:type_id, :status, :mediate))
+    gnerc.update_attributes!(type_id: nil) unless document.type_id == GNERC_TYPE4
     gnerc.save!
   end
 
