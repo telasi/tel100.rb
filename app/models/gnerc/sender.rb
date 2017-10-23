@@ -2,21 +2,21 @@
 module Gnerc::Sender
 	
  def self.appeal(doc)
-      motion = doc.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
+      motion = doc.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
       if motion.present?
-        customer = motion.receiver 
+        customer = motion.receiver.customer 
+        phone = motion.receiver.phones
+      end
+      customer = BS::Customer.where(accnumb: "#{customer}").first
+      if customer.present? and phone.nil? 
         phone = customer.fax
       end
       if motion.blank?
-        motion = doc.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
+        motion = doc.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
         if motion.present?
-          customer = motion.receiver.customer 
-          phone = motion.receiver.phones
-        end
-        customer = BS::Customer.where(accnumb: "#{customer}").first
-        if customer.present? and phone.nil? 
+          customer = motion.receiver 
           phone = customer.fax
-        end
+        end  
       end
 
       return unless motion.present?
