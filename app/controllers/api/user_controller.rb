@@ -3,7 +3,7 @@ require 'sys/user'
 class Api::UserController < ApiController
   def login
     @user = Sys::User.authenticate(params[:userID], params[:password])
-    if @user.blank?
+    if @user.blank? or not @user.active?
       render json: { success: false, message: I18n.t('controllers.user.errors.illegal_username_and_password') }
     end
   end
