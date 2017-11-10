@@ -497,8 +497,6 @@ class Document::Base < ActiveRecord::Base
             send_type_id:   m["send_type_id"],
             due_date:       m["due_date"]
           }
-          motion = Document::Motion.create_draft!(user, motion_params)
-          motion.send_draft!(user)
 
           if m["receiver_role"] == 'author'
 
@@ -507,6 +505,9 @@ class Document::Base < ActiveRecord::Base
             self.owner_user = receiver_user
             self.save!
           end
+
+          motion = Document::Motion.create_draft!(user, motion_params)
+          motion.send_draft!(user)
         end
 
         should_reset_signees = true if m["receiver_role"] == 'assignee'
