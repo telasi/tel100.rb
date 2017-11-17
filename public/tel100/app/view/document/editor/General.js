@@ -103,7 +103,7 @@ Ext.define('Tel100.view.document.editor.General', {
   }, {
     xtype: 'fieldset',
     bind: {
-      hidden: '{!isIncoming}',
+      hidden: '{!originalNumberShown}',
       title: '{i18n.document.base.in_fields}'
     },
     items: [{
@@ -218,6 +218,10 @@ Ext.define('Tel100.view.document.editor.GeneralViewModel', {
   formulas: {
     isIncoming: function(get) {
       return get('document.direction') === 'in';
+    },
+
+    originalNumberShown: function(get) {
+      return ( get('document.direction') === 'in' || get('document.type_id') === 4 );
     },
 
     readonlyForDate: function(get) {
