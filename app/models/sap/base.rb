@@ -13,6 +13,7 @@ module Sap::Base
 
   	def current
   		@@date ||= DateTime.now
-  		self.where('begin_date <= :date and end_date >= :date', date: @@date); end
+      date_no_offset = @@date.change(:offset => "+0000")
+  		self.where('begin_date <= :date and end_date >= :date', date: date_no_offset); end
   	end
 end
