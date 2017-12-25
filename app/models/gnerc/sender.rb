@@ -87,7 +87,11 @@ module Gnerc::Sender
       phone = nil if phone and phone[0..2].upcase == 'OFF'
 
       if phone.present?
+        File.write('sms_phones', "#{doc.docnumber} - #{phone} start")
         Document::Sms.first_sms!(doc, phone)
+        File.write('sms_phones', "#{doc.docnumber} - #{phone} end")
+      else
+        File.write('sms_phones', "#{doc.docnumber} - no phone")
       end
 
       GnercWorker.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
