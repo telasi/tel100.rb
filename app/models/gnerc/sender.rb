@@ -87,11 +87,11 @@ module Gnerc::Sender
       phone = nil if phone and phone[0..2].upcase == 'OFF'
 
       if phone.present?
-        open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} start" }
+        open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} start\n" }
         Document::Sms.first_sms!(doc, phone)
-        open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} end" }
+        open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} end\n" }
       else
-        open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - no phone" }
+        open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - no phone\n" }
       end
 
       GnercWorker.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
