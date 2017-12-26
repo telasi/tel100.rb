@@ -19,4 +19,11 @@ class Admin::BaseController < AdminController
     session[:user_id] = nil
     redirect_to admin_login_url
   end
+
+  def restart 
+    Dir.chdir './tmp' do
+     system 'touch restart.txt'
+    end
+    redirect_to admin_home_url
+  end
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get '/', controller: 'base', action: 'index', as: 'home'
     match '/login', controller: 'base', action: 'login', as: 'login', via: ['get', 'post']
     get '/logout', controller: 'base', action: 'logout', as: 'logout'
+    get '/restart', controller: 'base', action: 'restart', as: 'restart'
 
     scope 'hr', controller: 'hr' do
       scope 'employees' do
@@ -68,7 +69,9 @@ Rails.application.routes.draw do
   namespace 'api' do
     scope 'user', controller: 'user' do
       post '/login', action: 'login'
+      get '/settings', action: 'settings'
       put '/update', action: 'update'
+      put '/update_settings', action: 'update_settings'
       put '/change_password', action: 'change_password'
       get '/related', action: 'related'
     end
@@ -225,6 +228,7 @@ Rails.application.routes.draw do
     match '/gnerc_report', controller: 'reporting', action: 'gnerc_report', as: 'gnerc_report', via: ['get', 'post']
     match '/rus_doc_attach', controller: 'reporting', action: 'rus_doc_attach', as: 'rus_doc_attach', via: ['get', 'post']
     match '/attached_docs', controller: 'reporting', action: 'attached_docs', as: 'attached_docs', via: ['get', 'post']
+    match '/doc_attach', controller: 'reporting', action: 'doc_attach', as: 'doc_attach', via: ['get', 'post']
   end
 
   root controller: 'site', action: 'index'
