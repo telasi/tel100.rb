@@ -59,7 +59,7 @@ class Document::Base < ActiveRecord::Base
     # "#{date.strftime('%m%d')}/#{last_number.rjust(3,'0')}"
     key = "#{date.strftime('%y%m%d')}"
     next_number = $redis.incr(key)
-    "#{date.strftime('%m%d')}/#{next_number.to_s.rjust(3,'0')}"
+    "#{date.strftime('%m%d')}/#{next_number.to_s.rjust(3,'0')}/#{date.strftime('%y')}"
   end
 
   def self.create_draft!(sender_user)
