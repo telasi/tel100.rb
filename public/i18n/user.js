@@ -29,6 +29,16 @@ module.exports = {
     ru: 'Email'
   },
 
+  notif_mail: {
+    ka: 'შეტყობინების მიღება Email-ით',
+    ru: 'Получить уведомление по Email'
+  },
+
+  notif_sms: {
+    ka: 'შეტყობინების მიღება SMS-ით',
+    ru: 'Получить уведомление по SMS'
+  },
+
   ui: {
     login_title: {
       ka: '<i class="fa fa-user"></i> სისტემაში შესვლა',

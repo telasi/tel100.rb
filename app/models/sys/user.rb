@@ -10,6 +10,7 @@ class Sys::User < ActiveRecord::Base
   has_many :documents, class_name: 'Document::User', foreign_key: 'user_id'
   has_many :relations, class_name: 'Sys::UserRelation', foreign_key: 'user_id'
   has_many :related_on, class_name: 'Sys::UserRelation', foreign_key: 'related_id'
+  has_one :settings, class_name: 'Sys::UserSetting', foreign_key: 'user_id'
 
   validates :username, uniqueness: { message: 'ეს მომხმარებელის სახელი დაკავებულია' }
   validates :username, presence: { message: 'ჩაწერეთ მოხმარებლის სახელი' }
@@ -19,6 +20,10 @@ class Sys::User < ActiveRecord::Base
 
   before_create :on_before_create
   before_save :on_before_save
+
+  def settings
+    super || Sys::UserSetting.upsert!(self)
+  end
 
   def need_refresh?; self.need_refresh == 1 end
   def notify!; self.update_columns(need_refresh: 1) end

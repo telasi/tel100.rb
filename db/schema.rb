@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727070003) do
+ActiveRecord::Schema.define(version: 20171130103402) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -579,6 +579,11 @@ ActiveRecord::Schema.define(version: 20170727070003) do
     t.integer   "role_id",    limit: 10, precision: 10, scale: 0
     t.timestamp "created_at", limit: 6,                           null: false
     t.timestamp "updated_at", limit: 6,                           null: false
+  end
+
+  create_table "user_settings", primary_key: "user_id", force: true do |t|
+    t.boolean "notif_mail", precision: 1, scale: 0, default: false, null: false
+    t.boolean "notif_sms",  precision: 1, scale: 0, default: false, null: false
   end
 
   create_table "users", force: true do |t|

@@ -119,6 +119,27 @@ class Document::User < ActiveRecord::Base
     Document::User.join(:document).where("document_base.docdate >= sysdate")
   end
 
+  def self.notifications
+    dus = Document::User.where(as_signee: Document::Status::DOC_CURRENT, has_due_date: 1)
+                        .where('current_due_date <= ?', Time.now)
+                        .joins(:document)
+                        .where('document_base.type_id = ? and status not in (?)', DOCUMENT_TYPE_PROTOCOL, [3, -3] )
+                        .select(:document_id, :user_id).distinct
+    dus.each do |du|
+      settings = Sys::UserSettings.where(user: du.user).first
+      send_mail = settings.blank? || ( settings.present? && settings.notif_mail == 1 )
+      send_sms  = settings.blank? || ( settings.present? && settings.notif_sms  == 1 )
+
+      if send_mail and current_user.email.present?
+        Sys::Sendmail.send(to: current_user.email, subject: "Use should response on document # #{dus.document.docnumber} until #{dus.current_due_date.to_date.to_s}")
+      end
+
+      if send_sms and current_user.mobile.present?
+        Sys::SentMessage.send_sms(current_user.mobile, "Use should response on document # #{dus.document.docnumber} until #{dus.current_due_date.to_date.to_s}")
+      end
+    end
+  end
+
   protected
 
   def calc_rel

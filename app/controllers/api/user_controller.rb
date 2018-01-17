@@ -12,9 +12,14 @@ class Api::UserController < ApiController
     @relations = current_user.relations.where('role NOT IN (?)', Sys::UserRelation::REL_AUTO_ASSIGNEE)
   end
 
+  def settings
+    @settings = current_user.settings
+  end
+
   def update
     @user = current_user
-    if @user.update_attributes(params.permit(:username, :mobile, :phone, :email))
+    if @user.update_attributes(params.permit(:username, :mobile, :phone, :email)) &&
+       @user.settings.update_attributes!(params.permit(:notif_mail, :notif_sms))
       render action: 'login'
     else
       render json: { success: false, message: @user.errros.full_messages.to_s }
