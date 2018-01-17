@@ -1,0 +1,85 @@
+<% if @document.present? %>
+  <h3 class="page-header">დოკუმენტი <code><%= @document.docnumber %></code></h3>
+  <h4><strong><%= @document.subject %></strong></h4>
+  <hr>
+
+  <h4>ფაილები</h4>
+		<% if @document.files.any? %>
+		    <table class="table table-bordered">
+		    <% @document.files.each do |file| %>
+		      <tr><td>
+		          <code><%= link_to file.original_name, api_documents_download_url(id: file.id) %></code>
+		      </td></tr>
+		    <% end %>
+		  </table>
+		<% end %>
+  <%= link_to '<i class="fa fa-plus"></i>'.html_safe,
+            "#",
+            data: { document_id: @document.id,
+                    toggle: 'modal',
+                    target: '#addFileDialog'
+                  },
+            class: 'text-danger addbutton btn btn-primary' %>
+
+  <br>
+  <br>
+
+  <%= link_to 'სხვა დოკუმენტი', reporting_doc_attach_url, class: 'btn btn-info', role: 'button' %>
+
+  <!-- Modal -->
+	<div id="addFileDialog" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">აირჩიეთ ფაილი</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+	              <label class="control-label">Select File</label>
+	              <input id="fileinput" name="file" type="file" class="file">
+	          <!-- <input type="file" name="file"> -->
+	          <br>
+	          <input type="hidden" name="document_id" id="document_id" value="" />
+	          <div class="form-group">
+	            <div class="col-sm-10">
+	              <button type="submit" class="btn btn-primary">ატვირთვა</button>
+	                            <button type="button" class="btn btn-default" data-dismiss="modal">გაუქმება</button>
+	            </div>
+	            <div class="col-sm-offset-2 col-sm-10">
+
+	            </div>
+	          </div>
+
+	          <%= hidden_field_tag 'api_username', params[:api_username] %>
+	          <%= hidden_field_tag 'api_password', params[:api_password] %>
+	          <%= hidden_field_tag 'api_locale', params[:api_locale] %>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+<script>
+$(function () {
+    $(".addbutton").click(function () {
+        var my_id_value = $(this).data('id');
+        $(".modal-body #document_id").val(my_id_value);
+    })
+});
+</script>
+
+<% else %>
+  <h1 class="page-header">დოკუმენტის ძებნა</h1>
+  <form method="GET">
+    <input type="text" name="docnumber" placeholder="დოკუმენტის ნომერი" value="<%= params[:docnumber] %>">
+    <input type="text" name="docyear" placeholder="წელი" value="<%= params[:docyear] %>">
+    <input type="submit" value="ძებნა">
+  </form>
+<% end %>

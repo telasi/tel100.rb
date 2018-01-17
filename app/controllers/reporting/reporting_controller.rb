@@ -85,6 +85,17 @@ class Reporting::ReportingController < ApiController
         #@rel = @rel.paginate(per_page: params[:limit], page: params[:page])
     end
 
+    def doc_attach
+      if params[:docyear].present? and params[:docnumber].present?
+        @document = Document::Base.where(docyear: params[:docyear], docnumber: params[:docnumber]).first
+      end
+      if request.post?
+        if params[:file].present?
+          Document::File.upload(params) 
+        end
+      end
+    end
+
     private 
 
     def set_user
