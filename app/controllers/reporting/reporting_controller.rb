@@ -92,7 +92,10 @@ class Reporting::ReportingController < ApiController
       if request.post?
         if params[:file].present?
           Document::File.upload(params) 
+          @document = Document::Base.find(params[:document_id])
         end
+
+        redirect_to reporting_doc_attach_url, docyear: @document.docyear, docnumber: @document.docnumber
       end
     end
 
