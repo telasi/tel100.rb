@@ -221,7 +221,7 @@ Ext.define('Tel100.view.document.editor.GeneralViewModel', {
     },
 
     originalNumberShown: function(get) {
-      return ( get('document.direction') === 'in' || get('document.type_id') === 4 );
+      return ( get('document.direction') === 'in' || get('document.type_id') === 4 || get('document.type_id') === 18 );
     },
 
     readonlyForDate: function(get) {
