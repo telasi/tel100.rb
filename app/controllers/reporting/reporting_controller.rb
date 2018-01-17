@@ -95,7 +95,7 @@ class Reporting::ReportingController < ApiController
           @document = Document::Base.find(params[:document_id])
         end
 
-        redirect_to reporting_doc_attach_url, docyear: @document.docyear, docnumber: @document.docnumber
+        redirect_to reporting_doc_attach_url(docyear: @document.docyear, docnumber: @document.docnumber)
       end
     end
 
