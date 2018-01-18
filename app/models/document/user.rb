@@ -120,8 +120,8 @@ class Document::User < ActiveRecord::Base
   end
 
   def self.notifications
-    dus = Document::User.where(as_signee: Document::Status::DOC_CURRENT, has_due_date: 1)
-                        .where('current_due_date <= ?', Time.now)
+    dus = Document::User.where(as_assignee: Document::Status::DOC_CURRENT, has_due_date: 1)
+                        .where('current_due_date < ?', Time.now + 2.working.days)
                         .joins(:document)
                         .where('document_base.type_id = ? and status not in (?)', DOCUMENT_TYPE_PROTOCOL, [3, -3] )
                         .select(:document_id, :user_id).distinct
