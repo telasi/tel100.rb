@@ -269,6 +269,8 @@ Ext.define('Tel100.view.document.editor.CreatorViewController', {
       vm.set('hasBody', document.get('body'));
     }
 
+    helpers.document.type.setDocumentDefaults(document);
+
     // save changes
     if (document.dirty) {
       vm.set('isSaving', true);
