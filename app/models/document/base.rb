@@ -71,6 +71,7 @@ class Document::Base < ActiveRecord::Base
       direction: INNER, status: DRAFT,
       #type: Document::Type.order('order_by').first 
     }
+
     Document::Base.transaction do
       doc = Document::Base.create!(docparams)
       motionparams = { document_id: doc.id, is_new: 0, ordering: 0,
@@ -152,14 +153,9 @@ class Document::Base < ActiveRecord::Base
           customer = motion.receiver.customer 
           customer = BS::Customer.where(accnumb: "#{customer}").first
           raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if customer.blank?
-
-          #raise Sys::MyException.new(I18n.t('models.document_base.errors.no_phone'), { error_code: 1, party_id: motion.receiver.id }) unless HR::Party.correct_mobile?(motion.receiver.phones)
-        #else
-        #  motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
-        #  if motion.present?
-        #    customer = motion.receiver 
-        #    raise I18n.t('models.document_base.errors.no_phone_in_bs') if customer.fax.nil?
-        #  end
+        else
+          motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
+          raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if motion.blank?
         end
       end
 
