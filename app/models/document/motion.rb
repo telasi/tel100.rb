@@ -259,6 +259,11 @@ class Document::Motion < ActiveRecord::Base
       end
     end
 
+    # dont let complete motion if type is protocol (19) and text is blank
+    if doc.type_id == DOCUMENT_TYPE_PROTOCOL and params[:text].blank?
+      raise 'you should enter comment'
+    end
+
     # S1: create comment
     text = params[:text] if params[:text].present?
     Document::Comment.create!(document: doc, motion: self,
