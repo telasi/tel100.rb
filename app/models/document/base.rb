@@ -184,6 +184,10 @@ class Document::Base < ActiveRecord::Base
           raise I18n.t('models.document_base.errors.no_file_or_sms') if ( self.gnerc.file.blank? and sms.blank? )
         end
 
+        if self.gnerc.mediate == 1
+          raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
+        end
+
       else # not reply
         raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
       end
