@@ -296,7 +296,7 @@ class Document::Motion < ActiveRecord::Base
     else
       notifyuser = self.receiver_user
     end
-    notify_du = Document::User.where(document: document, user: notifyuser).first
+    notify_du = Document::User.where(document: doc, user: notifyuser).first
     notify_du.update_attributes!(is_changed: 1)
 
     if is_receiver
