@@ -87,7 +87,7 @@ class Reporting::ReportingController < ApiController
 
     def doc_attach
       if params[:docyear].present? and params[:docnumber].present?
-        @document = Document::Base.where(docyear: params[:docyear], docnumber: params[:docnumber]).first
+        @document = Document::Base.where(docyear: params[:docyear].strip, docnumber: params[:docnumber].strip).first
       end
       if request.post?
         if params[:file].present?
