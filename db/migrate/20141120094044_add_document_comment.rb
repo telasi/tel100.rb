@@ -11,7 +11,7 @@ class AddDocumentComment < ActiveRecord::Migration
         STATUS         number(1,0) not null,
         OLD_STATUS     number(1,0) not null,
         ROLE           varchar2(10 CHAR) not null,
-        TEXT           varchar2(1000 CHAR),
+        TEXT           varchar2(2000 CHAR),
         CREATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         UPDATED_AT   TIMESTAMP WITH TIME ZONE default SYSTIMESTAMP not null,
         constraint DOCCOMMENT_PRIMARYKEY primary key ( ID ) enable

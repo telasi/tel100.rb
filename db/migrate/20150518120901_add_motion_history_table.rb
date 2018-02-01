@@ -12,14 +12,14 @@ class AddMotionHistoryTable < ActiveRecord::Migration
         ORDERING    number(3) default 999 not null,
         ---------
         SEND_TYPE_ID   number(5, 0),
-        MOTION_TEXT    varchar2(1000 CHAR),
+        MOTION_TEXT    varchar2(2000 CHAR),
         SENDER_USER_ID number(10, 0),
         ACTUAL_SENDER_ID number(10,0),
         SENDER_ID      number(10, 0),
         SENDER_TYPE    varchar2(50 CHAR),
         ---------
         RESP_TYPE_ID     number(5, 0),
-        RESPONSE_TEXT    varchar2(1000 CHAR),
+        RESPONSE_TEXT    varchar2(2000 CHAR),
         RECEIVER_USER_ID number(10, 0),
         LAST_RECEIVER_ID number(10,0),
         RECEIVER_ID      number(10, 0),
