@@ -239,7 +239,7 @@ class Api::Documents::BaseController < ApiController
             @my_docs = @my_docs.where("exists (select document_id from document_motion where exists ( 
               select id from 
                 ( select 'HR::Party' as class, id, TO_NCHAR(name_ka) from party_base
-                       where name_ka || name_ru || name_en like N'#{search_string.likefy}'
+                       where name_ka || name_ru || name_en like N%'#{search_string}%'
                     ) b where b.class = document_motion.receiver_type and b.id = document_motion.receiver_id
                           and receiver_role = '#{role}'
                           and document_id = document_user.document_id ))
