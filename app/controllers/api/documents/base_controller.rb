@@ -227,7 +227,7 @@ class Api::Documents::BaseController < ApiController
       search_string = search_string.strip
       if search_string.size > 2
         employee_ids = HR::Employee.where('first_name_ka IN (:name) OR first_name_ru IN (:name) OR last_name_ka IN (:name) OR last_name_ru IN (:name)', name: search_string.split(' ')).map{ |e| e.id }
-        party_ids = HR::Party.where('name_ka IN (:name) OR name_ru IN (:name) OR name_en IN (:name)', name: search_string.split(' ')).map{ |p| p.id }
+        party_ids = HR::Party.where("name_ka || name_ru ||name_en like N'%#{search_string}'").map{ |p| p.id }
 
         if ( employee_ids.none? and party_ids.none? )
           @my_docs = @my_docs.none
