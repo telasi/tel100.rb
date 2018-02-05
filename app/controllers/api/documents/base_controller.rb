@@ -235,14 +235,16 @@ class Api::Documents::BaseController < ApiController
           @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Employee' AND receiver_role = ?)", employee_ids, role) if employee_ids.any?
 
           # @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", party_ids, role) if party_ids.any?
-          @my_docs = @my_docs.where("exists (select document_id from document_motion where exists ( 
-            select id from 
-              ( select 'HR::Party' as class, id, TO_NCHAR(name_ka) from party_base
-                     where name_ka || name_ru || name_en like N'#{search_string.likefy}'
-                  ) b where b.class = document_motion.receiver_type and b.id = document_motion.receiver_id
-                        and receiver_role = '#{role}'
-                        and document_id = document_user.document_id ))
-                            ");
+          if party_ids.any?
+            @my_docs = @my_docs.where("exists (select document_id from document_motion where exists ( 
+              select id from 
+                ( select 'HR::Party' as class, id, TO_NCHAR(name_ka) from party_base
+                       where name_ka || name_ru || name_en like N'#{search_string.likefy}'
+                    ) b where b.class = document_motion.receiver_type and b.id = document_motion.receiver_id
+                          and receiver_role = '#{role}'
+                          and document_id = document_user.document_id ))
+                              ") 
+          end
 
           # party_ids.each_slice(1000) do |x|
           #   @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", x, role)
