@@ -7,8 +7,8 @@ class Api::Documents::BaseController < ApiController
     @total   = @my_docs.count
     @my_docs = @my_docs.offset(params["start"]) if params["start"]
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
-    @my_docs = @my_docs.order('receive_date DESC, document_id DESC')
-  end
+      @my_docs = @my_docs.order('receive_date DESC, document_id DESC')
+    end
 
   def search
     director = false
@@ -88,12 +88,12 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.offset(params["start"]) if params["start"]
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
 
-    if director == true
-      @my_docs = @my_docs.order('document_base.docnumber')
-    else
-      @my_docs = @my_docs.order('document_user.receive_date DESC, document_user.document_id DESC')
+      if director == true
+        @my_docs = @my_docs.order('document_base.docnumber')
+      else
+        @my_docs = @my_docs.order('document_user.receive_date DESC, document_user.document_id DESC')
+      end
     end
-  end
 
   def doc_list(pdocs, folderType, show_completed = 0, folderId)
     pdocs = Document::User.mydocs(effective_user) unless pdocs
@@ -233,7 +233,20 @@ class Api::Documents::BaseController < ApiController
           @my_docs = @my_docs.none
         else
           @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Employee' AND receiver_role = ?)", employee_ids, role) if employee_ids.any?
-          @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", party_ids, role) if party_ids.any?
+
+          # @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", party_ids, role) if party_ids.any?
+          @my_docs = @my_docs.where("exists (select document_id from document_motion where exists ( 
+            select id from 
+              ( select 'HR::Party' as class, id, TO_NCHAR(name_ka) from party_base
+                     where name_ka || name_ru || name_en like N'#{search_string.likefy}'
+                  ) b where b.class = document_motion.receiver_type and b.id = document_motion.receiver_id
+                        and receiver_role = '#{role}'
+                        and document_id = document_user.document_id ))
+                            ");
+
+          # party_ids.each_slice(1000) do |x|
+          #   @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", x, role)
+          # end
         end
 
       end
