@@ -226,30 +226,33 @@ class Api::Documents::BaseController < ApiController
     if search_string.present?
       search_string = search_string.strip
       if search_string.size > 2
-        employee_ids = HR::Employee.where('first_name_ka IN (:name) OR first_name_ru IN (:name) OR last_name_ka IN (:name) OR last_name_ru IN (:name)', name: search_string.split(' ')).map{ |e| e.id }
-        party_ids = HR::Party.where("name_ka || name_ru ||name_en like N'%#{search_string}'").map{ |p| p.id }
+        #employee_ids = HR::Employee.where('first_name_ka IN (:name) OR first_name_ru IN (:name) OR last_name_ka IN (:name) OR last_name_ru IN (:name)', name: search_string.split(' ')).map{ |e| e.id }
+        #party_ids = HR::Party.where("name_ka || name_ru ||name_en like N'%#{search_string}'").map{ |p| p.id }
 
-        if ( employee_ids.none? and party_ids.none? )
-          @my_docs = @my_docs.none
-        else
-          @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Employee' AND receiver_role = ?)", employee_ids, role) if employee_ids.any?
+        #if ( employee_ids.none? and party_ids.none? )
+        #  @my_docs = @my_docs.none
+        #else
+          #@my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Employee' AND receiver_role = ?)", employee_ids, role) if employee_ids.any?
 
           # @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", party_ids, role) if party_ids.any?
-          if party_ids.any?
+          #if party_ids.any?
             @my_docs = @my_docs.where("exists (select document_id from document_motion where exists ( 
               select id from 
-                ( select 'HR::Party' as class, id, TO_NCHAR(name_ka) from party_base
+                ( select 'HR::Employee' as class, id, TO_NCHAR(last_name_ka) as name  from hr_employees 
+                      where first_name_ka IN (:name) OR first_name_ru IN (:name) OR last_name_ka IN (:name) OR last_name_ru IN (:name)
+                  union 
+                  select 'HR::Party' as class, id, TO_NCHAR(name_ka) from party_base
                        where name_ka || name_ru || name_en like N'%#{search_string}%'
                     ) b where b.class = document_motion.receiver_type and b.id = document_motion.receiver_id
                           and receiver_role = '#{role}'
                           and document_id = document_user.document_id ))
-                              ") 
-          end
+                              ", name: search_string.split(' ')) 
+          #end
 
           # party_ids.each_slice(1000) do |x|
           #   @my_docs = @my_docs.where("id in (select document_id from document_motion where receiver_id IN (?) AND receiver_type = 'HR::Party' AND receiver_role = ?)", x, role)
           # end
-        end
+        #end
 
       end
     end
