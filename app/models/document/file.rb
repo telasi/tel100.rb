@@ -49,7 +49,7 @@ class Document::File < ActiveRecord::Base
   def self.create_file(file, document_id)
     document = Document::Base.find(document_id)
     storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
-    f = Document::File.new(document: document, original_name: file.original_filename, store_name: storename, created_at: Time.now)
+    f = Document::File.new(document: document, original_name: file.original_filename, store_name: storename, created_at: Time.now, folder: Time.now.strftime('%Y%m'))
     folder = File.join(FILES_REPOSITORY, Time.now.strftime('%Y%m'))
     FileUtils.mkdir_p(folder)
     FileUtils.cp(file.tempfile, f.full_path)
