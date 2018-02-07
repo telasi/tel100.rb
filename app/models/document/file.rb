@@ -2,6 +2,8 @@
 class Document::File < ActiveRecord::Base
   self.table_name  = 'document_file'
   self.sequence_name = 'docfiles_seq'
+  self.set_integer_columns :archived
+
   belongs_to :document, class_name: 'Document::Base'
 
   def self.upload(params)
@@ -32,7 +34,12 @@ class Document::File < ActiveRecord::Base
 
   def full_path
     #File.join(Rails.root, 'public', 'uploads', 'docfiles', self.store_name)
-    File.join(FILES_REPOSITORY, self.store_name)
+    if self.archived == 1
+      repository = FILES_ARCHIVED_REPOSITORY
+    else
+      repository = FILES_REPOSITORY
+    end
+    File.join(repository, self.folder || '', self.store_name)
   end
 
   def delete_file
@@ -43,7 +50,8 @@ class Document::File < ActiveRecord::Base
     document = Document::Base.find(document_id)
     storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
     f = Document::File.new(document: document, original_name: file.original_filename, store_name: storename, created_at: Time.now)
-    FileUtils.mkdir_p(FILES_REPOSITORY)
+    folder = File.join(FILES_REPOSITORY, self.folder || '')
+    FileUtils.mkdir_p(folder)
     FileUtils.cp(file.tempfile, f.full_path)
     f
   end
