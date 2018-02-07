@@ -25,7 +25,7 @@ module Gnerc::Sender
       file = doc.gnerc.file if doc.gnerc.present?
       return unless file.present?
 
-      content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
+      content = File.read(file.full_path)
       content = Base64.encode64(content)
 
       case doc.type_id
@@ -104,7 +104,7 @@ module Gnerc::Sender
       # return unless file.present?
 
       if file.present?
-        content = File.read("#{FILES_REPOSITORY}/#{file.store_name}")
+        content = File.read(file.full_path)
         content = Base64.encode64(content)
       end
 
