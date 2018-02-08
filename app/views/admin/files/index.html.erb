@@ -25,11 +25,15 @@
          <td><code><%= line["gfolder"] %></code></td>
          <td><%= line["archived"] %></td>
          <td><%= line["notarchived"] %></td>
-         <% if line["notarchived"] > 0 %>
-           <td><%= link_to "არქივაცია", admin_move_url(act: 'archive', folder: line["gfolder"]), class: "btn btn-primary" %></td>
+         <% if line["gfolder"] == @busyfolder %>
+         	<td><%= link_to "არქივაცია", admin_files_url, class: "btn btn-secondary" %></td>
          <% else %>
-           <td><%= link_to "დაბრუნება", admin_move_url(act: 'restore', folder: line["gfolder"]), class: "btn btn-success" %></td>
-         <% end %>
+	         <% if line["notarchived"] > 0 %>
+	           <td><%= link_to "არქივაცია", admin_move_url(act: 'archive', folder: line["gfolder"]), class: "btn btn-primary" %></td>
+	         <% else %>
+	           <td><%= link_to "დაბრუნება", admin_move_url(act: 'restore', folder: line["gfolder"]), class: "btn btn-success" %></td>
+	         <% end %>
+	    <% end %>
         </tr>
 	  <% end %>
 	</div>

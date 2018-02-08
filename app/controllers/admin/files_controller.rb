@@ -2,6 +2,16 @@
 class Admin::FilesController < AdminController
   def index
     @title = 'ფაილების მართვა'
+    
+    workers = Sidekiq::Workers.new
+    if workers.present?
+      workers.each do |process_id, thread_id, work|
+        if work["payload"]["class"] == 'FileMoveWorker'
+          @busyfolder = work["payload"]["args"][0]
+        end
+      end
+    end
+
     query = "select *
               from ( select to_char(created_at, 'YYYYMM') as gfolder, archived
                       from document_file f )
