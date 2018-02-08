@@ -438,7 +438,11 @@ class Document::Base < ActiveRecord::Base
       # Save new files
       Document::FileTemp.where(document: self).map do |f|
         if f.state == Document::Change::STATE_TEMP || f.state == Document::Change::STATE_CURRENT
-          newfile = Document::File.new(document: self, original_name: f.original_name, store_name: f.store_name)
+          folder_name = Time.now.strftime('%Y%m')
+          newfile = Document::File.new(document: self, original_name: f.original_name, store_name: f.store_name, folder: folder_name)
+          folder = File.join(FILES_REPOSITORY, folder_name)
+          FileUtils.mkdir_p(folder)
+          FileUtils.cp(f.full_path, newfile.full_path)
           newfile.save!
 
           if f.store_name == gnerc_store_name
