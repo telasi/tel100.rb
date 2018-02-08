@@ -63,9 +63,8 @@ class Document::File < ActiveRecord::Base
     archive_folder = File.join(FILES_ARCHIVED_REPOSITORY, self.folder || '')
     FileUtils.mkdir_p(archive_folder)
     FileUtils.move(old_path, new_path)
-  rescue
-  ensure
     save!
+  rescue
   end
 
   def restore
@@ -75,8 +74,7 @@ class Document::File < ActiveRecord::Base
     archive_folder = File.join(FILES_REPOSITORY, self.folder || '')
     FileUtils.mkdir_p(archive_folder)
     FileUtils.move(old_path, new_path)
-  rescue
-  ensure
     save!
+  rescue
   end
 end

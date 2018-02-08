@@ -31,7 +31,8 @@ class Admin::FilesController < AdminController
   end
 
   def move
-    Document::File.where("folder = :month", month: params[:folder]).map{ |f| f.send(params[:act]) }
+    #Document::File.where("folder = :month", month: params[:folder]).map{ |f| f.send(params[:act]) }
+    FileMoveWorker.perform_async(params[:folder], params[:act])
     redirect_to admin_files_url
   end
 
