@@ -450,7 +450,8 @@ class Document::Base < ActiveRecord::Base
             self.gnerc.save!
           end
         end
-        f.delete
+        f.delete_file
+        f.destroy
       end
       # motions
 

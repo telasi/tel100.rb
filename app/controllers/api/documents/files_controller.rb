@@ -59,6 +59,8 @@ class Api::Documents::FilesController < ApiController
 
       nf = Document::FileTemp.new(document_id: f.document_id, original_name: f.original_name, store_name: f.store_name,
                                   state: Document::Change::STATE_CURRENT, created_at: f.created_at)
+      FileUtils.mkdir_p(FILES_TEMP_REPOSITORY)
+      FileUtils.cp(f.full_path, nf.full_path)
       nf.save
     end
     render json: { success: true }
