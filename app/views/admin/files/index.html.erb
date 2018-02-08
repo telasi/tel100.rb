@@ -1,0 +1,37 @@
+<h1 class="page-header">
+  <%= @title %>
+</h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li class="active"><%= @title %></li>
+</ol>
+
+<div class="container table">
+  <div class="card">
+  	<div class="card-block">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ფოლდერი</th>
+        <th>არქივებული</th>
+        <th>არაა არქივებული</th>
+        <th>ქმედება</th>
+      </tr>
+    </thead>
+    <tbody>
+	  <% @array.each do |line| %>
+	    <tr>
+         <td><code><%= line["gfolder"] %></code></td>
+         <td><%= line["archived"] %></td>
+         <td><%= line["notarchived"] %></td>
+         <% if line["notarchived"] > 0 %>
+           <td><%= link_to "არქივაცია", admin_move_url(act: 'archive', folder: line["gfolder"]), class: "btn btn-primary" %></td>
+         <% else %>
+           <td><%= link_to "დაბრუნება", admin_move_url(act: 'restore', folder: line["gfolder"]), class: "btn btn-success" %></td>
+         <% end %>
+        </tr>
+	  <% end %>
+	</div>
+  </div>
+</div>

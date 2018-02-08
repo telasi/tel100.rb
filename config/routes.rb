@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     get '/logout', controller: 'base', action: 'logout', as: 'logout'
     get '/restart', controller: 'base', action: 'restart', as: 'restart'
 
+    scope 'files', controller: 'files' do
+      match '/', controller: 'files', action: 'index', as: 'files', via: ['get', 'post']
+      get '/move', controller: 'files', action: 'move', as: 'move'
+    end
+
     scope 'hr', controller: 'hr' do
       scope 'employees' do
         get '/', action: 'employees', as: 'employees'

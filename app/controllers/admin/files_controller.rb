@@ -30,6 +30,11 @@ class Admin::FilesController < AdminController
     end
   end
 
+  def move
+    Document::File.where("folder = :month", month: params[:folder]).map{ |f| f.send(params[:act]) }
+    redirect_to admin_files_url
+  end
+
   private
 
   def folders_array(year = nil)
