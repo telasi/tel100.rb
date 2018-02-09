@@ -9,6 +9,15 @@ Ext.define('Tel100.view.modules.Reporting', {
 
   layout: 'border',
 
+  listeners:{
+    activate: function(view){
+      var vm = view.getViewModel();
+      var store = vm.getStore('report_tree');
+      store.removeAll();
+      store.load();
+    }
+  },
+
   items: [{
             xtype: 'treepanel',
             // autoLoad: true,
