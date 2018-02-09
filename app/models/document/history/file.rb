@@ -6,7 +6,12 @@ class Document::History::File < ActiveRecord::Base
 
   def full_path
     #File.join(Rails.root, 'public', 'uploads', 'docfiles', self.store_name)
-    File.join(FILES_REPOSITORY, self.store_name)
+    if self.archived == 1
+      repository = FILES_ARCHIVED_REPOSITORY
+    else
+      repository = FILES_REPOSITORY
+    end
+    File.join(repository, self.folder || '', self.store_name)
   end
 
   def delete_file
