@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207070450) do
+ActiveRecord::Schema.define(version: 20180209103846) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -82,11 +82,13 @@ ActiveRecord::Schema.define(version: 20180207070450) do
   end
 
   create_table "document_file_history", force: true do |t|
-    t.integer   "document_id",   limit: 10,  precision: 10, scale: 0, null: false
-    t.string    "original_name", limit: 500,                          null: false
-    t.string    "store_name",    limit: 64,                           null: false
+    t.integer   "document_id",   limit: 10,  precision: 10, scale: 0,                 null: false
+    t.string    "original_name", limit: 500,                                          null: false
+    t.string    "store_name",    limit: 64,                                           null: false
     t.integer   "change_no",     limit: 10,  precision: 10, scale: 0
-    t.timestamp "created_at",    limit: 6,                            null: false
+    t.timestamp "created_at",    limit: 6,                                            null: false
+    t.string    "folder",        limit: 64
+    t.boolean   "archived",                  precision: 1,  scale: 0, default: false, null: false
   end
 
   create_table "document_file_temp", force: true do |t|
