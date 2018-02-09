@@ -2,6 +2,8 @@
 class Admin::FilesController < AdminController
   def index
     @title = 'ფაილების მართვა'
+
+    @busyfolders = []
     
     workers = Sidekiq::Workers.new
     if workers.present?
