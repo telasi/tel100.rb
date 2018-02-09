@@ -28,7 +28,7 @@
 	         <td><code><%= line["gfolder"] %></code></td>
 	         <td><%= line["archived"] %></td>
 	         <td><%= line["notarchived"] %></td>
-	         <% if line["gfolder"] == @busyfolder %>
+	         <% if @busyfolder.include?(line["gfolder"]) %>
 	         	<td><%= link_to "არქივაცია", admin_files_url, class: "btn btn-secondary" %></td>
 	         <% else %>
 		         <% if line["notarchived"] > 0 %>

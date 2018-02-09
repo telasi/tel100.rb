@@ -3,14 +3,14 @@ class Admin::FilesController < AdminController
   def index
     @title = 'ფაილების მართვა'
     
-    #workers = Sidekiq::Workers.new
-    #if workers.present?
-    #  workers.each do |process_id, thread_id, work|
-    #    if work["payload"]["class"] == 'FileMoveWorker'
-    ##      @busyfolder = work["payload"]["args"][0]
-     #   end
-    #  end
-    #end
+    workers = Sidekiq::Workers.new
+    if workers.present?
+      workers.each do |process_id, thread_id, work|
+        if work["payload"]["class"] == 'FileMoveWorker'
+          @busyfolders << work["payload"]["args"][0]
+        end
+      end
+    end
 
     @array = folders_array
   end
