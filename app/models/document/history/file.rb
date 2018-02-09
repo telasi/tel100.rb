@@ -2,6 +2,8 @@
 class Document::History::File < ActiveRecord::Base
   self.table_name  = 'document_file_history'
   self.sequence_name = 'docfilehis_seq'
+  self.set_integer_columns :archived
+  
   belongs_to :document, class_name: 'Document::Base'
 
   def full_path
