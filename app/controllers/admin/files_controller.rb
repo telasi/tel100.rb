@@ -36,7 +36,7 @@ class Admin::FilesController < AdminController
   end
 
   def move
-    FileMoveWorker.perform_async(params[:folder], params[:act], param[:file])
+    FileMoveWorker.perform_async(params[:folder], params[:act], params[:file])
     redirect_to admin_files_url
   end
 
