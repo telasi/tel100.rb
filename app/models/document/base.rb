@@ -430,7 +430,7 @@ class Document::Base < ActiveRecord::Base
 
       # Save files to history
       Document::File.where(document: self).map do |f|
-        hisfile = Document::History::File.new(document: self, original_name: f.original_name, store_name: f.store_name, change_no: change.id)
+        hisfile = Document::History::File.new(document: self, original_name: f.original_name, store_name: f.store_name, folder: f.folder, change_no: change.id)
         hisfile.save!
         next if ( self.gnerc.present? && self.gnerc.file.present? && (self.gnerc.file_id == f.id) ) # dont delete if gnerc file
         f.delete
