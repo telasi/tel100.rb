@@ -13,6 +13,7 @@
   <table class="table">
     <thead>
       <tr>
+      	<th>ფაილები</th>
         <th>ფოლდერი</th>
         <th>არქივებული</th>
         <th>არაა არქივებული</th>
@@ -22,18 +23,39 @@
     <tbody>
 	  <% @array.each do |line| %>
 	    <tr>
-         <td><code><%= line["gfolder"] %></code></td>
-         <td><%= line["archived"] %></td>
-         <td><%= line["notarchived"] %></td>
-         <% if line["gfolder"] == @busyfolder %>
-         	<td><%= link_to "არქივაცია", admin_files_url, class: "btn btn-secondary" %></td>
-         <% else %>
-	         <% if line["notarchived"] > 0 %>
-	           <td><%= link_to "არქივაცია", admin_move_url(act: 'archive', folder: line["gfolder"]), class: "btn btn-primary" %></td>
+	     <% if line["fi"] == 'file' %>
+	         <td>&nbsp;</td>
+	         <td><code><%= line["gfolder"] %></code></td>
+	         <td><%= line["archived"] %></td>
+	         <td><%= line["notarchived"] %></td>
+	         <% if line["gfolder"] == @busyfolder %>
+	         	<td><%= link_to "არქივაცია", admin_files_url, class: "btn btn-secondary" %></td>
 	         <% else %>
-	           <td><%= link_to "დაბრუნება", admin_move_url(act: 'restore', folder: line["gfolder"]), class: "btn btn-success" %></td>
-	         <% end %>
-	    <% end %>
+		         <% if line["notarchived"] > 0 %>
+		           <td><%= link_to "არქივაცია", admin_move_url(act: 'archive', folder: line["gfolder"]), class: "btn btn-primary" %></td>
+		         <% else %>
+		           <td><%= link_to "დაბრუნება", admin_move_url(act: 'restore', folder: line["gfolder"]), class: "btn btn-success" %></td>
+		         <% end %>
+		    <% end %>
+
+	     <% else %>
+	       <td><cite>ისტორია</cite></td>
+	       <td>&nbsp;</td>
+	         <td><code><%= line["gfolder"] %></code></td>
+	         <td><%= line["archived"] %></td>
+	         <td><%= line["notarchived"] %></td>
+	         <% if line["gfolder"] == @busyfolder %>
+	         	<td><%= link_to "არქივაცია", admin_files_url, class: "btn btn-secondary" %></td>
+	         <% else %>
+		         <% if line["notarchived"] > 0 %>
+		           <td><%= link_to "არქივაცია", admin_move_url(act: 'archive', file: 'history', folder: line["gfolder"]), class: "btn btn-primary" %></td>
+		         <% else %>
+		           <td><%= link_to "დაბრუნება", admin_move_url(act: 'restore', file: 'history', folder: line["gfolder"]), class: "btn btn-success" %></td>
+		         <% end %>
+		    <% end %>
+
+	     <% end %> 
+         
         </tr>
 	  <% end %>
 	</div>

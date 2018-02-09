@@ -3,20 +3,15 @@ class Admin::FilesController < AdminController
   def index
     @title = 'ფაილების მართვა'
     
-    workers = Sidekiq::Workers.new
-    if workers.present?
-      workers.each do |process_id, thread_id, work|
-        if work["payload"]["class"] == 'FileMoveWorker'
-          @busyfolder = work["payload"]["args"][0]
-        end
-      end
-    end
+    #workers = Sidekiq::Workers.new
+    #if workers.present?
+    #  workers.each do |process_id, thread_id, work|
+    #    if work["payload"]["class"] == 'FileMoveWorker'
+    ##      @busyfolder = work["payload"]["args"][0]
+     #   end
+    #  end
+    #end
 
-    query = "select *
-              from ( select to_char(created_at, 'YYYYMM') as gfolder, archived
-                      from document_file f )
-              pivot (count(*) for archived in (1 as archived, 0 as notarchived))
-              order by gfolder"
     @array = folders_array
   end
 
@@ -41,8 +36,7 @@ class Admin::FilesController < AdminController
   end
 
   def move
-    #Document::File.where("folder = :month", month: params[:folder]).map{ |f| f.send(params[:act]) }
-    FileMoveWorker.perform_async(params[:folder], params[:act])
+    FileMoveWorker.perform_async(params[:folder], params[:act], param[:file])
     redirect_to admin_files_url
   end
 
@@ -50,20 +44,25 @@ class Admin::FilesController < AdminController
 
   def folders_array(year = nil)
     if year.present?
-      query = "select *
-                from ( select to_char(created_at, 'YYYYMM') as gfolder, archived
-                        from document_file f 
-                        where to_char(created_at, 'YYYY') = '#{year}')
-                pivot (count(*) for archived in (1 as archived, 0 as notarchived))
-                order by gfolder"
+      query = "select * from ( select to_char(created_at, 'YYYYMM') as gfolder, archived, 'file' as fi
+                                 from document_file f 
+                                 where to_char(created_at, 'YYYY') = '#{year}')
+                                 pivot (count(*) for archived in (1 as archived, 0 as notarchived))
+               union 
+               select * from ( select to_char(created_at, 'YYYYMM') as gfolder, archived, 'file_history' as fi
+                                 from document_file_history f 
+                                 where to_char(created_at, 'YYYY') = '#{year}')
+                                 pivot (count(*) for archived in (1 as archived, 0 as notarchived))"
     else
-      query = "select *
-                from ( select to_char(created_at, 'YYYYMM') as gfolder, archived
-                        from document_file f )
-                pivot (count(*) for archived in (1 as archived, 0 as notarchived))
-                order by gfolder"
+      query = "select * from ( select to_char(created_at, 'YYYYMM') as gfolder, archived, 'file' as fi
+                                from document_file f )
+                                pivot (count(*) for archived in (1 as archived, 0 as notarchived))
+                union select *  from ( select to_char(created_at, 'YYYYMM') as gfolder, archived, 'file_history' as fi
+                                         from document_file_history f )
+                                         pivot (count(*) for archived in (1 as archived, 0 as notarchived))"
     end
-    ActiveRecord::Base.connection.exec_query(query).to_a
+    array = ActiveRecord::Base.connection.exec_query(query).to_a
+    array.sort_by{ |x| [x['fi'], x['gfolder']] }
   end
 
 end

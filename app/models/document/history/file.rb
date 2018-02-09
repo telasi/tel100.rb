@@ -17,4 +17,26 @@ class Document::History::File < ActiveRecord::Base
   def delete_file
     FileUtils.rm(self.full_path)
   end
+
+  def archive
+    old_path = self.full_path
+    self.archived = 1
+    new_path = self.full_path
+    archive_folder = File.join(FILES_ARCHIVED_REPOSITORY, self.folder || '')
+    FileUtils.mkdir_p(archive_folder)
+    FileUtils.move(old_path, new_path)
+    save!
+  rescue
+  end
+
+  def restore
+    old_path = self.full_path
+    self.archived = 0
+    new_path = self.full_path
+    archive_folder = File.join(FILES_REPOSITORY, self.folder || '')
+    FileUtils.mkdir_p(archive_folder)
+    FileUtils.move(old_path, new_path)
+    save!
+  rescue
+  end
 end
