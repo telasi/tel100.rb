@@ -26,7 +26,7 @@ class Document::History::File < ActiveRecord::Base
     new_path = self.full_path
     if not File.exists?(new_path)
       file = Document::File.where(store_name: self.store_name).first
-      if file.any?
+      if file.present?
         self.folder = file.folder
         self.archived = file.archived
       else
