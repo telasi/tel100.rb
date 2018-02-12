@@ -46,20 +46,20 @@ class Admin::FilesController < AdminController
 
   def folders_array(year = nil)
     if year.present?
-      query = "select * from ( select to_char(created_at, 'YYYYMM') as gfolder, archived, 'file' as fi
+      query = "select * from ( select folder as gfolder, archived, 'file' as fi
                                  from document_file f 
-                                 where to_char(created_at, 'YYYY') = '#{year}')
+                                 where substr(folder, 1, 4) = '#{year}')
                                  pivot (count(*) for archived in (1 as archived, 0 as notarchived))
                union 
-               select * from ( select to_char(created_at, 'YYYYMM') as gfolder, archived, 'file_history' as fi
+               select * from ( select folder as gfolder, archived, 'file_history' as fi
                                  from document_file_history f 
-                                 where to_char(created_at, 'YYYY') = '#{year}')
+                                 where substr(folder, 1, 4) = '#{year}')
                                  pivot (count(*) for archived in (1 as archived, 0 as notarchived))"
     else
-      query = "select * from ( select to_char(created_at, 'YYYYMM') as gfolder, archived, 'file' as fi
+      query = "select * from ( select folder as gfolder, archived, 'file' as fi
                                 from document_file f )
                                 pivot (count(*) for archived in (1 as archived, 0 as notarchived))
-                union select *  from ( select to_char(created_at, 'YYYYMM') as gfolder, archived, 'file_history' as fi
+                union select *  from ( select folder as gfolder, archived, 'file_history' as fi
                                          from document_file_history f )
                                          pivot (count(*) for archived in (1 as archived, 0 as notarchived))"
     end
