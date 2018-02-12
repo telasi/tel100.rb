@@ -36,6 +36,12 @@ class Document::History::File < ActiveRecord::Base
       end
     end
     save!
+    
+    Document::History::File.where(store_name: self.store_name, archived: 0).map do |f|
+      f.folder = self.folder
+      f.archived = self.archived
+      f.save
+    end
   rescue
   end
 
