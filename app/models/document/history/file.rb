@@ -25,9 +25,15 @@ class Document::History::File < ActiveRecord::Base
     self.archived = 1
     new_path = self.full_path
     if not File.exists?(new_path)
-      archive_folder = File.join(FILES_ARCHIVED_REPOSITORY, self.folder || '')
-      FileUtils.mkdir_p(archive_folder)
-      FileUtils.move(old_path, new_path)
+      file = Document::File.where(store_name: self.store_name).first
+      if file.any?
+        self.folder = file.folder
+        self.archived = file.archived
+      else
+       archive_folder = File.join(FILES_ARCHIVED_REPOSITORY, self.folder || '')
+       FileUtils.mkdir_p(archive_folder)
+       FileUtils.move(old_path, new_path)
+      end
     end
     save!
   rescue
