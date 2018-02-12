@@ -3,7 +3,7 @@ class Document::History::File < ActiveRecord::Base
   self.table_name  = 'document_file_history'
   self.sequence_name = 'docfilehis_seq'
   self.set_integer_columns :archived
-  
+
   belongs_to :document, class_name: 'Document::Base'
 
   def full_path
@@ -24,9 +24,11 @@ class Document::History::File < ActiveRecord::Base
     old_path = self.full_path
     self.archived = 1
     new_path = self.full_path
-    archive_folder = File.join(FILES_ARCHIVED_REPOSITORY, self.folder || '')
-    FileUtils.mkdir_p(archive_folder)
-    FileUtils.move(old_path, new_path)
+    if not File.exists?(new_path)
+      archive_folder = File.join(FILES_ARCHIVED_REPOSITORY, self.folder || '')
+      FileUtils.mkdir_p(archive_folder)
+      FileUtils.move(old_path, new_path)
+    end
     save!
   rescue
   end
