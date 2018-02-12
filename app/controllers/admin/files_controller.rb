@@ -64,7 +64,7 @@ class Admin::FilesController < AdminController
                                          pivot (count(*) for archived in (1 as archived, 0 as notarchived))"
     end
     array = ActiveRecord::Base.connection.exec_query(query).to_a
-    array.sort_by{ |x| [x['fi'], x['gfolder']] }
+    # array.sort_by{ |x| [x['fi'], x['gfolder']] }
   end
 
 end
