@@ -513,6 +513,7 @@ class Document::Base < ActiveRecord::Base
 
           motion = Document::Motion.create_draft!(user, motion_params)
           motion.send_draft!(user)
+          Document::User.upsert!(motion.document, motion.receiver_user, motion.receiver_role, { status: motion.status })
         end
 
         should_reset_signees = true if m["receiver_role"] == 'assignee'
