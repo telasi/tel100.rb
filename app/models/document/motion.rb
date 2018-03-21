@@ -113,10 +113,6 @@ class Document::Motion < ActiveRecord::Base
 
     # calculate is_new parameter
     is_new = 1
-    if receiver_user
-      docuser = Document::User.where(document_id: document_id, user_id: receiver_user.id).first
-      docuser.update_attributes!(is_new: 1) if docuser.present?
-    end
 
     # create motion
     motion = Document::Motion.create!({ parent: parent, document: document, status: DRAFT,
@@ -213,9 +209,12 @@ class Document::Motion < ActiveRecord::Base
     end
     # save motion data
     self.save!
+
     # calculate related document users
     receiver_du = self.document.users.where(user: self.receiver_user).first
     sender_du = self.document.users.where(user: user).first
+
+    receiver_du.update_attributes!(is_new: 1) if receiver_du.present?
     receiver_du.calculate! if receiver_du.present?
     sender_du.calculate! if sender_du.present?
   end
@@ -371,6 +370,11 @@ class Document::Motion < ActiveRecord::Base
     return unless self.document.direction == OUT
 
     Gnerc::Sender.answer(doc)
+  end
+
+  def self.delete_children(motion)
+    Document::Motion.where(document_id: motion.document_id, parent_id: motion.id).each{ |child| delete_children(child) }
+    motion.delete
   end
 
   private
