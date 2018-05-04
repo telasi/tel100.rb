@@ -59,6 +59,7 @@ Ext.define('Tel100.view.document.file.Panel', {
               // xtype: 'filefield',
               xtype: 'multiplefileuploadfield',
               cls: 'file-upload',
+              allowBlank: false,
               padding: 0,
               multiple: true,
               name: 'file',

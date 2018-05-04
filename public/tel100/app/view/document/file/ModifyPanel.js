@@ -43,6 +43,7 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
             {
               xtype: 'filefield',
               cls: 'file-upload',
+              allowBlank: false,
               padding: 0,
               name: 'file',
               buttonText: '<i class="fa fa-plus"></i>',
