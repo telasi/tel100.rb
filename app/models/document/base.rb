@@ -488,7 +488,7 @@ class Document::Base < ActiveRecord::Base
             emp = HR::Employee.find(m["receiver_id"])
             receiver_user = emp.user if emp
             docuser = self.users.where(user: receiver_user).first
-            docuser.delete if docuser.present?
+            # docuser.delete if docuser.present?
           end
         end
         if m["temp"]
@@ -521,7 +521,7 @@ class Document::Base < ActiveRecord::Base
 
       reset_signees if ( should_reset_signees && user.id != AUTO_SIGNEE )
 
-      motions_to_process = self.motions.where('status IN (?) AND receiver_role IN (?)', [SENT, CURRENT], [ROLE_SIGNEE, ROLE_AUTHOR]).order(:ordering)
+      motions_to_process = self.motions.where('status IN (?) AND receiver_role IN (?)', [SENT, CURRENT], [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR]).order(:ordering)
       if motions_to_process.count > 0
         ordering = motions_to_process.minimum('ordering')
         motions_to_process = motions_to_process.where(ordering: ordering)
@@ -533,7 +533,7 @@ class Document::Base < ActiveRecord::Base
           docuser.calculate! if docuser.present?
         end
 
-        motions_to_process = self.motions.where('ordering > ? AND receiver_role IN (?)', ordering, [ROLE_SIGNEE, ROLE_AUTHOR])
+        motions_to_process = self.motions.where('ordering > ? AND receiver_role IN (?)', ordering, [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR])
         motions_to_process.each do |motion_to_process|
           docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: SENT })
           motion_to_process.status = SENT
