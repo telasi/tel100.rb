@@ -65,10 +65,12 @@ class Document::Base < ActiveRecord::Base
   def self.create_draft!(sender_user)
     raise 'sender not defined' if sender_user.blank?
     sender = whose_user(sender_user)
+    # docnumber = Document::Base.docnumber_eval(nil, Date.today)
     docparams = { sender_user: sender_user, sender: sender,
       owner_user: sender_user, owner: sender,
       actual_sender: nil, # it's not sent yet
       direction: INNER, status: DRAFT,
+      # docnumber: docnumber
       #type: Document::Type.order('order_by').first 
     }
 
@@ -488,7 +490,7 @@ class Document::Base < ActiveRecord::Base
             emp = HR::Employee.find(m["receiver_id"])
             receiver_user = emp.user if emp
             docuser = self.users.where(user: receiver_user).first
-            # docuser.delete if docuser.present?
+            docuser.delete if ( docuser.present? && docuser.count == 1 )
           end
         end
         if m["temp"]
@@ -521,7 +523,7 @@ class Document::Base < ActiveRecord::Base
 
       reset_signees if ( should_reset_signees && user.id != AUTO_SIGNEE )
 
-      motions_to_process = self.motions.where('status IN (?) AND receiver_role IN (?)', [SENT, CURRENT], [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR]).order(:ordering)
+      motions_to_process = self.motions.where('status IN (?) AND receiver_role IN (?) AND receiver_user_id IS NOT NULL', [SENT, CURRENT], [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR]).order(:ordering)
       if motions_to_process.count > 0
         ordering = motions_to_process.minimum('ordering')
         motions_to_process = motions_to_process.where(ordering: ordering)
