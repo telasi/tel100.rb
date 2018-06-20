@@ -545,6 +545,8 @@ class Document::Base < ActiveRecord::Base
         end
       end
 
+      self.users.each { |user| user.calculate! }
+
     end
 
   end
