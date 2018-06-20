@@ -490,7 +490,7 @@ class Document::Base < ActiveRecord::Base
             emp = HR::Employee.find(m["receiver_id"])
             receiver_user = emp.user if emp
             docuser = self.users.where(user: receiver_user).first
-            docuser.delete if ( docuser.present? && docuser.count == 1 )
+            docuser.delete if docuser.present?
           end
         end
         if m["temp"]
