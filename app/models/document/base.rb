@@ -521,29 +521,33 @@ class Document::Base < ActiveRecord::Base
         should_reset_signees = true if m["receiver_role"] == 'assignee'
       end
 
-      reset_signees if ( should_reset_signees && user.id != AUTO_SIGNEE )
+      if user.id != AUTO_SIGNEE
 
-      motions_to_process = self.motions.where('status IN (?) AND receiver_role IN (?) AND receiver_user_id IS NOT NULL', [SENT, CURRENT], [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR]).order(:ordering)
-      if motions_to_process.count > 0
-        ordering = motions_to_process.minimum('ordering')
-        motions_to_process = motions_to_process.where(ordering: ordering)
-        motions_to_process.each do |motion_to_process|
-          docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: CURRENT })
-          motion_to_process.status = CURRENT
-          motion_to_process.received_at = Time.now
-          motion_to_process.save!
-          docuser.calculate! if docuser.present?
+        reset_signees if should_reset_signees 
+
+        motions_to_process = self.motions.where('status IN (?) AND receiver_role IN (?) AND receiver_user_id IS NOT NULL', [SENT, CURRENT], [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR]).order(:ordering)
+        if motions_to_process.count > 0
+          ordering = motions_to_process.minimum('ordering')
+          motions_to_process = motions_to_process.where(ordering: ordering)
+          motions_to_process.each do |motion_to_process|
+            docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: CURRENT })
+            motion_to_process.status = CURRENT
+            motion_to_process.received_at = Time.now
+            motion_to_process.save!
+            docuser.calculate! if docuser.present?
+          end
+
+          motions_to_process = self.motions.where('ordering > ? AND receiver_role IN (?)', ordering, [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR])
+          motions_to_process.each do |motion_to_process|
+            docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: SENT })
+            motion_to_process.status = SENT
+            motion_to_process.received_at = Time.now
+            motion_to_process.save!
+            docuser.calculate! if docuser.present?
+          end
         end
 
-        motions_to_process = self.motions.where('ordering > ? AND receiver_role IN (?)', ordering, [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR])
-        motions_to_process.each do |motion_to_process|
-          docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: SENT })
-          motion_to_process.status = SENT
-          motion_to_process.received_at = Time.now
-          motion_to_process.save!
-          docuser.calculate! if docuser.present?
-        end
-      end
+      end # auto_signee
 
       self.users.each { |user| user.calculate! }
 
