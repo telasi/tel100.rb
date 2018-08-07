@@ -1,0 +1,132 @@
+<h4>Files <%= link_to '<i class="fa fa-plus"></i>'.html_safe,
+            "#",
+            data: { document_id: document.id,
+                    toggle: 'modal',
+                    target: '#addFileDialog'
+                  },
+            class: 'text-danger addbutton'
+          %></h4>
+<% if document.files.any? %>
+    <table class="table table-bordered">
+    <% @document.files.each do |file| %>
+      <tr>
+        <td>
+          <code><%= link_to file.original_name, api_documents_download_url(id: file.id) %></code>
+        </td>
+        <td width="32">
+          <%= link_to '<i class="fa fa-refresh"></i>'.html_safe,
+            "#",
+            data: { id: file.id,
+                    toggle: 'modal',
+                    target: '#replaceFileDialog'
+                  },
+            class: 'text-danger replacebutton'
+          %>
+        </td>
+        <td width="32">
+          <%= link_to '<i class="fa fa-trash"></i>'.html_safe,
+            admin_destroy_url(id: file.id),
+            data: { method: 'delete',
+                    confirm: 'ნამდვილად გინდათ ამ ფაილის წაშლა?'
+                  },
+            class: 'text-danger'
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<h4>სემეკი <%= link_to '<i class="fa fa-plus"></i>'.html_safe,
+            "#",
+            data: { document_id: document.id,
+                    toggle: 'modal',
+                    target: '#addFileDialog'
+                  },
+            class: 'text-danger addbutton'
+          %></h4>
+
+<!-- Modal -->
+<div id="addFileDialog" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">აირჩიეთ ფაილი</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" action="<%= admin_upload_url %>" role="form" method="post" enctype="multipart/form-data">
+              <label class="control-label">Select File</label>
+              <input id="fileinput" name="file" type="file" class="file">
+          <br>
+          <input type="hidden" name="document_id" id="document_id" value="" />
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">ატვირთვა</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">გაუქმება</button>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10">
+
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="replaceFileDialog" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">აირჩიეთ ფაილი</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" action="<%= admin_replace_url %>" role="form" method="post" enctype="multipart/form-data">
+              <label class="control-label">Select File</label>
+              <input id="fileinput" name="file" type="file" class="file">
+          <br>
+          <input type="hidden" name="id" id="id" value="" />
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">ატვირთვა</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">გაუქმება</button>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10">
+
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+$(function () {
+  $(".addbutton").click(function () {
+        var my_id_value = $(this).data('document-id');
+        $(".modal-body #document_id").val(my_id_value);
+    });
+  $(".replacebutton").click(function () {
+      var my_id_value = $(this).data('id');
+      $(".modal-body #id").val(my_id_value);
+  });
+});
+</script>

@@ -1,0 +1,265 @@
+<table class="table">
+	<th>
+		<td>Role</td>
+		<td>Sender</td>
+		<td>Receiver</td>
+		<td>Order</td>
+		<td>Status</td>
+    <td>Response Type</td>
+    <td>Response Text</td>
+    <td>Motion Text</td>
+	</th>
+	<% document.motions.each do |motion| %>
+		<tr>
+			<td><%= motion.id %></td>
+			<td class="editable" id="<%= motion.id %>_role" data-type="role" data-key="<%= motion.receiver_role %>">
+        <%= case motion.receiver_role 
+          when 'sender'
+            "ინიციატორი"
+          when 'author'
+            "ავტორი"
+          when 'signee'
+            "ვიზატორი"
+          when 'assignee'
+            "ადრესატი"
+        end %></td>
+			<td class="editable" id="<%= motion.id %>_sender" data-type="party" data-party="<%= motion.sender_type %>" data-party-id="<%= motion.sender_id %>"><%= motion.sender_ext_name %></td>
+			<td class="editable" id="<%= motion.id %>_receiver" data-type="party" data-party="<%= motion.receiver_type %>" data-party-id="<%= motion.receiver_id %>"><%= motion.receiver_ext_name %></td>
+			<td class="editable" id="<%= motion.id %>_ordering" data-type="number"><%= motion.ordering %></td>
+			<td class="editable" id="<%= motion.id %>_status" data-type="status" data-key="<%= motion.status %>">
+			<%= case motion.status 
+					when 0
+						"draft"
+					when 1
+						"გზაში"
+					when -1
+						"რიგში"
+					when 2
+						"მიმდინარე"
+					when -2
+						"არ მიიღო"
+					when 3
+						"დაასრულა"
+					when -3
+						"უარი"
+				end %>
+			</td>
+      <td class="editable" id="<%= motion.id %>_responsetype" data-type="response_type"><%= motion.response_type %></td>
+      <td class="editable" id="<%= motion.id %>_responsetext" data-type="response_text"><%= motion.response_text %></td>
+      <td class="editable" id="<%= motion.id %>_motiontext" data-type="motion_text"><%= motion.motion_text %></td>
+		</tr>
+	<% end %>
+</table>
+
+<style>
+@keyframes show {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+
+<script>
+  var currentOpen = null;
+  var oldValue    = null;
+  var currentPartyType = null;
+
+  var numberBoxHTML = '<input type="number" style="width:100%;"';
+  var numberBoxTag = 'input';
+  var numberBoxEndHTML = '</input>';
+
+  var textBoxHTML = '<input style="width:100%;"';
+  var textBoxTag = 'input';
+  var textBoxEndHTML = '</input>';
+
+  var roles = { sender: 'ინიციატორი', author: 'ავტორი', signee: 'ვიზატორი', assignee: 'ადრესატი'};
+  var statuses = { 0: 'draft', 1: 'გზაში', '-1': 'რიგში', 2: 'მიმდინარე', '-2': 'არ მიიღო', 3: 'დაასრულა', '-3': 'უარი'};
+
+  var roleComboHTML = '<select name="cars" style="width:100%;">';
+  var roleComboEndHTML = '</select>';
+  var roleComboTag = 'select';
+
+  var statusComboHTML = '<select name="cars" style="width:100%;">';
+  var statusComboEndHTML = '</select>';
+  var statusComboTag = 'select';
+
+  var editTextHTML =  '<div style="position:relative;">'+
+  					  '<div style="position:absolute; z-index: 1001; right: 0px; bottom: -15px; width:50px;'+ 
+  					               'border-radius: 5px; border: 1px; border-color: #222222;background-color:#FFFFFF;'+
+  					               'box-shadow: 6px 6px 10px #CCC;'+
+  					               'animation: show 0.5s linear;' +
+  					               'font-family: Font Awesome 5 Brands;'+
+  					               '">' +
+  					   '<div style="display: inline-block; align:center; color: green;" onclick="okClick(this);">&nbsp;&nbsp;<i class="fa fa-check"></i>&nbsp;</div>'+
+  					   '<div style="display: inline-block; align:center; color: red;" onclick="cancelClick(this);">&nbsp;<i class="fa fa-close"></i>&nbsp;</div>'+
+  					   '</div></div>';
+  var fullHTML;
+  var tag;
+
+  $(".editable").click(function () {
+  	  if(currentOpen != null){
+  	  	if(currentOpen == this.getAttribute('id')) return;
+  		$.find('#' + currentOpen)[0].innerHTML = oldValue;
+  	  }
+      currentOpen = this.getAttribute('id');
+      oldValue = this.innerHTML.trim();
+      var type = this.getAttribute('data-type');
+      switch(type){
+      	case 'role':
+          var oldKey = this.getAttribute('data-key');
+      		var options = populateCombo(roles, oldKey);
+      		fullHTML = roleComboHTML + options + roleComboEndHTML + editTextHTML;
+      		tag = roleComboTag;
+      		break;
+      	case 'number':
+      		fullHTML = numberBoxHTML + ' value="' + oldValue + '">' + editTextHTML + numberBoxEndHTML;
+      		tag = numberBoxTag;
+      		break;
+        case 'response_text':
+        case 'response_type':
+          fullHTML = textBoxHTML + ' value="' + oldValue + '">' + editTextHTML + textBoxEndHTML;
+          tag = textBoxTag;
+          break;
+      	case 'status':
+          var oldKey = this.getAttribute('data-key');
+          var options = populateCombo(statuses, oldKey);
+      		fullHTML = statusComboHTML + options + statusComboEndHTML + editTextHTML;
+      		tag = statusComboTag;
+      		break;
+        case 'party':
+          var oldKey = this.getAttribute('data-key');
+          fullHTML = populatePartyCombo();
+          tag = 'div';
+          break;        
+      	default:
+      }
+      this.innerHTML = fullHTML;
+      this.getElementsByTagName(tag)[0].focus();
+  });
+
+  function okClick(div){
+    var motionId = currentOpen.split('_')[0];
+    var type = currentOpen.split('_')[1];
+    switch(type){
+      case 'role':
+        var value = $.find('#' + currentOpen)[0].getElementsByTagName('select')[0].value;
+        params = { motionId: motionId, field: type, value: value };
+        value = roles[value];
+        break;
+      case 'ordering':
+        var value = $.find('#' + currentOpen)[0].getElementsByTagName('input')[0].value;
+        params = { motionId: motionId, field: type, value: value };
+        break;
+      case 'status':
+        var value = $.find('#' + currentOpen)[0].getElementsByTagName('select')[0].value;
+        params = { motionId: motionId, field: type, value: value };
+        value = statuses[value];
+        break;
+      case 'responsetype':
+      case 'responsetext':
+      case 'motiontext':
+        var value = $.find('#' + currentOpen)[0].getElementsByTagName('input')[0].value;
+        params = { motionId: motionId, field: type, value: value };
+        break;
+      case 'receiver':
+      case 'sender':
+        var select = $.find('#' + currentOpen)[0].getElementsByTagName('select')[0];
+        var value = select.value;
+        params = { motionId: motionId, field: type, value: value, partyType: currentPartyType };
+        value = select.options[select.selectedIndex].text.split(':')[0];
+        break;
+    }
+    $.post("documents/motion", params, function(data, status){
+      div.parentElement.parentElement.parentElement.innerHTML = value;
+      currentOpen = null;
+    })
+  };
+
+  function cancelClick(div){
+	if(oldValue != null){
+		div.parentElement.parentElement.parentElement.innerHTML = oldValue;
+	}
+	currentOpen = null;
+  	event.stopPropagation();
+  };
+
+  function populateCombo(hash, oldValue){
+    var selected = '';
+    var options = '';
+
+    for(var key in Object.keys(hash)){
+      var value = Object.values(hash)[key];
+      var realkey = Object.keys(hash)[key];
+      if(oldValue == realkey){
+        selected = ' selected ';
+      } else {
+        selected = '';
+      }
+
+      options += '<option value="'+ realkey +'" '+ selected + '>' + value + '</option>';
+    }
+    return options;
+  };
+
+  function populatePartyCombo(){
+    currentPartyType = 'HR::Employee';
+
+    var tabstyle = ' style=" cursor: pointer; background-color: #ffffff; border: 1px solid #ccc;';
+    return  '<div style="position:relative;">'+
+            '<div style="position:absolute; z-index: 1001; right: 0px; width:300px;'+ 
+                           'border-radius: 5px; border: 1px; border-color: #eeeeee; border-style: solid; background-color:#ffffff;'+
+                           'padding: 2px; box-shadow: 6px 6px 10px #CCC;'+
+                           'animation: show 0.5s linear;' +
+                           'font-family: Font Awesome 5 Brands;">'+
+            '<button class="hrtabs" ' + tabstyle +'background-color: #90d3e7;" onclick="openHRTab(event, \'HR::Employee\')">Telasi</button>'+
+            '<button class="hrtabs" ' + tabstyle +'" onclick="openHRTab(event, \'HR::Party\')">Outer</button>'+
+            '<button class="hrtabs" ' + tabstyle +'" onclick="openHRTab(event, \'BS::Customer\')">Customer</button>'+
+            '<input id="hrinput" style="width:100%" onkeyup="search(this)" placeholder="Enter value.."></input>'+
+            '<div id="partyvalues"></div>'+
+            '<div style="display: inline-block; align:center; color: green;" onclick="okClick(this);">&nbsp;&nbsp;<i class="fa fa-check"></i>&nbsp;</div>'+
+               '<div style="display: inline-block; align:center; color: red;" onclick="cancelClick(this);">&nbsp;<i class="fa fa-close"></i>&nbsp;</div>'+
+            '</div></div>';
+  };
+
+  function openHRTab(event, type){
+    hrtabs = document.getElementsByClassName("hrtabs");
+    for (i = 0; i < hrtabs.length; i++) {
+      hrtabs[i].style.setProperty('background-color', '#ffffff');
+    }
+    event.currentTarget.style.setProperty('background-color', '#90d3e7');
+    currentPartyType = type;
+    var values = document.getElementById("partyvalues");
+    if(values.firstChild) { values.removeChild(values.firstChild) };
+  };
+
+  function search(el){
+    var val = el.value.trim();
+    if(val.length < 3) { return };
+    var values = document.getElementById("partyvalues");
+    if(values.firstChild) { values.removeChild(values.firstChild) };
+    var node = document.createElement("p");
+    var textnode = document.createTextNode('Loading...'); 
+    node.appendChild(textnode);
+    values.appendChild(node);
+    params = { partyType: currentPartyType, searchString: val };
+    $.post("documents/hr", params, function(data, status){
+      if(values.firstChild) { values.removeChild(values.firstChild) };
+      var select = document.createElement('select');
+      select.style.setProperty('width', '100%');
+      select.style.setProperty('border',"0");
+      select.setAttribute('size',"10");
+      data.forEach(function(element){
+        var node = document.createElement("option");
+        node.setAttribute('value', element.id);
+        var textnode = document.createTextNode(element.name); 
+        node.appendChild(textnode);
+        select.appendChild(node);
+      });
+      values.appendChild(select);
+    })
+  };
+
+  function post(){
+
+  }
+
+</script>

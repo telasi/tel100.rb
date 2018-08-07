@@ -1,0 +1,108 @@
+<br>
+  <div class="row">
+    <div class="col-sm-2">
+      <p>Subject:</p>
+    </div>
+    <div class="col-sm-9">
+      <strong><%= document.subject %></strong>
+    </div>
+    <div class="col-sm-1">
+      <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, "#", 
+          data: { id: document.id,
+                  field: 'subject',
+                  value: document.subject },
+      class: 'text-danger general_property' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <p>Canc. number:</p>
+    </div>
+    <div class="col-sm-9">
+      <strong><%= document.docnumber2 %></strong>
+    </div>
+    <div class="col-sm-1">
+      <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, "#", 
+          data: { id: document.id,
+                  field: 'docnumber2',
+                  value: document.docnumber2 },
+      class: 'text-danger general_property' %>
+    </div>  
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <p>Original number:</p>
+    </div>
+    <div class="col-sm-9">
+      <strong><%= document.original_number %></strong>
+    </div>
+    <div class="col-sm-1">
+      <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, "#", 
+          data: { id: document.id,
+                  field: 'original_number',
+                  value: document.original_number },
+      class: 'text-danger general_property' %>
+    </div>  
+  </div>
+
+<div class="row">
+  <div class="col-sm-11">
+    <div class="well"><%= document.body.html_safe if document.body.present? %></div>
+  </div>
+  <div class="col-sm-1">
+    <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, "#", 
+        data: { id: document.id,
+                toggle: 'modal',
+                target: '#editBodyDialog',
+                body: document.body },
+    class: 'text-danger editbody' %>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="editBodyDialog" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <form class="form-horizontal" action="<%= admin_bodytext_url %>" role="form" method="post" enctype="multipart/form-data">
+              <textarea name='bodytext' rows="30" cols="90" id="body_textarea" style="width:100%;"></textarea>
+          <br>
+          <input type="hidden" name="id" id="id" value="" />
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">OK</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">გაუქმება</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+$(function () {
+  $(".editbody").click(function () {
+      var body = $(this).data('body');
+      var id = $(this).data('id');
+      $(".modal-body #body_textarea").val(body);
+      $(".modal-body #id").val(id);
+  });
+  $(".general_property").click(function () {
+      var id = $(this).data('id');
+      var value = $(this).data('value');
+      var field = $(this).data('field');
+      var value = prompt(value, value);
+      params = { id: id, field: field, value: value };
+      $.post("documents/general", params, function(data, status){
+
+      })
+  });
+});
+</script>

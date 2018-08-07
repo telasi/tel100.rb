@@ -1,5 +1,5 @@
 <% if @document %>
-<h1 class="page-header">დოკუმენტი <code><%= @document.docnumber %></code></h1>
+<h4 class="page-header">დოკუმენტი <code><%= @document.docnumber %></code></h4>
 <%= render partial: 'admin/documents/document', locals: { document: @document } %>
 <% else %>
 <h1 class="page-header">დოკუმენტის ძებნა</h1>

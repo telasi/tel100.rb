@@ -67,6 +67,10 @@ Rails.application.routes.draw do
         post '/replace',  action: 'replace'
         post '/upload', action: 'upload'
         delete '/destroy', action: 'destroy'
+        post '/bodytext', action: 'bodytext'
+        post '/general', action: 'general'
+        post '/hr', action: 'hr'
+        post '/motion', action: 'motion'
       end
     end
   end
@@ -79,6 +83,9 @@ Rails.application.routes.draw do
       put '/update_settings', action: 'update_settings'
       put '/change_password', action: 'change_password'
       get '/related', action: 'related'
+    end
+    scope '/templates', controller: 'templates' do
+      get '/', action: 'index'
     end
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
@@ -167,6 +174,7 @@ Rails.application.routes.draw do
         get  '/',         action: 'index'
         post '/upload',   action: 'upload'
         put  '/update',   action: 'update'
+        put  '/send_gnerc',   action: 'send_gnerc'
         delete '/file_delete',   action: 'file_delete'
         post '/reset_sms', action: 'reset_sms'
         put  '/update_sms',   action: 'update_sms'
