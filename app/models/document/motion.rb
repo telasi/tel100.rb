@@ -378,6 +378,7 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def set_gnerc_status(doc)
+    return unless goc.gnerc.present?
     gnerc = doc.gnerc
     gnerc.step = Document::Gnerc::STEP_ANSWER_COMPLETED
     gnerc.save!
