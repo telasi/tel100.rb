@@ -27,7 +27,7 @@ class Document::Gnerc < ActiveRecord::Base
       if document.direction == 'out'
         sms = Document::Sms.where(answer: document).first
         if sms.present?
-          document = sms.base
+          document = sms.document
         end
       end
       service = "Docflow#{DOCFLOW_TO_GNERC_MAP[document.type_id]}"
