@@ -33,7 +33,7 @@ class Document::Gnerc < ActiveRecord::Base
       service = "Docflow#{DOCFLOW_TO_GNERC_MAP[document.type_id]}"
       clazz = "Gnerc::#{service}".constantize
       clazz.connection
-      doc = clazz.where(docid: doc.id).first
+      doc = clazz.where(docid: document.id).first
       return -1 unless doc
       queue = Gnerc::SendQueue.where(service: service, service_id: doc.id, stage: current_stage).first
       if queue.blank?
