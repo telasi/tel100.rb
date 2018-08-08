@@ -18,15 +18,22 @@ class Document::Gnerc < ActiveRecord::Base
   before_destroy :destroy_sms
 
   def send_status
+    document = self.document
     return 0 if self.step == STEP_DRAFT
     return 0 if self.step == STEP_ANSWER_COMPLETED
 
     if self.step == STEP_SIGNEE || self.step == STEP_ANSWER
-      current_stage = self.document.direction == 'in' ?  1 : 2
-      service = "Docflow#{DOCFLOW_TO_GNERC_MAP[self.document.type_id]}"
+      current_stage = document.direction == 'in' ?  1 : 2
+      if document.direction == 'out'
+        sms = Document::Sms.where(answer: document).first
+        if sms.present?
+          document = sms.base
+        end
+      end
+      service = "Docflow#{DOCFLOW_TO_GNERC_MAP[document.type_id]}"
       clazz = "Gnerc::#{service}".constantize
       clazz.connection
-      doc = clazz.where(docid: self.document.id).first
+      doc = clazz.where(docid: doc.id).first
       return -1 unless doc
       queue = Gnerc::SendQueue.where(service: service, service_id: doc.id, stage: current_stage).first
       if queue.blank?
