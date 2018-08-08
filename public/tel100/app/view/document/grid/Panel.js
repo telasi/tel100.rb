@@ -32,7 +32,9 @@ Ext.define('Tel100.view.document.grid.Panel', {
         statusClass += ' text-unread';
       }
 
-      if (record.get('due_is_over')) {
+      if (record.get('attention')) {
+        statusClass += ' attention';
+      } else if (record.get('due_is_over')) {
         statusClass += ' danger';
       } else if (record.get('has_due_date')) {
         statusClass += ' warning';
@@ -100,7 +102,7 @@ Ext.define('Tel100.view.document.grid.Panel', {
       return [text, record.get('typeName')].join('<br>');
     },
     width: 100,
-    sortable: false,
+    sortable: true,
     dataIndex: 'docnumber',
     lockable: false,
     bind: {

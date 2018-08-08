@@ -144,7 +144,7 @@ class Document::Base < ActiveRecord::Base
 
     if GNERC_TYPES.include?(self.type_id)
       raise I18n.t('models.document_base.errors.no_due_date') if self.due_date.blank? && !self.is_reply?
-      raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.present?
+      #raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.present?
       if self.type_id == GNERC_TYPE4 and not self.is_reply?
         raise I18n.t('models.document_base.errors.gnerctype_is_null') unless self.gnerc.type_id.present?
       end
@@ -177,22 +177,22 @@ class Document::Base < ActiveRecord::Base
       end
 
       #check if reply and file present or sms
-      if self.is_reply?
+      # if self.is_reply?
 
-        if self.gnerc.status == 0
-          raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
-        else
-          sms = Document::Sms.where(answer: self, active: 1).first
-          raise I18n.t('models.document_base.errors.no_file_or_sms') if ( self.gnerc.file.blank? and sms.blank? )
-        end
+      #   if self.gnerc.status == 0
+      #     raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
+      #   else
+      #     sms = Document::Sms.where(answer: self, active: 1).first
+      #     raise I18n.t('models.document_base.errors.no_file_or_sms') if ( self.gnerc.file.blank? and sms.blank? )
+      #   end
 
-        if self.gnerc.mediate == 1
-          raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
-        end
+      #   if self.gnerc.mediate == 1
+      #     raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
+      #   end
 
-      else # not reply
-        raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
-      end
+      # else # not reply
+      #   raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
+      # end
 
       if self.is_reply? and self.author_motions.blank?
         raise I18n.t('models.document_base.errors.no_author')
@@ -211,6 +211,8 @@ class Document::Base < ActiveRecord::Base
       self.actual_sender = user
       self.save!
 
+      add_signee_motion if ( self.direction == IN && GNERC_TYPES.include?(self.type_id) )
+
       self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)}
       check_auto_assignees!(user)
       check_auto_signees!(user)
@@ -221,7 +223,7 @@ class Document::Base < ActiveRecord::Base
         self.save!
       end
 
-      send_to_gnerc
+      # send_to_gnerc
     end
 
   end
@@ -649,10 +651,10 @@ class Document::Base < ActiveRecord::Base
   end
 
   def send_to_gnerc
-    return unless GNERC_TYPES.include?(self.type_id)
-    return unless self.direction == IN
-    return if self.status == DRAFT
-    return if self.is_reply?
+    return false unless GNERC_TYPES.include?(self.type_id)
+    return false unless self.direction == IN
+    return false if self.status == DRAFT
+    return false if self.is_reply?
 
     Gnerc::Sender.appeal(self)
   end
@@ -754,5 +756,20 @@ class Document::Base < ActiveRecord::Base
                      }
       Document::Motion.create_draft!(user, motionparams)
     end
+  end
+
+  def add_signee_motion
+    # run through all signees and add +1 to order 
+    self.signee_motions.where('ordering > 0').map do |motion|
+      motion.ordering = motion.ordering + 1
+      motion.save
+    end
+
+    # create signee motion
+    motionparams = { document_id: self.id, is_new: 0, ordering: 1,
+        sender_user: self.sender_user, sender: self.sender, actual_sender: nil, # it's not sent yet
+        receiver_user: self.sender_user, receiver: self.sender, receiver_role: ROLE_SIGNEE, status: DRAFT,
+        created_at: Time.now, sent_at: Time.now, received_at: Time.now}
+    Document::Motion.create!(motionparams)
   end
 end

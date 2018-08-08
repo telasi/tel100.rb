@@ -4,5 +4,6 @@ module.exports = {
   motion: require('./motion'),
   user: require('./user'),
   renderer: require('./renderer'),
-  type: require('./type')
+  type: require('./type'),
+  gnerc: require('./gnerc')
 };

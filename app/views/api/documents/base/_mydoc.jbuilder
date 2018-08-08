@@ -19,6 +19,7 @@ json.as_author    mydoc.as_author
 json.has_due_date mydoc.due_date?
 json.due_is_over  mydoc.due_is_over?
 json.current_due_date mydoc.current_due_date
+json.attention    mydoc.attention
 
 # incoming motions
 incoming = mydoc.motions.order('ordering ASC, id ASC') # any status is OK

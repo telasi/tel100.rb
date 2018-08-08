@@ -36,6 +36,12 @@ class Api::Documents::GnercController < ApiController
     end
   end
 
+  def send_gnerc
+    doc = Document::Base.find(params[:id])
+    Gnerc::Sender.answer(doc)
+    render json: { success: true }
+  end
+
   def reset_sms
     doc = Document::Base.find(params[:document_id])
     Document::Sms.reset_sms!(doc, params[:status], effective_user)

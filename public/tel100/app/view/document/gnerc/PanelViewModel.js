@@ -30,7 +30,9 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     showplus: true,
     filename: null,
     mediate: false,
-    status: null
+    status: null,
+    step: 0,
+    send_status: 0
   },
 
   stores: {
@@ -43,6 +45,8 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
           store.viewModel.set('type_id', store.data.items[0].get('type_id'));
           store.viewModel.set('mediate', store.data.items[0].get('mediate'));
           store.viewModel.set('status', store.data.items[0].get('status'));
+          store.viewModel.set('step', store.data.items[0].get('step'));
+          store.viewModel.set('send_status', store.data.items[0].get('send_status'));
         }
       },
       autoLoad: true,
@@ -92,14 +96,25 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     }
   },
   formulas: {
+    showplus: function(get){
+      return !get('gnerc.filename');
+    },
     notEditable: function(get) {
       return !get('editable');
     },
     showPlus: function(get){
-      return get('editable') && get('showplus');
+      if(get('document.is_reply')){
+        return ( get('document.as_sender') === 1 ) && ( get('step') === 3 ) && get('showplus');
+      } else {
+        return !get('editable') && ( get('step') === 0 ) && get('showplus');
+      }
     },
     showMinus: function(get){
-      return get('editable') && !get('showplus');
+      if(get('document.is_reply')){
+        return ( get('document.as_sender') === 1 ) && ( get('step') === 3 ) && !get('showplus');
+      } else {
+        return !get('editable') && ( get('step') === 0 ) && !get('showplus');
+      }
     },
     isGnercType4: function(get) {
       return ( get('document.type_id') === 13 && !get('document.is_reply') );
@@ -108,14 +123,26 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
       return get('document.is_reply');
     },
     showSms: function(get){
-      return get('editable') && get('document.is_reply');
+      // return get('editable') && get('document.is_reply');
+      return get('editable') || 
+              ( ( get('document.as_sender') === 1 && get('step') === 3 ) || ( get('document.as_author') === 1 && get('step') === 2 ) );
     },
     smsEditable: function(get){
+      // return get('editable') || 
+      //        ( ( get('document.as_author') === 1 || get('document.as_signee') === 1 ) && !get('document.is_completed') && !get('document.is_canceled') );
       return get('editable') || 
-             ( ( get('document.as_author') === 1 || get('document.as_signee') === 1 ) && !get('document.is_completed') && !get('document.is_canceled') );
+              ( ( get('document.as_sender') === 1 && get('step') === 3 ) || 
+                ( get('document.as_author') === 1 && get('step') === 0 ) );
+    },
+    hideSend: function(get){
+      return !( get('document.as_sender') === 1 && get('step') === 3 );
     },
     hideStatus: function(get){
       return get('editable') || !get('document.is_reply');
+    },
+    showAnswerStatus: function(get){
+      return get('document.is_reply') && ( get('editable') || ( ( get('document.as_sender') === 1 && get('step') === 3 ) || 
+                                                                ( get('document.as_author') === 1 && get('step') === 0 ) ) );
     },
     hideMediate: function(get){
       return ( get('document.type_id') === 15 || !get('document.is_reply') );

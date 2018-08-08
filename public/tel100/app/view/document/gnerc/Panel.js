@@ -62,6 +62,17 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
     xtype: 'displayfield',
     text: 'aaa',
     bind: {
+      fieldLabel: '{i18n.document.base.gnerc_status}',
+      value: '{send_status}'
+    },
+    renderer: function(value, object){
+      return helpers.document.gnerc.formatGnercStatus(value);
+    }
+  }, 
+  {
+    xtype: 'displayfield',
+    text: 'aaa',
+    bind: {
       fieldLabel: '{i18n.document.base.my_status}',
       hidden: '{hideStatus}',
       value: '{status}'
@@ -98,7 +109,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
       // readOnly: 'true',
       bind: {
         // disabled: '{!editable}',
-        hidden: '{!showSms}',
+        hidden: '{!showAnswerStatus}',
         value: '{status}'
       },
       items: [
@@ -314,7 +325,25 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                     }
                   }]
             }]
-          }, 
+          },
+          {
+            xtype: 'button',
+            width: '100%',
+            bind: {
+              text: '{i18n.document.base.gnerc_send}',
+              hidden: '{hideSend}'
+            },
+            handler: function(button, e){
+              var gnercpanel = this.up('documentgnercpanel');
+              var vm = gnercpanel.getViewModel();
+              helpers.api.document.gnerc.send(vm.get('document').id, { params: { },
+                success: function(){
+                    this.up('documentgnercpanel').refresh();
+                }.bind(button) 
+              });
+            }
+          }
+
     ],
   tools: [
     {

@@ -296,7 +296,7 @@ class Document::Motion < ActiveRecord::Base
       notifyuser = self.receiver_user
     end
     notify_du = Document::User.where(document: doc, user: notifyuser).first
-    notify_du.update_attributes!(is_changed: 1)
+    notify_du.update_attributes!(is_changed: 1) if notify_du.present?
 
     if is_receiver
 
@@ -321,9 +321,14 @@ class Document::Motion < ActiveRecord::Base
         end
       end
 
-      # send to gnerc when author completes
-      if self.status == COMPLETED and status_updated and self.receiver_role == ROLE_AUTHOR
+      # send to gnerc when initiator signes
+      if self.status == COMPLETED and status_updated and self.receiver_role == ROLE_SIGNEE
         send_to_gnerc(doc)
+      end
+
+      # set gnerc status when author completes
+      if self.status == COMPLETED and status_updated and self.receiver_role == ROLE_AUTHOR
+        set_gnerc_status(doc)
       end
     end
   end
@@ -367,9 +372,15 @@ class Document::Motion < ActiveRecord::Base
 
   def send_to_gnerc(doc)
     return unless GNERC_TYPES.include?(self.document.type_id)
-    return unless self.document.direction == OUT
+    return unless self.document.direction == IN
 
-    Gnerc::Sender.answer(doc)
+    Gnerc::Sender.appeal(doc)
+  end
+
+  def set_gnerc_status(doc)
+    gnerc = doc.gnerc
+    gnerc.step = Document::Gnerc::STEP_ANSWER_COMPLETED
+    gnerc.save!
   end
 
   def self.delete_children(motion)

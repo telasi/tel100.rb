@@ -172,6 +172,13 @@ var relation = {
 };
 
 var gnerc = {
+  send: function(id, args){
+    var opts = args || {};
+    opts.method = 'PUT';
+    opts.url = '/api/documents/gnerc/send_gnerc';
+    opts.params.id = id;
+    ajax.request(opts);
+  },
   update: function(id, args) {
     var opts = args || {};
     opts.method = 'PUT';

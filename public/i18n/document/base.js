@@ -99,9 +99,17 @@ module.exports = {
     ka: '<i class="fa fa-hand-paper-o"></i> გასაგზავნი პასუხი',
     ru: '<i class="fa fa-hand-paper-o"></i> Ответ для отправки'
   },
+  gnerc_send: {
+    ka: '<i class="fa fa-hand-paper-o"></i> გაგზავნა სემეკ-ში',
+    ru: '<i class="fa fa-hand-paper-o"></i> Отправка в ГНЭРК'
+  },
   gnerc_subtype: {
     ka: 'ქვესახეობა',
     ru: 'Подвид'
+  },
+  gnerc_status: {
+    ka: 'სემეკი',
+    ru: 'ГНЭРК'
   },
   positive: {
     ka: '<i class="fa fa-check"></i> დადებითი',
@@ -271,6 +279,32 @@ module.exports = {
     not_received: {
       ka: 'მიუღებელი',
       ru: 'Не полученный'
+    },
+  },
+  gnerc_statuses: {
+    initial: {
+      ka: 'დრაფტი',
+      ru: 'Черновик'
+    },
+    ready: {
+      ka: 'მიმდინარეობს გაგზავნა',
+      ru: 'В пути'
+    },
+    sent: {
+      ka: 'გაგზავნილია',
+      ru: 'Отправлено'
+    },
+    answered_ready: {
+      ka: 'მიმდინარეობს პასუხის გაგზავნა',
+      ru: 'Ответ в пути'
+    },
+    answered: {
+      ka: 'პასუხი გაგზავნილია',
+      ru: 'Ответ отправлен'
+    },
+    error: {
+      ka: 'შეცდომა',
+      ru: 'Ошибка'
     },
   },
   directions: {

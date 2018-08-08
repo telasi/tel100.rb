@@ -6,6 +6,8 @@ class Document::File < ActiveRecord::Base
 
   belongs_to :document, class_name: 'Document::Base'
 
+  def size; File.size(self.full_path).size; end
+
   def self.upload(params)
     if params[:file].kind_of?(Array)
       params[:file].each do |file|

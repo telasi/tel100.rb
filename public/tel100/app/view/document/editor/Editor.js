@@ -290,10 +290,12 @@ Ext.define('Tel100.view.document.editor.Editor', {
     var view = this;
     var vm = view.getViewModel();
     var doc = vm.get('document');
+    var gnercPanel = view.down('documentgnercpanel');
     var dialog = Ext.create('Tel100.view.document.comment.Sign', { modal: true });
     dialog.getViewModel().set('document', doc);
     dialog.on('signed', function() {
       view.refresh();
+      gnercPanel.refresh();
       view.fireEvent('documentchanged', doc);
     });
     dialog.show();

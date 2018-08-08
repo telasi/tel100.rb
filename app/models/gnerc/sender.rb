@@ -1,7 +1,15 @@
 # -*- encoding : utf-8 -*-
-module Gnerc::Sender
+class Gnerc::Sender
+
+ include Document::Direction
+ include Document::Status
 	
  def self.appeal(doc)
+     raise Sys::MyException.new('Wrong type', { error_code: 1 }) unless GNERC_TYPES.include?(doc.type_id)
+     raise Sys::MyException.new('Wrong direction', { error_code: 1 }) unless doc.direction == IN
+     raise Sys::MyException.new('Wrong state', { error_code: 1 }) if doc.status == DRAFT
+     raise Sys::MyException.new('Wrong status', { error_code: 1 }) if doc.is_reply?
+
       motion = doc.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
       if motion.present?
         customer = motion.receiver.customer 
@@ -19,13 +27,14 @@ module Gnerc::Sender
         end  
       end
 
-      return unless motion.present?
-      return unless customer.present?
+      raise Sys::MyException.new('Cant find customer', { error_code: 1 }) unless motion.present?
+      raise Sys::MyException.new('Cant find customer', { error_code: 1 }) unless customer.present?
 
       file = doc.gnerc.file if doc.gnerc.present?
-      return unless file.present?
+      raise Sys::MyException.new('Cant find file', { error_code: 1 }) unless file.present?
 
       content = File.read(file.full_path)
+      raise Sys::MyException.new('File is zero size', { error_code: 1 }) if ( content.length == 0 )
       content = Base64.encode64(content)
 
       case doc.type_id
@@ -81,6 +90,7 @@ module Gnerc::Sender
       end
 
       doc.gnerc.stage = 1
+      doc.gnerc.step = Document::Gnerc::STEP_SIGNEE
       doc.gnerc.sent_at = Time.now
       doc.gnerc.save!
 
@@ -99,9 +109,35 @@ module Gnerc::Sender
     end
 
 	def self.answer(doc)
-      return unless doc.gnerc.present?
+    #   if self.gnerc.status == 0
+      #     raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
+      #   else
+      #     sms = Document::Sms.where(answer: self, active: 1).first
+      #     raise I18n.t('models.document_base.errors.no_file_or_sms') if ( self.gnerc.file.blank? and sms.blank? )
+      #   end
+
+      #   if self.gnerc.mediate == 1
+      #     raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
+      #   end
+
+      # else # not reply
+      #   raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
+      # end
+
+      raise Sys::MyException.new('Error', { error_code: 1 }) unless doc.gnerc.present?
+
+      if doc.gnerc.status == 0
+        raise I18n.t('models.document_base.errors.no_file') unless doc.gnerc.file.present?  
+      else
+        sms = Document::Sms.where(answer: doc, active: 1).first
+        raise I18n.t('models.document_base.errors.no_file_or_sms') if ( doc.gnerc.file.blank? and sms.blank? )
+      end
+
+      if doc.gnerc.mediate == 1
+        raise I18n.t('models.document_base.errors.no_file') unless doc.gnerc.file.present?  
+      end
+
       file = doc.gnerc.file if doc.gnerc.present?
-      # return unless file.present?
 
       if file.present?
         content = File.read(file.full_path)
@@ -131,6 +167,10 @@ module Gnerc::Sender
             related.gnerc.sent_at = Time.now
             related.gnerc.save!
           end
+
+          answer_gnerc = doc.gnerc
+          answer_gnerc.step = Document::Gnerc::STEP_ANSWER
+          answer_gnerc.save!
 
           parameters.merge!({ mediate: 1 }) if ( doc.type_id != GNERC_TYPE6 and doc.gnerc.mediate == 1 )
 

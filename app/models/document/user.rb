@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Document::User < ActiveRecord::Base
+  include Document::Direction
   include Document::Role
   include Document::Status
   self.table_name  = 'document_user'
@@ -80,6 +81,19 @@ class Document::User < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def attention
+    doc = self.document
+    if GNERC_TYPES.include?(doc.type_id) && doc.status != Document::Status::DRAFT
+      if doc.direction == Document::Direction::IN
+        first_signee = doc.signee_motions.where("ordering = 1 and status not in (3,-3) ").first
+        return true if first_signee.present? && doc.actual_sender.id == first_signee.actual_sender.id
+      elsif doc.direction == Document::Direction::OUT
+        return true if ( doc.gnerc.present? && doc.gnerc.step == 3 )
+      end
+    end
+    false
   end
 
   def read!
