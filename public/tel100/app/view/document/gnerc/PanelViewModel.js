@@ -135,7 +135,7 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
                   ( get('document.as_author') === 1 && get('step') === 0 ) );
     },
     hideSend: function(get){
-      return !( get('document.as_sender') === 1 && get('step') === 3 );
+      return !( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 );
     },
     hideStatus: function(get){
       return get('editable') || !get('document.is_reply');
