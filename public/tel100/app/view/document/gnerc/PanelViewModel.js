@@ -125,13 +125,16 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     showSms: function(get){
       // return get('editable') && get('document.is_reply');
       return get('editable') || 
-              ( ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 ) || ( get('document.as_author') === 1 && get('step') === 2 ) );
+              ( ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 ) || 
+                ( ( get('document.as_signee') === 1 || get('document.as_signee') === 2 ) && get('step') === 3 ) ||
+                  ( get('document.as_author') === 1 && get('step') === 2 ) );
     },
     smsEditable: function(get){
       // return get('editable') || 
       //        ( ( get('document.as_author') === 1 || get('document.as_signee') === 1 ) && !get('document.is_completed') && !get('document.is_canceled') );
       return get('editable') || 
-              ( ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 )  && get('step') === 3 ) || 
+              ( ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 ) || 
+                ( ( get('document.as_signee') === 1 || get('document.as_signee') === 2 ) && get('step') === 3 ) || 
                   ( get('document.as_author') === 1 && get('step') === 0 ) );
     },
     hideSend: function(get){
@@ -142,7 +145,7 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     },
     showAnswerStatus: function(get){
       return get('document.is_reply') && ( get('editable') || ( ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 ) || 
-                                                                ( get('document.as_author') === 1 && get('step') === 0 ) ) );
+                                                                  ( get('document.as_author') === 1 && get('step') === 0 ) ) );
     },
     hideMediate: function(get){
       return ( get('document.type_id') === 15 || !get('document.is_reply') );
