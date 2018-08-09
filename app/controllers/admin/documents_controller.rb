@@ -65,6 +65,7 @@ class Admin::DocumentsController < AdminController
         motion.receiver = receiver
         motion.save!
     end
+    Document::User.where(document: motion.document).map{ |x| x.calculate! }
     render json: { success: true }
   end
 
