@@ -25,9 +25,14 @@ class Document::Gnerc < ActiveRecord::Base
     if self.step == STEP_SIGNEE || self.step == STEP_ANSWER
       current_stage = document.direction == 'in' ?  1 : 2
       if document.direction == 'out'
-        sms = Document::Sms.where(answer: document).first
-        if sms.present?
-          document = sms.document
+        # find source document
+        sourcedocs = Document::Relation.where(base: document)
+        sourcedocs.each do |source|
+          related = Document::Base.find(source.related_id)
+          if GNERC_TYPES.include?(related.type_id) && related.direction == 'in'
+            document = related
+            break
+          end
         end
       end
       service = "Docflow#{DOCFLOW_TO_GNERC_MAP[document.type_id]}"
