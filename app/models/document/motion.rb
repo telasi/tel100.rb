@@ -322,12 +322,12 @@ class Document::Motion < ActiveRecord::Base
       end
 
       # send to gnerc when initiator signes
-      if self.status == COMPLETED and status_updated and self.receiver_role == ROLE_SIGNEE and doc.sender?(user)
+      if self.status == COMPLETED && status_updated && self.receiver_role == ROLE_SIGNEE && doc.sender?(user)
         send_to_gnerc(doc)
       end
 
       # set gnerc status when author completes
-      if self.status == COMPLETED and status_updated and self.receiver_role == ROLE_AUTHOR
+      if self.status == COMPLETED && status_updated && self.receiver_role == ROLE_AUTHOR
         set_gnerc_status(doc)
       end
     end
