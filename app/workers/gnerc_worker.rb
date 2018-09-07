@@ -8,7 +8,7 @@ class GnercWorker
 
   	if func == "appeal"
   		stage = 1
-  		doc = clazz.new(parameters)
+      doc = clazz.where(docid: parameters["docid"]).first || clazz.new(parameters)
   	else
   		stage = 2
   		doc = clazz.where(docid: parameters["docid"]).first
