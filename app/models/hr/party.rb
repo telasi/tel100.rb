@@ -4,6 +4,7 @@ class HR::Party < ActiveRecord::Base
   self.sequence_name = 'party_base_seq'
   self.localized_fields('name', 'address', 'contact')
   validate :name_entered, :customer_exist
+  before_save :trim_phones
 
   def to_s; self.name end
 
@@ -46,5 +47,9 @@ class HR::Party < ActiveRecord::Base
     if self.customer.strip.length > 0
       errors.add('Customer not found') unless BS::Customer.where(accnumb: self.customer).any?
     end
+  end
+
+  def trim_phones
+    self.phones.delete!(' ')
   end
 end
