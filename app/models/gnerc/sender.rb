@@ -129,7 +129,7 @@ class Gnerc::Sender
       raise Sys::MyException.new('Error', { error_code: 1 }) unless doc.gnerc.present?
 
       sms = Document::Sms.where(answer: doc, active: 1).first
-      raise Sys::MyException.new('არასწორი მობილური ნომერი', { error_code: 1 }) if ( doc.gnerc.file.blank? && !Mobile.correct_mobile?(Mobile.compact_mobile(sms.phone)) )
+      raise Sys::MyException.new('არასწორი მობილური ნომერი. გთხოვთ ატვირთეთ ფაილი', { error_code: 1 }) if ( doc.gnerc.file.blank? && !Mobile.correct_mobile?(Mobile.compact_mobile(sms.phone)) )
 
       if doc.gnerc.status == 0
         raise I18n.t('models.document_base.errors.no_file') unless doc.gnerc.file.present?  
