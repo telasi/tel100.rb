@@ -3,12 +3,14 @@ class Gnerc::Sender
 
  include Document::Direction
  include Document::Status
+ include Mobile
 	
  def self.appeal(doc)
      raise Sys::MyException.new('Wrong type', { error_code: 1 }) unless GNERC_TYPES.include?(doc.type_id)
      raise Sys::MyException.new('Wrong direction', { error_code: 1 }) unless doc.direction == IN
      raise Sys::MyException.new('Wrong state', { error_code: 1 }) if doc.status == DRAFT
      raise Sys::MyException.new('Wrong status', { error_code: 1 }) if doc.is_reply?
+     raise Sys::MyException.new('შეიყვანთ ადრესატი', { error_code: 1 }) if doc.assignee_motions.none?
 
       motion = doc.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
       if motion.present?
@@ -126,10 +128,12 @@ class Gnerc::Sender
 
       raise Sys::MyException.new('Error', { error_code: 1 }) unless doc.gnerc.present?
 
+      sms = Document::Sms.where(answer: doc, active: 1).first
+      raise Sys::MyException.new('არასწორი მობილური ნომერი', { error_code: 1 }) if ( doc.gnerc.file.blank? && !Mobile.correct_mobile?(Mobile.compact_mobile(sms.phone)) )
+
       if doc.gnerc.status == 0
         raise I18n.t('models.document_base.errors.no_file') unless doc.gnerc.file.present?  
       else
-        sms = Document::Sms.where(answer: doc, active: 1).first
         raise I18n.t('models.document_base.errors.no_file_or_sms') if ( doc.gnerc.file.blank? and sms.blank? )
       end
 
