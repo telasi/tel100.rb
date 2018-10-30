@@ -129,6 +129,7 @@ class Gnerc::Sender
       raise Sys::MyException.new('Error', { error_code: 1 }) unless doc.gnerc.present?
 
       sms = Document::Sms.where(answer: doc, active: 1).first
+      raise Sys::MyException.new('არასწორი მობილური ნომერი. გთხოვთ ატვირთეთ ფაილი', { error_code: 1 }) if ( doc.gnerc.file.blank? && sms.blank? )
       raise Sys::MyException.new('არასწორი მობილური ნომერი. გთხოვთ ატვირთეთ ფაილი', { error_code: 1 }) if ( doc.gnerc.file.blank? && !Mobile.correct_mobile?(Mobile.compact_mobile(sms.phone)) )
 
       if doc.gnerc.status == 0
@@ -179,6 +180,12 @@ class Gnerc::Sender
           parameters.merge!({ mediate: 1 }) if ( doc.type_id != GNERC_TYPE6 and doc.gnerc.mediate == 1 )
 
           GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[related.type_id], parameters)
+
+          if content.present?
+            JusticeWorker.perform_async({ docid: related.id, docnumber: related.docnumber, name: file.original_name, content: content })
+          else
+            JusticeWorker.perform_async({ docid: related.id, docnumber: related.docnumber, name: 'answer.txt', content: smsrecord.text })
+          end
         end
       end
 

@@ -2,9 +2,10 @@
 class Sys::UserRelation < ActiveRecord::Base
   REL_HRTREE = 'hrtree'
   REL_CANCELARIA = 'cancelaria'
+  REL_JUSTICE = 'justice'
   REL_AUTO_ASSIGNEE = 'auto-assignee'
 
-  RELATIONS = [ REL_HRTREE, REL_CANCELARIA, REL_AUTO_ASSIGNEE ]
+  RELATIONS = [ REL_HRTREE, REL_CANCELARIA, REL_JUSTICE, REL_AUTO_ASSIGNEE ]
 
   self.table_name  = 'user_relations'
   self.primary_keys = :user_id, :related_id, :role

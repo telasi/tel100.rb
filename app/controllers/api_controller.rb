@@ -63,7 +63,7 @@ class ApiController < ActionController::Base
       return true
     end
 
-    if current_proxy_roles and current_proxy_roles.include?(Sys::UserRelation::REL_CANCELARIA)
+    if current_proxy_roles and current_proxy_roles.all?{ |i| [Sys::UserRelation::REL_CANCELARIA, Sys::UserRelation::REL_JUSTICE].include?(i) }
       return true
     end
 

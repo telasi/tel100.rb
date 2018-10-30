@@ -73,6 +73,12 @@ Rails.application.routes.draw do
         post '/motion', action: 'motion'
       end
     end
+
+    # scope '/gnerc', controller: 'gnerc' do
+    #   get '/', action: 'index', as: 'gnerc'
+    #   get '/gnerc1', action: 'gnerc1', as: 'gnerc1'
+    #   get '/gnerc2', action: 'gnerc2', as: 'gnerc2'
+    # end
   end
 
   namespace 'api' do
@@ -219,6 +225,9 @@ Rails.application.routes.draw do
         get '/motion', action: 'motion'
         get '/files', action: 'files'
       end
+    end
+    namespace 'external', controller: 'document' do
+      post 'justice', action: 'justice'
     end
     scope 'sap', controller: 'sap' do
       get '/sync', action: 'sync'
