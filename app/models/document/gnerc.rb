@@ -44,7 +44,7 @@ class Document::Gnerc < ActiveRecord::Base
       if queue.blank?
         return 0
       else
-        if current_stage = 1
+        if current_stage == 1
           queue.sent_at.blank? ? 1 : 2
         else
           queue.sent_at.blank? ? 3 : 4
