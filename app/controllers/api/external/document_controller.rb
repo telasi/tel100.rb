@@ -63,7 +63,7 @@ class Api::External::DocumentController < ApiController
 
      render json: { success: true, id: docid, number: docnumber }
    rescue StandardError => e
-    render json: { success: false }
+    render json: { success: false, message: e.inspect }
   end
 
   def self.response(doc)
