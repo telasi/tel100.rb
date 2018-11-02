@@ -181,7 +181,7 @@ class Gnerc::Sender
 
           GnercWorker.perform_async("answer", DOCFLOW_TO_GNERC_MAP[related.type_id], parameters)
 
-          if related.sender_id == JUSTICE_USER
+          if related.sender_user_id == JUSTICE_USER
             if content.present?
               JusticeWorker.perform_async({ docid: related.id, docnumber: related.docnumber, name: file.original_name, content: content })
             else
