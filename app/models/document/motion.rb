@@ -259,7 +259,7 @@ class Document::Motion < ActiveRecord::Base
     end
 
     # dont let complete motion if type is protocol (19) and text is blank
-    if doc.type_id == DOCUMENT_TYPE_PROTOCOL and params[:text].blank? and resp_type_id != AUTO_SIGN_TYPE_ID
+    if doc.type_id == DOCUMENT_TYPE_PROTOCOL && params[:text].blank? && params[:response_type_id] != AUTO_SIGN_TYPE_ID
       raise 'you should enter comment'
     end
 
