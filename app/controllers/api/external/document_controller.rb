@@ -32,7 +32,9 @@ class Api::External::DocumentController < ApiController
        Document::Motion.create!(motionparams)
        Document::User.create!(document_id: doc.id, user_id: justice_user.id, is_new: 0, is_changed: 0).calculate!
 
-       author = BS::Customer.where(accnumb: params[:accnumb]).first || BS::Customer.first
+       author = BS::Customer.where(accnumb: params[:accnumb]).first
+
+       raise 'No customer' if author.blank?
 
        authorparams = { document_id: doc.id, is_new: 0, ordering: Document::Motion::ORDERING_AUTHOR,
          sender_user: justice_user, sender: justice_user, actual_sender: justice_user,
