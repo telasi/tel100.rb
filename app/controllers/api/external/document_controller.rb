@@ -33,6 +33,9 @@ class Api::External::DocumentController < ApiController
        Document::Motion.create!(motionparams)
        Document::User.create!(document_id: doc.id, user_id: justice_user.id, is_new: 0, is_changed: 0).calculate!
 
+       doc.check_auto_assignees!(justice_user)
+       doc.check_auto_signees!(justice_user)
+
        author = BS::Customer.where(accnumb: params[:accnumb]).first
 
        raise 'No customer' if author.blank?
