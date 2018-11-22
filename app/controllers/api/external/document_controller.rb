@@ -10,6 +10,7 @@ class Api::External::DocumentController < ApiController
       owner_user: justice_user, 
       direction: Document::Direction::IN, status: Document::Status::CURRENT,
       docdate: Date.today, sent_at: Time.now, received_at: Time.now,
+      deadline: Time.now + Document::Type.find(GNERC_TYPE6).deadline.working.days,
       actual_sender: justice_user,
       docnumber: Document::Base.docnumber_eval(GNERC_TYPE6, Date.today),
       type_id: GNERC_TYPE6
