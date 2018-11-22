@@ -45,15 +45,17 @@ class Api::External::DocumentController < ApiController
 
        doc.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(justice_user)}
 
-       storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
-       f = Document::File.new(document: doc, original_name: params[:document_name], store_name: storename, created_at: Time.now, folder: Time.now.strftime('%Y%m'))
-       folder = File.join(FILES_REPOSITORY, Time.now.strftime('%Y%m'))
-       FileUtils.mkdir_p(folder)
-       File.open(f.full_path, 'wb') do |file|
-           file.write(Base64.decode64(params[:document]))
-       end
+       params[:files].each do |paramfile|
+         storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
+         f = Document::File.new(document: doc, original_name: paramfile.name, store_name: storename, created_at: Time.now, folder: Time.now.strftime('%Y%m'))
+         folder = File.join(FILES_REPOSITORY, Time.now.strftime('%Y%m'))
+         FileUtils.mkdir_p(folder)
+         File.open(f.full_path, 'wb') do |file|
+             file.write(Base64.decode64(paramfile.content))
+         end
 
-       f.save!
+         f.save!
+        end
 
        doc.save!
 
