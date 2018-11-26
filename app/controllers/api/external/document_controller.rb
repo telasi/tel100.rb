@@ -37,14 +37,14 @@ class Api::External::DocumentController < ApiController
        Document::User.create!(document_id: doc.id, user_id: justice_user.id, is_new: 0, is_changed: 0).calculate!
 
        # auto-assignee motion
-       send_type_direction = Document::ResponseTypeDirection::SEND
-       send_type = Document::ResponseType.where(direction: send_type_direction, role: Document::Role::ROLE_AUTO_ASSIGNEE).first
-       motionparams = { document_id: doc.id, is_new: 1, ordering: Document::Motion::ORDERING_AUTO_ASIGNEE,
-          send_type: send_type, sender_user: justice_user, receiver_user_id: AUTO_SIGNEE, 
-          receiver_role: Document::Role::ROLE_ASSIGNEE, status: Document::Status::SENT, 
-          sent_at: Time.now, received_at: Time.now }
-       Document::Motion.create!(motionparams)
-       Document::User.create!(document_id: doc.id, user_id: AUTO_SIGNEE, is_new: 1, is_changed: 1)
+       # send_type_direction = Document::ResponseTypeDirection::SEND
+       # send_type = Document::ResponseType.where(direction: send_type_direction, role: Document::Role::ROLE_AUTO_ASSIGNEE).first
+       # motionparams = { document_id: doc.id, is_new: 1, ordering: Document::Motion::ORDERING_AUTO_ASIGNEE,
+       #    send_type: send_type, sender_user: justice_user, receiver_user_id: AUTO_SIGNEE, 
+       #    receiver_role: Document::Role::ROLE_ASSIGNEE, status: Document::Status::SENT, 
+       #    sent_at: Time.now, received_at: Time.now }
+       # Document::Motion.create!(motionparams)
+       # Document::User.create!(document_id: doc.id, user_id: AUTO_SIGNEE, is_new: 1, is_changed: 1)
 
        author = BS::Customer.where(accnumb: params[:accnumb]).first
 
