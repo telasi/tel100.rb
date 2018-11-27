@@ -183,7 +183,7 @@ class Gnerc::Sender
 
           if related.sender_user_id == JUSTICE_USER
             if content.present?
-              
+              JusticeWorker.perform_async({ docid: related.id, docnumber: related.docnumber, name: file.original_name, content: content })
             else
               JusticeWorker.perform_async({ docid: related.id, docnumber: related.docnumber, name: 'answer.txt', content: Base64.encode64(smsrecord.text) })
             end
