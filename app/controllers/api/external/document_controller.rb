@@ -19,6 +19,9 @@ class Api::External::DocumentController < ApiController
     docid = nil
     docnumber = nil
 
+    author = BS::Customer.where(accnumb: params[:accnumb]).first
+    raise 'Customer not found' if author.blank?
+
   	Document::Base.transaction do
        doc = Document::Base.create!(docparams)
 
@@ -46,13 +49,18 @@ class Api::External::DocumentController < ApiController
        # Document::Motion.create!(motionparams)
        # Document::User.create!(document_id: doc.id, user_id: AUTO_SIGNEE, is_new: 1, is_changed: 1)
 
-       author = BS::Customer.where(accnumb: params[:accnumb]).first
-
-       raise 'Customer not found' if author.blank?
+       party = HR::Party.new(name_ka: params[:name].squish, 
+                             address_ka: params[:addess].squish, 
+                             identity: params[:tin].squish, 
+                             phones: params[:mobile].squish, 
+                             customer: params[:accnumb].squish, 
+                             email: params[:email].squish,
+                             org_type: 1)
+       party.save!
 
        authorparams = { document_id: doc.id, is_new: 0, ordering: Document::Motion::ORDERING_AUTHOR,
          sender_user: justice_user, sender: justice_user, actual_sender: justice_user,
-         receiver_user_id: nil, receiver_id: author.id, receiver_type: 'BS::Customer', 
+         receiver_user_id: nil, receiver_id: party.id, receiver_type: 'HR::Party', 
          receiver_role: Document::Role::ROLE_AUTHOR, status: Document::Status::DRAFT,
          created_at: Time.now, sent_at: Time.now, received_at: Time.now}
        Document::Motion.create!(authorparams)
