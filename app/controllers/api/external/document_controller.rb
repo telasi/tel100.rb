@@ -50,7 +50,7 @@ class Api::External::DocumentController < ApiController
        # Document::User.create!(document_id: doc.id, user_id: AUTO_SIGNEE, is_new: 1, is_changed: 1)
 
        party = HR::Party.new(name_ka: params[:name].present? ? params[:name].squish : nil,
-                             address_ka: params[:addess].present? ? params[:addess].squish : nil, 
+                             address_ka: params[:address].present? ? params[:address].squish : nil, 
                              identity: params[:tin].present? ? params[:tin].squish : nil, 
                              phones: params[:mobile].present? ? params[:mobile].squish : nil, 
                              customer: params[:accnumb].present? ? params[:accnumb].squish : nil, 
