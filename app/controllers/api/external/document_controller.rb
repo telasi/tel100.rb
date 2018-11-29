@@ -59,6 +59,8 @@ class Api::External::DocumentController < ApiController
 
        doc.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(justice_user)}
 
+       gnerc_file = nil
+
        JSON.parse(params[:files]).each do |paramfile|
          storename = (0..63).map{ |x| '0123456789abcdef'[rand(16)] }.join
          f = Document::File.new(document: doc, original_name: paramfile["name"], store_name: storename, created_at: Time.now, folder: Time.now.strftime('%Y%m'))
@@ -69,7 +71,16 @@ class Api::External::DocumentController < ApiController
          end
 
          f.save!
+
+         if paramfile["type"] == '0'
+           gnerc_file = f
+         end
         end
+
+       gnerc = Document::Gnerc.new(document: doc, status: 1)
+       gnerc.file = gnerc_file
+       gnerc.created_at = Time.now
+       gnerc.save!
 
        doc.save!
 
@@ -77,9 +88,9 @@ class Api::External::DocumentController < ApiController
        docnumber = doc.docnumber
      end
 
-     render json: { success: true, id: docid, number: docnumber }
+     render json: { success: true, id: docid, number: docnumber, message: "" }
    rescue StandardError => e
-    render json: { success: false, message: e.inspect }
+    render json: { success: false, id: "", number: "", message: e.message }
   end
 
   def self.response(doc)
