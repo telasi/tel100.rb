@@ -48,7 +48,7 @@ class Api::External::DocumentController < ApiController
 
        author = BS::Customer.where(accnumb: params[:accnumb]).first
 
-       raise 'No customer' if author.blank?
+       raise 'Customer not found' if author.blank?
 
        authorparams = { document_id: doc.id, is_new: 0, ordering: Document::Motion::ORDERING_AUTHOR,
          sender_user: justice_user, sender: justice_user, actual_sender: justice_user,
@@ -72,7 +72,7 @@ class Api::External::DocumentController < ApiController
 
          f.save!
 
-         if paramfile["type"] == '0'
+         if paramfile["type"] == 0
            gnerc_file = f
          end
         end
