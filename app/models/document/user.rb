@@ -77,7 +77,7 @@ class Document::User < ActiveRecord::Base
   def due_is_over?
     return true if self.completed_over_due == 1
     if self.current_due_date.present?
-      self.current_due_date < Date.today
+      self.current_due_date < ( Date.today + 0.hours )
     else
       false
     end
