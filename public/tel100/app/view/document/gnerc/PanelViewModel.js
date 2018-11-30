@@ -104,14 +104,18 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     },
     showPlus: function(get){
       if(get('document.is_reply')){
-        return ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && ( get('step') === 3 ) && get('showplus');
+        return ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) 
+            && ( get('step') === 3 || get('step') === 0 ) 
+            && get('showplus');
       } else {
         return !get('editable') && ( get('step') === 0 ) && get('showplus');
       }
     },
     showMinus: function(get){
       if(get('document.is_reply')){
-        return ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && ( get('step') === 3 ) && !get('showplus');
+        return ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) 
+            && ( get('step') === 3 || get('step') === 0 ) 
+            && !get('showplus');
       } else {
         return !get('editable') && ( get('step') === 0 ) && !get('showplus');
       }
