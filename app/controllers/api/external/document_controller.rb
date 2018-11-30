@@ -19,8 +19,8 @@ class Api::External::DocumentController < ApiController
     docid = nil
     docnumber = nil
 
-    author = BS::Customer.where(accnumb: params[:accnumb]).first
-    raise 'Customer not found' if author.blank?
+    # author = BS::Customer.where(accnumb: params[:accnumb]).first
+    # raise 'Customer not found' if author.blank?
 
   	Document::Base.transaction do
        doc = Document::Base.create!(docparams)
