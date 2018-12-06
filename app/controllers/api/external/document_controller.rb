@@ -6,7 +6,13 @@ class Api::External::DocumentController < ApiController
 
   	justice_user = Sys::User.find(JUSTICE_USER)
 
+    customer_name = params[:name].present? ? params[:name].squish : nil
+    accnumb = params[:accnumb].present? ? params[:accnumb].squish : nil
+
+    subject = accnumb.to_s + ' - ' + customer_name.to_s
+
     docparams = { sender_user: justice_user, sender: nil,
+      subject: subject,
       owner_user: justice_user, 
       direction: Document::Direction::IN, status: Document::Status::CURRENT,
       docdate: Date.today, sent_at: Time.now, received_at: Time.now,
@@ -49,11 +55,11 @@ class Api::External::DocumentController < ApiController
        # Document::Motion.create!(motionparams)
        # Document::User.create!(document_id: doc.id, user_id: AUTO_SIGNEE, is_new: 1, is_changed: 1)
 
-       party = HR::Party.new(name_ka: params[:name].present? ? params[:name].squish : nil,
+       party = HR::Party.new(name_ka: customer_name,
                              address_ka: params[:address].present? ? params[:address].squish : nil, 
                              identity: params[:tin].present? ? params[:tin].squish : nil, 
                              phones: params[:mobile].present? ? params[:mobile].squish : nil, 
-                             customer: params[:accnumb].present? ? params[:accnumb].squish : nil, 
+                             customer: accnumb, 
                              email: params[:email].present? ? params[:email].squish : nil,
                              org_type: 1)
        party.save!
