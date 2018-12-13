@@ -7,6 +7,7 @@ class HR::Party < ActiveRecord::Base
   before_save :trim_phones
 
   def to_s; self.name end
+  def full_name; self.name  end
 
   def to_html
     id = self.identity
