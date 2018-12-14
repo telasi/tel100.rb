@@ -75,7 +75,8 @@ class Gnerc::Sender
                          consumer_category:   customer.abonent_type,
                          appeal_date:         doc.docdate,
                          attach_6_1:          content,
-                         attach_6_1_filename: file.original_name
+                         attach_6_1_filename: file.original_name,
+                         public_service_hall: ( doc.owner_user_id == JUSTICE_USER ) ? 1 : 0
                        }
         when GNERC_TYPE8
           parameters = { docid:               doc.id,
