@@ -15,3 +15,15 @@
   t.button_action admin_new_user_url, label: 'ახალი მომხმარებელი', icon: 'plus'
   t.button_action admin_sync_eflow_users_url, label: 'eFlow სინქრონიზაცია', icon: 'refresh', confirm: 'ნამდვილად გინდათ სინქრონიზაცია?', http_method: 'post'
 end %>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'საწყისი', admin_home_url %></li>
+  <li class="active"><%= @passive_title %></li>
+</ol>
+
+<%= table_for @passive, model_name: 'Sys::User' do |t|
+  t.text_field 'username', tag: 'code'
+  t.text_field 'full_name', url: ->(x) { admin_user_url(id: x.id) }
+  t.email_field 'email'
+  t.text_field 'mobile_formatted', i18n: 'mobile'
+end %>

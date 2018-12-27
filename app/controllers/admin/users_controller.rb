@@ -2,7 +2,9 @@
 class Admin::UsersController < AdminController
   def index
     @title = 'მომხმარებლები'
+    @passive_title = 'გაუქმებული მომხმარებლები'
     @users = Sys::User.active.order('username')
+    @passive = Sys::User.where('is_active = 0').order('username')
   end
 
   def show
