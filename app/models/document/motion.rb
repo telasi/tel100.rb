@@ -303,7 +303,7 @@ class Document::Motion < ActiveRecord::Base
 
       # exception: if type is ბრძანება or განკარგულება and signee cancels - dont stop
       # stop only if author cancels
-      if ( AUTO_SIGNEE_DOCTYPES.include?(doc.type_id) and !doc.author?(user) )
+      if ( CANCEL_EXCEPTION_DOCTYPES.include?(doc.type_id) and !doc.author?(user) )
         resend_ups!
         return
       end
