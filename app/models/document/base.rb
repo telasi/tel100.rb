@@ -127,6 +127,7 @@ class Document::Base < ActiveRecord::Base
     raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
     raise I18n.t('models.document_base.errors.empty_subject') unless self.subject.present?
     raise I18n.t('models.document_base.errors.no_motions') unless self.motions.any?
+    raise I18n.t('models.document_base.errors.no_assignees') if ( !AUTO_ASSIGNEE_EXCEPTION_DOCTYPES.include?(self.type_id) && self.assignee_motions.blank? )
 
     if self.direction == INNER and not self.inner?
       raise I18n.t('models.document_base.errors.inner_has_outer_parties')
@@ -152,9 +153,9 @@ class Document::Base < ActiveRecord::Base
       if self.direction == IN 
         motion = self.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
         if motion.present?
-          customer = motion.receiver.customer 
-          customer = BS::Customer.where(accnumb: "#{customer}").first
-          raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if customer.blank?
+          # customer = motion.receiver.customer 
+          # customer = BS::Customer.where(accnumb: "#{customer}").first
+          # raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if customer.blank?
         else
           motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
           raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if motion.blank?
