@@ -540,7 +540,7 @@ class Document::Base < ActiveRecord::Base
             docuser.calculate! if docuser.present?
           end
 
-          motions_to_process = self.motions.where('ordering > ? AND receiver_role IN (?)', ordering, [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR])
+          motions_to_process = self.motions.where('parent_id is null AND ordering > ? AND receiver_role IN (?)', ordering, [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR])
           motions_to_process.each do |motion_to_process|
             docuser = Document::User.upsert!(motion_to_process.document, motion_to_process.receiver_user, motion_to_process.receiver_role, { status: SENT })
             motion_to_process.status = motion_to_process.receiver_user.blank? ? NOT_SENT : SENT
