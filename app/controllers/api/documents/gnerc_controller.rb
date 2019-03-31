@@ -36,6 +36,16 @@ class Api::Documents::GnercController < ApiController
     end
   end
 
+  def add_customer
+    doc = Document::Base.find(params[:id])
+    if can_edit_document?(doc)
+      Document::Gnerc.add_customer(params)
+      render json: { success: true }
+    else
+      render json: { success: false, error: MSG_CANNOT_EDIT }
+    end
+  end
+
   def send_gnerc
     doc = Document::Base.find(params[:id])
     Gnerc::Sender.answer(doc)

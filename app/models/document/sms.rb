@@ -10,18 +10,6 @@ class Document::Sms < ActiveRecord::Base
 
   DATE_FORMAT = '%d.%m.%Y'
 
-  # def self.generate(is_reply, doc, status)
-  #   if is_reply
-  #     if status == '1'
-  #       "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} dakmayofilebulia"
-  #     else
-  #       "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} uaryofilia"        
-  #     end
-  #   else
-  #     "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} miGebulia"
-  #   end
-  # end
-
   def self.generate(is_reply, doc, status)
     if is_reply
         if status == '1'
@@ -33,16 +21,16 @@ class Document::Sms < ActiveRecord::Base
             if smses.present?
               form_text(smses.first.text, doc)
             else
-              "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} dakmayofilebulia"
+              "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber}, el. jurnalshi reg.N #{doc.gnerc.gnerc_id} dakmayofilebulia"
             end
           else
-            "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} dakmayofilebulia"
+            "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber}, el. jurnalshi reg.N #{doc.gnerc.gnerc_id} dakmayofilebulia"
           end
-        else
-          "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} uaryofilia"        
+        else # status == '0'
+          "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber}, el. jurnalshi reg.N #{doc.gnerc.gnerc_id} uaryofilia"
         end
-    else
-      "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} miGebulia"
+    else # not reply
+      "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber}, el. jurnalshi reg.N #{doc.gnerc.gnerc_id} miGebulia"
     end
   end
 
@@ -57,6 +45,13 @@ class Document::Sms < ActiveRecord::Base
     end
     smses.each{ |x| smsarray << { description: x.description, text: form_text(x.text, doc) } }
     smsarray
+  end
+
+  def self.create!(doc, phone)
+    text = Document::Sms.generate(false, doc, '0')
+    sms = Document::Sms.where(document: doc).first || Document::Sms.new(document: doc, user: doc.sender_user, text: text, active: 1, phone: phone, sent_at: Time.now)
+    sms.text = text
+    sms.save!
   end
 
   def self.first_sms!(doc, phone)
@@ -89,8 +84,9 @@ class Document::Sms < ActiveRecord::Base
         if sms.present?
           sms.update_attributes!(user: user, text: text, active: 1)
         else
-          first_sms = Document::Sms.where(document: related).first
-          phone = first_sms.phone if first_sms.present?
+          phone = doc.gnerc.mobile if doc.gnerc.present?
+          # first_sms = Document::Sms.where(document: related).first
+          # phone = first_sms.phone if first_sms.present?
           Document::Sms.new(document: related, answer: doc, user: user, text: text, active: 1, phone: phone).save if phone.present?
         end
 

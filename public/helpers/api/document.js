@@ -213,6 +213,13 @@ var gnerc = {
     opts.url = '/api/documents/gnerc/send_sms';
     opts.params = { id: id };
     ajax.request(opts);
+  },
+  addCustomer: function(id, args){
+    var opts = args || {};
+    opts.method = 'PUT';
+    opts.url = '/api/documents/gnerc/add_customer';
+    opts.params.id = id;
+    ajax.request(opts);
   }
 };
 

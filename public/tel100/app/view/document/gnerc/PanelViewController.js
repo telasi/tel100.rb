@@ -132,8 +132,33 @@ Ext.define('Tel100.view.document.gnerc.PanelViewController', {
     });
   },
 
+  addCustomer: function(customers){
+    var customer;
+
+    if(customers.length == 0) return;
+    customer = customers[0];
+
+    var doc = this.getViewModel().get('document');
+    var view = this.getView();
+    var extType = customer.get('ext_type');
+
+    helpers.api.document.gnerc.addCustomer(doc.id, {
+      params: {
+        customer_id: customer.id,
+        customer_type: extType,
+      },
+      success: function() {
+        view.refresh();
+        view.up().down('documentfilepanel').refresh();
+      }.bind(this),
+      failure: function(error) {
+        console.error(error);
+      }.bind(this)
+    });
+
+  },
+
   onSmsSelectionComplete: function(data){
-    debugger;
   }
 
 });

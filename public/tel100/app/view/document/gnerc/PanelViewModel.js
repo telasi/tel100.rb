@@ -27,12 +27,12 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
   data: {
     type_id: null,
     editable: false,
-    showplus: true,
-    filename: null,
+    name: null,
     mediate: false,
     status: null,
     step: 0,
-    send_status: 0
+    send_status: 0,
+    customer: null
   },
 
   stores: {
@@ -40,13 +40,7 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
       listeners: {
         datachanged: function() {
           var store = this;
-          store.viewModel.set('filename', store.data.items[0].get('name'));
-          store.viewModel.set('showplus', !store.data.items[0].get('name'));
-          store.viewModel.set('type_id', store.data.items[0].get('type_id'));
-          store.viewModel.set('mediate', store.data.items[0].get('mediate'));
-          store.viewModel.set('status', store.data.items[0].get('status'));
-          store.viewModel.set('step', store.data.items[0].get('step'));
-          store.viewModel.set('send_status', store.data.items[0].get('send_status'));
+          store.viewModel.set(store.data.items[0].data);
         }
       },
       autoLoad: true,
@@ -97,7 +91,7 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
   },
   formulas: {
     showplus: function(get){
-      return !get('gnerc.filename');
+      return !get('name');
     },
     notEditable: function(get) {
       return !get('editable');
@@ -161,6 +155,9 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
         return i18n.document.base.gnerc;
       }
     },
+    hideAddCustomer: function(get){
+      return get('document.is_reply') || !get('editable');
+    }
   }
 
 });

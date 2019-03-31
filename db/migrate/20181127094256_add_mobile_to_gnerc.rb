@@ -1,0 +1,75 @@
+class AddMobileToGnerc < ActiveRecord::Migration
+  def up
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC 
+      ADD ( GNERC_ID VARCHAR2(20) )
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC 
+      ADD ( CUSTOMER_TYPE VARCHAR2(20) )
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC 
+      ADD ( CUSTOMER_ID NUMBER(10,0) )
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC 
+      ADD ( CUSTOMER_ACCNUMB VARCHAR2(10) )
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC 
+      ADD ( CUSTOMER_NAME VARCHAR2(200) )
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC 
+      ADD ( CUSTOMER_PHONE VARCHAR2(30) )
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC 
+      ADD ( CUSTOMER_EMAIL VARCHAR2(100) )
+    SQL
+  end
+
+  def down
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC  
+      DROP COLUMN GNERC_ID
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC  
+      DROP COLUMN CUSTOMER_TYPE
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC  
+      DROP COLUMN CUSTOMER_ID
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC  
+      DROP COLUMN CUSTOMER_ACCNUMB
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC  
+      DROP COLUMN CUSTOMER_NAME
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC  
+      DROP COLUMN CUSTOMER_PHONE
+    SQL
+
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_GNERC  
+      DROP COLUMN CUSTOMER_EMAIL
+    SQL
+  end
+end

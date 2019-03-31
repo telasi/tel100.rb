@@ -179,6 +179,7 @@ Rails.application.routes.draw do
       scope 'gnerc', controller: 'gnerc' do
         get  '/',         action: 'index'
         post '/upload',   action: 'upload'
+        put  '/add_customer',   action: 'add_customer'
         put  '/update',   action: 'update'
         put  '/send_gnerc',   action: 'send_gnerc'
         delete '/file_delete',   action: 'file_delete'
@@ -228,6 +229,7 @@ Rails.application.routes.draw do
     end
     namespace 'external', controller: 'document' do
       post 'justice', action: 'justice'
+      post 'first_sms', action: 'first_sms'
     end
     scope 'sap', controller: 'sap' do
       get '/sync', action: 'sync'

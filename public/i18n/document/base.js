@@ -111,6 +111,26 @@ module.exports = {
     ka: 'სემეკი',
     ru: 'ГНЭРК'
   },
+  gnerc_phone: {
+    ka: 'ტელეფონი',
+    ru: 'Телефон'
+  },
+  gnerc_mail: {
+    ka: 'E-mail',
+    ru: 'E-mail'
+  },
+  accnumb: {
+    ka: 'აბონენტის N',
+    ru: 'N абонента',
+  },
+  chose_abonent: {
+    ka: 'აირჩიეთ აბონენტი',
+    ru: 'Выберите абонента',
+  },
+  fullname: {
+    ka: 'სახელი, გარი',
+    ru: 'ФИО',
+  },
   positive: {
     ka: '<i class="fa fa-check"></i> დადებითი',
     ru: '<i class="fa fa-check"></i> Положительный'
