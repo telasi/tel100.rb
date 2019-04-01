@@ -15,7 +15,11 @@ class Gnerc::Sender
      gnerc = doc.gnerc
      if gnerc.customer_type.present?
       party = gnerc.customer_type.constantize.find(gnerc.customer_id)
-      customer = party.customer
+      if gnerc.customer_type == 'HR::Party'
+        customer = party.customer
+      elsif gnerc.customer_type == 'BS::Customer'
+        customer = party.accnumb
+      end
       customer = BS::Customer.where(accnumb: "#{customer}").first if ( gnerc.customer_type == 'HR::Party' )
      end
 
