@@ -20,7 +20,7 @@ class Gnerc::Sender
       elsif gnerc.customer_type == 'BS::Customer'
         customer = party.accnumb
       end
-      customer = BS::Customer.where(accnumb: "#{customer}").first if ( gnerc.customer_type == 'HR::Party' )
+      customer = BS::Customer.where(accnumb: "#{customer}").first
      end
 
      if customer.blank?
