@@ -630,16 +630,16 @@ class Document::Base < ActiveRecord::Base
 
       if ( GNERC_TYPES.include?(self.type_id) and direction == Document::Direction::OUT )
         Document::Gnerc.create!(newdoc)
-        newgnerc = newdoc.gnerc 
-        oldgnerc = self.gnerc
-        newgnerc.GNERC_ID = oldgnerc.GNERC_ID
-        newgnerc.CUSTOMER_TYPE = oldgnerc.CUSTOMER_TYPE
-        newgnerc.CUSTOMER_ID = oldgnerc.CUSTOMER_ID
-        newgnerc.CUSTOMER_ACCNUMB = oldgnerc.CUSTOMER_ACCNUMB
-        newgnerc.CUSTOMER_NAME = oldgnerc.CUSTOMER_NAME
-        newgnerc.CUSTOMER_PHONE = oldgnerc.CUSTOMER_PHONE
-        newgnerc.CUSTOMER_EMAIL = oldgnerc.CUSTOMER_EMAIL
-        newgnerc.save
+        # newgnerc = newdoc.gnerc 
+        # oldgnerc = self.gnerc
+        # newgnerc.GNERC_ID = oldgnerc.GNERC_ID
+        # newgnerc.CUSTOMER_TYPE = oldgnerc.CUSTOMER_TYPE
+        # newgnerc.CUSTOMER_ID = oldgnerc.CUSTOMER_ID
+        # newgnerc.CUSTOMER_ACCNUMB = oldgnerc.CUSTOMER_ACCNUMB
+        # newgnerc.CUSTOMER_NAME = oldgnerc.CUSTOMER_NAME
+        # newgnerc.CUSTOMER_PHONE = oldgnerc.CUSTOMER_PHONE
+        # newgnerc.CUSTOMER_EMAIL = oldgnerc.CUSTOMER_EMAIL
+        # newgnerc.save
       end
 
       Document::Sms.reset_sms!(newdoc, '1', user) if ( GNERC_TYPES.include?(self.type_id) and direction == Document::Direction::OUT )
