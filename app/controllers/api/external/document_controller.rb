@@ -130,7 +130,7 @@ class Api::External::DocumentController < ApiController
     gnerc = doc.gnerc
     gnerc.gnerc_id = "G0010#{params[:case_id]}F000#{params[:response_id]}"
     gnerc.save
-    Document::Sms.first_sms!(doc, gnerc.mobile) if gnerc.mobile.present?
+    Document::Sms.first_sms!(doc, gnerc.customer_phone) if gnerc.customer_phone.present?
   end
 
 end
