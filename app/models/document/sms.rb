@@ -85,8 +85,10 @@ class Document::Sms < ActiveRecord::Base
           sms.update_attributes!(user: user, text: text, active: 1)
         else
           phone = doc.gnerc.mobile if doc.gnerc.present?
-          # first_sms = Document::Sms.where(document: related).first
-          # phone = first_sms.phone if first_sms.present?
+          if phone.blank?
+           first_sms = Document::Sms.where(document: related).first
+            phone = first_sms.phone if first_sms.present?
+          end
           Document::Sms.new(document: related, answer: doc, user: user, text: text, active: 1, phone: phone).save if phone.present?
         end
 
