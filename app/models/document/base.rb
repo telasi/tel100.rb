@@ -132,7 +132,9 @@ class Document::Base < ActiveRecord::Base
     if self.direction == INNER and not self.inner?
       raise I18n.t('models.document_base.errors.inner_has_outer_parties')
     elsif self.direction != INNER and self.inner?
-      raise I18n.t('models.document_base.errors.outer_doesnot_have_outer_parties')
+      if !GNERC_TYPES.include?(self.type_id)
+        raise I18n.t('models.document_base.errors.outer_doesnot_have_outer_parties')
+      end
     end
 
     if self.direction == INNER and not self.type.inner?
