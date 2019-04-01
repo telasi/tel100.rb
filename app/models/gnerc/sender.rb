@@ -12,24 +12,33 @@ class Gnerc::Sender
      raise Sys::MyException.new('Wrong status', { error_code: 1 }) if doc.is_reply?
      raise Sys::MyException.new('შეიყვანთ ადრესატი', { error_code: 1 }) if doc.assignee_motions.none?
 
-      motion = doc.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
-      if motion.present?
-        customer = motion.receiver.customer 
-        phone = motion.receiver.phones
-      end
-      customer = BS::Customer.where(accnumb: "#{customer}").first
-      if customer.present? and phone.nil? 
-        phone = customer.fax
-      end
-      if motion.blank?
-        motion = doc.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
-        if motion.present?
-          customer = motion.receiver 
-          phone = customer.fax
-        end  
-      end
+     gnerc = doc.gnerc
+     if gnerc.customer_type.present?
+      party = gnerc.customer_type.constantize.find(gnerc.customer_id)
+      customer = party.customer
+      customer = BS::Customer.where(accnumb: "#{customer}").first if ( gnerc.customer_type == 'HR::Party' )
+     end
 
-      raise Sys::MyException.new('Cant find customer', { error_code: 1 }) unless motion.present?
+     if customer.blank?
+        motion = doc.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
+        if motion.present?
+          customer = motion.receiver.customer 
+          phone = motion.receiver.phones
+        end
+        customer = BS::Customer.where(accnumb: "#{customer}").first
+        if customer.present? and phone.nil? 
+          phone = customer.fax
+        end
+        if motion.blank?
+          motion = doc.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
+          if motion.present?
+            customer = motion.receiver 
+            phone = customer.fax
+          end  
+        end
+     end
+
+      # raise Sys::MyException.new('Cant find customer', { error_code: 1 }) unless motion.present?
       raise Sys::MyException.new('Cant find customer', { error_code: 1 }) unless customer.present?
 
       file = doc.gnerc.file if doc.gnerc.present?
@@ -92,20 +101,21 @@ class Gnerc::Sender
                        }
       end
 
+      # phone = nil if phone and phone[0..2].upcase == 'OFF'
+
+      # doc.gnerc.mobile = phone
       doc.gnerc.stage = 1
       doc.gnerc.step = Document::Gnerc::STEP_SIGNEE
       doc.gnerc.sent_at = Time.now
       doc.gnerc.save!
 
-      phone = nil if phone and phone[0..2].upcase == 'OFF'
-
-      if phone.present?
-        open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} start\n" }
-        Document::Sms.first_sms!(doc, phone)
-        open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} end\n" }
-      else
-        open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - no phone\n" }
-      end
+      # if phone.present?
+      #   open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} start\n" }
+      #   Document::Sms.first_sms!(doc, phone)
+      #   open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} end\n" }
+      # else
+      #   open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - no phone\n" }
+      # end
 
       GnercWorker.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
       # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}".to_sym, parameters)

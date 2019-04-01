@@ -91,6 +91,27 @@ class Document::Gnerc < ActiveRecord::Base
     gnerc = Document::Gnerc.where(document: document).first || Document::Gnerc.new(document: document)
   end
 
+  def self.add_customer(params)
+    document = Document::Base.find(params[:id])
+    gnerc = Document::Gnerc.where(document: document).first || Document::Gnerc.new(document: document, status: 1)
+    customer_user, customer = Document::Motion.who_eval('customer', params)
+    
+    gnerc.customer_type = customer.class.name
+    gnerc.customer_id = customer.id
+    case customer.class.name
+      when 'BS::Customer'
+        gnerc.customer_accnumb = customer.accnumb
+        gnerc.customer_name = customer.name
+        gnerc.customer_phone = customer.fax.strip if !customer.fax.nil?
+      when 'HR::Party'
+        gnerc.customer_accnumb = customer.customer
+        gnerc.customer_name = customer.name_ka.strip if !customer.name_ka.nil?
+        gnerc.customer_phone = customer.phones.strip if !customer.phones.nil?
+        gnerc.customer_email = customer.email.strip if !customer.email.nil?
+    end
+    gnerc.save
+  end
+
   private
 
   def destroy_sms

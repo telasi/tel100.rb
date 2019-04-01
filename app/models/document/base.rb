@@ -145,20 +145,19 @@ class Document::Base < ActiveRecord::Base
 
     if GNERC_TYPES.include?(self.type_id)
       raise I18n.t('models.document_base.errors.no_due_date') if self.due_date.blank? && !self.is_reply?
-      #raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.present?
       if self.type_id == GNERC_TYPE4 and not self.is_reply?
         raise I18n.t('models.document_base.errors.gnerctype_is_null') unless self.gnerc.type_id.present?
       end
 
       if self.direction == IN 
-        motion = self.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
-        if motion.present?
-          # customer = motion.receiver.customer 
-          # customer = BS::Customer.where(accnumb: "#{customer}").first
-          # raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if customer.blank?
-        else
-          motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
-          raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if motion.blank?
+        # motion = self.motions.where(receiver_type: 'HR::Party', receiver_role: 'author').first
+        # if motion.present?
+        # else
+        #   motion = self.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
+        #   raise Sys::MyException.new(I18n.t('models.document_base.errors.no_author'), { error_code: 1, party_id: motion.receiver.id }) if motion.blank?
+        # end
+        if self.gnerc.blank? || self.gnerc.customer_accnumb.blank?
+          raise I18n.t('models.document_base.errors.no_customer')
         end
       end
 
@@ -177,24 +176,6 @@ class Document::Base < ActiveRecord::Base
         raise I18n.t('models.document_base.errors.no_gnerc_original') unless reply.present?
       end
 
-      #check if reply and file present or sms
-      # if self.is_reply?
-
-      #   if self.gnerc.status == 0
-      #     raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
-      #   else
-      #     sms = Document::Sms.where(answer: self, active: 1).first
-      #     raise I18n.t('models.document_base.errors.no_file_or_sms') if ( self.gnerc.file.blank? and sms.blank? )
-      #   end
-
-      #   if self.gnerc.mediate == 1
-      #     raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
-      #   end
-
-      # else # not reply
-      #   raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
-      # end
-
       if self.is_reply? and self.author_motions.blank?
         raise I18n.t('models.document_base.errors.no_author')
       end
@@ -212,7 +193,10 @@ class Document::Base < ActiveRecord::Base
       self.actual_sender = user
       self.save!
 
-      add_signee_motion if ( self.direction == IN && GNERC_TYPES.include?(self.type_id) )
+      if ( self.direction == IN && GNERC_TYPES.include?(self.type_id) )
+        add_signee_motion 
+        add_author_motion
+      end
 
       self.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(user)}
       check_auto_assignees!(user)
@@ -548,6 +532,13 @@ class Document::Base < ActiveRecord::Base
             motion_to_process.save!
             docuser.calculate! if docuser.present?
           end
+
+          motions_to_process = self.motions.where('parent_id is not null AND receiver_role IN (?)', [ROLE_ASSIGNEE])
+          motions_to_process.each do |motion_to_process|
+            docuser = Document::User.where(document: motion_to_process.document, receiver_user: motion_to_process.receiver_user).first
+            docuser.update_attributes!(is_changed: 1, is_new: 1) if docuser.present?
+          end
+          
         end
 
       end # auto_signee
@@ -772,5 +763,13 @@ class Document::Base < ActiveRecord::Base
         receiver_user: self.sender_user, receiver: self.sender, receiver_role: ROLE_SIGNEE, status: DRAFT,
         created_at: Time.now, sent_at: Time.now, received_at: Time.now}
     Document::Motion.create!(motionparams)
+  end
+
+  def add_author_motion
+    send_type = Document::ResponseType.send_types.where(role: Document::Role::ROLE_AUTHOR).order(:ordering).first
+    motion = Document::Motion.create!(document: self, parent: nil, is_new: 1, ordering: Document::Motion::ORDERING_AUTHOR,
+        send_type: send_type, sender_user: self.sender_user, 
+        receiver_id: self.gnerc.customer_id, receiver_role: Document::Role::ROLE_AUTHOR, receiver_type: self.gnerc.customer_type,
+        status: DRAFT, sent_at: Time.now, received_at: Time.now)
   end
 end

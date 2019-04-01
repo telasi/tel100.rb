@@ -169,7 +169,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                 readOnly: true,
                 bind:{
                   fieldLabel: '{i18n.document.file.file}',
-                  value: '{filename}',
+                  value: '{name}',
                 }
               }, {
                 xtype: 'filefield',
@@ -342,8 +342,74 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                 }.bind(button) 
               });
             }
-          }
+          },
+          {
+            xtype: 'box',
+            autoEl: {tag: 'hr'}
+          },
+          {
+            xtype: 'button',
+            width: '100%',
+            bind: {
+              text: '{i18n.document.base.chose_abonent}',
+              hidden: '{hideAddCustomer}'
+            },
+            handler: function(button, e) {
+              var view = this.up('documentgnercpanel');
+              var dialog = helpers.party.getPartyDialog(function(assignees) {
+                view.getController().addCustomer(assignees);
+              });
+              dialog.show();
+            },
+          },
+          {
+            xtype: 'container',
+            defaults: {
+                margin: '0 0 0 0',
+                padding: '0 0 0 0',
+            },
+            items: [{
+              xtype: 'displayfield',
+              text: 'aaa',
+              bind: {
+                fieldLabel: '{i18n.document.base.accnumb}',
+                value: '{customer.customer_accnumb}'
+              },
+              renderer: function(value, object){  return '<strong>' + value + '</strong>'; }
+            }, {
+              xtype: 'displayfield',
+              text: 'aaa',
+              bind: {
+                fieldLabel: '{i18n.document.base.fullname}',
+                value: '{customer.customer_name}'
+              },
+              renderer: function(value, object){  return '<strong>' + value + '</strong>'; }
+            }, {
+              xtype: 'displayfield',
+              text: 'aaa',
+              bind: {
+                fieldLabel: '{i18n.document.base.gnerc_phone}',
+                value: '{customer.customer_phone}'
+              },
+              renderer: function(value, object){  
+                var customer = object.up('panel').getViewModel().get('customer');
 
+                if (customer && customer.correct_mobile){
+                  return '<i class="text-success fa fa-check"></i> <strong>' + value + '</strong>'; 
+                } else {
+                  return '<i data-qtip="SMS არ გაიგზავნება" class="text-danger fa fa-exclamation-triangle"></i> <strong>' + value + '</strong>'; 
+                }
+              }
+            }, {
+              xtype: 'displayfield',
+              text: 'aaa',
+              bind: {
+                fieldLabel: '{i18n.document.base.gnerc_mail}',
+                value: '{customer.customer_email}'
+              },
+              renderer: function(value, object){  return '<strong>' + value + '</strong>'; }
+            }]
+          },
     ],
   tools: [
     {

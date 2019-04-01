@@ -11,6 +11,19 @@ if @gnerc
 	json.send_status @gnerc.send_status
 	json.mediate @gnerc.mediate
 	json.created_at @gnerc.created_at
+	#if @gnerc.customer_accnumb.present?
+		json.customer do
+			json.customer_accnumb 	@gnerc.customer_accnumb
+			json.customer_name 		@gnerc.customer_name
+			json.customer_phone		@gnerc.customer_phone
+			json.customer_email		@gnerc.customer_email
+			if @gnerc.customer_phone.blank? || @gnerc.customer_phone[0..2].upcase == 'OFF'
+			  json.correct_mobile	false
+			else
+			  json.correct_mobile 	Mobile.correct_mobile?(@gnerc.customer_phone)
+			end
+		end
+	#end
 else
  json.status 1
 end
