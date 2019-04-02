@@ -21,13 +21,13 @@ class Document::Sms < ActiveRecord::Base
             if smses.present?
               form_text(smses.first.text, doc)
             else
-              "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber}, el. jurnalshi reg.N #{doc.gnerc.gnerc_id} dakmayofilebulia"
+              "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} dakmayofilebulia"
             end
           else
-            "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber}, el. jurnalshi reg.N #{doc.gnerc.gnerc_id} dakmayofilebulia"
+            "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} dakmayofilebulia"
           end
         else # status == '0'
-          "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber}, el. jurnalshi reg.N #{doc.gnerc.gnerc_id} uaryofilia"
+          "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} uaryofilia"
         end
     else # not reply
       "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber}, el. jurnalshi reg.N #{doc.gnerc.gnerc_id} miGebulia"
