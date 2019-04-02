@@ -8,6 +8,8 @@ class Api::External::DocumentController < ApiController
 
     customer_name = params[:name].present? ? params[:name].squish : nil
     accnumb = params[:accnumb].present? ? params[:accnumb].squish : nil
+    phone = params[:mobile].present? ? params[:mobile].squish : nil
+    email = params[:email].present? ? params[:email].squish : nil
 
     subject = accnumb.to_s + ' - ' + customer_name.to_s
 
@@ -58,9 +60,9 @@ class Api::External::DocumentController < ApiController
        party = HR::Party.new(name_ka: customer_name,
                              address_ka: params[:address].present? ? params[:address].squish : nil, 
                              identity: params[:tin].present? ? params[:tin].squish : nil, 
-                             phones: params[:mobile].present? ? params[:mobile].squish : nil, 
+                             phones: phone, 
                              customer: accnumb, 
-                             email: params[:email].present? ? params[:email].squish : nil,
+                             email: email,
                              org_type: 1)
        party.save!
 
@@ -93,6 +95,12 @@ class Api::External::DocumentController < ApiController
 
        gnerc = Document::Gnerc.new(document: doc, status: 1)
        gnerc.file = gnerc_file
+       gnerc.customer_type = 'HR::Party'
+       gnerc.customer_id = party.id
+       gnerc.customer_accnumb = accnumb
+       gnerc.name = customer_name
+       gnerc.customer_phone = phone
+       gnerc.customer_email = email
        gnerc.created_at = Time.now
        gnerc.save!
 
