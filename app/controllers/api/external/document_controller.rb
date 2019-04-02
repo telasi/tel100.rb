@@ -98,7 +98,7 @@ class Api::External::DocumentController < ApiController
        gnerc.customer_type = 'HR::Party'
        gnerc.customer_id = party.id
        gnerc.customer_accnumb = accnumb
-       gnerc.name = customer_name
+       gnerc.customer_name = customer_name
        gnerc.customer_phone = phone
        gnerc.customer_email = email
        gnerc.created_at = Time.now
