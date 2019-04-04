@@ -537,7 +537,7 @@ class Document::Base < ActiveRecord::Base
 
           motions_to_process = self.motions.where('parent_id is not null AND receiver_role IN (?)', [ROLE_ASSIGNEE])
           motions_to_process.each do |motion_to_process|
-            docuser = Document::User.where(document: motion_to_process.document, receiver_user: motion_to_process.receiver_user).first
+            docuser = Document::User.where(document: motion_to_process.document, user: motion_to_process.receiver_user).first
             docuser.update_attributes!(is_changed: 1, is_new: 1) if docuser.present?
           end
           
