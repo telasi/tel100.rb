@@ -17,7 +17,7 @@ if @gnerc
 			json.customer_name 		@gnerc.customer_name
 			json.customer_phone		@gnerc.customer_phone
 			json.customer_email		@gnerc.customer_email
-			if @gnerc.customer_phone.blank? || @gnerc.customer_phone[0..2].upcase == 'OFF'
+			if @gnerc.customer_phone.blank? || @gnerc.customer_phone.upcase.include?('OFF')
 			  json.correct_mobile	false
 			else
 			  json.correct_mobile 	Mobile.correct_mobile?(@gnerc.customer_phone)
