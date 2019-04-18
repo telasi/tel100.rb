@@ -23,7 +23,8 @@ class Api::HrController < ApiController
   end
 
   def partycreate
-    if BS::Customer.where(accnumb: params[:customer].squish).blank?
+    customer = params[:customer].squish
+    if customer.present? && customer.strip.length > 0 && BS::Customer.where(accnumb: params[:customer].squish).blank?
       render json: { success: false, message: 'Customer not found' } 
     else
       @party = HR::Party.new(params.permit(:name_ka, :address_ka, :contact_ka, 
