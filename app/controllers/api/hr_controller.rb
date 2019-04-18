@@ -23,16 +23,20 @@ class Api::HrController < ApiController
   end
 
   def partycreate
-    @party = HR::Party.new(params.permit(:name_ka, :address_ka, :contact_ka, 
-                                         :name_ru, :address_ru, :contact_ru, 
-                                         :name_en, :address_en, :contact_en, 
-                                         :identity, :phones, :email, :customer))
-    @party.org_type = 1
-    @party.customer = @party.customer.squish
-    if @party.save
-     render json: { success: true, id: @party.id }
+    if BS::Customer.where(accnumb: params[:customer].squish).blank?
+      render json: { success: false, message: 'Customer not found' } 
     else
-     render json: { success: false, message: @party.errors.full_messages[0] }
+      @party = HR::Party.new(params.permit(:name_ka, :address_ka, :contact_ka, 
+                                       :name_ru, :address_ru, :contact_ru, 
+                                       :name_en, :address_en, :contact_en, 
+                                       :identity, :phones, :email, :customer))
+      @party.org_type = 1
+      @party.customer = @party.customer.squish
+      if @party.save
+       render json: { success: true, id: @party.id }
+      else
+       render json: { success: false, message: @party.errors.full_messages[0] }
+      end
     end
   end
 

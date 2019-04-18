@@ -3,7 +3,8 @@ class HR::Party < ActiveRecord::Base
   self.table_name  = 'party_base'
   self.sequence_name = 'party_base_seq'
   self.localized_fields('name', 'address', 'contact')
-  validate :name_entered, :customer_exist
+  validate :name_entered
+  # , :customer_exist
   before_save :trim_phones
 
   def to_s; self.name end
