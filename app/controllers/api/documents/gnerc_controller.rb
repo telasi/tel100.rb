@@ -83,5 +83,9 @@ class Api::Documents::GnercController < ApiController
   def smses
     @smses = Document::Sms.get_smsmes(params[:id])
   end
+
+  def gas_providers
+    render json: Gnerc::GasProviders.all.to_json
+  end
   
 end

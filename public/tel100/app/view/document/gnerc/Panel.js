@@ -409,7 +409,115 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
               },
               renderer: function(value, object){  return '<strong>' + value + '</strong>'; }
             }]
+          },{
+            xtype: 'box',
+            autoEl: {tag: 'hr'}
           },
+          {
+            xtype: 'container',
+            defaults: {
+                margin: '2 2 2 2',
+                padding: '0 0 0 0',
+            },
+            layout: {
+              type: 'table',
+              columns: 3,
+              tableAttrs: {
+                style: {
+                    width: '100%',
+                    padding: '10px;'
+                }
+              }
+            },
+            bind: {
+              hidden: '{hideAddCustomer}'
+            },
+            items :[{
+              xtype: 'displayfield',
+              bind: {
+                value: '{i18n.document.base.exchange_info}',
+              },
+              colspan: 3
+            },{
+              xtype: 'displayfield',
+              value: 'GWP'
+            },{
+              xtype: 'checkboxfield',
+              bind: {
+                value: '{customer.agree_water}'
+              },
+              listeners: {
+                  change: function(view, value){
+                    this.up('documentgnercpanel').getController().onInfoClick('agree_water', value);
+                  }
+              }
+            }, {
+              xtype: 'textfield',
+              width: '100%',
+              bind: {
+                value: '{customer.water_customer}'
+              },
+              listeners: {
+                  change: function(view, value){
+                    this.up('documentgnercpanel').getController().onInfoClick('water_customer', value);
+                  },
+                  buffer: 500
+              }
+            },
+            {
+              xtype: 'displayfield',
+              value: 'გაზი'
+            },{
+              xtype: 'checkboxfield',
+              bind: {
+                value: '{customer.agree_gas}'
+              },
+              listeners: {
+                  change: function(view, value){
+                    this.up('documentgnercpanel').getController().onInfoClick('agree_gas', value);
+                  }
+              }
+            },{
+              xtype: 'textfield',
+              width: '100%',
+              bind: {
+                value: '{customer.gas_customer}'
+              },
+              listeners: {
+                  change: function(view, value){
+                    this.up('documentgnercpanel').getController().onInfoClick('gas_customer', value);
+                  },
+                  buffer: 500
+              }
+            },{},{},{
+              xtype: 'combobox',
+              width: '100%',
+              displayField: 'name',
+              valueField: 'id',
+              editable: false,
+              tpl: Ext.create('Ext.XTemplate',
+                  '<tpl for=".">',
+                      '<div data-qtip="{description}" class="x-boundlist-item"><code>{id}</code> - {name}</div>',
+                  '</tpl>'
+              ),
+              displayTpl: Ext.create('Ext.XTemplate',
+                  '<tpl for=".">',
+                      '{id} - {name}',
+                  '</tpl>'
+              ),
+              bind: {
+                value: '{customer.gas_provider}',
+                store: '{gas_providers}'
+              },
+              listeners: {
+                  change: function(view, value){
+                    this.up('documentgnercpanel').getController().onInfoClick('gas_provider', value);
+                  },
+                  buffer: 500
+              }
+            },
+            ]
+          }
     ],
   tools: [
     {

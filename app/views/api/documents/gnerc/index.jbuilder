@@ -17,11 +17,12 @@ if @gnerc
 			json.customer_name 		@gnerc.customer_name
 			json.customer_phone		@gnerc.customer_phone
 			json.customer_email		@gnerc.customer_email
-			if @gnerc.customer_phone.blank? || @gnerc.customer_phone.upcase.include?('OFF')
-			  json.correct_mobile	false
-			else
-			  json.correct_mobile 	Mobile.correct_mobile?(@gnerc.customer_phone)
-			end
+			json.correct_mobile		@gnerc.correct_mobile
+			json.agree_water		@gnerc.agree_water
+			json.agree_gas			@gnerc.agree_gas
+			json.water_customer		@gnerc.water_customer
+			json.gas_customer		@gnerc.gas_customer
+			json.gas_provider		@gnerc.gas_provider
 		end
 	#end
 else

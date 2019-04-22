@@ -49,6 +49,12 @@ Ext.define('Tel100.view.document.gnerc.PanelViewController', {
     this.updateGnerc({ status: status });
   },
 
+  onInfoClick: function(field, value){
+    var params = {};
+    params[field] = value;
+    this.updateGnerc(params);
+  },
+
   onMediateClick: function(view, newValue , oldValue , eOpts){
     var value = newValue == false ? 0 : 1;
     // this.updateGnerc({ mediate: value });

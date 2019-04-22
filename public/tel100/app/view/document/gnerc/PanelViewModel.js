@@ -60,6 +60,10 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
       autoLoad: true,
       model: 'Tel100.model.document.Gnerc_subtypes'
     },
+    gas_providers: {
+      autoLoad: true,
+      model: 'Tel100.model.Gas_providers'
+    },
     smshistory: {
       autoLoad: true,
       model: 'Tel100.model.document.Sms',

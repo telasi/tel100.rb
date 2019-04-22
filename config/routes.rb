@@ -188,6 +188,7 @@ Rails.application.routes.draw do
         post '/send_sms', action: 'send_sms'
         get '/sms', action: 'sms'
         get '/smses', action: 'smses'
+        get '/gas_providers', action: 'gas_providers'
       end
       scope 'comments', controller: 'comments' do
         get  '/', action: 'index'

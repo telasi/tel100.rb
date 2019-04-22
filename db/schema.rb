@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181127094256) do
+ActiveRecord::Schema.define(version: 20180601073208) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -100,21 +100,18 @@ ActiveRecord::Schema.define(version: 20181127094256) do
   end
 
   create_table "document_gnerc", primary_key: "document_id", force: true do |t|
-    t.integer   "type_id",          limit: 5,   precision: 5,  scale: 0
-    t.integer   "file_id",          limit: 10,  precision: 10, scale: 0
-    t.timestamp "created_at",       limit: 6,                                            null: false
-    t.boolean   "stage",                        precision: 1,  scale: 0, default: false, null: false
-    t.timestamp "sent_at",          limit: 6
-    t.boolean   "status",                       precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "mediate",                      precision: 1,  scale: 0, default: false, null: false
-    t.boolean   "step",                         precision: 1,  scale: 0, default: false, null: false
-    t.string    "gnerc_id",         limit: 20
-    t.string    "customer_type",    limit: 20
-    t.integer   "customer_id",      limit: 10,  precision: 10, scale: 0
-    t.string    "customer_accnumb", limit: 10
-    t.string    "customer_name",    limit: 200
-    t.string    "customer_phone",   limit: 30
-    t.string    "customer_email",   limit: 100
+    t.integer   "type_id",        limit: 5,  precision: 5,  scale: 0
+    t.integer   "file_id",        limit: 10, precision: 10, scale: 0
+    t.timestamp "created_at",     limit: 6,                                           null: false
+    t.boolean   "stage",                     precision: 1,  scale: 0, default: false, null: false
+    t.timestamp "sent_at",        limit: 6
+    t.boolean   "status",                    precision: 1,  scale: 0, default: false, null: false
+    t.boolean   "mediate",                   precision: 1,  scale: 0, default: false, null: false
+    t.string    "water_customer", limit: 50
+    t.string    "gas_customer",   limit: 50
+    t.string    "gas_provider",   limit: 50
+    t.string    "agree_water",    limit: 50
+    t.string    "agree_gas",      limit: 50
   end
 
   create_table "document_motion", force: true do |t|
@@ -305,6 +302,13 @@ ActiveRecord::Schema.define(version: 20181127094256) do
   end
 
   add_index "folder_documents", ["folder_id", "doc_id"], name: "folder_doc_unique", unique: true
+
+  create_table "gas_providers", force: true do |t|
+    t.string    "name",        limit: 50
+    t.string    "description", limit: 1000
+    t.timestamp "created_at",  limit: 6,    null: false
+    t.timestamp "updated_at",  limit: 6,    null: false
+  end
 
   create_table "hr_employees", force: true do |t|
     t.boolean   "is_active",                     precision: 1,  scale: 0, default: true,  null: false
