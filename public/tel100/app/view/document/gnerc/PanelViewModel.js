@@ -62,7 +62,17 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     },
     gas_providers: {
       autoLoad: true,
-      model: 'Tel100.model.Gas_providers'
+      model: 'Tel100.model.Gas_providers',
+      listeners: {
+                      load: function(store, records) 
+                      {
+                          store.insert(0, [{
+                              id: null,
+                              name: null,
+                              description: null
+                          }]);
+                      }
+                  }
     },
     smshistory: {
       autoLoad: true,
