@@ -106,11 +106,11 @@ class Document::Gnerc < ActiveRecord::Base
       when 'BS::Customer'
         gnerc.customer_accnumb = customer.accnumb
         gnerc.customer_name = customer.name
-        gnerc.customer_phone = customer.fax.strip if !customer.fax.nil?
+        gnerc.customer_phone = customer.fax.delete(' ') if !customer.fax.nil?
       when 'HR::Party'
         gnerc.customer_accnumb = customer.customer
         gnerc.customer_name = customer.name_ka.strip if !customer.name_ka.nil?
-        gnerc.customer_phone = customer.phones.strip if !customer.phones.nil?
+        gnerc.customer_phone = customer.phones.delete(' ') if !customer.phones.nil?
         gnerc.customer_email = customer.email.strip if !customer.email.nil?
     end
     gnerc.save
