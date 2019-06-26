@@ -71,6 +71,7 @@ Rails.application.routes.draw do
         post '/general', action: 'general'
         post '/hr', action: 'hr'
         post '/motion', action: 'motion'
+        get '/calculate', action: 'calculate'
       end
     end
 

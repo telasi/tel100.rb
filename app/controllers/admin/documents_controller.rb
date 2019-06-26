@@ -85,9 +85,17 @@ class Admin::DocumentsController < AdminController
   end
 
   def gnerc_stage_1
+    if params[:docnumber].present?
+      document = Document::Base.where(docnumber: params[:docnumber], docyear: params[:docyear]).first
+      Gnerc::Sender.appeal(document)
+    end
   end
 
   def gnerc_stage_2
+    if params[:docnumber].present?
+      document = Document::Base.where(docnumber: params[:docnumber], docyear: params[:docyear]).first
+      Gnerc::Sender.answer(document)
+    end
   end
 
   def hr_hash(hrs)
@@ -96,6 +104,32 @@ class Admin::DocumentsController < AdminController
         id: hr.id,
         name: hr.to_s
       }
+    end
+  end
+
+  def calculate
+    Document::User.where(document_id: params[:id]).map{ |x| x.calculate! }
+    render json: { success: true }
+  end
+
+  def delete
+    doc = Document::Base.find(params[:id])
+    return if doc.blank?
+
+    Document::Base.transaction do
+      doc.text.destroy
+      doc.gnerc.destroy
+      doc.motions.destroy_all
+      doc.comments.destroy_all
+      doc.users.destroy_all
+      doc.files.each do |file| 
+        file.delete_file
+        file.destroy
+      end
+      Document::History::Motion.where(document: doc).destroy_all
+      Document::History::File.where(document: doc).destroy_all
+      Document::History::Text.where(document: doc).destroy_all
+      doc.destroy
     end
   end
 end
