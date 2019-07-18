@@ -27,7 +27,7 @@ class Document::Sms < ActiveRecord::Base
             "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} dakmayofilebulia"
           end
         else # status == '0'
-          "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber} uaryofilia"
+          "tqvens #{doc.docdate.strftime(DATE_FORMAT)} gancxadebaze #{doc.docnumber} gamogegzavnat sapasuxo cerili"
         end
     else # not reply
       "tqveni #{doc.docdate.strftime(DATE_FORMAT)} ganacxadi #{doc.docnumber}, el. jurnalshi reg.N #{doc.gnerc.gnerc_id} miGebulia"
