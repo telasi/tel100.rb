@@ -308,6 +308,13 @@ class Document::Motion < ActiveRecord::Base
         return
       end
 
+      # exception: if direction is OUT and signee cancels - dont stop
+      # stop only if author cancels
+      if doc.direction == OUT and !doc.author?(user) 
+        resend_ups!
+        return
+      end
+
       # S5: update upper motions
       check_level_ups!
 
