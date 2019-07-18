@@ -43,6 +43,7 @@ class Document::Sms < ActiveRecord::Base
         smses = smses.where(subtype_id: doc.gnerc.type_id)
       end
     end
+    smsarray << { description: '', text: form_text("Tqvens #{doc.docdate.strftime(DATE_FORMAT)} gancxadebaze #{doc.docnumber} gamogegzavnat sapasuxo cerili", doc) }
     smses.each{ |x| smsarray << { description: x.description, text: form_text(x.text, doc) } }
     smsarray
   end
