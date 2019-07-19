@@ -291,7 +291,6 @@ class Document::User < ActiveRecord::Base
   end
 
   def calculate_author
-    self.is_current = self.is_canceled = self.is_completed = 0
     author_rel = calc_rel.where(receiver_role: ROLE_AUTHOR)
     if author_rel.any?
       current_cnt = author_rel.where(status: CURRENT).count
