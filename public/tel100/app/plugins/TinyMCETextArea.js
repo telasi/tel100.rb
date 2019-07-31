@@ -232,11 +232,11 @@ Ext.define('Ext.ux.form.TinyMCETextArea', {
             ed.on('init', function(e) {
 
                 ed.target.execCommand("fontName", false, "Times New Roman");
-                if(helpers.i18n.getCurrentLocale() == 'ru'){
-                    ed.target.execCommand("fontSize", false, "16pt");
-                } else {
+                // if(helpers.i18n.getCurrentLocale() == 'ru'){
+                //     ed.target.execCommand("fontSize", false, "16pt");
+                // } else {
                     ed.target.execCommand("fontSize", false, "12pt");
-                }
+                // }
 
                 me.wysiwygIntialized = true;
                 me.intializationInProgress = false;
