@@ -99,6 +99,10 @@ module.exports = {
     edit: {
       ka: '<i class="fa fa-pencil"></i> რედაქტირება',
       ru: '<i class="fa fa-pencil"></i> Редактирование'
+    },
+    use: {
+      ka: '<i class="fa fa-pencil"></i> ნიმუშის გამოყენება',
+      ru: '<i class="fa fa-pencil"></i> Использовать шаблон'
     }
   },
   errors: {

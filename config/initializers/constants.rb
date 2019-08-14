@@ -12,3 +12,5 @@ JUSTICE_PASSWORD = 'justice'
 JUSTICE_RESPONSE_URL = 'http://localhost:3000/applicant/response'
 
 CANCEL_EXCEPTION_DOCTYPES = [ 3, 4, 12 ] # ბრძანება, განკარგულება, ხელშეკრულება
+
+TEMPLATE_USER_ID = 34

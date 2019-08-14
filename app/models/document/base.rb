@@ -88,7 +88,9 @@ class Document::Base < ActiveRecord::Base
 
   def update_draft!(user, params)
     raise I18n.t('models.document_base.errors.user_not_defined') unless user.present?
-    raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
+    if !self.draft? && !( TEMPLATE_STATUSES.include?(self.status) && user.id == TEMPLATE_USER_ID )
+     raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
+    end
     Document::Base.transaction do
       if params.key?(:body)
         text = self.text || Document::Text.new(document: self)
@@ -108,7 +110,7 @@ class Document::Base < ActiveRecord::Base
 
   def delete_draft!(user)
     raise I18n.t('models.document_base.errors.user_not_defined') unless user.present?
-    raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft?
+    # raise I18n.t('models.document_base.errors.not_a_draft') unless self.draft? 
     Document::Base.transaction do
       self.motions.destroy_all
       self.comments.destroy_all
@@ -565,7 +567,7 @@ class Document::Base < ActiveRecord::Base
       original_date:    self.original_date }
 
     author_motions = self.author_motions
-    assignee_motions = self.assignee_motions.where(sender_user: self.sender_user).where('receiver_user_id IS NOT NULL and receiver_id IS NOT NULL')
+    assignee_motions = self.assignee_motions.where(sender_user: self.sender_user) #.where('receiver_user_id IS NOT NULL and receiver_id IS NOT NULL')
     signee_motions = self.signee_motions
 
     Document::Base.transaction do
@@ -596,6 +598,13 @@ class Document::Base < ActiveRecord::Base
 
       return doc
     end
+  end
+
+  def template!(user)
+    doc = clone!(user)
+    doc.status = user.id == TEMPLATE_USER_ID ? TEMPLATES_COMMON : TEMPLATE_PRIVATE
+    doc.save!
+    return doc
   end
 
   def create_reply!(user)

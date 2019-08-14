@@ -12,8 +12,11 @@ class Folder::Standard
   COMPLETED = 9
   CANCELED = 10
   ALL = 11
+  TEMPLATES = 12
+  TEMPLATES_COMMON = 13
+  TEMPLATES_PRIVATE = 14
 
-  STANDARD_FOLDERS = [ DRAFT, INBOX_UNREAD, INBOX_READ, INBOX_RESENT, CHANGED, SENT, COMPLETED, CANCELED, ALL ]
+  STANDARD_FOLDERS = [ DRAFT, INBOX_UNREAD, INBOX_READ, INBOX_RESENT, CHANGED, SENT, COMPLETED, CANCELED, ALL, TEMPLATES, TEMPLATES_COMMON, TEMPLATES_PRIVATE ]
 
   attr_accessor :id
   attr_accessor :parent_id
@@ -81,6 +84,12 @@ class Folder::Standard
         docs.where(is_canceled: 1)
       when ALL
         docs
+      when TEMPLATES
+        Document::User.joins('JOIN document_base on document_base.id = document_user.document_id AND ( document_base.status = 8 or document_base.status = 9)').where(user: Sys::User.find(TEMPLATE_USER_ID), is_shown: 1)
+      when TEMPLATES_COMMON
+        docs.joins("JOIN document_base on document_base.id = document_user.document_id AND document_base.status = 8")
+      when TEMPLATES_PRIVATE
+        docs.joins("JOIN document_base on document_base.id = document_user.document_id AND document_base.status = 9")
     end
   end
 end

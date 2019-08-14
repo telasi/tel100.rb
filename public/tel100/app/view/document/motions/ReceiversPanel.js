@@ -13,7 +13,7 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
   bind: {
     title: '{i18n.document.motion.receivers} ({receiverCount})',
     store: '{receivers}',
-    selection: '{selection}',
+    selection: '{selection}'
   },
   columns: [{
     xtype: 'gridcolumn',
@@ -37,7 +37,10 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
         motion = motions.getAt(rowIndex);
         ctrl.onResult(doc, motion);
       }
-    }]
+    }],
+    bind:{
+      hidden: '{!editable}'
+    }
   }],
 
   tools: [{
@@ -51,6 +54,9 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
     type: 'plus',
     listeners: {
       click: 'onAddAssignee'
+    },
+    bind: {
+      hidden: '{!editable}'
     }
   }],
 
@@ -90,6 +96,16 @@ Ext.define('Tel100.view.document.motions.ReceiversPanel', {
 
   refresh: function() {
     this.getStore().load();
+  },
+
+  setEditable: function(editable) {
+    var vm = this.getViewModel();
+    vm.set('editable', editable);
+  },
+
+  getEditable: function() {
+    var vm = this.getViewModel();
+    return vm.get('editable');
   }
 });
 
@@ -125,7 +141,8 @@ Ext.define('Tel100.view.document.motions.ReceiversPanelViewModel', {
 
   data: {
     receiverCount: 0,
-    selection: null
+    selection: null,
+    editable: true
   },
 
   stores: {

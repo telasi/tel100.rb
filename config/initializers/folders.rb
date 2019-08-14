@@ -13,4 +13,7 @@ module Folders
   STANDARD << Folder::Standard.new(10,nil,'<i class="fa fa-times"></i>','გაუქმებული', 'Отмененные', 'Canceled', Folder::Standard::CANCELED)
   STANDARD << Folder::Standard.new(11,nil,'<i class="fa fa-circle-o"></i>','დრაფტი', 'Черновики', 'Draft', Folder::Standard::DRAFT)
   STANDARD << Folder::Standard.new(12,nil,'<i class="fa fa-bars"></i>','ყველა', 'Все', 'All', Folder::Standard::ALL)
+  STANDARD << Folder::Standard.new(13,nil,'<i class="fa fa-clipboard"></i>','ნიმუში', 'Шаблоны', 'Templates', Folder::Standard::TEMPLATES)
+  # STANDARD << Folder::Standard.new(14,13,'<i class="fa fa-clipboard"></i>','საერთო', 'Общие', 'Common', Folder::Standard::TEMPLATES_COMMON)
+  # STANDARD << Folder::Standard.new(15,13,'<i class="fa fa-clone"></i>',' პირადი', 'Личные', 'Private', Folder::Standard::TEMPLATES_PRIVATE)
 end

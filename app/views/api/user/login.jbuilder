@@ -11,6 +11,7 @@ json.user do
   json.is_active   @user.is_active
   json.is_admin    @user.is_admin
   json.is_director @user.is_director
+  json.is_template @user.id == TEMPLATE_USER_ID ? 1 : 0
   json.employee_id @user.employee_id
   json.person_id   @user.person_id
   json.first_name  @user.first_name

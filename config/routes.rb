@@ -151,6 +151,7 @@ Rails.application.routes.draw do
         post   '/reply',        action: 'reply'
         post   '/edit',         action: 'edit'
         post   '/clone',        action: 'clone'
+        post   '/template',     action: 'template'
         get    '/modification/:id',     action: 'modification'
       end
       scope 'motion', controller: 'motion' do

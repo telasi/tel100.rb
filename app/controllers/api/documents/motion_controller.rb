@@ -7,7 +7,11 @@ class Api::Documents::MotionController < ApiController
 
   def index
     @document = Document::Base.find(params[:document_id])
-    user = effective_user
+    if @document.status == TEMPLATES_COMMON
+      user = Sys::User.find(TEMPLATE_USER_ID)
+    else
+     user = effective_user
+    end
 
     if params[:mode] == 'out'
       show_doc, rel = out_motions(@document, user, params)
@@ -70,8 +74,14 @@ class Api::Documents::MotionController < ApiController
 
   def assignees
     doc  = Document::Base.find(params[:document_id])
-    user = effective_user
-    motions = doc.motions.where('receiver_role IN (?) and status IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED], user.id).order('id')
+    if doc.status == TEMPLATES_COMMON
+      user = Sys::User.find(TEMPLATE_USER_ID)
+      motions = doc.motions.where('receiver_role IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], user.id).order('id')
+    else
+     user = effective_user
+     motions = doc.motions.where('receiver_role IN (?) and status IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED], user.id).order('id')
+    end
+    # user = effective_user
     render json: (motions.map do |motion|
           motion_data(motion)
         end)

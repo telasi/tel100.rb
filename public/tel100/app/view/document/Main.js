@@ -123,12 +123,21 @@ Ext.define('Tel100.view.document.Main', {
         var select = selected[i];
         
         var status = select.get('status');
-        if(status !== helpers.document.status.DRAFT){
+        if( 
+            !( status === helpers.document.status.DRAFT ||
+               status === helpers.document.status.TEMPLATE_PRIVATE ||
+             ( status === helpers.document.status.TEMPLATE_COMMON && helpers.user.getCurrentUser().get('is_template') === 1 ) )
+           
+            ){
           deleteDraftButtonDisabled = true;
           break;
         }
+        
       }
+
     }
+
+    disableForwardButton = ( status === helpers.document.status.TEMPLATE_PRIVATE || status === helpers.document.status.TEMPLATE_COMMON )
 
     for(i=0; i<selected.length;i++){
       var select = selected[i];

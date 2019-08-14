@@ -18,7 +18,8 @@ Ext.define('Tel100.view.document.motions.AuthorPanel', {
     xtype: 'gridpanel',
     bind: {
       selection: '{selection}',
-      store: '{motions}'
+      store: '{motions}',
+      disabled: '{!editable}'
     },
     viewConfig: {
       getRowClass: function(record, rowIndex, rowParams, store) {
@@ -106,6 +107,9 @@ Ext.define('Tel100.view.document.motions.AuthorPanel', {
     type: 'plus',
     listeners: {
       click: 'onAddToolClick'
+    },
+    bind: {
+      hidden: '{!editable}'
     }
   }],
 
@@ -170,5 +174,15 @@ Ext.define('Tel100.view.document.motions.AuthorPanel', {
         view.fireEvent('datachanged', view, 'delete');
       }
     });
+  },
+
+  setEditable: function(editable) {
+    var vm = this.getViewModel();
+    vm.set('editable', editable);
+  },
+
+  getEditable: function() {
+    var vm = this.getViewModel();
+    return vm.get('editable');
   }
 });

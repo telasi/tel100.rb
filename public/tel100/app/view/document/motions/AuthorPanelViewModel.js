@@ -4,7 +4,8 @@ Ext.define('Tel100.view.document.motions.AssigneePanelViewModel2', {
 
   data: {
     assigneeCount: 0,
-    selection: null
+    selection: null,
+    editable: true
   },
 
   stores: {

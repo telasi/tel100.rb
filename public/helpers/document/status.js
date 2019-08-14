@@ -7,6 +7,8 @@ var CURRENT = 2;
 var NOT_RECEIVED = -2;
 var COMPLETED = 3;
 var CANCELED = -3;
+var TEMPLATE_COMMON = 8;
+var TEMPLATE_PRIVATE = 9;
 
 var OWNER = role.OWNER;
 var CREATOR = role.CREATOR;
@@ -55,6 +57,10 @@ var statusDecoration = function(status, role, opts) {
     textId = isSignee ? 'canceled' : 'not_signed';
     iconId = 'fa-times';
     styleId = 'text-danger';
+  } else if (status === TEMPLATE_COMMON || status === TEMPLATE_PRIVATE) {
+    textId = 'template';
+    iconId = 'fa-clipboard';
+    styleId = 'text-dark';
   }
   iconStyleId = styleId;
 
@@ -145,6 +151,8 @@ module.exports = {
   NOT_RECEIVED: NOT_RECEIVED,
   COMPLETED: COMPLETED,
   CANCELED: CANCELED,
+  TEMPLATE_COMMON: TEMPLATE_COMMON,
+  TEMPLATE_PRIVATE: TEMPLATE_PRIVATE,
 
   // functions
   statusDecoration: statusDecoration,

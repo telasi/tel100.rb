@@ -36,6 +36,10 @@ module.exports = {
       ka: '<i class="fa fa-pencil"></i> დრაფტის რედაქტირება',
       ru: '<i class="fa fa-pencil"></i> Редактирование черновика'
     },
+    templateTitle: {
+      ka: '<i class="fa fa-clipboard"></i> ნიმუში',
+      ru: '<i class="fa fa-clipboard"></i> Шаблон'
+    },
     generalTabTitle: {
       ka: '<i class="fa fa-send"></i> ძირითადი თვისებები',
       ru: '<i class="fa fa-send"></i> Основные свойства'
@@ -71,6 +75,10 @@ module.exports = {
     modify_confirm: {
       ka: 'დოკუმენტში მოხდა ცვლილება, რის გამოც დოკუმენტი თავიდან წავა დასავიზირებლად. გნებავთ ცვლილების შენახვა?',
       ru: 'Документ изменился. Поэтому документ заново пойдет на визирование. Вы хотите продолжить?'
+    },
+    save_as_template: {
+      ka: 'ნიმუშის შენახვა',
+      ru: 'Сохранить как шаблон'
     }
   },
   errors: {
@@ -263,6 +271,10 @@ module.exports = {
     draft: {
       ka: 'დრაფტი',
       ru: 'Черновик'
+    },
+    template: {
+      ka: 'ნიმუში',
+      ru: 'Шаблон'
     },
     to_be_sent: {
       ka: 'გასაგზავნი',

@@ -9,6 +9,7 @@ Ext.define('Tel100.model.User', {
     'last_name',
     'is_admin',
     'is_active',
+    'is_template',
     {
       calculate: function(data) {
         var mobile = data.mobile;

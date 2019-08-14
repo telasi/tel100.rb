@@ -35,7 +35,10 @@ Ext.define('Tel100.view.document.MainViewController', {
 
       for (var i = 0; i < selected.length; i++) {
         var status = selected[i].get('status');
-        if (status === helpers.document.status.DRAFT) {
+        if (status === helpers.document.status.DRAFT || 
+            status === helpers.document.status.TEMPLATE_PRIVATE ||
+            ( status === helpers.document.status.TEMPLATE_COMMON && helpers.user.getCurrentUser().get('is_template') === 1)
+            ) {
           var t = (function(selected) {
             return function(callback) {
               cntrl.deleteDraft(selected.id, callback);
@@ -122,12 +125,25 @@ Ext.define('Tel100.view.document.MainViewController', {
     var doc2 = Ext.create('Tel100.model.document.Base', {id: doc.id});
     doc2.load({
       success: function(document) {
-        var isDraft = document.get('status') === helpers.document.status.DRAFT;
-        if (isDraft) {
-          this.openDraftDocument(tabs, document);
-        } else {
-          this.openCurrentDocument(tabs, document);
+        switch(document.get('status')){
+          case helpers.document.status.DRAFT:
+            this.openDraftDocument(tabs, document);
+            break;
+          case helpers.document.status.TEMPLATE_COMMON:
+          case helpers.document.status.TEMPLATE_PRIVATE:
+            if(helpers.user.getCurrentUser().get('is_template') === 1){
+              this.openDraftDocument(tabs, document);
+            } else {
+              this.openTemplateDocument(tabs, document);  
+            }
+            break;
+          default: 
+            this.openCurrentDocument(tabs, document);
         }
+        // var isDraft = ( document.get('status') ===  || document.get('status') ===  );
+        // if (isDraft) {
+        // } else {
+        // }
       }.bind(this)
     });
   },
@@ -147,6 +163,18 @@ Ext.define('Tel100.view.document.MainViewController', {
   openCurrentDocument: function(tabs, document) {
     var title = document.get('docnumber');
     var editor = Tel100.view.document.editor.Editor.create({ title: title, closable: true });
+    editor.getViewModel().set('document', document);
+    editor.on('documentchanged', function(document) {
+      this.refreshFoldersAndDocuments();
+    }.bind(this));
+    tabs.add(editor);
+    tabs.setActiveTab(editor);
+    this.refreshFoldersAndDocuments();
+  },
+
+  openTemplateDocument: function(tabs, document) {
+    var title = i18n.document.base.ui.templateTitle;
+    var editor = Tel100.view.document.editor.Template.create({ title: title, closable: true });
     editor.getViewModel().set('document', document);
     editor.on('documentchanged', function(document) {
       this.refreshFoldersAndDocuments();

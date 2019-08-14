@@ -76,6 +76,15 @@ Ext.define('Tel100.view.document.editor.Creator', {
             }
           }
         }, {
+        xtype: 'button',
+        bind: {
+          hidden: '{hideSaveAsTemplate}',
+          text: '{i18n.document.base.ui.save_as_template}'
+        },
+        listeners: {
+          click: 'onSaveAsTemplate'
+        }
+       },{
           xtype: 'tbfill'
         }]
       }],
@@ -220,7 +229,20 @@ Ext.define('Tel100.view.document.editor.Creator', {
     var vm = this.getViewModel();
     vm.set('document', doc);
     bodyText.setValue(doc.get('body'));
-  }
+  },
+
+  onSaveAsTemplate: function(){
+    var vm = this.getViewModel();
+    var document = vm.get('document');
+
+    helpers.api.document.base.template(document.id, {
+      success: function(data) {
+        var doc = Ext.create('Tel100.model.document.Base', data);
+        // this.getViewModel().set('selection', doc);
+        this.getView().up('documentmain').getController().openDocument(doc);
+      }.bind(this)
+    });
+  },
 });
 
 // -- CreatorViewController
@@ -404,6 +426,9 @@ Ext.define('Tel100.view.document.editor.CreatorViewModel', {
     },
     isGnerc: function(get) {
       return Ext.Array.contains([13, 14, 15, 16], get('document.type_id'));
+    },
+    hideSaveAsTemplate: function(get){
+      return helpers.user.getCurrentUser().get('is_template') !== 1;
     }
   }
 });
