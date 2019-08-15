@@ -277,9 +277,9 @@ Ext.define('Ext.ux.form.TinyMCETextArea', {
                 }
             });
 
-            ed.on('click', function(e){
-                me.fireEvent('click', me, {});
-            });
+            // ed.on('click', function(e){
+            //     me.fireEvent('click', me, {});
+            // });
 
             // This ensures that the focusing the editor
             // bring the parent window to front

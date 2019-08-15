@@ -137,6 +137,7 @@ Ext.define('Tel100.view.document.editor.Modify', {
                 readOnly: '{!canEditText}'
               },
               listeners: {
+                // click: 'onHtmleditorClick',
                 change: 'onHtmleditorChange'
               }
             }
@@ -195,6 +196,12 @@ Ext.define('Tel100.view.document.editor.Modify', {
       document.set('body', newValue);
     }
   },
+
+  // onHtmleditorClick: function(field){
+  //   var view = field.up('documenteditormodify');
+  //   var vm = view.getViewModel();
+  //   vm.set('editMode', true);
+  // },
 
   initComponent: function() {
     this.callParent();

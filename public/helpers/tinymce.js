@@ -1,4 +1,4 @@
-var templatesDialog;
+// var templatesDialog;
 
 var config = {
       plugins: [
@@ -9,7 +9,7 @@ var config = {
       ],
 
       toolbar1: "newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect | bullist numlist | outdent indent blockquote",
-      toolbar2: "cut copy paste | searchreplace | undo redo | link unlink code | inserttime | forecolor backcolor | table | hr removeformat | subscript superscript | charmap emoticons | fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft Templates",
+      toolbar2: "cut copy paste | searchreplace | undo redo | link unlink code | inserttime | forecolor backcolor | table | hr removeformat | subscript superscript | charmap emoticons | fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft",
 
       content_css : "/mycontents.css",
 
@@ -51,24 +51,24 @@ var getConfig = function(){
       return config;
 }
 
-var getTemplatesDialog = function(callback) {
+// var getTemplatesDialog = function(callback) {
 
-  // create party listener if not created yet
-  if (!templatesDialog) {
-    templatesDialog = Ext.create('Tel100.view.templates.Selector', {
-      title: i18n.document.motion.selectReceiver
-    });
-  }
+//   // create party listener if not created yet
+//   if (!templatesDialog) {
+//     templatesDialog = Ext.create('Tel100.view.templates.Selector', {
+//       title: i18n.document.motion.selectReceiver
+//     });
+//   }
 
-  // remove all listeners
-  templatesDialog.clearListeners();
+//   // remove all listeners
+//   templatesDialog.clearListeners();
 
-  // adding new listener
-  templatesDialog.on('selectioncomplete', callback);
+//   // adding new listener
+//   templatesDialog.on('selectioncomplete', callback);
 
-  // return dialog to the user
-  return templatesDialog;
-};
+//   // return dialog to the user
+//   return templatesDialog;
+// };
 
 module.exports = {
   config: config,
