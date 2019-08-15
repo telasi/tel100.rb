@@ -13,4 +13,6 @@ class Sap::Person < ActiveRecord::Base
   def org; Sap::PersonOrg.current.where(person_id: self.person_id).first; end
   def organization; HR::Organization.active.where(saporg_id: self.org.shtat, saporg_type: 'S').first; end
   def org_id; self.organization ? self.organization.id : nil; end
+
+  def person_name(language); Sap::PersonName.current.where(person_id: self.person_id, language: language).first end
 end
