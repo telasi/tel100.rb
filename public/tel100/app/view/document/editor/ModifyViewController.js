@@ -6,9 +6,9 @@ Ext.define('Tel100.view.document.editor.ModifyViewController', {
     var view = this.getView();
     var vm = this.getViewModel();
 
-    var bodyText = component.down('#documentBody');
-    var doc = vm.get('document');
-    bodyText.setValue(doc.get('body'));
+    // var bodyText = component.down('#documentBody');
+    // var doc = vm.get('document');
+    // bodyText.setValue(doc.get('body'));
 
     // setting files as editable
     var filesPanel = view.down('#files');

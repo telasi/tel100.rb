@@ -123,24 +123,34 @@ Ext.define('Tel100.view.document.editor.Modify', {
                 }]
             },
             {
-              //xtype: 'htmleditor',
-              xtype: 'tinymce_textarea',
-              noWysiwyg: false,
-              tinyMCEConfig: helpers.tinymce.getConfig(),
-              style: { border: '0' },
-              flex: 1,
-              itemId: 'documentBody',
-              padding: '0 5 5 5',
-              labelAlign: 'top',
-              bind: {
-              //   fieldLabel: '{i18n.document.base.body}'
-                readOnly: '{!canEditText}'
-              },
-              listeners: {
-                // click: 'onHtmleditorClick',
-                change: 'onHtmleditorChange'
-              }
-            }
+          xtype: 'container',
+          flex: 1,
+          border: '1px',
+          cls: 'document-body',
+          overflowY: 'scroll',
+          bind: {
+            html: '{document.body}'
+          }
+        },
+            // {
+            //   //xtype: 'htmleditor',
+            //   xtype: 'tinymce_textarea',
+            //   noWysiwyg: false,
+            //   tinyMCEConfig: helpers.tinymce.getConfig(),
+            //   style: { border: '0' },
+            //   flex: 1,
+            //   itemId: 'documentBody',
+            //   padding: '0 5 5 5',
+            //   labelAlign: 'top',
+            //   bind: {
+            //   //   fieldLabel: '{i18n.document.base.body}'
+            //     readOnly: '{!canEditText}'
+            //   },
+            //   listeners: {
+            //     // click: 'onHtmleditorClick',
+            //     change: 'onHtmleditorChange'
+            //   }
+            // }
           ]
         },
         {
@@ -190,11 +200,13 @@ Ext.define('Tel100.view.document.editor.Modify', {
 
   onHtmleditorChange: function(field, newValue, oldValue, eOpts) {
     var view = field.up('documenteditormodify');
-    var vm = view.getViewModel();
-    if(vm.get('canEditText')){
-      var document = vm.get('document');
-      document.set('body', newValue);
-    }
+    // if(view){
+      var vm = view.getViewModel();
+      if(vm.get('canEditText')){
+        var document = vm.get('document');
+        document.set('body', newValue);
+      }
+    // }
   },
 
   // onHtmleditorClick: function(field){
