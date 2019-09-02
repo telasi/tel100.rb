@@ -37,7 +37,11 @@ Ext.define('Tel100.view.document.editor.Modify', {
           region: 'south',
           dock: 'bottom',
           border: false,
-          items: [
+          items: [{
+              xtype: 'container',
+              id: 'floatContainer',
+              html: '<p align="center"><i><font color="red">Double click on text to edit</font></i></p>'
+            },
             {
               xtype: 'tbfill'
             },
@@ -74,6 +78,7 @@ Ext.define('Tel100.view.document.editor.Modify', {
           flex: 1,
           region: 'center',
           baseCls: 'white-panel',
+          id: 'mainContainer',
           border: false,
           padding: '10',
           layout: {
@@ -124,14 +129,43 @@ Ext.define('Tel100.view.document.editor.Modify', {
             },
             {
           xtype: 'container',
+          id: 'textContainer',
           flex: 1,
-          border: '1px',
+          border: true,
           cls: 'document-body',
           overflowY: 'scroll',
           bind: {
             html: '{document.body}'
+          },
+          listeners: {
+            dblclick : {
+              fn: function(e, t){
+                var mainContainer = Ext.getCmp('mainContainer');
+                mainContainer.remove(Ext.getCmp('floatContainer'));
+                mainContainer.remove(Ext.getCmp('textContainer'));
+                mainContainer.add({
+                    xtype: 'tinymce_textarea',
+                    noWysiwyg: false,
+                    tinyMCEConfig: helpers.tinymce.getConfig(),
+                    style: { border: '0' },
+                    flex: 1,
+                    id: 'documentBody',
+                    padding: '0 5 5 5',
+                    labelAlign: 'top',
+                    bind: {
+                      readOnly: '{!canEditText}'
+                    },
+                    listeners: {
+                      change: 'onHtmleditorChange',
+                      beforerender: 'setText'
+                    }
+                  });
+              },
+              element: 'el',
+              scope: this
+            }
           }
-        },
+        }
             // {
             //   //xtype: 'htmleditor',
             //   xtype: 'tinymce_textarea',
@@ -198,15 +232,23 @@ Ext.define('Tel100.view.document.editor.Modify', {
     }
       ],
 
+  setText: function(field, value){
+      var mainContainer = Ext.getCmp('mainContainer');
+      var bodyText = Ext.getCmp('documentBody');
+      var vm = mainContainer.up('documenteditormodify').getViewModel();
+      var doc = vm.get('document');
+      bodyText.setValue(doc.get('body'));
+  },
+
   onHtmleditorChange: function(field, newValue, oldValue, eOpts) {
     var view = field.up('documenteditormodify');
-    // if(view){
+    if(view){
       var vm = view.getViewModel();
       if(vm.get('canEditText')){
         var document = vm.get('document');
         document.set('body', newValue);
       }
-    // }
+    }
   },
 
   // onHtmleditorClick: function(field){
