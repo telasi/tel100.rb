@@ -71,7 +71,7 @@ def properties(pdf)
   @document.signee_motions.each_with_index do |signee, index|
     data += [[ index == 0 ? I18n.t("views.document.print.signees") : "",    
                "#{signee.receiver}", 
-               signee.receiver.respond_to?(:organization) ? signee.receiver.organization.chained_name : "",
+               (signee.receiver.respond_to?(:organization) && signee.receiver.organization.present?) ? signee.receiver.organization.chained_name : "",
                "#{ signee.response_type.nil? ? "" : signee.response_type.name} \n #{signee.response_text}"]]
   end
   @document.assignees.each_with_index do |assignee, index|
