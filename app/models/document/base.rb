@@ -525,7 +525,10 @@ class Document::Base < ActiveRecord::Base
             motion_to_process.status = CURRENT
             motion_to_process.received_at = Time.now
             motion_to_process.save!
-            docuser.calculate! if docuser.present?
+            if docuser.present?
+              docuser.update_attributes!(is_new: 1)
+              docuser.calculate! 
+            end
           end
 
           motions_to_process = self.motions.where('parent_id is null AND ordering > ? AND receiver_role IN (?)', ordering, [ROLE_ASSIGNEE, ROLE_SIGNEE, ROLE_AUTHOR])
@@ -534,7 +537,10 @@ class Document::Base < ActiveRecord::Base
             motion_to_process.status = motion_to_process.receiver_user.blank? ? NOT_SENT : SENT
             motion_to_process.received_at = Time.now
             motion_to_process.save!
-            docuser.calculate! if docuser.present?
+            if docuser.present?
+              docuser.update_attributes!(is_new: 1)
+              docuser.calculate! 
+            end
           end
 
           motions_to_process = self.motions.where('parent_id is not null AND receiver_role IN (?)', [ROLE_ASSIGNEE])
@@ -753,7 +759,7 @@ class Document::Base < ActiveRecord::Base
       smotion.save
 
       receiver_du = smotion.document.users.where(user: smotion.receiver_user).first
-      receiver_du.is_new = 1
+      receiver_du.update_attributes!(is_new: 1)
       receiver_du.calculate! if receiver_du.present?
     end
   end
