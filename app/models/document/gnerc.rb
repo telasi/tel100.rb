@@ -39,7 +39,7 @@ class Document::Gnerc < ActiveRecord::Base
       clazz = "Gnerc::#{service}".constantize
       clazz.connection
       doc = clazz.where(docid: document.id).first
-      return -1 unless doc
+      return -1 unless document
       queue = Gnerc::SendQueue.where(service: service, service_id: doc.id, stage: current_stage).first
       if queue.blank?
         return 0
@@ -107,11 +107,13 @@ class Document::Gnerc < ActiveRecord::Base
         gnerc.customer_accnumb = customer.accnumb
         gnerc.customer_name = customer.name
         gnerc.customer_phone = customer.fax.delete(' ') if !customer.fax.nil?
+        gnerc.customer_taxid = customer.taxid
       when 'HR::Party'
         gnerc.customer_accnumb = customer.customer
         gnerc.customer_name = customer.name_ka.strip if !customer.name_ka.nil?
         gnerc.customer_phone = customer.phones.delete(' ') if !customer.phones.nil?
         gnerc.customer_email = customer.email.strip if !customer.email.nil?
+        gnerc.customer_taxid = customer.identity
     end
     gnerc.save
   end

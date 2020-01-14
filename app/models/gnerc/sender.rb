@@ -10,7 +10,7 @@ class Gnerc::Sender
      raise Sys::MyException.new('Wrong direction', { error_code: 1 }) unless doc.direction == IN
      raise Sys::MyException.new('Wrong state', { error_code: 1 }) if doc.status == DRAFT
      raise Sys::MyException.new('Wrong status', { error_code: 1 }) if doc.is_reply?
-     raise Sys::MyException.new('შეიყვანთ ადრესატი', { error_code: 1 }) if doc.assignee_motions.none?
+     raise Sys::MyException.new('შეიყვანეთ ადრესატი', { error_code: 1 }) if doc.assignee_motions.none?
 
      gnerc = doc.gnerc
      if gnerc.customer_type.present?
@@ -42,7 +42,6 @@ class Gnerc::Sender
         end
      end
 
-      # raise Sys::MyException.new('Cant find customer', { error_code: 1 }) unless motion.present?
       raise Sys::MyException.new('Cant find customer', { error_code: 1 }) unless customer.present?
 
       file = doc.gnerc.file if doc.gnerc.present?
@@ -122,25 +121,9 @@ class Gnerc::Sender
       # end
 
       GnercWorker.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
-      # Gnerc.perform_async("docflow_#{DOCFLOW_TO_GNERC_MAP[self.type_id]}".to_sym, parameters)
     end
 
 	def self.answer(doc)
-    #   if self.gnerc.status == 0
-      #     raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
-      #   else
-      #     sms = Document::Sms.where(answer: self, active: 1).first
-      #     raise I18n.t('models.document_base.errors.no_file_or_sms') if ( self.gnerc.file.blank? and sms.blank? )
-      #   end
-
-      #   if self.gnerc.mediate == 1
-      #     raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?  
-      #   end
-
-      # else # not reply
-      #   raise I18n.t('models.document_base.errors.no_file') unless self.gnerc.file.present?
-      # end
-
       raise Sys::MyException.new('Error', { error_code: 1 }) unless doc.gnerc.present?
 
       sms = Document::Sms.where(answer: doc, active: 1).first
@@ -190,6 +173,16 @@ class Gnerc::Sender
 
           answer_gnerc = doc.gnerc
           answer_gnerc.step = Document::Gnerc::STEP_ANSWER
+          if gnerc_record.present?
+            answer_gnerc.gnerc_id = gnerc_record.gnerc_id
+            answer_gnerc.customer_type = gnerc_record.customer_type
+            answer_gnerc.customer_id = gnerc_record.customer_id
+            answer_gnerc.customer_accnumb = gnerc_record.customer_accnumb
+            answer_gnerc.customer_name = gnerc_record.customer_name
+            answer_gnerc.customer_phone = gnerc_record.customer_phone
+            answer_gnerc.customer_email = gnerc_record.customer_email
+            answer_gnerc.customer_taxid = gnerc_record.customer_taxid
+          end
           answer_gnerc.save!
 
           parameters.merge!({ mediate: 1 }) if ( doc.type_id != GNERC_TYPE6 and doc.gnerc.mediate == 1 )

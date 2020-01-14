@@ -383,10 +383,12 @@ class Document::Motion < ActiveRecord::Base
     return unless self.document.direction == IN
 
     Gnerc::Sender.appeal(doc)
+    Gnerc::SenderTest.appeal(doc)
   end
 
   def set_gnerc_status(doc)
     return unless doc.gnerc.present?
+    return if doc.direction == Document::Direction::IN
     gnerc = doc.gnerc
     gnerc.step = Document::Gnerc::STEP_ANSWER_COMPLETED
     gnerc.save!

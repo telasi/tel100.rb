@@ -49,6 +49,7 @@ class Api::Documents::GnercController < ApiController
   def send_gnerc
     doc = Document::Base.find(params[:id])
     Gnerc::Sender.answer(doc)
+    Gnerc::SenderTest.answer(doc)
     render json: { success: true }
   end
 

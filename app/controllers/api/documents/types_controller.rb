@@ -36,6 +36,7 @@ class Api::Documents::TypesController < ApiController
 
   def gnerc_subtypes
     @types = Document::GnercSubtype.order('id ASC')
+    @types = @types.where('OLD IS NOT NULL') if params[:editable]
   end
 
   private

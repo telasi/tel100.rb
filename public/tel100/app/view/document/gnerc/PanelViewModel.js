@@ -58,7 +58,17 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     },
     gnerc_subtypes: {
       autoLoad: true,
-      model: 'Tel100.model.document.Gnerc_subtypes'
+      model: 'Tel100.model.document.Gnerc_subtypes',
+      proxy: {
+        type: 'ajax',
+        extraParams: {
+          editable: '{editable}'
+        },
+        url: '/api/documents/types/gnerc_subtypes',
+        reader: {
+          type: 'json'
+        }
+      }
     },
     gas_providers: {
       autoLoad: true,
@@ -80,7 +90,7 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
       proxy: {
         type: 'ajax',
         extraParams: {
-          document_id: '{document.id}'
+          editable: '{editable}'
         },
         url: '/api/documents/gnerc/sms',
         reader: {
