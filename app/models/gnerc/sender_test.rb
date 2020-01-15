@@ -46,7 +46,7 @@ class Gnerc::SenderTest
      end
 
       raise Sys::MyException.new('Cant find customer', { error_code: 1 }) unless customer.present?
-      raise Sys::MyException.new('შეიყვანეთ საინდეფიცაციო ნომერი', { error_code: 1 }) if identification_number.blank?
+      # raise Sys::MyException.new('შეიყვანეთ საინდეფიცაციო ნომერი', { error_code: 1 }) if identification_number.blank?
 
       file = doc.gnerc.file if doc.gnerc.present?
       raise Sys::MyException.new('Cant find file', { error_code: 1 }) unless file.present?
