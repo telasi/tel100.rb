@@ -169,7 +169,7 @@ class Gnerc::SenderTest
       sourcedocs.each do |source|
         related = Document::Base.find(source.related_id)
         if GNERC_TYPES.include?(related.type_id) && related.direction == 'in'
-          parameters = { docid: related.id, response_type_id: doc.gnerc.status == 1 ? 1 : 2 }
+          parameters = { docid: related.id, response_id: doc.gnerc.status == 1 ? 1 : 2 }
           parameters.merge!({ "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content,
                               "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2_filename".to_sym => file.original_name }) if content.present?
           parameters.merge!({ company_answer: smsrecord.text,
