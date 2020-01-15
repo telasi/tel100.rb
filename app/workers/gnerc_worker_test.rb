@@ -2,8 +2,9 @@ class GnercWorkerTest
   include Sidekiq::Worker
 
   def perform(func, type, parameters)
-  	service = "Docflow#{type}Test"
-  	clazz = "Gnerc::#{service}".constantize
+  	service = "Docflow#{type}"
+    model = "Docflow#{type}Test"
+  	clazz = "Gnerc::#{model}".constantize
   	clazz.connection
 
   	if func == "appeal"
