@@ -39,7 +39,7 @@ class Document::Gnerc < ActiveRecord::Base
       clazz = "Gnerc::#{service}".constantize
       clazz.connection
       doc = clazz.where(docid: document.id).first
-      return -1 unless document
+      return -1 unless doc
       queue = Gnerc::SendQueue.where(service: service, service_id: doc.id, stage: current_stage).first
       if queue.blank?
         return 0
