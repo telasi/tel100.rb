@@ -408,6 +408,14 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                 value: '{customer.customer_email}'
               },
               renderer: function(value, object){  return '<strong>' + value + '</strong>'; }
+            }, {
+              xtype: 'displayfield',
+              text: 'aaa',
+              bind: {
+                fieldLabel: '{i18n.document.base.gnerc_taxid}',
+                value: '{customer.customer_taxid}'
+              },
+              renderer: function(value, object){  return '<strong>' + value + '</strong>'; }
             }]
           },{
             xtype: 'box',

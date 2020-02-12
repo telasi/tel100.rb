@@ -127,6 +127,10 @@ module.exports = {
     ka: 'E-mail',
     ru: 'E-mail'
   },
+  gnerc_taxid: {
+    ka: 'საინენ.#',
+    ru: 'Идент.#'
+  },
   accnumb: {
     ka: 'აბონენტის N',
     ru: 'N абонента',

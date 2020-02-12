@@ -18,6 +18,7 @@ if @gnerc
 			json.customer_phone		@gnerc.customer_phone
 			json.customer_email		@gnerc.customer_email
 			json.correct_mobile		@gnerc.correct_mobile
+			json.customer_taxid		@gnerc.customer_taxid
 			json.agree_water		@gnerc.agree_water
 			json.agree_gas			@gnerc.agree_gas
 			json.water_customer		@gnerc.water_customer
