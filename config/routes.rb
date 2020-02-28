@@ -203,6 +203,7 @@ Rails.application.routes.draw do
         get    '/download', action: 'download'
         post   '/upload',   action: 'upload'
         delete '/delete',   action: 'destroy'
+        get    '/download_history', action: 'download_history'
       end
       scope 'filestemp', controller: 'files' do
         get   '/prepare/:id',  action: 'prepare'

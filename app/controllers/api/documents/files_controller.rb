@@ -22,6 +22,11 @@ class Api::Documents::FilesController < ApiController
     send_file file.full_path, filename: file.original_name, disposition: 'inline'
   end
 
+  def download_history
+    file = Document::History::File.find(params[:id])
+    send_file file.full_path, filename: file.original_name, disposition: 'inline'
+  end
+
   def indextemp
     @files = Document::FileTemp.where(document_id: params[:document_id]).order(:id)
   end

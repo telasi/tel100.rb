@@ -40,7 +40,7 @@ Ext.define('Tel100.view.document.history.WindowViewController', {
   },
 
   onGridpanelCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
-    var url = '/api/documents/history/files/download?id=' + record.id;
+    var url = '/api/documents/files/download_history?id=' + record.id;
     var tab = window.open(url, 'tel100');
     tab.focus();
   }
