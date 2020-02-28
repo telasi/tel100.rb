@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Api::Documents::FilesController < ApiController
-  before_filter :validate_login, except: 'download'
+  before_filter :validate_login, except: ['download', 'download_history']
 
   def index
     @files = Document::File.where(document_id: params[:document_id]).order(:id)
