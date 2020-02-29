@@ -1,9 +1,9 @@
-class GnercWorkerTest
+class GnercWorkerOld
   include Sidekiq::Worker
 
   def perform(func, type, parameters)
   	service = "Docflow#{type}"
-    model = "Docflow#{type}Test"
+    model = "Docflow#{type}Old"
   	clazz = "Gnerc::#{model}".constantize
   	clazz.connection
 
@@ -18,8 +18,8 @@ class GnercWorkerTest
     if doc.present?
     	doc.stage = stage
     	doc.save!
-      if Gnerc::SendQueueTest.where(service: service, service_id: doc.id, stage: stage).empty?
-       queue = Gnerc::SendQueueTest.new(service: service, service_id: doc.id, stage: stage, created_at: Time.now)
+      if Gnerc::SendQueueOld.where(service: service, service_id: doc.id, stage: stage).empty?
+       queue = Gnerc::SendQueueOld.new(service: service, service_id: doc.id, stage: stage, created_at: Time.now)
        queue.save!
       end
     end

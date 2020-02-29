@@ -47,10 +47,9 @@ class Api::Documents::GnercController < ApiController
   end
 
   def send_gnerc
-    raise 'Error'
     doc = Document::Base.find(params[:id])
     Gnerc::Sender.answer(doc)
-    Gnerc::SenderTest.answer(doc)
+    Gnerc::SenderOld.answer(doc)
     render json: { success: true }
   end
 

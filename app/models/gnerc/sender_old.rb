@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-class Gnerc::SenderTest
+class Gnerc::SenderOld
 
  include Document::Direction
  include Document::Status
@@ -28,25 +28,21 @@ class Gnerc::SenderTest
         if motion.present?
           customer = motion.receiver.customer 
           phone = motion.receiver.phones
-          identification_number = motion.receiver.identity
         end
         customer = BS::Customer.where(accnumb: "#{customer}").first
         if customer.present? and phone.nil? 
           phone = customer.fax
-          identification_number = customer.taxid
         end
         if motion.blank?
           motion = doc.motions.where(receiver_type: 'BS::Customer', receiver_role: 'author').first
           if motion.present?
             customer = motion.receiver 
             phone = customer.fax
-            identification_number = customer.taxid
           end  
         end
      end
 
       raise Sys::MyException.new('Cant find customer', { error_code: 1 }) unless customer.present?
-      # raise Sys::MyException.new('შეიყვანეთ საინდეფიცაციო ნომერი', { error_code: 1 }) if identification_number.blank?
 
       file = doc.gnerc.file if doc.gnerc.present?
       raise Sys::MyException.new('Cant find file', { error_code: 1 }) unless file.present?
@@ -57,63 +53,54 @@ class Gnerc::SenderTest
 
       case doc.type_id
         when GNERC_TYPE4
-          parameters = { docid:                 doc.id,
-                         docyear:               doc.docyear,
-                         letter_number:         doc.docnumber,
-                         abonent_number:        customer.accnumb,
-                         abonent:               customer.name,
-                         abonent_address:       customer.address,
-                         abonent_type:          customer.abonent_type,
-                         phone:                 doc.gnerc.customer_phone,
-                         identification_number: identification_number,
-                         letter_category:       50,
-                         # letter_category:       doc.gnerc.type_id,
-                         appeal_date:           doc.docdate,
-                         attach_4_1:            content,
-                         attach_4_1_filename:   file.original_name
+          parameters = { docid:               doc.id,
+                         docyear:             doc.docyear,
+                         letter_number:       doc.docnumber,
+                         abonent_number:      customer.accnumb,
+                         abonent:             customer.name,
+                         abonent_address:     customer.address,
+                         abonent_type:        customer.abonent_type,
+                         letter_category:     doc.gnerc.type_id,
+                         appeal_date:         doc.docdate,
+                         attach_4_1:          content,
+                         attach_4_1_filename: file.original_name
                        }
         when GNERC_TYPE5
-          parameters = { docid:                 doc.id,
-                         docyear:               doc.docyear,
-                         letter_number:         doc.docnumber,
-                         abonent_number:        customer.accnumb,
-                         abonent:               customer.name,
-                         abonent_address:       customer.address,
-                         phone:                 doc.gnerc.customer_phone,
-                         identification_number: identification_number,
-                         consumer_category:     customer.abonent_type,
-                         appeal_date:           doc.docdate,
-                         attach_5_1:            content,
-                         attach_5_1_filename:   file.original_name
+          parameters = { docid:               doc.id,
+                         docyear:             doc.docyear,
+                         letter_number:       doc.docnumber,
+                         abonent_number:      customer.accnumb,
+                         abonent:             customer.name,
+                         abonent_address:     customer.address,
+                         consumer_category:   customer.abonent_type,
+                         appeal_date:         doc.docdate,
+                         attach_5_1:          content,
+                         attach_5_1_filename: file.original_name
                        }
         when GNERC_TYPE6
-          parameters = { docid:                 doc.id,
-                         docyear:               doc.docyear,
-                         letter_number:         doc.docnumber,
-                         abonent_number:        customer.accnumb,
-                         abonent:               customer.name,
-                         abonent_address:       customer.address,
-                         phone:                 doc.gnerc.customer_phone,
-                         identification_number: identification_number,
-                         consumer_category:     customer.abonent_type,
-                         appeal_date:           doc.docdate,
-                         attach_6_1:            content,
-                         attach_6_1_filename:   file.original_name,
-                         public_service_hall:   ( doc.owner_user_id == JUSTICE_USER ) ? 1 : 0
+          parameters = { docid:               doc.id,
+                         docyear:             doc.docyear,
+                         letter_number:       doc.docnumber,
+                         abonent_number:      customer.accnumb || '1',
+                         applicant:           customer.name,
+                         applicant_address:   customer.address,
+                         consumer_category:   customer.abonent_type,
+                         appeal_date:         doc.docdate,
+                         attach_6_1:          content,
+                         attach_6_1_filename: file.original_name,
+                         public_service_hall: ( doc.owner_user_id == JUSTICE_USER ) ? 1 : 0
                        }
         when GNERC_TYPE8
-          parameters = { docid:                 doc.id,
-                         docyear:               doc.docyear,
-                         letter_number:         doc.docnumber,
-                         abonent_number:        customer.accnumb,
-                         abonent:               customer.name,
-                         abonent_address:       customer.address,
-                         consumer_category:     customer.abonent_type,
-                         phone:                 doc.gnerc.customer_phone,
-                         identification_number: identification_number,
-                         appeal_date:           doc.docdate,
-                         attach_8_1:            content,
-                         attach_8_1_filename:   file.original_name
+          parameters = { docid:               doc.id,
+                         docyear:             doc.docyear,
+                         letter_number:       doc.docnumber,
+                         abonent_number:      customer.accnumb,
+                         abonent:             customer.name,
+                         abonent_address:     customer.address,
+                         consumer_category:   customer.abonent_type,
+                         appeal_date:         doc.docdate,
+                         attach_8_1:          content,
+                         attach_8_1_filename: file.original_name
                        }
       end
 
@@ -133,7 +120,7 @@ class Gnerc::SenderTest
       #   open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - no phone\n" }
       # end
 
-      GnercWorkerTest.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
+      GnercWorkerOld.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
     end
 
 	def self.answer(doc)
@@ -170,7 +157,7 @@ class Gnerc::SenderTest
       sourcedocs.each do |source|
         related = Document::Base.find(source.related_id)
         if GNERC_TYPES.include?(related.type_id) && related.direction == 'in'
-          parameters = { docid: related.id, response_id: doc.gnerc.status == 1 ? 1 : 2 }
+          parameters = { docid: related.id }
           parameters.merge!({ "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content,
                               "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2_filename".to_sym => file.original_name }) if content.present?
           parameters.merge!({ company_answer: smsrecord.text,
@@ -200,7 +187,7 @@ class Gnerc::SenderTest
 
           parameters.merge!({ mediate: 1 }) if ( doc.type_id != GNERC_TYPE6 and doc.gnerc.mediate == 1 )
 
-          GnercWorkerTest.perform_async("answer", DOCFLOW_TO_GNERC_MAP[related.type_id], parameters)
+          GnercWorkerOld.perform_async("answer", DOCFLOW_TO_GNERC_MAP[related.type_id], parameters)
 
           if related.sender_user_id == JUSTICE_USER
             if content.present?
