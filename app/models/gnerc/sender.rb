@@ -66,8 +66,7 @@ class Gnerc::Sender
                          abonent_type:          customer.abonent_type,
                          phone:                 doc.gnerc.customer_phone,
                          identification_number: identification_number,
-                         letter_category:       50,
-                         # letter_category:       doc.gnerc.type_id,
+                         letter_category:       doc.gnerc.type_id,
                          appeal_date:           doc.docdate,
                          attach_4_1:            content,
                          attach_4_1_filename:   file.original_name
