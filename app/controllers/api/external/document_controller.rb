@@ -136,9 +136,9 @@ class Api::External::DocumentController < ApiController
   def first_sms
     doc = Document::Base.find(params[:docid])
     gnerc = doc.gnerc
-    gnerc.gnerc_id = "G0010#{params[:case_id]}F000#{params[:gnerc_id]}"
+    gnerc.gnerc_id = "G10#{params[:case_id]}F#{params[:gnerc_id]}"
     logger = Rails.logger
-    logger.info "IDDD G0010#{params[:case_id]}F000#{params[:gnerc_id]}"
+    logger.info "IDDD G10#{params[:case_id]}F#{params[:gnerc_id]}"
     logger.info "IDDD gnerc #{params[:gnerc_id]}"
     gnerc.save
     Document::Sms.first_sms!(doc, gnerc.customer_phone) if gnerc.customer_phone.present?
