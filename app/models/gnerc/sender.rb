@@ -13,6 +13,8 @@ class Gnerc::Sender
      raise Sys::MyException.new('შეიყვანეთ ადრესატი', { error_code: 1 }) if doc.assignee_motions.none?
 
      gnerc = doc.gnerc
+     identification_number = gnerc.customer_taxid
+
      if gnerc.customer_type.present?
       party = gnerc.customer_type.constantize.find(gnerc.customer_id)
       if gnerc.customer_type == 'HR::Party'
@@ -116,21 +118,10 @@ class Gnerc::Sender
                        }
       end
 
-      # phone = nil if phone and phone[0..2].upcase == 'OFF'
-
-      # doc.gnerc.mobile = phone
       doc.gnerc.stage = 1
       doc.gnerc.step = Document::Gnerc::STEP_SIGNEE
       doc.gnerc.sent_at = Time.now
       doc.gnerc.save!
-
-      # if phone.present?
-      #   open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} start\n" }
-      #   Document::Sms.first_sms!(doc, phone)
-      #   open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - #{phone} end\n" }
-      # else
-      #   open('sms_phones', 'a') { |f| f.puts "#{doc.docnumber} - no phone\n" }
-      # end
 
       GnercWorker.perform_async("appeal", DOCFLOW_TO_GNERC_MAP[doc.type_id], parameters)
     end
