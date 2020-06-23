@@ -133,8 +133,11 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
   ],
 
   onRefresh: function(tool, e, owner, eOpts) {
-    this.prepare();
-    this.refresh();
+    this.prepare({
+      success: function(){
+        this.refresh();
+      }.bind(this) 
+    });
   },
 
   refresh: function() {
@@ -142,12 +145,12 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
     vm.getStore('files').load();
   },
 
-  prepare: function(){
+  prepare: function(opts){
     var view = this;
     var viewModel = this.getViewModel();
     var document = viewModel.get('document');
 
-    helpers.api.document.edit.prepare(document.id);
+    helpers.api.document.edit.prepare(document.id, opts);
   },
 
   initComponent: function() {
