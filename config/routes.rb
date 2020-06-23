@@ -206,9 +206,9 @@ Rails.application.routes.draw do
         get    '/download_history', action: 'download_history'
       end
       scope 'filestemp', controller: 'files' do
-        get   '/prepare/:id',  action: 'prepare'
-        get   '/purge/:id',    action: 'purge'
         get    '/',            action: 'indextemp'
+        get    '/prepare/:id', action: 'prepare'
+        get    '/purge/:id',   action: 'purge'
         get    '/download',    action: 'downloadtemp'
         post   '/upload',      action: 'uploadtemp'
         delete '/delete',      action: 'destroytemp'
