@@ -38,7 +38,7 @@ Ext.define('Tel100.view.document.editor.General', {
     editable: false,
     displayField: 'name',
     valueField: 'id',
-    id: "typeCombo", 
+    itemId: 'typeCombo',
     bind: {
       fieldLabel: '{i18n.document.base.type}',
       value: '{document.type_id}',
@@ -141,6 +141,10 @@ Ext.define('Tel100.view.document.editor.General', {
 Ext.define('Tel100.view.document.editor.GeneralViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.documenteditorgeneral',
+
+  onGnercSubtypeChange: function(subtype){
+    combo.fireEvent('change', combo, null, null, { subtype_id: subtype_id });
+  },
 
   onTypeIdChange: function(field, newValue, oldValue, eOpts) {
     var vm = this.getViewModel();

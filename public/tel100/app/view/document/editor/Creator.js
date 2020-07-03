@@ -228,7 +228,7 @@ Ext.define('Tel100.view.document.editor.Creator', {
   },
 
   onGnercSubtypeChanged: function(subtype_id) {
-    var combo = Ext.getCmp('typeCombo');
+    var combo = this.down('#typeCombo');
     combo.fireEvent('change', combo, null, null, { subtype_id: subtype_id });
   },
 
