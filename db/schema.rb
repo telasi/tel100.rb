@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200324101524) do
+ActiveRecord::Schema.define(version: 20200626113747) do
 
   create_table "document_base", force: true do |t|
     t.string    "language",          limit: 2,                             default: "KA",    null: false
@@ -243,12 +243,13 @@ ActiveRecord::Schema.define(version: 20200324101524) do
   end
 
   create_table "document_type_gnerc_subtype", force: true do |t|
-    t.string    "name_ka",    limit: 150,                         null: false
+    t.string    "name_ka",    limit: 150,                                      null: false
     t.string    "name_ru",    limit: 150
     t.string    "name_en",    limit: 150
-    t.timestamp "created_at", limit: 6,                           null: false
-    t.timestamp "updated_at", limit: 6,                           null: false
-    t.boolean   "old",                    precision: 1, scale: 0
+    t.timestamp "created_at", limit: 6,                                        null: false
+    t.timestamp "updated_at", limit: 6,                                        null: false
+    t.boolean   "old",                    precision: 1,  scale: 0
+    t.integer   "deadline",   limit: 12,  precision: 12, scale: 0, default: 0, null: false
   end
 
   create_table "document_user", id: false, force: true do |t|

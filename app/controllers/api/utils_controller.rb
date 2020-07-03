@@ -7,8 +7,12 @@ class Api::UtilsController < ApiController
   end
 
   def getdeadline
-  	type = Document::Type.find(params[:type])
-  	deadline = type.deadline if type
+  	if params[:subtype].present?
+  		record = Document::GnercSubtype.find(params[:subtype])
+    else
+    	record = Document::Type.find(params[:type])
+	end
+	deadline = record.deadline if record
     render json: { success: true, deadline: Time.now + deadline.working.days }
   end
 end

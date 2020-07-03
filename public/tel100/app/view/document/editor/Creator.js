@@ -146,6 +146,9 @@ Ext.define('Tel100.view.document.editor.Creator', {
           itemId: 'gnerc',
           bind: {
             hidden: '{!isGnerc}'
+          },
+          listeners: {
+            gnercsubtypechanged: 'onGnercSubtypeChanged'
           }
         }, {
           xtype: 'documentrelationpanel',
@@ -222,6 +225,11 @@ Ext.define('Tel100.view.document.editor.Creator', {
     signeesPanel.refresh();
     assigneesPanel.refresh();
     authorPanel.refresh();
+  },
+
+  onGnercSubtypeChanged: function(subtype_id) {
+    var combo = Ext.getCmp('typeCombo');
+    combo.fireEvent('change', combo, null, null, { subtype_id: subtype_id });
   },
 
   setDocument: function(doc) {

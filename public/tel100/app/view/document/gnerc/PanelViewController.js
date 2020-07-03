@@ -42,6 +42,7 @@ Ext.define('Tel100.view.document.gnerc.PanelViewController', {
   },
 
   onGnercTypeChange: function(combo , records , eOpts){
+    this.fireViewEvent('gnercsubtypechanged', records.id); 
     this.updateGnerc({ type_id: records.getData().id });
   },
 

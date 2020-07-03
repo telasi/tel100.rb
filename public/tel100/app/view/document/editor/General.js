@@ -38,6 +38,7 @@ Ext.define('Tel100.view.document.editor.General', {
     editable: false,
     displayField: 'name',
     valueField: 'id',
+    id: "typeCombo", 
     bind: {
       fieldLabel: '{i18n.document.base.type}',
       value: '{document.type_id}',
@@ -149,7 +150,9 @@ Ext.define('Tel100.view.document.editor.GeneralViewController', {
     vm.set('specialType', type && type.get('is_special'));
     vm.set('isGnerc', type && type.get('is_gnerc'));
     if (!vm.get('readonly') && type && type.get('is_gnerc') && !doc.get('is_reply')){
-      helpers.api.utils.getDeadline(type.id, {
+      subtype = null;
+      if(eOpts && eOpts.subtype_id){ subtype = eOpts.subtype_id }
+      helpers.api.utils.getDeadline(type.id, subtype, {
         success: function(result) {
           doc.set('due_date', new Date(result.deadline));
         }.bind(this),

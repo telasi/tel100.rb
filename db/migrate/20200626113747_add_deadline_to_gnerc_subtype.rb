@@ -1,0 +1,62 @@
+class AddDeadlineToGnercSubtype < ActiveRecord::Migration
+  def up
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_TYPE_GNERC_SUBTYPE
+      ADD ( DEADLINE NUMBER(12,0) DEFAULT 0 NOT NULL )
+    SQL
+    execute <<-SQL
+       insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
+       VALUES (52, 'სარეზერვო კვება', 'სარეზერვო კვება')
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 50
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 5  WHERE id = 51
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 52
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 53
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 54
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 55
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 56
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 57
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 58
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 59
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 61
+    SQL
+
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 66
+    SQL
+	execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 67
+    SQL
+    execute <<-SQL
+       UPDATE DOCUMENT_TYPE_GNERC_SUBTYPE SET DEADLINE = 10 WHERE id = 68
+    SQL
+  end
+
+  def down
+    execute <<-SQL
+      ALTER TABLE DOCUMENT_TYPE_GNERC_SUBTYPE
+      DROP COLUMN DEADLINE
+    SQL
+  end
+end
