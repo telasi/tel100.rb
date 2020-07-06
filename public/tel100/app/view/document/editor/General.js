@@ -158,7 +158,11 @@ Ext.define('Tel100.view.document.editor.GeneralViewController', {
       if(eOpts && eOpts.subtype_id){ subtype = eOpts.subtype_id }
       helpers.api.utils.getDeadline(type.id, subtype, {
         success: function(result) {
-          doc.set('due_date', new Date(result.deadline));
+          if(result.deadline) {
+            doc.set('due_date', new Date(result.deadline));
+          } else {
+            doc.set('due_date', null)
+          }
         }.bind(this),
         failure: function() {
           console.log('failed to get time');
