@@ -148,7 +148,7 @@ class Document::Base < ActiveRecord::Base
     end
 
     if GNERC_TYPES.include?(self.type_id)
-      raise I18n.t('models.document_base.errors.no_due_date') if self.due_date.blank? && !self.is_reply?
+      raise I18n.t('models.document_base.errors.no_due_date') if self.due_date.blank? && !self.is_reply? && ( self.gnerc.subtype.deadline != 0 )
       if self.type_id == GNERC_TYPE4 and not self.is_reply?
         raise I18n.t('models.document_base.errors.gnerctype_is_null') unless self.gnerc.type_id.present?
       end
@@ -512,7 +512,7 @@ class Document::Base < ActiveRecord::Base
         should_reset_signees = true if m["receiver_role"] == 'assignee'
       end
 
-      if user.id != AUTO_SIGNEE
+      if user.id != AUTO_SIGNEE # cancelaria can add file and docnumber without modifying motions
 
         reset_signees if should_reset_signees 
 

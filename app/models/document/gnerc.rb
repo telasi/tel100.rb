@@ -14,6 +14,7 @@ class Document::Gnerc < ActiveRecord::Base
 
   belongs_to :document, class_name: 'Document::Base'
   belongs_to :file, class_name: 'Document::File'
+  belongs_to :subtype, class_name: 'Document::GnercSubtype', foreign_key: 'type_id'
 
   before_destroy :destroy_sms
 
