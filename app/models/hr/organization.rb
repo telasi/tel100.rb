@@ -26,4 +26,17 @@ class HR::Organization < ActiveRecord::Base
       ext_type: 'hr.Organization'
     }
   end
+
+  def all_user
+    employees = HR::Employee.where(organization: self)
+    if employees.any?
+      (employees.map { |x| x.user }).compact
+    else
+      users = []
+      HR::Organization.where(parent: self).each do |ch|
+        users.push ch.all_user
+      end
+      users.flatten
+    end
+  end
 end

@@ -1,0 +1,66 @@
+<% @log.each_with_index do |l, bc_index| %>
+	<hr>
+		<span><code><%= l[:bc] %></code></span>
+	<hr>
+		<% if l[:users].present? %>
+			<div class="accordion">
+			<!-- <table> -->
+				<% l[:users].each_with_index do |user, index| %>
+					<div class="card">
+					    <div class="card-header" id="headingOne">
+					      <span>
+					        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= "#{bc_index}_#{index}" %>" aria-expanded="true" aria-controls="collapseOne">
+					        <% if user[:changed] %>
+						        <span class='text-danger'>
+						          <%= user[:name] %>
+						        </span>
+					        <% else %>
+					        	<%= user[:name] %>
+					        <% end %>
+					        </button>
+					      </span>
+					    </div>
+
+<!-- 					<tr>
+						<td>
+							 <a class="" data-toggle="collapse" href="#<%= user[:user] %>" role="button" aria-expanded="false" aria-controls="<%= user[:user] %>"><%= user[:user] %></a>
+						</td>
+					</tr> -->
+
+					<div id="<%= "#{bc_index}_#{index}" %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+				      <div class="card-body">
+				        
+						<table class="table table-bordered">
+						    <% user[:deleted].each do |rel|
+						      usr = rel.user
+						      prnt = rel.related
+						    %>
+						      <tr>
+						        <td width="150"><code><%= rel.role %></code></td>
+						        <td>
+						          <code><%= usr.username %></code>
+						          &rarr;
+						          <code><%= prnt.username %></code>
+						        </td>
+						      </tr>
+						    <% end %>
+						    <tr>
+					        	<td width="150"><code class="text-success"><%= 'auto-assignee' %></code></td>
+						        <td>
+						          <code class="text-success"><%= user[:username] %></code>
+						          &rarr;
+						          <code class="text-success"><%= user[:created] %></code>
+						        </td>
+						    </tr>
+						</table>
+
+					  </div>
+				    </div>
+
+					</div>
+			    <% end %>
+			</div>
+			<!-- </table> -->
+		<% end %>
+	</tr>
+	<% end %>

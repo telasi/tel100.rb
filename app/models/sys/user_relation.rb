@@ -44,4 +44,34 @@ class Sys::UserRelation < ActiveRecord::Base
       users.flatten
     end
   end
+
+  def self.generate_bcs
+    log = []
+    bcs = Sys::User.where(first_name_ka: 'ბიზნეს-ცენტრი')
+    bcs.each do |bc|
+      org = HR::Organization.where(is_active: 1, name_ka: [bc.first_name_ka, bc.last_name_ka].join(' ')).first
+      next unless org.present?
+      log_org = {}
+      log_org[:users] = []
+
+      log_org[:bc] = org.name
+
+      org.all_user.each do |u|
+        log_user = {}
+        log_user[:username] = u.username
+        log_user[:name] = u.to_s
+        log_user[:deleted] = Sys::UserRelation.where(user: u, role: REL_AUTO_ASSIGNEE).to_a
+        log_user[:created] = bc.username if bc.id != u.id
+
+        log_user[:changed] = log_user[:deleted].length > 1 || ( log_user[:deleted].length == 1 && log_user[:deleted][0].related != bc )
+
+        # Sys::UserRelation.where(user: user, role: REL_AUTO_ASSIGNEE).destroy_all
+        # Sys::UserRelation.create(user: user, related: bc, role: REL_AUTO_ASSIGNEE) if bc.id != user.id
+
+        log_org[:users] << log_user
+      end
+      log << log_org
+    end
+    log
+  end
 end

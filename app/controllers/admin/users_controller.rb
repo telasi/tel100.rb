@@ -73,6 +73,10 @@ class Admin::UsersController < AdminController
     redirect_to admin_user_url(params[:user_id]), notice: 'მომხმარებლის კავშირი წაშლილია'
   end
 
+  def generate_bcs
+    @log = Sys::UserRelation.generate_bcs
+  end
+
   def sync_eflow_users
     Sys::User.all.each do |user|
       user.sync_with_eflow

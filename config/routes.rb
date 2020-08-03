@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       post '/generate_relations/:id', action: 'generate_relations', as: 'generate_user_relations'
       post '/sync_eflow', action: 'sync_eflow_users', as: 'sync_eflow_users'
       get '/eflow_motions/:id', action: 'eflow_motions', as: 'eflow_user_motions'
+      get '/generate_bcs', action: 'generate_bcs', as: 'generate_bcs'
     end
     scope 'roles', controller: 'roles' do
       get '/', action: 'index', as: 'roles'
