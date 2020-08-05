@@ -65,8 +65,8 @@ class Sys::UserRelation < ActiveRecord::Base
 
         log_user[:changed] = log_user[:deleted].length > 1 || ( log_user[:deleted].length == 1 && log_user[:deleted][0].related != bc )
 
-        # Sys::UserRelation.where(user: user, role: REL_AUTO_ASSIGNEE).destroy_all
-        # Sys::UserRelation.create(user: user, related: bc, role: REL_AUTO_ASSIGNEE) if bc.id != user.id
+        Sys::UserRelation.where(user: user, role: REL_AUTO_ASSIGNEE).destroy_all
+        Sys::UserRelation.create(user: user, related: bc, role: REL_AUTO_ASSIGNEE) if bc.id != user.id
 
         log_org[:users] << log_user
       end
