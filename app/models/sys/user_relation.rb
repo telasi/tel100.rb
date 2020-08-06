@@ -49,6 +49,7 @@ class Sys::UserRelation < ActiveRecord::Base
     log = []
     bcs = Sys::User.where(first_name_ka: 'ბიზნეს-ცენტრი')
     bcs.each do |bc|
+      Sys::UserRelation.where(related: bc, role: REL_AUTO_ASSIGNEE).destroy_all
       org = HR::Organization.where(is_active: 1, name_ka: [bc.first_name_ka, bc.last_name_ka].join(' ')).first
       next unless org.present?
       log_org = {}
@@ -65,7 +66,6 @@ class Sys::UserRelation < ActiveRecord::Base
 
         log_user[:changed] = log_user[:deleted].length > 1 || ( log_user[:deleted].length == 1 && log_user[:deleted][0].related != bc )
 
-        Sys::UserRelation.where(user: u, role: REL_AUTO_ASSIGNEE).destroy_all
         Sys::UserRelation.create(user: u, related: bc, role: REL_AUTO_ASSIGNEE) if bc.id != u.id
 
         log_org[:users] << log_user
