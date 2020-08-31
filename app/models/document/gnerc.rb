@@ -115,6 +115,8 @@ class Document::Gnerc < ActiveRecord::Base
         gnerc.customer_phone = customer.phones.delete(' ') if !customer.phones.nil?
         gnerc.customer_email = customer.email.strip if !customer.email.nil?
         gnerc.customer_taxid = customer.identity
+      when 'HR::Employee'
+        raise 'აირჩიეთ ბილინგის აბონენტიდან ან ოგრანიზაციიდან'
     end
     gnerc.save
   end
