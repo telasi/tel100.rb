@@ -7,8 +7,10 @@ class Api::Documents::BaseController < ApiController
     @total   = @my_docs.count
     @my_docs = @my_docs.offset(params["start"]) if params["start"]
     @my_docs = @my_docs.limit(params["limit"]) if params["limit"]
-      @my_docs = @my_docs.order('receive_date DESC, document_id DESC')
-    end
+    @my_docs = @my_docs.order('receive_date DESC, document_id DESC')
+
+    # @my_docs = sort_it(@my_docs, params["sort"]) if params["sort"]
+  end
 
   def search
     director = false
@@ -70,7 +72,7 @@ class Api::Documents::BaseController < ApiController
     @my_docs = @my_docs.where("document_base.docnumber2" => params['docnumber2'].strip) if params['docnumber2'].present?
     @my_docs = @my_docs.where("lower(document_base.subject) LIKE ?", '%' + params['subject'].strip.mb_chars.downcase.to_s + '%') if params['subject'].present?
     if params['body'].present?
-       @my_docs = @my_docs.joins('JOIN document_text ON document_text.document_id = document_user.document_id').where("dbms_lob.instr(upper(document_text.body),upper(?))>=1", params['body'].strip) 
+       # @my_docs = @my_docs.joins('JOIN document_text ON document_text.document_id = document_user.document_id').where("dbms_lob.instr(upper(document_text.body),upper(?))>=1", params['body'].strip) 
     end
     @my_docs = @my_docs.where("document_base.page_count" => params['page_count']) if params['page_count'].present?
 
@@ -293,5 +295,10 @@ class Api::Documents::BaseController < ApiController
                                                  where 'BS::Customer' = document_motion.receiver_type 
                                                    and b.id = document_motion.receiver_id
                                                    and document_id = document_user.document_id ))");
+  end
+
+  def sort_it(pdocs, param)
+    par = JSON.parse(param)
+    pdocs.joins(:document).order(par.map{ |x| x["property"] + ' ' + x["direction"] }.join(', '))
   end
 end
