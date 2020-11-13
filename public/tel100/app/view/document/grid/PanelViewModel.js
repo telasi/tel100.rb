@@ -10,6 +10,7 @@ Ext.define('Tel100.view.document.grid.PanelViewModel', {
     documents: {
       // autoLoad: true,
       model: 'Tel100.model.document.Base',
+      remoteSort: true,
       proxy: {
         type: 'ajax',
         url: '/api/documents/base',
