@@ -110,6 +110,7 @@ class Api::Documents::BaseController < ApiController
 
   def show
     @doc = Document::Base.find(params[:id])
+    @change = Document::Change.find(params[:change_no]) if params[:change_no].present?
     @my_doc = Document::User.where(document_id: params[:id], user: effective_user).first
     if @my_doc.present? and can_change_read_property?
       @my_doc.read!

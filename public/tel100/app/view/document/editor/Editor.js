@@ -88,16 +88,25 @@ Ext.define('Tel100.view.document.editor.Editor', {
         listeners: {
           click: 'onAuthorDocument'
         }
-      }, {
-        xtype: 'button',
+      }, 
+      // {
+      //   xtype: 'button',
+      //   bind: {
+      //     hidden: '{hideHistoryButton}',
+      //     text: '{i18n.document.base.ui.history}'
+      //   },
+      //   listeners: {
+      //     click: 'onHistoryShow'
+      //   }
+      // },
+      { 
+        xtype: 'historybutton',
         bind: {
           hidden: '{hideHistoryButton}',
           text: '{i18n.document.base.ui.history}'
         },
-        listeners: {
-          click: 'onHistoryShow'
-        }
-      }]
+      }
+      ]
     }],
     items: [{
       xtype: 'panel',
@@ -343,11 +352,13 @@ Ext.define('Tel100.view.document.editor.Editor', {
         var commentsPanel = view.down('documentcommentpanel');
         var treePanel = view.down('documentmotionstree');
         var filesPanel = view.down('documentfilepanel');
+        var historybutton = view.down('historybutton');
 
         assigneesPanel.refresh();
         commentsPanel.refresh();
         treePanel.refresh();
         filesPanel.refresh();
+        historybutton.refresh();
       }
     });
   },
@@ -464,6 +475,7 @@ Ext.define('Tel100.view.document.editor.EditorViewModel', {
 
   data: {
     document: null,
+    change_no: null,
     printParams: {
       subject: false,
       signature: false,

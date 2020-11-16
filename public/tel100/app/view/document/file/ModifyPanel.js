@@ -19,7 +19,7 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
     type: 'documentfilemodifypanel'
   },
   border: false,
-  layout: 'fit',
+  layout: 'anchor',
   defaultListenerScope: true,
 
   bind: {
@@ -71,7 +71,13 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
       },
       viewConfig: {
         getRowClass: function(record, rowIndex, rowParams, store) {
-          if(record.get('state') && record.get('state') == 1){return 'row-text-deleted'; }
+          var status = record.get('status');
+          text = helpers.document.status.motionStatusRowClass(status, record);
+          if(record.get('deleted')){
+            return 'row-text-deleted';
+          }
+        
+        return text;
         }
       },
       columns: [
@@ -93,6 +99,46 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
           // bind: {
           //   hidden: '{notDeletable}'
           // },
+          items: [
+            {
+              handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                record.set('deleted', true);
+              },
+              getClass: function(v, meta, rec) {
+                var is_auto_signee = this.up('documentfilemodifypanel').getViewModel().get('is_auto_signee');
+                  if(rec.data.state != 2 && is_auto_signee) {
+                      return 'x-hidden';
+                  }
+              },
+              icon: '/images/delete.gif'
+            }
+          ]
+        }
+      ],
+      listeners: {
+        celldblclick: {
+          fn: 'onGridpanelCellDblClick',
+          scope: 'controller'
+        }
+      }
+    },{
+      xtype: 'gridpanel',
+      autoScroll: true,
+      border: false,
+      hideHeaders: true,
+      scroll: 'vertical',
+      bind: {
+        store: '{filestemp}'
+      },
+      columns: [
+        {
+          xtype: 'gridcolumn',
+          dataIndex: 'name',
+          flex: 1
+        },
+        {
+          xtype: 'actioncolumn',
+          width: 24,
           items: [
             {
               handler: function(view, rowIndex, colIndex, item, e, record, row) {
@@ -133,13 +179,14 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
   ],
 
   onRefresh: function(tool, e, owner, eOpts) {
-    this.prepare();
+    // this.prepare();
     this.refresh();
   },
 
   refresh: function() {
     var vm = this.getViewModel();
     vm.getStore('files').load();
+    vm.getStore('filestemp').load();
   },
 
   prepare: function(){
@@ -156,9 +203,16 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
     var view = this;
     var viewModel = this.getViewModel();
 
-    this.prepare();
+    // this.prepare();
 
     viewModel.bind('{files}', function(store) {
+      if (store) {
+        store.view = view;
+        store.viewModel = viewModel;
+      }
+    });
+
+    viewModel.bind('{filestemp}', function(store) {
       if (store) {
         store.view = view;
         store.viewModel = viewModel;

@@ -61,7 +61,7 @@ class Api::Documents::MotionController < ApiController
 
   def tree
     document = Document::Base.find(params[:document_id])
-    motionsArray = document.motions.where('status NOT IN (?) AND receiver_role NOT IN (?)', [ DRAFT ], [ ROLE_SENDER ]).order('ordering ASC, id ASC').map do |motion|
+    motionsArray = motion_source(document).where('status NOT IN (?) AND receiver_role NOT IN (?)', [ DRAFT ], [ ROLE_SENDER ]).order('ordering ASC, id ASC').map do |motion|
       motion_data(motion)
     end
     render json: array_to_tree(motionsArray)
@@ -74,12 +74,13 @@ class Api::Documents::MotionController < ApiController
 
   def assignees
     doc  = Document::Base.find(params[:document_id])
+
     if doc.status == TEMPLATES_COMMON
       user = Sys::User.find(TEMPLATE_USER_ID)
-      motions = doc.motions.where('receiver_role IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], user.id).order('id')
+      motions = motion_source(doc).where('receiver_role IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], user.id).order('id')
     else
      user = effective_user
-     motions = doc.motions.where('receiver_role IN (?) and status IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED], user.id).order('id')
+     motions = motion_source(doc).where('receiver_role IN (?) and status IN (?) and sender_user_id=?', [ROLE_ASSIGNEE], [CURRENT, COMPLETED, CANCELED, SENT, NOT_RECEIVED], user.id).order('id')
     end
     # user = effective_user
     render json: (motions.map do |motion|
@@ -194,5 +195,9 @@ class Api::Documents::MotionController < ApiController
     rel = rel.where('status NOT IN (?)', [ DRAFT, NOT_SENT, NOT_RECEIVED ])
 
     [ show_doc, rel ]
+  end
+
+  def motion_source(doc)
+    params[:change_no].present? ? Document::History::Motion.where(document: doc, change_no: params[:change_no]) : doc.motions
   end
 end

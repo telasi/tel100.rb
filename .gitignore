@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 
+public/node_modules
 Gemfile.lock
 /public/uploads
 /public/build/helpers.js
@@ -22,3 +23,11 @@ Gemfile.lock
 /public/build/tel100.js
 /public/index.html
 /public/eflow
+
+# local ignores
+/app/assets/stylesheets/bootstrap.css
+/app/assets/stylesheets/bootstrap.less
+/app/assets/stylesheets/header.css
+/app/assets/stylesheets/header.less
+/app/assets/stylesheets/tel100.css
+/app/assets/stylesheets/tel100.less
