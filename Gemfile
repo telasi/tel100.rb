@@ -7,7 +7,7 @@ gem 'rails', '4.1.6'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
-gem 'less-rails'
+#gem 'less-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -45,7 +45,7 @@ gem 'will_paginate-bootstrap'
 gem 'select2-rails'
 
 group :development, :test do
-  # gem 'debugger'
+  gem 'debugger'
   gem 'rspec-rails', '~> 3.0.0'
   gem 'timecop'
   gem 'database_cleaner'
@@ -73,3 +73,8 @@ gem 'redis'
 gem 'working_hours'
 gem 'dalli'
 gem 'connection_pool'
+
+gem 'savon'
+gem 'bootstrap-datepicker-rails'
+
+gem 'faye'
