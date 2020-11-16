@@ -9,7 +9,10 @@ Ext.define('Tel100.model.document.Base', {
 
   proxy: {
     type: 'rest',
-    url: '/api/documents/base'
+    url: '/api/documents/base',
+    extraParams: {
+       change_no: ''
+    },
   },
 
   fields: ['my_status', 'my_role', 'is_new', 'is_changed', 'status', 'direction', {

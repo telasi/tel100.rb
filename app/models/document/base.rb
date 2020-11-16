@@ -365,6 +365,7 @@ class Document::Base < ActiveRecord::Base
 
   def modify(params, user)
     motions = JSON.parse(params[:motions])
+    files_to_delete = JSON.parse(params[:files])
     should_reset_signees = false
 
     #check if docnumber already exists
@@ -381,7 +382,8 @@ class Document::Base < ActiveRecord::Base
     dirty = false
     dirty = oldtext != params[:body] if params[:body].present?
     dirty = self.subject != params[:subject] if params[:subject].present?
-    dirty ||= Document::FileTemp.where(document: self).where('state in (?)', [Document::Change::STATE_TEMP, Document::Change::STATE_DELETED]).any?
+    dirty ||= Document::FileTemp.where(document: self).any?
+    dirty ||= !files_to_delete.empty?
     
     # reset signees if text and files are dirty
     # if assignees are dirty is checked below
@@ -425,27 +427,33 @@ class Document::Base < ActiveRecord::Base
       Document::File.where(document: self).map do |f|
         hisfile = Document::History::File.new(document: self, original_name: f.original_name, store_name: f.store_name, folder: f.folder, change_no: change.id)
         hisfile.save!
-        next if ( self.gnerc.present? && self.gnerc.file.present? && (self.gnerc.file_id == f.id) ) # dont delete if gnerc file
-        f.delete
       end
+
       # Save new files
       Document::FileTemp.where(document: self).map do |f|
-        if f.state == Document::Change::STATE_TEMP || f.state == Document::Change::STATE_CURRENT
-          folder_name = Time.now.strftime('%Y%m')
-          newfile = Document::File.new(document: self, original_name: f.original_name, store_name: f.store_name, folder: folder_name)
-          folder = File.join(FILES_REPOSITORY, folder_name)
-          FileUtils.mkdir_p(folder)
-          FileUtils.cp(f.full_path, newfile.full_path)
-          newfile.save!
+        folder_name = Time.now.strftime('%Y%m')
+        newfile = Document::File.new(document: self, original_name: f.original_name, store_name: f.store_name, folder: folder_name)
+        folder = File.join(FILES_REPOSITORY, folder_name)
+        FileUtils.mkdir_p(folder)
+        FileUtils.cp(f.full_path, newfile.full_path)
+        newfile.save!
 
-          if f.store_name == gnerc_store_name
-            self.gnerc.file_id = newfile.id
-            self.gnerc.save!
-          end
+        if f.store_name == gnerc_store_name
+          self.gnerc.file_id = newfile.id
+          self.gnerc.save!
         end
+
         f.delete_file
         f.destroy
       end
+
+      # Delete files
+      files_to_delete.map do |f|
+        file = Document::File.find(f["id"])
+        file.delete_file
+        file.destroy
+      end
+
       # motions
 
       # save all motions to history table

@@ -36,13 +36,17 @@ Ext.define('Tel100.view.document.editor.ModifyViewController', {
     files_dirty = false
 
     var view = this.getView().down('documentfilemodifypanel');
+    var st_temp = view.getViewModel().getStore('filestemp');
+    files_dirty = st_temp.getCount() > 0;
+
     var st = view.getViewModel().getStore('files');
+
+    files = [];
+
     st.each(function(record){
-      if(record.get('state') > 0){
-        if(record.get('state') != 2 || !vm.get('is_auto_signee') ){
-          files_dirty = true;
-        }
-        return false;
+      if(record.get('deleted')){
+        files_dirty = true;
+        files.push({ id: record.id, delete: true });
       }
     });
 
@@ -126,6 +130,7 @@ Ext.define('Tel100.view.document.editor.ModifyViewController', {
     });
 
     changes.motions = Ext.encode(motions);
+    changes.files = Ext.encode(files);
 
     if(!vm.get('is_auto_signee') && ( document.dirty || files_dirty ) ){
       Ext.MessageBox.confirm('Document was changed', i18n.document.base.ui.modify_confirm, function(btn, text){

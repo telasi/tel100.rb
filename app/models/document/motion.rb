@@ -55,7 +55,7 @@ class Document::Motion < ActiveRecord::Base
       document_motion.receiver_user_id NOT IN (?)
     SQL
     time = AUTO_SIGN_INTERVAL.ago
-    motions = Document::Motion.joins(:document)
+    motions = self.class.joins(:document)
     doc_statuses = [CURRENT]
     motion_statuses = [CURRENT]
     autosign_exceptions = [ 2 ]
@@ -69,7 +69,7 @@ class Document::Motion < ActiveRecord::Base
   def self.create_draft!(sender_user, params)
     document_id = params[:document_id] ; parent_id = params[:parent_id]
     document = Document::Base.find(document_id)
-    parent = Document::Motion.find(parent_id) if parent_id.present?
+    parent = self.find(parent_id) if parent_id.present?
 
     # check user permission for this action
     is_receiver_user = ( parent.present? and sender_user == parent.receiver_user )
@@ -116,7 +116,7 @@ class Document::Motion < ActiveRecord::Base
     is_new = 1
 
     # create motion
-    motion = Document::Motion.create!({ parent: parent, document: document, status: DRAFT,
+    motion = self.create!({ parent: parent, document: document, status: DRAFT,
       sender_user: sender_user, sender: sender, receiver_user: receiver_user,
       receiver: receiver, receiver_role: role, ordering: ordering, send_type: send_type,
       is_new: is_new, due_date: params[:due_date], motion_text: params[:motion_text]
@@ -144,8 +144,8 @@ class Document::Motion < ActiveRecord::Base
   # XXX: do we need this method any more?
   def send_draft_motions!(user)
     raise I18n.t('models.document_motion.errors.no_privilege_to_send') unless user == self.receiver_user
-    Document::Motion.transaction do
-      Document::Motion.where(status: DRAFT, parent: self).order('ordering').each do |motion|
+    self.class.transaction do
+      self.where(status: DRAFT, parent: self).order('ordering').each do |motion|
         motion.send_draft!(user)
       end
     end
@@ -154,7 +154,7 @@ class Document::Motion < ActiveRecord::Base
   def update_draft!(user, params)
     raise I18n.t('models.document_motion.errors.not_a_draft') unless self.draft?
     raise I18n.t('models.document_motion.errors.not_allowed') unless self.can_edit?(user)
-    Document::Motion.transaction do
+    self.class.transaction do
       self.update_attributes(params.permit(:ordering, :due_date, :motion_text, :receiver_role, :send_type_id))
       self.save!
     end
@@ -164,7 +164,7 @@ class Document::Motion < ActiveRecord::Base
     raise 'not a draft' unless self.draft?
     raise 'don\'t have delete permission' unless self.can_edit?(user)
     if self.receiver_user.present?
-      other_motions = Document::Motion.where(document_id: self.document_id).where('id != ?', self.id)
+      other_motions = self.where(document_id: self.document_id).where('id != ?', self.id)
 
       # we are about to delete an author
       if self.receiver_role == ROLE_AUTHOR and self.receiver_user == document.owner_user
@@ -190,7 +190,7 @@ class Document::Motion < ActiveRecord::Base
   def send_draft!(user)
     raise I18n.t('models.document_motion.errors.not_a_draft') unless self.draft?
     # raise 'don\'t have send permission' unless self.can_edit?(user)
-    rel = Document::Motion.where(document: self.document, parent: self.parent)
+    rel = self.class.where(document: self.document, parent: self.parent)
     # checking if there are some motions above this motion
     #upper = rel.where('ordering > ? AND status NOT IN (?)', self.ordering, [DRAFT]).count
     #raise I18n.t('models.document_motion.errors.cannot_send_from_this_level') if upper > 0
@@ -221,7 +221,7 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def should_be_current?
-    rel = Document::Motion.where(document: self.document, parent: self.parent)
+    rel = self.class.where(document: self.document, parent: self.parent)
     lower = rel.where('ordering > 0 AND ordering < ? AND status IN (?)', self.ordering, [SENT,CURRENT,NOT_RECEIVED,CANCELED]).count
     lower == 0
   end
@@ -395,14 +395,14 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def self.delete_children(motion)
-    Document::Motion.where(document_id: motion.document_id, parent_id: motion.id).each{ |child| delete_children(child) }
+    self.where(document_id: motion.document_id, parent_id: motion.id).each{ |child| delete_children(child) }
     motion.delete
   end
 
   private
 
   def cancel_ups!
-    ups = Document::Motion.where(document_id: self.document_id, parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
+    ups = self.class.where(document_id: self.document_id, parent_id: self.parent_id, status: SENT).where('ordering > ?', self.ordering)
     ups.each do |up|
       docuser = Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: NOT_RECEIVED })
       up.status = NOT_RECEIVED
@@ -413,9 +413,9 @@ class Document::Motion < ActiveRecord::Base
   end
 
   def resend_ups!
-    thisLevel = Document::Motion.where(document_id: self.document_id, parent_id: self.parent_id, status: CURRENT, ordering: self.ordering).count
+    thisLevel = self.class.where(document_id: self.document_id, parent_id: self.parent_id, status: CURRENT, ordering: self.ordering).count
     if thisLevel == 0
-      ups = Document::Motion.where(document_id: self.document_id, parent_id: self.parent_id).where('status IN (?) AND ordering > ?', [SENT, CURRENT], self.ordering)
+      ups = self.class.where(document_id: self.document_id, parent_id: self.parent_id).where('status IN (?) AND ordering > ?', [SENT, CURRENT], self.ordering)
       if ups.count > 0
         ordering = ups.minimum('ordering')
         ups = ups.where(ordering: ordering)

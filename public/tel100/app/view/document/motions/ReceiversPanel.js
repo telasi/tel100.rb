@@ -152,7 +152,8 @@ Ext.define('Tel100.view.document.motions.ReceiversPanelViewModel', {
       proxy: {
         type: 'ajax',
         extraParams: {
-          document_id: '{document.id}'
+          document_id: '{document.id}',
+          change_no: '{change_no}'
         },
         url: '/api/documents/motion/assignees',
         reader: {

@@ -3,7 +3,7 @@ class Api::Documents::FilesController < ApiController
   before_filter :validate_login, except: ['download', 'download_history']
 
   def index
-    @files = Document::File.where(document_id: params[:document_id]).order(:id)
+    @files = file_source.where(document_id: params[:document_id]).order(:id)
   end
 
   def upload
@@ -37,13 +37,13 @@ class Api::Documents::FilesController < ApiController
 
   def destroytemp
     file = Document::FileTemp.find(params[:id])
-    if file.state == Document::Change::STATE_TEMP
+    # if file.state == Document::Change::STATE_TEMP
       file.delete_file
       file.destroy
-    else
-      file.state = Document::Change::STATE_DELETED
-      file.save
-    end
+    # else
+    #   file.state = Document::Change::STATE_DELETED
+    #   file.save
+    # end
     render json: { success: true }
   end
 
@@ -81,5 +81,11 @@ class Api::Documents::FilesController < ApiController
 
   def uploadgnerc
     render json: { success: Document::Gnerc.upload(params) }
+  end
+
+  private 
+
+  def file_source
+    params[:change_no].present? ? Document::History::File.where(change_no: params[:change_no]) : Document::File
   end
 end
