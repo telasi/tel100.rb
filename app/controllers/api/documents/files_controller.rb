@@ -56,18 +56,18 @@ class Api::Documents::FilesController < ApiController
     doc = Document::Base.find(params[:id])
 
     Document::FileTemp.where(document_id: params[:id]).map do |f|
-      f.delete_file if f.state == Document::Change::STATE_TEMP
+      f.delete_file #if f.state == Document::Change::STATE_TEMP
       f.destroy
     end
-    Document::File.where(document_id: params[:id]).map do |f| 
-      next if doc.gnerc.present? && (doc.gnerc.file_id == f.id) # dont show if gnerc file
+    # Document::File.where(document_id: params[:id]).map do |f| 
+    #   next if doc.gnerc.present? && (doc.gnerc.file_id == f.id) # dont show if gnerc file
 
-      nf = Document::FileTemp.new(document_id: f.document_id, original_name: f.original_name, store_name: f.store_name,
-                                  state: Document::Change::STATE_CURRENT, created_at: f.created_at)
-      FileUtils.mkdir_p(FILES_TEMP_REPOSITORY)
-      FileUtils.cp(f.full_path, nf.full_path)
-      nf.save
-    end
+    #   nf = Document::FileTemp.new(document_id: f.document_id, original_name: f.original_name, store_name: f.store_name,
+    #                               state: Document::Change::STATE_CURRENT, created_at: f.created_at)
+    #   FileUtils.mkdir_p(FILES_TEMP_REPOSITORY)
+    #   FileUtils.cp(f.full_path, nf.full_path)
+    #   nf.save
+    # end
     render json: { success: true }
   end
 

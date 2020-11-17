@@ -179,7 +179,7 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
   ],
 
   onRefresh: function(tool, e, owner, eOpts) {
-    // this.prepare();
+    this.prepare();
     this.refresh();
   },
 
@@ -203,7 +203,7 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
     var view = this;
     var viewModel = this.getViewModel();
 
-    // this.prepare();
+    this.prepare();
 
     viewModel.bind('{files}', function(store) {
       if (store) {
