@@ -55,7 +55,7 @@ class Document::Motion < ActiveRecord::Base
       document_motion.receiver_user_id NOT IN (?)
     SQL
     time = AUTO_SIGN_INTERVAL.ago
-    motions = self.class.joins(:document)
+    motions = self.joins(:document)
     doc_statuses = [CURRENT]
     motion_statuses = [CURRENT]
     autosign_exceptions = [ 2 ]
@@ -145,7 +145,7 @@ class Document::Motion < ActiveRecord::Base
   def send_draft_motions!(user)
     raise I18n.t('models.document_motion.errors.no_privilege_to_send') unless user == self.receiver_user
     self.class.transaction do
-      self.where(status: DRAFT, parent: self).order('ordering').each do |motion|
+      self.class.where(status: DRAFT, parent: self).order('ordering').each do |motion|
         motion.send_draft!(user)
       end
     end
@@ -164,7 +164,7 @@ class Document::Motion < ActiveRecord::Base
     raise 'not a draft' unless self.draft?
     raise 'don\'t have delete permission' unless self.can_edit?(user)
     if self.receiver_user.present?
-      other_motions = self.where(document_id: self.document_id).where('id != ?', self.id)
+      other_motions = self.class.where(document_id: self.document_id).where('id != ?', self.id)
 
       # we are about to delete an author
       if self.receiver_role == ROLE_AUTHOR and self.receiver_user == document.owner_user
