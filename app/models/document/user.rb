@@ -12,7 +12,7 @@ class Document::User < ActiveRecord::Base
   self.set_integer_columns :as_owner, :as_assignee, :as_author, :as_signee, :as_sender
   belongs_to :document, class_name: 'Document::Base', foreign_key: 'document_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
-  before_save :update_document_motions
+  before_save :update_document_motions, :notify_user
 
   def self.mydocs(user)
     @docs = Document::User.where(user: user, is_shown: 1)
@@ -163,6 +163,12 @@ class Document::User < ActiveRecord::Base
   def update_document_motions
     if self.is_new_changed?
       motions.each { |motion| motion.update_attributes!(is_new: self.is_new) }
+    end
+  end
+
+  def notify_user
+    if self.is_new_changed? && self.is_new == 1
+      Sys::Notification.send_news(self.user)
     end
   end
 

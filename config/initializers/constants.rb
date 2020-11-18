@@ -14,3 +14,6 @@ JUSTICE_RESPONSE_URL = 'http://localhost:3000/applicant/response'
 CANCEL_EXCEPTION_DOCTYPES = [ 3, 4, 12 ] # ბრძანება, განკარგულება, ხელშეკრულება
 
 TEMPLATE_USER_ID = 34
+
+FAYE_TOKEN = 'secret'
+FAYE_SERVER = "http://1.1.2.65:9292/faye"
