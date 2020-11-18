@@ -230,16 +230,17 @@ Ext.define('Tel100.view.document.Main', {
     });
 
     helpers.notifications.subscribe(helpers.user.getCurrentUser().get('username'));
-    helpers.notifications.addEvent({type: 'news', callback: this.onNews.bind(this)});
+    helpers.notifications.addEvent({type: 'news', callback: this.onNews.bind(this, i18n.notifications.newDocuments)});
+    helpers.notifications.addEvent({type: 'changes', callback: this.onNews.bind(this, i18n.notifications.changedDocuments)});
   },
 
-  onNews: function(){
+  onNews: function(text){
     var view = this;
     var mainView = view.up('main');
-    this.getController().onRefresh();
+    this.onRefresh();
     toolTip = Ext.create('Ext.tip.ToolTip', { autoHide: false });
-    toolTip.setHtml('<strong><code><i class="fa fa-exclamation-circle"></i></code>' + i18n.ui.notificationNews + '</strong>');
-    toolTip.showAt({ x: mainView.width / 2, y: mainView.height / 2 });
+    toolTip.setHtml('<strong><code><i class="fa fa-exclamation-circle"></i></code>' + text + '</strong>');
+    toolTip.showAt({ x: mainView.width / 2 - 100, y: 5 });
   },
 
   onNewDocument: function() {

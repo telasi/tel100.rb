@@ -10,7 +10,8 @@ var ka = {}
     ui: require('./ui'),
     vacation: require('./vacation'),
     selector: require('./selector'),
-    eflow: require('./eflow')
+    eflow: require('./eflow'),
+    notifications: require('./notifications')
   };
 
 var addProperties = function(ka, ru, data) {

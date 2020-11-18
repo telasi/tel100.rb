@@ -6,6 +6,7 @@ class Sys::Notification
 	PRIVATE = 'private'
 
 	MESSAGE_TYPE_NEWS = 'news'
+	MESSAGE_TYPE_CHANGES = 'changes'
 	MESSAGE_TYPE_HR = 'hr'
 
 	MESSAGE_TYPES = [MESSAGE_TYPE_NEWS, MESSAGE_TYPE_HR]
@@ -26,8 +27,12 @@ class Sys::Notification
  		Net::HTTP.post_form(uri, :message => message.to_json)
 	end
 
-	def self.send_news(user)
-		self.new(user.username).notify(MESSAGE_TYPE_NEWS, '')
+	def self.send_news(user, message = nil)
+		self.new(user.username).notify(MESSAGE_TYPE_NEWS, message)
+	end
+
+	def self.send_changes(user, message = nil)
+		self.new(user.username).notify(MESSAGE_TYPE_CHANGES, message)
 	end
 
 	private 

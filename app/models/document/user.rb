@@ -167,8 +167,11 @@ class Document::User < ActiveRecord::Base
   end
 
   def notify_user
-    if self.is_new_changed? && self.is_new == 1
+    if self.is_received_changed? && self.is_new == 1 && self.is_received == 1 && self.as_signee != 1 && as_author != 1
       Sys::Notification.send_news(self.user)
+    end
+    if self.is_changed_changed? && self.is_changed == 1
+      Sys::Notification.send_changes(self.user)
     end
   end
 
