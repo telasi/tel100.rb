@@ -38,6 +38,10 @@ module.exports = {
     ka: 'ნამდვილად გინდათ წაშლა?',
     ru: 'Вы действительно хотите удалить?',
   },
+  notificationNews: {
+    ka: 'თქვენ გაქვთ სიახლეები',
+    ru: 'Обновления в документах'
+  },
   print: {
       ka: '<i class="fa fa-print"></i> ბეჭდვა',
       ru: '<i class="fa fa-print"></i> Печать',

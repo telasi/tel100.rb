@@ -76,5 +76,3 @@ gem 'connection_pool'
 
 gem 'savon'
 gem 'bootstrap-datepicker-rails'
-
-gem 'faye'

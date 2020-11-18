@@ -228,6 +228,18 @@ Ext.define('Tel100.view.document.Main', {
         doctabs.remove(tab);
       }
     });
+
+    helpers.notifications.subscribe(helpers.user.getCurrentUser().get('username'));
+    helpers.notifications.addEvent({type: 'news', callback: this.onNews.bind(this)});
+  },
+
+  onNews: function(){
+    var view = this;
+    var mainView = view.up('main');
+    this.getController().onRefresh();
+    toolTip = Ext.create('Ext.tip.ToolTip', { autoHide: false });
+    toolTip.setHtml('<strong><code><i class="fa fa-exclamation-circle"></i></code>' + i18n.ui.notificationNews + '</strong>');
+    toolTip.showAt({ x: mainView.width / 2, y: mainView.height / 2 });
   },
 
   onNewDocument: function() {

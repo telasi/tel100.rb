@@ -19,6 +19,9 @@
   <script src="/build/tel100.js?v={{ version }}"></script>
   <!-- theme -->
   <script src="/extjs/theme/ext-theme-neptune.js"></script>
+  <script type="text/javascript" 
+        src="http://1.1.2.65:9292/faye/client.js">
+        </script>
   <link href="/extjs/theme/resources/ext-theme-neptune-all_01.css" rel="stylesheet">
   <link href="/tel100/tel100.css" rel="stylesheet">
   <style type="text/css">

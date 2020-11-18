@@ -6,7 +6,8 @@ window.helpers = {
   user: require('./user'),
   api: require('./api'),
   party: require('./party'),
-  tinymce: require('./tinymce')
+  tinymce: require('./tinymce'),
+  notifications: require('./notifications') 
 };
 
 window.async = require('./async');
