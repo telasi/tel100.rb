@@ -7,10 +7,12 @@ var callback = function(data){
 };
 
 var subscribe = function(username) {
-  var client = new Faye.Client(FAYE_ADDRESS);
-  var private_subscription = client.subscribe('/messages/private/' + username, function(data){
- 	events[data.type](); 	
-  });
+  if(typeof Faye !== "undefined"){
+	  var client = new Faye.Client(FAYE_ADDRESS);
+	  var private_subscription = client.subscribe('/messages/private/' + username, function(data){
+	 	events[data.type]();
+	  });
+  };
 };
 
 var addEvent = function(notif_event){
