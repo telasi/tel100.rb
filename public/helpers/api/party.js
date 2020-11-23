@@ -8,6 +8,14 @@ var getInfo = function(id, className, opts) {
   ajax.request(opts);
 };
 
+var getStructureVersion = function(opts) {
+  var opts = opts || {};
+  opts.method = 'GET';
+  opts.url = '/api/hr/version';
+  ajax.request(opts);
+};
+
 module.exports = {
-  getInfo: getInfo
+  getInfo: getInfo,
+  getStructureVersion: getStructureVersion
 };

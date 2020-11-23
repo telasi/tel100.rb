@@ -7,6 +7,10 @@ class Api::HrController < ApiController
     render json: get_tree
   end
 
+  def version
+    render json: { success: true, version: $hrstruct_cachedate }
+  end
+
   def partylist
     @party = HR::Party.all
     @party = @party.where(id: params['id']) if params['id'].present?
@@ -78,11 +82,15 @@ class Api::HrController < ApiController
   end
 
   def get_tree
-    if $hrstruct_cachedate != Date.today or $hrstruct_cache.blank? or $hrstruct_cache[I18n.locale.to_s].blank?
+    if $hrstruct_cache.blank? or $hrstruct_cache[I18n.locale.to_s].blank?
       $hrstruct_cache ||= {}
-      $hrstruct_cache[I18n.locale.to_s] = build_tree
-      $hrstruct_cachedate = Date.today
+      $hrstruct_cachedate = time
+      $hrstruct_cache[I18n.locale.to_s] = build_tree.merge({ version: $hrstruct_cachedate })
     end
     $hrstruct_cache[I18n.locale.to_s]
   end
+
+  private 
+
+  def time; Time.now.strftime('%Y%m%d%H%M') end
 end

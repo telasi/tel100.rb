@@ -40,7 +40,8 @@ Ext.define('Tel100.view.hr.tree.Panel', {
     beforeload: 'onTreepanelBeforeLoad',
     load: 'onTreepanelLoad',
     afterrender: 'onTreepanelAfterRender',
-    startsearch: 'onTreepanelStartsearch'
+    startsearch: 'onTreepanelStartsearch',
+    beforeactivate: 'onFocus'
   },
 
   tools: [{
@@ -121,6 +122,21 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
     this.getView().down('#nextbutton').setDisabled(false);
   },
 
+  onFocus: function(){
+    this.checkVersion();
+  },
+
+  checkVersion: function(){
+    helpers.api.party.getStructureVersion({
+      success: function(data) {
+        var version = data.version;
+        if(version != helpers.party.getHrVersion()){
+          this.getView().refresh();
+        }
+      }.bind(this)
+    })
+  },
+
   onTreepanelBeforeLoad: function(store, operation, eOpts) {
     this.getView().setLoading(true);
   },
@@ -171,6 +187,15 @@ Ext.define('Tel100.view.hr.tree.PanelViewController', {
   }
 });
 
+Ext.define('Tell100.view.hr.tree.hrreader',{
+  extend: 'Ext.data.reader.Json',
+  alias: 'reader.hrreader',
+  readRecords: function(data){
+    helpers.party.setHrVersion(data.version);
+    return this.callParent([data]);
+  }
+});
+
 Ext.define('Tel100.view.hr.tree.PanelViewModel', {
   extend: 'Ext.app.ViewModel',
   alias: 'viewmodel.hrtreepanel',
@@ -185,8 +210,9 @@ Ext.define('Tel100.view.hr.tree.PanelViewModel', {
         type: 'ajax',
         url: '/api/hr/structure',
         reader: {
-          type: 'json',
-          typeProperty: 'ext_type'
+          type: 'hrreader',
+          // type: 'json',
+          typeProperty: 'ext_type',
         }
       },
 
