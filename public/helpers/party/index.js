@@ -1,6 +1,7 @@
 var partyApi = require('../api/party');
 var partyDialog;
 var employeeTip;
+var hrVersion;
 
 function openPartyTips(el, id, className) {
   partyApi.getInfo(id, className, {
@@ -27,7 +28,8 @@ var getPartyDialog = function(callback) {
   }
 
   // remove all listeners
-  partyDialog.clearListeners();
+  // partyDialog.clearListeners();
+  delete partyDialog.events.selectioncomplete;
 
   // adding new listener
   partyDialog.on('selectioncomplete', callback);
@@ -146,6 +148,14 @@ function partyLink(id, type, name) {
   }
 };
 
+function setHrVersion(version){
+  hrVersion = version;
+};
+
+function getHrVersion(){
+  return hrVersion;
+}
+
 module.exports = {
   getPartyDialog: getPartyDialog,
   favouriteDecoration: favouriteDecoration,
@@ -154,5 +164,7 @@ module.exports = {
   employeeTips: employeeTips,
   vacationDecorations: vacationDecorations,
   vacationAction: vacationAction,
-  partyLink: partyLink
+  partyLink: partyLink,
+  setHrVersion: setHrVersion,
+  getHrVersion: getHrVersion
 };
