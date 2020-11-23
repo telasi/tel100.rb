@@ -97,6 +97,7 @@ Rails.application.routes.draw do
     end
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
+      get '/version', action: 'version'
       get '/party/list', action: 'partylist'
       get '/party/get', action: 'party_get'
       post '/party/create', action: 'partycreate'

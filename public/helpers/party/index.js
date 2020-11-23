@@ -28,7 +28,8 @@ var getPartyDialog = function(callback) {
   }
 
   // remove all listeners
-  partyDialog.clearListeners();
+  // partyDialog.clearListeners();
+  delete partyDialog.events.selectioncomplete;
 
   // adding new listener
   partyDialog.on('selectioncomplete', callback);

@@ -49,9 +49,9 @@ Ext.define('Tel100.view.party.Selector', {
   modal: true,
   defaultListenerScope: true,
 
-  // listeners: {
-  //   show: 'onShow'
-  // },
+  listeners: {
+    show: 'onShowPanel'
+  },
 
   layout: {
     type: 'hbox',
@@ -198,8 +198,8 @@ Ext.define('Tel100.view.party.Selector', {
     }
   ],
 
-  onShow: function(selector){
-    // this.down('hrtreepanel').getController().checkVersion();
+  onShowPanel: function(view, eOpts){
+    this.down('hrtreepanel').getController().checkVersion();
   },
 
   onFavouritesCellDblClick: function(tableview, td, cellIndex, record, tr, rowIndex, e, eOpts) {
