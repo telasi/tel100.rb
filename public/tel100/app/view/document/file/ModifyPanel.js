@@ -185,7 +185,11 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
 
   refresh: function() {
     var vm = this.getViewModel();
-    vm.getStore('files').load();
+    vm.getStore('filestemp').load();
+  },
+
+  refreshTemp: function() {
+    var vm = this.getViewModel();
     vm.getStore('filestemp').load();
   },
 
@@ -203,8 +207,6 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
     var view = this;
     var viewModel = this.getViewModel();
 
-    this.prepare();
-
     viewModel.bind('{files}', function(store) {
       if (store) {
         store.view = view;
@@ -217,7 +219,9 @@ Ext.define('Tel100.view.document.file.ModifyPanel', {
         store.view = view;
         store.viewModel = viewModel;
       }
-    });
+    }); 
+
+    this.prepare();
   },
 
   setEditable: function(editable) {

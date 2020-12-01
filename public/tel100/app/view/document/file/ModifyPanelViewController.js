@@ -11,7 +11,7 @@ Ext.define('Tel100.view.document.file.ModifyPanelViewController', {
       var st = vm.getStore('files');
       form.submit({ url: '/api/documents/filestemp/upload?document_id=' + doc.id,
         success: function() {
-          view.refresh();
+          view.refreshTemp();
         }
       });
     }
