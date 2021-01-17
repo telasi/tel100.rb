@@ -67,6 +67,7 @@ class Gnerc::Sender
                          abonent_address:       customer.address,
                          abonent_type:          customer.abonent_type,
                          phone:                 doc.gnerc.customer_phone,
+                         email:                 doc.gnerc.email,
                          identification_number: identification_number,
                          letter_category:       doc.gnerc.type_id,
                          appeal_date:           doc.docdate,
@@ -81,6 +82,7 @@ class Gnerc::Sender
                          abonent:               customer.name,
                          abonent_address:       customer.address,
                          phone:                 doc.gnerc.customer_phone,
+                         email:                 doc.gnerc.email,
                          identification_number: identification_number,
                          consumer_category:     customer.abonent_type,
                          appeal_date:           doc.docdate,
@@ -95,6 +97,7 @@ class Gnerc::Sender
                          abonent:               customer.name,
                          abonent_address:       customer.address,
                          phone:                 doc.gnerc.customer_phone,
+                         email:                 doc.gnerc.email,
                          identification_number: identification_number,
                          consumer_category:     customer.abonent_type,
                          appeal_date:           doc.docdate,
@@ -111,6 +114,7 @@ class Gnerc::Sender
                          abonent_address:       customer.address,
                          consumer_category:     customer.abonent_type,
                          phone:                 doc.gnerc.customer_phone,
+                         email:                 doc.gnerc.email,
                          identification_number: identification_number,
                          appeal_date:           doc.docdate,
                          attach_8_1:            content,
@@ -160,11 +164,12 @@ class Gnerc::Sender
       sourcedocs.each do |source|
         related = Document::Base.find(source.related_id)
         if GNERC_TYPES.include?(related.type_id) && related.direction == 'in'
-          parameters = { docid: related.id, response_id: doc.gnerc.status == 1 ? 1 : 2 }
+          parameters = { docid: related.id, response_id: doc.gnerc.status == 1 ? 1 : 2, actual_date: Time.now }
           parameters.merge!({ "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2".to_sym => content,
                               "attach_#{DOCFLOW_TO_GNERC_MAP[doc.type_id]}_2_filename".to_sym => file.original_name }) if content.present?
           parameters.merge!({ company_answer: smsrecord.text,
                               phone:          smsrecord.phone, 
+                              sms_date:       smsrecord.sent_at,
                               affirmative:    doc.gnerc.status }) if smsrecord.present?
 
           gnerc_record = related.gnerc

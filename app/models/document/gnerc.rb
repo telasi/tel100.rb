@@ -108,6 +108,7 @@ class Document::Gnerc < ActiveRecord::Base
         gnerc.customer_accnumb = customer.accnumb
         gnerc.customer_name = customer.name
         gnerc.customer_phone = customer.fax.delete(' ') if !customer.fax.nil?
+        gnerc.customer_email = customer.email.strip if !customer.email.nil?
         gnerc.customer_taxid = customer.taxid
       when 'HR::Party'
         gnerc.customer_accnumb = customer.customer
