@@ -25,6 +25,7 @@ class Sys::Notification
  		message = {:channel => '/messages/private/' + self.channel, :data => formed_message, :ext => {:auth_token => FAYE_TOKEN}}
  		uri = URI.parse(FAYE_SERVER)
  		Net::HTTP.post_form(uri, :message => message.to_json)
+ 	rescue
 	end
 
 	def self.send_news(user, message = nil)
