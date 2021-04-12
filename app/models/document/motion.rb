@@ -97,7 +97,8 @@ class Document::Motion < ActiveRecord::Base
       when ROLE_ASSIGNEE
         ordering = ORDERING_ASIGNEE
       when ROLE_SIGNEE
-        ordering = ORDERING_SINGEE + document.motions.where(parent: parent, receiver_role: ROLE_SIGNEE).count
+        # ordering = ORDERING_SINGEE + document.motions.where(parent: parent, receiver_role: ROLE_SIGNEE).count
+        ordering = ORDERING_SINGEE
       else
         ordering = ORDERING_AUTHOR
       end
