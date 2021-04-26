@@ -7,7 +7,7 @@ class Api::UtilsController < ApiController
   end
 
   def getdeadline
-  	if params[:subtype].present? && params[:type] == GNERC_TYPE4
+  	if params[:subtype].present? && params[:type].to_i == GNERC_TYPE4
   		record = Document::GnercSubtype.find(params[:subtype])
     else
     	record = Document::Type.find(params[:type])
