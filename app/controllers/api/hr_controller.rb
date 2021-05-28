@@ -11,6 +11,11 @@ class Api::HrController < ApiController
     render json: { success: true, version: $hrstruct_cachedate }
   end
 
+  def refresh
+    $hrstruct_cache = nil
+    render json: { success: true, version: $hrstruct_cachedate }
+  end
+
   def partylist
     @party = HR::Party.all
     @party = @party.where(id: params['id']) if params['id'].present?

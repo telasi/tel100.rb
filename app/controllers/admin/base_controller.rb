@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Admin::BaseController < AdminController
+  layout 'admin'
+  
   def index
     @title = 'სისტემის ადმინისტრირება'
   end
