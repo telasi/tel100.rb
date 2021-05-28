@@ -13,6 +13,7 @@ class Admin::Api::EmployeeController < AdminApiController
             @employee.organization = @organization
             @employee.person_id = 999999
             @employee.save!
+            $hrstruct_cachedate = nil
             $hrstruct_cache = nil
         end
         render json: { success: true, message: "" }
@@ -25,6 +26,7 @@ class Admin::Api::EmployeeController < AdminApiController
                 @employee.update_attributes!(employee_params)
                 @organization = @employee.organization
                 @organization.update_attributes!(position_params)
+                $hrstruct_cachedate = nil
                 $hrstruct_cache = nil
             end
         end
@@ -37,6 +39,7 @@ class Admin::Api::EmployeeController < AdminApiController
             @organization = @employee.organization
             @organization.destroy if @organization.present?
             @employee.destroy
+            $hrstruct_cachedate = nil
             $hrstruct_cache = nil
         end
         render json: { success: true, message: "" }

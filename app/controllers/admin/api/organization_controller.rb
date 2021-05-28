@@ -8,6 +8,7 @@ class Admin::Api::OrganizationController < AdminApiController
     def create
         @organization = HR::Organization.new(organization_params)
         @organization.save!
+        $hrstruct_cachedate = nil
         $hrstruct_cache = nil
         render json: { success: true, message: "" }
     end
@@ -15,6 +16,7 @@ class Admin::Api::OrganizationController < AdminApiController
     def update
         @organization = HR::Organization.find(params[:id])
         @organization.update_attributes!(organization_params)
+        $hrstruct_cachedate = nil
         $hrstruct_cache = nil
         render json: { success: true, message: "" }
     end
