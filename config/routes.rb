@@ -76,6 +76,20 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace 'api' do
+      post '/login', controller: 'base', action: 'login'
+      
+      resources :user
+      get '/user/:user_id/relations', controller: 'user', action: 'relations'
+      match '/user/:user_id/new_relation', controller: 'user', action: 'new_relation', via: ['get', 'post']
+      delete '/user/:user_id/relation/:related_id/:role', action: 'destroy_relation'
+
+      scope 'hr' do 
+        resources :employee
+        resources :organization
+      end
+    end
+
     # scope '/gnerc', controller: 'gnerc' do
     #   get '/', action: 'index', as: 'gnerc'
     #   get '/gnerc1', action: 'gnerc1', as: 'gnerc1'
@@ -97,6 +111,7 @@ Rails.application.routes.draw do
     end
     scope '/hr', controller: 'hr' do
       get '/structure', action: 'structure'
+      get '/refresh', action: 'refresh'
       get '/version', action: 'version'
       get '/party/list', action: 'partylist'
       get '/party/get', action: 'party_get'
