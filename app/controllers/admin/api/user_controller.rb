@@ -4,6 +4,11 @@ class Admin::Api::UserController < AdminApiController
         render json: Sys::User.all.order(is_active: :desc).order(:username)
     end
 
+    def create
+        @user = Sys::User.new(user_params)
+        render json: { success: @user.save, message: @user.errors.full_messages[0] || "" }
+    end
+
     def update
         @user = Sys::User.find(params[:id])
         @user.update_attributes!(user_params)
@@ -34,6 +39,6 @@ class Admin::Api::UserController < AdminApiController
     private
 
     def user_params
-        params.require(:user).permit(:username, :virtual_password, :email, :mobile, :phone, :employee_id, :is_active, :is_admin, :is_director, :first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru)
+        params.require(:user).permit(:username, :virtual_password, :email, :mobile, :phone, :employee_id, :is_active, :is_admin, :is_director, :first_name_ka, :last_name_ka, :first_name_ru, :last_name_ru, :password)
     end
 end
