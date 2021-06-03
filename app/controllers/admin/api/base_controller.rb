@@ -9,7 +9,7 @@ class Admin::Api::BaseController < AdminApiController
   def login
     if request.post?
       @user = Sys::User.authenticate(params[:email], params[:password])
-      if @user.present? && current_user.admin?
+      if @user.present? && @user.admin?
         session[:user_id] = @user.id
         render json: { success: true, error: nil, object: nil }
       else
