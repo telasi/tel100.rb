@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 class Admin::Api::EmployeeController < AdminApiController
+    def index
+        render json: HR::Employee.active
+    end
+
     def show
         @employee = HR::Employee.find(params[:id])
     end
