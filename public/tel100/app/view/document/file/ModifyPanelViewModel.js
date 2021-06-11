@@ -67,7 +67,8 @@ Ext.define('Tel100.view.document.file.ModifyPanelViewModel', {
       return !get('deletable');
     },
     fileCount: function(get){
-      return this.get('files').getCount() + this.get('filestemp').getCount();
+      return 0;
+      // return this.get('files').getCount() + this.get('filestemp').getCount();
     }
   }
 
