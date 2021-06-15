@@ -46,7 +46,7 @@ class Document::Base < ActiveRecord::Base
     canc_in_direction = ( self.direction == Document::Direction::IN && owner?(user) )
     return false if ( assignee_has_read && ( not canc_in_direction ) )
 
-    return false if self.signee_motions.where(receiver_user: user).any?
+    return false if self.signee_motions.where(receiver_user: user).any? && user.id != AUTO_ASSIGNEE_EXCEPTION
     author?(user) || owner?(user) || signee?(user) || sender?(user)
   end
 
