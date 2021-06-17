@@ -7,6 +7,7 @@ class Admin::Api::OrganizationController < AdminApiController
 
     def create
         @organization = HR::Organization.new(organization_params)
+        @organization.saporg_type = 'O'
         @organization.save!
         $hrstruct_cachedate = nil
         $hrstruct_cache = nil

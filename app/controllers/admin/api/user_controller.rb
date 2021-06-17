@@ -15,6 +15,11 @@ class Admin::Api::UserController < AdminApiController
         render json: { success: true, message: "" }
     end
 
+    def destroy
+        @user = Sys::User.find(params[:id])
+        render json: { success: @user.destroy, message: @user.errors.full_messages[0] || "" }
+    end
+
     def relations
         render json: Sys::User.find(params[:user_id]).relations, include: { related: { only: [:username], methods: :full_name } }
     end
