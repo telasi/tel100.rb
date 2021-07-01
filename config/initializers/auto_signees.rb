@@ -17,3 +17,4 @@ AUTO_SIGN_DOCUMENT_TYPES = [3, 4]
 # ავტომატური ვიზირების სახეობა
 AUTO_SIGN_TYPE_ID = 29
 
+AUTO_ASSIGNEES = [ { sender: 4, receiver: 9, response_type: 24 } ]

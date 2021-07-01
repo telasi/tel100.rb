@@ -212,6 +212,8 @@ class Document::Motion < ActiveRecord::Base
     # save motion data
     self.save!
 
+    add_auto_signee
+
     # calculate related document users
     receiver_du = self.document.users.where(user: self.receiver_user).first
     sender_du = self.document.users.where(user: user).first
@@ -219,6 +221,26 @@ class Document::Motion < ActiveRecord::Base
     receiver_du.update_attributes!(is_new: 1) if receiver_du.present?
     receiver_du.calculate! if receiver_du.present?
     sender_du.calculate! if sender_du.present?
+  end
+
+  def add_auto_signee
+    AUTO_ASSIGNEES.select{ |x| x[:sender] == self.sender.user_id}.each do |link|
+      receiver_user, receiver = Document::Base.who_eval('receiver', { receiver_id: link[:receiver], receiver_type: 'Sys::User' })
+      motion = self.document.motions.where(parent: self.parent, sender_user: self.sender_user, receiver_user: receiver_user).first
+      if motion.present?
+        motion.status = CURRENT
+      else
+        motion = Document::Motion.create!({ parent: self.parent, document: self.document, status: self.status,
+          sender_user: self.sender_user, sender: self.sender, receiver_user: receiver_user,
+          receiver: receiver, receiver_role: ROLE_ASSIGNEE, ordering: ORDERING_AUTO_ASIGNEE, 
+          send_type: Document::ResponseType.find(link[:response_type]), is_new: 1
+        })
+      end
+      motion.save!
+      du = Document::User.upsert!(motion.document, motion.receiver_user, motion.receiver_role, { status: motion.status })
+      du.update_attributes!(is_changed: 1, is_new: 1) if du.present?
+      du.calculate! if du.present?
+    end
   end
 
   def should_be_current?
