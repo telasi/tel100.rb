@@ -225,7 +225,7 @@ class Document::Motion < ActiveRecord::Base
 
   def add_auto_signee
     return unless self.sender
-    AUTO_ASSIGNEES.select{ |x| x[:sender] == self.sender.user_id }.each do |link|
+    AUTO_ASSIGNEES.select{ |x| self.sender.respond_to?(:user_id) && x[:sender] == self.sender.user_id }.each do |link|
       receiver_user, receiver = Document::Base.who_eval('receiver', { receiver_id: link[:receiver], receiver_type: 'Sys::User' })
       motion = self.document.motions.where(parent: self.parent, sender_user: self.sender_user, receiver_user: receiver_user).first
       if motion.present?
