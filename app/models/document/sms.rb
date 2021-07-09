@@ -8,6 +8,8 @@ class Document::Sms < ActiveRecord::Base
   belongs_to :answer, class_name: 'Document::Base', foreign_key: 'answer_id'
   belongs_to :user, class_name: 'Sys::User', foreign_key: 'user_id'
 
+  validates :text, length: { maximum: 500 }
+
   DATE_FORMAT = '%d.%m.%Y'
 
   def self.generate(is_reply, doc, status)
