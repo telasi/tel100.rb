@@ -14,6 +14,11 @@ class AddRecordToGnercSubtype < ActiveRecord::Migration
        insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
        VALUES (68, 'სხვა', 'სხვა')
     SQL
+
+    execute <<-SQL
+       insert into DOCUMENT_TYPE_GNERC_SUBTYPE(ID, NAME_KA, NAME_RU) 
+       VALUES (70, 'მომარაგების ხშირი წყვეტა', 'მომარაგების ხშირი წყვეტა')
+    SQL
   end
 
 end

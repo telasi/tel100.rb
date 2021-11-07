@@ -6,7 +6,7 @@ def up
         BASE_ID number(10, 0) not null,
         ANSWER_ID number(10, 0),
         USER_ID NUMBER(10, 0) not null,
-        TEXT varchar2(255) not null,
+        TEXT varchar2(500) not null,
         ACTIVE NUMBER(1,0) not null,
         PHONE VARCHAR2(10),
         SENT_AT TIMESTAMP WITH TIME ZONE,
