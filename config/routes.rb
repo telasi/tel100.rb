@@ -117,6 +117,7 @@ Rails.application.routes.draw do
       get '/party/get', action: 'party_get'
       post '/party/create', action: 'partycreate'
       post '/party/update', action: 'party_update'
+      get '/intorg', action: 'intorg'
     end
     scope '/bs', controller: 'bs' do
       get '/list', action: 'list'
@@ -251,6 +252,7 @@ Rails.application.routes.draw do
     namespace 'external', controller: 'document' do
       post 'justice', action: 'justice'
       post 'first_sms', action: 'first_sms'
+      post 'ussd', action: 'ussd'
     end
     scope 'sap', controller: 'sap' do
       get '/sync', action: 'sync'

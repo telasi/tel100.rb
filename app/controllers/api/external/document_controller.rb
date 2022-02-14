@@ -94,6 +94,7 @@ class Api::External::DocumentController < ApiController
         end
 
        gnerc = Document::Gnerc.new(document: doc, status: 1)
+       gnerc.type_id = 70 if ( params[:interruption].present? && params[:interruption] == '1' )
        gnerc.file = gnerc_file
        gnerc.customer_type = 'HR::Party'
        gnerc.customer_id = party.id
@@ -102,6 +103,77 @@ class Api::External::DocumentController < ApiController
        gnerc.customer_phone = phone
        gnerc.customer_email = email
        gnerc.created_at = Time.now
+       gnerc.save!
+
+       doc.save!
+
+       docid = doc.id
+       docnumber = doc.docnumber
+     end
+
+     render json: { success: true, id: docid, number: docnumber, message: "" }
+   rescue StandardError => e
+    render json: { success: false, id: "", number: "", message: e.message }
+  end
+
+  def ussd
+    document_type = case params[:issue_type]
+    when 'high_reading' then GNERC_TYPE4
+    else raise 'Wrong service'
+    end
+
+    sender_user = Sys::User.find(USSD_USER)
+    raise 'Sender not found' unless sender_user
+
+    accnumb = params[:accnumb].present? ? params[:accnumb].squish : nil
+    customer = BS::Customer.where(accnumb: "#{accnumb}").first
+    raise 'Customer not found' unless sender_user
+
+    subject = accnumb.to_s + ' - ' + params[:issue_description].to_ka
+
+    docparams = { sender_user: sender_user, sender: nil,
+      subject: subject,
+      owner_user: sender_user, 
+      direction: Document::Direction::IN, status: Document::Status::CURRENT,
+      docdate: Date.today, sent_at: Time.now, received_at: Time.now,
+      due_date: Time.now + Document::Type.find(document_type).deadline.working.days,
+      actual_sender: sender_user,
+      docnumber: Document::Base.docnumber_eval(document_type, Date.today),
+      type_id: document_type
+    }
+
+    docid = nil
+    docnumber = nil
+
+    Document::Base.transaction do
+       doc = Document::Base.create!(docparams)
+
+       # owner motion
+       motionparams = { document_id: doc.id, is_new: 0, ordering: 0,
+         sender_user: sender_user, sender: nil, actual_sender: sender_user,
+         receiver_user: sender_user, receiver: sender_user, receiver_role: Document::Role::ROLE_SENDER, 
+         status: Document::Status::DRAFT,
+         created_at: Time.now, sent_at: Time.now, received_at: Time.now}
+       Document::Motion.create!(motionparams)
+
+       # owner/signee motion
+       motionparams[:receiver_role] = Document::Role::ROLE_SIGNEE
+       motionparams[:ordering] = Document::Motion::ORDERING_SINGEE
+       Document::Motion.create!(motionparams)
+       Document::User.create!(document_id: doc.id, user_id: sender_user.id, is_new: 0, is_changed: 0).calculate!
+
+       authorparams = { document_id: doc.id, is_new: 0, ordering: Document::Motion::ORDERING_AUTHOR,
+         sender_user: sender_user, sender: sender_user, actual_sender: sender_user,
+         receiver_user_id: nil, receiver_id: customer.id, receiver_type: 'BS::Customer', 
+         receiver_role: Document::Role::ROLE_AUTHOR, status: Document::Status::DRAFT,
+         created_at: Time.now, sent_at: Time.now, received_at: Time.now}
+       Document::Motion.create!(authorparams)
+
+       doc.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(justice_user)}
+
+       gnerc = Document::Gnerc.new(document: doc, status: 1, customer_type: 'BS::Customer', 
+          customer_id: customer.id, customer_accnumb: accnumb, customer_name: customer.name, 
+          customer_phone: customer.fax, customer_email: customer.email, created_at: Time.now)
        gnerc.save!
 
        doc.save!
@@ -142,6 +214,7 @@ class Api::External::DocumentController < ApiController
     logger.info "IDDD gnerc #{params[:gnerc_id]}"
     gnerc.save
     Document::Sms.first_sms!(doc, gnerc.customer_phone) if gnerc.customer_phone.present?
+    render json: { success: true, message: "" }
   end
 
 end
