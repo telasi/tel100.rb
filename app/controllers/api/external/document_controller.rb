@@ -117,35 +117,44 @@ class Api::External::DocumentController < ApiController
   end
 
   def ussd
-    document_type = case params[:issue_type]
-    when 'high_reading' then GNERC_TYPE4
-    else raise 'Wrong service'
-    end
+    ussdEval = Ussd::Evaluator.new(params)
 
-    sender_user = Sys::User.find(USSD_USER)
-    raise 'Sender not found' unless sender_user
+    document_type = ussdEval.document_type
 
     accnumb = params[:accnumb].present? ? params[:accnumb].squish : nil
     customer = BS::Customer.where(accnumb: "#{accnumb}").first
-    raise 'Customer not found' unless sender_user
+    raise 'Customer not found' unless customer
 
-    subject = accnumb.to_s + ' - ' + params[:issue_description].to_ka
+    phone = params[:mobile].present? ? params[:mobile].squish : nil
+    email = params[:email].present? ? params[:email].squish : nil
 
-    docparams = { sender_user: sender_user, sender: nil,
-      subject: subject,
-      owner_user: sender_user, 
-      direction: Document::Direction::IN, status: Document::Status::CURRENT,
-      docdate: Date.today, sent_at: Time.now, received_at: Time.now,
-      due_date: Time.now + Document::Type.find(document_type).deadline.working.days,
-      actual_sender: sender_user,
-      docnumber: Document::Base.docnumber_eval(document_type, Date.today),
-      type_id: document_type
-    }
-
-    docid = nil
-    docnumber = nil
+    subject = accnumb.to_s
 
     Document::Base.transaction do
+
+      party = HR::Party.new(name_ka: customer_name,
+                            address_ka: params[:address].present? ? params[:address].squish : nil, 
+                            identity: params[:rs_tin].present? ? params[:rs_tin].squish : nil, 
+                            phones: phone, 
+                            customer: accnumb, 
+                            email: email,
+                            org_type: 1)
+      party.save!
+
+      docparams = { sender_user_id: ussdEval.sender, sender: nil,
+        subject: subject,
+        owner_user_id: nil, owner_id: party.id, owner_type: 'HR::Party',
+        direction: Document::Direction::IN, status: Document::Status::CURRENT,
+        docdate: Date.today, sent_at: Time.now, received_at: Time.now,
+        due_date: Time.now + Document::Type.find(document_type).deadline.working.days,
+        actual_sender_id: ussdEval.actual_sender,
+        docnumber: Document::Base.docnumber_eval(document_type, Date.today),
+        type_id: document_type
+      }
+
+      docid = nil
+      docnumber = nil
+
        doc = Document::Base.create!(docparams)
 
        # owner motion
@@ -164,16 +173,17 @@ class Api::External::DocumentController < ApiController
 
        authorparams = { document_id: doc.id, is_new: 0, ordering: Document::Motion::ORDERING_AUTHOR,
          sender_user: sender_user, sender: sender_user, actual_sender: sender_user,
-         receiver_user_id: nil, receiver_id: customer.id, receiver_type: 'BS::Customer', 
+         receiver_user_id: nil, receiver_id: party.id, receiver_type: 'HR::Party', 
          receiver_role: Document::Role::ROLE_AUTHOR, status: Document::Status::DRAFT,
          created_at: Time.now, sent_at: Time.now, received_at: Time.now}
        Document::Motion.create!(authorparams)
 
        doc.motions.order('ordering ASC, id ASC').each { |motion| motion.send_draft!(justice_user)}
 
-       gnerc = Document::Gnerc.new(document: doc, status: 1, customer_type: 'BS::Customer', 
-          customer_id: customer.id, customer_accnumb: accnumb, customer_name: customer.name, 
-          customer_phone: customer.fax, customer_email: customer.email, created_at: Time.now)
+       gnerc = Document::Gnerc.new(document: doc, status: 1, customer_type: 'HR::Party', 
+          type_id: ussdEvaluator.document_subtype, 
+          customer_id: party.id, customer_accnumb: accnumb, customer_name: customer.name, 
+          customer_phone: phone, customer_email: email, created_at: Time.now)
        gnerc.save!
 
        doc.save!
