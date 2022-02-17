@@ -24,7 +24,7 @@ class Ussd::Evaluator
     USER_BC_MANAGER              = 'BC menejeri'
 
     def initialize(params)
-        @config = Ussd:Config.where(notif_header: params[notif_header], notif_type: params[:notif_type]).first
+        @config = Ussd::Config.where(notif_header: params[notif_header], notif_type: params[:notif_type]).first
         raise 'Wrong parameters' unless @config
 
         @accnumb = params[:accnumb]
