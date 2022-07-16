@@ -644,12 +644,14 @@ class Document::Base < ActiveRecord::Base
       rel = Document::Relation.create(base: newdoc, related: self)
 
       #create assignee
-
-      motionparams = { document: newdoc, is_new: 1, ordering: Document::Motion::ORDERING_ASIGNEE,
-            sender_user: user, sender: sender, actual_sender: nil, 
-            receiver_user: receiver_user, receiver: receiver, receiver_role: ROLE_ASSIGNEE, status: DRAFT,
-            created_at: Time.now, sent_at: Time.now, received_at: Time.now}
-      Document::Motion.create!(motionparams)
+      # create except for following types
+      if (REPLY_TYPES_ASSIGNEE_EXCEPTION).include?(self.type_id)
+        motionparams = { document: newdoc, is_new: 1, ordering: Document::Motion::ORDERING_ASIGNEE,
+              sender_user: user, sender: sender, actual_sender: nil, 
+              receiver_user: receiver_user, receiver: receiver, receiver_role: ROLE_ASSIGNEE, status: DRAFT,
+              created_at: Time.now, sent_at: Time.now, received_at: Time.now}
+        Document::Motion.create!(motionparams)
+      end
 
       if ( GNERC_TYPES.include?(self.type_id) and direction == Document::Direction::OUT )
         Document::Gnerc.create!(newdoc)
