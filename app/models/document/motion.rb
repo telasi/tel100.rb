@@ -446,7 +446,7 @@ class Document::Motion < ActiveRecord::Base
         ups.each do |up|
           docuser = Document::User.upsert!(up.document, up.receiver_user, up.receiver_role, { status: CURRENT })
           up.status = CURRENT
-          up.received_at = Time.now
+          up.received_at = Time.now if up.received_at.blank?
           up.save!
           docuser.calculate! if docuser.present?
         end
