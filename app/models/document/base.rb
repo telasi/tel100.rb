@@ -645,7 +645,7 @@ class Document::Base < ActiveRecord::Base
 
       #create assignee
       # create except for following types
-      if (REPLY_TYPES_ASSIGNEE_EXCEPTION).include?(self.type_id)
+      if REPLY_TYPES_ASSIGNEE_EXCEPTION.include?(self.type_id)
         motionparams = { document: newdoc, is_new: 1, ordering: Document::Motion::ORDERING_ASIGNEE,
               sender_user: user, sender: sender, actual_sender: nil, 
               receiver_user: receiver_user, receiver: receiver, receiver_role: ROLE_ASSIGNEE, status: DRAFT,
