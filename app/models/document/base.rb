@@ -307,6 +307,17 @@ class Document::Base < ActiveRecord::Base
     end
   end
 
+################### bacho 2022
+  def author_resp_type
+    motions = self.author_motions
+    if motions.any?
+      motions.map{ |m| ( m.response_type.name  if m.response_type ) }
+    else
+      [ "" ]
+    end    
+  end  
+####################
+
   def authors;
     motions = self.author_motions
     if motions.any?

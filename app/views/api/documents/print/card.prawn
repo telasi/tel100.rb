@@ -66,7 +66,7 @@ def properties(pdf)
 
   @document.authors.each_with_index do |author, index|
     data += [[ index == 0 ? I18n.t("views.document.print.authors") : "",    "#{author}",
-               author.respond_to?(:organization) ? author.organization.chained_name : ""]]
+               author.respond_to?(:organization) ? author.organization.chained_name : "", "#{ @document.author_resp_type[0] }"]]
   end
   @document.signee_motions.each_with_index do |signee, index|
     data += [[ index == 0 ? I18n.t("views.document.print.signees") : "",    
