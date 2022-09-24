@@ -84,20 +84,21 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
                       }
                   }
     },
-    smshistory: {
-      autoLoad: true,
-      model: 'Tel100.model.document.Sms',
-      proxy: {
-        type: 'ajax',
-        extraParams: {
-          editable: '{editable}'
-        },
-        url: '/api/documents/gnerc/sms',
-        reader: {
-          type: 'json'
-        }
-      }
-    },
+    // smshistory: {
+    //   autoLoad: true,
+    //   model: 'Tel100.model.document.Sms',
+    //   proxy: {
+    //     type: 'ajax',
+    //     extraParams: {
+    //       document_id: '{document.id}',
+    //       editable: '{editable}'
+    //     },
+    //     url: '/api/documents/gnerc/sms',
+    //     reader: {
+    //       type: 'json'
+    //     }
+    //   }
+    // },
     smses: {
       autoLoad: true,
       model: 'Tel100.model.document.Sms',
@@ -146,15 +147,23 @@ Ext.define('Tel100.view.document.gnerc.PanelViewModel', {
     },
     showSms: function(get){
       return get('editable') || 
-              ( ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 ) || 
+              ( ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 0 ) ||
+                ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 ) || 
                 ( ( get('document.as_signee') === 1 || get('document.as_signee') === 2 ) && get('step') === 3 ) ||
                   ( get('document.as_author') === 1 && get('step') === 2 ) );
+      // return get('editable') || 
+      //         ( ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 ) || 
+      //           ( ( get('document.as_signee') === 1 || get('document.as_signee') === 2 ) && get('step') === 3 ) ||
+      //             ( get('document.as_author') === 1 && get('step') === 2 ) );
     },
     smsEditable: function(get){
       return get('editable') || 
               ( ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 ) || 
                 ( ( get('document.as_signee') === 1 || get('document.as_signee') === 2 ) && ( get('step') === 0 || get('step') === 3 ) ) || 
                   ( get('document.as_author') === 1 && get('step') === 0 ) );
+    },
+    showSendSms: function(get){
+      return ( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && ( get('step') === 0 || get('step') === 1 ) );
     },
     hideSend: function(get){
       return !( ( get('document.as_sender') === 1 || get('document.as_sender') === 2 ) && get('step') === 3 );

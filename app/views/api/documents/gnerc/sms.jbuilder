@@ -8,4 +8,5 @@ json.array! @smses do |item|
   json.phone 		item.phone
   json.active		item.active
   json.created_at   item.created_at
+  json.sent_at   item.sent_at
 end

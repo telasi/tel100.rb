@@ -70,6 +70,12 @@ class Document::Sms < ActiveRecord::Base
     end
   end
 
+  def self.send_sms!(doc, text)
+    gnerc = Document::Gnerc.where(document: doc).first
+    Document::Sms.new(document: doc, user: doc.sender_user, text: text, active: 1, phone: gnerc.customer_phone, sent_at: Time.now).save
+    Sys::SentMessage.send_sms(gnerc.customer_phone, text)
+  end
+
   def self.reset_sms!(doc, status, user)
     ids_2_delete = []
 

@@ -325,8 +325,32 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
                     }
                   }]
             }]
-          },
-          {
+          }, {
+            xtype: 'button',
+            width: '100%',
+            bind: {
+              text: '<i class="fa fa-plus">&nbsp;SMS</i>',
+              hidden: '{!showSendSms}'
+            },
+            handler: function(button, e){
+                  var gnercpanel = this.up('documentgnercpanel');
+                  var vm = gnercpanel.getViewModel();
+                  Ext.Msg.prompt({
+                      title: 'SMS',
+                      message: 'Add sms:',
+                      width: 300,
+                      buttons: Ext.Msg.OKCANCEL,
+                      multiline: true,
+                      fn: function(buttonValue, inputText, showConfig) {
+                        if(buttonValue === 'ok'){
+                          helpers.api.document.gnerc.sendSms(vm.get('document').id, { params: { text: inputText }});
+                        }
+                      },
+                      scope: gnercpanel,
+                      value: ''
+                });
+            }
+          }, {
             xtype: 'button',
             width: '100%',
             bind: {
@@ -336,10 +360,18 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
             handler: function(button, e){
               var gnercpanel = this.up('documentgnercpanel');
               var vm = gnercpanel.getViewModel();
+              var mask = new Ext.LoadMask({ msg: "Sending to GNERC", target: gnercpanel });
+              // mask.show();
               helpers.api.document.gnerc.send(vm.get('document').id, { params: { },
+                view: gnercpanel, 
                 success: function(){
                     this.up('documentgnercpanel').refresh();
-                }.bind(button) 
+                    // mask.hide();
+                }.bind(button)
+                // ,
+                // failure: function() {
+                //   mask.hide();
+                // }
               });
             }
           },
@@ -570,7 +602,7 @@ Ext.define('Tel100.view.document.gnerc.Panel', {
   refresh: function() {
     var vm = this.getViewModel();
     vm.getStore('gnerc').load();
-    vm.getStore('smshistory').load();
+    // vm.getStore('smshistory').load();
     vm.getStore('smses').load();
   },
 

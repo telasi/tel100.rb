@@ -78,7 +78,7 @@ class Api::Documents::GnercController < ApiController
 
   def sms
     doc = Document::Base.find(params[:document_id])
-    @smses = Document::Sms.where(answer: doc)
+    @smses = Document::Sms.where('base_id = :id or answer_id = :id', id: doc.id).order(:created_at)
   end
 
   def smses
