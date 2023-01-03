@@ -1,0 +1,9 @@
+ka:
+  models:
+    vacation:
+      not_allowed_to_go: თქვენ მიუთითეთ არასწორი პერიოდი 
+
+ru:
+  models:
+    vacation:
+      not_allowed_to_go: Вы указали неверный период

@@ -133,6 +133,7 @@ Rails.application.routes.draw do
       post '/create', action: 'create'
       get '/substitudes', action: 'substitudes'
       get '/list', action: 'list'
+      match '/defaults', action: 'defaults', via: ['get', 'post']
     end
     scope 'folder', controller: 'folder' do
       get '/', action: 'index'
