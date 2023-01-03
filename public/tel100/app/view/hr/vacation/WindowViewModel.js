@@ -27,6 +27,13 @@ Ext.define('Tel100.view.hr.vacation.WindowViewModel', {
       autoLoad: true,
       model: 'Tel100.model.hr.vacation.Type'
     },
+    defaults: {
+      autoLoad: true,
+      model: 'Tel100.model.hr.vacation.Defaults',
+      listeners: {
+        load: 'onLoad'
+      }
+    },
     substitude_type: {
       data: [
         {

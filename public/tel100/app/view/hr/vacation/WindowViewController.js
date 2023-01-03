@@ -17,7 +17,7 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
   extend: 'Ext.app.ViewController',
   alias: 'controller.hrvacationwindow',
 
-  chosePerson: function(button) {
+  chosePerson: function(button, eOpts) {
     var view = this;
     var opts = { viewModel: {
                     data: {
@@ -33,16 +33,22 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
             var person = receivers[0];
             if (person.get('id') !== undefined && person.get('ext_type') == 'hr.Employee'){
               var form = button.up('form').getForm();
-              form.findField(button.itemId).setValue(person.get('id'));
-              form.findField(button.itemId+'_name').setValue(person.get('name'));
+              form.findField(eOpts.extraArgs).setValue(person.get('id'));
+              form.findField(eOpts.extraArgs+'_name').setValue(person.get('name'));
             }
           }
     }, opts);
     dialog.show();
   },
 
+  clearPerson: function(button, eOpts){
+    var form = button.up('form').getForm();
+    form.findField(eOpts.extraArgs).setValue(null);
+    form.findField(eOpts.extraArgs +'_name').setValue(null);
+  },
+
   onSelectSubstitude: function(button, e, eOpts) {
-    this.chosePerson(button);
+    this.chosePerson(button, eOpts);
   },
 
   onOKButtonClick: function(button, e, eOpts) {
@@ -67,24 +73,39 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
     button.up('window').close();
   },
 
-  onSelectHeadOfGroupButtonClick: function(button, e, eOpts) {
-    this.chosePerson(button);
+  onSelectClick: function(button, e, eOpts){
+    this.chosePerson(button, eOpts);
   },
 
-  onSelectHeadOfDivisionButtonClick: function(button, e, eOpts) {
-    this.chosePerson(button);
+  onClearClick: function(button, e, eOpts){
+    this.clearPerson(button, eOpts);
   },
 
-  onSelectHeadOfDepartmentClick: function(button, e, eOpts) {
-    this.chosePerson(button);
-  },
+  onSaveDefaultsButtonClick: function(button, e, eOpts){
+    var view = this.getView();
+    var form = button.up('form').getForm();
+    var params = { }
+    var list = ['head_of_group', 'head_of_division', 'head_of_department', 'director', 'head_of_hr']
+    for (var i = 0; i < list.length; i++) {
+      params[list[i]] = form.findField(list[i]).getValue();
+    }
+    helpers.api.party.setVacationDefaults(params,{
+      success: function() {
+      }.bind(this),
+      failure: function() {
+        console.log('failed to save');
+      }
+    })
+   },
 
-  onSelectDirectorClick: function(button, e, eOpts) {
-    this.chosePerson(button);
+  onLoad: function(store, records, successful, eOpts) {
+    var view = this.getView();
+    var form = view.down('form').getForm();
+    for (var i = 0; i < records.length; i++) {
+      var data = records[i].data;
+      form.findField(data.key).setValue(data.value);
+      form.findField(data.key+'_name').setValue(data.person_name);
+    }
   },
-
-  onSelectHeadOfHRClick: function(button, e, eOpts) {
-    this.chosePerson(button);
-  }
 
 });

@@ -15,7 +15,16 @@ var getStructureVersion = function(opts) {
   ajax.request(opts);
 };
 
+var setVacationDefaults = function(params, opts) {
+  var opts = opts || {};
+  opts.method = 'POST';
+  opts.url = '/api/vacation/defaults';
+  opts.params = params;
+  ajax.request(opts);
+}
+
 module.exports = {
   getInfo: getInfo,
-  getStructureVersion: getStructureVersion
+  getStructureVersion: getStructureVersion,
+  setVacationDefaults: setVacationDefaults
 };

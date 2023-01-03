@@ -6,8 +6,11 @@ class Api::VacationController < ApiController
   end
 
   def create
-    HR::Vacation::Base.create!(current_user, params)
-    render json: { success: true }
+    if HR::Vacation::Base.create!(current_user, params)
+      render json: { success: true }
+    else 
+      render json: { success: false }
+    end
   end
 
   def types
@@ -21,5 +24,15 @@ class Api::VacationController < ApiController
 
   def list
     @list = HR::Vacation::Base.where(employee_id: current_user.employee.id)
+  end
+
+  def defaults
+    if request.post?
+      HR::Vacation::Defaults.populate(params, current_user)
+      render json: { success: true }
+    else
+      render json: HR::Vacation::Defaults.where(user: current_user).as_json(methods: :person_name)
+      # .as_json(include: [methods: :person_name])
+    end
   end
 end

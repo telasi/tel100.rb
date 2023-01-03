@@ -30,13 +30,24 @@ class HR::Vacation::Base < ActiveRecord::Base
     }
   end
 
+  def self.check(employee, params)
+    unless HR::Vacation::Calendar.allowed_to_go(employee, Date.strptime(params[:from_date], "%Y-%m-%dT%H:%M:%S"), Date.strptime(params[:to_date], "%Y-%m-%dT%H:%M:%S") )
+      raise Sys::MyException.new(I18n.t('models.vacation.not_allowed_to_go'), { error_code: 1 }) 
+    end
+  end
+
   def self.create!(user, params)
-    vac = HR::Vacation::Base.new(params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type))
+    vac_params = params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type)
+    check(user.person_id, params)
+
+    vac = HR::Vacation::Base.new(vac_params)
     vac.confirmed = 1
     vac.employee_id = user.employee.id
     vac.person_id = user.employee.person_id
     vac.sub_person_id = HR::Employee.find(params[:substitude]).person_id if params[:substitude].present?
     vac.save
+
+    create_document(user, params)
     vac
   end
 
@@ -52,70 +63,90 @@ class HR::Vacation::Base < ActiveRecord::Base
   end
 
   def self.create_document(user, params)
-      @vac = HR::Vacation::Base.new(params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type))
-      @vac.confirmed = 1
-      @vac.employee_id = current_user.employee.id
-      @vac.person_id = current_user.employee.id
-      @vac.employee_id = current_user.employee.id
-      if @vac.save
-=begin
-        Document::Base.transaction do
-           sender = whose_user(user)
-            docparams = {
-              sender_user: user, sender: sender,
-              owner_user: user, owner: sender,
-              direction: 'inner', status: Document::Status::DRAFT,
-              type: Document::Type.find(2),
-              subject: 'შვებულება'
-            }
-           document = Document::Base.create!(docparams)
-           document.save!
-           # fill body
-           document.text = Document::Text.new(document: document)
-           document.text.body = 'შვებულება'
-           document.text.save!
-           # create initial document user object
-           docuser = Document::User.upsert!(document, user, ROLE_OWNER, { is_new: 0, status: Document::Status::CURRENT })
-           docuser.calculate!
-
-           send_type = Document::ResponseType.send_types.where(role: ROLE_SIGNEE).order(:ordering).first
-
-           motionParams = { 
-            document: document,
-            parent: nil, 
-            status: Document::Status::DRAFT,
-            sender_user: user,
-            sender: sender,
-            receiver_user: nil,
-            receiver: nil,
-            receiver_role: ROLE_SIGNEE,
-            receiver_type: 'hr.Employee',
-            ordering: 0,
-            send_type: send_type,
-            is_new: true
+      Document::Base.transaction do
+          sender = whose_user(user)
+          docparams = {
+            sender_user: user, sender: sender,
+            owner_user: user, owner: sender,
+            direction: 'inner', status: Document::Status::CURRENT,
+            type: Document::Type.find(2),
+            docdate: Date.today,
+            actual_sender: user,
+            docnumber: Document::Base.docnumber_eval(Document::Type.find(2), Date.today),
+            subject: "შვებულება: #{user.to_s}"
           }
+          document = Document::Base.create!(docparams)
+          document.save!
+          # fill body
+          document.text = Document::Text.new(document: document)
+          document.text.body = 'შვებულება'
+          document.text.save!
+          # create initial document user object
+          # owner motion
+          motionparams = { document: document, is_new: 0, ordering: 0,
+            sender_user: user, sender: sender, actual_sender: user,
+            receiver_user: user, receiver: sender, receiver_role: Document::Role::ROLE_SENDER, 
+            status: Document::Status::SENT,
+            created_at: Time.now, sent_at: Time.now, received_at: Time.now}
+          Document::Motion.create!(motionparams)
+          docuser = Document::User.upsert!(document, user, ROLE_OWNER, { is_new: 0, status: Document::Status::CURRENT })
+          docuser.calculate!
 
-          order = 0
+          send_type = Document::ResponseType.send_types.where(role: ROLE_SIGNEE).order(:ordering).first
 
-          parent = add_motion_user(motionParams, params[:head_of_group].to_i, nil) if params[:head_of_group].present?
-          parent = add_motion_user(motionParams, params[:head_of_division].to_i, parent) if params[:head_of_division].present?
-          parent = add_motion_user(motionParams, params[:head_of_department].to_i, parent) if params[:head_of_department].present?
-          parent = add_motion_user(motionParams, params[:director].to_i, parent) if params[:director].present?
-          parent = add_motion_user(motionParams, params[:head_of_hr].to_i, parent) if params[:head_of_hr].present?
+          motionParams = { 
+          document: document,
+          parent: nil, 
+          status: Document::Status::SENT,
+          sender_user: user,
+          sender: sender,
+          receiver_user: nil,
+          receiver: nil,
+          receiver_role: ROLE_SIGNEE,
+          receiver_type: 'HR::Employee',
+          ordering: 1,
+          send_type: send_type,
+          is_new: true
+        }
 
+        ordering = 0
+
+        if params[:head_of_group].present?
+          ordering += 1
+          parent = add_motion_user(motionParams, params[:head_of_group].to_i, nil, ordering) 
         end
-=end
-    end
+        if params[:head_of_division].present?
+          ordering += 1
+          parent = add_motion_user(motionParams, params[:head_of_division].to_i, parent, ordering) 
+        end
+        if params[:head_of_department].present?
+          ordering += 1
+          parent = add_motion_user(motionParams, params[:head_of_department].to_i, parent, ordering) 
+        end
+        if params[:director].present?
+          ordering += 1
+          parent = add_motion_user(motionParams, params[:director].to_i, parent, ordering) 
+        end
+        if params[:head_of_hr].present?
+          ordering += 1
+          parent = add_motion_user(motionParams, params[:head_of_hr].to_i, parent, ordering) 
+        end
+      end
   end
 
-  def self.add_motion_user(mparam, signee, parent)
+  def self.add_motion_user(mparam, signee, parent, ordering)
     mparam[:receiver_id] = signee
     receiver_user, receiver = who_eval('receiver', mparam)
     mparam[:receiver_user] = receiver_user
     mparam[:receiver] = receiver
-    mparam[:ordering] = 1
-    mparam[:parent] = parent
+    mparam[:ordering] = ordering
+    # mparam[:parent] = parent
     mparam[:receiver_type] = 'HR::Employee'
+    if ordering == 1
+      mparam[:status] = Document::Status::CURRENT
+    else
+      mparam[:status] = Document::Status::SENT
+    end
     motion = Document::Motion.create!( mparam ) 
     motion.save!
     docuser = Document::User.upsert!(motion.document, motion.receiver_user, motion.receiver_role, { status: motion.status })
