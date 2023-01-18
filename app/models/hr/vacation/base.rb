@@ -11,6 +11,7 @@ class HR::Vacation::Base < ActiveRecord::Base
   
   self.table_name  = 'hr_vacation'
   self.sequence_name = 'hr_vacation_seq'
+  self.primary_key = 'id'
   self.set_integer_columns :substitude_type, :confirmed
   belongs_to :type, class_name: 'HR::Vacation::Type', foreign_key: 'vacation_type'
   belongs_to :employee, class_name: 'HR::Employee', foreign_key: 'employee_id'
@@ -47,7 +48,7 @@ class HR::Vacation::Base < ActiveRecord::Base
     vac.sub_person_id = HR::Employee.find(params[:substitude]).person_id if params[:substitude].present?
     vac.save
 
-    create_document(user, params)
+    create_document(vac, user, params)
     vac
   end
 
@@ -62,7 +63,7 @@ class HR::Vacation::Base < ActiveRecord::Base
     HR::Vacation::Base.confirmed.current.where("substitude = ? and substitude_type <> 1", user.employee.id)
   end
 
-  def self.create_document(user, params)
+  def self.create_document(vacation, user, params)
       Document::Base.transaction do
           sender = whose_user(user)
           docparams = {
@@ -71,6 +72,7 @@ class HR::Vacation::Base < ActiveRecord::Base
             direction: 'inner', status: Document::Status::CURRENT,
             type: Document::Type.find(2),
             docdate: Date.today,
+            sent_at: Time.now,
             actual_sender: user,
             docnumber: Document::Base.docnumber_eval(Document::Type.find(2), Date.today),
             subject: "შვებულება: #{user.to_s}"
@@ -79,7 +81,7 @@ class HR::Vacation::Base < ActiveRecord::Base
           document.save!
           # fill body
           document.text = Document::Text.new(document: document)
-          document.text.body = 'შვებულება'
+          document.text.body = generate_body(vacation, user)
           document.text.save!
           # create initial document user object
           # owner motion
@@ -156,6 +158,29 @@ class HR::Vacation::Base < ActiveRecord::Base
   end
 
   private
+
+  def self.generate_body(vacation, user)
+    format = '%d.%m.%Y'
+    %Q{<html>
+      <p><b>#{vacation.type.name_ka}</b></p>
+
+      <p>სახელი, გვარი: <b>#{user.employee.first_name_ka} #{user.employee.last_name_ka}</b></p>
+      
+      <p>თანამდებობა: <b>#{user.employee.organization.name_ka}</b></p>
+      
+      <p>ვადა: <b>#{vacation.from_date.strftime(format)}-დან #{vacation.to_date.strftime(format)} ჩათვლით</b></p>
+
+      <br>
+      
+      <p><b>#{vacation.type.name_ru}</b></p>
+      
+      <p>ФИО: <b>#{user.employee.first_name_ru} #{user.employee.last_name_ru}</b></p>
+      
+      <p>Должность: <b>#{user.employee.organization.name_ru}</b></p>
+      
+      <p>Срок:  <b>с #{vacation.from_date.strftime(format)} - по #{vacation.to_date.strftime(format)}</b></p>
+    }
+  end
 
   def correct_dates
     errors.add(:to_date, 'Error in dates') if to_date < from_date
