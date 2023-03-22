@@ -16,6 +16,7 @@ class HR::Vacation::Base < ActiveRecord::Base
   belongs_to :type, class_name: 'HR::Vacation::Type', foreign_key: 'vacation_type'
   belongs_to :employee, class_name: 'HR::Employee', foreign_key: 'employee_id'
   belongs_to :sub_employee, class_name: 'HR::Employee', foreign_key: 'substitude'
+  belongs_to :requester, class_name: 'HR::Employee', foreign_key: 'requester'
 
   validate :correct_dates
   validate :date_not_intersect
@@ -37,14 +38,20 @@ class HR::Vacation::Base < ActiveRecord::Base
     end
   end
 
+
+
   def self.create!(user, params)
-    vac_params = params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type)
+    vac_params = params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type, :salary, :percent, :note, :business_days)
     check(user.person_id, params)
 
     vac = HR::Vacation::Base.new(vac_params)
+	  #vac.business_days = HR::Vacation::Base.find_by_sql("select FNC_GET_businessDays( to_date('#{params[:from_date]}','YYYY-MM-DD\"T\"HH24:MI:SS'), to_date('#{params[:to_date]}','YYYY-MM-DD\"T\"HH24:MI:SS')) as dd from dual")
+	  vac.business_days  = HR::Vacation::Base.find_by_sql("select FNC_GET_businessDays( to_date(substr('#{params[:from_date]}',0,10),'yyyy-mm-dd'), to_date(substr('#{params[:to_date]}',0,10),'yyyy-mm-dd')) as dd from dual").last.dd
     vac.confirmed = 1
-    vac.employee_id = user.employee.id
-    vac.person_id = user.employee.person_id
+    onbehalf = HR::Employee.find(params[:onbehalf])
+    vac.requester = user.employee
+    vac.employee_id = onbehalf.id
+    vac.person_id = onbehalf.person_id
     vac.sub_person_id = HR::Employee.find(params[:substitude]).person_id if params[:substitude].present?
     vac.save
 
@@ -52,6 +59,10 @@ class HR::Vacation::Base < ActiveRecord::Base
     vac
   end
 
+  def self.orgstructurestr (orgid,lang)
+	  HR::Vacation::Base.find_by_sql("select SUBSTR(portal.Hr_Pack.concat_hr_structure(#{orgid},'#{lang}'), 1, LENGTH(portal.Hr_Pack.concat_hr_structure(#{orgid},'#{lang}')) - 3) oid from dual").last.oid
+  end
+  
   def self.confirmed; HR::Vacation::Base.where(confirmed: 1) end
   def self.current; HR::Vacation::Base.where("from_date <= sysdate and to_date + 1 >= sysdate") end
 
@@ -70,12 +81,12 @@ class HR::Vacation::Base < ActiveRecord::Base
             sender_user: user, sender: sender,
             owner_user: user, owner: sender,
             direction: 'inner', status: Document::Status::CURRENT,
-            type: Document::Type.find(2),
+            type: Document::Type.find(20),
             docdate: Date.today,
             sent_at: Time.now,
             actual_sender: user,
             docnumber: Document::Base.docnumber_eval(Document::Type.find(2), Date.today),
-            subject: "შვებულება: #{user.to_s}"
+            subject: "#{vacation.type.name_ka} / #{vacation.type.name_ru}"
           }
           document = Document::Base.create!(docparams)
           document.save!
@@ -133,6 +144,31 @@ class HR::Vacation::Base < ActiveRecord::Base
           ordering += 1
           parent = add_motion_user(motionParams, params[:head_of_hr].to_i, parent, ordering) 
         end
+        if params[:assignee].present?
+          
+          motionParams = { 
+            document: document,
+            parent: nil, 
+            status: Document::Status::SENT,
+            sender_user: user,
+            sender: sender,
+            receiver_user: nil,
+            receiver: nil,
+            receiver_role: ROLE_ASSIGNEE,
+            receiver_type: 'HR::Employee',
+            ordering: Document::Motion::ORDERING_ASIGNEE,
+            is_new: true
+          }
+          motionParams[:receiver_id] = params[:assignee]
+          receiver_user, receiver = who_eval('receiver', motionParams)
+          motionParams[:receiver_user] = receiver_user
+          motionParams[:receiver] = receiver
+
+          motion = Document::Motion.create!( motionParams ) 
+          motion.save!
+          docuser = Document::User.upsert!(motion.document, motion.receiver_user, motion.receiver_role, { status: motion.status })
+          docuser.calculate! if docuser
+        end
       end
   end
 
@@ -161,24 +197,56 @@ class HR::Vacation::Base < ActiveRecord::Base
 
   def self.generate_body(vacation, user)
     format = '%d.%m.%Y'
-    %Q{<html>
-      <p><b>#{vacation.type.name_ka}</b></p>
 
-      <p>სახელი, გვარი: <b>#{user.employee.first_name_ka} #{user.employee.last_name_ka}</b></p>
+    if vacation.sub_employee
+      sub_ka = "<p>მოვალეობა შეითავსოს: <b>#{vacation.sub_employee.first_name_ka} #{vacation.sub_employee.last_name_ka}</b> - " +
+               "#{ vacation.salary == 'own' ? 'ჩემი ხელფასის' : 'მოვალეობის შემსრულებლის ხელფასის' } - #{vacation.percent} %" + "</p>"
+      sub_ru = "<p>Обязанность совместить: <b>#{vacation.sub_employee.first_name_ru} #{vacation.sub_employee.last_name_ru}</b> - " + 
+               "#{ vacation.salary == 'own' ? 'Своя зарплата' : 'Зарплата исполняющего обязанности' } - #{vacation.percent} %" + "</p>"
+    end
+
+    %Q{<html><br/>
+      <p><b>#{vacation.type.name_ka}</b></p>
+	  
+	  <p>ტაბელის ნომერი: <b>#{vacation.employee.person_id} </b></p>
+
+      <p>სახელი, გვარი: <b>#{vacation.employee.first_name_ka} #{vacation.employee.last_name_ka}</b></p>
       
-      <p>თანამდებობა: <b>#{user.employee.organization.name_ka}</b></p>
+      <p>თანამდებობა: <b>#{vacation.employee.organization.name_ka}</b></p>
       
       <p>ვადა: <b>#{vacation.from_date.strftime(format)}-დან #{vacation.to_date.strftime(format)} ჩათვლით</b></p>
+	  
+	  <p>სამუშაო დღეების რაოდ.: <b>#{vacation.business_days.to_i}</b></p>
+	  
+	  <p>სტრუქტურა.: <b>#{orgstructurestr(user.employee.organization.id,'KA')}</b></p>
+
+    <p>ინიციატორი: <b>#{vacation.requester.first_name_ka} #{vacation.requester.last_name_ka}</b></p>
+
+    #{sub_ka}
+
+    <p>კომენტარი: <b>#{vacation.note}</b></p>
 
       <br>
       
       <p><b>#{vacation.type.name_ru}</b></p>
+	  
+	  <p>Номер табеля: <b>#{vacation.employee.person_id} </b></p>
       
-      <p>ФИО: <b>#{user.employee.first_name_ru} #{user.employee.last_name_ru}</b></p>
+      <p>ФИО: <b>#{vacation.employee.first_name_ru} #{vacation.employee.last_name_ru}</b></p>
       
-      <p>Должность: <b>#{user.employee.organization.name_ru}</b></p>
+      <p>Должность: <b>#{vacation.employee.organization.name_ru}</b></p>
       
       <p>Срок:  <b>с #{vacation.from_date.strftime(format)} - по #{vacation.to_date.strftime(format)}</b></p>
+	  
+	  <p>Количество рабочих дней.: <b>#{vacation.business_days.to_i}</b></p>
+	  
+	  <p>Структура: <b>#{orgstructurestr(user.employee.organization.id,'RU')}</b></p>
+
+    <p>Инициатор: <b>#{vacation.requester.first_name_ru} #{vacation.requester.last_name_ru}</b></p>
+
+    #{sub_ru}
+
+    <p>Комментарий: <b>#{vacation.note}</b></p>
     }
   end
 

@@ -31,7 +31,16 @@ class Api::VacationController < ApiController
       HR::Vacation::Defaults.populate(params, current_user)
       render json: { success: true }
     else
-      render json: HR::Vacation::Defaults.where(user: current_user).as_json(methods: :person_name)
+      defaults = HR::Vacation::Defaults.where(user: current_user).as_json(methods: :person_name)
+      defaults << 
+      { 
+        id: -1,
+        key: 'onbehalf',
+        person_name: current_user.to_s,
+        user_id: current_user.id,
+        value: current_user.employee.id
+      }
+      render json: defaults
       # .as_json(include: [methods: :person_name])
     end
   end

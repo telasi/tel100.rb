@@ -22,6 +22,10 @@ Ext.define('Tel100.view.hr.vacation.WindowViewModel', {
     'Ext.data.field.Field'
   ],
 
+  data: {
+    substitude: null
+  },
+
   stores: {
     types: {
       autoLoad: true,
@@ -62,6 +66,26 @@ Ext.define('Tel100.view.hr.vacation.WindowViewModel', {
         },
         {
           name: 'explain'
+        }
+      ]
+    },
+    salary_type: {
+      data: [
+        {
+          id: 15,
+          name: '15%'
+        },
+        {
+          id: 30,
+          name: '30%'
+        }
+      ],
+      fields: [
+        {
+          name: 'id'
+        },
+        {
+          name: 'name'
         }
       ]
     }

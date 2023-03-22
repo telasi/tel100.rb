@@ -85,7 +85,7 @@ Ext.define('Tel100.view.hr.vacation.WindowViewController', {
     var view = this.getView();
     var form = button.up('form').getForm();
     var params = { }
-    var list = ['head_of_group', 'head_of_division', 'head_of_department', 'director', 'head_of_hr']
+    var list = ['head_of_group', 'head_of_division', 'head_of_department', 'director', 'head_of_hr', 'assignee']
     for (var i = 0; i < list.length; i++) {
       params[list[i]] = form.findField(list[i]).getValue();
     }

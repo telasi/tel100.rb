@@ -34,7 +34,7 @@ Ext.define('Tel100.view.hr.vacation.Window', {
   viewModel: {
     type: 'hrvacationwindow'
   },
-  height: 410,
+  height: 600,
   resizable: true,
   width: 700,
   autoDestroy: false,
@@ -97,16 +97,41 @@ Ext.define('Tel100.view.hr.vacation.Window', {
           ]
         },
         {
-          xtype: 'label',
-          margin: '10 0 0 0'
-        },
-        {
-          xtype: 'panel',
-          padding: '0 0 10 0',
-          header: false,
+          xtype: 'fieldcontainer',
+          height: 26,
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
           bind: {
-            title: '{i18n.vacation.fields.signees}'
-          }
+            fieldLabel: '{i18n.vacation.fields.onbehalf}'
+          },
+          items: [
+            {
+              xtype: 'textfield',
+              flex: 1,
+              id: 'onbehalf_name',
+              name: 'onbehalf_name',
+              editable: false
+            },
+            {
+              xtype: 'hiddenfield',
+              flex: 1,
+              fieldLabel: 'onbehalf',
+              name: 'onbehalf'
+            },
+            {
+              xtype: 'button',
+              itemId: 'requester',
+              text: '...',
+              listeners: {
+                click: { 
+                  fn: 'onSelectClick',
+                  extraArgs: 'onbehalf'
+                }
+              }
+            }
+          ]
         },
         {
           xtype: 'fieldcontainer',
@@ -130,7 +155,10 @@ Ext.define('Tel100.view.hr.vacation.Window', {
               xtype: 'hiddenfield',
               flex: 1,
               fieldLabel: 'substitude',
-              name: 'substitude'
+              name: 'substitude',
+              bind: {
+                value: '{substitude}'
+              }
             },
             {
               xtype: 'button',
@@ -142,6 +170,67 @@ Ext.define('Tel100.view.hr.vacation.Window', {
                   extraArgs: 'substitude'
                 }
               }
+            },
+            {
+              xtype: 'button',
+              text: 'X',
+              listeners: {
+                click: {
+                  fn: 'onClearClick',
+                  extraArgs: 'substitude'
+                }
+              }
+            }
+          ]
+        },
+        {
+          xtype: 'radiogroup',
+          // columns: 3,
+          layout: {
+            type: 'hbox',
+            // align: 'stretch',
+          },
+          bind: {
+            hidden: '{!substitude}'
+          },
+          items: [
+            {
+              xtype: 'radiofield',
+              reference: 'own_salary',
+              name: 'salary',
+              checked: true,
+              inputValue: 'own'
+            }, {
+              xtype: 'splitter'
+            }, {
+              xtype: 'container',
+              layout: 'hbox',
+              items: [
+                {
+                  xtype: 'radiofield',
+                  reference: 'sub_salary',
+                  name: 'salary',
+                  inputValue: 'sub'
+                }, {
+                  xtype: 'splitter'
+                }, {
+                  xtype: 'combobox',
+                  bind: {
+                    store: '{salary_type}'
+                  },
+                  width: 100,
+                  editable: false,
+                  displayField: 'name',
+                  valueField: 'id',
+                  name: 'percent',
+                  inputValue: 'percent',
+                  listeners: {
+                    afterrender: function() {
+                       this.setValue(15);
+                    }
+                }
+                }
+              ]
             }
           ]
         },
@@ -175,11 +264,19 @@ Ext.define('Tel100.view.hr.vacation.Window', {
         {
           xtype: 'label',
           padding: '10 0 0 0',
+          style: {
+            fontWeight: 'bold'
+          },
           bind: {
             text: '{i18n.vacation.fields.signees}'
           }
-        },
-        {
+        },{
+          xtype: 'box',
+          margin: 0,
+          autoEl : {
+              tag : 'hr'
+          }
+        },{
           xtype: 'panel',
           padding: '0 0 10 0',
           header: false,
@@ -418,6 +515,97 @@ Ext.define('Tel100.view.hr.vacation.Window', {
           ]
         },
         {
+          xtype: 'label',
+          padding: '10 0 0 0',
+          style: {
+            fontWeight: 'bold'
+          },
+          bind: {
+            text: '{i18n.vacation.fields.assignees}'
+          }
+        }, {
+          xtype: 'box',
+          margin: 0,
+          autoEl : {
+              tag : 'hr'
+          }
+        }, {
+          xtype: 'panel',
+          padding: '0 0 10 0',
+          header: false,
+          bind: {
+            title: '{i18n.vacation.fields.assignees}'
+          }
+        },
+        {
+          xtype: 'fieldcontainer',
+          anchor: '100%',
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
+          bind: {
+            fieldLabel: '{i18n.vacation.fields.assignee}'
+          },
+          items: [
+            {
+              xtype: 'textfield',
+              flex: 1,
+              name: 'assignee_name',
+              editable: false
+            },
+            {
+              xtype: 'hiddenfield',
+              flex: 1,
+              fieldLabel: 'Label',
+              name: 'assignee'
+            },
+            {
+              xtype: 'button',
+              itemId: 'assignee',
+              text: '...',
+              listeners: {
+                click: { 
+                  fn: 'onSelectClick',
+                  extraArgs: 'assignee'
+                }
+              }
+            },
+            {
+              xtype: 'button',
+              text: 'X',
+              listeners: {
+                click: {
+                  fn: 'onClearClick',
+                  extraArgs: 'assignee'
+                }
+              }
+            }
+          ]
+        },
+
+
+        {
+          xtype: 'fieldcontainer',
+          anchor: '100%',
+          layout: {
+            type: 'hbox',
+            align: 'stretch'
+          },
+          bind: {
+            fieldLabel: '{i18n.document.comment.text}'
+          },
+          items: [
+            {
+              xtype: 'textarea',
+              flex: 1,
+              name: 'note',
+              editable: true
+            }
+          ]
+        },
+
+        {
           xtype: 'fieldcontainer',
           height: 32,
           margin: '0 0 10 0',
@@ -470,6 +658,9 @@ Ext.define('Tel100.view.hr.vacation.Window', {
   initComponent: function () {
     this.callParent();
     this.enableBubble('vacationadded');
+    var references = this.getReferences();
+    references.own_salary.setBoxLabel(i18n.vacation.fields.own_salary)
+    references.sub_salary.setBoxLabel(i18n.vacation.fields.sub_salary)
   }
 
 });

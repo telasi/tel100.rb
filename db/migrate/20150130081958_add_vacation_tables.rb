@@ -31,6 +31,7 @@ class AddVacationTables < ActiveRecord::Migration
         ID                          NUMBER(10,0) NOT NULL,
         EMPLOYEE_ID                 NUMBER(10,0) NOT NULL,
         PERSON_ID                   NUMBER(10,0) NOT NULL,
+        REQUESTER                   NUMBER(10,0) NOT NULL,
         FROM_DATE                   DATE,
         TO_DATE                     DATE,
         VACATION_TYPE               NUMBER(3,0),
@@ -38,6 +39,9 @@ class AddVacationTables < ActiveRecord::Migration
         SUB_PERSON_ID               NUMBER(10,0),
         SUBSTITUDE_TYPE             NUMBER(1,0),
         CONFIRMED                   NUMBER(1,0),
+        SALARY                      VARCHAR2(10 CHAR),
+        PERCENT                     NUMBER(3,0),
+        NOTE                        VARCHAR2(1000 CHAR),
         created_at                  TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL,
         updated_at                  TIMESTAMP (6) WITH TIME ZONE DEFAULT SYSTIMESTAMP NOT NULL
       )
