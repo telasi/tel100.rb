@@ -2,13 +2,14 @@ class HR::Vacation::Defaults < ActiveRecord::Base
     self.table_name  = 'hr_vacation_defaults'
     self.sequence_name = 'hr_vacation_defaults_seq'
 
+    POSSITION_HEAD_OF_DIRECTION = 'head_of_direction'
     POSSITION_HEAD_OF_GROUP = 'head_of_group'
     POSSITION_HEAD_OF_DIVISION = 'head_of_division'
     POSSITION_DIRECTOR = 'director'
     POSSITION_HEAD_OF_HR = 'head_of_hr'
     POSSITION_ASSIGNEE = 'assignee'
 
-    POSITIONS = [POSSITION_HEAD_OF_GROUP, POSSITION_HEAD_OF_DIVISION, POSSITION_DIRECTOR, POSSITION_HEAD_OF_HR, POSSITION_ASSIGNEE]
+    POSITIONS = [POSSITION_HEAD_OF_DIRECTION, POSSITION_HEAD_OF_GROUP, POSSITION_HEAD_OF_DIVISION, POSSITION_DIRECTOR, POSSITION_HEAD_OF_HR, POSSITION_ASSIGNEE]
 
     belongs_to :user, class_name: 'Sys::User'
 

@@ -33,6 +33,7 @@ class HR::Vacation::Base < ActiveRecord::Base
   end
 
   def self.check(employee, params)
+    return unless params[:vacation_type] == 5
     unless HR::Vacation::Calendar.allowed_to_go(employee, Date.strptime(params[:from_date], "%Y-%m-%dT%H:%M:%S"), Date.strptime(params[:to_date], "%Y-%m-%dT%H:%M:%S") )
       raise Sys::MyException.new(I18n.t('models.vacation.not_allowed_to_go'), { error_code: 1 }) 
     end
@@ -42,7 +43,7 @@ class HR::Vacation::Base < ActiveRecord::Base
 
   def self.create!(user, params)
     vac_params = params.permit(:vacation, :from_date, :to_date, :vacation_type, :substitude, :substitude_type, :salary, :percent, :note, :business_days)
-    check(user.person_id, params)
+    #check(user.person_id, params)
 
     vac = HR::Vacation::Base.new(vac_params)
 	  #vac.business_days = HR::Vacation::Base.find_by_sql("select FNC_GET_businessDays( to_date('#{params[:from_date]}','YYYY-MM-DD\"T\"HH24:MI:SS'), to_date('#{params[:to_date]}','YYYY-MM-DD\"T\"HH24:MI:SS')) as dd from dual")
@@ -136,6 +137,10 @@ class HR::Vacation::Base < ActiveRecord::Base
           ordering += 1
           parent = add_motion_user(motionParams, params[:head_of_department].to_i, parent, ordering) 
         end
+        if params[:head_of_direction].present?
+          ordering += 1
+          parent = add_motion_user(motionParams, params[:head_of_direction].to_i, parent, ordering) 
+        end
         if params[:director].present?
           ordering += 1
           parent = add_motion_user(motionParams, params[:director].to_i, parent, ordering) 
@@ -144,7 +149,8 @@ class HR::Vacation::Base < ActiveRecord::Base
           ordering += 1
           parent = add_motion_user(motionParams, params[:head_of_hr].to_i, parent, ordering) 
         end
-        if params[:assignee].present?
+        # if params[:assignee].present?
+        HR_ASSIGNEES.each do |assignee|
           
           motionParams = { 
             document: document,
@@ -159,7 +165,8 @@ class HR::Vacation::Base < ActiveRecord::Base
             ordering: Document::Motion::ORDERING_ASIGNEE,
             is_new: true
           }
-          motionParams[:receiver_id] = params[:assignee]
+          # motionParams[:receiver_id] = params[:assignee]
+          motionParams[:receiver_id] = assignee
           receiver_user, receiver = who_eval('receiver', motionParams)
           motionParams[:receiver_user] = receiver_user
           motionParams[:receiver] = receiver
@@ -169,6 +176,8 @@ class HR::Vacation::Base < ActiveRecord::Base
           docuser = Document::User.upsert!(motion.document, motion.receiver_user, motion.receiver_role, { status: motion.status })
           docuser.calculate! if docuser
         end
+
+        vacation.update!(docnumber: document.docnumber)
       end
   end
 

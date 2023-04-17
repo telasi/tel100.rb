@@ -185,6 +185,19 @@ Ext.define('Tel100.view.document.grid.Panel', {
   }, {
     xtype: 'gridcolumn',
     renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+      return helpers.document.motion.formatSender(record.data);
+    },
+    width: 200,
+    sortable: false,
+    cellWrap: true,
+    dataIndex: 'sender',
+    // hideable: false,
+    bind: {
+      text: '{i18n.document.base.sender}'
+    }
+  }, {
+    xtype: 'gridcolumn',
+    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
       return helpers.document.motion.formatReceivers(value, metaData, { prefix: 'assignee' });
     },
     width: 200,

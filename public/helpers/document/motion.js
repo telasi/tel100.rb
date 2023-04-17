@@ -121,6 +121,12 @@ var formatResponses = function(data, metaData) {
   return text.join('<br>');
 };
 
+var formatSender = function (data){
+  var decor = helpers.document.status.statusDecoration(data.status);
+  var name = '<a data-id="' + data.sender_id + '" data-class="' + data.sender_type + '">' + data.sender_name + '</a>';
+  return '<span class="' + decor.style + '">' + '<i class="fa ' + decor.icon + '"></i> ' + name + '</span>';
+}
+
 var getResultDialog = function(data) {
   if (resultDialog) { resultDialog.close(); }
 
@@ -137,5 +143,6 @@ module.exports = {
   getPropertiesDialog: getPropertiesDialog,
   formatReceivers: formatReceivers,
   formatResponses: formatResponses,
+  formatSender: formatSender,
   getResultDialog: getResultDialog
 };

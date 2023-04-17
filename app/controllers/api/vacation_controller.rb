@@ -32,6 +32,15 @@ class Api::VacationController < ApiController
       render json: { success: true }
     else
       defaults = HR::Vacation::Defaults.where(user: current_user).as_json(methods: :person_name)
+      # assignees = []
+      # HR_ASSIGNEES.each do |assignee|
+      #   employee = HR::Employee.find(assignee)
+      #   assignees << {
+      #        id: assignee,
+      #   #     person_name: employee.to_s
+      #   }
+      # end
+      # defaults << { key: 'assignees', value: assignees }
       defaults << 
       { 
         id: -1,

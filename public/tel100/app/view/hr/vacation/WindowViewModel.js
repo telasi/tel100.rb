@@ -72,6 +72,10 @@ Ext.define('Tel100.view.hr.vacation.WindowViewModel', {
     salary_type: {
       data: [
         {
+          id: 0,
+          name: '0%'
+        },
+        {
           id: 15,
           name: '15%'
         },

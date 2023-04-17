@@ -6,6 +6,9 @@ AUTO_ASSIGNEE_EXCEPTION_DOCTYPES = [ 12 ] # ხელშეკრულება
 AUTO_ASSIGNEE_EXCEPTION = 7 # user
 AUTO_ASSIGNEE_EXCEPTION_RESPONSE_TYPE = 11 #
 
+AUTO_SIGNEE_EXCEPTION_DOCTYPES = [ 3, 4 ] # ბრძანება, განკარგულება
+AUTO_SIGNEE_EXCEPTION = 23 # user
+
 ##### ვადის გასვლით ვიზირების პარამეტრები
 
 # დრო რომელიც ეძლევა ვიზატორს, რათა დაავიზიროს ბრძანება

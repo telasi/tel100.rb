@@ -235,7 +235,7 @@ class Document::Base < ActiveRecord::Base
   # Checks auto-assignees to receive the document.
   def check_auto_assignees!(user)
     # exception for agreement document type
-    check_auto_assignees_exception!(user)
+    # check_auto_assignees_exception!(user)
 
     # ignore inner documents
     return if self.direction == INNER
@@ -260,6 +260,9 @@ class Document::Base < ActiveRecord::Base
 
   # Check auto-signees to receive the document.
   def check_auto_signees!(user)
+
+    check_auto_signees_exception!(user) # brdzaneba, gankarguleba
+
     return unless AUTO_SIGNEE_DOCTYPES.include?(self.type_id)
     unless self.motions.where(receiver_user_id: AUTO_SIGNEE).any?
       send_type = Document::ResponseType.find(AUTO_SIGNEE_RESPONSE_TYPE)
@@ -270,6 +273,22 @@ class Document::Base < ActiveRecord::Base
         motion.update_attributes!(status: CURRENT)
       end
       docuser = Document::User.create!(document: self, user_id: AUTO_SIGNEE, is_new: 1, is_changed: 1)
+    end
+  end
+
+  def check_auto_signees_exception!(user)
+    return unless AUTO_SIGNEE_EXCEPTION_DOCTYPES.include?(self.type_id)
+    unless self.motions.where(receiver_user_id: AUTO_SIGNEE_EXCEPTION).any?
+      max = ( self.signee_motions.where('ORDERING < ?', Document::Motion::ORDERING_AUTO_SIGNEE).maximum('ordering') || 0 ) + 1
+
+      send_type = Document::ResponseType.find(AUTO_SIGNEE_RESPONSE_TYPE)
+      motion = Document::Motion.create!(document: self, parent: nil, is_new: 1, ordering: max,
+        send_type: send_type, sender_user: user, receiver_user_id: AUTO_SIGNEE_EXCEPTION, receiver_role: ROLE_SIGNEE, status: SENT,
+        sent_at: Time.now, received_at: Time.now)
+      if motion.should_be_current?
+        motion.update_attributes!(status: CURRENT)
+      end
+      docuser = Document::User.create!(document: self, user_id: AUTO_SIGNEE_EXCEPTION, is_new: 1, is_changed: 1)
     end
   end
 
@@ -656,7 +675,7 @@ class Document::Base < ActiveRecord::Base
 
       #create assignee
       # create except for following types
-      if REPLY_TYPES_ASSIGNEE_EXCEPTION.include?(self.type_id)
+      if ! REPLY_TYPES_ASSIGNEE_EXCEPTION.include?(self.type_id)
         motionparams = { document: newdoc, is_new: 1, ordering: Document::Motion::ORDERING_ASIGNEE,
               sender_user: user, sender: sender, actual_sender: nil, 
               receiver_user: receiver_user, receiver: receiver, receiver_role: ROLE_ASSIGNEE, status: DRAFT,
