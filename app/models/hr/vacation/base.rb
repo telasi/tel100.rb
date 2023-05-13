@@ -48,6 +48,7 @@ class HR::Vacation::Base < ActiveRecord::Base
     vac = HR::Vacation::Base.new(vac_params)
 	  #vac.business_days = HR::Vacation::Base.find_by_sql("select FNC_GET_businessDays( to_date('#{params[:from_date]}','YYYY-MM-DD\"T\"HH24:MI:SS'), to_date('#{params[:to_date]}','YYYY-MM-DD\"T\"HH24:MI:SS')) as dd from dual")
 	  vac.business_days  = HR::Vacation::Base.find_by_sql("select FNC_GET_businessDays( to_date(substr('#{params[:from_date]}',0,10),'yyyy-mm-dd'), to_date(substr('#{params[:to_date]}',0,10),'yyyy-mm-dd')) as dd from dual").last.dd
+    #vac.business_days = 1
     vac.confirmed = 1
     onbehalf = HR::Employee.find(params[:onbehalf])
     vac.requester = user.employee
@@ -86,7 +87,7 @@ class HR::Vacation::Base < ActiveRecord::Base
             docdate: Date.today,
             sent_at: Time.now,
             actual_sender: user,
-            docnumber: Document::Base.docnumber_eval(Document::Type.find(2), Date.today),
+            docnumber: Document::Base.docnumber_eval(Document::Type.find(20), Date.today),
             subject: "#{vacation.type.name_ka} / #{vacation.type.name_ru}"
           }
           document = Document::Base.create!(docparams)
@@ -177,7 +178,8 @@ class HR::Vacation::Base < ActiveRecord::Base
           docuser.calculate! if docuser
         end
 
-        vacation.update!(docnumber: document.docnumber)
+        vacation.docnumber = document.docnumber
+        vacation.save!
       end
   end
 
