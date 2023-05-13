@@ -210,9 +210,9 @@ class HR::Vacation::Base < ActiveRecord::Base
     format = '%d.%m.%Y'
 
     if vacation.sub_employee
-      sub_ka = "<p>მოვალეობა შეითავსოს: <b>#{vacation.sub_employee.first_name_ka} #{vacation.sub_employee.last_name_ka}</b> - " +
+      sub_ka = "<p>მოვალეობა შეითავსოს: <b>#{vacation.sub_employee.first_name_ka} #{vacation.sub_employee.last_name_ka}</b> (#{vacation.sub_employee.person_id}) - " +
                "#{ vacation.salary == 'own' ? 'ჩემი ხელფასის' : 'მოვალეობის შემსრულებლის ხელფასის' } - #{vacation.percent} %" + "</p>"
-      sub_ru = "<p>Обязанность совместить: <b>#{vacation.sub_employee.first_name_ru} #{vacation.sub_employee.last_name_ru}</b> - " + 
+      sub_ru = "<p>Обязанность совместить: <b>#{vacation.sub_employee.first_name_ru} #{vacation.sub_employee.last_name_ru}</b> (#{vacation.sub_employee.person_id}) - " + 
                "#{ vacation.salary == 'own' ? 'Своя зарплата' : 'Зарплата исполняющего обязанности' } - #{vacation.percent} %" + "</p>"
     end
 
@@ -229,7 +229,7 @@ class HR::Vacation::Base < ActiveRecord::Base
 	  
 	  <p>სამუშაო დღეების რაოდ.: <b>#{vacation.business_days.to_i}</b></p>
 	  
-	  <p>სტრუქტურა.: <b>#{orgstructurestr(user.employee.organization.id,'KA')}</b></p>
+	  <p>სტრუქტურა.: <b>#{orgstructurestr((user.sub_employee || user.employee).organization.id,'KA')}</b></p>
 
     <p>ინიციატორი: <b>#{vacation.requester.first_name_ka} #{vacation.requester.last_name_ka}</b></p>
 
@@ -251,7 +251,7 @@ class HR::Vacation::Base < ActiveRecord::Base
 	  
 	  <p>Количество рабочих дней.: <b>#{vacation.business_days.to_i}</b></p>
 	  
-	  <p>Структура: <b>#{orgstructurestr(user.employee.organization.id,'RU')}</b></p>
+	  <p>Структура: <b>#{orgstructurestr((user.sub_employee || user.employee).organization.id,'RU')}</b></p>
 
     <p>Инициатор: <b>#{vacation.requester.first_name_ru} #{vacation.requester.last_name_ru}</b></p>
 
