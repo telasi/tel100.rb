@@ -10,7 +10,7 @@ class Document::Base < ActiveRecord::Base
 
   self.table_name  = 'document_base'
   self.sequence_name = 'docbase_seq'
-  self.set_integer_columns :status
+  self.set_integer_columns :status, :agreement_confidential
 
   belongs_to :parent, class_name: 'Document::Base', foreign_key: 'parent_id'
   belongs_to :actual_sender, class_name: 'Sys::User', foreign_key: 'actual_sender_id'
@@ -98,7 +98,7 @@ class Document::Base < ActiveRecord::Base
         text.save!
       end
       if params.respond_to?(:permit)
-        params = params.permit(:subject,:docnumber,:docnumber2,:type_id,:docdate,:due_date,:page_count,:additions,:direction,:original_number,:original_date)
+        params = params.permit(:subject,:docnumber,:docnumber2,:type_id,:docdate,:due_date,:page_count,:additions,:direction,:original_number,:original_date,:agreement_confidential)
       else
         params = params.dup.except(:body)
       end

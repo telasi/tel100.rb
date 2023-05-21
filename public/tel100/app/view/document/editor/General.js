@@ -125,7 +125,71 @@ Ext.define('Tel100.view.document.editor.General', {
         readOnly: '{readonly}'
       }
     }]
+  }, {
+    xtype: 'fieldset',
+    bind: {
+      hidden: '{!agreementQuestionShown}',
+      title: '{i18n.document.base.agreement_fields}'
+    },
+    items: [
+      {   xtype: 'label',
+          padding: '10 0 0 0',
+          style: {
+            fontWeight: 'bold'
+          },
+          bind: {
+            text: '{i18n.document.base.agreement.question}'
+          }
+      },
+      {
+        xtype: 'radiogroup',
+        layout: {
+          type: 'hbox',
+          align: 'stretch',
+        },
+        bind: {
+          value: '{document.agreement_confidential}',
+        },
+      items: [
+        {
+          xtype: 'radiofield',
+          reference: 'confidential_yes',
+          name: 'confidential',
+          inputValue: '1',
+          bind: {
+            readOnly: '{readonly}'
+          }
+        }, 
+        {
+          xtype: 'radiofield',
+          reference: 'confidential_no',
+          name: 'confidential',
+          inputValue: '0',
+          bind: {
+            readOnly: '{readonly}'
+          }
+        }
+      ],
+      listeners: {
+        afterrender: function() {
+          if(this.up('panel').getViewModel().get('document.agreement_confidential') === 1){
+            this.items.first().setValue(true)
+          } else {
+            this.items.last().setValue(true)
+          }
+        }
+      }
+    },
+
+    ]
   }],
+
+  initComponent: function(){
+    this.callParent();
+    var references = this.getReferences();
+    references.confidential_yes.setBoxLabel(i18n.document.base.agreement.confidential_yes)
+    references.confidential_no.setBoxLabel(i18n.document.base.agreement.confidential_no)
+  },
 
   getReadonly: function() {
     return this.getViewModel().get('readonly');
@@ -235,10 +299,18 @@ Ext.define('Tel100.view.document.editor.GeneralViewModel', {
       return ( get('document.direction') === 'in' || get('document.type_id') === 4 || get('document.type_id') === 19 );
     },
 
+    agreementQuestionShown: function(get){
+      return get('document.type_id') === 12;
+    },
+
     readonlyForDate: function(get) {
       if (get('readonly')) { return true; }
       if (get('specialType')) { return false; }
       return true;
+    },
+
+    agreementConfidential: function(get) {
+      return get('document.agreement_confidential');
     }
   }
 });

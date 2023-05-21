@@ -229,7 +229,7 @@ class HR::Vacation::Base < ActiveRecord::Base
 	  
 	  <p>სამუშაო დღეების რაოდ.: <b>#{vacation.business_days.to_i}</b></p>
 	  
-	  <p>სტრუქტურა.: <b>#{orgstructurestr((user.sub_employee || user.employee).organization.id,'KA')}</b></p>
+	  <p>სტრუქტურა.: <b>#{orgstructurestr((vacation.sub_employee || vacation.employee).organization.id,'KA')}</b></p>
 
     <p>ინიციატორი: <b>#{vacation.requester.first_name_ka} #{vacation.requester.last_name_ka}</b></p>
 
@@ -251,7 +251,7 @@ class HR::Vacation::Base < ActiveRecord::Base
 	  
 	  <p>Количество рабочих дней.: <b>#{vacation.business_days.to_i}</b></p>
 	  
-	  <p>Структура: <b>#{orgstructurestr((user.sub_employee || user.employee).organization.id,'RU')}</b></p>
+	  <p>Структура: <b>#{orgstructurestr((vacation.sub_employee || vacation.employee).organization.id,'RU')}</b></p>
 
     <p>Инициатор: <b>#{vacation.requester.first_name_ru} #{vacation.requester.last_name_ru}</b></p>
 
